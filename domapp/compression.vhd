@@ -70,13 +70,15 @@ BEGIN
 	--compr_size		<= (OTHERS=>'0');
 	compr_avail_out <= data_avail_in;
 	compr_size		<= "111111111";
-	PROCESS(compr_addr)
+	PROCESS(CLK40)
 	BEGIN
-		IF compr_addr=0 THEN
-			compr_data <= x"deadbeef";
-		ELSE
-			compr_data (8 DOWNTO 0) <= compr_addr;
-			compr_data (31 DOWNTO 9) <= (OTHERS=>'0');
+		IF CLK40'EVENT AND CLK40='1' THEN
+			IF compr_addr=0 THEN
+				compr_data <= x"deadbeef";
+			ELSE
+				compr_data (8 DOWNTO 0) <= compr_addr;
+				compr_data (31 DOWNTO 9) <= (OTHERS=>'0');
+			END IF;
 		END IF;
 	END PROCESS;
 	
