@@ -1,5 +1,5 @@
 Analysis & Synthesis report for simpletest compilation.
-Mon Nov 03 08:41:20 2003
+Thu Nov 13 08:20:12 2003
 Version 3.0 Build 245 10/09/2003 Service Pack 2 SJ Full Version
 
 Command: quartus_map --import_settings_files=on --export_settings_files=off simpletest -c simpletest
@@ -69,12 +69,12 @@ party's intellectual property, are provided herein.
 -----------------------------------------------------------------
 ; Flow Summary                                                  ;
 -----------------------------------------------------------------
-; Flow Status           ; Successful - Mon Nov 03 08:41:20 2003 ;
+; Flow Status           ; Successful - Thu Nov 13 08:20:12 2003 ;
 ; Compiler Setting Name ; simpletest                            ;
 ; Top-level Entity Name ; simpletest                            ;
 ; Family                ; EXCALIBUR_ARM                         ;
 ; Device                ; EPXA4F672I2                           ;
-; Total logic elements  ; 3,708                                 ;
+; Total logic elements  ; 3,737                                 ;
 ; Total pins            ; 283                                   ;
 ; Total memory bits     ; 43,648                                ;
 ; Total PLLs            ; 2                                     ;
@@ -86,7 +86,7 @@ party's intellectual property, are provided herein.
 -----------------------------------------------
 ; Option                ; Setting             ;
 -----------------------------------------------
-; Start date & time     ; 11/03/2003 08:40:01 ;
+; Start date & time     ; 11/13/2003 08:18:53 ;
 ; Main task             ; Compilation         ;
 ; Compiler Setting Name ; simpletest          ;
 -----------------------------------------------
@@ -105,11 +105,11 @@ party's intellectual property, are provided herein.
 -----------------------------------------------------------------------
 ; Analysis & Synthesis Summary                                        ;
 -----------------------------------------------------------------------
-; Analysis & Synthesis Status ; Successful - Mon Nov 03 08:41:20 2003 ;
+; Analysis & Synthesis Status ; Successful - Thu Nov 13 08:20:12 2003 ;
 ; Compiler Setting Name       ; simpletest                            ;
 ; Top-level Entity Name       ; simpletest                            ;
 ; Family                      ; EXCALIBUR_ARM                         ;
-; Total logic elements        ; 3,708                                 ;
+; Total logic elements        ; 3,737                                 ;
 ; Total pins                  ; 283                                   ;
 ; Total memory bits           ; 43,648                                ;
 ; Total PLLs                  ; 2                                     ;
@@ -143,7 +143,7 @@ Hierarchy
     atwd:atwd0
       atwd_control:inst_atwd_control
       atwd_readout:inst_atwd_readout
-        lpm_counter:divide_cnt_rtl_357
+        lpm_counter:divide_cnt_rtl_356
           alt_synch_counter:wysi_counter
       atwd_trigger:inst_atwd_trigger
       com_adc_mem:inst_com_adc_mem
@@ -153,7 +153,7 @@ Hierarchy
     atwd:atwd1
       atwd_control:inst_atwd_control
       atwd_readout:inst_atwd_readout
-        lpm_counter:divide_cnt_rtl_356
+        lpm_counter:divide_cnt_rtl_355
           alt_synch_counter:wysi_counter
       atwd_trigger:inst_atwd_trigger
       com_adc_mem:inst_com_adc_mem
@@ -162,7 +162,7 @@ Hierarchy
       gray2bin:inst_gray2bin
     lpm_counter:CNT_rtl_352
       alt_synch_counter:wysi_counter
-    lpm_counter:ctrl_err_cnt_rtl_358
+    lpm_counter:ctrl_err_cnt_rtl_357
       alt_synch_counter:wysi_counter
     dcom:dcom_inst
       DC_CTRL:DC_CTRL
@@ -563,23 +563,23 @@ Hierarchy
     coinc:inst_coinc
     fe_r2r:inst_fe_r2r
     fe_testpulse:inst_fe_testpulse
-      lpm_counter:cnt_rtl_359
+      lpm_counter:cnt_rtl_358
         alt_synch_counter:wysi_counter
     flash_adc:inst_flash_ADC
       com_adc_mem:inst_com_adc_mem
         lpm_ram_dp:lpm_ram_dp_component
           altdpram:sram
-      lpm_counter:MEM_write_addr_rtl_364
+      lpm_counter:MEM_write_addr_rtl_363
         alt_synch_counter:wysi_counter
     hit_counter:inst_hit_counter
-      lpm_counter:multiSPEcnt_int_rtl_361
+      lpm_counter:multiSPEcnt_int_rtl_360
         alt_synch_counter:wysi_counter
-      lpm_counter:oneSPEcnt_int_rtl_360
+      lpm_counter:oneSPEcnt_int_rtl_359
         alt_synch_counter:wysi_counter
     hit_counter_ff:inst_hit_counter_ff
-      lpm_counter:multiSPEcnt_int_rtl_363
+      lpm_counter:multiSPEcnt_int_rtl_362
         alt_synch_counter:wysi_counter
-      lpm_counter:oneSPEcnt_int_rtl_362
+      lpm_counter:oneSPEcnt_int_rtl_361
         alt_synch_counter:wysi_counter
     master_data_source:inst_master_data_source
     pll2x:inst_pll2x
@@ -589,7 +589,7 @@ Hierarchy
     r2r:inst_r2r
     roc:inst_ROC
     single_led:inst_single_led
-      lpm_counter:cnt_rtl_355
+      lpm_counter:cnt_rtl_364
         alt_synch_counter:wysi_counter
     led2atwddelay:LED2ATWDdelay_inst
     lpm_counter:PGM_rtl_351
@@ -783,18 +783,20 @@ Hierarchy
 -----------------
 
 
--------------------------------------------------------------------------------
-; State Machine - dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg2                        ;
--------------------------------------------------------------------------------
-; Name      ; sreg2~17 ; sreg2~16 ; sreg2~15 ; sreg2~14 ; sreg2~13 ; sreg2~12 ;
--------------------------------------------------------------------------------
-; FPGA_RDY  ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ;
-; COM_RES   ; 0        ; 0        ; 0        ; 0        ; 1        ; 1        ;
-; CRES_WAIT ; 0        ; 0        ; 0        ; 1        ; 0        ; 1        ;
-; DOM_RBT   ; 0        ; 0        ; 1        ; 0        ; 0        ; 1        ;
-; RES_SYNC  ; 0        ; 1        ; 0        ; 0        ; 0        ; 1        ;
-; WAIT_6ms  ; 1        ; 0        ; 0        ; 0        ; 0        ; 1        ;
--------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------
+; State Machine - dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg2                                              ;
+-----------------------------------------------------------------------------------------------------
+; Name      ; sreg2~19 ; sreg2~18 ; sreg2~17 ; sreg2~16 ; sreg2~15 ; sreg2~14 ; sreg2~13 ; sreg2~12 ;
+-----------------------------------------------------------------------------------------------------
+; FPGA_RDY  ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ;
+; COM_RES   ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 1        ;
+; CRES_1    ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 1        ;
+; CRES_2    ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 1        ;
+; CRES_3    ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 1        ;
+; CRES_WAIT ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; DOM_RBT   ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; WAIT_6ms  ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+-----------------------------------------------------------------------------------------------------
 
 
 ------------------------------------------------------------------------------------------------------------------
@@ -1081,25 +1083,25 @@ Hierarchy
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Compilation Hierarchy Node                                     ; Logic Cells ; Registers ; Memory Bits ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Full Hierarchy Name                                                                                                                                                                                                                                                ;
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-; |simpletest                                                    ; 3708 (183)  ; 1930      ; 3776        ; 283  ; 0            ; 1778 (181)   ; 666 (1)           ; 1264 (1)         ; |simpletest                                                                                                                                                                                                                                                        ;
+; |simpletest                                                    ; 3737 (184)  ; 1939      ; 3776        ; 283  ; 0            ; 1798 (182)   ; 674 (1)           ; 1265 (1)         ; |simpletest                                                                                                                                                                                                                                                        ;
 ;    |ahb_master:inst_ahb_master|                                ; 32 (32)     ; 32        ; 0           ; 0    ; 0            ; 0 (0)        ; 32 (32)           ; 0 (0)            ; |simpletest|ahb_master:inst_ahb_master                                                                                                                                                                                                                             ;
 ;    |ahb_slave:ahb_slave_inst|                                  ; 54 (54)     ; 24        ; 0           ; 0    ; 0            ; 30 (30)      ; 0 (0)             ; 24 (24)          ; |simpletest|ahb_slave:ahb_slave_inst                                                                                                                                                                                                                               ;
-;    |atwd:atwd0|                                                ; 384 (25)    ; 165       ; 512         ; 0    ; 0            ; 219 (25)     ; 16 (0)            ; 149 (0)          ; |simpletest|atwd:atwd0                                                                                                                                                                                                                                             ;
+;    |atwd:atwd0|                                                ; 387 (25)    ; 167       ; 512         ; 0    ; 0            ; 220 (25)     ; 17 (0)            ; 150 (0)          ; |simpletest|atwd:atwd0                                                                                                                                                                                                                                             ;
 ;       |atwd_control:inst_atwd_control|                         ; 200 (200)   ; 91        ; 0           ; 0    ; 0            ; 109 (109)    ; 1 (1)             ; 90 (90)          ; |simpletest|atwd:atwd0|atwd_control:inst_atwd_control                                                                                                                                                                                                              ;
 ;       |atwd_readout:inst_atwd_readout|                         ; 141 (139)   ; 64        ; 0           ; 0    ; 0            ; 77 (77)      ; 12 (12)           ; 52 (50)          ; |simpletest|atwd:atwd0|atwd_readout:inst_atwd_readout                                                                                                                                                                                                              ;
-;          |lpm_counter:divide_cnt_rtl_357|                      ; 2 (0)       ; 2         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 2 (0)            ; |simpletest|atwd:atwd0|atwd_readout:inst_atwd_readout|lpm_counter:divide_cnt_rtl_357                                                                                                                                                                               ;
-;             |alt_synch_counter:wysi_counter|                   ; 2 (2)       ; 2         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 2 (2)            ; |simpletest|atwd:atwd0|atwd_readout:inst_atwd_readout|lpm_counter:divide_cnt_rtl_357|alt_synch_counter:wysi_counter                                                                                                                                                ;
-;       |atwd_trigger:inst_atwd_trigger|                         ; 13 (13)     ; 10        ; 0           ; 0    ; 0            ; 3 (3)        ; 3 (3)             ; 7 (7)            ; |simpletest|atwd:atwd0|atwd_trigger:inst_atwd_trigger                                                                                                                                                                                                              ;
+;          |lpm_counter:divide_cnt_rtl_356|                      ; 2 (0)       ; 2         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 2 (0)            ; |simpletest|atwd:atwd0|atwd_readout:inst_atwd_readout|lpm_counter:divide_cnt_rtl_356                                                                                                                                                                               ;
+;             |alt_synch_counter:wysi_counter|                   ; 2 (2)       ; 2         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 2 (2)            ; |simpletest|atwd:atwd0|atwd_readout:inst_atwd_readout|lpm_counter:divide_cnt_rtl_356|alt_synch_counter:wysi_counter                                                                                                                                                ;
+;       |atwd_trigger:inst_atwd_trigger|                         ; 16 (16)     ; 12        ; 0           ; 0    ; 0            ; 4 (4)        ; 4 (4)             ; 8 (8)            ; |simpletest|atwd:atwd0|atwd_trigger:inst_atwd_trigger                                                                                                                                                                                                              ;
 ;       |com_adc_mem:inst_com_adc_mem|                           ; 0 (0)       ; 0         ; 512         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |simpletest|atwd:atwd0|com_adc_mem:inst_com_adc_mem                                                                                                                                                                                                                ;
 ;          |lpm_ram_dp:lpm_ram_dp_component|                     ; 0 (0)       ; 0         ; 512         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |simpletest|atwd:atwd0|com_adc_mem:inst_com_adc_mem|lpm_ram_dp:lpm_ram_dp_component                                                                                                                                                                                ;
 ;             |altdpram:sram|                                    ; 0 (0)       ; 0         ; 512         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |simpletest|atwd:atwd0|com_adc_mem:inst_com_adc_mem|lpm_ram_dp:lpm_ram_dp_component|altdpram:sram                                                                                                                                                                  ;
 ;       |gray2bin:inst_gray2bin|                                 ; 5 (5)       ; 0         ; 0           ; 0    ; 0            ; 5 (5)        ; 0 (0)             ; 0 (0)            ; |simpletest|atwd:atwd0|gray2bin:inst_gray2bin                                                                                                                                                                                                                      ;
-;    |atwd:atwd1|                                                ; 383 (25)    ; 163       ; 512         ; 0    ; 0            ; 220 (25)     ; 15 (0)            ; 148 (0)          ; |simpletest|atwd:atwd1                                                                                                                                                                                                                                             ;
+;    |atwd:atwd1|                                                ; 385 (25)    ; 165       ; 512         ; 0    ; 0            ; 220 (25)     ; 16 (0)            ; 149 (0)          ; |simpletest|atwd:atwd1                                                                                                                                                                                                                                             ;
 ;       |atwd_control:inst_atwd_control|                         ; 198 (198)   ; 89        ; 0           ; 0    ; 0            ; 109 (109)    ; 0 (0)             ; 89 (89)          ; |simpletest|atwd:atwd1|atwd_control:inst_atwd_control                                                                                                                                                                                                              ;
 ;       |atwd_readout:inst_atwd_readout|                         ; 141 (139)   ; 64        ; 0           ; 0    ; 0            ; 77 (77)      ; 12 (12)           ; 52 (50)          ; |simpletest|atwd:atwd1|atwd_readout:inst_atwd_readout                                                                                                                                                                                                              ;
-;          |lpm_counter:divide_cnt_rtl_356|                      ; 2 (0)       ; 2         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 2 (0)            ; |simpletest|atwd:atwd1|atwd_readout:inst_atwd_readout|lpm_counter:divide_cnt_rtl_356                                                                                                                                                                               ;
-;             |alt_synch_counter:wysi_counter|                   ; 2 (2)       ; 2         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 2 (2)            ; |simpletest|atwd:atwd1|atwd_readout:inst_atwd_readout|lpm_counter:divide_cnt_rtl_356|alt_synch_counter:wysi_counter                                                                                                                                                ;
-;       |atwd_trigger:inst_atwd_trigger|                         ; 14 (14)     ; 10        ; 0           ; 0    ; 0            ; 4 (4)        ; 3 (3)             ; 7 (7)            ; |simpletest|atwd:atwd1|atwd_trigger:inst_atwd_trigger                                                                                                                                                                                                              ;
+;          |lpm_counter:divide_cnt_rtl_355|                      ; 2 (0)       ; 2         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 2 (0)            ; |simpletest|atwd:atwd1|atwd_readout:inst_atwd_readout|lpm_counter:divide_cnt_rtl_355                                                                                                                                                                               ;
+;             |alt_synch_counter:wysi_counter|                   ; 2 (2)       ; 2         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 2 (2)            ; |simpletest|atwd:atwd1|atwd_readout:inst_atwd_readout|lpm_counter:divide_cnt_rtl_355|alt_synch_counter:wysi_counter                                                                                                                                                ;
+;       |atwd_trigger:inst_atwd_trigger|                         ; 16 (16)     ; 12        ; 0           ; 0    ; 0            ; 4 (4)        ; 4 (4)             ; 8 (8)            ; |simpletest|atwd:atwd1|atwd_trigger:inst_atwd_trigger                                                                                                                                                                                                              ;
 ;       |com_adc_mem:inst_com_adc_mem|                           ; 0 (0)       ; 0         ; 512         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |simpletest|atwd:atwd1|com_adc_mem:inst_com_adc_mem                                                                                                                                                                                                                ;
 ;          |lpm_ram_dp:lpm_ram_dp_component|                     ; 0 (0)       ; 0         ; 512         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |simpletest|atwd:atwd1|com_adc_mem:inst_com_adc_mem|lpm_ram_dp:lpm_ram_dp_component                                                                                                                                                                                ;
 ;             |altdpram:sram|                                    ; 0 (0)       ; 0         ; 512         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |simpletest|atwd:atwd1|com_adc_mem:inst_com_adc_mem|lpm_ram_dp:lpm_ram_dp_component|altdpram:sram                                                                                                                                                                  ;
@@ -1107,10 +1109,10 @@ Hierarchy
 ;    |atwd_ping_pong:inst_atwd_ping_pong|                        ; 21 (21)     ; 11        ; 0           ; 0    ; 0            ; 10 (10)      ; 3 (3)             ; 8 (8)            ; |simpletest|atwd_ping_pong:inst_atwd_ping_pong                                                                                                                                                                                                                     ;
 ;    |atwd_timestamp:inst_atwd_timestamp|                        ; 100 (100)   ; 98        ; 0           ; 0    ; 0            ; 2 (2)        ; 98 (98)           ; 0 (0)            ; |simpletest|atwd_timestamp:inst_atwd_timestamp                                                                                                                                                                                                                     ;
 ;    |coinc:inst_coinc|                                          ; 196 (196)   ; 86        ; 0           ; 0    ; 0            ; 110 (110)    ; 14 (14)           ; 72 (72)          ; |simpletest|coinc:inst_coinc                                                                                                                                                                                                                                       ;
-;    |dcom:dcom_inst|                                            ; 1127 (0)    ; 615       ; 2112        ; 0    ; 0            ; 512 (0)      ; 113 (0)           ; 502 (0)          ; |simpletest|dcom:dcom_inst                                                                                                                                                                                                                                         ;
-;       |DC_CTRL:DC_CTRL|                                        ; 142 (142)   ; 47        ; 0           ; 0    ; 0            ; 95 (95)      ; 0 (0)             ; 47 (47)          ; |simpletest|dcom:dcom_inst|DC_CTRL:DC_CTRL                                                                                                                                                                                                                         ;
-;       |DC_Rx_chan_04:DC_Rx_chan_04|                            ; 488 (6)     ; 268       ; 1088        ; 0    ; 0            ; 220 (4)      ; 63 (0)            ; 205 (2)          ; |simpletest|dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04                                                                                                                                                                                                             ;
-;          |DC_MREC:inst12|                                      ; 31 (31)     ; 12        ; 0           ; 0    ; 0            ; 19 (19)      ; 0 (0)             ; 12 (12)          ; |simpletest|dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|DC_MREC:inst12                                                                                                                                                                                              ;
+;    |dcom:dcom_inst|                                            ; 1143 (0)    ; 614       ; 2112        ; 0    ; 0            ; 529 (0)      ; 113 (0)           ; 501 (0)          ; |simpletest|dcom:dcom_inst                                                                                                                                                                                                                                         ;
+;       |DC_CTRL:DC_CTRL|                                        ; 153 (153)   ; 49        ; 0           ; 0    ; 0            ; 104 (104)    ; 0 (0)             ; 49 (49)          ; |simpletest|dcom:dcom_inst|DC_CTRL:DC_CTRL                                                                                                                                                                                                                         ;
+;       |DC_Rx_chan_04:DC_Rx_chan_04|                            ; 490 (6)     ; 268       ; 1088        ; 0    ; 0            ; 222 (4)      ; 63 (0)            ; 205 (2)          ; |simpletest|dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04                                                                                                                                                                                                             ;
+;          |DC_MREC:inst12|                                      ; 33 (33)     ; 12        ; 0           ; 0    ; 0            ; 21 (21)      ; 0 (0)             ; 12 (12)          ; |simpletest|dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|DC_MREC:inst12                                                                                                                                                                                              ;
 ;          |RX_UART_12:inst25|                                   ; 43 (0)      ; 28        ; 0           ; 0    ; 0            ; 15 (0)       ; 8 (0)             ; 20 (0)           ; |simpletest|dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|RX_UART_12:inst25                                                                                                                                                                                           ;
 ;             |Par_74180:inst|                                   ; 2 (2)       ; 0         ; 0           ; 0    ; 0            ; 2 (2)        ; 0 (0)             ; 0 (0)            ; |simpletest|dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|RX_UART_12:inst25|Par_74180:inst                                                                                                                                                                            ;
 ;             |UA_RX_12:inst6|                                   ; 19 (19)     ; 11        ; 0           ; 0    ; 0            ; 8 (8)        ; 0 (0)             ; 11 (11)          ; |simpletest|dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|RX_UART_12:inst25|UA_RX_12:inst6                                                                                                                                                                            ;
@@ -1243,11 +1245,11 @@ Hierarchy
 ;          |rx_msg_ct:inst3|                                     ; 8 (0)       ; 8         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 8 (0)            ; |simpletest|dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|rx_msg_ct:inst3                                                                                                                                                                                             ;
 ;             |lpm_counter:lpm_counter_component|                ; 8 (0)       ; 8         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 8 (0)            ; |simpletest|dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|rx_msg_ct:inst3|lpm_counter:lpm_counter_component                                                                                                                                                           ;
 ;                |alt_synch_counter:wysi_counter|                ; 8 (8)       ; 8         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 8 (8)            ; |simpletest|dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|rx_msg_ct:inst3|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter                                                                                                                            ;
-;       |DC_Tx_chan_04:DC_Tx_chan_04|                            ; 461 (55)    ; 280       ; 1024        ; 0    ; 0            ; 181 (3)      ; 49 (48)           ; 231 (4)          ; |simpletest|dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04                                                                                                                                                                                                             ;
+;       |DC_Tx_chan_04:DC_Tx_chan_04|                            ; 464 (52)    ; 277       ; 1024        ; 0    ; 0            ; 187 (3)      ; 49 (48)           ; 228 (1)          ; |simpletest|dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04                                                                                                                                                                                                             ;
 ;          |DC_SEND:inst6|                                       ; 99 (99)     ; 43        ; 0           ; 0    ; 0            ; 56 (56)      ; 0 (0)             ; 43 (43)          ; |simpletest|dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|DC_SEND:inst6                                                                                                                                                                                               ;
 ;          |control_byte:inst2|                                  ; 2 (0)       ; 0         ; 0           ; 0    ; 0            ; 2 (0)        ; 0 (0)             ; 0 (0)            ; |simpletest|dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|control_byte:inst2                                                                                                                                                                                          ;
 ;             |Par_74180:par|                                    ; 2 (2)       ; 0         ; 0           ; 0    ; 0            ; 2 (2)        ; 0 (0)             ; 0 (0)            ; |simpletest|dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|control_byte:inst2|Par_74180:par                                                                                                                                                                            ;
-;          |dac_rs_tab_rect_01:inst15|                           ; 8 (8)       ; 0         ; 0           ; 0    ; 0            ; 8 (8)        ; 0 (0)             ; 0 (0)            ; |simpletest|dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|dac_rs_tab_rect_01:inst15                                                                                                                                                                                   ;
+;          |dac_rs_tab_rect_01:inst15|                           ; 14 (14)     ; 0         ; 0           ; 0    ; 0            ; 14 (14)      ; 0 (0)             ; 0 (0)            ; |simpletest|dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|dac_rs_tab_rect_01:inst15                                                                                                                                                                                   ;
 ;          |dc_tx_fifo:inst3|                                    ; 45 (0)      ; 32        ; 1024        ; 0    ; 0            ; 13 (0)       ; 1 (0)             ; 31 (0)           ; |simpletest|dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|dc_tx_fifo:inst3                                                                                                                                                                                            ;
 ;             |scfifo:scfifo_component|                          ; 45 (0)      ; 32        ; 1024        ; 0    ; 0            ; 13 (0)       ; 1 (0)             ; 31 (0)           ; |simpletest|dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|dc_tx_fifo:inst3|scfifo:scfifo_component                                                                                                                                                                    ;
 ;                |scfifo_l8j:auto_generated|                     ; 45 (0)      ; 32        ; 1024        ; 0    ; 0            ; 13 (0)       ; 1 (0)             ; 31 (0)           ; |simpletest|dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|dc_tx_fifo:inst3|scfifo:scfifo_component|scfifo_l8j:auto_generated                                                                                                                                          ;
@@ -1365,32 +1367,32 @@ Hierarchy
 ;                               |comptree:sub_comptree|          ; 1 (0)       ; 0         ; 0           ; 0    ; 0            ; 1 (0)        ; 0 (0)             ; 0 (0)            ; |simpletest|dcom:dcom_inst|tcal_timer:tcal_timer|dc_tcal_ct:timer|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|lpm_compare:$00023|comptree:comparator|cmpchain:cmp_end|comptree:comp|comptree:sub_comptree                                     ;
 ;                                  |cmpchain:cmp_end|            ; 1 (1)       ; 0         ; 0           ; 0    ; 0            ; 1 (1)        ; 0 (0)             ; 0 (0)            ; |simpletest|dcom:dcom_inst|tcal_timer:tcal_timer|dc_tcal_ct:timer|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|lpm_compare:$00023|comptree:comparator|cmpchain:cmp_end|comptree:comp|comptree:sub_comptree|cmpchain:cmp_end                    ;
 ;    |fe_r2r:inst_fe_r2r|                                        ; 61 (61)     ; 21        ; 0           ; 0    ; 0            ; 40 (40)      ; 9 (9)             ; 12 (12)          ; |simpletest|fe_r2r:inst_fe_r2r                                                                                                                                                                                                                                     ;
-;    |fe_testpulse:inst_fe_testpulse|                            ; 33 (17)     ; 23        ; 0           ; 0    ; 0            ; 10 (10)      ; 3 (3)             ; 20 (4)           ; |simpletest|fe_testpulse:inst_fe_testpulse                                                                                                                                                                                                                         ;
-;       |lpm_counter:cnt_rtl_359|                                ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; |simpletest|fe_testpulse:inst_fe_testpulse|lpm_counter:cnt_rtl_359                                                                                                                                                                                                 ;
-;          |alt_synch_counter:wysi_counter|                      ; 16 (16)     ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; |simpletest|fe_testpulse:inst_fe_testpulse|lpm_counter:cnt_rtl_359|alt_synch_counter:wysi_counter                                                                                                                                                                  ;
+;    |fe_testpulse:inst_fe_testpulse|                            ; 36 (20)     ; 25        ; 0           ; 0    ; 0            ; 11 (11)      ; 5 (5)             ; 20 (4)           ; |simpletest|fe_testpulse:inst_fe_testpulse                                                                                                                                                                                                                         ;
+;       |lpm_counter:cnt_rtl_358|                                ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; |simpletest|fe_testpulse:inst_fe_testpulse|lpm_counter:cnt_rtl_358                                                                                                                                                                                                 ;
+;          |alt_synch_counter:wysi_counter|                      ; 16 (16)     ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; |simpletest|fe_testpulse:inst_fe_testpulse|lpm_counter:cnt_rtl_358|alt_synch_counter:wysi_counter                                                                                                                                                                  ;
 ;    |flash_adc:inst_flash_ADC|                                  ; 50 (40)     ; 22        ; 512         ; 0    ; 0            ; 28 (28)      ; 9 (9)             ; 13 (3)           ; |simpletest|flash_adc:inst_flash_ADC                                                                                                                                                                                                                               ;
 ;       |com_adc_mem:inst_com_adc_mem|                           ; 0 (0)       ; 0         ; 512         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |simpletest|flash_adc:inst_flash_ADC|com_adc_mem:inst_com_adc_mem                                                                                                                                                                                                  ;
 ;          |lpm_ram_dp:lpm_ram_dp_component|                     ; 0 (0)       ; 0         ; 512         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |simpletest|flash_adc:inst_flash_ADC|com_adc_mem:inst_com_adc_mem|lpm_ram_dp:lpm_ram_dp_component                                                                                                                                                                  ;
 ;             |altdpram:sram|                                    ; 0 (0)       ; 0         ; 512         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |simpletest|flash_adc:inst_flash_ADC|com_adc_mem:inst_com_adc_mem|lpm_ram_dp:lpm_ram_dp_component|altdpram:sram                                                                                                                                                    ;
-;       |lpm_counter:MEM_write_addr_rtl_364|                     ; 10 (0)      ; 10        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 10 (0)           ; |simpletest|flash_adc:inst_flash_ADC|lpm_counter:MEM_write_addr_rtl_364                                                                                                                                                                                            ;
-;          |alt_synch_counter:wysi_counter|                      ; 10 (10)     ; 10        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 10 (10)          ; |simpletest|flash_adc:inst_flash_ADC|lpm_counter:MEM_write_addr_rtl_364|alt_synch_counter:wysi_counter                                                                                                                                                             ;
+;       |lpm_counter:MEM_write_addr_rtl_363|                     ; 10 (0)      ; 10        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 10 (0)           ; |simpletest|flash_adc:inst_flash_ADC|lpm_counter:MEM_write_addr_rtl_363                                                                                                                                                                                            ;
+;          |alt_synch_counter:wysi_counter|                      ; 10 (10)     ; 10        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 10 (10)          ; |simpletest|flash_adc:inst_flash_ADC|lpm_counter:MEM_write_addr_rtl_363|alt_synch_counter:wysi_counter                                                                                                                                                             ;
 ;    |hit_counter:inst_hit_counter|                              ; 118 (86)    ; 104       ; 0           ; 0    ; 0            ; 14 (14)      ; 40 (40)           ; 64 (32)          ; |simpletest|hit_counter:inst_hit_counter                                                                                                                                                                                                                           ;
-;       |lpm_counter:multiSPEcnt_int_rtl_361|                    ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; |simpletest|hit_counter:inst_hit_counter|lpm_counter:multiSPEcnt_int_rtl_361                                                                                                                                                                                       ;
-;          |alt_synch_counter:wysi_counter|                      ; 16 (16)     ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; |simpletest|hit_counter:inst_hit_counter|lpm_counter:multiSPEcnt_int_rtl_361|alt_synch_counter:wysi_counter                                                                                                                                                        ;
-;       |lpm_counter:oneSPEcnt_int_rtl_360|                      ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; |simpletest|hit_counter:inst_hit_counter|lpm_counter:oneSPEcnt_int_rtl_360                                                                                                                                                                                         ;
-;          |alt_synch_counter:wysi_counter|                      ; 16 (16)     ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; |simpletest|hit_counter:inst_hit_counter|lpm_counter:oneSPEcnt_int_rtl_360|alt_synch_counter:wysi_counter                                                                                                                                                          ;
+;       |lpm_counter:multiSPEcnt_int_rtl_360|                    ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; |simpletest|hit_counter:inst_hit_counter|lpm_counter:multiSPEcnt_int_rtl_360                                                                                                                                                                                       ;
+;          |alt_synch_counter:wysi_counter|                      ; 16 (16)     ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; |simpletest|hit_counter:inst_hit_counter|lpm_counter:multiSPEcnt_int_rtl_360|alt_synch_counter:wysi_counter                                                                                                                                                        ;
+;       |lpm_counter:oneSPEcnt_int_rtl_359|                      ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; |simpletest|hit_counter:inst_hit_counter|lpm_counter:oneSPEcnt_int_rtl_359                                                                                                                                                                                         ;
+;          |alt_synch_counter:wysi_counter|                      ; 16 (16)     ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; |simpletest|hit_counter:inst_hit_counter|lpm_counter:oneSPEcnt_int_rtl_359|alt_synch_counter:wysi_counter                                                                                                                                                          ;
 ;    |hit_counter_ff:inst_hit_counter_ff|                        ; 118 (86)    ; 104       ; 0           ; 0    ; 0            ; 14 (14)      ; 38 (38)           ; 66 (34)          ; |simpletest|hit_counter_ff:inst_hit_counter_ff                                                                                                                                                                                                                     ;
-;       |lpm_counter:multiSPEcnt_int_rtl_363|                    ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; |simpletest|hit_counter_ff:inst_hit_counter_ff|lpm_counter:multiSPEcnt_int_rtl_363                                                                                                                                                                                 ;
-;          |alt_synch_counter:wysi_counter|                      ; 16 (16)     ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; |simpletest|hit_counter_ff:inst_hit_counter_ff|lpm_counter:multiSPEcnt_int_rtl_363|alt_synch_counter:wysi_counter                                                                                                                                                  ;
-;       |lpm_counter:oneSPEcnt_int_rtl_362|                      ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; |simpletest|hit_counter_ff:inst_hit_counter_ff|lpm_counter:oneSPEcnt_int_rtl_362                                                                                                                                                                                   ;
-;          |alt_synch_counter:wysi_counter|                      ; 16 (16)     ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; |simpletest|hit_counter_ff:inst_hit_counter_ff|lpm_counter:oneSPEcnt_int_rtl_362|alt_synch_counter:wysi_counter                                                                                                                                                    ;
+;       |lpm_counter:multiSPEcnt_int_rtl_362|                    ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; |simpletest|hit_counter_ff:inst_hit_counter_ff|lpm_counter:multiSPEcnt_int_rtl_362                                                                                                                                                                                 ;
+;          |alt_synch_counter:wysi_counter|                      ; 16 (16)     ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; |simpletest|hit_counter_ff:inst_hit_counter_ff|lpm_counter:multiSPEcnt_int_rtl_362|alt_synch_counter:wysi_counter                                                                                                                                                  ;
+;       |lpm_counter:oneSPEcnt_int_rtl_361|                      ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; |simpletest|hit_counter_ff:inst_hit_counter_ff|lpm_counter:oneSPEcnt_int_rtl_361                                                                                                                                                                                   ;
+;          |alt_synch_counter:wysi_counter|                      ; 16 (16)     ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; |simpletest|hit_counter_ff:inst_hit_counter_ff|lpm_counter:oneSPEcnt_int_rtl_361|alt_synch_counter:wysi_counter                                                                                                                                                    ;
 ;    |led2atwddelay:LED2ATWDdelay_inst|                          ; 30 (30)     ; 16        ; 0           ; 0    ; 0            ; 14 (14)      ; 15 (15)           ; 1 (1)            ; |simpletest|led2atwddelay:LED2ATWDdelay_inst                                                                                                                                                                                                                       ;
 ;    |lpm_counter:CNT_rtl_352|                                   ; 2 (0)       ; 2         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 2 (0)            ; |simpletest|lpm_counter:CNT_rtl_352                                                                                                                                                                                                                                ;
 ;       |alt_synch_counter:wysi_counter|                         ; 2 (2)       ; 2         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 2 (2)            ; |simpletest|lpm_counter:CNT_rtl_352|alt_synch_counter:wysi_counter                                                                                                                                                                                                 ;
 ;    |lpm_counter:PGM_rtl_351|                                   ; 2 (0)       ; 1         ; 0           ; 0    ; 0            ; 1 (0)        ; 0 (0)             ; 1 (0)            ; |simpletest|lpm_counter:PGM_rtl_351                                                                                                                                                                                                                                ;
 ;       |alt_synch_counter:wysi_counter|                         ; 2 (2)       ; 1         ; 0           ; 0    ; 0            ; 1 (1)        ; 0 (0)             ; 1 (1)            ; |simpletest|lpm_counter:PGM_rtl_351|alt_synch_counter:wysi_counter                                                                                                                                                                                                 ;
-;    |lpm_counter:ctrl_err_cnt_rtl_358|                          ; 8 (0)       ; 8         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 8 (0)            ; |simpletest|lpm_counter:ctrl_err_cnt_rtl_358                                                                                                                                                                                                                       ;
-;       |alt_synch_counter:wysi_counter|                         ; 8 (8)       ; 8         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 8 (8)            ; |simpletest|lpm_counter:ctrl_err_cnt_rtl_358|alt_synch_counter:wysi_counter                                                                                                                                                                                        ;
+;    |lpm_counter:ctrl_err_cnt_rtl_357|                          ; 8 (0)       ; 8         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 8 (0)            ; |simpletest|lpm_counter:ctrl_err_cnt_rtl_357                                                                                                                                                                                                                       ;
+;       |alt_synch_counter:wysi_counter|                         ; 8 (8)       ; 8         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 8 (8)            ; |simpletest|lpm_counter:ctrl_err_cnt_rtl_357|alt_synch_counter:wysi_counter                                                                                                                                                                                        ;
 ;    |master_data_source:inst_master_data_source|                ; 112 (112)   ; 64        ; 0           ; 0    ; 0            ; 48 (48)      ; 0 (0)             ; 64 (64)          ; |simpletest|master_data_source:inst_master_data_source                                                                                                                                                                                                             ;
 ;    |pll2x:inst_pll2x|                                          ; 0 (0)       ; 0         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |simpletest|pll2x:inst_pll2x                                                                                                                                                                                                                                       ;
 ;       |altclklock:altclklock_component|                        ; 0 (0)       ; 0         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |simpletest|pll2x:inst_pll2x|altclklock:altclklock_component                                                                                                                                                                                                       ;
@@ -1398,9 +1400,9 @@ Hierarchy
 ;       |altclklock:altclklock_component|                        ; 0 (0)       ; 0         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |simpletest|pll4x:inst_pll4x|altclklock:altclklock_component                                                                                                                                                                                                       ;
 ;    |r2r:inst_r2r|                                              ; 29 (29)     ; 15        ; 0           ; 0    ; 0            ; 14 (14)      ; 8 (8)             ; 7 (7)            ; |simpletest|r2r:inst_r2r                                                                                                                                                                                                                                           ;
 ;    |roc:inst_ROC|                                              ; 4 (4)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 2 (2)             ; 2 (2)            ; |simpletest|roc:inst_ROC                                                                                                                                                                                                                                           ;
-;    |single_led:inst_single_led|                                ; 19 (3)      ; 19        ; 0           ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 18 (2)           ; |simpletest|single_led:inst_single_led                                                                                                                                                                                                                             ;
-;       |lpm_counter:cnt_rtl_355|                                ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; |simpletest|single_led:inst_single_led|lpm_counter:cnt_rtl_355                                                                                                                                                                                                     ;
-;          |alt_synch_counter:wysi_counter|                      ; 16 (16)     ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; |simpletest|single_led:inst_single_led|lpm_counter:cnt_rtl_355|alt_synch_counter:wysi_counter                                                                                                                                                                      ;
+;    |single_led:inst_single_led|                                ; 23 (7)      ; 23        ; 0           ; 0    ; 0            ; 0 (0)        ; 5 (5)             ; 18 (2)           ; |simpletest|single_led:inst_single_led                                                                                                                                                                                                                             ;
+;       |lpm_counter:cnt_rtl_364|                                ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; |simpletest|single_led:inst_single_led|lpm_counter:cnt_rtl_364                                                                                                                                                                                                     ;
+;          |alt_synch_counter:wysi_counter|                      ; 16 (16)     ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; |simpletest|single_led:inst_single_led|lpm_counter:cnt_rtl_364|alt_synch_counter:wysi_counter                                                                                                                                                                      ;
 ;    |slaveregister:slaveregister_inst|                          ; 590 (590)   ; 283       ; 128         ; 0    ; 0            ; 307 (307)    ; 249 (249)         ; 34 (34)          ; |simpletest|slaveregister:slaveregister_inst                                                                                                                                                                                                                       ;
 ;       |version_rom:inst_version_rom|                           ; 0 (0)       ; 0         ; 128         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |simpletest|slaveregister:slaveregister_inst|version_rom:inst_version_rom                                                                                                                                                                                          ;
 ;          |lpm_rom:lpm_rom_component|                           ; 0 (0)       ; 0         ; 128         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |simpletest|slaveregister:slaveregister_inst|version_rom:inst_version_rom|lpm_rom:lpm_rom_component                                                                                                                                                                ;
@@ -1554,7 +1556,7 @@ The equations can be found in C:\work_lbnl\IceCubeCVS\dom-fpga\stf\ComEPXA4\simp
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
   Info: Version 3.0 Build 245 10/09/2003 Service Pack 2 SJ Full Version
-  Info: Processing started: Mon Nov 03 08:40:01 2003
+  Info: Processing started: Thu Nov 13 08:18:53 2003
 Info: Command: quartus_map --import_settings_files=on --export_settings_files=off simpletest -c simpletest
 Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\DCREV.tdf
   Info: Found entity 1: DCREV
@@ -1786,14 +1788,14 @@ Info: Found 2 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS
   Info: Found entity 1: simpletest
 Warning: VHDL warning at simpletest.vhd(249): used initial value for variable response_3 because it was never assigned
 Warning: VHDL warning at simpletest.vhd(260): used initial value for variable com_adc_rdata because it was never assigned
-Warning: VHDL warning at simpletest.vhd(371): used initial value for variable rxwrff because it was never assigned
-Warning: Tied undriven net com_status[23] at simpletest.vhd(360) to GND or VCC
-Warning: Tied undriven net com_status[22] at simpletest.vhd(360) to GND or VCC
-Warning: Tied undriven net com_status[21] at simpletest.vhd(360) to GND or VCC
-Warning: Tied undriven net com_status[19] at simpletest.vhd(360) to GND or VCC
-Warning: Tied undriven net com_status[18] at simpletest.vhd(360) to GND or VCC
-Warning: Tied undriven net com_status[5] at simpletest.vhd(360) to GND or VCC
-Warning: Tied undriven net com_status[4] at simpletest.vhd(360) to GND or VCC
+Warning: VHDL warning at simpletest.vhd(372): used initial value for variable rxwrff because it was never assigned
+Warning: Tied undriven net com_status[23] at simpletest.vhd(361) to GND or VCC
+Warning: Tied undriven net com_status[22] at simpletest.vhd(361) to GND or VCC
+Warning: Tied undriven net com_status[21] at simpletest.vhd(361) to GND or VCC
+Warning: Tied undriven net com_status[19] at simpletest.vhd(361) to GND or VCC
+Warning: Tied undriven net com_status[18] at simpletest.vhd(361) to GND or VCC
+Warning: Tied undriven net com_status[5] at simpletest.vhd(361) to GND or VCC
+Warning: Tied undriven net com_status[4] at simpletest.vhd(361) to GND or VCC
 Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\altclklock.tdf
   Info: Found entity 1: altclklock
 Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\ComEPXA4\stripe.v
@@ -1822,11 +1824,6 @@ Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\li
   Info: Found entity 1: lpm_ram_dp
 Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\altdpram.tdf
   Info: Found entity 1: altdpram
-Warning: Pin rs4_out not connected
-Warning: Primitive GND of instance inst not used
-Warning: Not all bits are used
-Warning: Function dac_rs_tab_trap_01 of instance inst16 not used
-Warning: Primitive WIRE of instance inst39 not used
 Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\lpm_shiftreg.tdf
   Info: Found entity 1: lpm_shiftreg
 Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\lpm_counter.tdf
@@ -1857,19 +1854,6 @@ Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS
   Info: Found entity 1: a_dpfifo_oej
 Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\ComEPXA4\db\a_fefifo_74f.tdf
   Info: Found entity 1: a_fefifo_74f
-Warning: Not all bits are used
-Warning: Not all bits are used
-Warning: Pin adc_clk is missing source
-Warning: Pin rec_data not connected
-Warning: Primitive GND of instance inst15 not used
-Warning: Function dc_rapcal_lh of instance inst16 not used
-Warning: Function mean_val of instance inst20 not used
-Warning: Function adc_to_ser_dudt of instance inst23 not used
-Warning: Primitive GND of instance inst28 not used
-Warning: Primitive WIRE of instance inst65 not used
-Warning: Primitive WIRE of instance inst66 not used
-Warning: Primitive WIRE of instance inst67 not used
-Warning: Primitive WIRE of instance inst75 not used
 Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\lpm_add_sub.tdf
   Info: Found entity 1: lpm_add_sub
 Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\addcore.tdf
@@ -1882,8 +1866,6 @@ Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\li
   Info: Found entity 1: lpm_decode
 Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\lpm_and.tdf
   Info: Found entity 1: lpm_and
-Warning: Pin lh_edge not connected
-Warning: Function DCTC_FWR of instance inst not used
 Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\ComEPXA4\db\scfifo_66i.tdf
   Info: Found entity 1: scfifo_66i
 Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\ComEPXA4\db\a_dpfifo_4dj.tdf
@@ -1891,7 +1873,8 @@ Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS
 Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\ComEPXA4\db\a_fefifo_vve.tdf
   Info: Found entity 1: a_fefifo_vve
 Warning: Reduced register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|dudt[9] with stuck data_in port to stuck value GND
-Warning: Reduced register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|dudt[8] with stuck data_in port to stuck value GND
+Warning: Reduced register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|dudt[7] with stuck data_in port to stuck value GND
+Warning: Reduced register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|dudt[6] with stuck data_in port to stuck value GND
 Warning: Reduced register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|dudt[5] with stuck data_in port to stuck value GND
 Warning: Reduced register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|dudt[2] with stuck data_in port to stuck value GND
 Warning: Reduced register master_data_source:inst_master_data_source|start_trans_local with stuck data_in port to stuck value GND
@@ -1903,19 +1886,19 @@ Info: Inferred 14 megafunctions from design logic
   Info: Inferred lpm_counter megafunction (LPM_WIDTH=3) from the following logic: CNT_rtl_352
   Info: Inferred lpm_counter megafunction (LPM_WIDTH=48) from the following logic: timer:timer_inst|systime_cnt_rtl_353
   Info: Inferred lpm_counter megafunction (LPM_WIDTH=32) from the following logic: ahb_master:inst_ahb_master|beat_count_rtl_354
-  Info: Inferred lpm_counter megafunction (LPM_WIDTH=16) from the following logic: single_led:inst_single_led|cnt_rtl_355
-  Info: Inferred lpm_counter megafunction (LPM_WIDTH=2) from the following logic: atwd:atwd1|atwd_readout:inst_atwd_readout|divide_cnt_rtl_356
-  Info: Inferred lpm_counter megafunction (LPM_WIDTH=2) from the following logic: atwd:atwd0|atwd_readout:inst_atwd_readout|divide_cnt_rtl_357
-  Info: Inferred lpm_counter megafunction (LPM_WIDTH=8) from the following logic: ctrl_err_cnt_rtl_358
-  Info: Inferred lpm_counter megafunction (LPM_WIDTH=16) from the following logic: fe_testpulse:inst_fe_testpulse|cnt_rtl_359
-  Info: Inferred lpm_counter megafunction (LPM_WIDTH=16) from the following logic: hit_counter:inst_hit_counter|oneSPEcnt_int_rtl_360
-  Info: Inferred lpm_counter megafunction (LPM_WIDTH=16) from the following logic: hit_counter:inst_hit_counter|multiSPEcnt_int_rtl_361
-  Info: Inferred lpm_counter megafunction (LPM_WIDTH=16) from the following logic: hit_counter_ff:inst_hit_counter_ff|oneSPEcnt_int_rtl_362
-  Info: Inferred lpm_counter megafunction (LPM_WIDTH=16) from the following logic: hit_counter_ff:inst_hit_counter_ff|multiSPEcnt_int_rtl_363
-  Info: Inferred lpm_counter megafunction (LPM_WIDTH=10) from the following logic: flash_adc:inst_flash_ADC|MEM_write_addr_rtl_364
+  Info: Inferred lpm_counter megafunction (LPM_WIDTH=2) from the following logic: atwd:atwd1|atwd_readout:inst_atwd_readout|divide_cnt_rtl_355
+  Info: Inferred lpm_counter megafunction (LPM_WIDTH=2) from the following logic: atwd:atwd0|atwd_readout:inst_atwd_readout|divide_cnt_rtl_356
+  Info: Inferred lpm_counter megafunction (LPM_WIDTH=8) from the following logic: ctrl_err_cnt_rtl_357
+  Info: Inferred lpm_counter megafunction (LPM_WIDTH=16) from the following logic: fe_testpulse:inst_fe_testpulse|cnt_rtl_358
+  Info: Inferred lpm_counter megafunction (LPM_WIDTH=16) from the following logic: hit_counter:inst_hit_counter|oneSPEcnt_int_rtl_359
+  Info: Inferred lpm_counter megafunction (LPM_WIDTH=16) from the following logic: hit_counter:inst_hit_counter|multiSPEcnt_int_rtl_360
+  Info: Inferred lpm_counter megafunction (LPM_WIDTH=16) from the following logic: hit_counter_ff:inst_hit_counter_ff|oneSPEcnt_int_rtl_361
+  Info: Inferred lpm_counter megafunction (LPM_WIDTH=16) from the following logic: hit_counter_ff:inst_hit_counter_ff|multiSPEcnt_int_rtl_362
+  Info: Inferred lpm_counter megafunction (LPM_WIDTH=10) from the following logic: flash_adc:inst_flash_ADC|MEM_write_addr_rtl_363
+  Info: Inferred lpm_counter megafunction (LPM_WIDTH=16) from the following logic: single_led:inst_single_led|cnt_rtl_364
 Info: State machine |simpletest|dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg contains 22 states and 5 state bits
 Info: State machine |simpletest|dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg1 contains 2 states and 1 state bits
-Info: State machine |simpletest|dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg2 contains 6 states and 3 state bits
+Info: State machine |simpletest|dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg2 contains 8 states and 3 state bits
 Info: State machine |simpletest|dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|dc_rapcal_lh:inst29|DCTC_FWR:inst2|sreg contains 10 states and 4 state bits
 Info: State machine |simpletest|dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|DC_MREC:inst12|sreg contains 11 states and 4 state bits
 Info: State machine |simpletest|dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|GET_DUDT:get_dudt_stm|sreg contains 7 states and 3 state bits
@@ -1988,19 +1971,23 @@ Info: Encoding result for state machine |simpletest|dcom:dcom_inst|DC_CTRL:DC_CT
   Info: State |simpletest|dcom:dcom_inst|DC_CTRL:DC_CTRL|COM_ON uses code string 1
 Info: Selected Auto state machine encoding method for state machine |simpletest|dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg2
 Info: Encoding result for state machine |simpletest|dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg2
-  Info: Completed encoding using 6 state bits
+  Info: Completed encoding using 8 state bits
+    Info: Encoded state bit dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg2~19
+    Info: Encoded state bit dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg2~18
     Info: Encoded state bit dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg2~17
     Info: Encoded state bit dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg2~16
     Info: Encoded state bit dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg2~15
     Info: Encoded state bit dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg2~14
     Info: Encoded state bit dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg2~13
     Info: Encoded state bit dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg2~12
-  Info: State |simpletest|dcom:dcom_inst|DC_CTRL:DC_CTRL|FPGA_RDY uses code string 000000
-  Info: State |simpletest|dcom:dcom_inst|DC_CTRL:DC_CTRL|COM_RES uses code string 000011
-  Info: State |simpletest|dcom:dcom_inst|DC_CTRL:DC_CTRL|CRES_WAIT uses code string 000101
-  Info: State |simpletest|dcom:dcom_inst|DC_CTRL:DC_CTRL|DOM_RBT uses code string 001001
-  Info: State |simpletest|dcom:dcom_inst|DC_CTRL:DC_CTRL|RES_SYNC uses code string 010001
-  Info: State |simpletest|dcom:dcom_inst|DC_CTRL:DC_CTRL|WAIT_6ms uses code string 100001
+  Info: State |simpletest|dcom:dcom_inst|DC_CTRL:DC_CTRL|FPGA_RDY uses code string 00000000
+  Info: State |simpletest|dcom:dcom_inst|DC_CTRL:DC_CTRL|COM_RES uses code string 00000011
+  Info: State |simpletest|dcom:dcom_inst|DC_CTRL:DC_CTRL|CRES_1 uses code string 00000101
+  Info: State |simpletest|dcom:dcom_inst|DC_CTRL:DC_CTRL|CRES_2 uses code string 00001001
+  Info: State |simpletest|dcom:dcom_inst|DC_CTRL:DC_CTRL|CRES_3 uses code string 00010001
+  Info: State |simpletest|dcom:dcom_inst|DC_CTRL:DC_CTRL|CRES_WAIT uses code string 00100001
+  Info: State |simpletest|dcom:dcom_inst|DC_CTRL:DC_CTRL|DOM_RBT uses code string 01000001
+  Info: State |simpletest|dcom:dcom_inst|DC_CTRL:DC_CTRL|WAIT_6ms uses code string 10000001
 Info: Selected Auto state machine encoding method for state machine |simpletest|dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|dc_rapcal_lh:inst29|DCTC_FWR:inst2|sreg
 Info: Encoding result for state machine |simpletest|dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|dc_rapcal_lh:inst29|DCTC_FWR:inst2|sreg
   Info: Completed encoding using 10 state bits
@@ -2363,11 +2350,6 @@ Warning: Reduced register ahb_master:inst_ahb_master|slavehtrans[0]~reg0 with st
 Info: Duplicate registers merged to single register
   Info: Duplicate register atwd:atwd1|atwd_control:inst_atwd_control|state~8 merged to single register atwd:atwd0|atwd_control:inst_atwd_control|state~8
   Info: Duplicate register dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~36 merged to single register dcom:dcom_inst|DC_CTRL:DC_CTRL|sys_res~reg
-  Info: Duplicate register dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|inst23[5] merged to single register dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|inst23[6]
-  Info: Duplicate register dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|inst23[4] merged to single register dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|inst23[6]
-  Info: Duplicate register dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|inst23[3] merged to single register dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|inst23[6]
-  Info: Duplicate register dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|inst23[2] merged to single register dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|inst23[6]
-  Info: Duplicate register dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|inst23[1] merged to single register dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|inst23[6]
   Info: Duplicate register dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~17 merged to single register dcom:dcom_inst|DC_CTRL:DC_CTRL|drbt_gnt~reg
   Info: Duplicate register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|dc_rapcal_lh:inst29|DCTC_FWR:inst2|sreg~20 merged to single register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|dc_rapcal_lh:inst29|DCTC_FWR:inst2|pulse_rcvd~reg
   Info: Duplicate register ahb_master:inst_ahb_master|haddr[20] merged to single register ahb_master:inst_ahb_master|haddr[0]
@@ -2407,13 +2389,12 @@ Info: Duplicate registers merged to single register
   Info: Duplicate register atwd:atwd1|atwd_control:inst_atwd_control|state~14 merged to single register atwd:atwd0|atwd_control:inst_atwd_control|state~14
   Info: Duplicate register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|DC_MREC:inst12|sreg~14 merged to single register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|DC_MREC:inst12|msg_err~reg
   Info: Duplicate register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|GET_DUDT:get_dudt_stm|sreg~17 merged to single register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|GET_DUDT:get_dudt_stm|rxd~reg
+  Info: Duplicate register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|RX_UART_12:inst25|UA_RX_12:inst6|sreg~13 merged to single register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|RX_UART_12:inst25|UA_RX_12:inst6|cerr~reg
+  Info: Duplicate register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|RX_UART_12:inst25|UA_RX_12:inst6|sreg~15 merged to single register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|RX_UART_12:inst25|UA_RX_12:inst6|dstb~reg
   Info: Duplicate register dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|DC_SEND:inst6|msg_sent~reg merged to single register dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|DC_SEND:inst6|sreg~16
   Info: Duplicate register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|DC_MREC:inst12|sreg~16 merged to single register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|DC_MREC:inst12|msg_rcvd~reg
-  Info: Duplicate register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|RX_UART_12:inst25|UA_RX_12:inst6|sreg~15 merged to single register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|RX_UART_12:inst25|UA_RX_12:inst6|dstb~reg
-  Info: Duplicate register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|RX_UART_12:inst25|UA_RX_12:inst6|sreg~13 merged to single register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|RX_UART_12:inst25|UA_RX_12:inst6|cerr~reg
   Info: Duplicate register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|RX_UART_12:inst25|UA_RX_12:inst6|sreg~20 merged to single register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|RX_UART_12:inst25|UA_RX_12:inst6|shd~reg
   Info: Duplicate register dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|DC_SEND:inst6|tcwf_rd_next~reg merged to single register dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|DC_SEND:inst6|sreg~43
-  Info: Duplicate register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|dudt[6] merged to single register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|dudt[7]
   Info: Duplicate register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|dudt[3] merged to single register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|dudt[4]
   Info: Duplicate register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|dudt[1] merged to single register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|dudt[4]
   Info: Duplicate register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|dudt[0] merged to single register dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|dudt[4]
@@ -2475,17 +2456,17 @@ Warning: Design contains 4 input pin(s) that do not drive logic
   Warning: No output dependent on input pin CLK4p
   Warning: No output dependent on input pin COM_AD_OTR
   Warning: No output dependent on input pin HDV_Rx
-Info: Implemented 4086 device resources after synthesis - the final resource count might be different
+Info: Implemented 4115 device resources after synthesis - the final resource count might be different
   Info: Implemented 69 input pins
   Info: Implemented 159 output pins
   Info: Implemented 55 bidirectional pins
-  Info: Implemented 3708 logic cells
+  Info: Implemented 3737 logic cells
   Info: Implemented 90 RAM segments
   Info: Implemented 2 ClockLock PLLs
   Info: Implemented 2 dual-port RAM elements in Excalibur device
   Info: Implemented 1 microprocessor core elements in Excalibur device
-Info: Quartus II Analysis & Synthesis was successful. 0 errors, 85 warnings
-  Info: Processing ended: Mon Nov 03 08:41:20 2003
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 66 warnings
+  Info: Processing ended: Thu Nov 13 08:20:12 2003
   Info: Elapsed time: 00:01:19
 Info: Writing report file simpletest.map.rpt
 

@@ -1,5 +1,5 @@
 Assembler report for simpletest compilation.
-Mon Nov 03 08:45:12 2003
+Thu Nov 13 08:24:01 2003
 Version 3.0 Build 245 10/09/2003 Service Pack 2 SJ Full Version
 
 Command: quartus_asm --import_settings_files=off --export_settings_files=off simpletest -c simpletest
@@ -50,12 +50,12 @@ party's intellectual property, are provided herein.
 -----------------------------------------------------------------
 ; Flow Summary                                                  ;
 -----------------------------------------------------------------
-; Flow Status           ; Successful - Mon Nov 03 08:45:12 2003 ;
+; Flow Status           ; Successful - Thu Nov 13 08:24:01 2003 ;
 ; Compiler Setting Name ; simpletest                            ;
 ; Top-level Entity Name ; simpletest                            ;
 ; Family                ; EXCALIBUR_ARM                         ;
 ; Device                ; EPXA4F672I2                           ;
-; Total logic elements  ; 3,708 / 16,640 ( 22 % )               ;
+; Total logic elements  ; 3,737 / 16,640 ( 22 % )               ;
 ; Total pins            ; 284 / 463 ( 61 % )                    ;
 ; Total memory bits     ; 43,648 / 212,992 ( 20 % )             ;
 ; Total PLLs            ; 2 / 4 ( 50 % )                        ;
@@ -67,7 +67,7 @@ party's intellectual property, are provided herein.
 -----------------------------------------------
 ; Option                ; Setting             ;
 -----------------------------------------------
-; Start date & time     ; 11/03/2003 08:40:01 ;
+; Start date & time     ; 11/13/2003 08:18:53 ;
 ; Main task             ; Compilation         ;
 ; Compiler Setting Name ; simpletest          ;
 -----------------------------------------------
@@ -79,16 +79,16 @@ party's intellectual property, are provided herein.
 ; Module Name          ; Elapsed Time ;
 ---------------------------------------
 ; Analysis & Synthesis ; 00:01:19     ;
-; Fitter               ; 00:03:36     ;
-; Assembler            ; 00:00:07     ;
-; Total                ; 00:05:02     ;
+; Fitter               ; 00:03:40     ;
+; Assembler            ; 00:00:04     ;
+; Total                ; 00:05:03     ;
 ---------------------------------------
 
 
 -----------------------------------------------------------------
 ; Assembler Summary                                             ;
 -----------------------------------------------------------------
-; Assembler Status      ; Successful - Mon Nov 03 08:45:12 2003 ;
+; Assembler Status      ; Successful - Thu Nov 13 08:24:01 2003 ;
 ; Compiler Setting Name ; simpletest                            ;
 ; Top-level Entity Name ; simpletest                            ;
 ; Family                ; EXCALIBUR_ARM                         ;
@@ -102,7 +102,7 @@ party's intellectual property, are provided herein.
 ; Option                                                                             ; Setting  ;
 -------------------------------------------------------------------------------------------------
 ; Generate Hexadecimal (Intel-format) Output File (.hexout) For Configuration Device ; Off      ;
-; Generate Compressed Jam Byte-Code File (.jbc) For Configuration Device             ; On       ;
+; Generate Compressed Jam Byte-Code File (.jbc) For Configuration Device             ; Off      ;
 ; Generate uncompressed Jam File (.jbc) For Configuration Device                     ; Off      ;
 ; Generate Jam File (.jam) For Configuration Device                                  ; Off      ;
 ; Generate In System Configuration File (.isc) For Configuration Device              ; Off      ;
@@ -117,8 +117,8 @@ party's intellectual property, are provided herein.
 ; Generate Hexadecimal (Intel-Format) Output File (.hexout) for Target Device        ; Off      ;
 ; Generate Raw Binary File (.rbf) For Target Device                                  ; Off      ;
 ; Generate Tabular Text File (.ttf) For Target Device                                ; Off      ;
-; Disable CONF_DONE and nSTATUS pull-ups on configuration device                     ; Off      ;
-; Auto-increment JTAG user code for multiple configuration devices                   ; On       ;
+; Disable CONF_DONE and nSTATUS pull-ups on configuration device                     ; On       ;
+; Auto-increment JTAG user code for multiple configuration devices                   ; Off      ;
 ; Configuration device auto user code                                                ; Off      ;
 ; JTAG user code for configuration device                                            ; Ffffffff ;
 ; Configuration device                                                               ; Epc8     ;
@@ -126,7 +126,7 @@ party's intellectual property, are provided herein.
 ; Auto user code                                                                     ; Off      ;
 ; JTAG user code for target device                                                   ; Ffffffff ;
 ; Low-voltage mode                                                                   ; On       ;
-; Divide clock frequency by                                                          ; 1        ;
+; Divide clock frequency by                                                          ; 1.0      ;
 ; Clock frequency of the configuration device                                        ; 10 MHZ   ;
 ; Clock source for configuration device                                              ; Internal ;
 ; Compression mode                                                                   ; Off      ;
@@ -151,7 +151,7 @@ party's intellectual property, are provided herein.
 --------------------------------
 ; Device         ; EPXA4F672I2 ;
 ; JTAG usercode  ; 0xFFFFFFFF  ;
-; Checksum       ; 0x002B6F60  ;
+; Checksum       ; 0x002C4D86  ;
 --------------------------------
 
 
@@ -162,7 +162,7 @@ party's intellectual property, are provided herein.
 --------------------------------
 ; Device         ; EPXA4F672I2 ;
 ; JTAG usercode  ; 0xFFFFFFFF  ;
-; Checksum       ; 0x002B6F60  ;
+; Checksum       ; 0x002C4D86  ;
 --------------------------------
 
 
@@ -173,7 +173,7 @@ party's intellectual property, are provided herein.
 --------------------------------
 ; Device         ; EPC8        ;
 ; JTAG usercode  ; 0xFFFFFFFF  ;
-; Checksum       ; 0x08AE12DF  ;
+; Checksum       ; 0x08ADF579  ;
 --------------------------------
 
 
@@ -183,14 +183,14 @@ party's intellectual property, are provided herein.
 Info: *******************************************************************
 Info: Running Quartus II Assembler
   Info: Version 3.0 Build 245 10/09/2003 Service Pack 2 SJ Full Version
-  Info: Processing started: Mon Nov 03 08:45:04 2003
+  Info: Processing started: Thu Nov 13 08:23:57 2003
 Info: Command: quartus_asm --import_settings_files=off --export_settings_files=off simpletest -c simpletest
 Warning: Data in Simulator initialization files holds embedded processor core in reset because Hexadecimal (Intel-Format) File(s) do not contain initialization data for entry point 0x0 or entry point is in memory external to Excalibur embedded processor stripe
 Warning: Data in passive programming files holds embedded processor core in reset because Hexadecimal (Intel-Format) Files do not contain initialization data for entry point 0x0
 Warning: Data in passive programming files holds embedded processor core in reset because Hexadecimal (Intel-Format) Files do not contain initialization data for entry point 0x0
 Info: Quartus II Assembler was successful. 0 errors, 3 warnings
-  Info: Processing ended: Mon Nov 03 08:45:12 2003
-  Info: Elapsed time: 00:00:07
+  Info: Processing ended: Thu Nov 13 08:24:01 2003
+  Info: Elapsed time: 00:00:04
 Info: Writing report file simpletest.asm.rpt
 
 

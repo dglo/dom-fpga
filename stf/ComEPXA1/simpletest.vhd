@@ -280,6 +280,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL LEDtrig				: STD_LOGIC;
 	SIGNAL SingleLED_TRIGGER_sig	: STD_LOGIC;
 	SIGNAL LEDdelay				: STD_LOGIC_VECTOR (3 DOWNTO 0);
+	SIGNAL trigLED				: STD_LOGIC;
 	
 	-- local coincidence
 	SIGNAL enable_coinc_up		: STD_LOGIC;
@@ -708,7 +709,9 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			-- enable flasher
 			enable		: IN STD_LOGIC;
 			-- LED trigger
-			SingleLED_TRIGGER	: OUT STD_LOGIC
+			SingleLED_TRIGGER	: OUT STD_LOGIC;
+			-- ATWD trigger
+			trigLED		: OUT STD_LOGIC
 		);
 	END COMPONENT;
 	
@@ -1527,7 +1530,9 @@ BEGIN
 			-- enable flasher
 			enable		=> single_led_enable,
 			-- LED trigger
-			SingleLED_TRIGGER	=> SingleLED_TRIGGER_sig
+			SingleLED_TRIGGER	=> SingleLED_TRIGGER_sig,
+			-- ATWD trigger
+			trigLED		=> trigLED
 		);
 	SingleLED_TRIGGER <= SingleLED_TRIGGER_sig;
 		
@@ -1856,7 +1861,7 @@ BEGIN
 			CLK40		=> CLK40,
 			RST			=> RST,
 			delay		=> LEDdelay,
-			LEDin		=> SingleLED_TRIGGER_sig,
+			LEDin		=> trigLED,
 			TRIGout		=> LEDtrig,
 			-- test connector
 			TC			=> open

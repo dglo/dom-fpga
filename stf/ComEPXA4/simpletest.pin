@@ -276,7 +276,7 @@ NPOR                         : J24       : input  : LVTTL             :         
 RESERVED_INPUT               : J25       :        :                   :         : 8         :                
 RESERVED_INPUT               : J26       :        :                   :         : 8         :                
 RESERVED_INPUT               : K1        :        :                   :         : 12        :                
-RESERVED_INPUT               : K2        :        :                   :         : 12        :                
+CLK3p                        : K2        : input  : LVTTL             :         : 12        : N              
 COM_AD_D[5]                  : K3        : input  : 2.5 V             :         : 13        : Y              
 COM_AD_D[4]                  : K4        : input  : 2.5 V             :         : 13        : Y              
 COM_AD_D[3]                  : K5        : input  : 2.5 V             :         : 13        : Y              
@@ -536,7 +536,7 @@ FE_PULSER_P[0]               : W24       : output : LVTTL             :         
 RESERVED_INPUT               : W25       :        :                   :         : 8         :                
 RESERVED_INPUT               : W26       :        :                   :         : 8         :                
 RESERVED_INPUT               : Y1        :        :                   :         : 12        :                
-CLK3p                        : Y2        : input  : LVTTL             :         : 12        : N              
+RESERVED_INPUT               : Y2        :        :                   :         : 12        :                
 PGM[15]                      : Y3        : output : LVTTL             :         : 13        : Y              
 PGM[14]                      : Y4        : output : LVTTL             :         : 13        : Y              
 CLK4p                        : Y5        : input  : LVTTL             :         : 13        : Y              
