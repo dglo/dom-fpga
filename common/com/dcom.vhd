@@ -30,7 +30,6 @@ ENTITY dcom IS
 	port
 	(
 		CCLK :  IN  STD_LOGIC;
-		mono_clk_en :  IN  STD_LOGIC;
 		rs4_out :  IN  STD_LOGIC;
 		msg_rd :  IN  STD_LOGIC;
 		dom_A_sel_L :  IN  STD_LOGIC;
@@ -60,12 +59,10 @@ ENTITY dcom IS
 		txwraff :  OUT  STD_LOGIC;
 		ctrl_sent :  OUT  STD_LOGIC;
 		rs4_ren :  OUT  STD_LOGIC;
-		nrx_led :  OUT  STD_LOGIC;
 		adc_clk :  OUT  STD_LOGIC;
 		data_stb :  OUT  STD_LOGIC;
 		ctrl_stb :  OUT  STD_LOGIC;
 		ctrl_err :  OUT  STD_LOGIC;
-		rxwrff :  OUT  STD_LOGIC;
 		rxwraff :  OUT  STD_LOGIC;
 		rxrdef :  OUT  STD_LOGIC;
 		stf_rcvd :  OUT  STD_LOGIC;
@@ -77,7 +74,6 @@ ENTITY dcom IS
 		msg_rcvd :  OUT  STD_LOGIC;
 		msg_err :  OUT  STD_LOGIC;
 		fifo_msg :  OUT  STD_LOGIC;
-		nerr_led :  OUT  STD_LOGIC;
 		hl_edge :  OUT  STD_LOGIC;
 		lh_edge :  OUT  STD_LOGIC;
 		rxd :  OUT  STD_LOGIC;
@@ -119,6 +115,7 @@ component dc_ctrl
 		 sysres_rcvd : IN STD_LOGIC;
 		 tcal_rcvd : IN STD_LOGIC;
 		 txrdef : IN STD_LOGIC;
+		 time : IN STD_LOGIC_VECTOR(18 to 18);
 		 cmd_snd0 : OUT STD_LOGIC;
 		 cmd_snd1 : OUT STD_LOGIC;
 		 cmd_snd2 : OUT STD_LOGIC;
@@ -323,6 +320,7 @@ PORT MAP(CLK => CCLK,
 		 sysres_rcvd => SYNTHESIZED_WIRE_14,
 		 tcal_rcvd => SYNTHESIZED_WIRE_15,
 		 txrdef => SYNTHESIZED_WIRE_16,
+		 time => time(18),
 		 cmd_snd0 => SYNTHESIZED_WIRE_22,
 		 cmd_snd1 => SYNTHESIZED_WIRE_23,
 		 cmd_snd2 => SYNTHESIZED_WIRE_24,
@@ -346,7 +344,6 @@ PORT MAP(CCLK => CCLK,
 		 msg_rd => msg_rd,
 		 dom_A_sel_L => dom_A_sel_L,
 		 dom_B_sel_L => dom_B_sel_L,
-		 mono_clk_en => mono_clk_en,
 		 tcwf_rd_next => SYNTHESIZED_WIRE_19,
 		 reset => reset,
 		 msg_sent => altera_synthesized_wire_39,
@@ -383,8 +380,7 @@ PORT MAP(CCLK => CCLK,
 		 tcwf_data => SYNTHESIZED_WIRE_35);
 
 b2v_DC_Tx_chan_04 : dc_tx_chan_04
-PORT MAP(mono_clk_en => mono_clk_en,
-		 reset => reset,
+PORT MAP(reset => reset,
 		 comres_rcvd => altera_synthesized_wire_38,
 		 CCLK => CCLK,
 		 tx_wrreq => tx_wrreq,

@@ -165,9 +165,16 @@ party's intellectual property, are provided herein.
 	(port
 		(pt 0 336)
 		(input)
-		(text "txrdef" (rect 0 0 31 15)(font "Arial" ))
-		(text "txrdef" (rect 21 331 52 346)(font "Arial" ))
+		(text "time[18]" (rect 0 0 48 15)(font "Arial" ))
+		(text "time[18]" (rect 21 331 69 346)(font "Arial" ))
 		(line (pt 0 336)(pt 16 336)(line_width 1))
+	)
+	(port
+		(pt 0 352)
+		(input)
+		(text "txrdef" (rect 0 0 31 15)(font "Arial" ))
+		(text "txrdef" (rect 21 347 52 362)(font "Arial" ))
+		(line (pt 0 352)(pt 16 352)(line_width 1))
 	)
 	(port
 		(pt 200 32)

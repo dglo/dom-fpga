@@ -1,6 +1,6 @@
 % C:\PROJECTS\ICECUBE\DOR\FPGA\DCOM_01\DC_CTRL.tdf %
 % AHDL code created by Visual Software Solution's StateCAD 5.0 %
-% Tue Aug 19 17:20:18 2003 %
+% Thu Aug 21 08:44:56 2003 %
 
 % This AHDL code was generated using: %
 %  binary encoded state assignment with structured code format. %
@@ -27,6 +27,7 @@ SUBDESIGN DC_CTRL(
 	stf_rcvd :	INPUT;
 	sysres_rcvd :	INPUT;
 	tcal_rcvd :	INPUT;
+	time[18] :	INPUT;
 	txrdef :	INPUT;
 	cmd_snd0 :	OUTPUT;
 	cmd_snd1 :	OUTPUT;
@@ -48,7 +49,7 @@ SUBDESIGN DC_CTRL(
 
 
 VARIABLE
-	sreg : MACHINE OF BITS (SV0, SV1, SV2, SV8, SV9)
+	sreg : MACHINE OF BITS (SV0, SV1, SV2, SV3, SV8)
 		WITH STATES (
 			COM_START =	B"00001",
 			CMD_WAIT =	B"00000",
@@ -73,18 +74,20 @@ VARIABLE
 			SYS_RESET =	B"10100"
 		);
 
-	sreg1 : MACHINE OF BITS (SV10)
+	sreg1 : MACHINE OF BITS (SV9)
 		WITH STATES (
 			COM_OFF =	B"0",
 			COM_ON =	B"1"
 		);
 
-	sreg2 : MACHINE OF BITS (SV11, SV12)
+	sreg2 : MACHINE OF BITS (SV10, SV11, SV12)
 		WITH STATES (
-			FPGA_RDY =	B"10",
-			COM_RES =	B"00",
-			DOM_RBT =	B"01",
-			RES_SYNC =	B"11"
+			FPGA_RDY =	B"011",
+			COM_RES =	B"000",
+			CRES_WAIT =	B"001",
+			DOM_RBT =	B"010",
+			RES_SYNC =	B"100",
+			WAIT_6ms =	B"101"
 		);
 
 	cmd_snd0 :	DFF;
@@ -127,9 +130,11 @@ BEGIN
 	sreg1.clk=CLK;
 	sreg2.clk=CLK;
 
-	sreg.reset =  SV11 & comres_rcvd  #  !SV12 & comres_rcvd ;
+	sreg.reset =  SV10 & comres_rcvd  #  !SV11 & comres_rcvd  #  SV12 & 
+		comres_rcvd ;
 
-	IF ( SV11 & comres_rcvd  #  !SV12 & comres_rcvd ) THEN
+	IF ( SV10 & comres_rcvd  #  !SV11 & comres_rcvd  #  SV12 & comres_rcvd ) 
+		THEN
 		send_id.clrn=GND;
 		drbt_gnt.clrn=GND;
 		sys_res.clrn=GND;
@@ -165,9 +170,9 @@ BEGIN
 
 	CASE sreg IS
 		WHEN CMD_WAIT =>
-			IF ( !stf_rcvd & !bfstat_rcvd & !drreq_rcvd & !sysres_rcvd & !idreq_rcvd &
-				 !tcal_rcvd  #  !stf_rcvd & !bfstat_rcvd & !drreq_rcvd & !sysres_rcvd & !
-				id_data_avail & !tcal_rcvd ) THEN 
+			IF ( !stf_rcvd & !bfstat_rcvd & !drreq_rcvd & !sysres_rcvd & !tcal_rcvd & 
+				!idreq_rcvd  #  !stf_rcvd & !bfstat_rcvd & !drreq_rcvd & !sysres_rcvd & !
+				tcal_rcvd & !id_data_avail ) THEN 
 				sreg = CMD_WAIT;
 				(send_id,drbt_gnt,sys_res,tcal_data,tcal_psnd,tcal_prec,tcal_cyc,cmd_snd3
 					,cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,send_ctrl)=(0,0,0,0,0
@@ -215,20 +220,20 @@ BEGIN
 					,cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,send_ctrl)=(0,0,0,0,0
 					,0,0,0,1,1,1,0,0,0,1);
 			END IF;
-			IF ( idreq_rcvd & id_data_avail ) THEN 
-				sreg = SND_ID_STF;
-				(send_id,drbt_gnt,sys_res,tcal_data,tcal_psnd,tcal_prec,tcal_cyc,cmd_snd3
-					,cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,send_ctrl)=(1,0,0,0,0
-					,0,0,0,0,0,1,0,0,0,1);
-			END IF;
 			IF ( tcal_rcvd ) THEN 
 				sreg = REC_PULSE;
 				(send_id,drbt_gnt,sys_res,tcal_data,tcal_psnd,tcal_prec,tcal_cyc,cmd_snd3
 					,cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,send_ctrl)=(0,0,0,0,0
 					,1,1,0,0,0,0,0,0,0,0);
 			END IF;
+			IF ( idreq_rcvd & id_data_avail ) THEN 
+				sreg = SND_ID_STF;
+				(send_id,drbt_gnt,sys_res,tcal_data,tcal_psnd,tcal_prec,tcal_cyc,cmd_snd3
+					,cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,send_ctrl)=(1,0,0,0,0
+					,0,0,0,0,0,1,0,0,0,1);
+			END IF;
 		WHEN COM_START =>
-			IF ( !SV11 & !SV12 ) THEN 
+			IF ( !SV10 & !SV11 & !SV12 ) THEN 
 				sreg = SND_IDLE;
 				(send_id,drbt_gnt,sys_res,tcal_data,tcal_psnd,tcal_prec,tcal_cyc,cmd_snd3
 					,cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,send_ctrl)=(0,0,0,0,0
@@ -478,7 +483,7 @@ BEGIN
 
 	CASE sreg1 IS
 		WHEN COM_OFF =>
-			IF ( !SV0 & SV1 & SV2 & !SV8 & !SV9 & ctrl_sent ) THEN 
+			IF ( !SV0 & SV1 & SV2 & !SV3 & !SV8 & ctrl_sent ) THEN 
 				sreg1 = COM_ON;
 				com_aval=VCC;
 			ELSE
@@ -494,25 +499,33 @@ BEGIN
 
 	CASE sreg2 IS
 		WHEN COM_RES =>
-			IF ( !SV0 & !SV1 & !SV2 & SV8 & !SV9  #  SV0 & !SV1 & SV2 & !SV8 & !SV9 ) 
+			IF ( !SV0 & !SV1 & !SV2 & SV3 & !SV8  #  SV0 & !SV1 & SV2 & !SV3 & !SV8 ) 
 				THEN 
 				sreg2 = DOM_RBT;
 			ELSE
 				sreg2 = COM_RES;
 			END IF;
-		WHEN DOM_RBT =>
-			sreg2 = DOM_RBT;
-		WHEN FPGA_RDY =>
+		WHEN CRES_WAIT =>
 			IF ( comres_rcvd ) THEN 
 				sreg2 = RES_SYNC;
 			ELSE
-				sreg2 = FPGA_RDY;
+				sreg2 = CRES_WAIT;
 			END IF;
+		WHEN DOM_RBT =>
+			sreg2 = DOM_RBT;
+		WHEN FPGA_RDY =>
+			sreg2 = WAIT_6ms;
 		WHEN RES_SYNC =>
 			IF ( comres_rcvd ) THEN 
 				sreg2 = COM_RES;
 			ELSE
 				sreg2 = RES_SYNC;
+			END IF;
+		WHEN WAIT_6ms =>
+			IF ( time[18] ) THEN 
+				sreg2 = CRES_WAIT;
+			ELSE
+				sreg2 = WAIT_6ms;
 			END IF;
 	END CASE;
 
