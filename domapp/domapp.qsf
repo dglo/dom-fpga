@@ -57,7 +57,7 @@ set_global_assignment -name VHDL_FILE compression.vhd
 set_global_assignment -name VHDL_FILE functions.vhd
 set_global_assignment -name VHDL_FILE slaveregister.vhd
 set_global_assignment -name VHDL_FILE comm_wrapper.vhd
-set_global_assignment -name VHDL_FILE data_buffer_test.vhd
+set_global_assignment -name VHDL_FILE data_buffer.vhd
 
 # Pin & Location Assignments
 # ==========================
@@ -785,9 +785,9 @@ set_global_assignment -name USE_SIGNALTAP_FILE ahbmaster.stp
 	set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_DATA_BITS=92" -section_id auto_signaltap_0
 	set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_BITS=92" -section_id auto_signaltap_0
 	set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_LOWORD=50623" -section_id auto_signaltap_0
-	set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_HIWORD=2490" -section_id auto_signaltap_0
-	set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SAMPLE_DEPTH=2048" -section_id auto_signaltap_0
-	set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_MEM_ADDRESS_BITS=11" -section_id auto_signaltap_0
+	set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_HIWORD=60101" -section_id auto_signaltap_0
+	set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SAMPLE_DEPTH=1024" -section_id auto_signaltap_0
+	set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_MEM_ADDRESS_BITS=10" -section_id auto_signaltap_0
 
 # end AUTO_INSERT_SLD_NODE_ENTITY(auto_signaltap_0)
 # -------------------------------------------------
