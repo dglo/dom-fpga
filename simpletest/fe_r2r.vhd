@@ -45,6 +45,7 @@ BEGIN
 				FE_PULSER_P	<= "ZZZZ";
 				FE_PULSER_N	<= "ZZZZ";
 			END IF;
+			
 			IF enable='1' THEN
 				CASE state IS
 					WHEN pup =>
