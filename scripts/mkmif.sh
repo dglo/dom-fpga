@@ -44,3 +44,5 @@ done
 last=`expr ${last} + 1`
 echo "[${last}..127] : 0;"
 
+echo "END;"
+
