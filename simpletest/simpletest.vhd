@@ -1028,7 +1028,7 @@ BEGIN
 	-- kale communications
 	com_tx_fifo					<= com_tx_data(7 downto 0);
 	com_rx_data(7 downto 0)		<= com_rx_fifo;
-	com_rx_data(31 downto 8)	<= (others=>'0');
+	com_rx_data(31 downto 8)	<= (others=>'1');
 	PROCESS(CLK20,RST)
 		VARIABLE old	: STD_LOGIC;
 	BEGIN
@@ -1053,6 +1053,16 @@ BEGIN
 	com_status(17)	<= txwraff;
 	com_status(20)	<= txrdef;
 	dec_thr			<= com_ctrl(25 downto 16);
+	PROCESS (RST,CLK20)
+	BEGIN
+		IF RST='1' THEN
+			com_status(31 downto 24)	<= (others=>'0');
+		ELSIF CLK20'EVENT AND CLK20='1' THEN
+			IF tx_fifo_wr='1' THEN
+				com_status(31 downto 24)	<= com_tx_fifo;
+			END IF;
+		END IF;
+	END PROCESS;
 	
 	TC(7)			<= temp_data(7);
 	
@@ -1231,7 +1241,7 @@ BEGIN
 			com_ctrl		=> com_ctrl,
 			com_status		=> com_status,
 			com_tx_data		=> com_tx_data,
-			com_rx_data		=> com_tx_data,
+			com_rx_data		=> com_rx_data,
 			hitcounter_o	=> hitcounter_o,
 			hitcounter_m	=> hitcounter_m,
 			hitcounter_o_ff	=> hitcounter_o_ff,
@@ -1561,7 +1571,7 @@ BEGIN
 	
 	B_nA	<= NOT A_nB;
 	RST_kalle	<= RST OR com_ctrl(4);
-	
+	TC(0)	<= tx_fifo_wr;
 	dcom_01_inst : dcom_01 
 		port MAP (
 			BCLK		=> CLK20,
@@ -1608,7 +1618,7 @@ BEGIN
 			bfstat_rcvd	=> open,
 			drreq_rcvd	=> open,
 			sysres_rcvd	=> open,
-			comres_rcvd	=> TC(0),
+			comres_rcvd	=> open, --TC(0),
 			msg_rcvd	=> open,
 			msg_err		=> open,
 			fifo_msg	=> fifo_msg,

@@ -114,10 +114,10 @@ BEGIN
 								reg_rdata <= registers(CONV_INTEGER(reg_address(5 downto 2)));
 							END IF;
 							
-							IF reg_address(5 downto 2)="1110" THEN
+							IF reg_address(5 downto 2)="1110" AND reg_write = '1' THEN
 								tx_fifo_wr	<= '1';
 							END IF;
-							IF reg_address(5 downto 2)="1111" THEN
+							IF reg_address(5 downto 2)="1111" AND reg_write = '0' THEN
 								rx_fifo_rd	<= '1';
 							END IF;
 						WHEN "0010" =>	-- com ADC
