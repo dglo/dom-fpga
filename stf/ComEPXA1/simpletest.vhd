@@ -917,6 +917,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			rxd :  OUT  STD_LOGIC;
 			drbt_gnt :  OUT  STD_LOGIC;
 			com_aval :  OUT  STD_LOGIC;
+			sys_res       : OUT STD_LOGIC;
 			dac_db :  OUT  STD_LOGIC_VECTOR(7 downto 0);
 			data :  OUT  STD_LOGIC_VECTOR(7 downto 0);
 			msg_ct_q :  OUT  STD_LOGIC_VECTOR(7 downto 0);
@@ -1702,6 +1703,7 @@ BEGIN
 			rxd 		=> open,
 			drbt_gnt	=> drbt_gnt,
 			com_aval	=> com_aval,
+			sys_res     => open,
 			dac_db		=> COM_DB,
 			data		=> temp_data,
 			msg_ct_q	=> msg_ct_q,

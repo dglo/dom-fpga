@@ -1,6 +1,6 @@
 % C:\PROJECTS\ICECUBE\DOR\FPGA\DCOM_01\DC_CTRL.tdf %
 % AHDL code created by Visual Software Solution's StateCAD 5.0 %
-% Tue Jul 15 11:02:16 2003 %
+% Mon Jul 21 15:02:15 2003 %
 
 % This AHDL code was generated using: %
 %  binary encoded state assignment with structured code format. %
@@ -20,6 +20,7 @@ SUBDESIGN DC_CTRL(
 	msg_sent :	INPUT;
 	pulse_rcvd :	INPUT;
 	pulse_sent :	INPUT;
+	reset :	INPUT;
 	rxwraff :	INPUT;
 	stf_rcvd :	INPUT;
 	sysres_rcvd :	INPUT;
@@ -44,9 +45,9 @@ SUBDESIGN DC_CTRL(
 
 
 VARIABLE
-	sreg : MACHINE OF BITS (SV0, SV8, SV9, SV10, SV11)
+	sreg : MACHINE OF BITS (SV0, SV1, SV8, SV9, SV10)
 		WITH STATES (
-			CRES_RCVD =	B"00001",
+			COM_START =	B"00001",
 			CMD_WAIT =	B"00000",
 			DEL10us =	B"00010",
 			DEL20us =	B"00011",
@@ -69,10 +70,16 @@ VARIABLE
 			SYS_RESET =	B"10100"
 		);
 
-	sreg1 : MACHINE OF BITS (SV12)
+	sreg1 : MACHINE OF BITS (SV11)
 		WITH STATES (
 			COM_OFF =	B"0",
 			COM_ON =	B"1"
+		);
+
+	sreg2 : MACHINE OF BITS (SV12)
+		WITH STATES (
+			FPGA_RDY =	B"1",
+			COM_RES =	B"0"
 		);
 
 	cmd_snd0 :	DFF;
@@ -80,6 +87,7 @@ VARIABLE
 	cmd_snd2 :	DFF;
 	cmd_snd3 :	DFF;
 	com_aval :	DFF;
+	comres_ena :	DFF;
 	drbt_gnt :	DFF;
 	rec_ctrl :	DFF;
 	rec_data :	DFF;
@@ -91,6 +99,7 @@ VARIABLE
 	tcal_prec :	DFF;
 	tcal_psnd :	DFF;
 
+	com_reset :	NODE;
 BEGIN
 
 % Clock setup %
@@ -99,6 +108,7 @@ BEGIN
 	cmd_snd2.clk=CLK;
 	cmd_snd3.clk=CLK;
 	com_aval.clk=CLK;
+	comres_ena.clk=CLK;
 	drbt_gnt.clk=CLK;
 	rec_ctrl.clk=CLK;
 	rec_data.clk=CLK;
@@ -111,10 +121,11 @@ BEGIN
 	tcal_psnd.clk=CLK;
 	sreg.clk=CLK;
 	sreg1.clk=CLK;
+	sreg2.clk=CLK;
 
-	sreg.reset =  comres_rcvd & !drbt_req ;
+	sreg.reset =  com_reset ;
 
-	IF ( comres_rcvd & !drbt_req ) THEN
+	IF ( com_reset ) THEN
 		drbt_gnt.clrn=GND;
 		sys_res.clrn=GND;
 		tcal_prec.clrn=GND;
@@ -203,7 +214,7 @@ BEGIN
 					cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,send_ctrl)=(0,0,1,0,0,
 					0,0,0,0,0,0,0,0,0);
 			END IF;
-		WHEN CRES_RCVD =>
+		WHEN COM_START =>
 			sreg = SND_IDLE;
 			(drbt_gnt,sys_res,tcal_prec,tcal_psnd,tcal_data,tcal_cmd,cmd_snd3,cmd_snd2
 				,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,send_ctrl)=(0,0,0,0,0,0,1,1,1,
@@ -447,7 +458,7 @@ BEGIN
 
 	CASE sreg1 IS
 		WHEN COM_OFF =>
-			IF ( !SV0 & SV8 & !SV9 & SV10 & SV11 & ctrl_sent ) THEN 
+			IF ( !SV0 & SV1 & !SV8 & SV9 & SV10 & ctrl_sent ) THEN 
 				sreg1 = COM_ON;
 				com_aval=VCC;
 			ELSE
@@ -458,5 +469,31 @@ BEGIN
 			sreg1 = COM_ON;
 			com_aval=VCC;
 	END CASE;
+
+	sreg2.reset =  reset ;
+
+	IF ( reset ) THEN
+		comres_ena.clrn=GND;
+	ELSE
+		comres_ena.clrn=VCC;
+	END IF;
+
+	CASE sreg2 IS
+		WHEN COM_RES =>
+			sreg2 = COM_RES;
+			comres_ena=VCC;
+		WHEN FPGA_RDY =>
+			IF ( comres_rcvd ) THEN 
+				sreg2 = COM_RES;
+				comres_ena=VCC;
+			ELSE
+				sreg2 = FPGA_RDY;
+				comres_ena=GND;
+			END IF;
+	END CASE;
+
+
+% Logic Equations %
+com_reset =  comres_ena & comres_rcvd & !drbt_req ;
 
 END;
