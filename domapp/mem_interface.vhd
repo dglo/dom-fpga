@@ -102,6 +102,8 @@ ARCHITECTURE mem_interface_arch OF mem_interface IS
 	
 	SIGNAL start_address	: STD_LOGIC_VECTOR(31 DOWNTO 0);
 	
+	SIGNAL LBM_ptr_byte		: STD_LOGIC_VECTOR(31 DOWNTO 0); -- Arthur wants a LWORD pointer
+	
 BEGIN
 
 	address	<= (start_address	-- local address pointer (bigger than memory space)
@@ -109,7 +111,9 @@ BEGIN
 				AND CONV_STD_LOGIC_VECTOR((2**SDRAM_SIZE)-1,32)) -- high address to SDRAM space (-> will wrap around)
 				+ SDRAM_BASE;	-- SDRAM base address for look back memory
 				
-	LBM_ptr	<= (start_address AND X"0FFFF800") OR (ahb_address AND X"000007FF"); 
+	LBM_ptr_byte	<= (start_address AND X"0FFFF800") OR (ahb_address AND X"000007FF");
+	LBM_ptr (29 DOWNTO 0)	<= LBM_ptr_byte (31 DOWNTO 2);
+	LBM_ptr (31 DOWNTO 30)	<= "00";
 
 	xfer_machine : PROCESS(CLK20,RST)
 	BEGIN
