@@ -35,7 +35,7 @@ BEGIN
 		VARIABLE tick_old1	: STD_LOGIC;
 	BEGIN
 		IF RST='1' THEN
-			cnt			:= (others=>'0');
+			-- cnt			:= (others=>'0');
 			cnt_o		:= '0';
 			cnt_oo		:= '0';
 			tick		:= '0';
@@ -46,16 +46,18 @@ BEGIN
 		ELSIF CLK'EVENT AND CLK='1' THEN
 			tick		:= cnt_o XOR cnt_oo;
 			cnt_oo		:= cnt_o;
-			cnt_o		:= cnt(CONV_INTEGER(divider)+8);
+			IF enable='1' THEN
+				cnt_o		:= cnt(CONV_INTEGER(divider)+8);
+			END IF;
 			FE_TEST_PULSE	<= tick OR tick_old OR tick_old0 OR tick_old1;
 			tick_old1	:= tick_old0;
 			tick_old0	:= tick_old;
 			tick_old	:= tick;
-			IF enable='0' THEN
-				cnt	:= (others=>'0');
-			ELSE
+	--		IF enable='0' THEN
+	--			cnt	:= (others=>'0');
+	--		ELSE
 				cnt	:= cnt + 1;
-			END IF;
+	--		END IF;
 		END IF;
 	END PROCESS;
 
