@@ -768,6 +768,8 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			DigitalReset	: OUT STD_LOGIC;
 			DigitalSet		: OUT STD_LOGIC;
 			ATWD_VDD_SUP	: OUT STD_LOGIC;
+			-- for ping-pong
+            atwd_trig_doneB	: OUT STD_LOGIC;
 			-- test connector
 			TC					: OUT STD_LOGIC_VECTOR(7 downto 0)
 		);
@@ -1461,7 +1463,7 @@ BEGIN
 			write_en	=> atwd0_write_en,
 			-- atwd
 			ATWD_D			=> ATWD0_D,
-			ATWDTrigger		=> ATWDTrigger_0,
+			ATWDTrigger		=> atwd0_trigger,
 			TriggerComplete	=> TriggerComplete_0,
 			OutputEnable	=> OutputEnable_0,
 			CounterClock	=> CounterClock_0,
@@ -1473,9 +1475,12 @@ BEGIN
 			DigitalReset	=> DigitalReset_0,
 			DigitalSet		=> DigitalSet_0,
 			ATWD_VDD_SUP	=> ATWD0VDD_SUP,
+			-- for ping-pong
+            atwd_trig_doneB => atwd0_trig_doneB,
 			-- test connector
 			TC				=> open
 		);
+	ATWDTrigger_0 <= atwd0_trigger;
 	
 	atwd1 : atwd
 		PORT MAP (
@@ -1496,7 +1501,7 @@ BEGIN
 			write_en	=> atwd1_write_en,
 			-- atwd
 			ATWD_D			=> ATWD1_D,
-			ATWDTrigger		=> ATWDTrigger_1,
+			ATWDTrigger		=> atwd1_trigger,
 			TriggerComplete	=> TriggerComplete_1,
 			OutputEnable	=> OutputEnable_1,
 			CounterClock	=> CounterClock_1,
@@ -1508,9 +1513,12 @@ BEGIN
 			DigitalReset	=> DigitalReset_1,
 			DigitalSet		=> DigitalSet_1,
 			ATWD_VDD_SUP	=> ATWD1VDD_SUP,
+			-- for ping-pong
+            atwd_trig_doneB => atwd1_trig_doneB,
 			-- test connector
 			TC				=> open
 		);
+	ATWDTrigger_1 <= atwd1_trigger;
 		
 	inst_master_data_source : master_data_source
 		PORT MAP (
