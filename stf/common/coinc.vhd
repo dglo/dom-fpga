@@ -67,6 +67,11 @@ ARCHITECTURE arch_coinc OF coinc IS
 	TYPE STATE_TYPE IS (idle, pos, neg);
 	SIGNAL state	: STATE_TYPE;
 	
+	SIGNAL coinc_up_high_delay	: STD_LOGIC_VECTOR(7 DOWNTO 0);
+	SIGNAL coinc_up_low_delay	: STD_LOGIC_VECTOR(7 DOWNTO 0);
+	SIGNAL coinc_down_high_delay	: STD_LOGIC_VECTOR(7 DOWNTO 0);
+	SIGNAL coinc_down_low_delay	: STD_LOGIC_VECTOR(7 DOWNTO 0);
+	
 BEGIN
 	
 	COINC_DOWN_ALATCH	<= '0' WHEN coinc_latch(0)='0' ELSE 'Z';
@@ -168,21 +173,29 @@ BEGIN
 						END IF;
 				END CASE;		
 			ELSE	-- manual control
-				IF coinc_up_high='1' THEN
+				IF coinc_up_high='1' AND coinc_up_high_delay(2)='0' THEN
 					COINCIDENCE_OUT_UP	<= '1';
-				ELSIF coinc_up_low='1' THEN
+				ELSIF coinc_up_low='1' AND coinc_up_low_delay(2)='0' THEN
 					COINCIDENCE_OUT_UP	<= '0';
 				ELSE
 					COINCIDENCE_OUT_UP	<= 'Z';
 				END IF;
-				IF coinc_down_high='1' THEN
+				IF coinc_down_high='1' AND coinc_down_high_delay(2)='0' THEN
 					COINCIDENCE_OUT_DOWN	<= '1';
-				ELSIF coinc_down_low='1' THEN
+				ELSIF coinc_down_low='1' AND coinc_down_low_delay(2)='0' THEN
 					COINCIDENCE_OUT_DOWN	<= '0';
 				ELSE
 					COINCIDENCE_OUT_DOWN	<= 'Z';
 				END IF;
 			END IF;
+			coinc_up_high_delay(7 DOWNTO 1) <= coinc_up_high_delay(6 DOWNTO 0);
+			coinc_up_high_delay(0) <= coinc_up_high;
+			coinc_up_low_delay(7 DOWNTO 1) <= coinc_up_low_delay(6 DOWNTO 0);
+			coinc_up_low_delay(0) <= coinc_up_low;
+			coinc_down_high_delay(7 DOWNTO 1) <= coinc_down_high_delay(6 DOWNTO 0);
+			coinc_down_high_delay(0) <= coinc_down_high;
+			coinc_down_low_delay(7 DOWNTO 1) <= coinc_down_low_delay(6 DOWNTO 0);
+			coinc_down_low_delay(0) <= coinc_down_low;
 		END IF;
 	END PROCESS;
 	

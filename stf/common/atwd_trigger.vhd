@@ -35,12 +35,14 @@ ENTITY atwd_trigger IS
 		-- enable
 		enable		: IN STD_LOGIC;
 		enable_disc	: IN STD_LOGIC;
+		enable_LED	: IN STD_LOGIC;
 		done		: OUT STD_LOGIC;
 		-- controller
 		busy		: IN STD_LOGIC;
 		reset_trig	: IN STD_LOGIC;
 		-- disc
 		OneSPE		: IN STD_LOGIC;
+		LEDtrig		: IN STD_LOGIC;
 		-- atwd
 		ATWDTrigger			: OUT STD_LOGIC;
 		TriggerComplete_in	: IN STD_LOGIC;
@@ -85,6 +87,11 @@ ARCHITECTURE arch_atwd_trigger OF atwd_trigger IS
 	SIGNAL enable_disc_pos_edge			: STD_LOGIC;
 	SIGNAL enable_disc_old				: STD_LOGIC;
 	SIGNAL enable_disc_sig				: STD_LOGIC;
+	SIGNAL enable_LED_pos_edge			: STD_LOGIC;
+	SIGNAL enable_LED_old				: STD_LOGIC;
+	SIGNAL enable_LED_sig				: STD_LOGIC;
+	
+	SIGNAL enable_LED_force	: STD_LOGIC;
 			
 BEGIN
 	
@@ -102,7 +109,7 @@ BEGIN
 	--		IF reset_trig='1' THEN
 	--			ATWDTrigger	<= '0';
 	--		END IF;
-			IF busy='0' AND (enable='1' OR (enable_disc='1' AND enable_disc_sig='0')) THEN
+			IF busy='0' AND (enable='1' OR (enable_disc='1' AND enable_disc_sig='0') OR (enable_LED='1' AND enable_LED_sig='0')) THEN
 				done	<= '1';
 			ELSE
 				done	<= '0';
@@ -112,12 +119,14 @@ BEGIN
 			TriggerComplete_in_0	<= TriggerComplete_in;
 			enable_old				<= enable;
 			enable_disc_old				<= enable_disc;
+			enable_LED_old				<= enable_LED;
 		END IF;
 	END PROCESS;
 
 	TriggerComplete_out	<= TriggerComplete_in_sync;
 	enable_pos_edge		<= '1' WHEN enable='1' AND enable_old='0' ELSE '0';
 	enable_disc_pos_edge		<= '1' WHEN enable_disc='1' AND enable_disc_old='0' ELSE '0';
+	enable_LED_pos_edge		<= '1' WHEN enable_LED='1' AND enable_LED_old='0' ELSE '0';
 	
 	
 	----------------------
@@ -140,7 +149,7 @@ BEGIN
 	enable_sig	<= NOT busy AND enable_disc_sig;
 	set_sig		<= triggered
 				OR (force AND NOT busy);
-	force	<= enable_pos_edge;
+	force	<= enable_pos_edge OR enable_LED_force;
 	rst_sig		<= reset_trig;
 	
 	launchmode : PROCESS(CLK,RST)
@@ -176,7 +185,7 @@ BEGIN
 	ATWDTrigger	<= ATWDTrigger_sig;
 	triggered	<= ATWDTrigger_sig;
 	
-	oneshot : PROCESS(CLK,RST)
+	oneshot_disc : PROCESS(CLK,RST)
 	BEGIN
 		IF RST='1' THEN
 			enable_disc_sig	<= '0';
@@ -188,5 +197,20 @@ BEGIN
 			END IF;
 		END IF;
 	END PROCESS;
+	
+	oneshot_LED : PROCESS(CLK,RST)
+	BEGIN
+		IF RST='1' THEN
+			enable_LED_sig	<= '0';
+		ELSIF CLK'EVENT AND CLK='1' THEN
+			IF enable_LED_pos_edge='1' THEN
+				enable_LED_sig	<= '1';
+			ELSIF triggered='1' THEN
+				enable_LED_sig	<= '0';
+			END IF;
+		END IF;
+	END PROCESS;
+	
+	enable_LED_force <= LEDtrig AND enable_LED_sig;
 	
 END;

@@ -7,15 +7,18 @@ LIBRARY IEEE;
 USE IEEE.std_logic_1164.all;
 
 ENTITY fADC_input IS
+	GENERIC (
+		FADC_WIDTH		: INTEGER := 10
+		);
 	PORT (
 		CLK40			: IN STD_LOGIC;
 		RST				: IN STD_LOGIC;
 		-- fADC connections
-		FLASH_AD_D		: IN STD_LOGIC_VECTOR (9 downto 0);
+		FLASH_AD_D		: IN STD_LOGIC_VECTOR (FADC_WIDTH-1 downto 0);
 		FLASH_AD_STBY	: OUT STD_LOGIC;
 		FLASH_NCO		: IN STD_LOGIC;
 		-- local fADC connection
-		fADC_D			: OUT STD_LOGIC_VECTOR (9 downto 0);
+		fADC_D			: OUT STD_LOGIC_VECTOR (FADC_WIDTH-1 downto 0);
 		fADC_NCO		: OUT STD_LOGIC;
 		-- test connector
 		TC				: OUT STD_LOGIC_VECTOR (7 downto 0)
