@@ -115,7 +115,7 @@ BEGIN
 				END CASE;
 			ELSE
 				cnt	:= "10000000";
-				COM_TX_SLEEP	<= '1';
+				COM_TX_SLEEP	<= '0';
 				COM_DB <= cnt;
 				state <= state1;
 				wait_cnt := "1110";

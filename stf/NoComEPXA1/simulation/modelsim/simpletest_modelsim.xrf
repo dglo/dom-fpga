@@ -57,7 +57,6 @@ source_file = 1, C:\quartus\libraries\megafunctions\lpm_decode.inc
 source_file = 1, C:\quartus\libraries\megafunctions\lpm_mux.inc
 source_file = 1, C:\quartus\libraries\megafunctions\altqpram.inc
 source_file = 1, C:\quartus\libraries\megafunctions\altsyncram.inc
-source_file = 1, C:/IceCube/FPGAcode/HardWareTest/simpletest/version_rom.mif
 source_file = 1, C:\quartus\libraries\megafunctions\lpm_ram_dp.tdf
 source_file = 1, C:\quartus\libraries\megafunctions\altdpram.inc
 source_file = 1, C:\quartus\libraries\megafunctions\altdpram.tdf

@@ -22,7 +22,7 @@
 -- PROGRAM "Quartus II"
 -- VERSION "Version 2.2 Build 147 12/02/2002 SJ Full Version"
 
--- DATE "07/02/2003 17:11:26"
+-- DATE "07/03/2003 08:25:54"
 
 --
 -- Device: Altera EPXA1F672C2 Package FBGA672
@@ -11271,7 +11271,7 @@ slaveregister_inst_ainst_version_rom_alpm_rom_component_asrom_asegment_a0_a_a0_a
 GENERIC MAP (
 	operation_mode => "rom",
 	logical_ram_name => "slaveregister:slaveregister_inst|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|altrom:srom|content",
-	init_file => "C:/IceCube/FPGAcode/HardWareTest/simpletest/version_rom.mif",
+	init_file => "version_rom.mif",
 	logical_ram_depth => 128,
 	logical_ram_width => 16,
 	address_width => 7,
@@ -31514,7 +31514,7 @@ slaveregister_inst_ainst_version_rom_alpm_rom_component_asrom_asegment_a0_a_a1_a
 GENERIC MAP (
 	operation_mode => "rom",
 	logical_ram_name => "slaveregister:slaveregister_inst|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|altrom:srom|content",
-	init_file => "C:/IceCube/FPGAcode/HardWareTest/simpletest/version_rom.mif",
+	init_file => "version_rom.mif",
 	logical_ram_depth => 128,
 	logical_ram_width => 16,
 	address_width => 7,
@@ -32836,7 +32836,7 @@ slaveregister_inst_ainst_version_rom_alpm_rom_component_asrom_asegment_a0_a_a2_a
 GENERIC MAP (
 	operation_mode => "rom",
 	logical_ram_name => "slaveregister:slaveregister_inst|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|altrom:srom|content",
-	init_file => "C:/IceCube/FPGAcode/HardWareTest/simpletest/version_rom.mif",
+	init_file => "version_rom.mif",
 	logical_ram_depth => 128,
 	logical_ram_width => 16,
 	address_width => 7,
@@ -34218,7 +34218,7 @@ slaveregister_inst_ainst_version_rom_alpm_rom_component_asrom_asegment_a0_a_a3_a
 GENERIC MAP (
 	operation_mode => "rom",
 	logical_ram_name => "slaveregister:slaveregister_inst|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|altrom:srom|content",
-	init_file => "C:/IceCube/FPGAcode/HardWareTest/simpletest/version_rom.mif",
+	init_file => "version_rom.mif",
 	logical_ram_depth => 128,
 	logical_ram_width => 16,
 	address_width => 7,
@@ -35561,7 +35561,7 @@ slaveregister_inst_ainst_version_rom_alpm_rom_component_asrom_asegment_a0_a_a4_a
 GENERIC MAP (
 	operation_mode => "rom",
 	logical_ram_name => "slaveregister:slaveregister_inst|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|altrom:srom|content",
-	init_file => "C:/IceCube/FPGAcode/HardWareTest/simpletest/version_rom.mif",
+	init_file => "version_rom.mif",
 	logical_ram_depth => 128,
 	logical_ram_width => 16,
 	address_width => 7,
@@ -36864,7 +36864,7 @@ slaveregister_inst_ainst_version_rom_alpm_rom_component_asrom_asegment_a0_a_a5_a
 GENERIC MAP (
 	operation_mode => "rom",
 	logical_ram_name => "slaveregister:slaveregister_inst|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|altrom:srom|content",
-	init_file => "C:/IceCube/FPGAcode/HardWareTest/simpletest/version_rom.mif",
+	init_file => "version_rom.mif",
 	logical_ram_depth => 128,
 	logical_ram_width => 16,
 	address_width => 7,
@@ -38187,7 +38187,7 @@ slaveregister_inst_ainst_version_rom_alpm_rom_component_asrom_asegment_a0_a_a6_a
 GENERIC MAP (
 	operation_mode => "rom",
 	logical_ram_name => "slaveregister:slaveregister_inst|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|altrom:srom|content",
-	init_file => "C:/IceCube/FPGAcode/HardWareTest/simpletest/version_rom.mif",
+	init_file => "version_rom.mif",
 	logical_ram_depth => 128,
 	logical_ram_width => 16,
 	address_width => 7,
@@ -39490,7 +39490,7 @@ slaveregister_inst_ainst_version_rom_alpm_rom_component_asrom_asegment_a0_a_a7_a
 GENERIC MAP (
 	operation_mode => "rom",
 	logical_ram_name => "slaveregister:slaveregister_inst|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|altrom:srom|content",
-	init_file => "C:/IceCube/FPGAcode/HardWareTest/simpletest/version_rom.mif",
+	init_file => "version_rom.mif",
 	logical_ram_depth => 128,
 	logical_ram_width => 16,
 	address_width => 7,
@@ -40871,7 +40871,7 @@ slaveregister_inst_ainst_version_rom_alpm_rom_component_asrom_asegment_a0_a_a8_a
 GENERIC MAP (
 	operation_mode => "rom",
 	logical_ram_name => "slaveregister:slaveregister_inst|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|altrom:srom|content",
-	init_file => "C:/IceCube/FPGAcode/HardWareTest/simpletest/version_rom.mif",
+	init_file => "version_rom.mif",
 	logical_ram_depth => 128,
 	logical_ram_width => 16,
 	address_width => 7,
@@ -42312,7 +42312,7 @@ slaveregister_inst_ainst_version_rom_alpm_rom_component_asrom_asegment_a0_a_a9_a
 GENERIC MAP (
 	operation_mode => "rom",
 	logical_ram_name => "slaveregister:slaveregister_inst|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|altrom:srom|content",
-	init_file => "C:/IceCube/FPGAcode/HardWareTest/simpletest/version_rom.mif",
+	init_file => "version_rom.mif",
 	logical_ram_depth => 128,
 	logical_ram_width => 16,
 	address_width => 7,
@@ -43651,7 +43651,7 @@ slaveregister_inst_ainst_version_rom_alpm_rom_component_asrom_asegment_a0_a_a10_
 GENERIC MAP (
 	operation_mode => "rom",
 	logical_ram_name => "slaveregister:slaveregister_inst|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|altrom:srom|content",
-	init_file => "C:/IceCube/FPGAcode/HardWareTest/simpletest/version_rom.mif",
+	init_file => "version_rom.mif",
 	logical_ram_depth => 128,
 	logical_ram_width => 16,
 	address_width => 7,
@@ -45010,7 +45010,7 @@ slaveregister_inst_ainst_version_rom_alpm_rom_component_asrom_asegment_a0_a_a11_
 GENERIC MAP (
 	operation_mode => "rom",
 	logical_ram_name => "slaveregister:slaveregister_inst|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|altrom:srom|content",
-	init_file => "C:/IceCube/FPGAcode/HardWareTest/simpletest/version_rom.mif",
+	init_file => "version_rom.mif",
 	logical_ram_depth => 128,
 	logical_ram_width => 16,
 	address_width => 7,
@@ -46314,7 +46314,7 @@ slaveregister_inst_ainst_version_rom_alpm_rom_component_asrom_asegment_a0_a_a12_
 GENERIC MAP (
 	operation_mode => "rom",
 	logical_ram_name => "slaveregister:slaveregister_inst|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|altrom:srom|content",
-	init_file => "C:/IceCube/FPGAcode/HardWareTest/simpletest/version_rom.mif",
+	init_file => "version_rom.mif",
 	logical_ram_depth => 128,
 	logical_ram_width => 16,
 	address_width => 7,
@@ -47618,7 +47618,7 @@ slaveregister_inst_ainst_version_rom_alpm_rom_component_asrom_asegment_a0_a_a13_
 GENERIC MAP (
 	operation_mode => "rom",
 	logical_ram_name => "slaveregister:slaveregister_inst|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|altrom:srom|content",
-	init_file => "C:/IceCube/FPGAcode/HardWareTest/simpletest/version_rom.mif",
+	init_file => "version_rom.mif",
 	logical_ram_depth => 128,
 	logical_ram_width => 16,
 	address_width => 7,
@@ -48922,7 +48922,7 @@ slaveregister_inst_ainst_version_rom_alpm_rom_component_asrom_asegment_a0_a_a14_
 GENERIC MAP (
 	operation_mode => "rom",
 	logical_ram_name => "slaveregister:slaveregister_inst|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|altrom:srom|content",
-	init_file => "C:/IceCube/FPGAcode/HardWareTest/simpletest/version_rom.mif",
+	init_file => "version_rom.mif",
 	logical_ram_depth => 128,
 	logical_ram_width => 16,
 	address_width => 7,
@@ -50226,7 +50226,7 @@ slaveregister_inst_ainst_version_rom_alpm_rom_component_asrom_asegment_a0_a_a15_
 GENERIC MAP (
 	operation_mode => "rom",
 	logical_ram_name => "slaveregister:slaveregister_inst|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|altrom:srom|content",
-	init_file => "C:/IceCube/FPGAcode/HardWareTest/simpletest/version_rom.mif",
+	init_file => "version_rom.mif",
 	logical_ram_depth => 128,
 	logical_ram_width => 16,
 	address_width => 7,
