@@ -1507,7 +1507,7 @@ BEGIN
 	begin
 		IF CLK80'EVENT and CLK80='1' then
 			CNT := CNT + 1;
-			PGM(10) <= CNT(47);
+			PGM(10) <= CNT(0);
 		END IF;
 	END PROCESS;
 	
