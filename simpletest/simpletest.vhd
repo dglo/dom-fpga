@@ -950,42 +950,77 @@ BEGIN
 	gpi(3 downto 0)		<= (others=>'0');
 	-- gpo		<= ;
 	
-	-- com DAC test
-	enable <= command_0(0);
-	enable_square	<= command_0(1);
-	-- com ADC test
-	com_adc_enable	<= command_0(8);
-	response_0(8)	<= com_adc_done;
+	-- ATWD0
+	atwd0_enable	<= command_0(0);
+	atwd0_enable_disc	<= command_0(1);
+	response_0(0)	<= atwd0_done;
+	-- ATWD1
+	atwd1_enable	<= command_0(8);
+	atwd1_enable_disc	<= command_0(9);
+	response_0(8)	<= atwd1_done;
 	-- flash ADC test
 	flash_adc_enable		<= command_0(16);
 	flash_adc_enable_disc	<= command_0(17);
 	response_0(16)	<= flash_adc_done;
 	-- frontend pulser
 	fe_pulser_enable	<= command_0(24);
-	fe_divider			<= command_3(19 downto 16);
+	fe_divider			<= command_1(19 downto 16);
 	-- single LED
-	single_led_enable	<= command_0(28);
+	single_led_enable	<= command_0(26);
+	-- R2R ladder
+	enable_r2r		<= command_0(28);	
+	enable_fe_r2r	<= command_0(30);
 	
-	response_0(31 downto 17)	<= (others=>'0');
-	response_0(15 downto 9)	<= (others=>'0');
-	response_0(7 downto 0)	<= (others=>'0');
 	
-	response_1(31 downto 25)	<= (others=>'0');
-	response_1(23 downto 17)	<= (others=>'0');
-	response_1(7 downto 0)		<= (others=>'0');
-	
-	response_2(31 downto 10)		<= (others=>'0');
-	response_2(7 downto 1)		<= (others=>'0');
+	-- com DAC test
+--	enable <= command_1(0);
+--	enable_square	<= command_1(1);
+	-- com ADC test
+--	com_adc_enable	<= command_1(4);
+--	response_1(4)	<= com_adc_done;
+	-- RS485
+--	rs486_ena		<= command_1(10 downto 9);
+--	rs486_tx		<= command_1(8);
+--	response_1(8)	<= rs486_rx;
+--	enable_rs485	<= command_1(11);
 	
 	-- local coincidence
-	enable_coinc_up		<= command_1(0);
-	enable_coinc_down	<= command_1(1);
-	coinc_down_high		<= command_1(8);
-	coinc_down_low		<= command_1(9);
-	coinc_up_high		<= command_1(10);
-	coinc_up_low		<= command_1(11);
-	coinc_latch			<= command_1(15 downto 12);
-	response_1(15 downto 8)	<= coinc_disc;
+	enable_coinc_up		<= command_2(0);
+	enable_coinc_down	<= command_2(1);
+	coinc_down_high		<= command_2(8);
+	coinc_down_low		<= command_2(9);
+	coinc_up_high		<= command_2(10);
+	coinc_up_low		<= command_2(11);
+	coinc_latch			<= command_2(15 downto 12);
+	response_2(15 downto 8)	<= coinc_disc;
+	-- flasher board
+	fl_board		<= command_2(31 downto 24);
+	response_2(24)	<= fl_board_read(0);
+	response_2(28)	<= fl_board_read(1);
+	
+	
+	response_0(31 downto 17)	<= (others=>'0');
+	response_0(15 downto 9)		<= (others=>'0');
+	response_0(7 downto 1)		<= (others=>'0');
+	
+	response_1(31 downto 9)	<= (others=>'0');
+	response_1(8 downto 4)	<= (others=>'0');
+	response_1(3 downto 0)	<= (others=>'0');
+	
+	response_2(31 downto 29)	<= (others=>'0');
+	response_2(27 downto 25)	<= (others=>'0');
+	response_2(23 downto 16)	<= (others=>'0');
+	response_2(7 downto 0)		<= (others=>'0');
+	
+	-- AHB master test
+--	master_enable	<= command_2(8);
+--	response_2(8)	<= master_done;
+--	response_2(9)	<= master_berr;
+--	master_addr_start	<= command_3(15 downto 0);
+	master_enable	<= low; --command_2(8);
+	-- response_2(8)	<= master_done;
+	-- response_2(9)	<= master_berr;
+	master_addr_start	<= (others=>'0'); --command_3(15 downto 0);
 	
 	-- hit counter
 	hitcounter_o(15 downto 0)	<= oneSPEcnt;
@@ -996,36 +1031,6 @@ BEGIN
 	hitcounter_o_ff(31 downto 16)	<= (others=>'0');
 	hitcounter_m_ff(15 downto 0)	<= multiSPEcnt_ff;
 	hitcounter_m_ff(31 downto 16)	<= (others=>'0');
-	
-	-- ATWD0
-	atwd0_enable	<= command_1(16);
-	atwd0_enable_disc	<= command_1(17);
-	response_1(16)	<= atwd0_done;
-	-- ATWD1
-	atwd1_enable	<= command_1(24);
-	atwd1_enable_disc	<= command_1(25);
-	response_1(24)	<= atwd1_done;
-	
-	-- RS485
-	rs486_ena		<= command_2(2 downto 1);
-	rs486_tx		<= command_2(0);
-	response_2(0)	<= rs486_rx;
-	enable_rs485	<= command_2(4);
-	
-	-- AHB master test
-	master_enable	<= command_2(8);
-	response_2(8)	<= master_done;
-	response_2(9)	<= master_berr;
-	master_addr_start	<= command_3(15 downto 0);
-	
-	-- R2R ladder
-	enable_r2r		<= command_2(16);	
-	enable_fe_r2r	<= command_2(20);
-	
-	-- flasher board
-	fl_board		<= command_3(31 downto 24);
-	response_3(24)	<= fl_board_read(0);
-	response_3(28)	<= fl_board_read(1);
 	
 	-- kale communications
 	com_tx_fifo					<= com_tx_data(7 downto 0);
