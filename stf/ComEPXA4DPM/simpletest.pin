@@ -510,7 +510,7 @@ FE_PULSER_N[1]               : V24       : output : LVTTL             :         
 RESERVED_INPUT               : V25       :        :                   :         : 8         :                
 RESERVED_INPUT               : V26       :        :                   :         : 8         :                
 RESERVED_INPUT               : W1        :        :                   :         : 12        :                
-CLK3p                        : W2        : input  : LVTTL             :         : 12        : N              
+RESERVED_INPUT               : W2        :        :                   :         : 12        :                
 RESERVED_INPUT               : W3        :        :                   :         : 13        :                
 RESERVED_INPUT               : W4        :        :                   :         : 13        :                
 RESERVED_INPUT               : W5        :        :                   :         : 13        :                
@@ -608,7 +608,7 @@ ATWD1_D[2]                   : AB18      : input  : LVTTL             :         
 OneSPE_nl                    : AB19      : output : LVTTL             :         : 9         : Y              
 R2BUS[2]                     : AB20      : output : LVTTL             :         : 9         : Y              
 R2BUS[1]                     : AB21      : output : LVTTL             :         : 9         : Y              
-RESERVED_INPUT               : AB22      :        :                   :         : 9         :                
+CLK3p                        : AB22      : input  : LVTTL             :         : 9         : N              
 RESERVED_INPUT               : AB23      :        :                   :         : 9         :                
 RESERVED_INPUT               : AB24      :        :                   :         : 9         :                
 RESERVED_INPUT               : AB25      :        :                   :         : 8         :                

@@ -636,6 +636,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			rx_fifo_rd			: OUT STD_LOGIC;
 			tx_pack_rdy			: OUT STD_LOGIC;
 			rx_dpr_radr_stb		: OUT STD_LOGIC;
+			com_reset_rcvd		: IN STD_LOGIC;
 			-- test connector
 			TC				: OUT	STD_LOGIC_VECTOR(7 downto 0)
 		);
@@ -1551,6 +1552,7 @@ BEGIN
 			rx_fifo_rd			=> rx_fifo_rd,
 			tx_pack_rdy			=> tx_pack_rdy,
 			rx_dpr_radr_stb		=> rx_dpr_radr_stb,
+			com_reset_rcvd		=> com_reset_rcvd,
 			-- test connector
 			TC				=> open --TC
 		);
