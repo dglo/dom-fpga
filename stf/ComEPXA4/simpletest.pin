@@ -276,7 +276,7 @@ NPOR                         : J24       : input  : LVTTL             :         
 RESERVED_INPUT               : J25       :        :                   :         : 8         :                
 RESERVED_INPUT               : J26       :        :                   :         : 8         :                
 RESERVED_INPUT               : K1        :        :                   :         : 12        :                
-CLK3p                        : K2        : input  : LVTTL             :         : 12        : N              
+RESERVED_INPUT               : K2        :        :                   :         : 12        :                
 COM_AD_D[5]                  : K3        : input  : 2.5 V             :         : 13        : Y              
 COM_AD_D[4]                  : K4        : input  : 2.5 V             :         : 13        : Y              
 COM_AD_D[3]                  : K5        : input  : 2.5 V             :         : 13        : Y              
@@ -643,7 +643,7 @@ VCC_INT                      : AD1       : power  :                   : 1.8V    
 VCC_INT                      : AD2       : power  :                   : 1.8V    :           :                
 GND                          : AD3       : gnd    :                   :         :           :                
 VCC_INT                      : AD4       : power  :                   : 1.8V    :           :                
-RESERVED_INPUT               : AD5       :        :                   :         : 12        :                
+CLK3p                        : AD5       : input  : LVTTL             :         : 12        : N              
 RESERVED_INPUT               : AD6       :        :                   :         : 12        :                
 ATWDTrigger_1                : AD7       : output : LVTTL             :         : 11        : Y              
 MultiSPE_nl                  : AD8       : output : LVTTL             :         : 11        : Y              
