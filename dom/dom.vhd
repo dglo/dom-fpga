@@ -358,4 +358,4 @@ BEGIN
 	gpi(3 downto 0)		<= (others=>'0');
 	-- gpo		<= ;
 	
-END;
+END simpletest_arch;

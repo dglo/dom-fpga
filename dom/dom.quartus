@@ -20,4 +20,5 @@ FILES
 	VHDL_FILE = daq.vhd;
 	VHDL_FILE = ATWD_interface.vhd;
 	VHDL_FILE = mem_interface.vhd;
+	VHDL_FILE = ATWD.vhd;
 }
