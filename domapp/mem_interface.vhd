@@ -257,8 +257,8 @@ BEGIN
 	header1(23 DOWNTO 20)	<= X"F" WHEN header.ATWDavail='1' AND header.ATWDsize>=1 ELSE X"0";	-- ATWD channel 1
 	header1(27 DOWNTO 24)	<= X"F" WHEN header.ATWDavail='1' AND header.ATWDsize>=2 ELSE X"0";	-- ATWD channel 2
 	header1(31 DOWNTO 28)	<= X"F" WHEN header.ATWDavail='1' AND header.ATWDsize=3 ELSE X"0";	-- ATWD channel 3
--- have to define that part:	header2 <= ;
-	header2(31 DOWNTO 16) <= header.timestamp(15 DOWNTO 0);
+	header2(15 DOWNTO 0)	<= header.trigger_word;
+	header2(31 DOWNTO 16)	<= header.timestamp(15 DOWNTO 0);
 	header3 <= header.timestamp(47 DOWNTO 16);
 	
 	-- select data source

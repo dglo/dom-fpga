@@ -184,6 +184,7 @@ BEGIN
 			COMM_ctrl_local	<= ('0', (OTHERS=>'0'), 'X', '0', '0', (OTHERS=>'0'), (OTHERS=>'0'));
 			id_set			<= "00";
 		ELSIF CLK'EVENT AND CLK='1' THEN
+			DAQ_ctrl_local.LBM_ptr_RST	<= '0';
 			CS_ctrl_local.CS_CPU	<= '0';
 			COMM_ctrl_local.tx_packet_ready		<= '0';
 			COMM_ctrl_local.rx_dpr_raddr_stb	<= '0';
@@ -423,7 +424,7 @@ BEGIN
 	DAQ_ctrl	<= DAQ_ctrl_local;
 	CS_ctrl		<= CS_ctrl_local;
 	RM_ctrl		<= RM_ctrl_local;
-	COMM_ctrl		<= COMM_ctrl_local;
+	COMM_ctrl	<= COMM_ctrl_local;
 	
 	-- create write enable for the memory blocks (pedestal & R2R)
 	R2Rwe <= '1' WHEN reg_write='1' AND reg_enable = '1' AND std_match( reg_address(13 downto 2) , "0011--------" ) ELSE '0';
