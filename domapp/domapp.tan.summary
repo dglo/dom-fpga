@@ -5,23 +5,23 @@ Timing Analyzer Summary
 Type           : Worst-case tsu
 Slack          : N/A
 Required Time  : None
-Actual Time    : 21.032 ns
+Actual Time    : 16.878 ns
 From           : A_nB
 To             : comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|tx_uart_ap:inst7|tx_uart_shr10:inst8|lpm_shiftreg:lpm_shiftreg_component|dffs[8]
 
 Type           : Worst-case tco
 Slack          : N/A
 Required Time  : None
-Actual Time    : 16.721 ns
+Actual Time    : 14.392 ns
 From           : comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|tx_uart_ap:inst7|tx_uart_shr10:inst8|lpm_shiftreg:lpm_shiftreg_component|dffs[0]
-To             : COM_DB[9]
+To             : COM_DB[12]
 
 Type           : Worst-case th
 Slack          : N/A
 Required Time  : None
-Actual Time    : -6.070 ns
-From           : COM_AD_D[3]
-To             : comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_rapcal_lh:inst30|inst10[1]
+Actual Time    : -7.223 ns
+From           : TriggerComplete_0
+To             : daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~23
 
 Type           : Worst-case minimum tco
 Slack          : N/A
@@ -30,26 +30,26 @@ Actual Time    : 1.189 ns
 From           : pll2x:inst_pll2x|altclklock:altclklock_component|outclock1
 To             : CLKLK_OUT2p
 
-Type           : Clock Setup: 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock1'
-Slack          : 5.177 ns
-Required Time  : 40.00 MHz ( period = 25.000 ns )
+Type           : Clock Setup: 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock0'
+Slack          : 4.902 ns
+Required Time  : 20.00 MHz ( period = 50.000 ns )
 Actual Time    : N/A
-From           : daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_in:compressor_in0|data_supr0[2]
-To             : daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_in:compressor_in0|cmp_data_t0_t1
+From           : daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|compr_size[5]
+To             : daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[0]
+
+Type           : Clock Setup: 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock1'
+Slack          : 5.028 ns
+Required Time  : 40.00 MHz ( period = 25.000 ns )
+Actual Time    : 66.92 MHz ( period = 14.944 ns )
+From           : daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface|FADC_we~reg0
+To             : daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|FADC_buffer:inst_FADC_buffer_even|altdpram:altdpram_component|q[0]~reg_we
 
 Type           : Clock Setup: 'pll4x:inst_pll4x|altclklock:altclklock_component|outclock1'
-Slack          : 5.255 ns
+Slack          : 6.148 ns
 Required Time  : 80.00 MHz ( period = 12.500 ns )
 Actual Time    : N/A
 From           : ROC:inst_ROC|RST~reg0
 To             : daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|counter_clock_cclk
-
-Type           : Clock Setup: 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock0'
-Slack          : 6.093 ns
-Required Time  : 20.00 MHz ( period = 50.000 ns )
-Actual Time    : N/A
-From           : daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|compr_size[3]
-To             : daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[6]
 
 --------------------------------------------------------------------------------------
 

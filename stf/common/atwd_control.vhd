@@ -177,6 +177,10 @@ BEGIN
 					DigitalSet		<= '0';
 					DigitalReset	<= '1';
 					ReadWrite		<= '0';
+					AnalogReset		<= '1';
+					RampSet			<= '1';
+					OutputEnable	<= '0';
+					channel			<= "00";
 					reset_trig		<= '1';
 				WHEN ATWDrecover =>
 					state	<= idle;

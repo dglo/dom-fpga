@@ -1,5 +1,5 @@
 Analysis & Synthesis report for domapp
-Fri Dec 03 14:57:32 2004
+Mon Dec 13 11:28:56 2004
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -73,7 +73,7 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                        ;
 +-----------------------------+---------------------------------------+
-; Analysis & Synthesis Status ; Successful - Fri Dec 03 14:57:32 2004 ;
+; Analysis & Synthesis Status ; Successful - Mon Dec 13 11:28:56 2004 ;
 ; Revision Name               ; domapp                                ;
 ; Top-level Entity Name       ; domapp                                ;
 ; Family                      ; EXCALIBUR_ARM                         ;
@@ -1959,7 +1959,7 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.map
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Fri Dec 03 14:45:11 2004
+    Info: Processing started: Mon Dec 13 11:17:03 2004
 Info: Command: quartus_map --import_settings_files=on --export_settings_files=off domapp -c domapp
 Info: Found 1 design units and 0 entities in source file icecube_data_types.vhd
     Info: Found design unit 1: icecube_data_types
@@ -2084,7 +2084,6 @@ Info: Using design file FADC_buffer.v, which is not specified as a design file f
 Info: Using design file compression/compressor_in.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
     Info: Found design unit 1: compressor_in-rtl
     Info: Found entity 1: compressor_in
-Warning: VHDL Process Statement warning at compressor_in.vhd(1524): signal bfr_rd_done_compr is in statement, but is not in sensitivity list
 Info: Using design file compression/compressor_out_synch.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
     Info: Found design unit 1: compressor_out_synch-SYN
     Info: Found entity 1: compressor_out_synch
@@ -2476,8 +2475,8 @@ Info: Inferred 18 megafunctions from design logic
     Info: Inferred lpm_counter megafunction (LPM_WIDTH=9) from the following logic: daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_in:compressor_in0|atwd_word_count[0]~0
     Info: Inferred lpm_counter megafunction (LPM_WIDTH=10) from the following logic: rate_meters:inst_rate_meters|lockout_SPE[0]~0
     Info: Inferred lpm_counter megafunction (LPM_WIDTH=10) from the following logic: rate_meters:inst_rate_meters|lockout_MPE[0]~0
-    Info: Inferred lpm_counter megafunction (LPM_WIDTH=10) from the following logic: daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_in:compressor_in0|same_value_count1[0]~0
-    Info: Inferred lpm_counter megafunction (LPM_WIDTH=10) from the following logic: daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_in:compressor_in0|same_value_count1[0]~0
+    Info: Inferred lpm_counter megafunction (LPM_WIDTH=11) from the following logic: daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_in:compressor_in0|same_value_count1[0]~0
+    Info: Inferred lpm_counter megafunction (LPM_WIDTH=11) from the following logic: daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_in:compressor_in0|same_value_count1[0]~0
 Info: State machine |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|crc_tx:inst3|state contains 5 states and 0 state bits
 Info: State machine |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_rapcal_lh:inst30|DCTC_FWR:inst7|sreg contains 10 states and 4 state bits
 Info: State machine |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|crc_rx:inst20|state contains 3 states and 0 state bits
@@ -3158,8 +3157,8 @@ Info: Implemented 8527 device resources after synthesis - the final resource cou
     Info: Implemented 2 ClockLock PLLs
     Info: Implemented 2 dual-port RAM elements in Excalibur device
     Info: Implemented 1 microprocessor core elements in Excalibur device
-Info: Quartus II Analysis & Synthesis was successful. 0 errors, 268 warnings
-    Info: Processing ended: Fri Dec 03 14:57:32 2004
-    Info: Elapsed time: 00:12:21
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 267 warnings
+    Info: Processing ended: Mon Dec 13 11:28:56 2004
+    Info: Elapsed time: 00:11:53
 
 
