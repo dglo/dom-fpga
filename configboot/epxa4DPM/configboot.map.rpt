@@ -1,5 +1,5 @@
 Analysis & Synthesis report for configboot
-Wed Jun 16 10:56:05 2004
+Fri Jun 18 06:56:58 2004
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -63,7 +63,7 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                        ;
 +-----------------------------+---------------------------------------+
-; Analysis & Synthesis Status ; Successful - Wed Jun 16 10:56:05 2004 ;
+; Analysis & Synthesis Status ; Successful - Fri Jun 18 06:56:58 2004 ;
 ; Revision Name               ; configboot                            ;
 ; Top-level Entity Name       ; configboot                            ;
 ; Family                      ; EXCALIBUR_ARM                         ;
@@ -1353,7 +1353,7 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4D
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Wed Jun 16 10:55:23 2004
+    Info: Processing started: Fri Jun 18 06:56:13 2004
 Info: Command: quartus_map --import_settings_files=on --export_settings_files=off configboot -c configboot
 Info: Found 2 design units and 1 entities in source file ../comDPM/Rx_chan/DC_MRAP.vhd
     Info: Found design unit 1: DC_MRAP-DC_MRAP_ARCH
@@ -2118,7 +2118,7 @@ Info: Implemented 1857 device resources after synthesis - the final resource cou
     Info: Implemented 2 dual-port RAM elements in Excalibur device
     Info: Implemented 1 microprocessor core elements in Excalibur device
 Info: Quartus II Analysis & Synthesis was successful. 0 errors, 155 warnings
-    Info: Processing ended: Wed Jun 16 10:56:05 2004
-    Info: Elapsed time: 00:00:41
+    Info: Processing ended: Fri Jun 18 06:56:58 2004
+    Info: Elapsed time: 00:00:44
 
 

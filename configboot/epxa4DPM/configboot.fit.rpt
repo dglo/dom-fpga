@@ -1,5 +1,5 @@
 Fitter report for configboot
-Wed Jun 16 10:58:29 2004
+Fri Jun 18 06:58:42 2004
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -68,7 +68,7 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------+
 ; Fitter Summary                                                ;
 +-----------------------+---------------------------------------+
-; Fitter Status         ; Successful - Wed Jun 16 10:58:29 2004 ;
+; Fitter Status         ; Successful - Fri Jun 18 06:58:42 2004 ;
 ; Revision Name         ; configboot                            ;
 ; Top-level Entity Name ; configboot                            ;
 ; Family                ; EXCALIBUR_ARM                         ;
@@ -1987,7 +1987,7 @@ The pin-out file can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epx
 Info: *******************************************************************
 Info: Running Quartus II Fitter
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Wed Jun 16 10:56:35 2004
+    Info: Processing started: Fri Jun 18 06:57:00 2004
 Info: Command: quartus_fit --import_settings_files=off --export_settings_files=off configboot -c configboot
 Info: Selected device EPXA4F672I2 for design configboot
 Info: Implementing parameter values for PLL pll2x:inst_pll2x|altclklock:altclklock_component|pll
@@ -2005,7 +2005,7 @@ Critical Warning: Ignored Power-Up Level option on the following nodes -- nodes 
     Critical Warning: I/O cell dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|buf_res~reg will power-up low
 Warning: Following nodes are assigned to locations or regions, but do not exist in design
     Warning: Node SingleLED_TRIGGER is assigned to location or region, but does not exist in design
-Info: Started fitting attempt 1 on Wed Jun 16 2004 at 10:56:43
+Info: Started fitting attempt 1 on Fri Jun 18 2004 at 06:57:07
 Info: Fitter placement preparation operations beginning
 Info: Fitter placement preparation operations ending: elapsed time = 4 seconds
 Info: Fitter placement operations beginning
@@ -2066,11 +2066,11 @@ Info: Estimated most critical path is register to register delay of 10.227 ns
     Info: 48: + IC(0.000 ns) + CELL(0.724 ns) = 10.227 ns; Loc. = LC8_14_O1; Fanout = 3; REG Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|sload_path[47]'
     Info: Total cell delay = 8.019 ns ( 78.41 % )
     Info: Total interconnect delay = 2.208 ns ( 21.59 % )
-Info: Fitter placement operations ending: elapsed time = 80 seconds
+Info: Fitter placement operations ending: elapsed time = 71 seconds
 Info: Fitter routing operations beginning
-Info: Fitter routing operations ending: elapsed time = 14 seconds
+Info: Fitter routing operations ending: elapsed time = 12 seconds
 Info: Quartus II Fitter was successful. 0 errors, 4 warnings
-    Info: Processing ended: Wed Jun 16 10:58:29 2004
-    Info: Elapsed time: 00:01:54
+    Info: Processing ended: Fri Jun 18 06:58:42 2004
+    Info: Elapsed time: 00:01:41
 
 

@@ -22,7 +22,7 @@
 // PROGRAM "Quartus II"
 // VERSION "Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version"
 
-// DATE "06/16/2004 10:58:48"
+// DATE "06/18/2004 06:58:59"
 
 // 
 // Device: Altera EPXA4F672I2 Package FBGA672
@@ -9056,7 +9056,7 @@ defparam dcom_ap_inst_aDC_CTRAP_arec_ena_a208_I.output_mode = "comb_only";
 // atom is at LC9_2_A4
 apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a7_a_aI(
 // Equation(s):
-// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a7_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a7_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
+// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a7_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a7_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), !GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
 
 	.dataa(vcc),
 	.datab(vcc),
@@ -9065,7 +9065,7 @@ apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a7_a_aI(
 	.cin(gnd),
 	.cascin(vcc),
 	.clk(inst_pll2x_aaltclklock_component_aoutclock0),
-	.aclr(!dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
+	.aclr(dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
 	.ena(dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0),
 	.sclr(gnd),
 	.sload(gnd),
@@ -9085,7 +9085,7 @@ defparam dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a7_a_aI.output_mode = "reg_only";
 // atom is at LC10_2_A4
 apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a6_a_aI(
 // Equation(s):
-// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a6_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a6_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
+// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a6_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a6_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), !GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
 
 	.dataa(vcc),
 	.datab(vcc),
@@ -9094,7 +9094,7 @@ apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a6_a_aI(
 	.cin(gnd),
 	.cascin(vcc),
 	.clk(inst_pll2x_aaltclklock_component_aoutclock0),
-	.aclr(!dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
+	.aclr(dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
 	.ena(dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0),
 	.sclr(gnd),
 	.sload(gnd),
@@ -9114,7 +9114,7 @@ defparam dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a6_a_aI.output_mode = "reg_only";
 // atom is at LC6_2_A4
 apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a5_a_aI(
 // Equation(s):
-// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a5_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a5_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
+// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a5_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a5_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), !GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
 
 	.dataa(vcc),
 	.datab(vcc),
@@ -9123,7 +9123,7 @@ apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a5_a_aI(
 	.cin(gnd),
 	.cascin(vcc),
 	.clk(inst_pll2x_aaltclklock_component_aoutclock0),
-	.aclr(!dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
+	.aclr(dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
 	.ena(dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0),
 	.sclr(gnd),
 	.sload(gnd),
@@ -9143,7 +9143,7 @@ defparam dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a5_a_aI.output_mode = "reg_only";
 // atom is at LC5_2_A4
 apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a4_a_aI(
 // Equation(s):
-// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a4_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a4_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
+// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a4_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a4_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), !GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
 
 	.dataa(vcc),
 	.datab(vcc),
@@ -9152,7 +9152,7 @@ apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a4_a_aI(
 	.cin(gnd),
 	.cascin(vcc),
 	.clk(inst_pll2x_aaltclklock_component_aoutclock0),
-	.aclr(!dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
+	.aclr(dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
 	.ena(dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0),
 	.sclr(gnd),
 	.sload(gnd),
@@ -9172,7 +9172,7 @@ defparam dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a4_a_aI.output_mode = "reg_only";
 // atom is at LC2_2_A4
 apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a3_a_aI(
 // Equation(s):
-// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a3_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a3_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
+// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a3_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a3_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), !GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
 
 	.dataa(vcc),
 	.datab(vcc),
@@ -9181,7 +9181,7 @@ apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a3_a_aI(
 	.cin(gnd),
 	.cascin(vcc),
 	.clk(inst_pll2x_aaltclklock_component_aoutclock0),
-	.aclr(!dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
+	.aclr(dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
 	.ena(dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0),
 	.sclr(gnd),
 	.sload(gnd),
@@ -9201,7 +9201,7 @@ defparam dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a3_a_aI.output_mode = "reg_only";
 // atom is at LC3_2_A4
 apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a2_a_aI(
 // Equation(s):
-// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a2_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a2_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
+// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a2_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a2_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), !GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
 
 	.dataa(vcc),
 	.datab(vcc),
@@ -9210,7 +9210,7 @@ apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a2_a_aI(
 	.cin(gnd),
 	.cascin(vcc),
 	.clk(inst_pll2x_aaltclklock_component_aoutclock0),
-	.aclr(!dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
+	.aclr(dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
 	.ena(dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0),
 	.sclr(gnd),
 	.sload(gnd),
@@ -9230,7 +9230,7 @@ defparam dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a2_a_aI.output_mode = "reg_only";
 // atom is at LC7_2_A4
 apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a1_a_aI(
 // Equation(s):
-// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a1_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a1_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
+// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a1_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a1_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), !GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
 
 	.dataa(vcc),
 	.datab(vcc),
@@ -9239,7 +9239,7 @@ apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a1_a_aI(
 	.cin(gnd),
 	.cascin(vcc),
 	.clk(inst_pll2x_aaltclklock_component_aoutclock0),
-	.aclr(!dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
+	.aclr(dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
 	.ena(dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0),
 	.sclr(gnd),
 	.sload(gnd),
@@ -9376,7 +9376,7 @@ defparam dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counte
 // atom is at LC1_4_A4
 apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a0_a_aI(
 // Equation(s):
-// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a0_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a0_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
+// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a0_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a0_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), !GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
 
 	.dataa(vcc),
 	.datab(vcc),
@@ -9385,7 +9385,7 @@ apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a0_a_aI(
 	.cin(gnd),
 	.cascin(vcc),
 	.clk(inst_pll2x_aaltclklock_component_aoutclock0),
-	.aclr(!dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
+	.aclr(dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
 	.ena(dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0),
 	.sclr(gnd),
 	.sload(gnd),
@@ -12047,7 +12047,7 @@ defparam dcom_ap_inst_aDC_Rx_chan_ap_ainst24_adpr_radr_a8_a_aI.output_mode = "re
 // atom is at LC8_2_A4
 apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a8_a_aI(
 // Equation(s):
-// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a8_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a8_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
+// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a8_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a8_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), !GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
 
 	.dataa(vcc),
 	.datab(vcc),
@@ -12056,7 +12056,7 @@ apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a8_a_aI(
 	.cin(gnd),
 	.cascin(vcc),
 	.clk(inst_pll2x_aaltclklock_component_aoutclock0),
-	.aclr(!dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
+	.aclr(dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
 	.ena(dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0),
 	.sclr(gnd),
 	.sload(gnd),
@@ -12167,7 +12167,7 @@ defparam dcom_ap_inst_aDC_Rx_chan_ap_ainst24_aop_5_a9_I.output_mode = "comb_only
 // atom is at LC7_4_A4
 apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a10_a_aI(
 // Equation(s):
-// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a10_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a10_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
+// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a10_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a10_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), !GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
 
 	.dataa(vcc),
 	.datab(vcc),
@@ -12176,7 +12176,7 @@ apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a10_a_aI(
 	.cin(gnd),
 	.cascin(vcc),
 	.clk(inst_pll2x_aaltclklock_component_aoutclock0),
-	.aclr(!dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
+	.aclr(dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
 	.ena(dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0),
 	.sclr(gnd),
 	.sload(gnd),
@@ -12196,7 +12196,7 @@ defparam dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a10_a_aI.output_mode = "reg_only";
 // atom is at LC4_2_A4
 apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a9_a_aI(
 // Equation(s):
-// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a9_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a9_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
+// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a9_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a9_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), !GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
 
 	.dataa(vcc),
 	.datab(vcc),
@@ -12205,7 +12205,7 @@ apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a9_a_aI(
 	.cin(gnd),
 	.cascin(vcc),
 	.clk(inst_pll2x_aaltclklock_component_aoutclock0),
-	.aclr(!dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
+	.aclr(dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
 	.ena(dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0),
 	.sclr(gnd),
 	.sload(gnd),
@@ -12523,7 +12523,7 @@ defparam dcom_ap_inst_aDC_Rx_chan_ap_ainst24_aop_5_a11_I.output_mode = "comb_onl
 // atom is at LC8_4_A4
 apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a11_a_aI(
 // Equation(s):
-// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a11_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a11_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
+// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a11_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a11_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), !GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
 
 	.dataa(vcc),
 	.datab(vcc),
@@ -12532,7 +12532,7 @@ apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a11_a_aI(
 	.cin(gnd),
 	.cascin(vcc),
 	.clk(inst_pll2x_aaltclklock_component_aoutclock0),
-	.aclr(!dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
+	.aclr(dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
 	.ena(dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0),
 	.sclr(gnd),
 	.sload(gnd),
@@ -12701,7 +12701,7 @@ defparam dcom_ap_inst_aDC_Rx_chan_ap_ainst24_aop_5_a12_I.output_mode = "comb_onl
 // atom is at LC4_4_A4
 apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a12_a_aI(
 // Equation(s):
-// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a12_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a12_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
+// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a12_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a12_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), !GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
 
 	.dataa(vcc),
 	.datab(vcc),
@@ -12710,7 +12710,7 @@ apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a12_a_aI(
 	.cin(gnd),
 	.cascin(vcc),
 	.clk(inst_pll2x_aaltclklock_component_aoutclock0),
-	.aclr(!dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
+	.aclr(dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
 	.ena(dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0),
 	.sclr(gnd),
 	.sload(gnd),
@@ -12936,7 +12936,7 @@ defparam dcom_ap_inst_aDC_Rx_chan_ap_ainst24_adpr_radr_a14_a_aI.output_mode = "r
 // atom is at LC9_4_A4
 apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a15_a_aI(
 // Equation(s):
-// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a15_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a15_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
+// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a15_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a15_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), !GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
 
 	.dataa(vcc),
 	.datab(vcc),
@@ -12945,7 +12945,7 @@ apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a15_a_aI(
 	.cin(gnd),
 	.cascin(vcc),
 	.clk(inst_pll2x_aaltclklock_component_aoutclock0),
-	.aclr(!dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
+	.aclr(dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
 	.ena(dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0),
 	.sclr(gnd),
 	.sload(gnd),
@@ -12965,7 +12965,7 @@ defparam dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a15_a_aI.output_mode = "reg_only";
 // atom is at LC3_4_A4
 apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a14_a_aI(
 // Equation(s):
-// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a14_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a14_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
+// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a14_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a14_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), !GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
 
 	.dataa(vcc),
 	.datab(vcc),
@@ -12974,7 +12974,7 @@ apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a14_a_aI(
 	.cin(gnd),
 	.cascin(vcc),
 	.clk(inst_pll2x_aaltclklock_component_aoutclock0),
-	.aclr(!dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
+	.aclr(dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
 	.ena(dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0),
 	.sclr(gnd),
 	.sload(gnd),
@@ -12994,7 +12994,7 @@ defparam dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a14_a_aI.output_mode = "reg_only";
 // atom is at LC2_4_A4
 apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a13_a_aI(
 // Equation(s):
-// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a13_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a13_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
+// dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a13_a = DFFE(dcom_ap_inst_aDC_Rx_chan_ap_ainst25_alpm_counter_component_awysi_counter_aq_a13_a, GLOBAL(inst_pll2x_aaltclklock_component_aoutclock0), !GLOBAL(dcom_ap_inst_aDC_CTRAP_abuf_res_areg), , dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0)
 
 	.dataa(vcc),
 	.datab(vcc),
@@ -13003,7 +13003,7 @@ apex20ke_lcell dcom_ap_inst_aDC_Rx_chan_ap_ainst40_a13_a_aI(
 	.cin(gnd),
 	.cascin(vcc),
 	.clk(inst_pll2x_aaltclklock_component_aoutclock0),
-	.aclr(!dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
+	.aclr(dcom_ap_inst_aDC_CTRAP_abuf_res_areg),
 	.ena(dcom_ap_inst_aDC_Rx_chan_ap_ainst10_acmd_ena_areg0),
 	.sclr(gnd),
 	.sload(gnd),
