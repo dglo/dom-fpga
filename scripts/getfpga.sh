@@ -21,6 +21,6 @@ fi
 if nm=`grep " ${type}\$" ${sdir}/tdata.txt`; then
     echo $nm | cut -d ' ' -f 1
 else
-    echo "can't find fpga type for " ${type}
+    echo 0
 fi
 
