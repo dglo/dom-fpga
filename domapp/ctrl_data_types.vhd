@@ -55,11 +55,12 @@ PACKAGE ctrl_data_types IS
 	-- control data for the LocalCoincidence module
 	TYPE LC_STRUCT IS
 		RECORD
+			LC_disc_source	: STD_LOGIC;
 			lc_tx_enable	: STD_LOGIC_VECTOR (1 DOWNTO 0);
 			lc_rx_enable	: STD_LOGIC_VECTOR (1 DOWNTO 0);
 			lc_length		: STD_LOGIC_VECTOR (1 DOWNTO 0);
-			lc_pre_window	: STD_LOGIC_VECTOR (2 DOWNTO 0);
-			lc_post_window	: STD_LOGIC_VECTOR (3 DOWNTO 0);
+			lc_pre_window	: STD_LOGIC_VECTOR (5 DOWNTO 0);
+			lc_post_window	: STD_LOGIC_VECTOR (5 DOWNTO 0);
 			lc_cable_comp	: STD_LOGIC_VECTOR (1 DOWNTO 0);
 		END RECORD;
 		

@@ -181,6 +181,7 @@ ARCHITECTURE arch_slaveregister OF slaveregister IS
 	
 	SIGNAL DAQ_ctrl_local	: DAQ_STRUCT;
 	SIGNAL CS_ctrl_local	: CS_STRUCT;
+	SIGNAL LC_ctrl_local	: LC_STRUCT;
 	SIGNAL RM_ctrl_local	: RM_CTRL_STRUCT;
 	SIGNAL COMM_ctrl_local	: COMM_CTRL_STRUCT;
 	SIGNAL COMPR_ctrl_local	: COMPR_STRUCT;
@@ -213,6 +214,7 @@ BEGIN
 			CS_ctrl_local.CS_CPU		<= '0';
 			DAQ_ctrl_local	<= ('0', "00", (OTHERS=>'0'), "00", "00", "00", "00", "00", '0');
 			CS_ctrl_local	<= ((OTHERS=>'0'), "000", (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), '0', '0');
+			LC_ctrl_local	<= ('0', (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'));
 			RM_ctrl_local	<= ((OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'));
 			COMM_ctrl_local	<= ('0', (OTHERS=>'0'), 'X', '0', '0', (OTHERS=>'0'), (OTHERS=>'0'));
 			id_set			<= "00";
@@ -282,6 +284,27 @@ BEGIN
 					reg_rdata(15 downto 0)	<= systime (47 DOWNTO 32);
 					reg_rdata(31 downto 16)	<= (OTHERS=>'0');
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0450") ) THEN	-- Local Coincidence Control
+					IF reg_write = '1' THEN
+						LC_ctrl_local.LC_tx_enable		<= reg_wdata(1 downto 0);
+						LC_ctrl_local.LC_rx_enable		<= reg_wdata(3 downto 2);
+						LC_ctrl_local.LC_length			<= reg_wdata(5 downto 4);
+						LC_ctrl_local.LC_disc_source	<= reg_wdata(7);
+						LC_ctrl_local.LC_cable_comp		<= reg_wdata(9 downto 8);
+						LC_ctrl_local.LC_pre_window		<= reg_wdata(21 downto 16);
+						LC_ctrl_local.LC_post_window	<= reg_wdata(29 downto 24);
+					END IF;
+					IF READBACK=1 THEN
+						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+						reg_rdata(1 downto 0)	<= LC_ctrl_local.LC_tx_enable;
+						reg_rdata(3 downto 2)	<= LC_ctrl_local.LC_rx_enable;
+						reg_rdata(5 downto 4)	<= LC_ctrl_local.LC_length;
+						reg_rdata(7)			<= LC_ctrl_local.LC_disc_source;
+						reg_rdata(9 downto 8)	<= LC_ctrl_local.LC_cable_comp;
+						reg_rdata(21 downto 16)	<= LC_ctrl_local.LC_pre_window;
+						reg_rdata(29 downto 24)	<= LC_ctrl_local.LC_post_window;
+					ELSE
+						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+					END IF;
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0460") ) THEN	-- Calibration Source Control
 					IF reg_write = '1' THEN
 						CS_ctrl_local.CS_enable	<= reg_wdata(5 downto 0);
@@ -552,6 +575,7 @@ BEGIN
 	-- map local signals to the ENTITY PORTS	
 	DAQ_ctrl	<= DAQ_ctrl_local;
 	CS_ctrl		<= CS_ctrl_local;
+	LC_ctrl		<= LC_ctrl_local;
 	RM_ctrl		<= RM_ctrl_local;
 	COMM_ctrl	<= COMM_ctrl_local;
 	COMPR_ctrl	<= COMPR_ctrl_local;

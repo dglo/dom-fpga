@@ -58,8 +58,8 @@ set_global_assignment -name VHDL_FILE functions.vhd
 set_global_assignment -name VHDL_FILE slaveregister.vhd
 set_global_assignment -name VHDL_FILE comm_wrapper.vhd
 set_global_assignment -name VHDL_FILE data_buffer.vhd
-set_global_assignment -name VHDL_FILE local_coincidence.vhd
 set_global_assignment -name VHDL_FILE compression/compression.vhd
+set_global_assignment -name VHDL_FILE local_coincidence_good.vhd
 
 # Pin & Location Assignments
 # ==========================

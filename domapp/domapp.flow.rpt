@@ -1,5 +1,5 @@
 Flow report for domapp
-Mon Dec 13 11:43:03 2004
+Thu Feb 24 16:38:37 2005
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -42,12 +42,12 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------+
 ; Flow Summary                                                  ;
 +-----------------------+---------------------------------------+
-; Flow Status           ; Successful - Mon Dec 13 11:42:41 2004 ;
+; Flow Status           ; Successful - Thu Feb 24 16:38:37 2005 ;
 ; Revision Name         ; domapp                                ;
 ; Top-level Entity Name ; domapp                                ;
 ; Family                ; EXCALIBUR_ARM                         ;
 ; Device                ; EPXA4F672I2                           ;
-; Total logic elements  ; 7,968 / 16,640 ( 47 % )               ;
+; Total logic elements  ; 8,543 / 16,640 ( 51 % )               ;
 ; Total pins            ; 308 / 463 ( 66 % )                    ;
 ; Total memory bits     ; 96,896 / 212,992 ( 45 % )             ;
 ; Total PLLs            ; 2 / 4 ( 50 % )                        ;
@@ -59,7 +59,7 @@ party's intellectual property, are provided herein.
 +------------------------------------------
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 12/13/2004 11:17:03 ;
+; Start date & time ; 02/24/2005 16:10:11 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; domapp              ;
 +-------------------+---------------------+
@@ -70,11 +70,11 @@ party's intellectual property, are provided herein.
 +--------------------------------------
 ; Module Name          ; Elapsed Time ;
 +----------------------+--------------+
-; Analysis & Synthesis ; 00:11:53     ;
-; Fitter               ; 00:13:32     ;
-; Assembler            ; 00:00:07     ;
+; Analysis & Synthesis ; 00:13:25     ;
+; Fitter               ; 00:14:24     ;
+; Assembler            ; 00:00:06     ;
 ; Timing Analyzer      ; 00:00:19     ;
-; Total                ; 00:25:51     ;
+; Total                ; 00:28:14     ;
 +----------------------+--------------+
 
 
@@ -85,6 +85,7 @@ quartus_map --import_settings_files=on --export_settings_files=off domapp -c dom
 quartus_fit --import_settings_files=off --export_settings_files=off domapp -c domapp
 quartus_asm --import_settings_files=off --export_settings_files=off domapp -c domapp
 quartus_tan --import_settings_files=off --export_settings_files=off domapp -c domapp
+quartus_eda --import_settings_files=off --export_settings_files=off domapp -c domapp
 
 
 

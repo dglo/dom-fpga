@@ -110,7 +110,7 @@ BEGIN
 						state <= WAIT_LC_FLABBY;
 					ELSIF lc_mode=LC_OFF AND LC_abort='1' THEN
 						state <= GOT_LC;
-					ELSIF lc_mode=LC_OFF AND ATWD_busy='0' AND FADC_busy='0' THEN
+					ELSIF ATWD_busy='0' AND FADC_busy='0' THEN
 						state <= WAIT_BUFFER;
 					END IF;
 					enable	<= '0';
@@ -168,7 +168,7 @@ BEGIN
 	
 	abort_ATWD	<= '1' WHEN state=CLEAR_LC_HARD OR state=WAIT_LC_SOFT OR state=WAIT_LC_FLABBY ELSE '0';
 	abort_FADC	<= '1' WHEN state=CLEAR_LC_HARD OR state=WAIT_LC_SOFT ELSE '0';
-	rst_trig	<= '1' WHEN state=WR_HEADER ELSE '0';
+	rst_trig	<= '1' WHEN state=WR_HEADER OR state=RESET_TRIG ELSE '0';
 	
 	--write header
 	PROCESS(CLK40,RST)
