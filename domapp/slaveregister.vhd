@@ -401,7 +401,7 @@ BEGIN
 					ELSE
 						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
 					END IF;
-				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0540") ) THEN	-- Compression FADC
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0544") ) THEN	-- Compression FADC
 					IF reg_write = '1' THEN
 						COMPR_ctrl_local.FADCthres	<= reg_wdata(9 DOWNTO 0);
 					END IF;

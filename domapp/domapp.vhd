@@ -412,6 +412,7 @@ ARCHITECTURE arch_domapp OF domapp IS
 			COMM_STAT		: IN  COMM_STAT_STRUCT;
 			
 			DOM_status		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
+			COMPR_ctrl		: OUT COMPR_STRUCT;
 			-- pointers
 			LBM_ptr			: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 			-- kale communication interface
@@ -918,6 +919,7 @@ BEGIN
 			COMM_CTRL		=> COMM_CTRL,
 			COMM_STAT		=> COMM_STAT,
 			DOM_status		=> X"00000000",
+			COMPR_ctrl		=> COMPR_ctrl,
 			-- pointers
 			LBM_ptr			=> LBM_ptr,
 			-- kale communication interface

@@ -63,7 +63,7 @@ PGM[4]                       : A18       : output : LVTTL             :         
 GND                          : A19       : gnd    :                   :         :           :                
 PGM[3]                       : A20       : output : LVTTL             :         : 3         : Y              
 VCC_IO                       : A21       : power  :                   : 3.3V    :           :                
-RESERVED_INPUT               : A22       :        :                   :         : 3         :                
+CLK3p                        : A22       : input  : LVTTL             :         : 3         : N              
 ~INIT_DONE~                  : A23       : output : LVTTL             :         : 3         : Y              
 VCC_INT                      : A24       : power  :                   : 1.8V    :           :                
 GND                          : A25       : gnd    :                   :         :           :                
@@ -172,7 +172,7 @@ PROC_TMS                     : E24       :        :                   :         
 RESERVED_INPUT               : E25       :        :                   :         : 8         :                
 RESERVED_INPUT               : E26       :        :                   :         : 8         :                
 RESERVED_INPUT               : F1        :        :                   :         : 12        :                
-CLK3p                        : F2        : input  : LVTTL             :         : 12        : N              
+RESERVED_INPUT               : F2        :        :                   :         : 12        :                
 RESERVED_INPUT               : F3        :        :                   :         : 13        :                
 HDV_IN                       : F4        : output : LVTTL             :         : 13        : Y              
 SDRAMADDR[7]                 : F5        : output : LVTTL             :         : 2         : N              
