@@ -925,10 +925,10 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			id_stb_L :  IN  STD_LOGIC;
 			id_stb_H :  IN  STD_LOGIC;
 			cal_thr :  IN  STD_LOGIC_VECTOR(9 downto 0);
-			dudt :  IN  STD_LOGIC_VECTOR(7 downto 0);
 			fc_adc :  IN  STD_LOGIC_VECTOR(9 downto 0);
 			id :  IN  STD_LOGIC_VECTOR(47 downto 0);
-			time :  IN  STD_LOGIC_VECTOR(47 downto 0);
+			low_thr       : IN  STD_LOGIC_VECTOR(7 DOWNTO 0);
+			systime :  IN  STD_LOGIC_VECTOR(47 downto 0);
 			tx_fd :  IN  STD_LOGIC_VECTOR(7 downto 0);
 			txd :  OUT  STD_LOGIC;
 			last_byte :  OUT  STD_LOGIC;
@@ -936,16 +936,12 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			dac_slp :  OUT  STD_LOGIC;
 			rs4_in :  OUT  STD_LOGIC;
 			rs4_den :  OUT  STD_LOGIC;
-			ntx_led :  OUT  STD_LOGIC;
 			msg_sent :  OUT  STD_LOGIC;
-			txwref :  OUT  STD_LOGIC;
 			txwraef :  OUT  STD_LOGIC;
-			txwrff :  OUT  STD_LOGIC;
 			txrdef :  OUT  STD_LOGIC;
 			txwraff :  OUT  STD_LOGIC;
 			ctrl_sent :  OUT  STD_LOGIC;
 			rs4_ren :  OUT  STD_LOGIC;
-			nrx_led :  OUT  STD_LOGIC;
 			adc_clk :  OUT  STD_LOGIC;
 			data_stb :  OUT  STD_LOGIC;
 			ctrl_stb :  OUT  STD_LOGIC;
@@ -961,7 +957,6 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			msg_rcvd :  OUT  STD_LOGIC;
 			msg_err :  OUT  STD_LOGIC;
 			fifo_msg :  OUT  STD_LOGIC;
-			nerr_led :  OUT  STD_LOGIC;
 			hl_edge :  OUT  STD_LOGIC;
 			lh_edge :  OUT  STD_LOGIC;
 			rxd :  OUT  STD_LOGIC;
@@ -972,6 +967,9 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			pulse_rcvd :  OUT  STD_LOGIC;
 			pulse_sent :  OUT  STD_LOGIC;
 			idreq_rcvd :  OUT  STD_LOGIC;
+			max_ena       : OUT STD_LOGIC;
+			min_ena       : OUT STD_LOGIC;
+			find_dudt     : OUT STD_LOGIC;
 			dac_db :  OUT  STD_LOGIC_VECTOR(7 downto 0);
 			data :  OUT  STD_LOGIC_VECTOR(7 downto 0);
 			msg_ct_q :  OUT  STD_LOGIC_VECTOR(7 downto 0);
@@ -1742,8 +1740,8 @@ BEGIN
 	-- TC(0)	<= tx_fifo_wr;
 	-- TC(1)	<= fifo_msg;
 	-- TC(1)	<= com_aval;
-	TC(2)	<= drbt_gnt;
-	TC(3)	<= drbt_req;
+	-- TC(2)	<= drbt_gnt;
+	-- TC(3)	<= drbt_req;
 	dcom_inst : dcom
 		port MAP (
 			CCLK		=> CLK20,
@@ -1759,10 +1757,10 @@ BEGIN
 			id_stb_L	=> high,
 			id_stb_H	=> dom_id(48),
 			cal_thr		=> cal_thr,
-			dudt 		=> dudt,
 			fc_adc		=> COM_AD_D,
 			id			=> dom_id(47 downto 0),
-			time		=> systime,
+			low_thr     => dudt,
+			systime		=> systime,
 			tx_fd		=> com_tx_fifo,
 			txd			=> TC(6),
 			last_byte	=> open,
@@ -1770,16 +1768,12 @@ BEGIN
 			dac_slp		=> COM_TX_SLEEP,
 			rs4_in		=> HDV_IN,
 			rs4_den		=> HDV_TxENA,
-			ntx_led		=> open,
 			msg_sent	=> open,
-			txwref		=> open,
 			txwraef		=> txwraef,
-			txwrff		=> open,
 			txrdef		=> txrdef,
 			txwraff		=> txwraff,
 			ctrl_sent	=> TC(5),
 			rs4_ren		=> HDV_RxENA,
-			nrx_led		=> open,
 			adc_clk		=> open,
 			data_stb	=> open, --TC(3),
 			ctrl_stb	=> open, --TC(4),
@@ -1790,15 +1784,14 @@ BEGIN
 			eof_rcvd	=> open, --TC(2),
 			bfstat_rcvd	=> open,
 			drreq_rcvd	=> open,
-			sysres_rcvd	=> TC(1),
-			comres_rcvd	=> TC(0),
+			sysres_rcvd	=> open, --TC(1),
+			comres_rcvd	=> open, --TC(0),
 			msg_rcvd	=> open,
 			msg_err		=> open,
 			fifo_msg	=> fifo_msg,
-			nerr_led	=> open,
 			hl_edge 	=> open, --TC(2),
 			lh_edge 	=> open,
-			rxd 		=> open,
+			rxd 		=> TC(3),
 			drbt_gnt	=> drbt_gnt,
 			com_aval	=> com_aval,
 			sys_res     => sys_reset,
@@ -1806,6 +1799,9 @@ BEGIN
 			pulse_rcvd	=> open,
 			pulse_sent	=> open,
 			idreq_rcvd	=> open,
+			max_ena		=> TC(1),
+			min_ena		=> TC(0),
+			find_dudt	=> TC(2),
 			dac_db		=> COM_DB,
 			data		=> temp_data,
 			msg_ct_q	=> msg_ct_q,

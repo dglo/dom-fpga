@@ -13,6 +13,9 @@ SOFTWARE_SETTINGS_LIST
 }
 FILES
 {
+	AHDL_FILE = ..\..\common\com\Rx_chan\edges\GET_DUDT.tdf;
+	INCLUDE_FILE = ..\..\common\com\Rx_chan\edges\GET_DUDT.inc;
+	AHDL_FILE = ..\..\common\com\Rx_chan\edges\adc_to_ser_dudt.tdf;
 	AHDL_FILE = ..\..\common\com\Tx_chan\dac_rs_tab_rect_01.tdf;
 	VHDL_FILE = ..\common\atwd_timestamp.vhd;
 	VHDL_FILE = ..\common\atwd_ping_pong.vhd;
