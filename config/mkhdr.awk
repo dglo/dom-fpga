@@ -18,9 +18,7 @@ BEGIN {
 
 
 /[a-zA-Z]+[ \t]+[a-zA-Z]+[ \t]+[0-9]+$/ {
-    print $0
     versions[types[$1], comps[$2]] = $3;
-    print "types: " types[$1] ", comps: " comps[$2] ", version: " $3;
 }
 
 END {
