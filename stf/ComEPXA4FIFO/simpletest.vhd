@@ -1572,7 +1572,7 @@ BEGIN
 			-- enable
 			enable_coinc_down	=> enable_coinc_down,
 			enable_coinc_up		=> enable_coinc_up,
-			newFF				=> '1',
+			newFF				=> enable_coinc_newFF,	-- '1';
 			-- manual control
 			coinc_up_high		=> coinc_up_high,
 			coinc_up_low		=> coinc_up_low,
