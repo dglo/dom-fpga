@@ -1,5 +1,5 @@
 Assembler report for domapp
-Fri Aug 27 07:49:56 2004
+Mon Nov 01 17:41:32 2004
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -10,11 +10,11 @@ Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
   2. Assembler Summary
   3. Assembler Settings
   4. Assembler Generated Files
-  5. Assembler Device Options: c:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.psof
-  6. Assembler Device Options: c:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.sof
-  7. Assembler Device Options: c:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.pof
-  8. Assembler Device Options: c:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp_1.pof
-  9. Assembler Device Options: c:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp_2.pof
+  5. Assembler Device Options: C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.psof
+  6. Assembler Device Options: C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.sof
+  7. Assembler Device Options: C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.pof
+  8. Assembler Device Options: C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp_1.pof
+  9. Assembler Device Options: C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp_2.pof
  10. Assembler Messages
 
 
@@ -47,7 +47,7 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Fri Aug 27 07:49:56 2004 ;
+; Assembler Status      ; Successful - Mon Nov 01 17:41:32 2004 ;
 ; Revision Name         ; domapp                                ;
 ; Top-level Entity Name ; domapp                                ;
 ; Family                ; EXCALIBUR_ARM                         ;
@@ -97,66 +97,66 @@ party's intellectual property, are provided herein.
 +-------------------------------------------------------
 ; File Name                                            ;
 +------------------------------------------------------+
-; c:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.psof  ;
-; c:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.sof   ;
-; c:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.pof   ;
-; c:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp_1.pof ;
-; c:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp_2.pof ;
+; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.psof  ;
+; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.sof   ;
+; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.pof   ;
+; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp_1.pof ;
+; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp_2.pof ;
 +------------------------------------------------------+
 
 
 +-------------------------------------------------------------------------------+
-; Assembler Device Options: c:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.psof ;
+; Assembler Device Options: C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.psof ;
 +--------------------------------------------------------------------------------
 ; Option         ; Setting                                                      ;
 +----------------+--------------------------------------------------------------+
 ; Device         ; EPXA4F672I2                                                  ;
 ; JTAG usercode  ; 0xFFFFFFFF                                                   ;
-; Checksum       ; 0x0038E60B                                                   ;
+; Checksum       ; 0x004F4466                                                   ;
 +----------------+--------------------------------------------------------------+
 
 
 +------------------------------------------------------------------------------+
-; Assembler Device Options: c:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.sof ;
+; Assembler Device Options: C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.sof ;
 +-------------------------------------------------------------------------------
 ; Option         ; Setting                                                     ;
 +----------------+-------------------------------------------------------------+
 ; Device         ; EPXA4F672I2                                                 ;
 ; JTAG usercode  ; 0xFFFFFFFF                                                  ;
-; Checksum       ; 0x0038E60B                                                  ;
+; Checksum       ; 0x004F4466                                                  ;
 +----------------+-------------------------------------------------------------+
 
 
 +------------------------------------------------------------------------------+
-; Assembler Device Options: c:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.pof ;
+; Assembler Device Options: C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.pof ;
 +-------------------------------------------------------------------------------
 ; Option         ; Setting                                                     ;
 +----------------+-------------------------------------------------------------+
 ; Device         ; EPC2                                                        ;
 ; JTAG usercode  ; 0xFFFFFFFF                                                  ;
-; Checksum       ; 0x001B83BD                                                  ;
+; Checksum       ; 0x002AD76C                                                  ;
 +----------------+-------------------------------------------------------------+
 
 
 +--------------------------------------------------------------------------------+
-; Assembler Device Options: c:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp_1.pof ;
+; Assembler Device Options: C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp_1.pof ;
 +---------------------------------------------------------------------------------
 ; Option         ; Setting                                                       ;
 +----------------+---------------------------------------------------------------+
 ; Device         ; EPC2                                                          ;
 ; JTAG usercode  ; 0xFFFFFFFF                                                    ;
-; Checksum       ; 0x002290B6                                                    ;
+; Checksum       ; 0x002911BC                                                    ;
 +----------------+---------------------------------------------------------------+
 
 
 +--------------------------------------------------------------------------------+
-; Assembler Device Options: c:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp_2.pof ;
+; Assembler Device Options: C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp_2.pof ;
 +---------------------------------------------------------------------------------
 ; Option         ; Setting                                                       ;
 +----------------+---------------------------------------------------------------+
 ; Device         ; EPC2                                                          ;
 ; JTAG usercode  ; 0xFFFFFFFF                                                    ;
-; Checksum       ; 0x0238217D                                                    ;
+; Checksum       ; 0x02376A14                                                    ;
 +----------------+---------------------------------------------------------------+
 
 
@@ -166,26 +166,13 @@ party's intellectual property, are provided herein.
 Info: *******************************************************************
 Info: Running Quartus II Assembler
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Copyright (C) 1991-2004 Altera Corporation. All rights reserved.
-    Info: Quartus is a registered trademark of Altera Corporation in the 
-    Info: US and other countries.  Portions of the Quartus II software   
-    Info: code, and other portions of the code included in this download 
-    Info: or on this CD, are licensed to Altera Corporation and are the  
-    Info: copyrighted property of third parties who may include, without 
-    Info: limitation, Sun Microsystems, The Regents of the University of 
-    Info: California, Softel vdm., and Verific Design Automation Inc. 
-    Info: Warning:  This computer program is protected by copyright law  
-    Info: and international treaties. Unauthorized reproduction or       
-    Info: distribution of this program, or any portion of it, may result 
-    Info: in severe civil and criminal penalties, and will be prosecuted 
-    Info: to the maximum extent possible under the law.
-    Info: Processing started: Fri Aug 27 07:49:50 2004
+    Info: Processing started: Mon Nov 01 17:41:25 2004
 Info: Command: quartus_asm --import_settings_files=off --export_settings_files=off domapp -c domapp
 Warning: Data in Simulator initialization files holds embedded processor core in reset because Hexadecimal (Intel-Format) File(s) do not contain initialization data for entry point 0x0 or entry point is in memory external to Excalibur embedded processor stripe
 Warning: Data in passive programming files holds embedded processor core in reset because Hexadecimal (Intel-Format) Files do not contain initialization data for entry point 0x0
 Warning: Data in passive programming files holds embedded processor core in reset because Hexadecimal (Intel-Format) Files do not contain initialization data for entry point 0x0
 Info: Quartus II Assembler was successful. 0 errors, 3 warnings
-    Info: Processing ended: Fri Aug 27 07:49:56 2004
-    Info: Elapsed time: 00:00:05
+    Info: Processing ended: Mon Nov 01 17:41:32 2004
+    Info: Elapsed time: 00:00:06
 
 
