@@ -82,7 +82,8 @@ ENTITY configboot IS
 		DigitalReset_1	: OUT STD_LOGIC;
 		DigitalSet_1	: OUT STD_LOGIC;
 		-- A_nB switch
-		A_nB				: IN STD_LOGIC
+		A_nB			: IN STD_LOGIC;
+		TC				: OUT STD_LOGIC_VECTOR(7 downto 0)
 	);
 END configboot;
 
@@ -260,6 +261,7 @@ ARCHITECTURE configboot_arch OF configboot IS
 			-- kale communication interface
 			tx_pack_rdy			: OUT STD_LOGIC;
 			rx_dpr_radr_stb		: OUT STD_LOGIC;
+			com_reset_rcvd		: IN STD_LOGIC;
 			-- test connector
 			TC				: OUT	STD_LOGIC_VECTOR(7 downto 0)
 		);
@@ -450,8 +452,9 @@ BEGIN
 			-- kale communication interface
 			tx_pack_rdy			=> tx_pack_rdy,
 			rx_dpr_radr_stb		=> rx_dpr_radr_stb,
+			com_reset_rcvd		=> com_reset_rcvd,
 			-- test connector
-			TC				=> open --TC
+			TC				=> TC
 		);
 
 		
@@ -472,7 +475,7 @@ BEGIN
 			id				=> (OTHERS=>'0'),
 			rx_dpr_radr		=> rx_dpr_radr,
 			systime			=> systime,
-			tc				=> open,
+			tc				=> open, --TC,
 			tx_dataout		=> dp0_portadataout,
 			tx_dpr_wadr		=> tx_dpr_wadr,
 			tx_pack_sent	=> tx_pack_sent,

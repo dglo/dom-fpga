@@ -216,13 +216,14 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	-- DP SRAM
 	SIGNAL dp0_2_portaclk	: STD_LOGIC;
 	SIGNAL dp0_portawe		: STD_LOGIC;
-	SIGNAL dp0_portaaddr	: STD_LOGIC_VECTOR(13 downto 0);
-	SIGNAL dp0_portadatain	: STD_LOGIC_VECTOR(7 downto 0);
-	SIGNAL dp0_portadataout	: STD_LOGIC_VECTOR(7 downto 0);
-	SIGNAL dp2_portawe		: STD_LOGIC;
-	SIGNAL dp2_portaaddr	: STD_LOGIC_VECTOR(13 downto 0);
-	SIGNAL dp2_portadatain	: STD_LOGIC_VECTOR(7 downto 0);
-	SIGNAL dp2_portadataout	: STD_LOGIC_VECTOR(7 downto 0);
+	SIGNAL dp0_portaaddr	: STD_LOGIC_VECTOR(15 downto 0);
+	SIGNAL dp0_portadatain	: STD_LOGIC_VECTOR(31 downto 0);
+	SIGNAL dp0_portadataout	: STD_LOGIC_VECTOR(31 downto 0) := (OTHERS=>'0');
+	SIGNAL dp1_3_portaclk	: STD_LOGIC;
+	SIGNAL dp1_portawe		: STD_LOGIC;
+	SIGNAL dp1_portaaddr	: STD_LOGIC_VECTOR(15 downto 0);
+	SIGNAL dp1_portadatain	: STD_LOGIC_VECTOR(31 downto 0);
+	SIGNAL dp1_portadataout	: STD_LOGIC_VECTOR(31 downto 0);
 	
 	-- interrupts
 	SIGNAL intpld	: STD_LOGIC_VECTOR(5 downto 0);
@@ -240,15 +241,15 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	
 	-- commands to enable test functions
 	SIGNAL command_0	: STD_LOGIC_VECTOR(31 downto 0);
-	SIGNAL response_0	: STD_LOGIC_VECTOR(31 downto 0);
+	SIGNAL response_0	: STD_LOGIC_VECTOR(31 downto 0) := (OTHERS=>'0');
 	SIGNAL command_1	: STD_LOGIC_VECTOR(31 downto 0);
-	SIGNAL response_1	: STD_LOGIC_VECTOR(31 downto 0);
+	SIGNAL response_1	: STD_LOGIC_VECTOR(31 downto 0) := (OTHERS=>'0');
 	SIGNAL command_2	: STD_LOGIC_VECTOR(31 downto 0);
-	SIGNAL response_2	: STD_LOGIC_VECTOR(31 downto 0);
+	SIGNAL response_2	: STD_LOGIC_VECTOR(31 downto 0) := (OTHERS=>'0');
 	SIGNAL command_3	: STD_LOGIC_VECTOR(31 downto 0);
-	SIGNAL response_3	: STD_LOGIC_VECTOR(31 downto 0);
+	SIGNAL response_3	: STD_LOGIC_VECTOR(31 downto 0) := (OTHERS=>'0');
 	SIGNAL command_4	: STD_LOGIC_VECTOR(31 downto 0);
-	SIGNAL response_4	: STD_LOGIC_VECTOR(31 downto 0);
+	SIGNAL response_4	: STD_LOGIC_VECTOR(31 downto 0) := (OTHERS=>'0');
 	
 	-- com DAC test
 	SIGNAL enable			: STD_LOGIC;
@@ -257,7 +258,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL com_adc_enable	: STD_LOGIC;
 	SIGNAL com_adc_done		: STD_LOGIC;
 	SIGNAL com_adc_wdata	: STD_LOGIC_VECTOR(15 downto 0);
-	SIGNAL com_adc_rdata	: STD_LOGIC_VECTOR(15 downto 0);
+	SIGNAL com_adc_rdata	: STD_LOGIC_VECTOR(15 downto 0) := (OTHERS=>'0');
 	SIGNAL com_adc_address	: STD_LOGIC_VECTOR(8 downto 0);
 	SIGNAL com_adc_write_en	: STD_LOGIC;
 	-- com RS485 test
@@ -380,17 +381,34 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL rxwraff			: STD_LOGIC;
 	SIGNAL temp_data		: STD_LOGIC_VECTOR (7 downto 0);
 	SIGNAL RST_kalle		: STD_LOGIC;
-	SIGNAL ctrl_err			: STD_LOGIC;
-	SIGNAL ctrl_err_cnt		: STD_LOGIC_VECTOR (7 downto 0);
+--	SIGNAL ctrl_err			: STD_LOGIC;
+--	SIGNAL ctrl_err_cnt		: STD_LOGIC_VECTOR (7 downto 0);
 	
 	SIGNAL dudt				: STD_LOGIC_VECTOR (7 downto 0);
 	SIGNAL drbt_req			: STD_LOGIC;
 	SIGNAL drbt_gnt			: STD_LOGIC;
 	SIGNAL com_aval			: STD_LOGIC;
 	SIGNAL rs485_not_dac	: STD_LOGIC;
-	SIGNAL sys_reset		: STD_LOGIC;
+--	SIGNAL sys_reset		: STD_LOGIC;
 	SIGNAL cal_thr			: STD_LOGIC_VECTOR (9 DOWNTO 0);
 	
+	-- new signals for DPM communicatios
+	SIGNAL tx_alm_empty		: STD_LOGIC;
+	SIGNAL tx_pack_sent		: STD_LOGIC;
+	SIGNAL rx_pack_rcvd		: STD_LOGIC;
+	SIGNAL com_reset_rcvd	: STD_LOGIC;
+	SIGNAL rx_dpr_aff		: STD_LOGIC;
+	SIGNAL com_avail		: STD_LOGIC;
+	SIGNAL rx_addr			: STD_LOGIC_VECTOR (31 DOWNTO 0);
+	SIGNAL rx_dpr_radr		: STD_LOGIC_VECTOR (31 DOWNTO 0);
+	SIGNAL tx_dpr_radr		: STD_LOGIC_VECTOR (31 DOWNTO 0) := (OTHERS=>'0');
+	SIGNAL tx_dpr_wadr		: STD_LOGIC_VECTOR (31 DOWNTO 0);
+	SIGNAL COMM_nRESET		: STD_LOGIC;
+	SIGNAL tx_pack_rdy		: STD_LOGIC;
+	SIGNAL rx_dpr_radr_stb	: STD_LOGIC;
+	SIGNAL rx_error			: STD_LOGIC_VECTOR (15 DOWNTO 0);
+	SIGNAL tx_error			: STD_LOGIC_VECTOR (15 DOWNTO 0);
+
 	
 	SIGNAL systime			: STD_LOGIC_VECTOR (47 DOWNTO 0);
 	SIGNAL atwd0_timestamp  : STD_LOGIC_VECTOR (47 DOWNTO 0);
@@ -485,13 +503,14 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			intpld				: IN	STD_LOGIC_VECTOR(5 downto 0);
 			dp0_2_portaclk		: IN	STD_LOGIC;
 			dp0_portawe			: IN	STD_LOGIC;
-			dp0_portaaddr		: IN	STD_LOGIC_VECTOR(13 downto 0);
-			dp0_portadatain		: IN	STD_LOGIC_VECTOR(7 downto 0);
-			dp0_portadataout	: OUT	STD_LOGIC_VECTOR(7 downto 0);
-			dp2_portawe			: IN	STD_LOGIC;
-			dp2_portaaddr		: IN	STD_LOGIC_VECTOR(13 downto 0);
-			dp2_portadatain		: IN	STD_LOGIC_VECTOR(7 downto 0);
-			dp2_portadataout	: OUT	STD_LOGIC_VECTOR(7 downto 0);
+			dp0_portaaddr		: IN	STD_LOGIC_VECTOR(12 downto 0);
+			dp0_portadatain		: IN	STD_LOGIC_VECTOR(31 downto 0);
+			dp0_portadataout	: OUT	STD_LOGIC_VECTOR(31 downto 0);
+			dp1_3_portaclk		: IN	STD_LOGIC;
+			dp1_portawe			: IN	STD_LOGIC;
+			dp1_portaaddr		: IN	STD_LOGIC_VECTOR(12 downto 0);
+			dp1_portadatain		: IN	STD_LOGIC_VECTOR(31 downto 0);
+			dp1_portadataout	: OUT	STD_LOGIC_VECTOR(31 downto 0);
 			gpi					: IN	STD_LOGIC_VECTOR(7 downto 0);
 			gpo					: OUT	STD_LOGIC_VECTOR(7 downto 0)
 		);
@@ -588,6 +607,10 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			dom_id			: OUT	STD_LOGIC_VECTOR(63 DOWNTO 0);
 			command_4		: OUT	STD_LOGIC_VECTOR(31 downto 0);
 			response_4		: IN	STD_LOGIC_VECTOR(31 downto 0);
+			tx_dpr_wadr		: OUT	STD_LOGIC_VECTOR(31 downto 0);
+			tx_dpr_radr		: IN	STD_LOGIC_VECTOR(31 downto 0);
+			rx_dpr_radr		: OUT	STD_LOGIC_VECTOR(31 downto 0);
+			rx_addr			: IN	STD_LOGIC_VECTOR(31 downto 0);
 			-- COM ADC RX interface
 			com_adc_wdata		: OUT STD_LOGIC_VECTOR (15 downto 0);
 			com_adc_rdata		: IN STD_LOGIC_VECTOR (15 downto 0);
@@ -611,6 +634,8 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			-- kale communication interface
 			tx_fifo_wr			: OUT STD_LOGIC;
 			rx_fifo_rd			: OUT STD_LOGIC;
+			tx_pack_rdy			: OUT STD_LOGIC;
+			rx_dpr_radr_stb		: OUT STD_LOGIC;
 			-- test connector
 			TC				: OUT	STD_LOGIC_VECTOR(7 downto 0)
 		);
@@ -837,6 +862,8 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			ATWD_VDD_SUP	: OUT STD_LOGIC;
 			-- for ping-pong
             atwd_trig_doneB	: OUT STD_LOGIC;
+			-- frontend pulser
+			FE_pulse			: IN STD_LOGIC := '0';
 			-- test connector
 			TC					: OUT STD_LOGIC_VECTOR(7 downto 0)
 		);
@@ -950,71 +977,118 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 		);
 	END COMPONENT;
 	
-	COMPONENT dcom
-		port (
-			CCLK :  IN  STD_LOGIC;
-			rs4_out :  IN  STD_LOGIC;
-			msg_rd :  IN  STD_LOGIC;
-			dom_A_sel_L :  IN  STD_LOGIC;
-			dom_B_sel_L :  IN  STD_LOGIC;
-			reset :  IN  STD_LOGIC;
-			tx_wrreq :  IN  STD_LOGIC;
-			rx_rdreq :  IN  STD_LOGIC;
-			drbt_req :  IN  STD_LOGIC;
-			rs485_not_dac :  IN  STD_LOGIC;
-			id_stb_L :  IN  STD_LOGIC;
-			id_stb_H :  IN  STD_LOGIC;
-			fc_adc :  IN  STD_LOGIC_VECTOR(11 downto 0);
+--	COMPONENT dcom
+--		port (
+--			CCLK :  IN  STD_LOGIC;
+--			rs4_out :  IN  STD_LOGIC;
+--			msg_rd :  IN  STD_LOGIC;
+--			dom_A_sel_L :  IN  STD_LOGIC;
+--			dom_B_sel_L :  IN  STD_LOGIC;
+--			reset :  IN  STD_LOGIC;
+--			tx_wrreq :  IN  STD_LOGIC;
+--			rx_rdreq :  IN  STD_LOGIC;
+--			drbt_req :  IN  STD_LOGIC;
+--			rs485_not_dac :  IN  STD_LOGIC;
+--			id_stb_L :  IN  STD_LOGIC;
+--			id_stb_H :  IN  STD_LOGIC;
+--			fc_adc :  IN  STD_LOGIC_VECTOR(11 downto 0);
+--			id :  IN  STD_LOGIC_VECTOR(47 downto 0);
+--			systime :  IN  STD_LOGIC_VECTOR(47 downto 0);
+--			tx_fd :  IN  STD_LOGIC_VECTOR(7 downto 0);
+--			txd :  OUT  STD_LOGIC;
+--			last_byte :  OUT  STD_LOGIC;
+--			dac_clk :  OUT  STD_LOGIC;
+--			dac_slp :  OUT  STD_LOGIC;
+--			rs4_in :  OUT  STD_LOGIC;
+--			rs4_den :  OUT  STD_LOGIC;
+--			msg_sent :  OUT  STD_LOGIC;
+--			txwraef :  OUT  STD_LOGIC;
+--			txrdef :  OUT  STD_LOGIC;
+--			txwraff :  OUT  STD_LOGIC;
+--			ctrl_sent :  OUT  STD_LOGIC;
+--			rs4_ren :  OUT  STD_LOGIC;
+--			adc_clk :  OUT  STD_LOGIC;
+--			data_stb :  OUT  STD_LOGIC;
+--			ctrl_stb :  OUT  STD_LOGIC;
+--			ctrl_err :  OUT  STD_LOGIC;
+--			rxwraff :  OUT  STD_LOGIC;
+--			rxrdef :  OUT  STD_LOGIC;
+--			stf_rcvd :  OUT  STD_LOGIC;
+--			eof_rcvd :  OUT  STD_LOGIC;
+--			bfstat_rcvd :  OUT  STD_LOGIC;
+--			drreq_rcvd :  OUT  STD_LOGIC;
+--			sysres_rcvd :  OUT  STD_LOGIC;
+--			comres_rcvd :  OUT  STD_LOGIC;
+--			msg_rcvd :  OUT  STD_LOGIC;
+--			msg_err :  OUT  STD_LOGIC;
+--			fifo_msg :  OUT  STD_LOGIC;
+--			hl_edge :  OUT  STD_LOGIC;
+--			lh_edge :  OUT  STD_LOGIC;
+--			rxd :  OUT  STD_LOGIC;
+--			drbt_gnt :  OUT  STD_LOGIC;
+--			com_aval :  OUT  STD_LOGIC;
+--			sys_res       : OUT STD_LOGIC;
+--			tcal_rcvd :  OUT  STD_LOGIC;
+--			pulse_rcvd :  OUT  STD_LOGIC;
+--			pulse_sent :  OUT  STD_LOGIC;
+--			idreq_rcvd :  OUT  STD_LOGIC;
+--			max_ena       : OUT STD_LOGIC;
+--			min_ena       : OUT STD_LOGIC;
+--			find_dudt     : OUT STD_LOGIC;
+--			dac_db :  OUT  STD_LOGIC_VECTOR(7 downto 0);
+--			data :  OUT  STD_LOGIC_VECTOR(7 downto 0);
+--			msg_ct_q :  OUT  STD_LOGIC_VECTOR(7 downto 0);
+--			rev :  OUT  STD_LOGIC_VECTOR(15 downto 0);
+--			rx_fq :  OUT  STD_LOGIC_VECTOR(7 downto 0)
+--		);
+--	END COMPONENT;
+
+	-- Kalle DPM
+
+	COMPONENT dcom_ap
+		port
+		(
+			tx_pack_rdy :  IN  STD_LOGIC;
+			rx_dpr_radr_stb :  IN  STD_LOGIC;
+			A_nB :  IN  STD_LOGIC;
+			reboot_req :  IN  STD_LOGIC;
+			id_avail :  IN  STD_LOGIC;
+			HVD_Rx :  IN  STD_LOGIC;
+			CLK20 :  IN  STD_LOGIC;
+			RST :  IN  STD_LOGIC;
+			COM_AD_D :  IN  STD_LOGIC_VECTOR(9 downto 0);
 			id :  IN  STD_LOGIC_VECTOR(47 downto 0);
+			rx_dpr_radr :  IN  STD_LOGIC_VECTOR(15 downto 0);
 			systime :  IN  STD_LOGIC_VECTOR(47 downto 0);
-			tx_fd :  IN  STD_LOGIC_VECTOR(7 downto 0);
-			txd :  OUT  STD_LOGIC;
-			last_byte :  OUT  STD_LOGIC;
-			dac_clk :  OUT  STD_LOGIC;
-			dac_slp :  OUT  STD_LOGIC;
-			rs4_in :  OUT  STD_LOGIC;
-			rs4_den :  OUT  STD_LOGIC;
-			msg_sent :  OUT  STD_LOGIC;
-			txwraef :  OUT  STD_LOGIC;
-			txrdef :  OUT  STD_LOGIC;
-			txwraff :  OUT  STD_LOGIC;
-			ctrl_sent :  OUT  STD_LOGIC;
-			rs4_ren :  OUT  STD_LOGIC;
-			adc_clk :  OUT  STD_LOGIC;
-			data_stb :  OUT  STD_LOGIC;
-			ctrl_stb :  OUT  STD_LOGIC;
-			ctrl_err :  OUT  STD_LOGIC;
-			rxwraff :  OUT  STD_LOGIC;
-			rxrdef :  OUT  STD_LOGIC;
-			stf_rcvd :  OUT  STD_LOGIC;
-			eof_rcvd :  OUT  STD_LOGIC;
-			bfstat_rcvd :  OUT  STD_LOGIC;
-			drreq_rcvd :  OUT  STD_LOGIC;
-			sysres_rcvd :  OUT  STD_LOGIC;
-			comres_rcvd :  OUT  STD_LOGIC;
-			msg_rcvd :  OUT  STD_LOGIC;
-			msg_err :  OUT  STD_LOGIC;
-			fifo_msg :  OUT  STD_LOGIC;
-			hl_edge :  OUT  STD_LOGIC;
-			lh_edge :  OUT  STD_LOGIC;
-			rxd :  OUT  STD_LOGIC;
-			drbt_gnt :  OUT  STD_LOGIC;
-			com_aval :  OUT  STD_LOGIC;
-			sys_res       : OUT STD_LOGIC;
-			tcal_rcvd :  OUT  STD_LOGIC;
-			pulse_rcvd :  OUT  STD_LOGIC;
-			pulse_sent :  OUT  STD_LOGIC;
-			idreq_rcvd :  OUT  STD_LOGIC;
-			max_ena       : OUT STD_LOGIC;
-			min_ena       : OUT STD_LOGIC;
-			find_dudt     : OUT STD_LOGIC;
-			dac_db :  OUT  STD_LOGIC_VECTOR(7 downto 0);
-			data :  OUT  STD_LOGIC_VECTOR(7 downto 0);
-			msg_ct_q :  OUT  STD_LOGIC_VECTOR(7 downto 0);
+			tc :  OUT  STD_LOGIC_VECTOR(7 downto 0);
+			tx_dataout :  IN  STD_LOGIC_VECTOR(31 downto 0);
+			tx_dpr_wadr :  IN  STD_LOGIC_VECTOR(15 downto 0);
+			tx_pack_sent :  OUT  STD_LOGIC;
+			rx_dpr_aff :  OUT  STD_LOGIC;
+			rx_pack_rcvd :  OUT  STD_LOGIC;
+			rx_we :  OUT  STD_LOGIC;
+			HDV_Rx_ENA :  OUT  STD_LOGIC;
+			reboot_gnt :  OUT  STD_LOGIC;
+			com_avail :  OUT  STD_LOGIC;
+			COMM_RESET :  OUT  STD_LOGIC;
+			COM_TX_SLEEP :  OUT  STD_LOGIC;
+			HDV_IN :  OUT  STD_LOGIC;
+			HDV_TxENA :  OUT  STD_LOGIC;
+			tx_alm_empty :  OUT  STD_LOGIC;
+			com_reset_rcvd :  OUT  STD_LOGIC;
+			msg_rd :  OUT  STD_LOGIC;
+			data_rcvd :  OUT  STD_LOGIC;
+			COM_DB :  OUT  STD_LOGIC_VECTOR(7 downto 0);
 			rev :  OUT  STD_LOGIC_VECTOR(15 downto 0);
-			rx_fq :  OUT  STD_LOGIC_VECTOR(7 downto 0)
+			rx_addr :  OUT  STD_LOGIC_VECTOR(15 downto 0);
+			rx_datain :  OUT  STD_LOGIC_VECTOR(31 downto 0);
+			rx_error :  OUT  STD_LOGIC_VECTOR(15 downto 0);
+			tx_addr :  OUT  STD_LOGIC_VECTOR(15 downto 0);
+			tx_dpr_radr :  OUT  STD_LOGIC_VECTOR(15 downto 0);
+			tx_error :  OUT  STD_LOGIC_VECTOR(15 downto 0)
 		);
 	END COMPONENT;
+
 	
 	COMPONENT timer
 		PORT (
@@ -1081,12 +1155,13 @@ BEGIN
 	-- DP SRAM
 	dp0_2_portaclk		<= CLK20;
 	dp0_portawe			<= '0';
-	dp0_portaaddr		<= (others=>'0');
+	--	dp0_portaaddr		<= (others=>'0');
 	dp0_portadatain		<= (others=>'0');
 	-- dp0_portadataout	<= ;
-	dp2_portawe			<= '0';
-	dp2_portaaddr		<= (others=>'0');
-	dp2_portadatain		<= (others=>'0');
+	dp1_3_portaclk		<= CLK20;
+	--	dp1_portawe			<= '0';
+	--	dp1_portaaddr		<= (others=>'0');
+	--	dp1_portadatain		<= (others=>'0');
 	-- dp2_portadataout	<= ;
 	
 	-- interrupts
@@ -1194,9 +1269,9 @@ BEGIN
 	
 
 	-- kale communications
-	com_tx_fifo					<= com_tx_data(7 downto 0);
-	com_rx_data(7 downto 0)		<= com_rx_fifo;
-	com_rx_data(31 downto 8)	<= (others=>'1');
+--	com_tx_fifo					<= com_tx_data(7 downto 0);
+--	com_rx_data(7 downto 0)		<= com_rx_fifo;
+--	com_rx_data(31 downto 8)	<= (others=>'1');
 	PROCESS(CLK20,RST)
 		VARIABLE old	: STD_LOGIC;
 	BEGIN
@@ -1212,20 +1287,29 @@ BEGIN
 			old := com_ctrl(0);
 		END IF;
 	END PROCESS;
-	com_status(0)	<= fifo_msg;
-	com_status(1)	<= rxrdef;
-	com_status(2)	<= drbt_gnt;
-	com_status(3)	<= com_aval;
-	com_status(6)	<= rxwraff;
-	com_status(7)	<= rxwrff;
-	com_status(15 downto 8)	<= msg_ct_q;
-	com_status(16)	<= txwraef;
-	com_status(17)	<= txwraff;
-	com_status(20)	<= txrdef;
-	drbt_req		<= com_ctrl(2);
-	dudt			<= com_ctrl(15 downto 8);
-	cal_thr			<= com_ctrl(25 downto 16);
-	rs485_not_dac	<= com_ctrl(3);
+--	com_status(0)	<= fifo_msg;
+--	com_status(1)	<= rxrdef;
+--	com_status(3)	<= com_aval;
+--	com_status(6)	<= rxwraff;
+--	com_status(7)	<= rxwrff;
+--	com_status(15 downto 8)	<= msg_ct_q;
+--	com_status(16)	<= txwraef;
+--	com_status(17)	<= txwraff;
+--	com_status(20)	<= txrdef;
+--	drbt_req		<= com_ctrl(2);
+--	dudt			<= com_ctrl(15 downto 8);
+--	cal_thr			<= com_ctrl(25 downto 16);
+--	rs485_not_dac	<= com_ctrl(3);
+	com_status(0)	<= drbt_gnt;
+	com_status(1)	<= tx_pack_sent;
+	com_status(2)	<= tx_alm_empty;
+	com_status(3)	<= rx_pack_rcvd;
+	com_status(4)	<= com_reset_rcvd;
+	com_status(5)	<= rx_dpr_aff;
+	com_status(6)	<= com_avail;
+	com_status(31 downto 7)	<= 	(OTHERS=>'0');
+	drbt_req		<= com_ctrl(0);
+
 	
 --	PROCESS (RST,CLK20)
 --	BEGIN
@@ -1237,17 +1321,17 @@ BEGIN
 --			END IF;
 --		END IF;
 --	END PROCESS;
-	PROCESS (RST, CLK20)
-	BEGIN
-		IF RST='1' THEN
-			ctrl_err_cnt	<= (others=>'0');
-		ELSIF CLK20'EVENT AND CLK20='1' THEN
-			IF ctrl_err='1' THEN
-				ctrl_err_cnt <= ctrl_err_cnt + 1;
-			END IF;
-		END IF;
-	END PROCESS;
-	com_status(31 downto 24)	<= 	ctrl_err_cnt;
+--	PROCESS (RST, CLK20)
+--	BEGIN
+--		IF RST='1' THEN
+--			ctrl_err_cnt	<= (others=>'0');
+--		ELSIF CLK20'EVENT AND CLK20='1' THEN
+--			IF ctrl_err='1' THEN
+--				ctrl_err_cnt <= ctrl_err_cnt + 1;
+--			END IF;
+--		END IF;
+--	END PROCESS;
+	-- com_status(31 downto 24)	<= 	ctrl_err_cnt;
 	
 	
 	inst_ROC : ROC
@@ -1336,13 +1420,14 @@ BEGIN
 			intpld				=> intpld,
 			dp0_2_portaclk		=> dp0_2_portaclk,
 			dp0_portawe			=> dp0_portawe,
-			dp0_portaaddr		=> dp0_portaaddr,
+			dp0_portaaddr		=> dp0_portaaddr(12 DOWNTO 0),
 			dp0_portadatain		=> dp0_portadatain,
-			dp0_portadataout	=> open,
-			dp2_portawe			=> dp2_portawe,
-			dp2_portaaddr		=> dp2_portaaddr,
-			dp2_portadatain		=> dp2_portadatain,
-			dp2_portadataout	=> open,
+			dp0_portadataout	=> dp0_portadataout,
+			dp1_3_portaclk		=> dp1_3_portaclk,
+			dp1_portawe			=> dp1_portawe,
+			dp1_portaaddr		=> dp1_portaaddr(12 DOWNTO 0),
+			dp1_portadatain		=> dp1_portadatain,
+			dp1_portadataout	=> open,
 			gpi					=> gpi,
 			gpo					=> gpo
 		);
@@ -1436,6 +1521,10 @@ BEGIN
 			dom_id			=> dom_id,
 			command_4		=> command_4,
 			response_4		=> response_4,
+			tx_dpr_wadr		=> tx_dpr_wadr,
+			tx_dpr_radr		=> tx_dpr_radr,
+			rx_dpr_radr		=> rx_dpr_radr,
+			rx_addr			=> rx_addr,
 			-- COM ADC RX interface
 			com_adc_wdata		=> com_adc_wdata,
 			com_adc_rdata		=> com_adc_rdata,
@@ -1459,6 +1548,8 @@ BEGIN
 			-- kale communication interface
 			tx_fifo_wr			=> tx_fifo_wr,
 			rx_fifo_rd			=> rx_fifo_rd,
+			tx_pack_rdy			=> tx_pack_rdy,
+			rx_dpr_radr_stb		=> rx_dpr_radr_stb,
 			-- test connector
 			TC				=> open --TC
 		);
@@ -1713,6 +1804,8 @@ BEGIN
 			ATWD_VDD_SUP	=> ATWD0VDD_SUP,
 			-- for ping-pong
             atwd_trig_doneB => atwd0_trig_doneB,
+			-- frontend pulser
+			FE_pulse		=> FE_pulse,
 			-- test connector
 			TC				=> open
 		);
@@ -1753,6 +1846,8 @@ BEGIN
 			ATWD_VDD_SUP	=> ATWD1VDD_SUP,
 			-- for ping-pong
             atwd_trig_doneB => atwd1_trig_doneB,
+			-- frontend pulser
+			FE_pulse		=> FE_pulse,
 			-- test connector
 			TC				=> open
 		);
@@ -1834,71 +1929,130 @@ BEGIN
 	-- TC(2)	<= drbt_gnt;
 	-- TC(3)	<= drbt_req;
 	-- TC(3)	<= drbt_gnt;
-	dcom_inst : dcom
+--	dcom_inst : dcom
+--		port MAP (
+--			CCLK		=> CLK20,
+--			rs4_out		=> HDV_Rx,
+--			msg_rd		=> msg_rd,
+--			dom_A_sel_L	=> B_nA,
+--			dom_B_sel_L	=> A_nB,
+--			reset		=> RST_kalle,
+--			tx_wrreq	=> tx_fifo_wr,
+--			rx_rdreq	=> rx_fifo_rd,
+--			drbt_req 	=> drbt_req,
+--			rs485_not_dac 	=> rs485_not_dac,
+--			id_stb_L	=> high,
+--			id_stb_H	=> dom_id(48),
+--			fc_adc(11 DOWNTO 2)	=> COM_AD_D,
+--			fc_adc(1 DOWNTO 0)	=> "00",
+--			id			=> dom_id(47 downto 0),
+--			systime		=> systime,
+--			tx_fd		=> com_tx_fifo,
+--			txd			=> open, --TC(6),
+--			last_byte	=> open,
+--			dac_clk		=> open,
+--			dac_slp		=> COM_TX_SLEEP,
+--			rs4_in		=> HDV_IN,
+--			rs4_den		=> HDV_TxENA,
+--			msg_sent	=> open,
+--			txwraef		=> txwraef,
+--			txrdef		=> txrdef,
+--			txwraff		=> txwraff,
+--			ctrl_sent	=> open, --TC(5),
+--			rs4_ren		=> HDV_RxENA,
+--			adc_clk		=> open,
+--			data_stb	=> open, --TC(3),
+--			ctrl_stb	=> open, --TC(4),
+--			ctrl_err	=> ctrl_err,
+--			rxwraff		=> rxwraff,
+--			rxrdef		=> rxrdef,
+--			stf_rcvd	=> open, --TC(1),
+--			eof_rcvd	=> open, --TC(2),
+--			bfstat_rcvd	=> open,
+--			drreq_rcvd	=> open,
+--			sysres_rcvd	=> open, --TC(1),
+--			comres_rcvd	=> open, --TC(0),
+--			msg_rcvd	=> open,
+--			msg_err		=> open,
+--			fifo_msg	=> fifo_msg,
+--			hl_edge 	=> open, --TC(2),
+--			lh_edge 	=> open,
+--			rxd 		=> open,
+--			drbt_gnt	=> drbt_gnt,
+--			com_aval	=> com_aval,
+--			sys_res     => sys_reset,
+--			tcal_rcvd	=> open, --TC(0),
+--			pulse_rcvd	=> open, --TC(1),
+--			pulse_sent	=> open, --TC(2),
+--			idreq_rcvd	=> open,
+--			max_ena		=> open, --TC(3),
+--			min_ena		=> open,
+--			find_dudt	=> open,
+--			dac_db		=> COM_DB,
+--			data		=> temp_data,
+--			msg_ct_q	=> msg_ct_q,
+--			rev			=> open,
+--			rx_fq		=> com_rx_fifo
+--		);
+
+-- Kalle DPM
+
+	rx_addr (15 DOWNTO 0)	<= dp1_portaaddr;
+	dcom_ap_inst : dcom_ap
 		port MAP (
-			CCLK		=> CLK20,
-			rs4_out		=> HDV_Rx,
-			msg_rd		=> msg_rd,
-			dom_A_sel_L	=> B_nA,
-			dom_B_sel_L	=> A_nB,
-			reset		=> RST_kalle,
-			tx_wrreq	=> tx_fifo_wr,
-			rx_rdreq	=> rx_fifo_rd,
-			drbt_req 	=> drbt_req,
-			rs485_not_dac 	=> rs485_not_dac,
-			id_stb_L	=> high,
-			id_stb_H	=> dom_id(48),
-			fc_adc(11 DOWNTO 2)	=> COM_AD_D,
-			fc_adc(1 DOWNTO 0)	=> "00",
-			id			=> dom_id(47 downto 0),
-			systime		=> systime,
-			tx_fd		=> com_tx_fifo,
-			txd			=> open, --TC(6),
-			last_byte	=> open,
-			dac_clk		=> open,
-			dac_slp		=> COM_TX_SLEEP,
-			rs4_in		=> HDV_IN,
-			rs4_den		=> HDV_TxENA,
-			msg_sent	=> open,
-			txwraef		=> txwraef,
-			txrdef		=> txrdef,
-			txwraff		=> txwraff,
-			ctrl_sent	=> open, --TC(5),
-			rs4_ren		=> HDV_RxENA,
-			adc_clk		=> open,
-			data_stb	=> open, --TC(3),
-			ctrl_stb	=> open, --TC(4),
-			ctrl_err	=> ctrl_err,
-			rxwraff		=> rxwraff,
-			rxrdef		=> rxrdef,
-			stf_rcvd	=> open, --TC(1),
-			eof_rcvd	=> open, --TC(2),
-			bfstat_rcvd	=> open,
-			drreq_rcvd	=> open,
-			sysres_rcvd	=> open, --TC(1),
-			comres_rcvd	=> open, --TC(0),
-			msg_rcvd	=> open,
-			msg_err		=> open,
-			fifo_msg	=> fifo_msg,
-			hl_edge 	=> open, --TC(2),
-			lh_edge 	=> open,
-			rxd 		=> open,
-			drbt_gnt	=> drbt_gnt,
-			com_aval	=> com_aval,
-			sys_res     => sys_reset,
-			tcal_rcvd	=> open, --TC(0),
-			pulse_rcvd	=> open, --TC(1),
-			pulse_sent	=> open, --TC(2),
-			idreq_rcvd	=> open,
-			max_ena		=> open, --TC(3),
-			min_ena		=> open,
-			find_dudt	=> open,
-			dac_db		=> COM_DB,
-			data		=> temp_data,
-			msg_ct_q	=> msg_ct_q,
-			rev			=> open,
-			rx_fq		=> com_rx_fifo
+			tx_pack_rdy		=> tx_pack_rdy,
+			rx_dpr_radr_stb	=> rx_dpr_radr_stb,
+			A_nB			=> A_nB,
+			reboot_req		=> drbt_req,
+			id_avail		=> dom_id(48),
+			HVD_Rx			=> HDV_Rx,
+			CLK20			=> CLK20,
+			RST				=> RST,
+			COM_AD_D		=> COM_AD_D,
+			id				=> dom_id(47 DOWNTO 0),
+			rx_dpr_radr		=> rx_dpr_radr(15 DOWNTO 0),
+			systime			=> systime,
+			tc				=> TC,
+			tx_dataout		=> dp0_portadataout,
+			tx_dpr_wadr		=> tx_dpr_wadr(15 DOWNTO 0),
+			tx_pack_sent	=> tx_pack_sent,
+			rx_dpr_aff		=> rx_dpr_aff,
+			rx_pack_rcvd	=> rx_pack_rcvd,
+			rx_we			=> dp1_portawe,
+			HDV_Rx_ENA		=> HDV_RxENA,
+			reboot_gnt		=> drbt_gnt,
+			com_avail		=> com_avail,
+			COMM_RESET		=> COMM_nRESET,
+			COM_TX_SLEEP	=> COM_TX_SLEEP,
+			HDV_IN			=> HDV_IN,
+			HDV_TxENA		=> HDV_TxENA,
+			tx_alm_empty	=> tx_alm_empty,
+			com_reset_rcvd	=> com_reset_rcvd,
+			msg_rd			=> open,
+			data_rcvd		=> open,
+			COM_DB			=> COM_DB,
+			rev				=> open,
+			rx_addr			=> dp1_portaaddr,
+			rx_datain		=> dp1_portadatain,
+			rx_error		=> rx_error,
+			tx_addr			=> dp0_portaaddr,
+			tx_dpr_radr		=> tx_dpr_radr(15 DOWNTO 0),
+			tx_error		=> tx_error
 		);
+	com_rx_data(15 DOWNTO 0)	<= rx_error;
+	com_rx_data(31 DOWNTO 16)	<= tx_error;
+
+	-- arthur debugg
+--	dp0_portaaddr <= (OTHERS=>'0');
+--	dp1_portaaddr <= (OTHERS=>'0');
+--	dp0_portadatain <= X"05500AA0";
+--	dp1_portadatain <= X"B00BF00D";
+--	dp0_portawe			<= '1';
+--	dp1_portawe			<= '1';
+
+	-- house keeping because com_fifo is removed
+	-- TC			<= (OTHERS=>'0');
+	com_rx_fifo	<= (OTHERS=>'0');
 	
 	timer_inst : timer
 		PORT MAP (
@@ -1920,7 +2074,7 @@ BEGIN
 	trigLED	<= trigLED_flasher OR trigLED_onboard;
 	
 	
-	TC(0)	<= FE_pulse;
+	-- TC(0)	<= FE_pulse;
 	
 	-- PGM(15 downto 12) <= (others=>'0');
 	PGM(15) <= '1';
@@ -1933,10 +2087,10 @@ BEGIN
 	
 	-- indicate FPGA is configured
 	PDL_FPGA_D (5 DOWNTO 0)	<= "010101";
-	PDL_FPGA_D (6) <= NOT sys_reset;
+	PDL_FPGA_D (6) <= NOT COMM_nRESET;
 	PDL_FPGA_D (7) <= '0';
 	
-	COMM_RESET	<= NOT sys_reset;
+	COMM_RESET	<= NOT COMM_nRESET;
 	FPGA_LOADED	<= '0';
 	
 	

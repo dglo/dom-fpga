@@ -1,0 +1,49 @@
+TITLE "control message, header-byte generation, K.-H. Sulanke,DESY Zeuthen, 2004-04-26";
+-- according Arthur Jones protocol
+
+SUBDESIGN dor_hdr_bytes_ap
+(
+	dom_A_sel		: INPUT;	-- 
+	cmd_snd0		: INPUT;
+	cmd_snd1		: INPUT;
+	cmd_snd2		: INPUT;
+	cmd_snd3		: INPUT;
+	tx_d[15..12]	: INPUT;
+	dom_adr_en		: INPUT;
+		
+	eof[7..0]		: OUTPUT;	-- end of frame	
+	stf[7..0]		: OUTPUT;	-- start of frame		
+	seq1_[7..0]	    : OUTPUT;	-- Sequence byte1	
+	seq0_[7..0]	    : OUTPUT;	-- Sequence byte0	
+	len1_[7..0]	    : OUTPUT;	-- Length byte1	
+	len0_[7..0]	    : OUTPUT;	-- Length byte0
+	tx_dd[15..12]	: OUTPUT;	-- dom_address, when data packet
+	msg_type_err	: OUTPUT;	-- illegal message type for a data packet
+)
+		
+BEGIN
+	len0_[7..0]	    = H"00";	-- Length byte0
+	
+	len1_[6..0]	    = H"60";	-- Length byte1, 6 => DOR control message
+	len1_[7]	    = dom_A_sel;
+	
+	seq0_[7..0]	    = H"00";	-- Sequence byte0
+	
+	seq1_[3..0]	    = cmd_snd[3..0];
+	seq1_[7..4]	    = H"0";	
+
+	stf[7..0]		= H"E3"; --(vcc,!dom_A_sel,gnd,gnd,  gnd,vcc,gnd,dom_A_sel);
+	eof[7..0]		= H"99"; --(vcc,!dom_A_sel,gnd,gnd,  vcc,gnd,gnd,dom_A_sel);
+	
+	tx_dd15			=  dom_adr_en & dom_A_sel
+					# !dom_adr_en & tx_d15;
+
+	IF(dom_adr_en & (tx_d[14..12]==6))	THEN
+		msg_type_err	= VCC;	-- 6 means DOR control message
+		tx_dd[14..12]	= 0;
+	ELSE
+		msg_type_err	= GND;
+		tx_dd[14..12]	= tx_d[14..12];
+	END IF;
+	
+END;

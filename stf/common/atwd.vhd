@@ -38,6 +38,7 @@ ENTITY atwd IS
 		enable_disc	: IN STD_LOGIC;
 		enable_LED	: IN STD_LOGIC;
 		done		: OUT STD_LOGIC;
+		deadtime	: IN STD_LOGIC_VECTOR (3 DOWNTO 0) := "0000";
 		-- disc
 		OneSPE		: IN STD_LOGIC;
 		LEDtrig		: IN STD_LOGIC;
@@ -62,6 +63,8 @@ ENTITY atwd IS
 		ATWD_VDD_SUP	: OUT STD_LOGIC;
         -- for ping-pong
         atwd_trig_doneB	: OUT STD_LOGIC;        
+		-- frontend pulser
+		FE_pulse			: IN STD_LOGIC := '0';
 		-- test connector
 		TC					: OUT STD_LOGIC_VECTOR(7 downto 0)
 	);
@@ -160,6 +163,7 @@ ARCHITECTURE arch_atwd OF atwd IS
 			enable_disc	: IN STD_LOGIC;
 			enable_LED	: IN STD_LOGIC;
 			done		: OUT STD_LOGIC;
+			deadtime	: IN STD_LOGIC_VECTOR (3 DOWNTO 0);
 			-- controller
 			busy		: IN STD_LOGIC;
 			reset_trig	: IN STD_LOGIC;
@@ -170,6 +174,8 @@ ARCHITECTURE arch_atwd OF atwd IS
 			ATWDTrigger			: OUT STD_LOGIC;
 			TriggerComplete_in	: IN STD_LOGIC;
 			TriggerComplete_out	: OUT STD_LOGIC;
+			-- frontend pulser
+			FE_pulse			: IN STD_LOGIC := '0';
 			-- test connector
 			TC					: OUT STD_LOGIC_VECTOR(7 downto 0)
 		);
@@ -259,6 +265,7 @@ BEGIN
 			enable_disc	=> enable_disc,
 			enable_LED	=> enable_LED,
 			done		=> done,
+			deadtime	=> deadtime,
 			-- controller
 			busy		=> busy,
 			reset_trig	=> reset_trig,
@@ -269,6 +276,8 @@ BEGIN
 			ATWDTrigger			=> ATWDTrigger_sig,
 			TriggerComplete_in	=> TriggerComplete,
 			TriggerComplete_out	=> TriggerComplete_out,
+			-- frontend pulser
+			FE_pulse			=> FE_pulse,
 			-- test connector
 			TC					=> open
 		);
