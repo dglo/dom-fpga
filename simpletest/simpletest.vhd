@@ -336,6 +336,9 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL txrdef			: STD_LOGIC;
 	SIGNAL rxwrff			: STD_LOGIC;
 	SIGNAL rxwraff			: STD_LOGIC;
+	SIGNAL dec_thr			: STD_LOGIC_VECTOR (9 downto 0);
+	SIGNAL temp_data		: STD_LOGIC_VECTOR (7 downto 0);
+	SIGNAL RST_kalle		: STD_LOGIC;
 	
 	COMPONENT ROC
 		PORT (
@@ -836,6 +839,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			dom_A_sel_L :  IN  STD_LOGIC;
 			dom_B_sel_L :  IN  STD_LOGIC;
 			reset :  IN  STD_LOGIC;
+			dec_thr : IN STD_LOGIC_VECTOR(9 downto 0);
 			tx_wrreq :  IN  STD_LOGIC;
 			line_quiet :  IN  STD_LOGIC;
 			pulse_rcvd :  IN  STD_LOGIC;
@@ -1048,6 +1052,9 @@ BEGIN
 	com_status(16)	<= txwraef;
 	com_status(17)	<= txwraff;
 	com_status(20)	<= txrdef;
+	dec_thr			<= com_ctrl(25 downto 16);
+	
+	TC(7)			<= temp_data(7);
 	
 	inst_ROC : ROC
 		PORT MAP (
@@ -1387,7 +1394,7 @@ BEGIN
 			COINC_UP_BBAR		=> COINC_UP_BBAR,
 			COINC_UP_B			=> COINC_UP_B,
 			-- test connector
-			TC					=> TC
+			TC					=> open --TC
 		);
 		
 	inst_hit_counter : hit_counter
@@ -1552,7 +1559,8 @@ BEGIN
 			TC					=> open
 		);
 	
-	B_nA	<= A_nB;
+	B_nA	<= NOT A_nB;
+	RST_kalle	<= RST OR com_ctrl(4);
 	
 	dcom_01_inst : dcom_01 
 		port MAP (
@@ -1563,7 +1571,8 @@ BEGIN
 			msg_rd		=> msg_rd,
 			dom_A_sel_L	=> B_nA,
 			dom_B_sel_L	=> A_nB,
-			reset		=> RST,
+			reset		=> RST_kalle,
+			dec_thr		=> dec_thr,
 			tx_wrreq	=> tx_fifo_wr,
 			line_quiet	=> low,
 			pulse_rcvd	=> low,
@@ -1571,7 +1580,7 @@ BEGIN
 			rx_rdreq	=> rx_fifo_rd,
 			fc_adc		=> COM_AD_D,
 			tx_fd		=> com_tx_fifo,
-			txd			=> open,
+			txd			=> TC(6),
 			last_byte	=> open,
 			dac_clk		=> open,
 			dac_slp		=> COM_TX_SLEEP,
@@ -1584,28 +1593,28 @@ BEGIN
 			txwrff		=> open,
 			txrdef		=> txrdef,
 			txwraff		=> txwraff,
-			ctrl_sent	=> open,
+			ctrl_sent	=> TC(5),
 			rs4_ren		=> open,
 			nrx_led		=> open,
 			adc_clk		=> open,
-			data_stb	=> open,
-			ctrl_stb	=> open,
+			data_stb	=> TC(3),
+			ctrl_stb	=> TC(4),
 			ctrl_err	=> open,
 			rxwrff		=> rxwrff,
 			rxwraff		=> rxwraff,
 			rxrdef		=> rxrdef,
-			stf_rcvd	=> open,
-			eof_rcvd	=> open,
+			stf_rcvd	=> TC(1),
+			eof_rcvd	=> TC(2),
 			bfstat_rcvd	=> open,
 			drreq_rcvd	=> open,
 			sysres_rcvd	=> open,
-			comres_rcvd	=> open,
+			comres_rcvd	=> TC(0),
 			msg_rcvd	=> open,
 			msg_err		=> open,
 			fifo_msg	=> fifo_msg,
 			nerr_led	=> open,
 			dac_db		=> COM_DB,
-			data		=> open,
+			data		=> temp_data,
 			msg_ct_q	=> msg_ct_q,
 			rx_fq		=> com_rx_fifo
 		);
