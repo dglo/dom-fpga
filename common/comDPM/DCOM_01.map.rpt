@@ -1,0 +1,135 @@
+Analysis & Synthesis report for DCOM_01
+Fri Jul 16 10:00:42 2004
+Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Analysis & Synthesis Default Parameter Settings
+  5. Analysis & Synthesis Files Read
+  6. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2004 Altera Corporation
+Any  megafunction  design,  and related netlist (encrypted  or  decrypted),
+support information,  device programming or simulation file,  and any other
+associated  documentation or information  provided by  Altera  or a partner
+under  Altera's   Megafunction   Partnership   Program  may  be  used  only
+to program  PLD  devices (but not masked  PLD  devices) from  Altera.   Any
+other  use  of such  megafunction  design,  netlist,  support  information,
+device programming or simulation file,  or any other  related documentation
+or information  is prohibited  for  any  other purpose,  including, but not
+limited to  modification,  reverse engineering,  de-compiling, or use  with
+any other  silicon devices,  unless such use is  explicitly  licensed under
+a separate agreement with  Altera  or a megafunction partner.  Title to the
+intellectual property,  including patents,  copyrights,  trademarks,  trade
+secrets,  or maskworks,  embodied in any such megafunction design, netlist,
+support  information,  device programming or simulation file,  or any other
+related documentation or information provided by  Altera  or a megafunction
+partner, remains with Altera, the megafunction partner, or their respective
+licensors. No other licenses, including any licenses needed under any third
+party's intellectual property, are provided herein.
+
+
+
++---------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                        ;
++-----------------------------+---------------------------------------+
+; Analysis & Synthesis Status ; Successful - Fri Jul 16 10:00:42 2004 ;
+; Revision Name               ; DCOM_01                               ;
+; Top-level Entity Name       ; dcom_ap                               ;
+; Family                      ; APEX20KE                              ;
++-----------------------------+---------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++----------------------------------------------------------------------------------------------------------------------------
+; Option                                                                                     ; Setting      ; Default Value ;
++--------------------------------------------------------------------------------------------+--------------+---------------+
+; Cascade Chain Length                                                                       ; 16           ; 2             ;
+; Optimization Technique -- APEX 20K/APEX 20KE/APEX 20KC/APEX II/ARM-based Excalibur         ; Area         ; Balanced      ;
+; Remove Redundant Logic Cells                                                               ; On           ; Off           ;
+; Top-level entity name                                                                      ; dcom_ap      ;               ;
+; Family name                                                                                ; APEX20KE     ; Stratix       ;
+; Auto Resource Sharing                                                                      ; Off          ; Off           ;
+; Auto Shift Register Replacement                                                            ; On           ; On            ;
+; Auto RAM Replacement                                                                       ; On           ; On            ;
+; Auto ROM Replacement                                                                       ; On           ; On            ;
+; Allow register retiming to trade off Tsu/Tco with Fmax                                     ; On           ; On            ;
+; Perform gate-level register retiming                                                       ; Off          ; Off           ;
+; Perform WYSIWYG Primitive Resynthesis                                                      ; Off          ; Off           ;
+; Remove Duplicate Logic                                                                     ; On           ; On            ;
+; Auto Open-Drain Pins                                                                       ; On           ; On            ;
+; Auto Parallel Expanders                                                                    ; On           ; On            ;
+; Auto Carry Chains                                                                          ; On           ; On            ;
+; Parallel Expander Chain Length -- APEX 20K/APEX 20KE/APEX 20KC/APEX II/ARM-based Excalibur ; 16           ; 16            ;
+; Carry Chain Length                                                                         ; 48           ; 48            ;
+; Allow XOR Gate Usage                                                                       ; On           ; On            ;
+; Auto Packed Registers                                                                      ; Off          ; Off           ;
+; Technology Mapper -- APEX 20K/APEX 20KE/APEX 20KC/APEX II/ARM-based Excalibur              ; LUT          ; LUT           ;
+; Auto Implement in ROM                                                                      ; Off          ; Off           ;
+; Auto Global Register Control Signals                                                       ; On           ; On            ;
+; Auto Global Output Enable                                                                  ; On           ; On            ;
+; Auto Global Clock                                                                          ; On           ; On            ;
+; Limit AHDL Integers to 32 Bits                                                             ; Off          ; Off           ;
+; Ignore SOFT Buffers                                                                        ; On           ; On            ;
+; Ignore LCELL Buffers                                                                       ; Off          ; Off           ;
+; Ignore ROW GLOBAL Buffers                                                                  ; Off          ; Off           ;
+; Ignore GLOBAL Buffers                                                                      ; Off          ; Off           ;
+; Ignore CASCADE Buffers                                                                     ; Off          ; Off           ;
+; Ignore CARRY Buffers                                                                       ; Off          ; Off           ;
+; Remove Duplicate Registers                                                                 ; On           ; On            ;
+; Power-Up Don't Care                                                                        ; On           ; On            ;
+; NOT Gate Push-Back                                                                         ; On           ; On            ;
+; State Machine Processing                                                                   ; Auto         ; Auto          ;
+; VHDL Version                                                                               ; VHDL93       ; VHDL93        ;
+; Verilog Version                                                                            ; Verilog_2001 ; Verilog_2001  ;
+; Preserve fewer node names                                                                  ; On           ; On            ;
+; Disk space/compilation speed tradeoff                                                      ; Normal       ; Normal        ;
+; Create Debugging Nodes for IP Cores                                                        ; off          ; off           ;
++--------------------------------------------------------------------------------------------+--------------+---------------+
+
+
++-------------------------------------------------+
+; Analysis & Synthesis Default Parameter Settings ;
++--------------------------------------------------
+; Name               ; Setting                    ;
++--------------------+----------------------------+
+; CARRY_CHAIN        ; MANUAL                     ;
+; CASCADE_CHAIN      ; MANUAL                     ;
+; OPTIMIZE_FOR_SPEED ; 1                          ;
+; STYLE              ; FAST                       ;
++--------------------+----------------------------+
+
+
++---------------------------------+
+; Analysis & Synthesis Files Read ;
++----------------------------------
+; File Name ; Read                ;
++-----------+---------------------+
+
+
++--------------------------------+
+; Analysis & Synthesis Messages  ;
++--------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II Analysis & Synthesis
+    Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
+    Info: Processing started: Fri Jul 16 10:00:41 2004
+Info: Command: quartus_map --lower_priority --import_settings_files=on --export_settings_files=off DCOM_01 -c DCOM_01 --convert_bdf_to_vhdl=dcom_ap.bdf
+Info: Found 1 design units and 1 entities in source file dcom_ap.bdf
+    Info: Found entity 1: dcom_ap
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 0 warnings
+    Info: Processing ended: Fri Jul 16 10:00:42 2004
+    Info: Elapsed time: 00:00:00
+
+

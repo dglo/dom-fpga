@@ -1,5 +1,6 @@
-TITLE "control message, header-bytes decoder, K.-H. Sulanke,DESY Zeuthen, 2004-04-16";
+TITLE "control message, header-bytes decoder, K.-H. Sulanke,DESY Zeuthen, 2004-07-07";
 -- according Arthur Jones protocol
+-- including comm. DAC level control
 
 SUBDESIGN dc_hdr_dec_ap
 (
@@ -11,7 +12,9 @@ SUBDESIGN dc_hdr_dec_ap
 	cmd_ena			: INPUT;
 	A_nB		    : INPUT;
 	ctrl_rcvd		: INPUT;	--  CRC-error-free control message received
-	
+	seq1_byte		: INPUT;
+	seq0_byte		: INPUT;
+		
 	ctrl_msg	    : OUTPUT;	
 	data_msg	    : OUTPUT;
 	cmd_rec[3..0]	: OUTPUT;
@@ -24,8 +27,8 @@ SUBDESIGN dc_hdr_dec_ap
 	sysres_rcvd		: OUTPUT;
 	tcal_rcvd		: OUTPUT;
 	idle_rcvd		: OUTPUT;
-	data_msg_ena	: OUTPUT;
-	data_msg_d		: OUTPUT;
+	domlev_up_rq    : OUTPUT;	-- request from DOR to increase the Tx signal
+	domlev_dn_rq	: OUTPUT;
 )
 
 VARIABLE
@@ -41,6 +44,10 @@ VARIABLE
 	sysres_rcvd		: DFF;
 	tcal_rcvd		: DFF;
 	idle_rcvd		: DFF;
+	
+	dorlev[7..0]	: DFFE;
+	domlev_up_rq    : DFF;	-- request from DOR to increase the Tx signal
+	domlev_dn_rq	: DFF;
 	
 BEGIN
 
@@ -84,6 +91,15 @@ BEGIN
 	tcal_rcvd.d				= ctrl_msg.q & (cmd_rec[3..0].q==B"1110") & ctrl_rcvd;
 	idle_rcvd.d				= ctrl_msg.q & (cmd_rec[3..0].q==B"1111") & ctrl_rcvd;
 	
-	data_msg_ena			= msg_type_ena & data_stb;
-	data_msg_d				= (data[7] !$ A_nB) & !(data[6..4]==B"110");	
+	domlev_up_rq.(clk,clrn)	= (clk, !reset);
+	domlev_dn_rq.(clk,clrn)	= (clk, !reset);
+	
+	domlev_up_rq.d			= ctrl_msg.q & seq1_byte & data[7] & data_stb;
+	domlev_dn_rq.d			= ctrl_msg.q & seq1_byte & data[6] & data_stb;
+
+	dorlev[].clk			= clk;
+	dorlev[].clrn			= !reset;
+	dorlev[].ena			= ctrl_msg.q & seq0_byte & data_stb;
+	dorlev[7..0].d			= data[7..0];
+
 END;

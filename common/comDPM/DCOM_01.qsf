@@ -32,11 +32,7 @@
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 4.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "08:31:24  MARCH 03, 2004"
 set_global_assignment -name LAST_QUARTUS_VERSION "4.0 SP1"
-set_global_assignment -name BDF_FILE Rx_chan/DC_Rx_chan_ap.bdf
 set_global_assignment -name BDF_FILE dcom_ap.bdf
-set_global_assignment -name BDF_FILE Tx_chan/DC_Tx_chan_ap.bdf
-set_global_assignment -name AHDL_FILE test_signals.tdf
-set_global_assignment -name AHDL_FILE Rx_chan/dc_hdr_dec_ap.tdf
 
 # Pin & Location Assignments
 # ==========================
@@ -92,17 +88,3 @@ set_global_assignment -name MERCURY_CONFIGURATION_DEVICE EPC2
 set_global_assignment -name EXCALIBUR_CONFIGURATION_DEVICE EPC2
 set_global_assignment -name APEX20K_CONFIGURATION_DEVICE EPC2
 
-# ----------------------
-# start ENTITY(dcom_dpr)
-
-	# Analysis & Synthesis Assignments
-	# ================================
-	set_instance_assignment -name ADV_NETLIST_OPT_ALLOWED "NEVER ALLOW" -to inst2 -entity dcom_dpr
-	set_instance_assignment -name ADV_NETLIST_OPT_ALLOWED "NEVER ALLOW" -to inst6 -entity dcom_dpr
-	set_instance_assignment -name POWER_UP_LEVEL LOW -to inst2 -entity dcom_dpr
-	set_instance_assignment -name POWER_UP_LEVEL LOW -to inst6 -entity dcom_dpr
-	set_instance_assignment -name REMOVE_DUPLICATE_REGISTERS OFF -to inst2 -entity dcom_dpr
-	set_instance_assignment -name REMOVE_DUPLICATE_REGISTERS OFF -to inst6 -entity dcom_dpr
-
-# end ENTITY(dcom_dpr)
-# --------------------
