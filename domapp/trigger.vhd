@@ -98,8 +98,8 @@ ARCHITECTURE trigger_arch OF trigger IS
 
 BEGIN
 
-	MultiSPE_nl	<= 'Z';
-	OneSPE_nl	<= 'Z';
+	MultiSPE_nl	<= '1';
+	OneSPE_nl	<= '1';
 	
 --	veto_trig	<= '1' WHEN trig_veto_short_A='1' OR trig_veto_short_B='1' ELSE '0'; -- busy_FADC_A='1' OR busy_FADC_B='1' ELSE '0'; -- modify for timestamp mode !!!!
 	veto_trig	<= '1' WHEN busy_FADC_A='1' OR busy_FADC_B='1' ELSE '0'; -- modify for timestamp mode !!!!
