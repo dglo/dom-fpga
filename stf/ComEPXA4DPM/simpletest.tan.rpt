@@ -1,5 +1,5 @@
 Timing Analyzer report for simpletest
-Thu Jun 24 07:32:36 2004
+Thu Jun 24 12:38:19 2004
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -1216,7 +1216,20 @@ party's intellectual property, are provided herein.
 Info: *******************************************************************
 Info: Running Quartus II Timing Analyzer
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Thu Jun 24 07:32:24 2004
+    Info: Copyright (C) 1991-2004 Altera Corporation. All rights reserved.
+    Info: Quartus is a registered trademark of Altera Corporation in the 
+    Info: US and other countries.  Portions of the Quartus II software   
+    Info: code, and other portions of the code included in this download 
+    Info: or on this CD, are licensed to Altera Corporation and are the  
+    Info: copyrighted property of third parties who may include, without 
+    Info: limitation, Sun Microsystems, The Regents of the University of 
+    Info: California, Softel vdm., and Verific Design Automation Inc. 
+    Info: Warning:  This computer program is protected by copyright law  
+    Info: and international treaties. Unauthorized reproduction or       
+    Info: distribution of this program, or any portion of it, may result 
+    Info: in severe civil and criminal penalties, and will be prosecuted 
+    Info: to the maximum extent possible under the law.
+    Info: Processing started: Thu Jun 24 12:38:07 2004
 Info: Command: quartus_tan --import_settings_files=off --export_settings_files=off simpletest -c simpletest
 Info: Started post-fitting delay annotation
 Info: Delay annotation completed successfully
@@ -1407,7 +1420,7 @@ Info: Minimum tco from clock CLK2p to destination pin CLKLK_OUT2p through clock 
         Info: Total cell delay = 2.566 ns ( 100.00 % )
 Critical Warning: Timing requirements were not met. See Report window for details.
 Info: Quartus II Timing Analyzer was successful. 0 errors, 6 warnings
-    Info: Processing ended: Thu Jun 24 07:32:36 2004
-    Info: Elapsed time: 00:00:12
+    Info: Processing ended: Thu Jun 24 12:38:19 2004
+    Info: Elapsed time: 00:00:11
 
 

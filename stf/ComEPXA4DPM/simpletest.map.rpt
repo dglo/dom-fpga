@@ -1,5 +1,5 @@
 Analysis & Synthesis report for simpletest
-Thu Jun 24 07:26:10 2004
+Thu Jun 24 12:31:55 2004
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -72,7 +72,7 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                        ;
 +-----------------------------+---------------------------------------+
-; Analysis & Synthesis Status ; Successful - Thu Jun 24 07:26:10 2004 ;
+; Analysis & Synthesis Status ; Successful - Thu Jun 24 12:31:55 2004 ;
 ; Revision Name               ; simpletest                            ;
 ; Top-level Entity Name       ; simpletest                            ;
 ; Family                      ; EXCALIBUR_ARM                         ;
@@ -1589,7 +1589,7 @@ simpletest
 +---------------------------------+
 ; Analysis & Synthesis Equations  ;
 +---------------------------------+
-The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/simpletest.map.eqn.
+The equations can be found in c:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/simpletest.map.eqn.
 
 
 +-----------------------------------------------------------------------------+
@@ -1679,7 +1679,7 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/s
 ; simpletest.vhd                                                       ; Read ;
 ; ../../common/comDPM/Rx_chan/dc_hdr_dec_ap.tdf                        ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/altclklock.tdf          ; Read ;
-; C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/stripe.v            ; Read ;
+; c:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/stripe.v            ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/alt_exc_stripe.tdf      ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/alt_exc_upcore.tdf      ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/apex20ke_io_in.v        ; Read ;
@@ -1687,7 +1687,7 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/s
 ; c:/fpgatools/quartus/libraries/megafunctions/apex20ke_io_out.v       ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/apex20ke_io_bidir.v     ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/alt_exc_dpram.tdf       ; Read ;
-; C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/version_rom.v       ; Read ;
+; c:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/version_rom.v       ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/lpm_rom.tdf             ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/altrom.tdf              ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/lpm_ram_dp.tdf          ; Read ;
@@ -1709,9 +1709,9 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/s
 ; c:/fpgatools/quartus/libraries/megafunctions/a_csnbuffer.tdf         ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/lpm_decode.tdf          ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/scfifo.tdf              ; Read ;
-; C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/db/scfifo_mcj.tdf   ; Read ;
-; C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/db/a_dpfifo_4dj.tdf ; Read ;
-; C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/db/a_fefifo_vve.tdf ; Read ;
+; c:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/db/scfifo_mcj.tdf   ; Read ;
+; c:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/db/a_dpfifo_4dj.tdf ; Read ;
+; c:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/db/a_fefifo_vve.tdf ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/lpm_and.tdf             ; Read ;
 +----------------------------------------------------------------------+------+
 
@@ -1785,7 +1785,20 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/s
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Thu Jun 24 07:24:15 2004
+    Info: Copyright (C) 1991-2004 Altera Corporation. All rights reserved.
+    Info: Quartus is a registered trademark of Altera Corporation in the 
+    Info: US and other countries.  Portions of the Quartus II software   
+    Info: code, and other portions of the code included in this download 
+    Info: or on this CD, are licensed to Altera Corporation and are the  
+    Info: copyrighted property of third parties who may include, without 
+    Info: limitation, Sun Microsystems, The Regents of the University of 
+    Info: California, Softel vdm., and Verific Design Automation Inc. 
+    Info: Warning:  This computer program is protected by copyright law  
+    Info: and international treaties. Unauthorized reproduction or       
+    Info: distribution of this program, or any portion of it, may result 
+    Info: in severe civil and criminal penalties, and will be prosecuted 
+    Info: to the maximum extent possible under the law.
+    Info: Processing started: Thu Jun 24 12:30:11 2004
 Info: Command: quartus_map --import_settings_files=on --export_settings_files=off simpletest -c simpletest
 Info: Found 2 design units and 1 entities in source file ../../common/comDPM/Rx_chan/DC_MRAP.vhd
     Info: Found design unit 1: DC_MRAP-DC_MRAP_ARCH
@@ -2826,7 +2839,7 @@ Info: Implemented 4884 device resources after synthesis - the final resource cou
     Info: Implemented 2 dual-port RAM elements in Excalibur device
     Info: Implemented 1 microprocessor core elements in Excalibur device
 Info: Quartus II Analysis & Synthesis was successful. 0 errors, 153 warnings
-    Info: Processing ended: Thu Jun 24 07:26:10 2004
-    Info: Elapsed time: 00:01:54
+    Info: Processing ended: Thu Jun 24 12:31:55 2004
+    Info: Elapsed time: 00:01:44
 
 

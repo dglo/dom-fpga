@@ -1,5 +1,5 @@
 Fitter report for simpletest
-Thu Jun 24 07:32:14 2004
+Thu Jun 24 12:37:58 2004
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -69,7 +69,7 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------+
 ; Fitter Summary                                                ;
 +-----------------------+---------------------------------------+
-; Fitter Status         ; Successful - Thu Jun 24 07:32:14 2004 ;
+; Fitter Status         ; Successful - Thu Jun 24 12:37:58 2004 ;
 ; Revision Name         ; simpletest                            ;
 ; Top-level Entity Name ; simpletest                            ;
 ; Family                ; EXCALIBUR_ARM                         ;
@@ -118,7 +118,7 @@ party's intellectual property, are provided herein.
 +-------------------+
 ; Fitter Equations  ;
 +-------------------+
-The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/simpletest.fit.eqn.
+The equations can be found in c:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/simpletest.fit.eqn.
 
 
 +-----------------+
@@ -2589,7 +2589,7 @@ Please use Quartus II to view the floorplan report data.
 +---------------+
 ; Pin-Out File  ;
 +---------------+
-The pin-out file can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/simpletest.pin.
+The pin-out file can be found in c:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/simpletest.pin.
 
 
 +------------------+
@@ -2598,7 +2598,20 @@ The pin-out file can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DP
 Info: *******************************************************************
 Info: Running Quartus II Fitter
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Thu Jun 24 07:26:12 2004
+    Info: Copyright (C) 1991-2004 Altera Corporation. All rights reserved.
+    Info: Quartus is a registered trademark of Altera Corporation in the 
+    Info: US and other countries.  Portions of the Quartus II software   
+    Info: code, and other portions of the code included in this download 
+    Info: or on this CD, are licensed to Altera Corporation and are the  
+    Info: copyrighted property of third parties who may include, without 
+    Info: limitation, Sun Microsystems, The Regents of the University of 
+    Info: California, Softel vdm., and Verific Design Automation Inc. 
+    Info: Warning:  This computer program is protected by copyright law  
+    Info: and international treaties. Unauthorized reproduction or       
+    Info: distribution of this program, or any portion of it, may result 
+    Info: in severe civil and criminal penalties, and will be prosecuted 
+    Info: to the maximum extent possible under the law.
+    Info: Processing started: Thu Jun 24 12:31:57 2004
 Info: Command: quartus_fit --import_settings_files=off --export_settings_files=off simpletest -c simpletest
 Info: Selected device EPXA4F672I2 for design simpletest
 Info: Implementing parameter values for PLL pll4x:inst_pll4x|altclklock:altclklock_component|pll
@@ -2619,9 +2632,9 @@ Info: Promoted cell OneSPE to global signal automatically
 Info: Promoted cell MultiSPE to global signal automatically
 Critical Warning: Ignored Power-Up Level option on the following nodes -- nodes are set to power up low
     Critical Warning: I/O cell dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|buf_res~reg will power-up low
-Info: Started fitting attempt 1 on Thu Jun 24 2004 at 07:26:26
+Info: Started fitting attempt 1 on Thu Jun 24 2004 at 12:32:11
 Info: Fitter placement preparation operations beginning
-Info: Fitter placement preparation operations ending: elapsed time = 14 seconds
+Info: Fitter placement preparation operations ending: elapsed time = 13 seconds
 Info: Fitter placement operations beginning
 Info: Fitter placement was successful
 Info: Design requires the following device routing resources:
@@ -2633,11 +2646,11 @@ Info: Estimated most critical path is register to pin delay of 2.396 ns
     Info: 1: + IC(0.000 ns) + CELL(0.564 ns) = 0.564 ns; Loc. = Unassigned; Fanout = 8; REG Node = 'atwd:atwd1|atwd_trigger:inst_atwd_trigger|ATWDTrigger_sig'
     Info: 2: + IC(0.000 ns) + CELL(1.832 ns) = 2.396 ns; Loc. = Unassigned; Fanout = 0; PIN Node = 'ATWDTrigger_1'
     Info: Total cell delay = 2.396 ns ( 100.00 % )
-Info: Fitter placement operations ending: elapsed time = 301 seconds
+Info: Fitter placement operations ending: elapsed time = 299 seconds
 Info: Fitter routing operations beginning
 Info: Fitter routing operations ending: elapsed time = 22 seconds
 Info: Quartus II Fitter was successful. 0 errors, 2 warnings
-    Info: Processing ended: Thu Jun 24 07:32:14 2004
-    Info: Elapsed time: 00:06:02
+    Info: Processing ended: Thu Jun 24 12:37:58 2004
+    Info: Elapsed time: 00:06:01
 
 
