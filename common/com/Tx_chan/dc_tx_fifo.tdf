@@ -58,8 +58,8 @@ VARIABLE
 			LPM_WIDTHU = 10,
 			LPM_TYPE = "scfifo",
 			LPM_SHOWAHEAD = "ON",
-			OVERFLOW_CHECKING = "OFF",
-			UNDERFLOW_CHECKING = "OFF",
+			OVERFLOW_CHECKING = "ON",
+			UNDERFLOW_CHECKING = "ON",
 			USE_EAB = "ON",
 			LPM_HINT = ""
 			);
@@ -104,15 +104,15 @@ END;
 -- Retrieval info: PRIVATE: LegacyRREQ NUMERIC "0"
 -- Retrieval info: PRIVATE: LE_BasedFIFO NUMERIC "0"
 -- Retrieval info: PRIVATE: Optimize NUMERIC "0"
--- Retrieval info: PRIVATE: OVERFLOW_CHECKING NUMERIC "1"
--- Retrieval info: PRIVATE: UNDERFLOW_CHECKING NUMERIC "1"
+-- Retrieval info: PRIVATE: OVERFLOW_CHECKING NUMERIC "0"
+-- Retrieval info: PRIVATE: UNDERFLOW_CHECKING NUMERIC "0"
 -- Retrieval info: CONSTANT: LPM_WIDTH NUMERIC "8"
 -- Retrieval info: CONSTANT: LPM_NUMWORDS NUMERIC "1024"
 -- Retrieval info: CONSTANT: LPM_WIDTHU NUMERIC "10"
 -- Retrieval info: CONSTANT: LPM_TYPE STRING "scfifo"
 -- Retrieval info: CONSTANT: LPM_SHOWAHEAD STRING "ON"
--- Retrieval info: CONSTANT: OVERFLOW_CHECKING STRING "OFF"
--- Retrieval info: CONSTANT: UNDERFLOW_CHECKING STRING "OFF"
+-- Retrieval info: CONSTANT: OVERFLOW_CHECKING STRING "ON"
+-- Retrieval info: CONSTANT: UNDERFLOW_CHECKING STRING "ON"
 -- Retrieval info: CONSTANT: USE_EAB STRING "ON"
 -- Retrieval info: CONSTANT: LPM_HINT STRING ""
 -- Retrieval info: USED_PORT: data 0 0 8 0 INPUT NODEFVAL data[7..0]

@@ -50,7 +50,7 @@ party's intellectual property, are provided herein.
 +-----------------+-------------------+
 |Option           |Setting            |
 +-----------------+-------------------+
-|Start date & time|09/22/2003 08:24:20|
+|Start date & time|09/29/2003 09:36:09|
 |Main task        |Compilation        |
 |Settings name    |dcom               |
 +-----------------+-------------------+
@@ -116,7 +116,7 @@ Info: Design dcom: BDF to VHDL file generation was successful. 0 errors, 2 warni
 +----------------+------------+
 |Module Name     |Elapsed Time|
 +----------------+------------+
-|Database Builder|00:00:02    |
-|Total           |00:00:02    |
+|Database Builder|00:00:00    |
+|Total           |00:00:00    |
 +----------------+------------+
 
