@@ -14,7 +14,7 @@ Info: Running Quartus II Analysis & Synthesis
     Info: distribution of this program, or any portion of it, may result 
     Info: in severe civil and criminal penalties, and will be prosecuted 
     Info: to the maximum extent possible under the law.
-    Info: Processing started: Thu Jun 17 08:30:50 2004
+    Info: Processing started: Mon Jun 21 09:36:09 2004
 Info: Command: quartus_map --import_settings_files=on --export_settings_files=off simpletest -c simpletest
 Info: Found 2 design units and 1 entities in source file ../../common/comDPM/Rx_chan/DC_MRAP.vhd
     Info: Found design unit 1: DC_MRAP-DC_MRAP_ARCH
@@ -938,34 +938,34 @@ Info: Duplicate registers merged to single register
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|sreg~32 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|eof_stb~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|sreg~31 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|data_stb~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|sreg~39 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|stf_stb~reg
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[17] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[18] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[19] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[20] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[21] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[22] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[23] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[24] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[25] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[26] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[27] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[28] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[16] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[29] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[28] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[27] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[26] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[25] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[24] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[15] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[23] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[22] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[21] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[20] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[19] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[18] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[17] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[2] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[14] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[3] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[4] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[5] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[6] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[7] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[13] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[12] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[8] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[9] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[10] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[11] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[12] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[13] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[14] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[15] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[16] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[30] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[31] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register atwd:atwd1|atwd_control:inst_atwd_control|state~26 merged to single register atwd:atwd0|atwd_control:inst_atwd_control|state~26
@@ -1047,18 +1047,18 @@ Warning: Design contains 5 input pin(s) that do not drive logic
     Warning: No output dependent on input pin COM_AD_OTR
     Warning: No output dependent on input pin HDV_Rx
     Warning: No output dependent on input pin FLASH_NCO
-Info: Implemented 4832 device resources after synthesis - the final resource count might be different
+Info: Implemented 4873 device resources after synthesis - the final resource count might be different
     Info: Implemented 69 input pins
     Info: Implemented 159 output pins
     Info: Implemented 55 bidirectional pins
-    Info: Implemented 4470 logic cells
+    Info: Implemented 4511 logic cells
     Info: Implemented 74 RAM segments
     Info: Implemented 2 ClockLock PLLs
     Info: Implemented 2 dual-port RAM elements in Excalibur device
     Info: Implemented 1 microprocessor core elements in Excalibur device
 Info: Quartus II Analysis & Synthesis was successful. 0 errors, 153 warnings
-    Info: Processing ended: Thu Jun 17 08:32:34 2004
-    Info: Elapsed time: 00:01:43
+    Info: Processing ended: Mon Jun 21 09:38:01 2004
+    Info: Elapsed time: 00:01:52
 Info: *******************************************************************
 Info: Running Quartus II Fitter
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
@@ -1075,7 +1075,7 @@ Info: Running Quartus II Fitter
     Info: distribution of this program, or any portion of it, may result 
     Info: in severe civil and criminal penalties, and will be prosecuted 
     Info: to the maximum extent possible under the law.
-    Info: Processing started: Thu Jun 17 08:32:36 2004
+    Info: Processing started: Mon Jun 21 09:38:04 2004
 Info: Command: quartus_fit --import_settings_files=off --export_settings_files=off simpletest -c simpletest
 Info: Selected device EPXA4F672I2 for design simpletest
 Info: Implementing parameter values for PLL pll4x:inst_pll4x|altclklock:altclklock_component|pll
@@ -1096,26 +1096,26 @@ Info: Promoted cell OneSPE to global signal automatically
 Info: Promoted cell MultiSPE to global signal automatically
 Critical Warning: Ignored Power-Up Level option on the following nodes -- nodes are set to power up low
     Critical Warning: I/O cell dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|buf_res~reg will power-up low
-Info: Started fitting attempt 1 on Thu Jun 17 2004 at 08:32:52
+Info: Started fitting attempt 1 on Mon Jun 21 2004 at 09:38:21
 Info: Fitter placement preparation operations beginning
-Info: Fitter placement preparation operations ending: elapsed time = 13 seconds
+Info: Fitter placement preparation operations ending: elapsed time = 14 seconds
 Info: Fitter placement operations beginning
 Info: Fitter placement was successful
 Info: Design requires the following device routing resources:
-    Info: Overall column FastTrack interconnect = 10%
-    Info: Overall row FastTrack interconnect = 14%
-    Info: Maximum column FastTrack interconnect = 29%
-    Info: Maximum row FastTrack interconnect = 69%
+    Info: Overall column FastTrack interconnect = 11%
+    Info: Overall row FastTrack interconnect = 16%
+    Info: Maximum column FastTrack interconnect = 31%
+    Info: Maximum row FastTrack interconnect = 51%
 Info: Estimated most critical path is register to pin delay of 2.396 ns
     Info: 1: + IC(0.000 ns) + CELL(0.564 ns) = 0.564 ns; Loc. = Unassigned; Fanout = 8; REG Node = 'atwd:atwd1|atwd_trigger:inst_atwd_trigger|ATWDTrigger_sig'
     Info: 2: + IC(0.000 ns) + CELL(1.832 ns) = 2.396 ns; Loc. = Unassigned; Fanout = 0; PIN Node = 'ATWDTrigger_1'
     Info: Total cell delay = 2.396 ns ( 100.00 % )
-Info: Fitter placement operations ending: elapsed time = 282 seconds
+Info: Fitter placement operations ending: elapsed time = 728 seconds
 Info: Fitter routing operations beginning
-Info: Fitter routing operations ending: elapsed time = 22 seconds
+Info: Fitter routing operations ending: elapsed time = 93 seconds
 Info: Quartus II Fitter was successful. 0 errors, 2 warnings
-    Info: Processing ended: Thu Jun 17 08:38:20 2004
-    Info: Elapsed time: 00:05:43
+    Info: Processing ended: Mon Jun 21 09:52:40 2004
+    Info: Elapsed time: 00:14:36
 Info: *******************************************************************
 Info: Running Quartus II Assembler
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
@@ -1132,13 +1132,13 @@ Info: Running Quartus II Assembler
     Info: distribution of this program, or any portion of it, may result 
     Info: in severe civil and criminal penalties, and will be prosecuted 
     Info: to the maximum extent possible under the law.
-    Info: Processing started: Thu Jun 17 08:38:22 2004
+    Info: Processing started: Mon Jun 21 09:52:46 2004
 Info: Command: quartus_asm --import_settings_files=off --export_settings_files=off simpletest -c simpletest
 Warning: Data in Simulator initialization files holds embedded processor core in reset because Hexadecimal (Intel-Format) File(s) do not contain initialization data for entry point 0x0 or entry point is in memory external to Excalibur embedded processor stripe
 Warning: Data in passive programming files holds embedded processor core in reset because Hexadecimal (Intel-Format) Files do not contain initialization data for entry point 0x0
 Warning: Data in passive programming files holds embedded processor core in reset because Hexadecimal (Intel-Format) Files do not contain initialization data for entry point 0x0
 Info: Quartus II Assembler was successful. 0 errors, 3 warnings
-    Info: Processing ended: Thu Jun 17 08:38:27 2004
+    Info: Processing ended: Mon Jun 21 09:52:52 2004
     Info: Elapsed time: 00:00:05
 Info: *******************************************************************
 Info: Running Quartus II Timing Analyzer
@@ -1156,7 +1156,7 @@ Info: Running Quartus II Timing Analyzer
     Info: distribution of this program, or any portion of it, may result 
     Info: in severe civil and criminal penalties, and will be prosecuted 
     Info: to the maximum extent possible under the law.
-    Info: Processing started: Thu Jun 17 08:38:28 2004
+    Info: Processing started: Mon Jun 21 09:52:53 2004
 Info: Command: quartus_tan --import_settings_files=off --export_settings_files=off simpletest -c simpletest
 Info: Started post-fitting delay annotation
 Info: Delay annotation completed successfully
@@ -1174,9 +1174,9 @@ Warning: Found pins functioning as undefined clocks and/or memory enables
 Warning: Clock Setting CLK1p is unassigned
 Warning: Clock Setting CLK4p is unassigned
 Info: Found timing assignments -- calculating delays
-Info: Slack time is 10.852 ns for clock pll2x:inst_pll2x|altclklock:altclklock_component|outclock0 between source register stripe:stripe_inst|alt_exc_stripe:lpm_instance|alt_exc_upcore:core|core~SLAVEHREADYO0 and destination register master_data_source:inst_master_data_source|data[31]
-    Info: Fmax is 35.34 MHz (period= 28.296 ns)
-    Info: + Largest register to register requirement is 25.613 ns
+Info: Slack time is 10.381 ns for clock pll2x:inst_pll2x|altclklock:altclklock_component|outclock0 between source register stripe:stripe_inst|alt_exc_stripe:lpm_instance|alt_exc_upcore:core|core~SLAVEHREADYO0 and destination register master_data_source:inst_master_data_source|wdata[31]~reg0
+    Info: Fmax is 34.2 MHz (period= 29.238 ns)
+    Info: + Largest register to register requirement is 25.611 ns
         Info: + Setup relationship between source and destination is 25.000 ns
             Info: + Latch edge is 21.824 ns
                 Info: Clock period of Destination clock pll2x:inst_pll2x|altclklock:altclklock_component|outclock0 is 50.000 ns with , Inverted offset of 21.824 ns and duty cycle of 50
@@ -1184,55 +1184,55 @@ Info: Slack time is 10.852 ns for clock pll2x:inst_pll2x|altclklock:altclklock_c
             Info: - Launch edge is -3.176 ns
                 Info: Clock period of Source clock pll2x:inst_pll2x|altclklock:altclklock_component|outclock0 is 50.000 ns with  offset of -3.176 ns and duty cycle of 50
                 Info: Multicycle Setup factor for Source register is 1
-        Info: + Largest clock skew is 0.774 ns
-            Info: + Shortest clock path from clock pll2x:inst_pll2x|altclklock:altclklock_component|outclock0 to destination register is 1.712 ns
-                Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = PLL_2; Fanout = 2069; CLK Node = 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock0'
-                Info: 2: + IC(1.712 ns) + CELL(0.000 ns) = 1.712 ns; Loc. = LC1_12_K2; Fanout = 2; REG Node = 'master_data_source:inst_master_data_source|data[31]'
-                Info: Total interconnect delay = 1.712 ns ( 100.00 % )
+        Info: + Largest clock skew is 0.772 ns
+            Info: + Shortest clock path from clock pll2x:inst_pll2x|altclklock:altclklock_component|outclock0 to destination register is 1.710 ns
+                Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = PLL_2; Fanout = 2095; CLK Node = 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock0'
+                Info: 2: + IC(1.710 ns) + CELL(0.000 ns) = 1.710 ns; Loc. = LC8_14_L2; Fanout = 1; REG Node = 'master_data_source:inst_master_data_source|wdata[31]~reg0'
+                Info: Total interconnect delay = 1.710 ns ( 100.00 % )
             Info: - Longest clock path from clock pll2x:inst_pll2x|altclklock:altclklock_component|outclock0 to source register is 0.938 ns
-                Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = PLL_2; Fanout = 2069; CLK Node = 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock0'
+                Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = PLL_2; Fanout = 2095; CLK Node = 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock0'
                 Info: 2: + IC(0.938 ns) + CELL(0.000 ns) = 0.938 ns; Loc. = UPCORE; Fanout = 3; REG Node = 'stripe:stripe_inst|alt_exc_stripe:lpm_instance|alt_exc_upcore:core|core~SLAVEHREADYO0'
                 Info: Total interconnect delay = 0.938 ns ( 100.00 % )
         Info: - Micro clock to output delay of source is 0.000 ns
         Info: - Micro setup delay of destination is 0.161 ns
-    Info: - Longest register to register delay is 14.761 ns
+    Info: - Longest register to register delay is 15.230 ns
         Info: 1: + IC(0.000 ns) + CELL(3.855 ns) = 3.855 ns; Loc. = UPCORE; Fanout = 3; REG Node = 'stripe:stripe_inst|alt_exc_stripe:lpm_instance|alt_exc_upcore:core|core~SLAVEHREADYO0'
-        Info: 2: + IC(3.577 ns) + CELL(0.685 ns) = 8.117 ns; Loc. = LC5_7_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~131COUT'
-        Info: 3: + IC(0.000 ns) + CELL(0.133 ns) = 8.250 ns; Loc. = LC6_7_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~132COUT'
-        Info: 4: + IC(0.000 ns) + CELL(0.133 ns) = 8.383 ns; Loc. = LC7_7_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~133COUT'
-        Info: 5: + IC(0.000 ns) + CELL(0.133 ns) = 8.516 ns; Loc. = LC8_7_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~134COUT'
-        Info: 6: + IC(0.000 ns) + CELL(0.133 ns) = 8.649 ns; Loc. = LC9_7_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~135COUT'
-        Info: 7: + IC(0.000 ns) + CELL(0.133 ns) = 8.782 ns; Loc. = LC10_7_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~136COUT'
-        Info: 8: + IC(0.496 ns) + CELL(0.133 ns) = 9.411 ns; Loc. = LC1_9_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~137COUT'
-        Info: 9: + IC(0.000 ns) + CELL(0.133 ns) = 9.544 ns; Loc. = LC2_9_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~138COUT'
-        Info: 10: + IC(0.000 ns) + CELL(0.133 ns) = 9.677 ns; Loc. = LC3_9_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~139COUT'
-        Info: 11: + IC(0.000 ns) + CELL(0.133 ns) = 9.810 ns; Loc. = LC4_9_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~140COUT'
-        Info: 12: + IC(0.000 ns) + CELL(0.133 ns) = 9.943 ns; Loc. = LC5_9_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~141COUT'
-        Info: 13: + IC(0.000 ns) + CELL(0.133 ns) = 10.076 ns; Loc. = LC6_9_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~142COUT'
-        Info: 14: + IC(0.000 ns) + CELL(0.133 ns) = 10.209 ns; Loc. = LC7_9_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~143COUT'
-        Info: 15: + IC(0.000 ns) + CELL(0.133 ns) = 10.342 ns; Loc. = LC8_9_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~144COUT'
-        Info: 16: + IC(0.000 ns) + CELL(0.133 ns) = 10.475 ns; Loc. = LC9_9_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~145COUT'
-        Info: 17: + IC(0.000 ns) + CELL(0.133 ns) = 10.608 ns; Loc. = LC10_9_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~146COUT'
-        Info: 18: + IC(0.496 ns) + CELL(0.133 ns) = 11.237 ns; Loc. = LC1_11_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~147COUT'
-        Info: 19: + IC(0.000 ns) + CELL(0.133 ns) = 11.370 ns; Loc. = LC2_11_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~148COUT'
-        Info: 20: + IC(0.000 ns) + CELL(0.133 ns) = 11.503 ns; Loc. = LC3_11_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~149COUT'
-        Info: 21: + IC(0.000 ns) + CELL(0.133 ns) = 11.636 ns; Loc. = LC4_11_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~150COUT'
-        Info: 22: + IC(0.000 ns) + CELL(0.133 ns) = 11.769 ns; Loc. = LC5_11_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~151COUT'
-        Info: 23: + IC(0.000 ns) + CELL(0.133 ns) = 11.902 ns; Loc. = LC6_11_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~152COUT'
-        Info: 24: + IC(0.000 ns) + CELL(0.133 ns) = 12.035 ns; Loc. = LC7_11_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~153COUT'
-        Info: 25: + IC(0.000 ns) + CELL(0.133 ns) = 12.168 ns; Loc. = LC8_11_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~154COUT'
-        Info: 26: + IC(0.000 ns) + CELL(0.133 ns) = 12.301 ns; Loc. = LC9_11_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~155COUT'
-        Info: 27: + IC(0.000 ns) + CELL(0.133 ns) = 12.434 ns; Loc. = LC10_11_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~156COUT'
-        Info: 28: + IC(0.496 ns) + CELL(0.133 ns) = 13.063 ns; Loc. = LC1_13_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~157COUT'
-        Info: 29: + IC(0.000 ns) + CELL(0.133 ns) = 13.196 ns; Loc. = LC2_13_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~158COUT'
-        Info: 30: + IC(0.000 ns) + CELL(0.133 ns) = 13.329 ns; Loc. = LC3_13_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~159COUT'
-        Info: 31: + IC(0.000 ns) + CELL(0.133 ns) = 13.462 ns; Loc. = LC4_13_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~160COUT'
-        Info: 32: + IC(0.000 ns) + CELL(0.133 ns) = 13.595 ns; Loc. = LC5_13_K2; Fanout = 1; COMB Node = 'master_data_source:inst_master_data_source|i~161COUT'
-        Info: 33: + IC(0.000 ns) + CELL(0.800 ns) = 14.395 ns; Loc. = LC6_13_K2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~162'
-        Info: 34: + IC(0.245 ns) + CELL(0.121 ns) = 14.761 ns; Loc. = LC1_12_K2; Fanout = 2; REG Node = 'master_data_source:inst_master_data_source|data[31]'
-        Info: Total cell delay = 9.451 ns ( 64.03 % )
-        Info: Total interconnect delay = 5.310 ns ( 35.97 % )
-Info: Slack time is 10.279 ns for clock pll4x:inst_pll4x|altclklock:altclklock_component|outclock1 between source register atwd:atwd1|atwd_control:inst_atwd_control|cclk and destination register atwd:atwd1|atwd_control:inst_atwd_control|CounterClock~reg0
+        Info: 2: + IC(3.588 ns) + CELL(0.685 ns) = 8.128 ns; Loc. = LC5_7_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~131COUT'
+        Info: 3: + IC(0.000 ns) + CELL(0.133 ns) = 8.261 ns; Loc. = LC6_7_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~132COUT'
+        Info: 4: + IC(0.000 ns) + CELL(0.133 ns) = 8.394 ns; Loc. = LC7_7_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~133COUT'
+        Info: 5: + IC(0.000 ns) + CELL(0.133 ns) = 8.527 ns; Loc. = LC8_7_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~134COUT'
+        Info: 6: + IC(0.000 ns) + CELL(0.133 ns) = 8.660 ns; Loc. = LC9_7_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~135COUT'
+        Info: 7: + IC(0.000 ns) + CELL(0.133 ns) = 8.793 ns; Loc. = LC10_7_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~136COUT'
+        Info: 8: + IC(0.496 ns) + CELL(0.133 ns) = 9.422 ns; Loc. = LC1_9_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~137COUT'
+        Info: 9: + IC(0.000 ns) + CELL(0.133 ns) = 9.555 ns; Loc. = LC2_9_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~138COUT'
+        Info: 10: + IC(0.000 ns) + CELL(0.133 ns) = 9.688 ns; Loc. = LC3_9_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~139COUT'
+        Info: 11: + IC(0.000 ns) + CELL(0.133 ns) = 9.821 ns; Loc. = LC4_9_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~140COUT'
+        Info: 12: + IC(0.000 ns) + CELL(0.133 ns) = 9.954 ns; Loc. = LC5_9_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~141COUT'
+        Info: 13: + IC(0.000 ns) + CELL(0.133 ns) = 10.087 ns; Loc. = LC6_9_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~142COUT'
+        Info: 14: + IC(0.000 ns) + CELL(0.133 ns) = 10.220 ns; Loc. = LC7_9_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~143COUT'
+        Info: 15: + IC(0.000 ns) + CELL(0.133 ns) = 10.353 ns; Loc. = LC8_9_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~144COUT'
+        Info: 16: + IC(0.000 ns) + CELL(0.133 ns) = 10.486 ns; Loc. = LC9_9_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~145COUT'
+        Info: 17: + IC(0.000 ns) + CELL(0.133 ns) = 10.619 ns; Loc. = LC10_9_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~146COUT'
+        Info: 18: + IC(0.496 ns) + CELL(0.133 ns) = 11.248 ns; Loc. = LC1_11_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~147COUT'
+        Info: 19: + IC(0.000 ns) + CELL(0.133 ns) = 11.381 ns; Loc. = LC2_11_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~148COUT'
+        Info: 20: + IC(0.000 ns) + CELL(0.133 ns) = 11.514 ns; Loc. = LC3_11_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~149COUT'
+        Info: 21: + IC(0.000 ns) + CELL(0.133 ns) = 11.647 ns; Loc. = LC4_11_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~150COUT'
+        Info: 22: + IC(0.000 ns) + CELL(0.133 ns) = 11.780 ns; Loc. = LC5_11_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~151COUT'
+        Info: 23: + IC(0.000 ns) + CELL(0.133 ns) = 11.913 ns; Loc. = LC6_11_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~152COUT'
+        Info: 24: + IC(0.000 ns) + CELL(0.133 ns) = 12.046 ns; Loc. = LC7_11_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~153COUT'
+        Info: 25: + IC(0.000 ns) + CELL(0.133 ns) = 12.179 ns; Loc. = LC8_11_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~154COUT'
+        Info: 26: + IC(0.000 ns) + CELL(0.133 ns) = 12.312 ns; Loc. = LC9_11_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~155COUT'
+        Info: 27: + IC(0.000 ns) + CELL(0.133 ns) = 12.445 ns; Loc. = LC10_11_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~156COUT'
+        Info: 28: + IC(0.496 ns) + CELL(0.133 ns) = 13.074 ns; Loc. = LC1_13_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~157COUT'
+        Info: 29: + IC(0.000 ns) + CELL(0.133 ns) = 13.207 ns; Loc. = LC2_13_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~158COUT'
+        Info: 30: + IC(0.000 ns) + CELL(0.133 ns) = 13.340 ns; Loc. = LC3_13_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~159COUT'
+        Info: 31: + IC(0.000 ns) + CELL(0.133 ns) = 13.473 ns; Loc. = LC4_13_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~160COUT'
+        Info: 32: + IC(0.000 ns) + CELL(0.133 ns) = 13.606 ns; Loc. = LC5_13_L2; Fanout = 1; COMB Node = 'master_data_source:inst_master_data_source|i~161COUT'
+        Info: 33: + IC(0.000 ns) + CELL(0.800 ns) = 14.406 ns; Loc. = LC6_13_L2; Fanout = 2; COMB Node = 'master_data_source:inst_master_data_source|i~162'
+        Info: 34: + IC(0.242 ns) + CELL(0.582 ns) = 15.230 ns; Loc. = LC8_14_L2; Fanout = 1; REG Node = 'master_data_source:inst_master_data_source|wdata[31]~reg0'
+        Info: Total cell delay = 9.912 ns ( 65.08 % )
+        Info: Total interconnect delay = 5.318 ns ( 34.92 % )
+Info: Slack time is 10.887 ns for clock pll4x:inst_pll4x|altclklock:altclklock_component|outclock1 between source register lpm_counter:CNT_rtl_0|alt_synch_counter:wysi_counter|sload_path[0] and destination register lpm_counter:CNT_rtl_0|alt_synch_counter:wysi_counter|sload_path[0]
     Info: Fmax is restricted to 349.9 MHz due to tcl and tch limits
     Info: + Largest register to register requirement is 11.997 ns
         Info: + Setup relationship between source and destination is 12.500 ns
@@ -1243,49 +1243,50 @@ Info: Slack time is 10.279 ns for clock pll4x:inst_pll4x|altclklock:altclklock_c
                 Info: Clock period of Source clock pll4x:inst_pll4x|altclklock:altclklock_component|outclock1 is 12.500 ns with  offset of -3.176 ns and duty cycle of 50
                 Info: Multicycle Setup factor for Source register is 1
         Info: + Largest clock skew is 0.000 ns
-            Info: + Shortest clock path from clock pll4x:inst_pll4x|altclklock:altclklock_component|outclock1 to destination register is 1.718 ns
+            Info: + Shortest clock path from clock pll4x:inst_pll4x|altclklock:altclklock_component|outclock1 to destination register is 1.714 ns
                 Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = PLL_3; Fanout = 5; CLK Node = 'pll4x:inst_pll4x|altclklock:altclklock_component|outclock1'
-                Info: 2: + IC(1.718 ns) + CELL(0.000 ns) = 1.718 ns; Loc. = LC5_14_T4; Fanout = 1; REG Node = 'atwd:atwd1|atwd_control:inst_atwd_control|CounterClock~reg0'
-                Info: Total interconnect delay = 1.718 ns ( 100.00 % )
-            Info: - Longest clock path from clock pll4x:inst_pll4x|altclklock:altclklock_component|outclock1 to source register is 1.718 ns
+                Info: 2: + IC(1.714 ns) + CELL(0.000 ns) = 1.714 ns; Loc. = LC1_1_R1; Fanout = 4; REG Node = 'lpm_counter:CNT_rtl_0|alt_synch_counter:wysi_counter|sload_path[0]'
+                Info: Total interconnect delay = 1.714 ns ( 100.00 % )
+            Info: - Longest clock path from clock pll4x:inst_pll4x|altclklock:altclklock_component|outclock1 to source register is 1.714 ns
                 Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = PLL_3; Fanout = 5; CLK Node = 'pll4x:inst_pll4x|altclklock:altclklock_component|outclock1'
-                Info: 2: + IC(1.718 ns) + CELL(0.000 ns) = 1.718 ns; Loc. = LC3_15_T4; Fanout = 2; REG Node = 'atwd:atwd1|atwd_control:inst_atwd_control|cclk'
-                Info: Total interconnect delay = 1.718 ns ( 100.00 % )
+                Info: 2: + IC(1.714 ns) + CELL(0.000 ns) = 1.714 ns; Loc. = LC1_1_R1; Fanout = 4; REG Node = 'lpm_counter:CNT_rtl_0|alt_synch_counter:wysi_counter|sload_path[0]'
+                Info: Total interconnect delay = 1.714 ns ( 100.00 % )
         Info: - Micro clock to output delay of source is 0.342 ns
         Info: - Micro setup delay of destination is 0.161 ns
-    Info: - Longest register to register delay is 1.718 ns
-        Info: 1: + IC(0.000 ns) + CELL(0.165 ns) = 0.165 ns; Loc. = LC3_15_T4; Fanout = 2; REG Node = 'atwd:atwd1|atwd_control:inst_atwd_control|cclk'
-        Info: 2: + IC(0.971 ns) + CELL(0.582 ns) = 1.718 ns; Loc. = LC5_14_T4; Fanout = 1; REG Node = 'atwd:atwd1|atwd_control:inst_atwd_control|CounterClock~reg0'
-        Info: Total cell delay = 0.747 ns ( 43.48 % )
-        Info: Total interconnect delay = 0.971 ns ( 56.52 % )
-Info: Slack time is 4.891 ns for clock pll2x:inst_pll2x|altclklock:altclklock_component|outclock1 between source register atwd:atwd1|atwd_trigger:inst_atwd_trigger|launch_mode[1] and destination register atwd:atwd1|atwd_trigger:inst_atwd_trigger|ATWDTrigger_sig
-    Info: Fmax is 65.71 MHz (period= 15.218 ns)
-    Info: + Largest register to register requirement is 11.656 ns
+    Info: - Longest register to register delay is 1.110 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.165 ns) = 0.165 ns; Loc. = LC1_1_R1; Fanout = 4; REG Node = 'lpm_counter:CNT_rtl_0|alt_synch_counter:wysi_counter|sload_path[0]'
+        Info: 2: + IC(0.000 ns) + CELL(0.945 ns) = 1.110 ns; Loc. = LC1_1_R1; Fanout = 4; REG Node = 'lpm_counter:CNT_rtl_0|alt_synch_counter:wysi_counter|sload_path[0]'
+        Info: Total cell delay = 1.110 ns ( 100.00 % )
+Info: Slack time is 5.573 ns for clock pll2x:inst_pll2x|altclklock:altclklock_component|outclock1 between source register slaveregister:slaveregister_inst|command_4_local[0] and destination register atwd:atwd0|atwd_trigger:inst_atwd_trigger|launch_mode[1]
+    Info: + Largest register to register requirement is 11.997 ns
         Info: + Setup relationship between source and destination is 12.500 ns
-            Info: + Latch edge is 21.824 ns
-                Info: Clock period of Destination clock pll2x:inst_pll2x|altclklock:altclklock_component|outclock1 is 25.000 ns with  offset of -3.176 ns and duty cycle of 50
+            Info: + Latch edge is 9.324 ns
+                Info: Clock period of Destination clock pll2x:inst_pll2x|altclklock:altclklock_component|outclock1 is 25.000 ns with , Inverted offset of 9.324 ns and duty cycle of 50
                 Info: Multicycle Setup factor for Destination register is 1
-            Info: - Launch edge is 9.324 ns
-                Info: Clock period of Source clock pll2x:inst_pll2x|altclklock:altclklock_component|outclock1 is 25.000 ns with , Inverted offset of 9.324 ns and duty cycle of 50
+            Info: - Launch edge is -3.176 ns
+                Info: Clock period of Source clock pll2x:inst_pll2x|altclklock:altclklock_component|outclock0 is 50.000 ns with  offset of -3.176 ns and duty cycle of 50
                 Info: Multicycle Setup factor for Source register is 1
-        Info: + Largest clock skew is -0.341 ns
-            Info: + Shortest clock path from clock pll2x:inst_pll2x|altclklock:altclklock_component|outclock1 to destination register is 1.377 ns
+        Info: + Largest clock skew is 0.000 ns
+            Info: + Shortest clock path from clock pll2x:inst_pll2x|altclklock:altclklock_component|outclock1 to destination register is 1.712 ns
                 Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = PLL_2; Fanout = 1480; CLK Node = 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock1'
-                Info: 2: + IC(0.834 ns) + CELL(0.543 ns) = 1.377 ns; Loc. = IOC_AD7; Fanout = 8; REG Node = 'atwd:atwd1|atwd_trigger:inst_atwd_trigger|ATWDTrigger_sig'
-                Info: Total cell delay = 0.543 ns ( 39.43 % )
-                Info: Total interconnect delay = 0.834 ns ( 60.57 % )
-            Info: - Longest clock path from clock pll2x:inst_pll2x|altclklock:altclklock_component|outclock1 to source register is 1.718 ns
-                Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = PLL_2; Fanout = 1480; CLK Node = 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock1'
-                Info: 2: + IC(1.718 ns) + CELL(0.000 ns) = 1.718 ns; Loc. = LC5_2_T3; Fanout = 1; REG Node = 'atwd:atwd1|atwd_trigger:inst_atwd_trigger|launch_mode[1]'
-                Info: Total interconnect delay = 1.718 ns ( 100.00 % )
+                Info: 2: + IC(1.712 ns) + CELL(0.000 ns) = 1.712 ns; Loc. = LC7_13_Q1; Fanout = 1; REG Node = 'atwd:atwd0|atwd_trigger:inst_atwd_trigger|launch_mode[1]'
+                Info: Total interconnect delay = 1.712 ns ( 100.00 % )
+            Info: - Longest clock path from clock pll2x:inst_pll2x|altclklock:altclklock_component|outclock0 to source register is 1.712 ns
+                Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = PLL_2; Fanout = 2095; CLK Node = 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock0'
+                Info: 2: + IC(1.712 ns) + CELL(0.000 ns) = 1.712 ns; Loc. = LC10_15_Q1; Fanout = 7; REG Node = 'slaveregister:slaveregister_inst|command_4_local[0]'
+                Info: Total interconnect delay = 1.712 ns ( 100.00 % )
         Info: - Micro clock to output delay of source is 0.342 ns
         Info: - Micro setup delay of destination is 0.161 ns
-    Info: - Longest register to register delay is 6.765 ns
-        Info: 1: + IC(0.000 ns) + CELL(0.165 ns) = 0.165 ns; Loc. = LC5_2_T3; Fanout = 1; REG Node = 'atwd:atwd1|atwd_trigger:inst_atwd_trigger|launch_mode[1]'
-        Info: 2: + IC(0.254 ns) + CELL(0.897 ns) = 1.316 ns; Loc. = LC6_1_T3; Fanout = 1; COMB Node = 'atwd:atwd1|atwd_trigger:inst_atwd_trigger|ATWDTrigger_sig~COMB'
-        Info: 3: + IC(4.609 ns) + CELL(0.840 ns) = 6.765 ns; Loc. = IOC_AD7; Fanout = 8; REG Node = 'atwd:atwd1|atwd_trigger:inst_atwd_trigger|ATWDTrigger_sig'
-        Info: Total cell delay = 1.902 ns ( 28.12 % )
-        Info: Total interconnect delay = 4.863 ns ( 71.88 % )
+    Info: - Longest register to register delay is 6.424 ns
+        Info: 1: + IC(0.000 ns) + CELL(0.165 ns) = 0.165 ns; Loc. = LC10_15_Q1; Fanout = 7; REG Node = 'slaveregister:slaveregister_inst|command_4_local[0]'
+        Info: 2: + IC(1.030 ns) + CELL(0.815 ns) = 2.010 ns; Loc. = LC8_14_Q1; Fanout = 1; COMB Node = 'LED2ATWDdelay:LED2ATWDdelay_inst|i~9'
+        Info: 3: + IC(0.272 ns) + CELL(0.366 ns) = 2.648 ns; Loc. = LC2_14_Q1; Fanout = 1; COMB Node = 'LED2ATWDdelay:LED2ATWDdelay_inst|i~10'
+        Info: 4: + IC(0.248 ns) + CELL(0.897 ns) = 3.793 ns; Loc. = LC8_13_Q1; Fanout = 1; COMB Node = 'LED2ATWDdelay:LED2ATWDdelay_inst|i~7'
+        Info: 5: + IC(0.260 ns) + CELL(0.366 ns) = 4.419 ns; Loc. = LC3_13_Q1; Fanout = 2; COMB Node = 'LED2ATWDdelay:LED2ATWDdelay_inst|i~8'
+        Info: 6: + IC(0.263 ns) + CELL(0.815 ns) = 5.497 ns; Loc. = LC9_13_Q1; Fanout = 2; COMB Node = 'atwd:atwd0|atwd_trigger:inst_atwd_trigger|i94~8'
+        Info: 7: + IC(0.251 ns) + CELL(0.676 ns) = 6.424 ns; Loc. = LC7_13_Q1; Fanout = 1; REG Node = 'atwd:atwd0|atwd_trigger:inst_atwd_trigger|launch_mode[1]'
+        Info: Total cell delay = 4.100 ns ( 63.82 % )
+        Info: Total interconnect delay = 2.324 ns ( 36.18 % )
 Info: No valid register-to-register paths exist for clock CLK2p
 Info: No valid register-to-register paths exist for clock CLK1p
 Info: No valid register-to-register paths exist for clock OneSPE
@@ -1299,20 +1300,20 @@ Info: No valid register-to-register paths exist for clock COINC_UP_ABAR
 Info: No valid register-to-register paths exist for clock COINC_UP_B
 Info: No valid register-to-register paths exist for clock COINC_UP_BBAR
 Warning: Can't achieve timing requirement tsu along 1 path(s). See Report window for details.
-Info: Slack time is -2.347 ns for clock CLK2p between source pin OneSPE and destination register hit_counter:inst_hit_counter|OneSPE0
+Info: Slack time is -2.579 ns for clock CLK2p between source pin OneSPE and destination register hit_counter:inst_hit_counter|OneSPE0
     Info: + tsu requirement for source pin and destination register is 1.000 ns
-    Info: - tsu from clock to input pin is 3.347 ns
-        Info: + Longest pin to register delay is 3.517 ns
+    Info: - tsu from clock to input pin is 3.579 ns
+        Info: + Longest pin to register delay is 3.757 ns
             Info: 1: + IC(0.000 ns) + CELL(1.874 ns) = 1.874 ns; Loc. = Pin_AF15; Fanout = 5; CLK Node = 'OneSPE'
-            Info: 2: + IC(1.522 ns) + CELL(0.121 ns) = 3.517 ns; Loc. = LC6_7_O4; Fanout = 1; REG Node = 'hit_counter:inst_hit_counter|OneSPE0'
-            Info: Total cell delay = 1.995 ns ( 56.72 % )
-            Info: Total interconnect delay = 1.522 ns ( 43.28 % )
+            Info: 2: + IC(1.762 ns) + CELL(0.121 ns) = 3.757 ns; Loc. = LC7_1_I4; Fanout = 1; REG Node = 'hit_counter:inst_hit_counter|OneSPE0'
+            Info: Total cell delay = 1.995 ns ( 53.10 % )
+            Info: Total interconnect delay = 1.762 ns ( 46.90 % )
         Info: - Offset between input clock CLK2p and output clock pll2x:inst_pll2x|altclklock:altclklock_component|outclock0 is -1.377 ns
         Info: + Micro setup delay of destination is 0.161 ns
-        Info: - Shortest clock path from clock pll2x:inst_pll2x|altclklock:altclklock_component|outclock0 to destination register is 1.708 ns
-            Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = PLL_2; Fanout = 2069; CLK Node = 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock0'
-            Info: 2: + IC(1.708 ns) + CELL(0.000 ns) = 1.708 ns; Loc. = LC6_7_O4; Fanout = 1; REG Node = 'hit_counter:inst_hit_counter|OneSPE0'
-            Info: Total interconnect delay = 1.708 ns ( 100.00 % )
+        Info: - Shortest clock path from clock pll2x:inst_pll2x|altclklock:altclklock_component|outclock0 to destination register is 1.716 ns
+            Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = PLL_2; Fanout = 2095; CLK Node = 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock0'
+            Info: 2: + IC(1.716 ns) + CELL(0.000 ns) = 1.716 ns; Loc. = LC7_1_I4; Fanout = 1; REG Node = 'hit_counter:inst_hit_counter|OneSPE0'
+            Info: Total interconnect delay = 1.716 ns ( 100.00 % )
 Warning: Can't achieve timing requirement tco along 2 path(s). See Report window for details.
 Info: Slack time is -1.738 ns for clock CLK2p between source register atwd:atwd1|atwd_trigger:inst_atwd_trigger|ATWDTrigger_sig and destination pin ATWDTrigger_1
     Info: + tco requirement for source register and destination pin is 1.000 ns
@@ -1328,18 +1329,18 @@ Info: Slack time is -1.738 ns for clock CLK2p between source register atwd:atwd1
             Info: 1: + IC(0.000 ns) + CELL(0.564 ns) = 0.564 ns; Loc. = IOC_AD7; Fanout = 8; REG Node = 'atwd:atwd1|atwd_trigger:inst_atwd_trigger|ATWDTrigger_sig'
             Info: 2: + IC(0.000 ns) + CELL(1.832 ns) = 2.396 ns; Loc. = Pin_AD7; Fanout = 0; PIN Node = 'ATWDTrigger_1'
             Info: Total cell delay = 2.396 ns ( 100.00 % )
-Info: th for register atwd:atwd1|atwd_trigger:inst_atwd_trigger|TriggerComplete_in_0 (data pin = TriggerComplete_1, clock pin = CLK2p) is -6.903 ns
+Info: th for register atwd:atwd0|atwd_trigger:inst_atwd_trigger|TriggerComplete_in_0 (data pin = TriggerComplete_0, clock pin = CLK2p) is -7.078 ns
     Info: + Offset between input clock CLK2p and output clock pll2x:inst_pll2x|altclklock:altclklock_component|outclock1 is -1.377 ns
-    Info: + Longest clock path from clock pll2x:inst_pll2x|altclklock:altclklock_component|outclock1 to destination register is 1.718 ns
+    Info: + Longest clock path from clock pll2x:inst_pll2x|altclklock:altclklock_component|outclock1 to destination register is 1.722 ns
         Info: 1: + IC(0.000 ns) + CELL(0.000 ns) = 0.000 ns; Loc. = PLL_2; Fanout = 1480; CLK Node = 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock1'
-        Info: 2: + IC(1.718 ns) + CELL(0.000 ns) = 1.718 ns; Loc. = LC3_13_T3; Fanout = 1; REG Node = 'atwd:atwd1|atwd_trigger:inst_atwd_trigger|TriggerComplete_in_0'
-        Info: Total interconnect delay = 1.718 ns ( 100.00 % )
+        Info: 2: + IC(1.722 ns) + CELL(0.000 ns) = 1.722 ns; Loc. = LC3_9_V3; Fanout = 1; REG Node = 'atwd:atwd0|atwd_trigger:inst_atwd_trigger|TriggerComplete_in_0'
+        Info: Total interconnect delay = 1.722 ns ( 100.00 % )
     Info: + Micro hold delay of destination is 0.318 ns
-    Info: - Shortest pin to register delay is 7.562 ns
-        Info: 1: + IC(0.000 ns) + CELL(2.247 ns) = 2.247 ns; Loc. = Pin_AC17; Fanout = 1; PIN Node = 'TriggerComplete_1'
-        Info: 2: + IC(5.194 ns) + CELL(0.121 ns) = 7.562 ns; Loc. = LC3_13_T3; Fanout = 1; REG Node = 'atwd:atwd1|atwd_trigger:inst_atwd_trigger|TriggerComplete_in_0'
-        Info: Total cell delay = 2.368 ns ( 31.31 % )
-        Info: Total interconnect delay = 5.194 ns ( 68.69 % )
+    Info: - Shortest pin to register delay is 7.741 ns
+        Info: 1: + IC(0.000 ns) + CELL(2.247 ns) = 2.247 ns; Loc. = Pin_AA14; Fanout = 1; PIN Node = 'TriggerComplete_0'
+        Info: 2: + IC(5.373 ns) + CELL(0.121 ns) = 7.741 ns; Loc. = LC3_9_V3; Fanout = 1; REG Node = 'atwd:atwd0|atwd_trigger:inst_atwd_trigger|TriggerComplete_in_0'
+        Info: Total cell delay = 2.368 ns ( 30.59 % )
+        Info: Total interconnect delay = 5.373 ns ( 69.41 % )
 Info: Minimum tco from clock CLK2p to destination pin CLKLK_OUT2p through clock pll2x:inst_pll2x|altclklock:altclklock_component|outclock1 is 1.189 ns
     Info: + Offset between input clock CLK2p and output clock pll2x:inst_pll2x|altclklock:altclklock_component|outclock1 is -1.377 ns
     Info: + Shortest clock to pin delay is 2.566 ns
@@ -1348,7 +1349,7 @@ Info: Minimum tco from clock CLK2p to destination pin CLKLK_OUT2p through clock 
         Info: Total cell delay = 2.566 ns ( 100.00 % )
 Critical Warning: Timing requirements were not met. See Report window for details.
 Info: Quartus II Timing Analyzer was successful. 0 errors, 6 warnings
-    Info: Processing ended: Thu Jun 17 08:38:40 2004
+    Info: Processing ended: Mon Jun 21 09:53:05 2004
     Info: Elapsed time: 00:00:11
 Info: *******************************************************************
 Info: Running Quartus II EDA Netlist Writer
@@ -1366,9 +1367,9 @@ Info: Running Quartus II EDA Netlist Writer
     Info: distribution of this program, or any portion of it, may result 
     Info: in severe civil and criminal penalties, and will be prosecuted 
     Info: to the maximum extent possible under the law.
-    Info: Processing started: Thu Jun 17 08:38:43 2004
+    Info: Processing started: Mon Jun 21 09:53:08 2004
 Info: Command: quartus_eda --import_settings_files=off --export_settings_files=off simpletest -c simpletest
 Info: Generated file simpletest.vo in folder c:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/simulation/modelsim/ for EDA simulation tool
 Info: Quartus II EDA Netlist Writer was successful. 0 errors, 0 warnings
-    Info: Processing ended: Thu Jun 17 08:38:50 2004
+    Info: Processing ended: Mon Jun 21 09:53:15 2004
     Info: Elapsed time: 00:00:07

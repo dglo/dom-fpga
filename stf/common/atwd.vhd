@@ -38,6 +38,7 @@ ENTITY atwd IS
 		enable_disc	: IN STD_LOGIC;
 		enable_LED	: IN STD_LOGIC;
 		done		: OUT STD_LOGIC;
+		deadtime	: IN STD_LOGIC_VECTOR (3 DOWNTO 0) := "0000";
 		-- disc
 		OneSPE		: IN STD_LOGIC;
 		LEDtrig		: IN STD_LOGIC;
@@ -162,6 +163,7 @@ ARCHITECTURE arch_atwd OF atwd IS
 			enable_disc	: IN STD_LOGIC;
 			enable_LED	: IN STD_LOGIC;
 			done		: OUT STD_LOGIC;
+			deadtime	: IN STD_LOGIC_VECTOR (3 DOWNTO 0);
 			-- controller
 			busy		: IN STD_LOGIC;
 			reset_trig	: IN STD_LOGIC;
@@ -263,6 +265,7 @@ BEGIN
 			enable_disc	=> enable_disc,
 			enable_LED	=> enable_LED,
 			done		=> done,
+			deadtime	=> deadtime,
 			-- controller
 			busy		=> busy,
 			reset_trig	=> reset_trig,

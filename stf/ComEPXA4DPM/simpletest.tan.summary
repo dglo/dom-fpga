@@ -3,9 +3,9 @@ Timing Analyzer Summary
 --------------------------------------------------------------------------------------
 
 Type           : Worst-case tsu
-Slack          : -2.521 ns
+Slack          : -2.579 ns
 Required Time  : 1.000 ns
-Actual Time    : 3.521 ns
+Actual Time    : 3.579 ns
 From           : OneSPE
 To             : hit_counter:inst_hit_counter|OneSPE0
 
@@ -19,9 +19,9 @@ To             : ATWDTrigger_1
 Type           : Worst-case th
 Slack          : N/A
 Required Time  : None
-Actual Time    : -6.644 ns
-From           : TriggerComplete_1
-To             : atwd:atwd1|atwd_trigger:inst_atwd_trigger|TriggerComplete_in_0
+Actual Time    : -7.078 ns
+From           : TriggerComplete_0
+To             : atwd:atwd0|atwd_trigger:inst_atwd_trigger|TriggerComplete_in_0
 
 Type           : Worst-case minimum tco
 Slack          : N/A
@@ -31,18 +31,18 @@ From           : pll2x:inst_pll2x|altclklock:altclklock_component|outclock1
 To             : CLKLK_OUT2p
 
 Type           : Clock Setup: 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock1'
-Slack          : 4.493 ns
+Slack          : 5.573 ns
 Required Time  : 40.00 MHz ( period = 25.000 ns )
-Actual Time    : 62.45 MHz ( period = 16.014 ns )
-From           : atwd:atwd1|atwd_trigger:inst_atwd_trigger|launch_mode[0]
-To             : atwd:atwd1|atwd_trigger:inst_atwd_trigger|ATWDTrigger_sig
+Actual Time    : N/A
+From           : slaveregister:slaveregister_inst|command_4_local[0]
+To             : atwd:atwd0|atwd_trigger:inst_atwd_trigger|launch_mode[1]
 
 Type           : Clock Setup: 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock0'
-Slack          : 10.862 ns
+Slack          : 10.381 ns
 Required Time  : 20.00 MHz ( period = 50.000 ns )
-Actual Time    : 35.37 MHz ( period = 28.276 ns )
+Actual Time    : 34.20 MHz ( period = 29.238 ns )
 From           : stripe:stripe_inst|alt_exc_stripe:lpm_instance|alt_exc_upcore:core|core~SLAVEHREADYO0
-To             : master_data_source:inst_master_data_source|data[31]
+To             : master_data_source:inst_master_data_source|wdata[31]~reg0
 
 Type           : Clock Setup: 'pll4x:inst_pll4x|altclklock:altclklock_component|outclock1'
 Slack          : 10.887 ns

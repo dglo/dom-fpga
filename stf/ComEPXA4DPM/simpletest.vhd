@@ -838,6 +838,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			enable_disc	: IN STD_LOGIC;
 			enable_LED	: IN STD_LOGIC;
 			done		: OUT STD_LOGIC;
+			deadtime	: IN STD_LOGIC_VECTOR (3 DOWNTO 0);
 			-- disc
 			OneSPE		: IN STD_LOGIC;
 			LEDtrig		: IN STD_LOGIC;
@@ -1780,6 +1781,7 @@ BEGIN
 			enable_disc	=> atwd0_enable_disc,
 			enable_LED	=> atwd0_enable_LED,
 			done		=> atwd0_done,
+			deadtime	=> hit_counter_dead,
 			-- disc
 			OneSPE		=> OneSPE,
 			LEDtrig		=> LEDtrig,
@@ -1822,6 +1824,7 @@ BEGIN
 			enable_disc	=> atwd1_enable_disc,
 			enable_LED	=> atwd1_enable_LED,
 			done		=> atwd1_done,
+			deadtime	=> hit_counter_dead,
 			-- disc
 			OneSPE		=> OneSPE,
 			LEDtrig		=> LEDtrig,
