@@ -453,6 +453,16 @@ party's intellectual property, are provided herein.
 	(pt 920 136)
 )
 (connector
+	(text "clk_en" (rect 720 112 776 128)(font "Courier New" (font_size 9)))
+	(pt 720 128)
+	(pt 768 128)
+)
+(connector
+	(text "clk" (rect 720 96 752 112)(font "Courier New" (font_size 9)))
+	(pt 720 112)
+	(pt 768 112)
+)
+(connector
 	(text "trig_in" (rect 48 64 120 80)(font "Courier New" (font_size 9)))
 	(pt 40 80)
 	(pt 88 80)
@@ -463,6 +473,10 @@ party's intellectual property, are provided herein.
 	(pt 480 176)
 )
 (connector
+	(pt 544 160)
+	(pt 560 160)
+)
+(connector
 	(pt 440 160)
 	(pt 480 160)
 )
@@ -470,6 +484,10 @@ party's intellectual property, are provided herein.
 	(text "clk" (rect 560 160 592 176)(font "Courier New" (font_size 9)))
 	(pt 560 176)
 	(pt 592 176)
+)
+(connector
+	(pt 560 160)
+	(pt 592 160)
 )
 (connector
 	(pt 672 40)
@@ -501,12 +519,28 @@ party's intellectual property, are provided herein.
 	(pt 376 152)
 )
 (connector
+	(pt 360 120)
+	(pt 560 120)
+)
+(connector
 	(pt 328 160)
 	(pt 376 160)
 )
 (connector
 	(pt 280 72)
 	(pt 328 72)
+)
+(connector
+	(pt 248 240)
+	(pt 512 240)
+)
+(connector
+	(pt 512 240)
+	(pt 624 240)
+)
+(connector
+	(pt 624 240)
+	(pt 920 240)
 )
 (connector
 	(pt 200 168)
@@ -521,12 +555,28 @@ party's intellectual property, are provided herein.
 	(pt 248 224)
 )
 (connector
+	(pt 560 160)
+	(pt 560 120)
+)
+(connector
 	(pt 200 64)
 	(pt 200 48)
 )
 (connector
 	(pt 360 152)
 	(pt 360 120)
+)
+(connector
+	(pt 328 160)
+	(pt 328 72)
+)
+(connector
+	(pt 512 240)
+	(pt 512 216)
+)
+(connector
+	(pt 624 240)
+	(pt 624 216)
 )
 (connector
 	(pt 280 168)
@@ -560,36 +610,8 @@ party's intellectual property, are provided herein.
 	(pt 816 216)
 	(pt 848 216)
 )
-(connector
-	(text "clk_en" (rect 712 112 768 128)(font "Courier New" (font_size 9)))
-	(pt 696 128)
-	(pt 768 128)
-)
-(connector
-	(text "clk" (rect 712 96 744 112)(font "Courier New" (font_size 9)))
-	(pt 696 112)
-	(pt 768 112)
-)
-(connector
-	(pt 248 240)
-	(pt 920 240)
-)
-(connector
-	(pt 544 160)
-	(pt 592 160)
-)
-(connector
-	(pt 360 120)
-	(pt 328 120)
-)
-(connector
-	(pt 328 160)
-	(pt 328 120)
-)
-(connector
-	(pt 328 120)
-	(pt 328 72)
-)
 (junction (pt 88 80))
+(junction (pt 560 160))
 (junction (pt 672 160))
-(junction (pt 328 120))
+(junction (pt 512 240))
+(junction (pt 624 240))

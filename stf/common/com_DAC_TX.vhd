@@ -34,8 +34,6 @@ ENTITY com_DAC_TX IS
 		-- enable for TX
 		enable		: IN STD_LOGIC;
 		enable_square	: IN STD_LOGIC;
-		enable_bitbang	: IN STD_LOGIC := '0';
-		data_bitbang	: IN STD_LOGIC_VECTOR(7 DOWNTO 0) := "00000000";
 		-- communications DAC connections
 		COM_DAC_CLK		: OUT STD_LOGIC;
 		COM_TX_SLEEP	: OUT STD_LOGIC;
@@ -133,12 +131,6 @@ BEGIN
 							wait_cnt_l := wait_cnt_l - 1;
 						END IF;
 				END CASE;
-			ELSIF enable_bitbang='1' THEN
-				cnt	:= "10000000";
-				COM_TX_SLEEP	<= '0';
-				COM_DB <= data_bitbang;
-				state <= state1;
-				wait_cnt := "1110";
 			ELSE
 				cnt	:= "10000000";
 				COM_TX_SLEEP	<= '0';

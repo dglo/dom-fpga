@@ -17,8 +17,7 @@
 -------------------------------------------------------------------------------
 -- Revisions  :
 -- Date        Version     Author    Description
--- 2003-07-17  V01-01-00   thorsten
--- 2003-07-18              thorsten  input latch to negatice edge  
+-- 2003-07-17  V01-01-00   thorsten  
 -------------------------------------------------------------------------------
 
 LIBRARY IEEE;
@@ -124,7 +123,7 @@ BEGIN
 		IF RST='1' THEN
 			COM_AD_D_int	<= (others=>'0');
 			COM_AD_OTR_int	<= '0';
-		ELSIF CLK'EVENT AND CLK='0' THEN
+		ELSIF CLK'EVENT AND CLK='1' THEN
 			COM_AD_D_int	<= COM_AD_D;
 			COM_AD_OTR_int	<= COM_AD_OTR;
 		END IF;

@@ -12,17 +12,9 @@ getbld.sh:
 
 getfpga.sh: 
 	retrieve the current fpga type.
-	we use the current working directory to determine
-	which of the fpga types to use.  make sure to
-	name the directories in such a way as that they
-	will be picked up...
 
 getver.sh: 
-	retrieve the version number of the module.
-	we look in the current directory for the file
-	given on the command line as the first arg to
-	this script.  if it doesn't exist, we keep looking
-	in common directories until we find it...
+	retrieve the version number of the module
 
 mkhdr.sh: 
 	create a C header file

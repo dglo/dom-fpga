@@ -1,6 +1,6 @@
 % C:\PROJECTS\ICECUBE\DOR\FPGA\DCOM_01\RX_CHAN\DC_MREC.tdf %
 % AHDL code created by Visual Software Solution's StateCAD 5.0 %
-% Fri Aug 22 19:14:43 2003 %
+% Tue May 20 08:34:48 2003 %
 
 % This AHDL code was generated using: %
 %  binary encoded state assignment with structured code format. %
@@ -29,8 +29,6 @@ SUBDESIGN DC_MREC(
 	comres_rcvd :	OUTPUT;
 	drreq_rcvd :	OUTPUT;
 	eof_rcvd :	OUTPUT;
-	idle_rcvd :	OUTPUT;
-	idreq_rcvd :	OUTPUT;
 	stf_rcvd :	OUTPUT;
 	sysres_rcvd :	OUTPUT;
 	tcal_rcvd :	OUTPUT;
@@ -210,12 +208,6 @@ drreq_rcvd =  ctrl_stb & my_adr & rec_ctrl & cmd_rec0 & !cmd_rec1 & cmd_rec2
 
 eof_rcvd =  ctrl_stb & my_adr & rec_ctrl & !cmd_rec0 & cmd_rec1 & !cmd_rec2 &
 	 !cmd_rec3 ;
-
-idle_rcvd =  ctrl_stb & my_adr & rec_ctrl & cmd_rec0 & cmd_rec1 & cmd_rec2 & 
-	cmd_rec3 ;
-
-idreq_rcvd =  ctrl_stb & my_adr & rec_ctrl & cmd_rec0 & cmd_rec1 & !cmd_rec2 
-	& !cmd_rec3 ;
 
 stf_rcvd =  ctrl_stb & my_adr & rec_ctrl & cmd_rec0 & !cmd_rec1 & !cmd_rec2 &
 	 !cmd_rec3 ;

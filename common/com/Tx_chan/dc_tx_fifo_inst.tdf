@@ -1,18 +1,21 @@
 (
 	q_sig[],
-	full_sig,
-	empty_sig,
-	usedw_sig[]
+	rdempty_sig,
+	wrfull_sig,
+	wrempty_sig,
+	wrusedw_sig[]
 ) = dc_tx_fifo	(
 	.data[] = data_sig[],
 	.wrreq = wrreq_sig,
 	.rdreq = rdreq_sig,
-	.clock = clock_sig,
+	.rdclk = rdclk_sig,
+	.wrclk = wrclk_sig,
 	.aclr = aclr_sig
 )
 RETURNS (
 	.q[],
-	.full,
-	.empty,
-	.usedw[]
+	.rdempty,
+	.wrfull,
+	.wrempty,
+	.wrusedw[]
 );

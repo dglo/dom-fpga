@@ -1,8 +1,0 @@
-(
-	result_sig
-) = and6	(
-	.data[][] = data_sig[][]
-)
-RETURNS (
-	.result
-);

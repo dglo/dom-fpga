@@ -3,11 +3,8 @@
 #
 # autoincrementing build number...
 #
-if [[ `pwd | awk -vFS='/' '{ print $(NF-1); }'` == "dom-fpga" ]]; then
-    bnf=../common/build_num
-else
-    bnf=../../common/build_num
-fi
+
+bnf=../../common/build_num
 
 #
 # create file if it doesn't exist yet...

@@ -21,6 +21,4 @@ FILES
 	VHDL_FILE = ATWD_interface.vhd;
 	VHDL_FILE = mem_interface.vhd;
 	VHDL_FILE = ATWD.vhd;
-	VHDL_FILE = FADC_interface.vhd;
-	VHDL_FILE = data_buffer.vhd;
 }

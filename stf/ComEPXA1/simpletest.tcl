@@ -1,4 +1,4 @@
-# Copyright (C) 1991-2003 Altera Corporation
+# Copyright (C) 1991-2002 Altera Corporation
 # Any  megafunction  design,  and related netlist (encrypted  or  decrypted),
 # support information,  device programming or simulation file,  and any other
 # associated  documentation or information  provided by  Altera  or a partner
@@ -20,1508 +20,1437 @@
 
 # Quartus II: Generate Tcl File for Project
 # File: simpletest.tcl
-# Generated on: Tue Aug 19 09:11:33 2003
+# Generated on: Thu Jun 05 07:29:27 2003
 
-# Load Quartus II Tcl Project package
-package require ::quartus::project
+# Close currently opened project if any
+project close;
 
-set need_to_close_project 0
-set make_assignments 1
+# Create and open the project
+if {![project exists simpletest]} {
+	project create simpletest;
+}
+project open simpletest;
 
-# Check that the right project is open
-if {[is_project_open]} {
-	if {[string compare $quartus(project) "simpletest"]} {
-		puts "Project simpletest is not open"
-		set make_assignments 0
+# Entity Assignments for simpletest
+project start_batch "simpletest";
+project add_assignment "simpletest" "" "" "ATWDTrigger_0" "TCO_REQUIREMENT" "1ns";
+project add_assignment "simpletest" "" "" "ATWDTrigger_1" "TCO_REQUIREMENT" "1ns";
+project add_assignment "simpletest" "" "" "OneSPE" "TSU_REQUIREMENT" "1ns";
+project end_batch "simpletest";
+
+# Entity Assignments for alt_exc_stripe
+project start_batch "alt_exc_stripe";
+project add_assignment "alt_exc_stripe" "" "" "lcell_hgrant" "ADV_NETLIST_OPT_ALLOWED" "NEVER_ALLOW";
+project add_assignment "alt_exc_stripe" "" "" "lcell_hresp0" "ADV_NETLIST_OPT_ALLOWED" "NEVER_ALLOW";
+project add_assignment "alt_exc_stripe" "" "" "lcell_hresp1" "ADV_NETLIST_OPT_ALLOWED" "NEVER_ALLOW";
+project add_assignment "alt_exc_stripe" "" "" "lcell_hgrant" "IMPLEMENT_AS_OUTPUT_OF_LOGIC_CELL" "ON";
+project add_assignment "alt_exc_stripe" "" "" "lcell_hresp0" "IMPLEMENT_AS_OUTPUT_OF_LOGIC_CELL" "ON";
+project add_assignment "alt_exc_stripe" "" "" "lcell_hresp1" "IMPLEMENT_AS_OUTPUT_OF_LOGIC_CELL" "ON";
+project end_batch "alt_exc_stripe";
+
+# Software Build Assignments for release
+if {![project swb_exists release]} {
+	project create_swb release;
+}
+project set_active_swb release;
+
+swb add_assignment "" "" "" "ARM_CPP_COMMAND_LINE" "-O2";
+swb add_assignment "" "" "" "BYTE_ORDER" "LITTLE ENDIAN";
+swb add_assignment "" "" "" "DO_POST_BUILD_COMMAND_LINE" "OFF";
+swb add_assignment "" "" "" "GNUPRO_ARM_CPP_COMMAND_LINE" "-O3 -fomit-frame-pointer";
+swb add_assignment "" "" "" "GNUPRO_NIOS_CPP_COMMAND_LINE" "-O3";
+swb add_assignment "" "" "" "OUTPUT_FILE_NAME" "Release\\simpletest.hex";
+swb add_assignment "" "" "" "OUTPUT_TYPE" "INTEL HEX";
+swb add_assignment "" "" "" "PROCESSOR" "ARM922T";
+swb add_assignment "" "" "" "PROGRAMMING_FILE_TYPE" "NO PROGRAMMING FILE";
+swb add_assignment "" "" "" "TOOLSET" "CUSTOM BUILD";
+swb add_assignment "" "" "" "USE_C_PREPROCESSOR_FOR_GNU_ASM_FILES" "ON";
+
+# Software Build Assignments for debug
+if {![project swb_exists debug]} {
+	project create_swb debug;
+}
+project set_active_swb debug;
+
+swb add_assignment "" "" "" "ARM_ASM_COMMAND_LINE" "-g -keep";
+swb add_assignment "" "" "" "ARM_CPP_COMMAND_LINE" "-g -O0";
+swb add_assignment "" "" "" "ASP_ASM_COMMAND_LINE" "-g";
+swb add_assignment "" "" "" "BYTE_ORDER" "LITTLE ENDIAN";
+swb add_assignment "" "" "" "DO_POST_BUILD_COMMAND_LINE" "OFF";
+swb add_assignment "" "" "" "GNUPRO_ARM_ASM_COMMAND_LINE" "--gdwarf2 -L";
+swb add_assignment "" "" "" "GNUPRO_ARM_CPP_COMMAND_LINE" "-g -O0";
+swb add_assignment "" "" "" "GNUPRO_NIOS_ASM_COMMAND_LINE" "--gdwarf2 -L";
+swb add_assignment "" "" "" "GNUPRO_NIOS_CPP_COMMAND_LINE" "-g -O0";
+swb add_assignment "" "" "" "OUTPUT_FILE_NAME" "Debug\\simpletest.hex";
+swb add_assignment "" "" "" "OUTPUT_TYPE" "INTEL HEX";
+swb add_assignment "" "" "" "PROCESSOR" "ARM922T";
+swb add_assignment "" "" "" "PROGRAMMING_FILE_TYPE" "NO PROGRAMMING FILE";
+swb add_assignment "" "" "" "TOOLSET" "CUSTOM BUILD";
+swb add_assignment "" "" "" "USE_C_PREPROCESSOR_FOR_GNU_ASM_FILES" "ON";
+
+# Simulator Assignments for simpletest
+if {![project sim_exists simpletest]} {
+	project create_sim simpletest;
+}
+project set_active_sim simpletest;
+
+sim start_batch;
+sim add_assignment "" "" "" "ADD_DEFAULT_PINS_TO_SIMULATION_OUTPUT_WAVEFORMS" "ON";
+sim add_assignment "" "" "" "CHECK_OUTPUTS" "OFF";
+sim add_assignment "" "" "" "SIMULATION_COVERAGE" "ON";
+sim add_assignment "" "" "" "ESTIMATE_POWER_CONSUMPTION" "OFF";
+sim add_assignment "" "" "" "GLITCH_DETECTION" "OFF";
+sim add_assignment "" "" "" "GLITCH_INTERVAL" "1ns";
+sim add_assignment "" "" "" "POWER_ESTIMATION_START_TIME" "0 ns";
+sim add_assignment "" "" "" "SETUP_HOLD_DETECTION" "OFF";
+sim add_assignment "" "" "" "SIMULATION_MODE" "TIMING";
+sim add_assignment "" "" "" "START_TIME" "0ns";
+sim add_assignment "" "" "" "USE_COMPILER_SETTINGS" "simpletest";
+sim end_batch;
+
+# Compiler Assignments for simpletest
+if {![project cmp_exists simpletest]} {
+	project create_cmp simpletest;
+}
+project set_active_cmp simpletest;
+
+cmp start_batch;
+cmp add_assignment "" "" "" "ADV_NETLIST_OPT_FIT_LE_DUPLICATION" "OFF";
+cmp add_assignment "" "" "" "ADV_NETLIST_OPT_FIT_LE_DUPLICATION_WITH_LUT_RESYNTH" "OFF";
+cmp add_assignment "" "" "" "ADV_NETLIST_OPT_RETIME_CORE_AND_IO" "ON";
+cmp add_assignment "" "" "" "ADV_NETLIST_OPT_SYNTH_GATE_RETIME" "OFF";
+cmp add_assignment "" "" "" "ADV_NETLIST_OPT_SYNTH_USE_FITTER_INFO" "OFF";
+cmp add_assignment "" "" "" "ADV_NETLIST_OPT_SYNTH_WYSIWYG_REMAP" "OFF";
+cmp add_assignment "" "" "" "COMPILATION_LEVEL" "FULL";
+cmp add_assignment "" "" "" "DPRAM_32BIT_SINGLE_PORT_MODE_INPUT_EPXA1" "MEGALAB COLUMN 1";
+cmp add_assignment "" "" "" "DPRAM_32BIT_SINGLE_PORT_MODE_OTHER_SIGNALS_EPXA1" "MEGALAB COLUMN 1";
+cmp add_assignment "" "" "" "DPRAM_32BIT_SINGLE_PORT_MODE_OUTPUT_EPXA1" "LOWER TO 1ESB UPPER TO 1";
+cmp add_assignment "" "" "" "DPRAM_8BIT_16BIT_SINGLE_PORT_MODE_INPUT_EPXA1" "MEGALAB COLUMN 1";
+cmp add_assignment "" "" "" "DPRAM_8BIT_16BIT_SINGLE_PORT_MODE_OTHER_SIGNALS_EPXA1" "MEGALAB COLUMN 1";
+cmp add_assignment "" "" "" "DPRAM_8BIT_16BIT_SINGLE_PORT_MODE_OUTPUT_EPXA1" "MEGALAB COLUMN 1";
+cmp add_assignment "" "" "" "DPRAM_DEEP_MODE_INPUT_EPXA4_10" "MEGALAB COLUMN 3";
+cmp add_assignment "" "" "" "DPRAM_DEEP_MODE_OTHER_SIGNALS_EPXA4_10" "MEGALAB COLUMN 3";
+cmp add_assignment "" "" "" "DPRAM_DEEP_MODE_OUTPUT_EPXA4_10" "MEGALAB COLUMN 3";
+cmp add_assignment "" "" "" "DPRAM_DUAL_PORT_MODE_INPUT_EPXA1" "DPRAM0 TO 1 DPRAM1 TO 2";
+cmp add_assignment "" "" "" "DPRAM_DUAL_PORT_MODE_INPUT_EPXA4_10" "DPRAM0 TO 3 DPRAM1 TO 4";
+cmp add_assignment "" "" "" "DPRAM_DUAL_PORT_MODE_OTHER_SIGNALS_EPXA1" "DPRAM0 TO 1 DPRAM1 TO 2";
+cmp add_assignment "" "" "" "DPRAM_DUAL_PORT_MODE_OTHER_SIGNALS_EPXA4_10" "DPRAM0 TO 3 DPRAM1 TO 4";
+cmp add_assignment "" "" "" "DPRAM_DUAL_PORT_MODE_OUTPUT_EPXA1" "DPRAM0 TO 1 DPRAM1 TO 2";
+cmp add_assignment "" "" "" "DPRAM_DUAL_PORT_MODE_OUTPUT_EPXA4_10" "DPRAM0 TO 3 DPRAM1 TO 4ESB";
+cmp add_assignment "" "" "" "DPRAM_INPUT_EPXA4_10" "DEFAULT INPUT ROUTING OPTIONS";
+cmp add_assignment "" "" "" "DPRAM_OTHER_SIGNALS_EPXA4_10" "DEFAULT OTHER ROUTING OPTIONS";
+cmp add_assignment "" "" "" "DPRAM_OUTPUT_EPXA4_10" "DEFAULT OUTPUT ROUTING OPTIONS";
+cmp add_assignment "" "" "" "DPRAM_SINGLE_PORT_MODE_INPUT_EPXA4_10" "DPRAM0 TO 3 DPRAM1 TO 4";
+cmp add_assignment "" "" "" "DPRAM_SINGLE_PORT_MODE_OTHER_SIGNALS_EPXA4_10" "DPRAM0 TO 3 DPRAM1 TO 4";
+cmp add_assignment "" "" "" "DPRAM_SINGLE_PORT_MODE_OUTPUT_EPXA4_10" "DPRAM0 TO 3 DPRAM1 TO 4ESB";
+cmp add_assignment "" "" "" "DPRAM_WIDE_MODE_INPUT_EPXA4_10" "LOWER TO 3 UPPER TO 4";
+cmp add_assignment "" "" "" "DPRAM_WIDE_MODE_OTHER_SIGNALS_EPXA4_10" "MEGALAB COLUMN 3";
+cmp add_assignment "" "" "" "DPRAM_WIDE_MODE_OUTPUT_EPXA4_10" "LOWER TO 3 UPPER TO 4ESB";
+cmp add_assignment "" "" "" "DRC_FANOUT_EXCEEDING" "30";
+cmp add_assignment "" "" "" "DRC_TOP_FANOUT" "50";
+cmp add_assignment "" "" "" "DRC_REPORT_FANOUT_EXCEEDING" "OFF";
+cmp add_assignment "" "" "" "DRC_REPORT_TOP_FANOUT" "OFF";
+cmp add_assignment "" "" "" "RUN_DRC_DURING_COMPILATION" "OFF";
+cmp add_assignment "" "" "" "FAMILY" "EXCALIBUR_ARM";
+cmp add_assignment "" "" "" "FAST_FIT_COMPILATION" "OFF";
+cmp add_assignment "" "" "" "FINAL_PLACEMENT_OPTIMIZATION" "AUTOMATICALLY";
+cmp add_assignment "" "" "" "INITIAL_PLACEMENT_CONFIGURATION" "1";
+cmp add_assignment "" "" "" "MERGE_HEX_FILE" "OFF";
+cmp add_assignment "" "" "" "OPTIMIZE_IOC_REGISTER_PLACEMENT_FOR_TIMING" "ON";
+cmp add_assignment "" "" "" "PLD_TO_STRIPE_INTERRUPTS_EPXA4_10" "MEGALAB COLUMN 2";
+cmp add_assignment "" "" "" "PROCESSOR_DEBUG_EXTENSIONS_EPXA4_10" "MEGALAB COLUMN 2";
+cmp add_assignment "" "" "" "FOCUS_ENTITY_NAME" "|simpletest";
+cmp add_assignment "" "" "" "ROUTING_BACK_ANNOTATION_MODE" "OFF";
+cmp add_assignment "" "" "" "RUN_FITTER_IN_SIGNALPROBE_MODE" "OFF";
+cmp add_assignment "" "" "" "SAVE_DISK_SPACE" "ON";
+cmp add_assignment "" "" "" "SIGNALPROBE_ALLOW_OVERUSE" "OFF";
+cmp add_assignment "" "" "" "SIGNALPROBE_AUTO_ASSIGN" "0";
+cmp add_assignment "" "" "" "SIGNALPROBE_COMPILATION" "OFF";
+cmp add_assignment "" "" "" "SIGNALPROBE_ROUTING" "ALL_SIGNAL_PROBE";
+cmp add_assignment "" "" "" "SMART_COMPILE_IGNORES_TDC_FOR_STRATIX_PLL_CHANGES" "OFF";
+cmp add_assignment "" "" "" "SPEED_DISK_USAGE_TRADEOFF" "NORMAL";
+cmp add_assignment "" "" "" "STRIPE_TO_PLD_BRIDGE_EPXA4_10" "MEGALAB COLUMN 1";
+cmp add_assignment "" "" "" "STRIPE_TO_PLD_INTERRUPTS_EPXA4_10" "MEGALAB COLUMN 2";
+cmp add_assignment "" "" "" "OPTIMIZE_TIMING" "NORMAL_COMPILATION";
+cmp add_assignment "" "" "" "LOGICLOCK_INCREMENTAL_COMPILE_ASSIGNMENT" "OFF";
+cmp add_assignment "" "" "" "AUTO_INCREMENT_CONFIG_DEVICE_JTAG_USER_CODE" "ON";
+cmp add_assignment "" "" "" "AUTO_RESTART_CONFIGURATION" "OFF";
+cmp add_assignment "" "" "" "ENABLE_DEVICE_WIDE_OE" "OFF";
+cmp add_assignment "" "" "" "ENABLE_DEVICE_WIDE_RESET" "OFF";
+cmp add_assignment "" "" "" "CLOCK_DIVISOR" "1";
+cmp add_assignment "" "" "" "CLOCK_FREQUENCY" "10 MHZ";
+cmp add_assignment "" "" "" "CLOCK_SOURCE" "INTERNAL";
+cmp add_assignment "" "" "" "COMPRESSION_MODE" "OFF";
+cmp add_assignment "" "" "" "RESERVE_DATA0_AFTER_CONFIGURATION" "AS INPUT TRI-STATED";
+cmp add_assignment "" "" "" "RESERVE_DATA7_THROUGH_DATA1_AFTER_CONFIGURATION" "OFF";
+cmp add_assignment "" "" "" "DISABLE_NCS_AND_OE_PULLUPS_ON_CONFIG_DEVICE" "OFF";
+cmp add_assignment "" "" "" "ENABLE_LOW_VOLTAGE_MODE_ON_CONFIG_DEVICE" "ON";
+cmp add_assignment "" "" "" "FLEX10K_ENABLE_LOW_VOLTAGE_MODE_ON_CONFIG_DEVICE" "ON";
+cmp add_assignment "" "" "" "FLEX6K_ENABLE_LOW_VOLTAGE_MODE_ON_CONFIG_DEVICE" "OFF";
+cmp add_assignment "" "" "" "ENABLE_VREFA_PIN" "OFF";
+cmp add_assignment "" "" "" "ENABLE_VREFB_PIN" "OFF";
+cmp add_assignment "" "" "" "APEX20K_CONFIG_DEVICE_JTAG_USER_CODE" "FFFFFFFF";
+cmp add_assignment "" "" "" "MERCURY_CONFIG_DEVICE_JTAG_USER_CODE" "FFFFFFFF";
+cmp add_assignment "" "" "" "FLEX10K_CONFIG_DEVICE_JTAG_USER_CODE" "FFFFFFFF";
+cmp add_assignment "" "" "" "STRATIX_CONFIG_DEVICE_JTAG_USER_CODE" "FFFFFFFF";
+cmp add_assignment "" "" "" "EPROM_USE_CHECKSUM_AS_USERCODE" "OFF";
+cmp add_assignment "" "" "" "GENERATE_CONFIG_HEXOUT_FILE" "OFF";
+cmp add_assignment "" "" "" "GENERATE_CONFIG_ISC_FILE" "OFF";
+cmp add_assignment "" "" "" "GENERATE_CONFIG_JAM_FILE" "OFF";
+cmp add_assignment "" "" "" "GENERATE_CONFIG_JBC_FILE" "OFF";
+cmp add_assignment "" "" "" "GENERATE_CONFIG_JBC_FILE_COMPRESSED" "ON";
+cmp add_assignment "" "" "" "GENERATE_CONFIG_SVF_FILE" "OFF";
+cmp add_assignment "" "" "" "GENERATE_HEX_FILE" "OFF";
+cmp add_assignment "" "" "" "GENERATE_ISC_FILE" "OFF";
+cmp add_assignment "" "" "" "GENERATE_JAM_FILE" "OFF";
+cmp add_assignment "" "" "" "GENERATE_JBC_FILE" "OFF";
+cmp add_assignment "" "" "" "GENERATE_JBC_FILE_COMPRESSED" "ON";
+cmp add_assignment "" "" "" "GENERATE_RBF_FILE" "OFF";
+cmp add_assignment "" "" "" "GENERATE_SVF_FILE" "OFF";
+cmp add_assignment "" "" "" "GENERATE_TTF_FILE" "OFF";
+cmp add_assignment "" "" "" "HEXOUT_FILE_COUNT_DIRECTION" "UP";
+cmp add_assignment "" "" "" "HEXOUT_FILE_START_ADDRESS" "0";
+cmp add_assignment "" "" "" "ENABLE_INIT_DONE_OUTPUT" "OFF";
+cmp add_assignment "" "" "" "ENABLE_JTAG_BST_SUPPORT" "OFF";
+cmp add_assignment "" "" "" "MAX7000_ENABLE_JTAG_BST_SUPPORT" "ON";
+cmp add_assignment "" "" "" "RESERVE_NCEO_AFTER_CONFIGURATION" "OFF";
+cmp add_assignment "" "" "" "RESERVE_NWS_NRS_NCS_CS_AFTER_CONFIGURATION" "OFF";
+cmp add_assignment "" "" "" "ON_CHIP_BITSTREAM_DECOMPRESSION" "OFF";
+cmp add_assignment "" "" "" "FLEX10K_ENABLE_LOCK_OUTPUT" "OFF";
+cmp add_assignment "" "" "" "APEX20K_CONFIGURATION_SCHEME" "PASSIVE SERIAL";
+cmp add_assignment "" "" "" "APEXII_CONFIGURATION_SCHEME" "PASSIVE SERIAL";
+cmp add_assignment "" "" "" "MERCURY_CONFIGURATION_SCHEME" "PASSIVE SERIAL";
+cmp add_assignment "" "" "" "EXCALIBUR_CONFIGURATION_SCHEME" "PASSIVE SERIAL";
+cmp add_assignment "" "" "" "FLEX10K_CONFIGURATION_SCHEME" "PASSIVE SERIAL";
+cmp add_assignment "" "" "" "FLEX6K_CONFIGURATION_SCHEME" "PASSIVE SERIAL";
+cmp add_assignment "" "" "" "CYCLONE_CONFIGURATION_SCHEME" "PASSIVE SERIAL";
+cmp add_assignment "" "" "" "STRATIX_CONFIGURATION_SCHEME" "PASSIVE SERIAL";
+cmp add_assignment "" "" "" "RESERVE_RDYNBUSY_AFTER_CONFIGURATION" "OFF";
+cmp add_assignment "" "" "" "RELEASE_CLEARS_BEFORE_TRI_STATES" "OFF";
+cmp add_assignment "" "" "" "RESERVE_ALL_UNUSED_PINS" "AS OUTPUT DRIVING GROUND";
+cmp add_assignment "" "" "" "RESERVE_PIN" "AS INPUT TRI-STATED";
+cmp add_assignment "" "" "" "RESERVE_NCSO_AFTER_CONFIGURATION" "OFF";
+cmp add_assignment "" "" "" "RESERVE_ASDO_AFTER_CONFIGURATION" "OFF";
+cmp add_assignment "" "" "" "SECURITY_BIT" "OFF";
+cmp add_assignment "" "" "" "USER_START_UP_CLOCK" "OFF";
+cmp add_assignment "" "" "" "STRATIX_UPDATE_MODE" "STANDARD";
+cmp add_assignment "" "" "" "APEX20K_JTAG_USER_CODE" "FFFFFFFF";
+cmp add_assignment "" "" "" "MERCURY_JTAG_USER_CODE" "FFFFFFFF";
+cmp add_assignment "" "" "" "FLEX10K_JTAG_USER_CODE" "7F";
+cmp add_assignment "" "" "" "MAX7000_JTAG_USER_CODE" "FFFFFFFF";
+cmp add_assignment "" "" "" "STRATIX_JTAG_USER_CODE" "FFFFFFFF";
+cmp add_assignment "" "" "" "USE_CHECKSUM_AS_USERCODE" "OFF";
+cmp add_assignment "" "" "" "MAX7000_USE_CHECKSUM_AS_USERCODE" "OFF";
+cmp add_assignment "" "" "" "APEX20K_CONFIGURATION_DEVICE" "EPC2";
+cmp add_assignment "" "" "" "CYCLONE_CONFIGURATION_DEVICE" "EPC2";
+cmp add_assignment "" "" "" "MERCURY_CONFIGURATION_DEVICE" "EPC2";
+cmp add_assignment "" "" "" "EXCALIBUR_CONFIGURATION_DEVICE" "EPC2";
+cmp add_assignment "" "" "" "FLEX10K_CONFIGURATION_DEVICE" "EPC2";
+cmp add_assignment "" "" "" "FLEX6K_CONFIGURATION_DEVICE" "EPC1";
+cmp add_assignment "" "" "" "STRATIX_CONFIGURATION_DEVICE" "EPC2";
+cmp add_assignment "" "" "" "USE_CONFIGURATION_DEVICE" "ON";
+cmp add_assignment "" "" "" "AUTO_INSERT_SLD_HUB_ENTITY" "ENABLE";
+cmp add_assignment "" "" "" "HUB_ENTITY_NAME" "sld_hub";
+cmp add_assignment "" "" "" "HUB_INSTANCE_NAME" "sld_hub_inst";
+cmp add_assignment "simpletest" "" "" "AUTO_INCREMENT_CONFIG_DEVICE_JTAG_USER_CODE" "ON";
+cmp add_assignment "simpletest" "" "" "AUTO_RESTART_CONFIGURATION" "OFF";
+cmp add_assignment "simpletest" "" "" "BASE_PIN_OUT_FILE_ON_SAMEFRAME_DEVICE" "OFF";
+cmp add_assignment "simpletest" "" "" "ENABLE_DEVICE_WIDE_OE" "OFF";
+cmp add_assignment "simpletest" "" "" "ENABLE_DEVICE_WIDE_RESET" "OFF";
+cmp add_assignment "simpletest" "" "" "CLOCK_DIVISOR" "1";
+cmp add_assignment "simpletest" "" "" "CLOCK_FREQUENCY" "10 MHZ";
+cmp add_assignment "simpletest" "" "" "CLOCK_SOURCE" "INTERNAL";
+cmp add_assignment "simpletest" "" "" "COMPRESSION_MODE" "OFF";
+cmp add_assignment "simpletest" "" "" "RESERVE_DATA0_AFTER_CONFIGURATION" "AS INPUT TRI-STATED";
+cmp add_assignment "simpletest" "" "" "RESERVE_DATA7_THROUGH_DATA1_AFTER_CONFIGURATION" "OFF";
+cmp add_assignment "simpletest" "" "" "DEVICE" "EPXA1F672C2";
+cmp add_assignment "simpletest" "" "" "DISABLE_NCS_AND_OE_PULLUPS_ON_CONFIG_DEVICE" "OFF";
+cmp add_assignment "simpletest" "" "" "ENABLE_LOW_VOLTAGE_MODE_ON_CONFIG_DEVICE" "ON";
+cmp add_assignment "simpletest" "" "" "FLEX10K_ENABLE_LOW_VOLTAGE_MODE_ON_CONFIG_DEVICE" "ON";
+cmp add_assignment "simpletest" "" "" "FLEX6K_ENABLE_LOW_VOLTAGE_MODE_ON_CONFIG_DEVICE" "OFF";
+cmp add_assignment "simpletest" "" "" "ENABLE_VREFA_PIN" "OFF";
+cmp add_assignment "simpletest" "" "" "ENABLE_VREFB_PIN" "OFF";
+cmp add_assignment "simpletest" "" "" "APEX20K_CONFIG_DEVICE_JTAG_USER_CODE" "FFFFFFFF";
+cmp add_assignment "simpletest" "" "" "MERCURY_CONFIG_DEVICE_JTAG_USER_CODE" "FFFFFFFF";
+cmp add_assignment "simpletest" "" "" "FLEX10K_CONFIG_DEVICE_JTAG_USER_CODE" "FFFFFFFF";
+cmp add_assignment "simpletest" "" "" "STRATIX_CONFIG_DEVICE_JTAG_USER_CODE" "FFFFFFFF";
+cmp add_assignment "simpletest" "" "" "EPROM_USE_CHECKSUM_AS_USERCODE" "OFF";
+cmp add_assignment "simpletest" "" "" "DEVICE_FILTER_PACKAGE" "FBGA";
+cmp add_assignment "simpletest" "" "" "DEVICE_FILTER_PIN_COUNT" "672";
+cmp add_assignment "simpletest" "" "" "DEVICE_FILTER_SPEED_GRADE" "2";
+cmp add_assignment "simpletest" "" "" "GENERATE_CONFIG_HEXOUT_FILE" "OFF";
+cmp add_assignment "simpletest" "" "" "GENERATE_CONFIG_ISC_FILE" "OFF";
+cmp add_assignment "simpletest" "" "" "GENERATE_CONFIG_JAM_FILE" "OFF";
+cmp add_assignment "simpletest" "" "" "GENERATE_CONFIG_JBC_FILE" "OFF";
+cmp add_assignment "simpletest" "" "" "GENERATE_CONFIG_JBC_FILE_COMPRESSED" "ON";
+cmp add_assignment "simpletest" "" "" "GENERATE_CONFIG_SVF_FILE" "OFF";
+cmp add_assignment "simpletest" "" "" "GENERATE_HEX_FILE" "OFF";
+cmp add_assignment "simpletest" "" "" "GENERATE_ISC_FILE" "OFF";
+cmp add_assignment "simpletest" "" "" "GENERATE_JAM_FILE" "OFF";
+cmp add_assignment "simpletest" "" "" "GENERATE_JBC_FILE" "OFF";
+cmp add_assignment "simpletest" "" "" "GENERATE_JBC_FILE_COMPRESSED" "ON";
+cmp add_assignment "simpletest" "" "" "GENERATE_RBF_FILE" "OFF";
+cmp add_assignment "simpletest" "" "" "GENERATE_SVF_FILE" "OFF";
+cmp add_assignment "simpletest" "" "" "GENERATE_TTF_FILE" "OFF";
+cmp add_assignment "simpletest" "" "" "HEXOUT_FILE_COUNT_DIRECTION" "UP";
+cmp add_assignment "simpletest" "" "" "HEXOUT_FILE_START_ADDRESS" "0";
+cmp add_assignment "simpletest" "" "" "ENABLE_INIT_DONE_OUTPUT" "ON";
+cmp add_assignment "simpletest" "" "ATWD0VDD_SUP" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ATWD0_D\[0\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ATWD0_D\[1\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ATWD0_D\[2\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ATWD0_D\[3\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ATWD0_D\[4\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ATWD0_D\[5\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ATWD0_D\[6\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ATWD0_D\[7\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ATWD0_D\[8\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ATWD0_D\[9\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ATWD1VDD_SUP" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ATWD1_D\[0\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ATWD1_D\[1\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ATWD1_D\[2\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ATWD1_D\[3\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ATWD1_D\[4\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ATWD1_D\[5\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ATWD1_D\[6\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ATWD1_D\[7\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ATWD1_D\[8\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ATWD1_D\[9\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ATWDTrigger_0" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ATWDTrigger_1" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "A_nB" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "AnalogReset_0" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "AnalogReset_1" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "CLK1p" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "CLK2p" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "CLK3p" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "CLK4p" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "CLKLK_OUT2p" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "CLK_REF" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "COINCIDENCE_OUT_DOWN" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "COINCIDENCE_OUT_UP" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "COINC_DOWN_A" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "COINC_DOWN_ABAR" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "COINC_DOWN_ALATCH" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "COINC_DOWN_B" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "COINC_DOWN_BBAR" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "COINC_DOWN_BLATCH" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "COINC_UP_A" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "COINC_UP_ABAR" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "COINC_UP_ALATCH" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "COINC_UP_B" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "COINC_UP_BBAR" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "COINC_UP_BLATCH" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "COM_AD_D\[0\]" "IO_STANDARD" "2.5 V";
+cmp add_assignment "simpletest" "" "COM_AD_D\[1\]" "IO_STANDARD" "2.5 V";
+cmp add_assignment "simpletest" "" "COM_AD_D\[2\]" "IO_STANDARD" "2.5 V";
+cmp add_assignment "simpletest" "" "COM_AD_D\[3\]" "IO_STANDARD" "2.5 V";
+cmp add_assignment "simpletest" "" "COM_AD_D\[4\]" "IO_STANDARD" "2.5 V";
+cmp add_assignment "simpletest" "" "COM_AD_D\[5\]" "IO_STANDARD" "2.5 V";
+cmp add_assignment "simpletest" "" "COM_AD_D\[6\]" "IO_STANDARD" "2.5 V";
+cmp add_assignment "simpletest" "" "COM_AD_D\[7\]" "IO_STANDARD" "2.5 V";
+cmp add_assignment "simpletest" "" "COM_AD_D\[8\]" "IO_STANDARD" "2.5 V";
+cmp add_assignment "simpletest" "" "COM_AD_D\[9\]" "IO_STANDARD" "2.5 V";
+cmp add_assignment "simpletest" "" "COM_AD_OTR" "IO_STANDARD" "2.5 V";
+cmp add_assignment "simpletest" "" "COM_DB\[10\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "COM_DB\[11\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "COM_DB\[12\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "COM_DB\[13\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "COM_DB\[6\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "COM_DB\[7\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "COM_DB\[8\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "COM_DB\[9\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "COM_TX_SLEEP" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ChannelSelect_0\[0\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ChannelSelect_0\[1\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ChannelSelect_1\[0\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ChannelSelect_1\[1\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "CounterClock_0" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "CounterClock_1" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "DigitalReset_0" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "DigitalReset_1" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "DigitalSet_0" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "DigitalSet_1" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIACK" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIADDR\[0\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIADDR\[10\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIADDR\[11\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIADDR\[12\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIADDR\[13\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIADDR\[14\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIADDR\[15\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIADDR\[16\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIADDR\[17\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIADDR\[18\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIADDR\[19\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIADDR\[1\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIADDR\[20\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIADDR\[21\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIADDR\[22\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIADDR\[23\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIADDR\[24\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIADDR\[2\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIADDR\[3\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIADDR\[4\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIADDR\[5\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIADDR\[6\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIADDR\[7\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIADDR\[8\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIADDR\[9\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIBE\[0\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIBE\[1\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBICLK" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBICSN\[0\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBICSN\[1\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBICSN\[2\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBICSN\[3\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIDQ\[0\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIDQ\[10\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIDQ\[11\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIDQ\[12\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIDQ\[13\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIDQ\[14\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIDQ\[15\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIDQ\[1\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIDQ\[2\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIDQ\[3\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIDQ\[4\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIDQ\[5\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIDQ\[6\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIDQ\[7\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIDQ\[8\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIDQ\[9\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIOEN" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "EBIWEN" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "FE_PULSER_N\[0\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "FE_PULSER_N\[1\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "FE_PULSER_N\[2\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "FE_PULSER_N\[3\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "FE_PULSER_P\[0\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "FE_PULSER_P\[1\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "FE_PULSER_P\[2\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "FE_PULSER_P\[3\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "FE_TEST_PULSE" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[0\]" "IO_STANDARD" "2.5 V";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[1\]" "IO_STANDARD" "2.5 V";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[2\]" "IO_STANDARD" "2.5 V";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[3\]" "IO_STANDARD" "2.5 V";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[4\]" "IO_STANDARD" "2.5 V";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[5\]" "IO_STANDARD" "2.5 V";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[6\]" "IO_STANDARD" "2.5 V";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[7\]" "IO_STANDARD" "2.5 V";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[8\]" "IO_STANDARD" "2.5 V";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[9\]" "IO_STANDARD" "2.5 V";
+cmp add_assignment "simpletest" "" "FLASH_AD_STBY" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "FLASH_NCO" "IO_STANDARD" "2.5 V";
+cmp add_assignment "simpletest" "" "FL_ATTN" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "FL_PRE_TRIG" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "FL_TCK" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "FL_TDI" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "FL_TDO" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "FL_TMS" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "FL_Trigger" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "FL_Trigger_bar" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "HDV_IN" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "HDV_Rx" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "HDV_RxENA" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "HDV_TxENA" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "INTEXTPIN" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "MultiSPE" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "MultiSPE_nl" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "OneSPE" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "OneSPE_nl" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "OutputEnable_0" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "OutputEnable_1" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "PGM\[0\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "PGM\[10\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "PGM\[11\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "PGM\[12\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "PGM\[13\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "PGM\[14\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "PGM\[15\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "PGM\[1\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "PGM\[2\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "PGM\[3\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "PGM\[4\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "PGM\[5\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "PGM\[6\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "PGM\[7\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "PGM\[8\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "PGM\[9\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "R2BUS\[0\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "R2BUS\[1\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "R2BUS\[2\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "R2BUS\[3\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "R2BUS\[4\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "R2BUS\[5\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "R2BUS\[6\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "RampSet_0" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "RampSet_1" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ReadWrite_0" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ReadWrite_1" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[0\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[10\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[11\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[12\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[13\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[14\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[1\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[2\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[3\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[4\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[5\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[6\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[7\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[8\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[9\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMCASN" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMCLK" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMCLKE" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMCLKN" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMCSN\[0\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMCSN\[1\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQM\[0\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQM\[1\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQM\[2\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQM\[3\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQS\[0\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQS\[1\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQS\[2\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQS\[3\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[0\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[10\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[11\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[12\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[13\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[14\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[15\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[16\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[17\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[18\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[19\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[1\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[20\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[21\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[22\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[23\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[24\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[25\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[26\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[27\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[28\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[29\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[2\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[30\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[31\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[3\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[4\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[5\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[6\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[7\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[8\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[9\]" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMRASN" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SDRAMWEN" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ShiftClock_0" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "ShiftClock_1" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "SingleLED_TRIGGER" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "TriggerComplete_0" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "TriggerComplete_1" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "UARTCTSN" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "UARTDCDN" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "UARTDSRN" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "UARTDTRN" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "UARTRIN" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "UARTRTSN" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "UARTRXD" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "UARTTXD" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "dummy1" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "dummy2" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "nPOR" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "nRESET" "IO_STANDARD" "LVTTL";
+cmp add_assignment "simpletest" "" "" "ENABLE_JTAG_BST_SUPPORT" "OFF";
+cmp add_assignment "simpletest" "" "" "MAX7000_ENABLE_JTAG_BST_SUPPORT" "ON";
+cmp add_assignment "simpletest" "" "ATWD0VDD_SUP" "LOCATION" "Pin_AC26";
+cmp add_assignment "simpletest" "" "ATWD0_D\[0\]" "LOCATION" "Pin_Y15";
+cmp add_assignment "simpletest" "" "ATWD0_D\[1\]" "LOCATION" "Pin_V15";
+cmp add_assignment "simpletest" "" "ATWD0_D\[2\]" "LOCATION" "Pin_AC15";
+cmp add_assignment "simpletest" "" "ATWD0_D\[3\]" "LOCATION" "Pin_AA15";
+cmp add_assignment "simpletest" "" "ATWD0_D\[4\]" "LOCATION" "Pin_AE16";
+cmp add_assignment "simpletest" "" "ATWD0_D\[5\]" "LOCATION" "Pin_AB16";
+cmp add_assignment "simpletest" "" "ATWD0_D\[6\]" "LOCATION" "Pin_AA16";
+cmp add_assignment "simpletest" "" "ATWD0_D\[7\]" "LOCATION" "Pin_W16";
+cmp add_assignment "simpletest" "" "ATWD0_D\[8\]" "LOCATION" "Pin_AF17";
+cmp add_assignment "simpletest" "" "ATWD0_D\[9\]" "LOCATION" "Pin_AD17";
+cmp add_assignment "simpletest" "" "ATWD1VDD_SUP" "LOCATION" "Pin_AC25";
+cmp add_assignment "simpletest" "" "ATWD1_D\[0\]" "LOCATION" "Pin_AA17";
+cmp add_assignment "simpletest" "" "ATWD1_D\[1\]" "LOCATION" "Pin_AF18";
+cmp add_assignment "simpletest" "" "ATWD1_D\[2\]" "LOCATION" "Pin_AB18";
+cmp add_assignment "simpletest" "" "ATWD1_D\[3\]" "LOCATION" "Pin_AD18";
+cmp add_assignment "simpletest" "" "ATWD1_D\[4\]" "LOCATION" "Pin_AC20";
+cmp add_assignment "simpletest" "" "ATWD1_D\[5\]" "LOCATION" "Pin_AC19";
+cmp add_assignment "simpletest" "" "ATWD1_D\[6\]" "LOCATION" "Pin_AE22";
+cmp add_assignment "simpletest" "" "ATWD1_D\[7\]" "LOCATION" "Pin_AA18";
+cmp add_assignment "simpletest" "" "ATWD1_D\[8\]" "LOCATION" "Pin_AD21";
+cmp add_assignment "simpletest" "" "ATWD1_D\[9\]" "LOCATION" "Pin_AE20";
+cmp add_assignment "simpletest" "" "ATWDTrigger_0" "LOCATION" "Pin_AB8";
+cmp add_assignment "simpletest" "" "ATWDTrigger_1" "LOCATION" "Pin_AD7";
+cmp add_assignment "simpletest" "" "A_nB" "LOCATION" "Pin_E4";
+cmp add_assignment "simpletest" "" "AnalogReset_0" "LOCATION" "Pin_AC16";
+cmp add_assignment "simpletest" "" "AnalogReset_1" "LOCATION" "Pin_AC18";
+cmp add_assignment "simpletest" "" "CLK1p" "LOCATION" "Pin_P20";
+cmp add_assignment "simpletest" "" "CLK2p" "LOCATION" "Pin_W6";
+cmp add_assignment "simpletest" "" "CLK3p" "LOCATION" "Pin_R23";
+cmp add_assignment "simpletest" "" "CLK4p" "LOCATION" "Pin_Y5";
+cmp add_assignment "simpletest" "" "CLKLK_OUT2p" "LOCATION" "Pin_M4";
+cmp add_assignment "simpletest" "" "CLK_REF" "LOCATION" "Pin_H24";
+cmp add_assignment "simpletest" "" "COINCIDENCE_OUT_DOWN" "LOCATION" "Pin_AB2";
+cmp add_assignment "simpletest" "" "COINCIDENCE_OUT_UP" "LOCATION" "Pin_AB1";
+cmp add_assignment "simpletest" "" "COINC_DOWN_A" "LOCATION" "Pin_AA10";
+cmp add_assignment "simpletest" "" "COINC_DOWN_ABAR" "LOCATION" "Pin_AE9";
+cmp add_assignment "simpletest" "" "COINC_DOWN_ALATCH" "LOCATION" "Pin_AC9";
+cmp add_assignment "simpletest" "" "COINC_DOWN_B" "LOCATION" "Pin_AC10";
+cmp add_assignment "simpletest" "" "COINC_DOWN_BBAR" "LOCATION" "Pin_AB9";
+cmp add_assignment "simpletest" "" "COINC_DOWN_BLATCH" "LOCATION" "Pin_AD9";
+cmp add_assignment "simpletest" "" "COINC_UP_A" "LOCATION" "Pin_AB10";
+cmp add_assignment "simpletest" "" "COINC_UP_ABAR" "LOCATION" "Pin_AE10";
+cmp add_assignment "simpletest" "" "COINC_UP_ALATCH" "LOCATION" "Pin_AF9";
+cmp add_assignment "simpletest" "" "COINC_UP_B" "LOCATION" "Pin_AD10";
+cmp add_assignment "simpletest" "" "COINC_UP_BBAR" "LOCATION" "Pin_AF10";
+cmp add_assignment "simpletest" "" "COINC_UP_BLATCH" "LOCATION" "Pin_AA11";
+cmp add_assignment "simpletest" "" "COM_AD_D\[0\]" "LOCATION" "Pin_L5";
+cmp add_assignment "simpletest" "" "COM_AD_D\[1\]" "LOCATION" "Pin_L4";
+cmp add_assignment "simpletest" "" "COM_AD_D\[2\]" "LOCATION" "Pin_L3";
+cmp add_assignment "simpletest" "" "COM_AD_D\[3\]" "LOCATION" "Pin_K5";
+cmp add_assignment "simpletest" "" "COM_AD_D\[4\]" "LOCATION" "Pin_K4";
+cmp add_assignment "simpletest" "" "COM_AD_D\[5\]" "LOCATION" "Pin_K3";
+cmp add_assignment "simpletest" "" "COM_AD_D\[6\]" "LOCATION" "Pin_J5";
+cmp add_assignment "simpletest" "" "COM_AD_D\[7\]" "LOCATION" "Pin_J4";
+cmp add_assignment "simpletest" "" "COM_AD_D\[8\]" "LOCATION" "Pin_J3";
+cmp add_assignment "simpletest" "" "COM_AD_D\[9\]" "LOCATION" "Pin_H5";
+cmp add_assignment "simpletest" "" "COM_AD_OTR" "LOCATION" "Pin_H4";
+cmp add_assignment "simpletest" "" "COM_DB\[10\]" "LOCATION" "Pin_R1";
+cmp add_assignment "simpletest" "" "COM_DB\[11\]" "LOCATION" "Pin_R2";
+cmp add_assignment "simpletest" "" "COM_DB\[12\]" "LOCATION" "Pin_T1";
+cmp add_assignment "simpletest" "" "COM_DB\[13\]" "LOCATION" "Pin_T2";
+cmp add_assignment "simpletest" "" "COM_DB\[6\]" "LOCATION" "Pin_L1";
+cmp add_assignment "simpletest" "" "COM_DB\[7\]" "LOCATION" "Pin_L2";
+cmp add_assignment "simpletest" "" "COM_DB\[8\]" "LOCATION" "Pin_M1";
+cmp add_assignment "simpletest" "" "COM_DB\[9\]" "LOCATION" "Pin_M2";
+cmp add_assignment "simpletest" "" "COM_TX_SLEEP" "LOCATION" "Pin_U2";
+cmp add_assignment "simpletest" "" "ChannelSelect_0\[0\]" "LOCATION" "Pin_AF16";
+cmp add_assignment "simpletest" "" "ChannelSelect_0\[1\]" "LOCATION" "Pin_AB15";
+cmp add_assignment "simpletest" "" "ChannelSelect_1\[0\]" "LOCATION" "Pin_AD19";
+cmp add_assignment "simpletest" "" "ChannelSelect_1\[1\]" "LOCATION" "Pin_Y18";
+cmp add_assignment "simpletest" "" "CounterClock_0" "LOCATION" "Pin_W15";
+cmp add_assignment "simpletest" "" "CounterClock_1" "LOCATION" "Pin_AB17";
+cmp add_assignment "simpletest" "" "DigitalReset_0" "LOCATION" "Pin_V16";
+cmp add_assignment "simpletest" "" "DigitalReset_1" "LOCATION" "Pin_W18";
+cmp add_assignment "simpletest" "" "DigitalSet_0" "LOCATION" "Pin_Y16";
+cmp add_assignment "simpletest" "" "DigitalSet_1" "LOCATION" "Pin_AE23";
+cmp add_assignment "simpletest" "" "EBIACK" "LOCATION" "Pin_K16";
+cmp add_assignment "simpletest" "" "EBIADDR\[0\]" "LOCATION" "Pin_F20";
+cmp add_assignment "simpletest" "" "EBIADDR\[10\]" "LOCATION" "Pin_H17";
+cmp add_assignment "simpletest" "" "EBIADDR\[11\]" "LOCATION" "Pin_E19";
+cmp add_assignment "simpletest" "" "EBIADDR\[12\]" "LOCATION" "Pin_C20";
+cmp add_assignment "simpletest" "" "EBIADDR\[13\]" "LOCATION" "Pin_D19";
+cmp add_assignment "simpletest" "" "EBIADDR\[14\]" "LOCATION" "Pin_F18";
+cmp add_assignment "simpletest" "" "EBIADDR\[15\]" "LOCATION" "Pin_C19";
+cmp add_assignment "simpletest" "" "EBIADDR\[16\]" "LOCATION" "Pin_G17";
+cmp add_assignment "simpletest" "" "EBIADDR\[17\]" "LOCATION" "Pin_K15";
+cmp add_assignment "simpletest" "" "EBIADDR\[18\]" "LOCATION" "Pin_D18";
+cmp add_assignment "simpletest" "" "EBIADDR\[19\]" "LOCATION" "Pin_E18";
+cmp add_assignment "simpletest" "" "EBIADDR\[1\]" "LOCATION" "Pin_C21";
+cmp add_assignment "simpletest" "" "EBIADDR\[20\]" "LOCATION" "Pin_H16";
+cmp add_assignment "simpletest" "" "EBIADDR\[21\]" "LOCATION" "Pin_F17";
+cmp add_assignment "simpletest" "" "EBIADDR\[22\]" "LOCATION" "Pin_C18";
+cmp add_assignment "simpletest" "" "EBIADDR\[23\]" "LOCATION" "Pin_J16";
+cmp add_assignment "simpletest" "" "EBIADDR\[24\]" "LOCATION" "Pin_E17";
+cmp add_assignment "simpletest" "" "EBIADDR\[2\]" "LOCATION" "Pin_E20";
+cmp add_assignment "simpletest" "" "EBIADDR\[3\]" "LOCATION" "Pin_H18";
+cmp add_assignment "simpletest" "" "EBIADDR\[4\]" "LOCATION" "Pin_G19";
+cmp add_assignment "simpletest" "" "EBIADDR\[5\]" "LOCATION" "Pin_J18";
+cmp add_assignment "simpletest" "" "EBIADDR\[6\]" "LOCATION" "Pin_J17";
+cmp add_assignment "simpletest" "" "EBIADDR\[7\]" "LOCATION" "Pin_G18";
+cmp add_assignment "simpletest" "" "EBIADDR\[8\]" "LOCATION" "Pin_D20";
+cmp add_assignment "simpletest" "" "EBIADDR\[9\]" "LOCATION" "Pin_F19";
+cmp add_assignment "simpletest" "" "EBIBE\[0\]" "LOCATION" "Pin_D22";
+cmp add_assignment "simpletest" "" "EBIBE\[1\]" "LOCATION" "Pin_K18";
+cmp add_assignment "simpletest" "" "EBICLK" "LOCATION" "Pin_D21";
+cmp add_assignment "simpletest" "" "EBICSN\[0\]" "LOCATION" "Pin_K17";
+cmp add_assignment "simpletest" "" "EBICSN\[1\]" "LOCATION" "Pin_H20";
+cmp add_assignment "simpletest" "" "EBICSN\[2\]" "LOCATION" "Pin_J19";
+cmp add_assignment "simpletest" "" "EBICSN\[3\]" "LOCATION" "Pin_G20";
+cmp add_assignment "simpletest" "" "EBIDQ\[0\]" "LOCATION" "Pin_C17";
+cmp add_assignment "simpletest" "" "EBIDQ\[10\]" "LOCATION" "Pin_J14";
+cmp add_assignment "simpletest" "" "EBIDQ\[11\]" "LOCATION" "Pin_E14";
+cmp add_assignment "simpletest" "" "EBIDQ\[12\]" "LOCATION" "Pin_K14";
+cmp add_assignment "simpletest" "" "EBIDQ\[13\]" "LOCATION" "Pin_G14";
+cmp add_assignment "simpletest" "" "EBIDQ\[14\]" "LOCATION" "Pin_F14";
+cmp add_assignment "simpletest" "" "EBIDQ\[15\]" "LOCATION" "Pin_H14";
+cmp add_assignment "simpletest" "" "EBIDQ\[1\]" "LOCATION" "Pin_G16";
+cmp add_assignment "simpletest" "" "EBIDQ\[2\]" "LOCATION" "Pin_D17";
+cmp add_assignment "simpletest" "" "EBIDQ\[3\]" "LOCATION" "Pin_E16";
+cmp add_assignment "simpletest" "" "EBIDQ\[4\]" "LOCATION" "Pin_J15";
+cmp add_assignment "simpletest" "" "EBIDQ\[5\]" "LOCATION" "Pin_F16";
+cmp add_assignment "simpletest" "" "EBIDQ\[6\]" "LOCATION" "Pin_G15";
+cmp add_assignment "simpletest" "" "EBIDQ\[7\]" "LOCATION" "Pin_F15";
+cmp add_assignment "simpletest" "" "EBIDQ\[8\]" "LOCATION" "Pin_H15";
+cmp add_assignment "simpletest" "" "EBIDQ\[9\]" "LOCATION" "Pin_E15";
+cmp add_assignment "simpletest" "" "EBIOEN" "LOCATION" "Pin_C22";
+cmp add_assignment "simpletest" "" "EBIWEN" "LOCATION" "Pin_E21";
+cmp add_assignment "simpletest" "" "FE_PULSER_N\[0\]" "LOCATION" "Pin_W24";
+cmp add_assignment "simpletest" "" "FE_PULSER_N\[1\]" "LOCATION" "Pin_V24";
+cmp add_assignment "simpletest" "" "FE_PULSER_N\[2\]" "LOCATION" "Pin_U23";
+cmp add_assignment "simpletest" "" "FE_PULSER_N\[3\]" "LOCATION" "Pin_T24";
+cmp add_assignment "simpletest" "" "FE_PULSER_P\[0\]" "LOCATION" "Pin_W23";
+cmp add_assignment "simpletest" "" "FE_PULSER_P\[1\]" "LOCATION" "Pin_V23";
+cmp add_assignment "simpletest" "" "FE_PULSER_P\[2\]" "LOCATION" "Pin_U22";
+cmp add_assignment "simpletest" "" "FE_PULSER_P\[3\]" "LOCATION" "Pin_T22";
+cmp add_assignment "simpletest" "" "FE_TEST_PULSE" "LOCATION" "Pin_AC22";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[0\]" "LOCATION" "Pin_AB11";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[1\]" "LOCATION" "Pin_AC11";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[2\]" "LOCATION" "Pin_AD11";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[3\]" "LOCATION" "Pin_AF11";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[4\]" "LOCATION" "Pin_AA12";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[5\]" "LOCATION" "Pin_AB12";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[6\]" "LOCATION" "Pin_AE11";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[7\]" "LOCATION" "Pin_AC12";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[8\]" "LOCATION" "Pin_AD12";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[9\]" "LOCATION" "Pin_AC13";
+cmp add_assignment "simpletest" "" "FLASH_AD_STBY" "LOCATION" "Pin_AB13";
+cmp add_assignment "simpletest" "" "FLASH_NCO" "LOCATION" "Pin_AB14";
+cmp add_assignment "simpletest" "" "FL_ATTN" "LOCATION" "Pin_M24";
+cmp add_assignment "simpletest" "" "FL_PRE_TRIG" "LOCATION" "Pin_N25";
+cmp add_assignment "simpletest" "" "FL_TCK" "LOCATION" "Pin_M21";
+cmp add_assignment "simpletest" "" "FL_TDI" "LOCATION" "Pin_M19";
+cmp add_assignment "simpletest" "" "FL_TDO" "LOCATION" "Pin_L20";
+cmp add_assignment "simpletest" "" "FL_TMS" "LOCATION" "Pin_L19";
+cmp add_assignment "simpletest" "" "FL_Trigger" "LOCATION" "Pin_M23";
+cmp add_assignment "simpletest" "" "FL_Trigger_bar" "LOCATION" "Pin_N23";
+cmp add_assignment "simpletest" "" "HDV_IN" "LOCATION" "Pin_F4";
+cmp add_assignment "simpletest" "" "HDV_Rx" "LOCATION" "Pin_H3";
+cmp add_assignment "simpletest" "" "HDV_RxENA" "LOCATION" "Pin_G4";
+cmp add_assignment "simpletest" "" "HDV_TxENA" "LOCATION" "Pin_G3";
+cmp add_assignment "simpletest" "" "INTEXTPIN" "LOCATION" "Pin_H19";
+cmp add_assignment "simpletest" "" "MultiSPE" "LOCATION" "Pin_AF12";
+cmp add_assignment "simpletest" "" "MultiSPE_nl" "LOCATION" "Pin_AD8";
+cmp add_assignment "simpletest" "" "OneSPE" "LOCATION" "Pin_AF15";
+cmp add_assignment "simpletest" "" "OneSPE_nl" "LOCATION" "Pin_AB19";
+cmp add_assignment "simpletest" "" "OutputEnable_0" "LOCATION" "Pin_W14";
+cmp add_assignment "simpletest" "" "OutputEnable_1" "LOCATION" "Pin_W17";
+cmp add_assignment "simpletest" "" "PGM\[0\]" "LOCATION" "Pin_B20";
+cmp add_assignment "simpletest" "" "PGM\[10\]" "LOCATION" "Pin_AB4";
+cmp add_assignment "simpletest" "" "PGM\[11\]" "LOCATION" "Pin_W20";
+cmp add_assignment "simpletest" "" "PGM\[12\]" "LOCATION" "Pin_M5";
+cmp add_assignment "simpletest" "" "PGM\[13\]" "LOCATION" "Pin_V7";
+cmp add_assignment "simpletest" "" "PGM\[14\]" "LOCATION" "Pin_Y4";
+cmp add_assignment "simpletest" "" "PGM\[15\]" "LOCATION" "Pin_Y3";
+cmp add_assignment "simpletest" "" "PGM\[1\]" "LOCATION" "Pin_B18";
+cmp add_assignment "simpletest" "" "PGM\[2\]" "LOCATION" "Pin_B22";
+cmp add_assignment "simpletest" "" "PGM\[3\]" "LOCATION" "Pin_A20";
+cmp add_assignment "simpletest" "" "PGM\[4\]" "LOCATION" "Pin_A18";
+cmp add_assignment "simpletest" "" "PGM\[5\]" "LOCATION" "Pin_V3";
+cmp add_assignment "simpletest" "" "PGM\[6\]" "LOCATION" "Pin_T7";
+cmp add_assignment "simpletest" "" "PGM\[7\]" "LOCATION" "Pin_U24";
+cmp add_assignment "simpletest" "" "PGM\[8\]" "LOCATION" "Pin_AB3";
+cmp add_assignment "simpletest" "" "PGM\[9\]" "LOCATION" "Pin_R24";
+cmp add_assignment "simpletest" "" "R2BUS\[0\]" "LOCATION" "Pin_AD22";
+cmp add_assignment "simpletest" "" "R2BUS\[1\]" "LOCATION" "Pin_AB21";
+cmp add_assignment "simpletest" "" "R2BUS\[2\]" "LOCATION" "Pin_AB20";
+cmp add_assignment "simpletest" "" "R2BUS\[3\]" "LOCATION" "Pin_AA20";
+cmp add_assignment "simpletest" "" "R2BUS\[4\]" "LOCATION" "Pin_AA21";
+cmp add_assignment "simpletest" "" "R2BUS\[5\]" "LOCATION" "Pin_Y20";
+cmp add_assignment "simpletest" "" "R2BUS\[6\]" "LOCATION" "Pin_Y21";
+cmp add_assignment "simpletest" "" "RampSet_0" "LOCATION" "Pin_AD15";
+cmp add_assignment "simpletest" "" "RampSet_1" "LOCATION" "Pin_AE18";
+cmp add_assignment "simpletest" "" "ReadWrite_0" "LOCATION" "Pin_AD16";
+cmp add_assignment "simpletest" "" "ReadWrite_1" "LOCATION" "Pin_AD20";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[0\]" "LOCATION" "Pin_K9";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[10\]" "LOCATION" "Pin_K11";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[11\]" "LOCATION" "Pin_E5";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[12\]" "LOCATION" "Pin_H8";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[13\]" "LOCATION" "Pin_J8";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[14\]" "LOCATION" "Pin_F6";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[1\]" "LOCATION" "Pin_C5";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[2\]" "LOCATION" "Pin_E6";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[3\]" "LOCATION" "Pin_G6";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[4\]" "LOCATION" "Pin_K8";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[5\]" "LOCATION" "Pin_A4";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[6\]" "LOCATION" "Pin_B4";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[7\]" "LOCATION" "Pin_F5";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[8\]" "LOCATION" "Pin_D5";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[9\]" "LOCATION" "Pin_G5";
+cmp add_assignment "simpletest" "" "SDRAMCASN" "LOCATION" "Pin_F8";
+cmp add_assignment "simpletest" "" "SDRAMCLK" "LOCATION" "Pin_B5";
+cmp add_assignment "simpletest" "" "SDRAMCLKE" "LOCATION" "Pin_F7";
+cmp add_assignment "simpletest" "" "SDRAMCLKN" "LOCATION" "Pin_G7";
+cmp add_assignment "simpletest" "" "SDRAMCSN\[0\]" "LOCATION" "Pin_E7";
+cmp add_assignment "simpletest" "" "SDRAMCSN\[1\]" "LOCATION" "Pin_D6";
+cmp add_assignment "simpletest" "" "SDRAMDQM\[0\]" "LOCATION" "Pin_H12";
+cmp add_assignment "simpletest" "" "SDRAMDQM\[1\]" "LOCATION" "Pin_G11";
+cmp add_assignment "simpletest" "" "SDRAMDQM\[2\]" "LOCATION" "Pin_F9";
+cmp add_assignment "simpletest" "" "SDRAMDQM\[3\]" "LOCATION" "Pin_C6";
+cmp add_assignment "simpletest" "" "SDRAMDQS\[0\]" "LOCATION" "Pin_F12";
+cmp add_assignment "simpletest" "" "SDRAMDQS\[1\]" "LOCATION" "Pin_H11";
+cmp add_assignment "simpletest" "" "SDRAMDQS\[2\]" "LOCATION" "Pin_J10";
+cmp add_assignment "simpletest" "" "SDRAMDQS\[3\]" "LOCATION" "Pin_K10";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[0\]" "LOCATION" "Pin_J13";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[10\]" "LOCATION" "Pin_J12";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[11\]" "LOCATION" "Pin_A12";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[12\]" "LOCATION" "Pin_C12";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[13\]" "LOCATION" "Pin_B11";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[14\]" "LOCATION" "Pin_K13";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[15\]" "LOCATION" "Pin_A11";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[16\]" "LOCATION" "Pin_A9";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[17\]" "LOCATION" "Pin_H10";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[18\]" "LOCATION" "Pin_B9";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[19\]" "LOCATION" "Pin_C9";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[1\]" "LOCATION" "Pin_H13";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[20\]" "LOCATION" "Pin_E9";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[21\]" "LOCATION" "Pin_K12";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[22\]" "LOCATION" "Pin_D9";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[23\]" "LOCATION" "Pin_G9";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[24\]" "LOCATION" "Pin_D8";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[25\]" "LOCATION" "Pin_H9";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[26\]" "LOCATION" "Pin_A7";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[27\]" "LOCATION" "Pin_B7";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[28\]" "LOCATION" "Pin_E8";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[29\]" "LOCATION" "Pin_G8";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[2\]" "LOCATION" "Pin_F13";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[30\]" "LOCATION" "Pin_C7";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[31\]" "LOCATION" "Pin_D7";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[3\]" "LOCATION" "Pin_G13";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[4\]" "LOCATION" "Pin_E13";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[5\]" "LOCATION" "Pin_D13";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[6\]" "LOCATION" "Pin_C13";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[7\]" "LOCATION" "Pin_B12";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[8\]" "LOCATION" "Pin_E12";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[9\]" "LOCATION" "Pin_G12";
+cmp add_assignment "simpletest" "" "SDRAMRASN" "LOCATION" "Pin_J9";
+cmp add_assignment "simpletest" "" "SDRAMWEN" "LOCATION" "Pin_A5";
+cmp add_assignment "simpletest" "" "ShiftClock_0" "LOCATION" "Pin_AC14";
+cmp add_assignment "simpletest" "" "ShiftClock_1" "LOCATION" "Pin_Y17";
+cmp add_assignment "simpletest" "" "SingleLED_TRIGGER" "LOCATION" "Pin_AA1";
+cmp add_assignment "simpletest" "" "TriggerComplete_0" "LOCATION" "Pin_AA14";
+cmp add_assignment "simpletest" "" "TriggerComplete_1" "LOCATION" "Pin_AC17";
+cmp add_assignment "simpletest" "" "UARTCTSN" "LOCATION" "Pin_G22";
+cmp add_assignment "simpletest" "" "UARTDCDN" "LOCATION" "Pin_J22";
+cmp add_assignment "simpletest" "" "UARTDSRN" "LOCATION" "Pin_H22";
+cmp add_assignment "simpletest" "" "UARTDTRN" "LOCATION" "Pin_J20";
+cmp add_assignment "simpletest" "" "UARTRIN" "LOCATION" "Pin_J21";
+cmp add_assignment "simpletest" "" "UARTRTSN" "LOCATION" "Pin_H21";
+cmp add_assignment "simpletest" "" "UARTRXD" "LOCATION" "Pin_F21";
+cmp add_assignment "simpletest" "" "UARTTXD" "LOCATION" "Pin_G21";
+cmp add_assignment "simpletest" "" "dummy1" "LOCATION" "Pin_M3";
+cmp add_assignment "simpletest" "" "dummy2" "LOCATION" "Pin_P21";
+cmp add_assignment "simpletest" "" "nPOR" "LOCATION" "Pin_J24";
+cmp add_assignment "simpletest" "" "nRESET" "LOCATION" "Pin_B16";
+cmp add_assignment "simpletest" "" "~INIT_DONE~" "LOCATION" "Pin_A23";
+cmp add_assignment "simpletest" "" "" "RESERVE_NCEO_AFTER_CONFIGURATION" "OFF";
+cmp add_assignment "simpletest" "" "" "RESERVE_NWS_NRS_NCS_CS_AFTER_CONFIGURATION" "OFF";
+cmp add_assignment "simpletest" "" "" "ON_CHIP_BITSTREAM_DECOMPRESSION" "OFF";
+cmp add_assignment "simpletest" "" "" "FLEX10K_ENABLE_LOCK_OUTPUT" "OFF";
+cmp add_assignment "simpletest" "" "" "APEX20K_CONFIGURATION_SCHEME" "PASSIVE SERIAL";
+cmp add_assignment "simpletest" "" "" "APEXII_CONFIGURATION_SCHEME" "PASSIVE SERIAL";
+cmp add_assignment "simpletest" "" "" "MERCURY_CONFIGURATION_SCHEME" "PASSIVE SERIAL";
+cmp add_assignment "simpletest" "" "" "EXCALIBUR_CONFIGURATION_SCHEME" "PASSIVE SERIAL";
+cmp add_assignment "simpletest" "" "" "FLEX10K_CONFIGURATION_SCHEME" "PASSIVE SERIAL";
+cmp add_assignment "simpletest" "" "" "FLEX6K_CONFIGURATION_SCHEME" "PASSIVE SERIAL";
+cmp add_assignment "simpletest" "" "" "CYCLONE_CONFIGURATION_SCHEME" "PASSIVE SERIAL";
+cmp add_assignment "simpletest" "" "" "STRATIX_CONFIGURATION_SCHEME" "PASSIVE SERIAL";
+cmp add_assignment "simpletest" "" "" "RESERVE_RDYNBUSY_AFTER_CONFIGURATION" "OFF";
+cmp add_assignment "simpletest" "" "" "RELEASE_CLEARS_BEFORE_TRI_STATES" "OFF";
+cmp add_assignment "simpletest" "" "" "RESERVE_ALL_UNUSED_PINS" "AS INPUT TRI-STATED";
+cmp add_assignment "simpletest" "" "dummy1" "RESERVE_PIN" "AS INPUT TRI-STATED";
+cmp add_assignment "simpletest" "" "dummy2" "RESERVE_PIN" "AS INPUT TRI-STATED";
+cmp add_assignment "simpletest" "" "" "RESERVE_NCSO_AFTER_CONFIGURATION" "OFF";
+cmp add_assignment "simpletest" "" "" "RESERVE_ASDO_AFTER_CONFIGURATION" "OFF";
+cmp add_assignment "simpletest" "" "" "SECURITY_BIT" "OFF";
+cmp add_assignment "simpletest" "" "ATWD0VDD_SUP" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ATWD0_D\[0\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ATWD0_D\[1\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ATWD0_D\[2\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ATWD0_D\[3\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ATWD0_D\[4\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ATWD0_D\[5\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ATWD0_D\[6\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ATWD0_D\[7\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ATWD0_D\[8\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ATWD0_D\[9\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ATWD1VDD_SUP" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ATWD1_D\[0\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ATWD1_D\[1\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ATWD1_D\[2\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ATWD1_D\[3\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ATWD1_D\[4\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ATWD1_D\[5\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ATWD1_D\[6\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ATWD1_D\[7\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ATWD1_D\[8\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ATWD1_D\[9\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ATWDTrigger_0" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ATWDTrigger_1" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "A_nB" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "AnalogReset_0" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "AnalogReset_1" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "CLK1p" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "CLK2p" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "CLK3p" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "CLK4p" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "CLKLK_OUT2p" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "CLK_REF" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COINCIDENCE_OUT_DOWN" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COINCIDENCE_OUT_UP" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COINC_DOWN_A" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COINC_DOWN_ABAR" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COINC_DOWN_ALATCH" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COINC_DOWN_B" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COINC_DOWN_BBAR" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COINC_DOWN_BLATCH" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COINC_UP_A" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COINC_UP_ABAR" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COINC_UP_ALATCH" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COINC_UP_B" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COINC_UP_BBAR" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COINC_UP_BLATCH" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COM_AD_D\[0\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COM_AD_D\[1\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COM_AD_D\[2\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COM_AD_D\[3\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COM_AD_D\[4\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COM_AD_D\[5\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COM_AD_D\[6\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COM_AD_D\[7\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COM_AD_D\[8\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COM_AD_D\[9\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COM_AD_OTR" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COM_DB\[10\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COM_DB\[11\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COM_DB\[12\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COM_DB\[13\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COM_DB\[6\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COM_DB\[7\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COM_DB\[8\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COM_DB\[9\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "COM_TX_SLEEP" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ChannelSelect_0\[0\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ChannelSelect_0\[1\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ChannelSelect_1\[0\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ChannelSelect_1\[1\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "CounterClock_0" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "CounterClock_1" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "DigitalReset_0" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "DigitalReset_1" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "DigitalSet_0" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "DigitalSet_1" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIACK" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIADDR\[0\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIADDR\[10\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIADDR\[11\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIADDR\[12\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIADDR\[13\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIADDR\[14\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIADDR\[15\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIADDR\[16\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIADDR\[17\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIADDR\[18\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIADDR\[19\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIADDR\[1\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIADDR\[20\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIADDR\[21\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIADDR\[22\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIADDR\[23\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIADDR\[24\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIADDR\[2\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIADDR\[3\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIADDR\[4\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIADDR\[5\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIADDR\[6\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIADDR\[7\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIADDR\[8\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIADDR\[9\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIBE\[0\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIBE\[1\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBICLK" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBICSN\[0\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBICSN\[1\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBICSN\[2\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBICSN\[3\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIDQ\[0\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIDQ\[10\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIDQ\[11\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIDQ\[12\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIDQ\[13\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIDQ\[14\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIDQ\[15\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIDQ\[1\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIDQ\[2\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIDQ\[3\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIDQ\[4\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIDQ\[5\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIDQ\[6\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIDQ\[7\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIDQ\[8\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIDQ\[9\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIOEN" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "EBIWEN" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "FE_PULSER_N\[0\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "FE_PULSER_N\[1\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "FE_PULSER_N\[2\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "FE_PULSER_N\[3\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "FE_PULSER_P\[0\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "FE_PULSER_P\[1\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "FE_PULSER_P\[2\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "FE_PULSER_P\[3\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "FE_TEST_PULSE" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[0\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[1\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[2\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[3\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[4\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[5\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[6\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[7\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[8\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "FLASH_AD_D\[9\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "FLASH_AD_STBY" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "FLASH_NCO" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "FL_ATTN" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "FL_PRE_TRIG" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "FL_TCK" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "FL_TDI" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "FL_TDO" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "FL_TMS" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "FL_Trigger" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "FL_Trigger_bar" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "HDV_IN" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "HDV_Rx" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "HDV_RxENA" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "HDV_TxENA" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "INTEXTPIN" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "MultiSPE" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "MultiSPE_nl" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "OneSPE" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "OneSPE_nl" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "OutputEnable_0" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "OutputEnable_1" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "PGM\[0\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "PGM\[10\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "PGM\[11\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "PGM\[12\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "PGM\[13\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "PGM\[14\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "PGM\[15\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "PGM\[1\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "PGM\[2\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "PGM\[3\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "PGM\[4\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "PGM\[5\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "PGM\[6\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "PGM\[7\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "PGM\[8\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "PGM\[9\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "R2BUS\[0\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "R2BUS\[1\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "R2BUS\[2\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "R2BUS\[3\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "R2BUS\[4\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "R2BUS\[5\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "R2BUS\[6\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "RampSet_0" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "RampSet_1" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ReadWrite_0" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ReadWrite_1" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[0\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[10\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[11\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[12\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[13\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[14\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[1\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[2\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[3\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[4\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[5\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[6\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[7\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[8\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMADDR\[9\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMCASN" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMCLK" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMCLKE" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMCLKN" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMCSN\[0\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMCSN\[1\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQM\[0\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQM\[1\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQM\[2\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQM\[3\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQS\[0\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQS\[1\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQS\[2\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQS\[3\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[0\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[10\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[11\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[12\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[13\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[14\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[15\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[16\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[17\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[18\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[19\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[1\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[20\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[21\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[22\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[23\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[24\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[25\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[26\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[27\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[28\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[29\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[2\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[30\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[31\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[3\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[4\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[5\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[6\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[7\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[8\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMDQ\[9\]" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMRASN" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SDRAMWEN" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ShiftClock_0" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "ShiftClock_1" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "SingleLED_TRIGGER" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "TriggerComplete_0" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "TriggerComplete_1" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "UARTCTSN" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "UARTDCDN" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "UARTDSRN" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "UARTDTRN" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "UARTRIN" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "UARTRTSN" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "UARTRXD" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "UARTTXD" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "dummy1" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "dummy2" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "nPOR" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "nRESET" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "~INIT_DONE~" "SIGNALPROBE_ENABLE" "OFF";
+cmp add_assignment "simpletest" "" "" "USER_START_UP_CLOCK" "OFF";
+cmp add_assignment "simpletest" "" "" "STRATIX_UPDATE_MODE" "STANDARD";
+cmp add_assignment "simpletest" "" "" "APEX20K_JTAG_USER_CODE" "FFFFFFFF";
+cmp add_assignment "simpletest" "" "" "MERCURY_JTAG_USER_CODE" "FFFFFFFF";
+cmp add_assignment "simpletest" "" "" "FLEX10K_JTAG_USER_CODE" "7F";
+cmp add_assignment "simpletest" "" "" "MAX7000_JTAG_USER_CODE" "FFFFFFFF";
+cmp add_assignment "simpletest" "" "" "STRATIX_JTAG_USER_CODE" "FFFFFFFF";
+cmp add_assignment "simpletest" "" "" "USE_CHECKSUM_AS_USERCODE" "OFF";
+cmp add_assignment "simpletest" "" "" "MAX7000_USE_CHECKSUM_AS_USERCODE" "OFF";
+cmp add_assignment "simpletest" "" "" "APEX20K_CONFIGURATION_DEVICE" "EPC2";
+cmp add_assignment "simpletest" "" "" "CYCLONE_CONFIGURATION_DEVICE" "EPC2";
+cmp add_assignment "simpletest" "" "" "MERCURY_CONFIGURATION_DEVICE" "EPC2";
+cmp add_assignment "simpletest" "" "" "EXCALIBUR_CONFIGURATION_DEVICE" "EPC2";
+cmp add_assignment "simpletest" "" "" "FLEX10K_CONFIGURATION_DEVICE" "EPC2";
+cmp add_assignment "simpletest" "" "" "FLEX6K_CONFIGURATION_DEVICE" "EPC1";
+cmp add_assignment "simpletest" "" "" "STRATIX_CONFIGURATION_DEVICE" "EPC2";
+cmp add_assignment "simpletest" "" "" "USE_CONFIGURATION_DEVICE" "ON";
+cmp add_assignment "" "" "" "AUTO_ENABLE_SMART_COMPILE" "On";
+cmp add_assignment "" "" "" "ENABLE_SIGNALTAP" "Off";
+cmp end_batch;
+
+# Project Assignments
+project start_batch "";
+project add_assignment "" "" "" "" "COMPILER_SETTINGS" "simpletest";
+project add_assignment "" "" "" "" "SIMULATOR_SETTINGS" "simpletest";
+project add_assignment "" "" "" "" "SOFTWARE_SETTINGS" "Debug";
+project add_assignment "" "" "" "" "SOFTWARE_SETTINGS" "Release";
+project add_assignment "" "" "" "" "VHDL_FILE" "dec_threshold.vhd";
+project add_assignment "" "" "" "" "AHDL_FILE" "DC_CTRL.tdf";
+project add_assignment "" "" "" "" "BDF_FILE" "dcom_01.bdf";
+project add_assignment "" "" "" "" "VHDL_FILE" "simpletest.vhd";
+project add_assignment "" "" "" "" "VHDL_FILE" "ahb_slave.vhd";
+project add_assignment "" "" "" "" "VHDL_FILE" "slaveregister.vhd";
+project add_assignment "" "" "" "" "VHDL_FILE" "com_DAC_TX.vhd";
+project add_assignment "" "" "" "" "VHDL_FILE" "com_ADC_RX.vhd";
+project add_assignment "" "" "" "" "VHDL_FILE" "hit_counter.vhd";
+project add_assignment "" "" "" "" "VHDL_FILE" "ROC.vhd";
+project add_assignment "" "" "" "" "MIF_FILE" "version_rom.mif";
+project add_assignment "" "" "" "" "VHDL_FILE" "flash_adc.vhd";
+project add_assignment "" "" "" "" "VHDL_FILE" "single_led.vhd";
+project add_assignment "" "" "" "" "VHDL_FILE" "fe_testpulse.vhd";
+project add_assignment "" "" "" "" "VHDL_FILE" "coinc.vhd";
+project add_assignment "" "" "" "" "VHDL_FILE" "atwd.vhd";
+project add_assignment "" "" "" "" "VHDL_FILE" "atwd_control.vhd";
+project add_assignment "" "" "" "" "VHDL_FILE" "atwd_readout.vhd";
+project add_assignment "" "" "" "" "VHDL_FILE" "gray2bin.vhd";
+project add_assignment "" "" "" "" "VHDL_FILE" "atwd_trigger.vhd";
+project add_assignment "" "" "" "" "VHDL_FILE" "rs486.vhd";
+project add_assignment "" "" "" "" "VHDL_FILE" "ahb_master.vhd";
+project add_assignment "" "" "" "" "VHDL_FILE" "master_data_source.vhd";
+project add_assignment "" "" "" "" "VHDL_FILE" "r2r.vhd";
+project add_assignment "" "" "" "" "VHDL_FILE" "fe_r2r.vhd";
+project add_assignment "" "" "" "" "VHDL_FILE" "hit_counter_ff.vhd";
+project add_assignment "" "" "" "" "VHDL_FILE" "flasher_board.vhd";
+project end_batch "";
+
+# Project Assignments and/or Default Parameter
+project start_batch "";
+project add_assignment "" "" "" "" "ACLK_CAT" "OFF";
+project add_assignment "" "" "" "" "ACLK_RULE_IMSZER_ADOMAIN" "OFF";
+project add_assignment "" "" "" "" "ACLK_RULE_NO_SZER_ACLK_DOMAIN" "OFF";
+project add_assignment "" "" "" "" "ACLK_RULE_SZER_BTW_ACLK_DOMAIN" "OFF";
+project add_assignment "" "" "" "" "CLK_CAT" "OFF";
+project add_assignment "" "" "" "" "CLK_RULE_ALL" "OFF";
+project add_assignment "" "" "" "" "CLK_RULE_CLKNET_CLKSPINES" "OFF";
+project add_assignment "" "" "" "" "CLK_RULE_COMB_CLOCK" "OFF";
+project add_assignment "" "" "" "" "CLK_RULE_GATING_SCHEME" "OFF";
+project add_assignment "" "" "" "" "CLK_RULE_INPINS_CLKNET" "OFF";
+project add_assignment "" "" "" "" "CLK_RULE_INV_CLOCK" "OFF";
+project add_assignment "" "" "" "" "CLK_RULE_MIX_EDGES" "OFF";
+project add_assignment "" "" "" "" "HCPY_ALOAD_SIGNALS" "OFF";
+project add_assignment "" "" "" "" "HCPY_CAT" "OFF";
+project add_assignment "" "" "" "" "HCPY_EXCEED_RAM_USAGE" "OFF";
+project add_assignment "" "" "" "" "HCPY_EXCEED_USER_IO_USAGE" "OFF";
+project add_assignment "" "" "" "" "HCPY_VREF_PINS" "OFF";
+project add_assignment "" "" "" "" "NONSYNCHSTRUCT_CAT" "OFF";
+project add_assignment "" "" "" "" "NONSYNCHSTRUCT_RULE_COMBLOOP" "OFF";
+project add_assignment "" "" "" "" "NONSYNCHSTRUCT_RULE_DELAY_CHAIN" "OFF";
+project add_assignment "" "" "" "" "NONSYNCHSTRUCT_RULE_DLATCH" "OFF";
+project add_assignment "" "" "" "" "NONSYNCHSTRUCT_RULE_ILLEGAL_PULSE_GEN" "OFF";
+project add_assignment "" "" "" "" "NONSYNCHSTRUCT_RULE_LATCH_UNIDENTIFIED" "OFF";
+project add_assignment "" "" "" "" "NONSYNCHSTRUCT_RULE_MULTI_VIBRATOR" "OFF";
+project add_assignment "" "" "" "" "NONSYNCHSTRUCT_RULE_REG_LOOP" "OFF";
+project add_assignment "" "" "" "" "NONSYNCHSTRUCT_RULE_RIPPLE_CLK" "OFF";
+project add_assignment "" "" "" "" "NONSYNCHSTRUCT_RULE_SRLATCH" "OFF";
+project add_assignment "" "" "" "" "RESET_CAT" "OFF";
+project add_assignment "" "" "" "" "RESET_RULE_ALL" "OFF";
+project add_assignment "" "" "" "" "RESET_RULE_COMB_ASYNCH_RESET" "OFF";
+project add_assignment "" "" "" "" "RESET_RULE_IMSYNCH_ASYNCH_DOMAIN" "OFF";
+project add_assignment "" "" "" "" "RESET_RULE_IMSYNCH_EXRESET" "OFF";
+project add_assignment "" "" "" "" "RESET_RULE_INPINS_RESETNET" "OFF";
+project add_assignment "" "" "" "" "RESET_RULE_REG_ASNYCH" "OFF";
+project add_assignment "" "" "" "" "RESET_RULE_UNSYNCH_ASYNCH_DOMAIN" "OFF";
+project add_assignment "" "" "" "" "RESET_RULE_UNSYNCH_EXRESET" "OFF";
+project add_assignment "" "" "" "" "SIGNALRACE_CAT" "OFF";
+project add_assignment "" "" "" "" "SIGNALRACE_RULE_ASYNCHPIN_SYNCH_CLKPIN" "OFF";
+project add_assignment "" "" "" "" "TIMING_CAT" "OFF";
+project add_assignment "" "" "" "" "TIMING_RULE_COIN_CLKEDGE" "OFF";
+project add_assignment "" "" "" "" "TIMING_RULE_HIGH_FANOUTS" "OFF";
+project add_assignment "" "" "" "" "TIMING_RULE_SHIFT_REG" "OFF";
+project add_assignment "" "" "" "" "LIMIT_AHDL_INTEGERS_TO_32_BITS" "OFF";
+project add_assignment "" "" "" "" "USE_LPM_FOR_AHDL_OPERATORS" "ON";
+project add_assignment "" "" "" "" "ALLOW_POWER_UP_DONT_CARE" "ON";
+project add_assignment "" "" "" "" "AUTO_CARRY_CHAINS" "ON";
+project add_assignment "" "" "" "" "AUTO_CASCADE_CHAINS" "ON";
+project add_assignment "" "" "" "" "AUTO_DELAY_CHAINS" "ON";
+project add_assignment "" "" "" "" "AUTO_DSP_RECOGNITION" "ON";
+project add_assignment "" "" "" "" "AUTO_GLOBAL_CLOCK" "ON";
+project add_assignment "" "" "" "" "AUTO_GLOBAL_MEMORY_CONTROLS" "OFF";
+project add_assignment "" "" "" "" "AUTO_GLOBAL_OE" "ON";
+project add_assignment "" "" "" "" "AUTO_GLOBAL_REGISTER_CONTROLS" "ON";
+project add_assignment "" "" "" "" "AUTO_FAST_INPUT_REGISTERS" "OFF";
+project add_assignment "" "" "" "" "AUTO_LCELL_INSERTION" "ON";
+project add_assignment "" "" "" "" "AUTO_MERGE_PLLS" "ON";
+project add_assignment "" "" "" "" "AUTO_OPEN_DRAIN_PINS" "ON";
+project add_assignment "" "" "" "" "AUTO_FAST_OUTPUT_ENABLE_REGISTERS" "OFF";
+project add_assignment "" "" "" "" "AUTO_FAST_OUTPUT_REGISTERS" "OFF";
+project add_assignment "" "" "" "" "AUTO_PARALLEL_EXPANDERS" "ON";
+project add_assignment "" "" "" "" "AUTO_RAM_RECOGNITION" "ON";
+project add_assignment "" "" "" "" "AUTO_IMPLEMENT_IN_ROM" "OFF";
+project add_assignment "" "" "" "" "AUTO_SHIFT_REGISTER_RECOGNITION" "ON";
+project add_assignment "" "" "" "" "AUTO_TURBO_BIT" "ON";
+project add_assignment "" "" "" "" "CARRY_CHAIN_LENGTH" "48";
+project add_assignment "" "" "" "" "MERCURY_CARRY_CHAIN_LENGTH" "48";
+project add_assignment "" "" "" "" "FLEX10K_CARRY_CHAIN_LENGTH" "32";
+project add_assignment "" "" "" "" "FLEX6K_CARRY_CHAIN_LENGTH" "32";
+project add_assignment "" "" "" "" "STRATIX_CARRY_CHAIN_LENGTH" "70";
+project add_assignment "" "" "" "" "CARRY_OUT_PINS_LCELL_INSERT" "ON";
+project add_assignment "" "" "" "" "CASCADE_CHAIN_LENGTH" "48";
+project add_assignment "" "" "" "" "DSP_BLOCK_BALANCING" "AUTO";
+project add_assignment "" "" "" "" "REMOVE_DUPLICATE_LOGIC" "ON";
+project add_assignment "" "" "" "" "REMOVE_DUPLICATE_REGISTERS" "ON";
+project add_assignment "" "" "" "" "ENABLE_BUS_HOLD_CIRCUITRY" "OFF";
+project add_assignment "" "" "" "" "IGNORE_CARRY_BUFFERS" "OFF";
+project add_assignment "" "" "" "" "IGNORE_CASCADE_BUFFERS" "OFF";
+project add_assignment "" "" "" "" "IGNORE_GLOBAL_BUFFERS" "OFF";
+project add_assignment "" "" "" "" "IGNORE_LCELL_BUFFERS" "OFF";
+project add_assignment "" "" "" "" "IGNORE_ROW_GLOBAL_BUFFERS" "OFF";
+project add_assignment "" "" "" "" "IGNORE_SOFT_BUFFERS" "ON";
+project add_assignment "" "" "" "" "MAX7000_IGNORE_SOFT_BUFFERS" "OFF";
+project add_assignment "" "" "" "" "NORMAL_LCELL_INSERT" "ON";
+project add_assignment "" "" "" "" "NOT_GATE_PUSH_BACK" "ON";
+project add_assignment "" "" "" "" "APEX20K_OPTIMIZATION_TECHNIQUE" "SPEED";
+project add_assignment "" "" "" "" "CYCLONE_OPTIMIZATION_TECHNIQUE" "AREA";
+project add_assignment "" "" "" "" "MERCURY_OPTIMIZATION_TECHNIQUE" "AREA";
+project add_assignment "" "" "" "" "FLEX10K_OPTIMIZATION_TECHNIQUE" "AREA";
+project add_assignment "" "" "" "" "FLEX6K_OPTIMIZATION_TECHNIQUE" "AREA";
+project add_assignment "" "" "" "" "MAX7000_OPTIMIZATION_TECHNIQUE" "SPEED";
+project add_assignment "" "" "" "" "STRATIX_OPTIMIZATION_TECHNIQUE" "SPEED";
+project add_assignment "" "" "" "" "PCI_IO" "OFF";
+project add_assignment "" "" "" "" "PARALLEL_EXPANDER_CHAIN_LENGTH" "16";
+project add_assignment "" "" "" "" "MAX7000_PARALLEL_EXPANDER_CHAIN_LENGTH" "4";
+project add_assignment "" "" "" "" "AUTO_PACKED_REGISTERS" "OFF";
+project add_assignment "" "" "" "" "AUTO_PACKED_REG_CYCLONE" "NORMAL";
+project add_assignment "" "" "" "" "AUTO_PACKED_REGISTERS_STRATIX" "NORMAL";
+project add_assignment "" "" "" "" "REMOVE_REDUNDANT_LOGIC_CELLS" "OFF";
+project add_assignment "" "" "" "" "SLOW_SLEW_RATE" "OFF";
+project add_assignment "" "" "" "" "STATE_MACHINE_PROCESSING" "AUTO";
+project add_assignment "" "" "" "" "APEX20K_TECHNOLOGY_MAPPER" "LUT";
+project add_assignment "" "" "" "" "MERCURY_TECHNOLOGY_MAPPER" "LUT";
+project add_assignment "" "" "" "" "FLEX10K_TECHNOLOGY_MAPPER" "LUT";
+project add_assignment "" "" "" "" "FLEX6K_TECHNOLOGY_MAPPER" "LUT";
+project add_assignment "" "" "" "" "MAX7000_TECHNOLOGY_MAPPER" "PRODUCT TERM";
+project add_assignment "" "" "" "" "STRATIX_TECHNOLOGY_MAPPER" "LUT";
+project add_assignment "" "" "" "" "TURBO_BIT" "ON";
+project add_assignment "" "" "" "" "WEAK_PULL_UP_RESISTOR" "OFF";
+project add_assignment "" "" "" "" "ALLOW_XOR_GATE_USAGE" "ON";
+project add_assignment "" "" "" "" "HARDCOPY_EXTERNAL_CLOCK_JITTER" "0.0 ns";
+project add_assignment "" "" "" "" "HCPY_GEN_FILES_DURING_COMPILATION" "OFF";
+project add_assignment "" "" "" "" "HARDCOPY_MINIMUM_REQUIRED_TCO" "0.0 ns";
+project add_assignment "" "" "" "" "HARDCOPY_MINIMUM_REQUIRED_TPD" "0.0 ns";
+project add_assignment "" "" "" "" "CUT_OFF_CLEAR_AND_PRESET_PATHS" "ON";
+project add_assignment "" "" "" "" "CUT_OFF_IO_PIN_FEEDBACK" "ON";
+project add_assignment "" "" "" "" "CUT_OFF_PATHS_BETWEEN_CLOCK_DOMAINS" "ON";
+project add_assignment "" "" "" "" "CUT_OFF_READ_DURING_WRITE_PATHS" "ON";
+project add_assignment "" "" "" "" "INCLUDE_EXTERNAL_PIN_DELAYS_IN_FMAX_CALCULATIONS" "OFF";
+project add_assignment "" "" "" "" "DEFAULT_HOLD_MULTICYCLE" "SAME AS MULTICYCLE";
+project add_assignment "" "" "" "" "IGNORE_CLOCK_SETTINGS" "OFF";
+project add_assignment "" "" "" "" "MAX_SCC_SIZE" "50";
+project add_assignment "" "" "" "" "NUMBER_OF_DESTINATION_TO_REPORT" "10";
+project add_assignment "" "" "" "" "NUMBER_OF_PATHS_TO_REPORT" "200";
+project add_assignment "" "" "" "" "RUN_ALL_TIMING_ANALYSES" "OFF";
+project add_assignment "" "" "" "" "NUMBER_OF_SOURCES_PER_DESTINATION_TO_REPORT" "10";
+project add_assignment "" "" "" "" "VERILOG_INPUT_VERSION" "VERILOG_2001";
+project add_assignment "" "" "" "" "VHDL_INPUT_VERSION" "VHDL93";
+project add_assignment "" "" "" "" "VHDL_SHOW_LMF_MAPPING_MESSAGES" "OFF";
+project add_assignment "" "simpletest" "" "" "LAST_QUARTUS_VERSION" "2.2";
+project add_assignment "" "simpletest" "" "" "USER_LIBRARIES" "rx_chan\\uart;rx_chan\\meanval;rx_chan\\edges;mono_flop;parity;tx_chan;rx_chan";
+project add_assignment "" "simpletest" "" "" "ORIGINAL_QUARTUS_VERSION" "2.2";
+project add_assignment "" "simpletest" "" "" "SHOW_REGISTRATION_MESSAGE" "ON";
+project add_assignment "" "simpletest" "" "" "EDA_BOARD_DESIGN_TOOL" "<NONE>";
+project add_assignment "" "simpletest" "" "" "EDA_DESIGN_ENTRY_SYNTHESIS_TOOL" "<NONE>";
+project add_assignment "" "simpletest" "" "" "EDA_FORMAL_VERIFICATION_TOOL" "<NONE>";
+project add_assignment "" "simpletest" "" "" "EDA_RESYNTHESIS_TOOL" "<NONE>";
+project add_assignment "" "simpletest" "" "" "EDA_SIMULATION_TOOL" "MODELSIM (VHDL OUTPUT FROM QUARTUS II)";
+project add_assignment "" "simpletest" "" "" "EDA_TIMING_ANALYSIS_TOOL" "<NONE>";
+project add_assignment "" "eda_design_synthesis" "" "" "EDA_INPUT_DATA_FORMAT" "EDIF";
+project add_assignment "" "eda_design_synthesis" "" "" "EDA_INPUT_GND_NAME" "GND";
+project add_assignment "" "eda_design_synthesis" "" "" "EDA_INPUT_VCC_NAME" "VCC";
+project add_assignment "" "eda_design_synthesis" "" "" "EDA_RUN_TOOL_AUTOMATICALLY" "OFF";
+project add_assignment "" "eda_design_synthesis" "" "" "EDA_OUTPUT_DATA_FORMAT" "NONE";
+project add_assignment "" "eda_design_synthesis" "" "" "EDA_SHOW_LMF_MAPPING_MESSAGES" "OFF";
+project add_assignment "" "eda_design_synthesis" "" "" "RESYNTHESIS_EXTRA_DEBUGGING_INFORMATION" "OFF";
+project add_assignment "" "eda_design_synthesis" "" "" "RESYNTHESIS_OPTIMIZATION_EFFORT" "NORMAL";
+project add_assignment "" "eda_design_synthesis" "" "" "RESYNTHESIS_PHYSICAL_SYNTHESIS" "NORMAL";
+project add_assignment "" "eda_design_synthesis" "" "" "RESYNTHESIS_RETIMING" "FULL";
+project add_assignment "" "eda_design_synthesis" "" "" "USE_GENERATED_PHYSICAL_CONSTRAINTS" "ON";
+project add_assignment "" "eda_simulation" "" "" "EDA_EXCALIBUR_ATOMS_AS_SINGLE_STRIPE" "OFF";
+project add_assignment "" "eda_simulation" "" "" "EDA_FLATTEN_BUSES" "OFF";
+project add_assignment "" "eda_simulation" "" "" "EDA_GENERATE_POWER_INPUT_FILE" "OFF";
+project add_assignment "" "eda_simulation" "" "" "EDA_GENERATE_SDF_OUTPUT_FILE" "ON";
+project add_assignment "" "eda_simulation" "" "" "EDA_RUN_TOOL_AUTOMATICALLY" "OFF";
+project add_assignment "" "eda_simulation" "" "" "EDA_MAINTAIN_DESIGN_HIERARCHY" "OFF";
+project add_assignment "" "eda_simulation" "" "" "EDA_MAP_ILLEGAL_CHARACTERS" "ON";
+project add_assignment "" "eda_simulation" "" "" "EDA_OUTPUT_DATA_FORMAT" "VHDL";
+project add_assignment "" "eda_simulation" "" "" "EDA_TEST_BENCH_ENABLE_STATUS" "NOT_USED";
+project add_assignment "" "eda_simulation" "" "" "EDA_TRUNCATE_LONG_HIERARCHY_PATHS" "OFF";
+project add_assignment "" "eda_simulation" "" "" "EDA_INCLUDE_VHDL_CONFIGURATION_DECLARATION" "ON";
+project add_assignment "" "eda_simulation" "" "" "EDA_WRITE_DEVICE_CONTROL_PORTS" "OFF";
+project add_assignment "" "eda_simulation" "" "" "RESYNTHESIS_EXTRA_DEBUGGING_INFORMATION" "OFF";
+project add_assignment "" "eda_simulation" "" "" "RESYNTHESIS_OPTIMIZATION_EFFORT" "NORMAL";
+project add_assignment "" "eda_simulation" "" "" "RESYNTHESIS_PHYSICAL_SYNTHESIS" "NORMAL";
+project add_assignment "" "eda_simulation" "" "" "RESYNTHESIS_RETIMING" "FULL";
+project add_assignment "" "eda_simulation" "" "" "USE_GENERATED_PHYSICAL_CONSTRAINTS" "ON";
+project add_assignment "" "eda_timing_analysis" "" "" "EDA_EXCALIBUR_ATOMS_AS_SINGLE_STRIPE" "OFF";
+project add_assignment "" "eda_timing_analysis" "" "" "EDA_FLATTEN_BUSES" "OFF";
+project add_assignment "" "eda_timing_analysis" "" "" "EDA_GENERATE_SDF_OUTPUT_FILE" "ON";
+project add_assignment "" "eda_timing_analysis" "" "" "EDA_RUN_TOOL_AUTOMATICALLY" "OFF";
+project add_assignment "" "eda_timing_analysis" "" "" "EDA_MAINTAIN_DESIGN_HIERARCHY" "OFF";
+project add_assignment "" "eda_timing_analysis" "" "" "EDA_MAP_ILLEGAL_CHARACTERS" "OFF";
+project add_assignment "" "eda_timing_analysis" "" "" "EDA_OUTPUT_DATA_FORMAT" "NONE";
+project add_assignment "" "eda_timing_analysis" "" "" "EDA_TRUNCATE_LONG_HIERARCHY_PATHS" "OFF";
+project add_assignment "" "eda_timing_analysis" "" "" "EDA_INCLUDE_VHDL_CONFIGURATION_DECLARATION" "OFF";
+project add_assignment "" "eda_timing_analysis" "" "" "EDA_WRITE_DEVICE_CONTROL_PORTS" "OFF";
+project add_assignment "" "eda_timing_analysis" "" "" "RESYNTHESIS_EXTRA_DEBUGGING_INFORMATION" "OFF";
+project add_assignment "" "eda_timing_analysis" "" "" "RESYNTHESIS_OPTIMIZATION_EFFORT" "NORMAL";
+project add_assignment "" "eda_timing_analysis" "" "" "RESYNTHESIS_PHYSICAL_SYNTHESIS" "NORMAL";
+project add_assignment "" "eda_timing_analysis" "" "" "RESYNTHESIS_RETIMING" "FULL";
+project add_assignment "" "eda_timing_analysis" "" "" "USE_GENERATED_PHYSICAL_CONSTRAINTS" "ON";
+project add_assignment "" "eda_board_design" "" "" "EDA_EXCALIBUR_ATOMS_AS_SINGLE_STRIPE" "OFF";
+project add_assignment "" "eda_board_design" "" "" "EDA_FLATTEN_BUSES" "OFF";
+project add_assignment "" "eda_board_design" "" "" "EDA_GENERATE_SDF_OUTPUT_FILE" "ON";
+project add_assignment "" "eda_board_design" "" "" "EDA_RUN_TOOL_AUTOMATICALLY" "OFF";
+project add_assignment "" "eda_board_design" "" "" "EDA_MAINTAIN_DESIGN_HIERARCHY" "OFF";
+project add_assignment "" "eda_board_design" "" "" "EDA_MAP_ILLEGAL_CHARACTERS" "OFF";
+project add_assignment "" "eda_board_design" "" "" "EDA_OUTPUT_DATA_FORMAT" "NONE";
+project add_assignment "" "eda_board_design" "" "" "EDA_TRUNCATE_LONG_HIERARCHY_PATHS" "OFF";
+project add_assignment "" "eda_board_design" "" "" "EDA_INCLUDE_VHDL_CONFIGURATION_DECLARATION" "OFF";
+project add_assignment "" "eda_board_design" "" "" "EDA_WRITE_DEVICE_CONTROL_PORTS" "OFF";
+project add_assignment "" "eda_board_design" "" "" "RESYNTHESIS_EXTRA_DEBUGGING_INFORMATION" "OFF";
+project add_assignment "" "eda_board_design" "" "" "RESYNTHESIS_OPTIMIZATION_EFFORT" "NORMAL";
+project add_assignment "" "eda_board_design" "" "" "RESYNTHESIS_PHYSICAL_SYNTHESIS" "NORMAL";
+project add_assignment "" "eda_board_design" "" "" "RESYNTHESIS_RETIMING" "FULL";
+project add_assignment "" "eda_board_design" "" "" "USE_GENERATED_PHYSICAL_CONSTRAINTS" "ON";
+project add_assignment "" "eda_formal_verification" "" "" "EDA_EXCALIBUR_ATOMS_AS_SINGLE_STRIPE" "OFF";
+project add_assignment "" "eda_formal_verification" "" "" "EDA_FLATTEN_BUSES" "OFF";
+project add_assignment "" "eda_formal_verification" "" "" "EDA_GENERATE_SDF_OUTPUT_FILE" "ON";
+project add_assignment "" "eda_formal_verification" "" "" "EDA_RUN_TOOL_AUTOMATICALLY" "OFF";
+project add_assignment "" "eda_formal_verification" "" "" "EDA_MAINTAIN_DESIGN_HIERARCHY" "OFF";
+project add_assignment "" "eda_formal_verification" "" "" "EDA_MAP_ILLEGAL_CHARACTERS" "OFF";
+project add_assignment "" "eda_formal_verification" "" "" "EDA_OUTPUT_DATA_FORMAT" "NONE";
+project add_assignment "" "eda_formal_verification" "" "" "EDA_TRUNCATE_LONG_HIERARCHY_PATHS" "OFF";
+project add_assignment "" "eda_formal_verification" "" "" "EDA_INCLUDE_VHDL_CONFIGURATION_DECLARATION" "OFF";
+project add_assignment "" "eda_formal_verification" "" "" "EDA_WRITE_DEVICE_CONTROL_PORTS" "OFF";
+project add_assignment "" "eda_formal_verification" "" "" "RESYNTHESIS_EXTRA_DEBUGGING_INFORMATION" "OFF";
+project add_assignment "" "eda_formal_verification" "" "" "RESYNTHESIS_OPTIMIZATION_EFFORT" "NORMAL";
+project add_assignment "" "eda_formal_verification" "" "" "RESYNTHESIS_PHYSICAL_SYNTHESIS" "NORMAL";
+project add_assignment "" "eda_formal_verification" "" "" "RESYNTHESIS_RETIMING" "FULL";
+project add_assignment "" "eda_formal_verification" "" "" "USE_GENERATED_PHYSICAL_CONSTRAINTS" "ON";
+project add_assignment "" "eda_palace" "" "" "EDA_EXCALIBUR_ATOMS_AS_SINGLE_STRIPE" "OFF";
+project add_assignment "" "eda_palace" "" "" "EDA_FLATTEN_BUSES" "OFF";
+project add_assignment "" "eda_palace" "" "" "EDA_GENERATE_SDF_OUTPUT_FILE" "ON";
+project add_assignment "" "eda_palace" "" "" "EDA_RUN_TOOL_AUTOMATICALLY" "OFF";
+project add_assignment "" "eda_palace" "" "" "EDA_MAINTAIN_DESIGN_HIERARCHY" "OFF";
+project add_assignment "" "eda_palace" "" "" "EDA_MAP_ILLEGAL_CHARACTERS" "OFF";
+project add_assignment "" "eda_palace" "" "" "EDA_OUTPUT_DATA_FORMAT" "NONE";
+project add_assignment "" "eda_palace" "" "" "EDA_TRUNCATE_LONG_HIERARCHY_PATHS" "OFF";
+project add_assignment "" "eda_palace" "" "" "EDA_INCLUDE_VHDL_CONFIGURATION_DECLARATION" "OFF";
+project add_assignment "" "eda_palace" "" "" "EDA_WRITE_DEVICE_CONTROL_PORTS" "OFF";
+project add_assignment "" "eda_palace" "" "" "RESYNTHESIS_EXTRA_DEBUGGING_INFORMATION" "OFF";
+project add_assignment "" "eda_palace" "" "" "RESYNTHESIS_OPTIMIZATION_EFFORT" "NORMAL";
+project add_assignment "" "eda_palace" "" "" "RESYNTHESIS_PHYSICAL_SYNTHESIS" "NORMAL";
+project add_assignment "" "eda_palace" "" "" "RESYNTHESIS_RETIMING" "FULL";
+project add_assignment "" "eda_palace" "" "" "USE_GENERATED_PHYSICAL_CONSTRAINTS" "ON";
+project add_assignment "" "CLK1p" "" "" "DIVIDE_BASE_CLOCK_PERIOD_BY" "1";
+project add_assignment "" "CLK1p" "" "" "INCLUDE_EXTERNAL_PIN_DELAYS_IN_FMAX_CALCULATIONS" "OFF";
+project add_assignment "" "CLK1p" "" "" "INVERT_BASE_CLOCK" "OFF";
+project add_assignment "" "CLK1p" "" "" "MULTIPLY_BASE_CLOCK_PERIOD_BY" "1";
+project add_assignment "" "CLK1p" "" "" "DUTY_CYCLE" "50";
+project add_assignment "" "CLK1p" "" "" "FMAX_REQUIREMENT" "20.0 MHz";
+project add_assignment "" "CLK4p" "" "" "DIVIDE_BASE_CLOCK_PERIOD_BY" "1";
+project add_assignment "" "CLK4p" "" "" "INCLUDE_EXTERNAL_PIN_DELAYS_IN_FMAX_CALCULATIONS" "OFF";
+project add_assignment "" "CLK4p" "" "" "INVERT_BASE_CLOCK" "OFF";
+project add_assignment "" "CLK4p" "" "" "MULTIPLY_BASE_CLOCK_PERIOD_BY" "1";
+project add_assignment "" "CLK4p" "" "" "DUTY_CYCLE" "50";
+project add_assignment "" "CLK4p" "" "" "FMAX_REQUIREMENT" "20.0 MHz";
+project end_batch "";
+
+# Compile: simpletest
+project set_active_cmp simpletest;
+cmp start compile;
+while {[cmp is_running]} {
+	if {![is_command_line_mode]} {
+		set x 0;
+		after 1000 {set x 1};
+		vwait x;
 	}
-} else {
-	# Only open if not already open
-	if {[project_exists simpletest]} {
-		project_open -cmp simpletest simpletest
-	} else {
-		project_new simpletest
-	}
-	set need_to_close_project 1
+	FlushEventQueue;
 }
 
-# Make assignments
-if {$make_assignments} {
-	# Project Assignments
-	set_global_assignment -name "COMPILER_SETTINGS" "simpletest"
-	set_global_assignment -name "SIMULATOR_SETTINGS" "simpletest"
-	set_global_assignment -name "SOFTWARE_SETTINGS" "Debug"
-	set_global_assignment -name "SOFTWARE_SETTINGS" "Release"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\DCREV.tdf"
-	set_global_assignment -name "INCLUDE_FILE" "..\\..\\common\\com\\Tcal\\dc_tcal_ct.inc"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Tcal\\thr_add.tdf"
-	set_global_assignment -name "GDF_FILE" "..\\..\\common\\com\\Tcal\\dc_rapcal_lh.gdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Tcal\\dc_tcal_ct.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Tcal\\mux2x8.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Tcal\\RX_TCAL.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Tcal\\TCAL_Timer.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Tcal\\tcwf_16x10.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Tcal\\tcwf_ct.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Tcal\\comp_10.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Tx_chan\\shift_ct.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Tx_chan\\shrg48pld.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Tx_chan\\ID_HDR_BYTE_0.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Tx_chan\\ID_HDR_BYTE_2.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Tx_chan\\mux16x8.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\rev_005.tdf"
-	set_global_assignment -name "VHDL_FILE" "..\\common\\slaveregister.vhd"
-	set_global_assignment -name "VHDL_FILE" "..\\common\\timer.vhd"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Rx_chan\\edges\\ONE_DET.tdf"
-	set_global_assignment -name "INCLUDE_FILE" "..\\..\\common\\com\\Rx_chan\\edges\\ONE_DET.inc"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Rx_chan\\edges\\adc_to_digital.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Tx_chan\\dac_rs_tab_trap_01.tdf"
-	set_global_assignment -name "BDF_FILE" "..\\..\\common\\com\\Rx_chan\\DC_Rx_chan_04.bdf"
-	set_global_assignment -name "BDF_FILE" "..\\..\\common\\com\\Tx_chan\\DC_Tx_chan_04.bdf"
-	set_global_assignment -name "BDF_FILE" "..\\..\\common\\com\\dcom.bdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Rx_chan\\DC_MREC.tdf"
-	set_global_assignment -name "INCLUDE_FILE" "..\\..\\common\\com\\Parity\\Par_74180.inc"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Rx_chan\\du_dt_2_clks.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Rx_chan\\dc_rx_fifo.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Rx_chan\\dc_rx_plct.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Rx_chan\\and8b.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Rx_chan\\or8b.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Rx_chan\\rx_msg_ct.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Rx_chan\\meanval\\ctup4.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Rx_chan\\edges\\ctup5.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Rx_chan\\edges\\cmp10.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Rx_chan\\edges\\edge_discr.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Rx_chan\\edges\\HL_DEC.tdf"
-	set_global_assignment -name "GDF_FILE" "..\\..\\common\\com\\Rx_chan\\edges\\HL_diff_02.gdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Rx_chan\\edges\\sub10.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Rx_chan\\UART\\rxct4.tdf"
-	set_global_assignment -name "BDF_FILE" "..\\..\\common\\com\\Rx_chan\\UART\\RX_UART_12.bdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Rx_chan\\UART\\rxct5.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Rx_chan\\UART\\rxct8.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Rx_chan\\UART\\rxshr8.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Rx_chan\\UART\\UA_RX_12.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Rx_chan\\RX_MREC.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Rx_chan\\meanval\\dec2.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Rx_chan\\meanval\\add10.tdf"
-	set_global_assignment -name "GDF_FILE" "..\\..\\common\\com\\Rx_chan\\meanval\\mean_val.gdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Rx_chan\\meanval\\mux4x10.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Rx_chan\\meanval\\or10.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Tx_chan\\dac_tab_10_trap.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Tx_chan\\control_byte.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Tx_chan\\DC_SEND.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Mono_flop\\ctup8.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Tx_chan\\dc_tx_fifo.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Tx_chan\\dc_tx_plct.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Tx_chan\\tx_mux_4x8.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Tx_chan\\tx_pack_ct.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Tx_chan\\TX_UART.tdf"
-	set_global_assignment -name "BDF_FILE" "..\\..\\common\\com\\Tx_chan\\tx_uart_12.bdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Tx_chan\\txbitct.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Tx_chan\\txct.tdf"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\Tx_chan\\txshr10.tdf"
-	set_global_assignment -name "BDF_FILE" "..\\..\\common\\com\\Parity\\Par_74180.bdf"
-	set_global_assignment -name "BDF_FILE" "..\\..\\common\\com\\Mono_flop\\mono.bdf"
-	set_global_assignment -name "VHDL_FILE" "..\\..\\common\\com\\dec_threshold.vhd"
-	set_global_assignment -name "AHDL_FILE" "..\\..\\common\\com\\DC_CTRL.tdf"
-	set_global_assignment -name "VHDL_FILE" "..\\common\\ahb_slave.vhd"
-	set_global_assignment -name "VHDL_FILE" "..\\common\\atwd.vhd"
-	set_global_assignment -name "VHDL_FILE" "..\\common\\atwd_control.vhd"
-	set_global_assignment -name "VHDL_FILE" "..\\common\\atwd_readout.vhd"
-	set_global_assignment -name "VHDL_FILE" "..\\common\\atwd_trigger.vhd"
-	set_global_assignment -name "VHDL_FILE" "..\\common\\coinc.vhd"
-	set_global_assignment -name "VERILOG_FILE" "..\\common\\com_adc_mem.v"
-	set_global_assignment -name "VHDL_FILE" "..\\common\\com_ADC_RX.vhd"
-	set_global_assignment -name "VHDL_FILE" "..\\common\\com_DAC_TX.vhd"
-	set_global_assignment -name "VHDL_FILE" "..\\common\\fe_r2r.vhd"
-	set_global_assignment -name "VHDL_FILE" "..\\common\\fe_testpulse.vhd"
-	set_global_assignment -name "VHDL_FILE" "..\\common\\flash_adc.vhd"
-	set_global_assignment -name "VHDL_FILE" "..\\common\\flasher_board.vhd"
-	set_global_assignment -name "VHDL_FILE" "..\\common\\gray2bin.vhd"
-	set_global_assignment -name "VHDL_FILE" "..\\common\\hit_counter.vhd"
-	set_global_assignment -name "VHDL_FILE" "..\\common\\hit_counter_ff.vhd"
-	set_global_assignment -name "VHDL_FILE" "..\\common\\master_data_source.vhd"
-	set_global_assignment -name "VERILOG_FILE" "..\\common\\pll2x.v"
-	set_global_assignment -name "VERILOG_FILE" "..\\common\\pll4x.v"
-	set_global_assignment -name "VHDL_FILE" "..\\common\\r2r.vhd"
-	set_global_assignment -name "VHDL_FILE" "..\\common\\ROC.vhd"
-	set_global_assignment -name "VHDL_FILE" "..\\common\\rs486.vhd"
-	set_global_assignment -name "VHDL_FILE" "..\\common\\single_led.vhd"
-	set_global_assignment -name "VHDL_FILE" "..\\common\\ahb_master.vhd"
-	set_global_assignment -name "VHDL_FILE" "simpletest.vhd"
-	set_global_assignment -name "MIF_FILE" "version_rom.mif"
-
-	set_global_assignment -name "ACLK_CAT" "OFF"
-	set_global_assignment -name "ACLK_RULE_IMSZER_ADOMAIN" "OFF"
-	set_global_assignment -name "ACLK_RULE_NO_SZER_ACLK_DOMAIN" "OFF"
-	set_global_assignment -name "ACLK_RULE_SZER_BTW_ACLK_DOMAIN" "OFF"
-	set_global_assignment -name "ASSG_CAT" "OFF"
-	set_global_assignment -name "ASSG_RULE_MISSING_FMAX" "OFF"
-	set_global_assignment -name "ASSG_RULE_MISSING_TIMING" "OFF"
-	set_global_assignment -name "CLK_CAT" "OFF"
-	set_global_assignment -name "CLK_RULE_ALL" "OFF"
-	set_global_assignment -name "CLK_RULE_CLKNET_CLKSPINES" "OFF"
-	set_global_assignment -name "CLK_RULE_COMB_CLOCK" "OFF"
-	set_global_assignment -name "CLK_RULE_GATING_SCHEME" "OFF"
-	set_global_assignment -name "CLK_RULE_INPINS_CLKNET" "OFF"
-	set_global_assignment -name "CLK_RULE_INV_CLOCK" "OFF"
-	set_global_assignment -name "CLK_RULE_MIX_EDGES" "OFF"
-	set_global_assignment -name "HCPY_ALOAD_SIGNALS" "OFF"
-	set_global_assignment -name "NONSYNCHSTRUCT_RULE_ASYN_RAM" "OFF"
-	set_global_assignment -name "HCPY_CAT" "OFF"
-	set_global_assignment -name "HCPY_EXCEED_RAM_USAGE" "OFF"
-	set_global_assignment -name "HCPY_EXCEED_USER_IO_USAGE" "OFF"
-	set_global_assignment -name "HCPY_ILLEGAL_HC_DEV_PKG" "OFF"
-	set_global_assignment -name "HCPY_VREF_PINS" "OFF"
-	set_global_assignment -name "NONSYNCHSTRUCT_CAT" "OFF"
-	set_global_assignment -name "NONSYNCHSTRUCT_RULE_COMBLOOP" "OFF"
-	set_global_assignment -name "NONSYNCHSTRUCT_RULE_COMB_DRIVES_RAM_WE" "OFF"
-	set_global_assignment -name "NONSYNCHSTRUCT_RULE_DELAY_CHAIN" "OFF"
-	set_global_assignment -name "NONSYNCHSTRUCT_RULE_DLATCH" "OFF"
-	set_global_assignment -name "NONSYNCHSTRUCT_RULE_ILLEGAL_PULSE_GEN" "OFF"
-	set_global_assignment -name "NONSYNCHSTRUCT_RULE_LATCH_UNIDENTIFIED" "OFF"
-	set_global_assignment -name "NONSYNCHSTRUCT_RULE_MULTI_VIBRATOR" "OFF"
-	set_global_assignment -name "NONSYNCHSTRUCT_RULE_REG_LOOP" "OFF"
-	set_global_assignment -name "NONSYNCHSTRUCT_RULE_RIPPLE_CLK" "OFF"
-	set_global_assignment -name "NONSYNCHSTRUCT_RULE_SRLATCH" "OFF"
-	set_global_assignment -name "RESET_CAT" "OFF"
-	set_global_assignment -name "RESET_RULE_ALL" "OFF"
-	set_global_assignment -name "RESET_RULE_COMB_ASYNCH_RESET" "OFF"
-	set_global_assignment -name "RESET_RULE_IMSYNCH_ASYNCH_DOMAIN" "OFF"
-	set_global_assignment -name "RESET_RULE_IMSYNCH_EXRESET" "OFF"
-	set_global_assignment -name "RESET_RULE_INPINS_RESETNET" "OFF"
-	set_global_assignment -name "RESET_RULE_REG_ASNYCH" "OFF"
-	set_global_assignment -name "RESET_RULE_UNSYNCH_ASYNCH_DOMAIN" "OFF"
-	set_global_assignment -name "RESET_RULE_UNSYNCH_EXRESET" "OFF"
-	set_global_assignment -name "SIGNALRACE_CAT" "OFF"
-	set_global_assignment -name "SIGNALRACE_RULE_ASYNCHPIN_SYNCH_CLKPIN" "OFF"
-	set_global_assignment -name "SIGNALRACE_RULE_TRISTATE" "OFF"
-	set_global_assignment -name "TIMING_CAT" "OFF"
-	set_global_assignment -name "TIMING_RULE_COIN_CLKEDGE" "OFF"
-	set_global_assignment -name "TIMING_RULE_HIGH_FANOUTS" "OFF"
-	set_global_assignment -name "TIMING_RULE_SHIFT_REG" "OFF"
-	set_global_assignment -name "LIMIT_AHDL_INTEGERS_TO_32_BITS" "OFF"
-	set_global_assignment -name "USE_LPM_FOR_AHDL_OPERATORS" "ON"
-	set_global_assignment -name "ALLOW_POWER_UP_DONT_CARE" "ON"
-	set_global_assignment -name "AUTO_CARRY_CHAINS" "ON"
-	set_global_assignment -name "AUTO_CASCADE_CHAINS" "ON"
-	set_global_assignment -name "AUTO_DELAY_CHAINS" "ON"
-	set_global_assignment -name "AUTO_DSP_RECOGNITION" "ON"
-	set_global_assignment -name "AUTO_GLOBAL_CLOCK" "ON"
-	set_global_assignment -name "AUTO_GLOBAL_MEMORY_CONTROLS" "OFF"
-	set_global_assignment -name "AUTO_GLOBAL_OE" "ON"
-	set_global_assignment -name "AUTO_GLOBAL_REGISTER_CONTROLS" "ON"
-	set_global_assignment -name "AUTO_FAST_INPUT_REGISTERS" "OFF"
-	set_global_assignment -name "AUTO_LCELL_INSERTION" "ON"
-	set_global_assignment -name "AUTO_MERGE_PLLS" "ON"
-	set_global_assignment -name "AUTO_OPEN_DRAIN_PINS" "ON"
-	set_global_assignment -name "AUTO_FAST_OUTPUT_ENABLE_REGISTERS" "OFF"
-	set_global_assignment -name "AUTO_FAST_OUTPUT_REGISTERS" "OFF"
-	set_global_assignment -name "AUTO_PARALLEL_EXPANDERS" "ON"
-	set_global_assignment -name "AUTO_RAM_RECOGNITION" "ON"
-	set_global_assignment -name "AUTO_IMPLEMENT_IN_ROM" "OFF"
-	set_global_assignment -name "AUTO_SHIFT_REGISTER_RECOGNITION" "ON"
-	set_global_assignment -name "AUTO_TURBO_BIT" "ON"
-	set_global_assignment -name "CARRY_CHAIN_LENGTH" "48"
-	set_global_assignment -name "MERCURY_CARRY_CHAIN_LENGTH" "48"
-	set_global_assignment -name "FLEX10K_CARRY_CHAIN_LENGTH" "32"
-	set_global_assignment -name "FLEX6K_CARRY_CHAIN_LENGTH" "32"
-	set_global_assignment -name "STRATIX_CARRY_CHAIN_LENGTH" "70"
-	set_global_assignment -name "CARRY_OUT_PINS_LCELL_INSERT" "ON"
-	set_global_assignment -name "CASCADE_CHAIN_LENGTH" "48"
-	set_global_assignment -name "DSP_BLOCK_BALANCING" "AUTO"
-	set_global_assignment -name "REMOVE_DUPLICATE_LOGIC" "ON"
-	set_global_assignment -name "REMOVE_DUPLICATE_REGISTERS" "ON"
-	set_global_assignment -name "ENABLE_BUS_HOLD_CIRCUITRY" "OFF"
-	set_global_assignment -name "IGNORE_CARRY_BUFFERS" "OFF"
-	set_global_assignment -name "IGNORE_CASCADE_BUFFERS" "OFF"
-	set_global_assignment -name "IGNORE_GLOBAL_BUFFERS" "OFF"
-	set_global_assignment -name "IGNORE_LCELL_BUFFERS" "OFF"
-	set_global_assignment -name "MAX7000_IGNORE_LCELL_BUFFERS" "AUTO"
-	set_global_assignment -name "IGNORE_ROW_GLOBAL_BUFFERS" "OFF"
-	set_global_assignment -name "IGNORE_SOFT_BUFFERS" "ON"
-	set_global_assignment -name "MAX7000_IGNORE_SOFT_BUFFERS" "OFF"
-	set_global_assignment -name "NORMAL_LCELL_INSERT" "ON"
-	set_global_assignment -name "NOT_GATE_PUSH_BACK" "ON"
-	set_global_assignment -name "APEX20K_OPTIMIZATION_TECHNIQUE" "SPEED"
-	set_global_assignment -name "CYCLONE_OPTIMIZATION_TECHNIQUE" "AREA"
-	set_global_assignment -name "MERCURY_OPTIMIZATION_TECHNIQUE" "AREA"
-	set_global_assignment -name "FLEX10K_OPTIMIZATION_TECHNIQUE" "AREA"
-	set_global_assignment -name "FLEX6K_OPTIMIZATION_TECHNIQUE" "AREA"
-	set_global_assignment -name "MAX7000_OPTIMIZATION_TECHNIQUE" "SPEED"
-	set_global_assignment -name "STRATIX_OPTIMIZATION_TECHNIQUE" "SPEED"
-	set_global_assignment -name "PCI_IO" "OFF"
-	set_global_assignment -name "PARALLEL_EXPANDER_CHAIN_LENGTH" "16"
-	set_global_assignment -name "MAX7000_PARALLEL_EXPANDER_CHAIN_LENGTH" "4"
-	set_global_assignment -name "AUTO_PACKED_REGISTERS" "OFF"
-	set_global_assignment -name "AUTO_PACKED_REG_CYCLONE" "NORMAL"
-	set_global_assignment -name "AUTO_PACKED_REGISTERS_STRATIX" "NORMAL"
-	set_global_assignment -name "REMOVE_REDUNDANT_LOGIC_CELLS" "OFF"
-	set_global_assignment -name "SLOW_SLEW_RATE" "OFF"
-	set_global_assignment -name "STATE_MACHINE_PROCESSING" "AUTO"
-	set_global_assignment -name "APEX20K_TECHNOLOGY_MAPPER" "LUT"
-	set_global_assignment -name "MERCURY_TECHNOLOGY_MAPPER" "LUT"
-	set_global_assignment -name "FLEX10K_TECHNOLOGY_MAPPER" "LUT"
-	set_global_assignment -name "FLEX6K_TECHNOLOGY_MAPPER" "LUT"
-	set_global_assignment -name "MAX7000_TECHNOLOGY_MAPPER" "PRODUCT TERM"
-	set_global_assignment -name "STRATIX_TECHNOLOGY_MAPPER" "LUT"
-	set_global_assignment -name "TURBO_BIT" "ON"
-	set_global_assignment -name "WEAK_PULL_UP_RESISTOR" "OFF"
-	set_global_assignment -name "ALLOW_XOR_GATE_USAGE" "ON"
-	set_global_assignment -name "HARDCOPY_EXTERNAL_CLOCK_JITTER" "0.0 ns"
-	set_global_assignment -name "CUT_OFF_CLEAR_AND_PRESET_PATHS" "ON"
-	set_global_assignment -name "CUT_OFF_IO_PIN_FEEDBACK" "ON"
-	set_global_assignment -name "CUT_OFF_PATHS_BETWEEN_CLOCK_DOMAINS" "ON"
-	set_global_assignment -name "CUT_OFF_READ_DURING_WRITE_PATHS" "ON"
-	set_global_assignment -name "DO_MIN_ANALYSIS" "ON"
-	set_global_assignment -name "DO_MIN_TIMING" "OFF"
-	set_global_assignment -name "INCLUDE_EXTERNAL_PIN_DELAYS_IN_FMAX_CALCULATIONS" "OFF"
-	set_global_assignment -name "DEFAULT_HOLD_MULTICYCLE" "SAME AS MULTICYCLE"
-	set_global_assignment -name "IGNORE_CLOCK_SETTINGS" "OFF"
-	set_global_assignment -name "MAX_SCC_SIZE" "50"
-	set_global_assignment -name "NUMBER_OF_DESTINATION_TO_REPORT" "10"
-	set_global_assignment -name "NUMBER_OF_PATHS_TO_REPORT" "200"
-	set_global_assignment -name "RUN_ALL_TIMING_ANALYSES" "ON"
-	set_global_assignment -name "NUMBER_OF_SOURCES_PER_DESTINATION_TO_REPORT" "10"
-	set_global_assignment -name "ENABLE_IP_DEBUG" "OFF"
-	set_global_assignment -name "VERILOG_INPUT_VERSION" "VERILOG_2001"
-	set_global_assignment -name "VHDL_INPUT_VERSION" "VHDL93"
-	set_global_assignment -name "VHDL_SHOW_LMF_MAPPING_MESSAGES" "OFF"
-	set_global_assignment -name "LAST_QUARTUS_VERSION" -section_id "simpletest" "3.0"
-	set_global_assignment -name "ORIGINAL_QUARTUS_VERSION" -section_id "simpletest" "2.2"
-	set_global_assignment -name "SHOW_REGISTRATION_MESSAGE" -section_id "simpletest" "ON"
-	set_global_assignment -name "EDA_BOARD_DESIGN_TOOL" -section_id "simpletest" "<NONE>"
-	set_global_assignment -name "EDA_DESIGN_ENTRY_SYNTHESIS_TOOL" -section_id "simpletest" "<NONE>"
-	set_global_assignment -name "EDA_FORMAL_VERIFICATION_TOOL" -section_id "simpletest" "<NONE>"
-	set_global_assignment -name "EDA_RESYNTHESIS_TOOL" -section_id "simpletest" "<NONE>"
-	set_global_assignment -name "EDA_SIMULATION_TOOL" -section_id "simpletest" "MODELSIM (VHDL OUTPUT FROM QUARTUS II)"
-	set_global_assignment -name "EDA_TIMING_ANALYSIS_TOOL" -section_id "simpletest" "<NONE>"
-	set_global_assignment -name "EDA_INPUT_DATA_FORMAT" -section_id "eda_design_synthesis" "EDIF"
-	set_global_assignment -name "EDA_INPUT_GND_NAME" -section_id "eda_design_synthesis" "GND"
-	set_global_assignment -name "EDA_INPUT_VCC_NAME" -section_id "eda_design_synthesis" "VCC"
-	set_global_assignment -name "EDA_RUN_TOOL_AUTOMATICALLY" -section_id "eda_design_synthesis" "OFF"
-	set_global_assignment -name "EDA_OUTPUT_DATA_FORMAT" -section_id "eda_design_synthesis" "NONE"
-	set_global_assignment -name "EDA_SHOW_LMF_MAPPING_MESSAGES" -section_id "eda_design_synthesis" "OFF"
-	set_global_assignment -name "RESYNTHESIS_OPTIMIZATION_EFFORT" -section_id "eda_design_synthesis" "NORMAL"
-	set_global_assignment -name "RESYNTHESIS_PHYSICAL_SYNTHESIS" -section_id "eda_design_synthesis" "NORMAL"
-	set_global_assignment -name "RESYNTHESIS_RETIMING" -section_id "eda_design_synthesis" "FULL"
-	set_global_assignment -name "USE_GENERATED_PHYSICAL_CONSTRAINTS" -section_id "eda_design_synthesis" "ON"
-	set_global_assignment -name "EDA_EXCALIBUR_ATOMS_AS_SINGLE_STRIPE" -section_id "eda_simulation" "OFF"
-	set_global_assignment -name "EDA_FLATTEN_BUSES" -section_id "eda_simulation" "OFF"
-	set_global_assignment -name "EDA_GENERATE_POWER_INPUT_FILE" -section_id "eda_simulation" "OFF"
-	set_global_assignment -name "EDA_GENERATE_SDF_OUTPUT_FILE" -section_id "eda_simulation" "ON"
-	set_global_assignment -name "EDA_RUN_TOOL_AUTOMATICALLY" -section_id "eda_simulation" "OFF"
-	set_global_assignment -name "EDA_MAINTAIN_DESIGN_HIERARCHY" -section_id "eda_simulation" "OFF"
-	set_global_assignment -name "EDA_MAP_ILLEGAL_CHARACTERS" -section_id "eda_simulation" "ON"
-	set_global_assignment -name "EDA_OUTPUT_DATA_FORMAT" -section_id "eda_simulation" "VHDL"
-	set_global_assignment -name "EDA_TEST_BENCH_ENABLE_STATUS" -section_id "eda_simulation" "NOT_USED"
-	set_global_assignment -name "EDA_TRUNCATE_LONG_HIERARCHY_PATHS" -section_id "eda_simulation" "OFF"
-	set_global_assignment -name "EDA_INCLUDE_VHDL_CONFIGURATION_DECLARATION" -section_id "eda_simulation" "ON"
-	set_global_assignment -name "EDA_WRITE_DEVICE_CONTROL_PORTS" -section_id "eda_simulation" "OFF"
-	set_global_assignment -name "RESYNTHESIS_OPTIMIZATION_EFFORT" -section_id "eda_simulation" "NORMAL"
-	set_global_assignment -name "RESYNTHESIS_PHYSICAL_SYNTHESIS" -section_id "eda_simulation" "NORMAL"
-	set_global_assignment -name "RESYNTHESIS_RETIMING" -section_id "eda_simulation" "FULL"
-	set_global_assignment -name "USE_GENERATED_PHYSICAL_CONSTRAINTS" -section_id "eda_simulation" "ON"
-	set_global_assignment -name "EDA_EXCALIBUR_ATOMS_AS_SINGLE_STRIPE" -section_id "eda_timing_analysis" "OFF"
-	set_global_assignment -name "EDA_FLATTEN_BUSES" -section_id "eda_timing_analysis" "OFF"
-	set_global_assignment -name "EDA_GENERATE_SDF_OUTPUT_FILE" -section_id "eda_timing_analysis" "ON"
-	set_global_assignment -name "EDA_RUN_TOOL_AUTOMATICALLY" -section_id "eda_timing_analysis" "OFF"
-	set_global_assignment -name "EDA_MAINTAIN_DESIGN_HIERARCHY" -section_id "eda_timing_analysis" "OFF"
-	set_global_assignment -name "EDA_MAP_ILLEGAL_CHARACTERS" -section_id "eda_timing_analysis" "OFF"
-	set_global_assignment -name "EDA_OUTPUT_DATA_FORMAT" -section_id "eda_timing_analysis" "NONE"
-	set_global_assignment -name "EDA_TRUNCATE_LONG_HIERARCHY_PATHS" -section_id "eda_timing_analysis" "OFF"
-	set_global_assignment -name "EDA_INCLUDE_VHDL_CONFIGURATION_DECLARATION" -section_id "eda_timing_analysis" "OFF"
-	set_global_assignment -name "EDA_WRITE_DEVICE_CONTROL_PORTS" -section_id "eda_timing_analysis" "OFF"
-	set_global_assignment -name "RESYNTHESIS_OPTIMIZATION_EFFORT" -section_id "eda_timing_analysis" "NORMAL"
-	set_global_assignment -name "RESYNTHESIS_PHYSICAL_SYNTHESIS" -section_id "eda_timing_analysis" "NORMAL"
-	set_global_assignment -name "RESYNTHESIS_RETIMING" -section_id "eda_timing_analysis" "FULL"
-	set_global_assignment -name "USE_GENERATED_PHYSICAL_CONSTRAINTS" -section_id "eda_timing_analysis" "ON"
-	set_global_assignment -name "EDA_EXCALIBUR_ATOMS_AS_SINGLE_STRIPE" -section_id "eda_board_design" "OFF"
-	set_global_assignment -name "EDA_FLATTEN_BUSES" -section_id "eda_board_design" "OFF"
-	set_global_assignment -name "EDA_GENERATE_SDF_OUTPUT_FILE" -section_id "eda_board_design" "ON"
-	set_global_assignment -name "EDA_RUN_TOOL_AUTOMATICALLY" -section_id "eda_board_design" "OFF"
-	set_global_assignment -name "EDA_MAINTAIN_DESIGN_HIERARCHY" -section_id "eda_board_design" "OFF"
-	set_global_assignment -name "EDA_MAP_ILLEGAL_CHARACTERS" -section_id "eda_board_design" "OFF"
-	set_global_assignment -name "EDA_OUTPUT_DATA_FORMAT" -section_id "eda_board_design" "NONE"
-	set_global_assignment -name "EDA_TRUNCATE_LONG_HIERARCHY_PATHS" -section_id "eda_board_design" "OFF"
-	set_global_assignment -name "EDA_INCLUDE_VHDL_CONFIGURATION_DECLARATION" -section_id "eda_board_design" "OFF"
-	set_global_assignment -name "EDA_WRITE_DEVICE_CONTROL_PORTS" -section_id "eda_board_design" "OFF"
-	set_global_assignment -name "RESYNTHESIS_OPTIMIZATION_EFFORT" -section_id "eda_board_design" "NORMAL"
-	set_global_assignment -name "RESYNTHESIS_PHYSICAL_SYNTHESIS" -section_id "eda_board_design" "NORMAL"
-	set_global_assignment -name "RESYNTHESIS_RETIMING" -section_id "eda_board_design" "FULL"
-	set_global_assignment -name "USE_GENERATED_PHYSICAL_CONSTRAINTS" -section_id "eda_board_design" "ON"
-	set_global_assignment -name "EDA_EXCALIBUR_ATOMS_AS_SINGLE_STRIPE" -section_id "eda_formal_verification" "OFF"
-	set_global_assignment -name "EDA_FLATTEN_BUSES" -section_id "eda_formal_verification" "OFF"
-	set_global_assignment -name "EDA_GENERATE_SDF_OUTPUT_FILE" -section_id "eda_formal_verification" "ON"
-	set_global_assignment -name "EDA_RUN_TOOL_AUTOMATICALLY" -section_id "eda_formal_verification" "OFF"
-	set_global_assignment -name "EDA_MAINTAIN_DESIGN_HIERARCHY" -section_id "eda_formal_verification" "OFF"
-	set_global_assignment -name "EDA_MAP_ILLEGAL_CHARACTERS" -section_id "eda_formal_verification" "OFF"
-	set_global_assignment -name "EDA_OUTPUT_DATA_FORMAT" -section_id "eda_formal_verification" "NONE"
-	set_global_assignment -name "EDA_TRUNCATE_LONG_HIERARCHY_PATHS" -section_id "eda_formal_verification" "OFF"
-	set_global_assignment -name "EDA_INCLUDE_VHDL_CONFIGURATION_DECLARATION" -section_id "eda_formal_verification" "OFF"
-	set_global_assignment -name "EDA_WRITE_DEVICE_CONTROL_PORTS" -section_id "eda_formal_verification" "OFF"
-	set_global_assignment -name "RESYNTHESIS_OPTIMIZATION_EFFORT" -section_id "eda_formal_verification" "NORMAL"
-	set_global_assignment -name "RESYNTHESIS_PHYSICAL_SYNTHESIS" -section_id "eda_formal_verification" "NORMAL"
-	set_global_assignment -name "RESYNTHESIS_RETIMING" -section_id "eda_formal_verification" "FULL"
-	set_global_assignment -name "USE_GENERATED_PHYSICAL_CONSTRAINTS" -section_id "eda_formal_verification" "ON"
-	set_global_assignment -name "EDA_EXCALIBUR_ATOMS_AS_SINGLE_STRIPE" -section_id "eda_palace" "OFF"
-	set_global_assignment -name "EDA_FLATTEN_BUSES" -section_id "eda_palace" "OFF"
-	set_global_assignment -name "EDA_GENERATE_SDF_OUTPUT_FILE" -section_id "eda_palace" "ON"
-	set_global_assignment -name "EDA_RUN_TOOL_AUTOMATICALLY" -section_id "eda_palace" "OFF"
-	set_global_assignment -name "EDA_MAINTAIN_DESIGN_HIERARCHY" -section_id "eda_palace" "OFF"
-	set_global_assignment -name "EDA_MAP_ILLEGAL_CHARACTERS" -section_id "eda_palace" "OFF"
-	set_global_assignment -name "EDA_OUTPUT_DATA_FORMAT" -section_id "eda_palace" "NONE"
-	set_global_assignment -name "EDA_TRUNCATE_LONG_HIERARCHY_PATHS" -section_id "eda_palace" "OFF"
-	set_global_assignment -name "EDA_INCLUDE_VHDL_CONFIGURATION_DECLARATION" -section_id "eda_palace" "OFF"
-	set_global_assignment -name "EDA_WRITE_DEVICE_CONTROL_PORTS" -section_id "eda_palace" "OFF"
-	set_global_assignment -name "RESYNTHESIS_OPTIMIZATION_EFFORT" -section_id "eda_palace" "NORMAL"
-	set_global_assignment -name "RESYNTHESIS_PHYSICAL_SYNTHESIS" -section_id "eda_palace" "NORMAL"
-	set_global_assignment -name "RESYNTHESIS_RETIMING" -section_id "eda_palace" "FULL"
-	set_global_assignment -name "USE_GENERATED_PHYSICAL_CONSTRAINTS" -section_id "eda_palace" "ON"
-	set_global_assignment -name "DIVIDE_BASE_CLOCK_PERIOD_BY" -section_id "CLK1p" "1"
-	set_global_assignment -name "INCLUDE_EXTERNAL_PIN_DELAYS_IN_FMAX_CALCULATIONS" -section_id "CLK1p" "OFF"
-	set_global_assignment -name "INVERT_BASE_CLOCK" -section_id "CLK1p" "OFF"
-	set_global_assignment -name "MULTIPLY_BASE_CLOCK_PERIOD_BY" -section_id "CLK1p" "1"
-	set_global_assignment -name "DUTY_CYCLE" -section_id "CLK1p" "50"
-	set_global_assignment -name "FMAX_REQUIREMENT" -section_id "CLK1p" "20.0 MHz"
-	set_global_assignment -name "DIVIDE_BASE_CLOCK_PERIOD_BY" -section_id "CLK4p" "1"
-	set_global_assignment -name "INCLUDE_EXTERNAL_PIN_DELAYS_IN_FMAX_CALCULATIONS" -section_id "CLK4p" "OFF"
-	set_global_assignment -name "INVERT_BASE_CLOCK" -section_id "CLK4p" "OFF"
-	set_global_assignment -name "MULTIPLY_BASE_CLOCK_PERIOD_BY" -section_id "CLK4p" "1"
-	set_global_assignment -name "DUTY_CYCLE" -section_id "CLK4p" "50"
-	set_global_assignment -name "FMAX_REQUIREMENT" -section_id "CLK4p" "20.0 MHz"
-
-	# Compiler Assignments for simpletest
-	set_project_settings -cmp "simpletest"
-	set_global_assignment -name "ADV_NETLIST_OPT_FIT_LE_DUPLICATION" "OFF"
-	set_global_assignment -name "ADV_NETLIST_OPT_FIT_LE_DUPLICATION_WITH_LUT_RESYNTH" "OFF"
-	set_global_assignment -name "ADV_NETLIST_OPT_RETIME_CORE_AND_IO" "ON"
-	set_global_assignment -name "ADV_NETLIST_OPT_SYNTH_GATE_RETIME" "OFF"
-	set_global_assignment -name "ADV_NETLIST_OPT_SYNTH_USE_FITTER_INFO" "OFF"
-	set_global_assignment -name "ADV_NETLIST_OPT_SYNTH_WYSIWYG_REMAP" "OFF"
-	set_global_assignment -name "COMPILATION_LEVEL" "FULL"
-	set_global_assignment -name "DPRAM_32BIT_SINGLE_PORT_MODE_INPUT_EPXA1" "MEGALAB COLUMN 1"
-	set_global_assignment -name "DPRAM_32BIT_SINGLE_PORT_MODE_OTHER_SIGNALS_EPXA1" "MEGALAB COLUMN 1"
-	set_global_assignment -name "DPRAM_32BIT_SINGLE_PORT_MODE_OUTPUT_EPXA1" "LOWER TO 1ESB UPPER TO 1"
-	set_global_assignment -name "DPRAM_8BIT_16BIT_SINGLE_PORT_MODE_INPUT_EPXA1" "MEGALAB COLUMN 1"
-	set_global_assignment -name "DPRAM_8BIT_16BIT_SINGLE_PORT_MODE_OTHER_SIGNALS_EPXA1" "MEGALAB COLUMN 1"
-	set_global_assignment -name "DPRAM_8BIT_16BIT_SINGLE_PORT_MODE_OUTPUT_EPXA1" "MEGALAB COLUMN 1"
-	set_global_assignment -name "DPRAM_DEEP_MODE_INPUT_EPXA4_10" "MEGALAB COLUMN 3"
-	set_global_assignment -name "DPRAM_DEEP_MODE_OTHER_SIGNALS_EPXA4_10" "MEGALAB COLUMN 3"
-	set_global_assignment -name "DPRAM_DEEP_MODE_OUTPUT_EPXA4_10" "MEGALAB COLUMN 3"
-	set_global_assignment -name "DPRAM_DUAL_PORT_MODE_INPUT_EPXA1" "DPRAM0 TO 1 DPRAM1 TO 2"
-	set_global_assignment -name "DPRAM_DUAL_PORT_MODE_INPUT_EPXA4_10" "DPRAM0 TO 3 DPRAM1 TO 4"
-	set_global_assignment -name "DPRAM_DUAL_PORT_MODE_OTHER_SIGNALS_EPXA1" "DPRAM0 TO 1 DPRAM1 TO 2"
-	set_global_assignment -name "DPRAM_DUAL_PORT_MODE_OTHER_SIGNALS_EPXA4_10" "DPRAM0 TO 3 DPRAM1 TO 4"
-	set_global_assignment -name "DPRAM_DUAL_PORT_MODE_OUTPUT_EPXA1" "DPRAM0 TO 1 DPRAM1 TO 2"
-	set_global_assignment -name "DPRAM_DUAL_PORT_MODE_OUTPUT_EPXA4_10" "DPRAM0 TO 3 DPRAM1 TO 4ESB"
-	set_global_assignment -name "DPRAM_INPUT_EPXA4_10" "DEFAULT INPUT ROUTING OPTIONS"
-	set_global_assignment -name "DPRAM_OTHER_SIGNALS_EPXA4_10" "DEFAULT OTHER ROUTING OPTIONS"
-	set_global_assignment -name "DPRAM_OUTPUT_EPXA4_10" "DEFAULT OUTPUT ROUTING OPTIONS"
-	set_global_assignment -name "DPRAM_SINGLE_PORT_MODE_INPUT_EPXA4_10" "DPRAM0 TO 3 DPRAM1 TO 4"
-	set_global_assignment -name "DPRAM_SINGLE_PORT_MODE_OTHER_SIGNALS_EPXA4_10" "DPRAM0 TO 3 DPRAM1 TO 4"
-	set_global_assignment -name "DPRAM_SINGLE_PORT_MODE_OUTPUT_EPXA4_10" "DPRAM0 TO 3 DPRAM1 TO 4ESB"
-	set_global_assignment -name "DPRAM_WIDE_MODE_INPUT_EPXA4_10" "LOWER TO 3 UPPER TO 4"
-	set_global_assignment -name "DPRAM_WIDE_MODE_OTHER_SIGNALS_EPXA4_10" "MEGALAB COLUMN 3"
-	set_global_assignment -name "DPRAM_WIDE_MODE_OUTPUT_EPXA4_10" "LOWER TO 3 UPPER TO 4ESB"
-	set_global_assignment -name "DRC_FANOUT_EXCEEDING" "30"
-	set_global_assignment -name "DRC_TOP_FANOUT" "50"
-	set_global_assignment -name "DRC_REPORT_FANOUT_EXCEEDING" "OFF"
-	set_global_assignment -name "DRC_REPORT_TOP_FANOUT" "OFF"
-	set_global_assignment -name "ENABLE_DRC_SETTINGS" "Off"
-	set_global_assignment -name "RUN_DRC_DURING_COMPILATION" "OFF"
-	set_global_assignment -name "FAMILY" "EXCALIBUR_ARM"
-	set_global_assignment -name "FAST_FIT_COMPILATION" "OFF"
-	set_global_assignment -name "FINAL_PLACEMENT_OPTIMIZATION" "AUTOMATICALLY"
-	set_global_assignment -name "SEED" "1"
-	set_global_assignment -name "IO_PLACEMENT_OPTIMIZATION" "ON"
-	set_global_assignment -name "MERGE_HEX_FILE" "OFF"
-	set_global_assignment -name "OPTIMIZE_HOLD_TIMING" "IO Paths and Minimum TPD Paths"
-	set_global_assignment -name "OPTIMIZE_IOC_REGISTER_PLACEMENT_FOR_TIMING" "ON"
-	set_global_assignment -name "PHYSICAL_SYNTHESIS_COMBO_LOGIC" "off"
-	set_global_assignment -name "PHYSICAL_SYNTHESIS_REGISTER_DUPLICATION" "off"
-	set_global_assignment -name "PHYSICAL_SYNTHESIS_REGISTER_RETIMING" "off"
-	set_global_assignment -name "PLD_TO_STRIPE_INTERRUPTS_EPXA4_10" "MEGALAB COLUMN 2"
-	set_global_assignment -name "PROCESSOR_DEBUG_EXTENSIONS_EPXA4_10" "MEGALAB COLUMN 2"
-	set_global_assignment -name "FOCUS_ENTITY_NAME" "|simpletest"
-	set_global_assignment -name "ROUTING_BACK_ANNOTATION_MODE" "OFF"
-	set_global_assignment -name "SAVE_DISK_SPACE" "ON"
-	set_global_assignment -name "SIGNALPROBE_ALLOW_OVERUSE" "OFF"
-	set_global_assignment -name "SIGNALPROBE_DURING_NORMAL_COMPILATION" "OFF"
-	set_global_assignment -name "SMART_COMPILE_IGNORES_TDC_FOR_STRATIX_PLL_CHANGES" "OFF"
-	set_global_assignment -name "SPEED_DISK_USAGE_TRADEOFF" "NORMAL"
-	set_global_assignment -name "STRIPE_TO_PLD_BRIDGE_EPXA4_10" "MEGALAB COLUMN 1"
-	set_global_assignment -name "STRIPE_TO_PLD_INTERRUPTS_EPXA4_10" "MEGALAB COLUMN 2"
-	set_global_assignment -name "OPTIMIZE_TIMING" "NORMAL_COMPILATION"
-	set_global_assignment -name "TRUE_WYSIWYG_FLOW" "Off"
-	set_global_assignment -name "LOGICLOCK_INCREMENTAL_COMPILE_ASSIGNMENT" "OFF"
-	set_global_assignment -name "AUTO_INCREMENT_CONFIG_DEVICE_JTAG_USER_CODE" "ON"
-	set_global_assignment -name "AUTO_RESTART_CONFIGURATION" "OFF"
-	set_global_assignment -name "ENABLE_DEVICE_WIDE_OE" "OFF"
-	set_global_assignment -name "ENABLE_DEVICE_WIDE_RESET" "OFF"
-	set_global_assignment -name "CONFIGURATION_CLOCK_DIVISOR" "1"
-	set_global_assignment -name "CONFIGURATION_CLOCK_FREQUENCY" "10 MHZ"
-	set_global_assignment -name "CLOCK_SOURCE" "INTERNAL"
-	set_global_assignment -name "COMPRESSION_MODE" "OFF"
-	set_global_assignment -name "RESERVE_DATA0_AFTER_CONFIGURATION" "AS INPUT TRI-STATED"
-	set_global_assignment -name "RESERVE_DATA7_THROUGH_DATA1_AFTER_CONFIGURATION" "Use as regular IO"
-	set_global_assignment -name "DISABLE_NCS_AND_OE_PULLUPS_ON_CONFIG_DEVICE" "OFF"
-	set_global_assignment -name "ENABLE_LOW_VOLTAGE_MODE_ON_CONFIG_DEVICE" "ON"
-	set_global_assignment -name "FLEX10K_ENABLE_LOW_VOLTAGE_MODE_ON_CONFIG_DEVICE" "ON"
-	set_global_assignment -name "FLEX6K_ENABLE_LOW_VOLTAGE_MODE_ON_CONFIG_DEVICE" "OFF"
-	set_global_assignment -name "ENABLE_VREFA_PIN" "OFF"
-	set_global_assignment -name "ENABLE_VREFB_PIN" "OFF"
-	set_global_assignment -name "APEX20K_CONFIG_DEVICE_JTAG_USER_CODE" "FFFFFFFF"
-	set_global_assignment -name "MERCURY_CONFIG_DEVICE_JTAG_USER_CODE" "FFFFFFFF"
-	set_global_assignment -name "FLEX10K_CONFIG_DEVICE_JTAG_USER_CODE" "FFFFFFFF"
-	set_global_assignment -name "STRATIX_CONFIG_DEVICE_JTAG_USER_CODE" "FFFFFFFF"
-	set_global_assignment -name "EPROM_USE_CHECKSUM_AS_USERCODE" "OFF"
-	set_global_assignment -name "GENERATE_CONFIG_HEXOUT_FILE" "OFF"
-	set_global_assignment -name "GENERATE_CONFIG_ISC_FILE" "OFF"
-	set_global_assignment -name "GENERATE_CONFIG_JAM_FILE" "OFF"
-	set_global_assignment -name "GENERATE_CONFIG_JBC_FILE" "OFF"
-	set_global_assignment -name "GENERATE_CONFIG_JBC_FILE_COMPRESSED" "ON"
-	set_global_assignment -name "GENERATE_CONFIG_SVF_FILE" "OFF"
-	set_global_assignment -name "GENERATE_HEX_FILE" "OFF"
-	set_global_assignment -name "GENERATE_ISC_FILE" "OFF"
-	set_global_assignment -name "GENERATE_JAM_FILE" "OFF"
-	set_global_assignment -name "GENERATE_JBC_FILE" "OFF"
-	set_global_assignment -name "GENERATE_JBC_FILE_COMPRESSED" "ON"
-	set_global_assignment -name "GENERATE_RBF_FILE" "OFF"
-	set_global_assignment -name "GENERATE_SVF_FILE" "OFF"
-	set_global_assignment -name "GENERATE_TTF_FILE" "OFF"
-	set_global_assignment -name "HEXOUT_FILE_COUNT_DIRECTION" "UP"
-	set_global_assignment -name "HEXOUT_FILE_START_ADDRESS" "0"
-	set_global_assignment -name "ENABLE_INIT_DONE_OUTPUT" "OFF"
-	set_global_assignment -name "ENABLE_JTAG_BST_SUPPORT" "OFF"
-	set_global_assignment -name "MAX7000_ENABLE_JTAG_BST_SUPPORT" "ON"
-	set_global_assignment -name "RESERVE_NCEO_AFTER_CONFIGURATION" "Use as regular IO"
-	set_global_assignment -name "RESERVE_NWS_NRS_NCS_CS_AFTER_CONFIGURATION" "Use as regular IO"
-	set_global_assignment -name "ON_CHIP_BITSTREAM_DECOMPRESSION" "OFF"
-	set_global_assignment -name "FLEX10K_ENABLE_LOCK_OUTPUT" "OFF"
-	set_global_assignment -name "APEX20K_CONFIGURATION_SCHEME" "PASSIVE SERIAL"
-	set_global_assignment -name "APEXII_CONFIGURATION_SCHEME" "PASSIVE SERIAL"
-	set_global_assignment -name "MERCURY_CONFIGURATION_SCHEME" "PASSIVE SERIAL"
-	set_global_assignment -name "EXCALIBUR_CONFIGURATION_SCHEME" "PASSIVE SERIAL"
-	set_global_assignment -name "FLEX10K_CONFIGURATION_SCHEME" "PASSIVE SERIAL"
-	set_global_assignment -name "FLEX6K_CONFIGURATION_SCHEME" "PASSIVE SERIAL"
-	set_global_assignment -name "CYCLONE_CONFIGURATION_SCHEME" "PASSIVE SERIAL"
-	set_global_assignment -name "STRATIX_CONFIGURATION_SCHEME" "PASSIVE SERIAL"
-	set_global_assignment -name "RESERVE_RDYNBUSY_AFTER_CONFIGURATION" "Use as regular IO"
-	set_global_assignment -name "RELEASE_CLEARS_BEFORE_TRI_STATES" "OFF"
-	set_global_assignment -name "RESERVE_ALL_UNUSED_PINS" "AS OUTPUT DRIVING GROUND"
-	set_global_assignment -name "RESERVE_PIN" "AS INPUT TRI-STATED"
-	set_global_assignment -name "RESERVE_ASDO_AFTER_CONFIGURATION" "Use as regular IO"
-	set_global_assignment -name "SECURITY_BIT" "OFF"
-	set_global_assignment -name "USER_START_UP_CLOCK" "OFF"
-	set_global_assignment -name "STRATIX_UPDATE_MODE" "STANDARD"
-	set_global_assignment -name "APEX20K_JTAG_USER_CODE" "FFFFFFFF"
-	set_global_assignment -name "MERCURY_JTAG_USER_CODE" "FFFFFFFF"
-	set_global_assignment -name "FLEX10K_JTAG_USER_CODE" "7F"
-	set_global_assignment -name "MAX7000_JTAG_USER_CODE" "FFFFFFFF"
-	set_global_assignment -name "MAX7000S_JTAG_USER_CODE" "FFFF"
-	set_global_assignment -name "STRATIX_JTAG_USER_CODE" "FFFFFFFF"
-	set_global_assignment -name "USE_CHECKSUM_AS_USERCODE" "OFF"
-	set_global_assignment -name "MAX7000_USE_CHECKSUM_AS_USERCODE" "OFF"
-	set_global_assignment -name "APEX20K_CONFIGURATION_DEVICE" "EPC2"
-	set_global_assignment -name "CYCLONE_CONFIGURATION_DEVICE" "EPC2"
-	set_global_assignment -name "MERCURY_CONFIGURATION_DEVICE" "EPC2"
-	set_global_assignment -name "EXCALIBUR_CONFIGURATION_DEVICE" "EPC2"
-	set_global_assignment -name "FLEX10K_CONFIGURATION_DEVICE" "EPC2"
-	set_global_assignment -name "FLEX6K_CONFIGURATION_DEVICE" "EPC1"
-	set_global_assignment -name "STRATIX_CONFIGURATION_DEVICE" "EPC2"
-	set_global_assignment -name "USE_CONFIGURATION_DEVICE" "ON"
-	set_global_assignment -name "AUTO_INSERT_SLD_HUB_ENTITY" "ENABLE"
-	set_global_assignment -name "HUB_ENTITY_NAME" "sld_hub"
-	set_global_assignment -name "HUB_INSTANCE_NAME" "sld_hub_inst"
-	set_global_assignment -name "AUTO_INCREMENT_CONFIG_DEVICE_JTAG_USER_CODE" "ON"
-	set_global_assignment -name "AUTO_RESTART_CONFIGURATION" "OFF"
-	set_global_assignment -name "BASE_PIN_OUT_FILE_ON_SAMEFRAME_DEVICE" "OFF"
-	set_global_assignment -name "ENABLE_DEVICE_WIDE_OE" "OFF"
-	set_global_assignment -name "ENABLE_DEVICE_WIDE_RESET" "OFF"
-	set_global_assignment -name "CONFIGURATION_CLOCK_DIVISOR" "1"
-	set_global_assignment -name "CONFIGURATION_CLOCK_FREQUENCY" "10 MHZ"
-	set_global_assignment -name "CLOCK_SOURCE" "INTERNAL"
-	set_global_assignment -name "COMPRESSION_MODE" "OFF"
-	set_global_assignment -name "RESERVE_DATA0_AFTER_CONFIGURATION" "AS INPUT TRI-STATED"
-	set_global_assignment -name "RESERVE_DATA7_THROUGH_DATA1_AFTER_CONFIGURATION" "Use as regular IO"
-	set_global_assignment -name "DEVICE" "EPXA1F672C2"
-	set_global_assignment -name "DISABLE_NCS_AND_OE_PULLUPS_ON_CONFIG_DEVICE" "OFF"
-	set_global_assignment -name "ENABLE_LOW_VOLTAGE_MODE_ON_CONFIG_DEVICE" "ON"
-	set_global_assignment -name "FLEX10K_ENABLE_LOW_VOLTAGE_MODE_ON_CONFIG_DEVICE" "ON"
-	set_global_assignment -name "FLEX6K_ENABLE_LOW_VOLTAGE_MODE_ON_CONFIG_DEVICE" "OFF"
-	set_global_assignment -name "ENABLE_VREFA_PIN" "OFF"
-	set_global_assignment -name "ENABLE_VREFB_PIN" "OFF"
-	set_global_assignment -name "APEX20K_CONFIG_DEVICE_JTAG_USER_CODE" "FFFFFFFF"
-	set_global_assignment -name "MERCURY_CONFIG_DEVICE_JTAG_USER_CODE" "FFFFFFFF"
-	set_global_assignment -name "FLEX10K_CONFIG_DEVICE_JTAG_USER_CODE" "FFFFFFFF"
-	set_global_assignment -name "STRATIX_CONFIG_DEVICE_JTAG_USER_CODE" "FFFFFFFF"
-	set_global_assignment -name "EPROM_USE_CHECKSUM_AS_USERCODE" "OFF"
-	set_global_assignment -name "DEVICE_FILTER_PACKAGE" "FBGA"
-	set_global_assignment -name "DEVICE_FILTER_PIN_COUNT" "672"
-	set_global_assignment -name "DEVICE_FILTER_SPEED_GRADE" "2"
-	set_global_assignment -name "GENERATE_CONFIG_HEXOUT_FILE" "OFF"
-	set_global_assignment -name "GENERATE_CONFIG_ISC_FILE" "OFF"
-	set_global_assignment -name "GENERATE_CONFIG_JAM_FILE" "OFF"
-	set_global_assignment -name "GENERATE_CONFIG_JBC_FILE" "OFF"
-	set_global_assignment -name "GENERATE_CONFIG_JBC_FILE_COMPRESSED" "ON"
-	set_global_assignment -name "GENERATE_CONFIG_SVF_FILE" "OFF"
-	set_global_assignment -name "GENERATE_HEX_FILE" "OFF"
-	set_global_assignment -name "GENERATE_ISC_FILE" "OFF"
-	set_global_assignment -name "GENERATE_JAM_FILE" "OFF"
-	set_global_assignment -name "GENERATE_JBC_FILE" "OFF"
-	set_global_assignment -name "GENERATE_JBC_FILE_COMPRESSED" "ON"
-	set_global_assignment -name "GENERATE_RBF_FILE" "OFF"
-	set_global_assignment -name "GENERATE_SVF_FILE" "OFF"
-	set_global_assignment -name "GENERATE_TTF_FILE" "OFF"
-	set_global_assignment -name "HEXOUT_FILE_COUNT_DIRECTION" "UP"
-	set_global_assignment -name "HEXOUT_FILE_START_ADDRESS" "0"
-	set_global_assignment -name "ENABLE_INIT_DONE_OUTPUT" "ON"
-	set_instance_assignment -name "IO_STANDARD" -to "ATWD0VDD_SUP" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ATWD0_D\[0\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ATWD0_D\[1\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ATWD0_D\[2\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ATWD0_D\[3\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ATWD0_D\[4\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ATWD0_D\[5\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ATWD0_D\[6\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ATWD0_D\[7\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ATWD0_D\[8\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ATWD0_D\[9\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ATWD1VDD_SUP" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ATWD1_D\[0\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ATWD1_D\[1\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ATWD1_D\[2\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ATWD1_D\[3\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ATWD1_D\[4\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ATWD1_D\[5\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ATWD1_D\[6\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ATWD1_D\[7\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ATWD1_D\[8\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ATWD1_D\[9\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ATWDTrigger_0" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ATWDTrigger_1" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "A_nB" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "AnalogReset_0" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "AnalogReset_1" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "CLK1p" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "CLK2p" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "CLK3p" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "CLK4p" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "CLKLK_OUT2p" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "CLK_REF" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "COINCIDENCE_OUT_DOWN" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "COINCIDENCE_OUT_UP" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "COINC_DOWN_A" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "COINC_DOWN_ABAR" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "COINC_DOWN_ALATCH" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "COINC_DOWN_B" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "COINC_DOWN_BBAR" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "COINC_DOWN_BLATCH" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "COINC_UP_A" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "COINC_UP_ABAR" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "COINC_UP_ALATCH" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "COINC_UP_B" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "COINC_UP_BBAR" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "COINC_UP_BLATCH" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "COM_AD_D\[0\]" "2.5 V"
-	set_instance_assignment -name "IO_STANDARD" -to "COM_AD_D\[1\]" "2.5 V"
-	set_instance_assignment -name "IO_STANDARD" -to "COM_AD_D\[2\]" "2.5 V"
-	set_instance_assignment -name "IO_STANDARD" -to "COM_AD_D\[3\]" "2.5 V"
-	set_instance_assignment -name "IO_STANDARD" -to "COM_AD_D\[4\]" "2.5 V"
-	set_instance_assignment -name "IO_STANDARD" -to "COM_AD_D\[5\]" "2.5 V"
-	set_instance_assignment -name "IO_STANDARD" -to "COM_AD_D\[6\]" "2.5 V"
-	set_instance_assignment -name "IO_STANDARD" -to "COM_AD_D\[7\]" "2.5 V"
-	set_instance_assignment -name "IO_STANDARD" -to "COM_AD_D\[8\]" "2.5 V"
-	set_instance_assignment -name "IO_STANDARD" -to "COM_AD_D\[9\]" "2.5 V"
-	set_instance_assignment -name "IO_STANDARD" -to "COM_AD_OTR" "2.5 V"
-	set_instance_assignment -name "IO_STANDARD" -to "COM_DB\[10\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "COM_DB\[11\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "COM_DB\[12\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "COM_DB\[13\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "COM_DB\[6\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "COM_DB\[7\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "COM_DB\[8\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "COM_DB\[9\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "COM_TX_SLEEP" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ChannelSelect_0\[0\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ChannelSelect_0\[1\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ChannelSelect_1\[0\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ChannelSelect_1\[1\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "CounterClock_0" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "CounterClock_1" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "DigitalReset_0" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "DigitalReset_1" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "DigitalSet_0" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "DigitalSet_1" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIACK" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIADDR\[0\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIADDR\[10\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIADDR\[11\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIADDR\[12\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIADDR\[13\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIADDR\[14\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIADDR\[15\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIADDR\[16\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIADDR\[17\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIADDR\[18\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIADDR\[19\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIADDR\[1\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIADDR\[20\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIADDR\[21\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIADDR\[22\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIADDR\[23\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIADDR\[24\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIADDR\[2\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIADDR\[3\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIADDR\[4\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIADDR\[5\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIADDR\[6\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIADDR\[7\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIADDR\[8\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIADDR\[9\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIBE\[0\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIBE\[1\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBICLK" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBICSN\[0\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBICSN\[1\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBICSN\[2\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBICSN\[3\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIDQ\[0\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIDQ\[10\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIDQ\[11\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIDQ\[12\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIDQ\[13\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIDQ\[14\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIDQ\[15\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIDQ\[1\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIDQ\[2\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIDQ\[3\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIDQ\[4\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIDQ\[5\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIDQ\[6\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIDQ\[7\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIDQ\[8\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIDQ\[9\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIOEN" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "EBIWEN" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "FE_PULSER_N\[0\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "FE_PULSER_N\[1\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "FE_PULSER_N\[2\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "FE_PULSER_N\[3\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "FE_PULSER_P\[0\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "FE_PULSER_P\[1\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "FE_PULSER_P\[2\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "FE_PULSER_P\[3\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "FE_TEST_PULSE" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "FLASH_AD_D\[0\]" "2.5 V"
-	set_instance_assignment -name "IO_STANDARD" -to "FLASH_AD_D\[1\]" "2.5 V"
-	set_instance_assignment -name "IO_STANDARD" -to "FLASH_AD_D\[2\]" "2.5 V"
-	set_instance_assignment -name "IO_STANDARD" -to "FLASH_AD_D\[3\]" "2.5 V"
-	set_instance_assignment -name "IO_STANDARD" -to "FLASH_AD_D\[4\]" "2.5 V"
-	set_instance_assignment -name "IO_STANDARD" -to "FLASH_AD_D\[5\]" "2.5 V"
-	set_instance_assignment -name "IO_STANDARD" -to "FLASH_AD_D\[6\]" "2.5 V"
-	set_instance_assignment -name "IO_STANDARD" -to "FLASH_AD_D\[7\]" "2.5 V"
-	set_instance_assignment -name "IO_STANDARD" -to "FLASH_AD_D\[8\]" "2.5 V"
-	set_instance_assignment -name "IO_STANDARD" -to "FLASH_AD_D\[9\]" "2.5 V"
-	set_instance_assignment -name "IO_STANDARD" -to "FLASH_AD_STBY" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "FLASH_NCO" "2.5 V"
-	set_instance_assignment -name "IO_STANDARD" -to "FL_ATTN" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "FL_PRE_TRIG" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "FL_TCK" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "FL_TDI" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "FL_TDO" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "FL_TMS" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "FL_Trigger" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "FL_Trigger_bar" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "HDV_IN" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "HDV_Rx" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "HDV_RxENA" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "HDV_TxENA" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "INTEXTPIN" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "MultiSPE" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "MultiSPE_nl" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "OneSPE" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "OneSPE_nl" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "OutputEnable_0" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "OutputEnable_1" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "PDL_FPGA_D\[0\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "PDL_FPGA_D\[1\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "PDL_FPGA_D\[2\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "PDL_FPGA_D\[3\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "PDL_FPGA_D\[4\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "PDL_FPGA_D\[5\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "PDL_FPGA_D\[6\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "PDL_FPGA_D\[7\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "PGM\[0\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "PGM\[10\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "PGM\[11\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "PGM\[12\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "PGM\[13\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "PGM\[14\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "PGM\[15\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "PGM\[1\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "PGM\[2\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "PGM\[3\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "PGM\[4\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "PGM\[5\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "PGM\[6\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "PGM\[7\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "PGM\[8\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "PGM\[9\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "R2BUS\[0\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "R2BUS\[1\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "R2BUS\[2\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "R2BUS\[3\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "R2BUS\[4\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "R2BUS\[5\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "R2BUS\[6\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "RampSet_0" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "RampSet_1" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ReadWrite_0" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ReadWrite_1" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMADDR\[0\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMADDR\[10\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMADDR\[11\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMADDR\[12\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMADDR\[13\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMADDR\[14\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMADDR\[1\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMADDR\[2\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMADDR\[3\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMADDR\[4\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMADDR\[5\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMADDR\[6\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMADDR\[7\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMADDR\[8\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMADDR\[9\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMCASN" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMCLK" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMCLKE" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMCLKN" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMCSN\[0\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMCSN\[1\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQM\[0\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQM\[1\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQM\[2\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQM\[3\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQS\[0\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQS\[1\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQS\[2\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQS\[3\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[0\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[10\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[11\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[12\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[13\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[14\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[15\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[16\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[17\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[18\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[19\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[1\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[20\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[21\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[22\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[23\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[24\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[25\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[26\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[27\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[28\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[29\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[2\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[30\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[31\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[3\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[4\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[5\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[6\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[7\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[8\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMDQ\[9\]" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMRASN" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SDRAMWEN" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ShiftClock_0" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "ShiftClock_1" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "SingleLED_TRIGGER" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "TriggerComplete_0" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "TriggerComplete_1" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "UARTCTSN" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "UARTDCDN" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "UARTDSRN" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "UARTDTRN" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "UARTRIN" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "UARTRTSN" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "UARTRXD" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "UARTTXD" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "dummy1" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "dummy2" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "nPOR" "LVTTL"
-	set_instance_assignment -name "IO_STANDARD" -to "nRESET" "LVTTL"
-	set_global_assignment -name "ENABLE_JTAG_BST_SUPPORT" "OFF"
-	set_global_assignment -name "MAX7000_ENABLE_JTAG_BST_SUPPORT" "ON"
-	set_location_assignment -to "ATWD0VDD_SUP" "Pin_AC26"
-	set_location_assignment -to "ATWD0_D\[0\]" "Pin_Y15"
-	set_location_assignment -to "ATWD0_D\[1\]" "Pin_V15"
-	set_location_assignment -to "ATWD0_D\[2\]" "Pin_AC15"
-	set_location_assignment -to "ATWD0_D\[3\]" "Pin_AA15"
-	set_location_assignment -to "ATWD0_D\[4\]" "Pin_AE16"
-	set_location_assignment -to "ATWD0_D\[5\]" "Pin_AB16"
-	set_location_assignment -to "ATWD0_D\[6\]" "Pin_AA16"
-	set_location_assignment -to "ATWD0_D\[7\]" "Pin_W16"
-	set_location_assignment -to "ATWD0_D\[8\]" "Pin_AF17"
-	set_location_assignment -to "ATWD0_D\[9\]" "Pin_AD17"
-	set_location_assignment -to "ATWD1VDD_SUP" "Pin_AC25"
-	set_location_assignment -to "ATWD1_D\[0\]" "Pin_AA17"
-	set_location_assignment -to "ATWD1_D\[1\]" "Pin_AF18"
-	set_location_assignment -to "ATWD1_D\[2\]" "Pin_AB18"
-	set_location_assignment -to "ATWD1_D\[3\]" "Pin_AD18"
-	set_location_assignment -to "ATWD1_D\[4\]" "Pin_AC20"
-	set_location_assignment -to "ATWD1_D\[5\]" "Pin_AC19"
-	set_location_assignment -to "ATWD1_D\[6\]" "Pin_AE22"
-	set_location_assignment -to "ATWD1_D\[7\]" "Pin_AA18"
-	set_location_assignment -to "ATWD1_D\[8\]" "Pin_AD21"
-	set_location_assignment -to "ATWD1_D\[9\]" "Pin_AE20"
-	set_location_assignment -to "ATWDTrigger_0" "Pin_AB8"
-	set_location_assignment -to "ATWDTrigger_1" "Pin_AD7"
-	set_location_assignment -to "A_nB" "Pin_E4"
-	set_location_assignment -to "AnalogReset_0" "Pin_AC16"
-	set_location_assignment -to "AnalogReset_1" "Pin_AC18"
-	set_location_assignment -to "CLK1p" "Pin_P20"
-	set_location_assignment -to "CLK2p" "Pin_W6"
-	set_location_assignment -to "CLK3p" "Pin_R23"
-	set_location_assignment -to "CLK4p" "Pin_Y5"
-	set_location_assignment -to "CLKLK_OUT2p" "Pin_M4"
-	set_location_assignment -to "CLK_REF" "Pin_H24"
-	set_location_assignment -to "COINCIDENCE_OUT_DOWN" "Pin_AB2"
-	set_location_assignment -to "COINCIDENCE_OUT_UP" "Pin_AB1"
-	set_location_assignment -to "COINC_DOWN_A" "Pin_AA10"
-	set_location_assignment -to "COINC_DOWN_ABAR" "Pin_AE9"
-	set_location_assignment -to "COINC_DOWN_ALATCH" "Pin_AC9"
-	set_location_assignment -to "COINC_DOWN_B" "Pin_AC10"
-	set_location_assignment -to "COINC_DOWN_BBAR" "Pin_AB9"
-	set_location_assignment -to "COINC_DOWN_BLATCH" "Pin_AD9"
-	set_location_assignment -to "COINC_UP_A" "Pin_AB10"
-	set_location_assignment -to "COINC_UP_ABAR" "Pin_AE10"
-	set_location_assignment -to "COINC_UP_ALATCH" "Pin_AF9"
-	set_location_assignment -to "COINC_UP_B" "Pin_AD10"
-	set_location_assignment -to "COINC_UP_BBAR" "Pin_AF10"
-	set_location_assignment -to "COINC_UP_BLATCH" "Pin_AA11"
-	set_location_assignment -to "COM_AD_D\[0\]" "Pin_L5"
-	set_location_assignment -to "COM_AD_D\[1\]" "Pin_L4"
-	set_location_assignment -to "COM_AD_D\[2\]" "Pin_L3"
-	set_location_assignment -to "COM_AD_D\[3\]" "Pin_K5"
-	set_location_assignment -to "COM_AD_D\[4\]" "Pin_K4"
-	set_location_assignment -to "COM_AD_D\[5\]" "Pin_K3"
-	set_location_assignment -to "COM_AD_D\[6\]" "Pin_J5"
-	set_location_assignment -to "COM_AD_D\[7\]" "Pin_J4"
-	set_location_assignment -to "COM_AD_D\[8\]" "Pin_J3"
-	set_location_assignment -to "COM_AD_D\[9\]" "Pin_H5"
-	set_location_assignment -to "COM_AD_OTR" "Pin_H4"
-	set_location_assignment -to "COM_DB\[10\]" "Pin_R1"
-	set_location_assignment -to "COM_DB\[11\]" "Pin_R2"
-	set_location_assignment -to "COM_DB\[12\]" "Pin_T1"
-	set_location_assignment -to "COM_DB\[13\]" "Pin_T2"
-	set_location_assignment -to "COM_DB\[6\]" "Pin_L1"
-	set_location_assignment -to "COM_DB\[7\]" "Pin_L2"
-	set_location_assignment -to "COM_DB\[8\]" "Pin_M1"
-	set_location_assignment -to "COM_DB\[9\]" "Pin_M2"
-	set_location_assignment -to "COM_TX_SLEEP" "Pin_U2"
-	set_location_assignment -to "ChannelSelect_0\[0\]" "Pin_AF16"
-	set_location_assignment -to "ChannelSelect_0\[1\]" "Pin_AB15"
-	set_location_assignment -to "ChannelSelect_1\[0\]" "Pin_AD19"
-	set_location_assignment -to "ChannelSelect_1\[1\]" "Pin_Y18"
-	set_location_assignment -to "CounterClock_0" "Pin_W15"
-	set_location_assignment -to "CounterClock_1" "Pin_AB17"
-	set_location_assignment -to "DigitalReset_0" "Pin_V16"
-	set_location_assignment -to "DigitalReset_1" "Pin_W18"
-	set_location_assignment -to "DigitalSet_0" "Pin_Y16"
-	set_location_assignment -to "DigitalSet_1" "Pin_AE23"
-	set_location_assignment -to "EBIACK" "Pin_K16"
-	set_location_assignment -to "EBIADDR\[0\]" "Pin_F20"
-	set_location_assignment -to "EBIADDR\[10\]" "Pin_H17"
-	set_location_assignment -to "EBIADDR\[11\]" "Pin_E19"
-	set_location_assignment -to "EBIADDR\[12\]" "Pin_C20"
-	set_location_assignment -to "EBIADDR\[13\]" "Pin_D19"
-	set_location_assignment -to "EBIADDR\[14\]" "Pin_F18"
-	set_location_assignment -to "EBIADDR\[15\]" "Pin_C19"
-	set_location_assignment -to "EBIADDR\[16\]" "Pin_G17"
-	set_location_assignment -to "EBIADDR\[17\]" "Pin_K15"
-	set_location_assignment -to "EBIADDR\[18\]" "Pin_D18"
-	set_location_assignment -to "EBIADDR\[19\]" "Pin_E18"
-	set_location_assignment -to "EBIADDR\[1\]" "Pin_C21"
-	set_location_assignment -to "EBIADDR\[20\]" "Pin_H16"
-	set_location_assignment -to "EBIADDR\[21\]" "Pin_F17"
-	set_location_assignment -to "EBIADDR\[22\]" "Pin_C18"
-	set_location_assignment -to "EBIADDR\[23\]" "Pin_J16"
-	set_location_assignment -to "EBIADDR\[24\]" "Pin_E17"
-	set_location_assignment -to "EBIADDR\[2\]" "Pin_E20"
-	set_location_assignment -to "EBIADDR\[3\]" "Pin_H18"
-	set_location_assignment -to "EBIADDR\[4\]" "Pin_G19"
-	set_location_assignment -to "EBIADDR\[5\]" "Pin_J18"
-	set_location_assignment -to "EBIADDR\[6\]" "Pin_J17"
-	set_location_assignment -to "EBIADDR\[7\]" "Pin_G18"
-	set_location_assignment -to "EBIADDR\[8\]" "Pin_D20"
-	set_location_assignment -to "EBIADDR\[9\]" "Pin_F19"
-	set_location_assignment -to "EBIBE\[0\]" "Pin_D22"
-	set_location_assignment -to "EBIBE\[1\]" "Pin_K18"
-	set_location_assignment -to "EBICLK" "Pin_D21"
-	set_location_assignment -to "EBICSN\[0\]" "Pin_K17"
-	set_location_assignment -to "EBICSN\[1\]" "Pin_H20"
-	set_location_assignment -to "EBICSN\[2\]" "Pin_J19"
-	set_location_assignment -to "EBICSN\[3\]" "Pin_G20"
-	set_location_assignment -to "EBIDQ\[0\]" "Pin_C17"
-	set_location_assignment -to "EBIDQ\[10\]" "Pin_J14"
-	set_location_assignment -to "EBIDQ\[11\]" "Pin_E14"
-	set_location_assignment -to "EBIDQ\[12\]" "Pin_K14"
-	set_location_assignment -to "EBIDQ\[13\]" "Pin_G14"
-	set_location_assignment -to "EBIDQ\[14\]" "Pin_F14"
-	set_location_assignment -to "EBIDQ\[15\]" "Pin_H14"
-	set_location_assignment -to "EBIDQ\[1\]" "Pin_G16"
-	set_location_assignment -to "EBIDQ\[2\]" "Pin_D17"
-	set_location_assignment -to "EBIDQ\[3\]" "Pin_E16"
-	set_location_assignment -to "EBIDQ\[4\]" "Pin_J15"
-	set_location_assignment -to "EBIDQ\[5\]" "Pin_F16"
-	set_location_assignment -to "EBIDQ\[6\]" "Pin_G15"
-	set_location_assignment -to "EBIDQ\[7\]" "Pin_F15"
-	set_location_assignment -to "EBIDQ\[8\]" "Pin_H15"
-	set_location_assignment -to "EBIDQ\[9\]" "Pin_E15"
-	set_location_assignment -to "EBIOEN" "Pin_C22"
-	set_location_assignment -to "EBIWEN" "Pin_E21"
-	set_location_assignment -to "FE_PULSER_N\[0\]" "Pin_W23"
-	set_location_assignment -to "FE_PULSER_N\[1\]" "Pin_V24"
-	set_location_assignment -to "FE_PULSER_N\[2\]" "Pin_U23"
-	set_location_assignment -to "FE_PULSER_N\[3\]" "Pin_T24"
-	set_location_assignment -to "FE_PULSER_P\[0\]" "Pin_W24"
-	set_location_assignment -to "FE_PULSER_P\[1\]" "Pin_V23"
-	set_location_assignment -to "FE_PULSER_P\[2\]" "Pin_U22"
-	set_location_assignment -to "FE_PULSER_P\[3\]" "Pin_T22"
-	set_location_assignment -to "FE_TEST_PULSE" "Pin_AC22"
-	set_location_assignment -to "FLASH_AD_D\[0\]" "Pin_AB11"
-	set_location_assignment -to "FLASH_AD_D\[1\]" "Pin_AC11"
-	set_location_assignment -to "FLASH_AD_D\[2\]" "Pin_AD11"
-	set_location_assignment -to "FLASH_AD_D\[3\]" "Pin_AF11"
-	set_location_assignment -to "FLASH_AD_D\[4\]" "Pin_AA12"
-	set_location_assignment -to "FLASH_AD_D\[5\]" "Pin_AB12"
-	set_location_assignment -to "FLASH_AD_D\[6\]" "Pin_AE11"
-	set_location_assignment -to "FLASH_AD_D\[7\]" "Pin_AC12"
-	set_location_assignment -to "FLASH_AD_D\[8\]" "Pin_AD12"
-	set_location_assignment -to "FLASH_AD_D\[9\]" "Pin_AC13"
-	set_location_assignment -to "FLASH_AD_STBY" "Pin_AB13"
-	set_location_assignment -to "FLASH_NCO" "Pin_AB14"
-	set_location_assignment -to "FL_ATTN" "Pin_M24"
-	set_location_assignment -to "FL_PRE_TRIG" "Pin_N25"
-	set_location_assignment -to "FL_TCK" "Pin_M21"
-	set_location_assignment -to "FL_TDI" "Pin_M19"
-	set_location_assignment -to "FL_TDO" "Pin_L20"
-	set_location_assignment -to "FL_TMS" "Pin_L19"
-	set_location_assignment -to "FL_Trigger" "Pin_M23"
-	set_location_assignment -to "FL_Trigger_bar" "Pin_N23"
-	set_location_assignment -to "HDV_IN" "Pin_F4"
-	set_location_assignment -to "HDV_Rx" "Pin_H3"
-	set_location_assignment -to "HDV_RxENA" "Pin_G4"
-	set_location_assignment -to "HDV_TxENA" "Pin_G3"
-	set_location_assignment -to "INTEXTPIN" "Pin_H19"
-	set_location_assignment -to "MultiSPE" "Pin_AF12"
-	set_location_assignment -to "MultiSPE_nl" "Pin_AD8"
-	set_location_assignment -to "OneSPE" "Pin_AF15"
-	set_location_assignment -to "OneSPE_nl" "Pin_AB19"
-	set_location_assignment -to "OutputEnable_0" "Pin_W14"
-	set_location_assignment -to "OutputEnable_1" "Pin_W17"
-	set_location_assignment -to "PDL_FPGA_D\[0\]" "Pin_R20"
-	set_location_assignment -to "PDL_FPGA_D\[1\]" "Pin_T21"
-	set_location_assignment -to "PDL_FPGA_D\[2\]" "Pin_T20"
-	set_location_assignment -to "PDL_FPGA_D\[3\]" "Pin_U21"
-	set_location_assignment -to "PDL_FPGA_D\[4\]" "Pin_U20"
-	set_location_assignment -to "PDL_FPGA_D\[5\]" "Pin_V22"
-	set_location_assignment -to "PDL_FPGA_D\[6\]" "Pin_V21"
-	set_location_assignment -to "PDL_FPGA_D\[7\]" "Pin_V20"
-	set_location_assignment -to "PGM\[0\]" "Pin_B20"
-	set_location_assignment -to "PGM\[10\]" "Pin_AB4"
-	set_location_assignment -to "PGM\[11\]" "Pin_W20"
-	set_location_assignment -to "PGM\[12\]" "Pin_M5"
-	set_location_assignment -to "PGM\[13\]" "Pin_V7"
-	set_location_assignment -to "PGM\[14\]" "Pin_Y4"
-	set_location_assignment -to "PGM\[15\]" "Pin_Y3"
-	set_location_assignment -to "PGM\[1\]" "Pin_B18"
-	set_location_assignment -to "PGM\[2\]" "Pin_B22"
-	set_location_assignment -to "PGM\[3\]" "Pin_A20"
-	set_location_assignment -to "PGM\[4\]" "Pin_A18"
-	set_location_assignment -to "PGM\[5\]" "Pin_V3"
-	set_location_assignment -to "PGM\[6\]" "Pin_T7"
-	set_location_assignment -to "PGM\[7\]" "Pin_U24"
-	set_location_assignment -to "PGM\[8\]" "Pin_AB3"
-	set_location_assignment -to "PGM\[9\]" "Pin_R24"
-	set_location_assignment -to "R2BUS\[0\]" "Pin_AD22"
-	set_location_assignment -to "R2BUS\[1\]" "Pin_AB21"
-	set_location_assignment -to "R2BUS\[2\]" "Pin_AB20"
-	set_location_assignment -to "R2BUS\[3\]" "Pin_AA20"
-	set_location_assignment -to "R2BUS\[4\]" "Pin_AA21"
-	set_location_assignment -to "R2BUS\[5\]" "Pin_Y20"
-	set_location_assignment -to "R2BUS\[6\]" "Pin_Y21"
-	set_location_assignment -to "RampSet_0" "Pin_AD15"
-	set_location_assignment -to "RampSet_1" "Pin_AE18"
-	set_location_assignment -to "ReadWrite_0" "Pin_AD16"
-	set_location_assignment -to "ReadWrite_1" "Pin_AD20"
-	set_location_assignment -to "SDRAMADDR\[0\]" "Pin_K9"
-	set_location_assignment -to "SDRAMADDR\[10\]" "Pin_K11"
-	set_location_assignment -to "SDRAMADDR\[11\]" "Pin_E5"
-	set_location_assignment -to "SDRAMADDR\[12\]" "Pin_H8"
-	set_location_assignment -to "SDRAMADDR\[13\]" "Pin_J8"
-	set_location_assignment -to "SDRAMADDR\[14\]" "Pin_F6"
-	set_location_assignment -to "SDRAMADDR\[1\]" "Pin_C5"
-	set_location_assignment -to "SDRAMADDR\[2\]" "Pin_E6"
-	set_location_assignment -to "SDRAMADDR\[3\]" "Pin_G6"
-	set_location_assignment -to "SDRAMADDR\[4\]" "Pin_K8"
-	set_location_assignment -to "SDRAMADDR\[5\]" "Pin_A4"
-	set_location_assignment -to "SDRAMADDR\[6\]" "Pin_B4"
-	set_location_assignment -to "SDRAMADDR\[7\]" "Pin_F5"
-	set_location_assignment -to "SDRAMADDR\[8\]" "Pin_D5"
-	set_location_assignment -to "SDRAMADDR\[9\]" "Pin_G5"
-	set_location_assignment -to "SDRAMCASN" "Pin_F8"
-	set_location_assignment -to "SDRAMCLK" "Pin_B5"
-	set_location_assignment -to "SDRAMCLKE" "Pin_F7"
-	set_location_assignment -to "SDRAMCLKN" "Pin_G7"
-	set_location_assignment -to "SDRAMCSN\[0\]" "Pin_E7"
-	set_location_assignment -to "SDRAMCSN\[1\]" "Pin_D6"
-	set_location_assignment -to "SDRAMDQM\[0\]" "Pin_H12"
-	set_location_assignment -to "SDRAMDQM\[1\]" "Pin_G11"
-	set_location_assignment -to "SDRAMDQM\[2\]" "Pin_F9"
-	set_location_assignment -to "SDRAMDQM\[3\]" "Pin_C6"
-	set_location_assignment -to "SDRAMDQS\[0\]" "Pin_F12"
-	set_location_assignment -to "SDRAMDQS\[1\]" "Pin_H11"
-	set_location_assignment -to "SDRAMDQS\[2\]" "Pin_J10"
-	set_location_assignment -to "SDRAMDQS\[3\]" "Pin_K10"
-	set_location_assignment -to "SDRAMDQ\[0\]" "Pin_J13"
-	set_location_assignment -to "SDRAMDQ\[10\]" "Pin_J12"
-	set_location_assignment -to "SDRAMDQ\[11\]" "Pin_A12"
-	set_location_assignment -to "SDRAMDQ\[12\]" "Pin_C12"
-	set_location_assignment -to "SDRAMDQ\[13\]" "Pin_B11"
-	set_location_assignment -to "SDRAMDQ\[14\]" "Pin_K13"
-	set_location_assignment -to "SDRAMDQ\[15\]" "Pin_A11"
-	set_location_assignment -to "SDRAMDQ\[16\]" "Pin_A9"
-	set_location_assignment -to "SDRAMDQ\[17\]" "Pin_H10"
-	set_location_assignment -to "SDRAMDQ\[18\]" "Pin_B9"
-	set_location_assignment -to "SDRAMDQ\[19\]" "Pin_C9"
-	set_location_assignment -to "SDRAMDQ\[1\]" "Pin_H13"
-	set_location_assignment -to "SDRAMDQ\[20\]" "Pin_E9"
-	set_location_assignment -to "SDRAMDQ\[21\]" "Pin_K12"
-	set_location_assignment -to "SDRAMDQ\[22\]" "Pin_D9"
-	set_location_assignment -to "SDRAMDQ\[23\]" "Pin_G9"
-	set_location_assignment -to "SDRAMDQ\[24\]" "Pin_D8"
-	set_location_assignment -to "SDRAMDQ\[25\]" "Pin_H9"
-	set_location_assignment -to "SDRAMDQ\[26\]" "Pin_A7"
-	set_location_assignment -to "SDRAMDQ\[27\]" "Pin_B7"
-	set_location_assignment -to "SDRAMDQ\[28\]" "Pin_E8"
-	set_location_assignment -to "SDRAMDQ\[29\]" "Pin_G8"
-	set_location_assignment -to "SDRAMDQ\[2\]" "Pin_F13"
-	set_location_assignment -to "SDRAMDQ\[30\]" "Pin_C7"
-	set_location_assignment -to "SDRAMDQ\[31\]" "Pin_D7"
-	set_location_assignment -to "SDRAMDQ\[3\]" "Pin_G13"
-	set_location_assignment -to "SDRAMDQ\[4\]" "Pin_E13"
-	set_location_assignment -to "SDRAMDQ\[5\]" "Pin_D13"
-	set_location_assignment -to "SDRAMDQ\[6\]" "Pin_C13"
-	set_location_assignment -to "SDRAMDQ\[7\]" "Pin_B12"
-	set_location_assignment -to "SDRAMDQ\[8\]" "Pin_E12"
-	set_location_assignment -to "SDRAMDQ\[9\]" "Pin_G12"
-	set_location_assignment -to "SDRAMRASN" "Pin_J9"
-	set_location_assignment -to "SDRAMWEN" "Pin_A5"
-	set_location_assignment -to "ShiftClock_0" "Pin_AC14"
-	set_location_assignment -to "ShiftClock_1" "Pin_Y17"
-	set_location_assignment -to "SingleLED_TRIGGER" "Pin_AA1"
-	set_location_assignment -to "TriggerComplete_0" "Pin_AA14"
-	set_location_assignment -to "TriggerComplete_1" "Pin_AC17"
-	set_location_assignment -to "UARTCTSN" "Pin_G22"
-	set_location_assignment -to "UARTDCDN" "Pin_J22"
-	set_location_assignment -to "UARTDSRN" "Pin_H22"
-	set_location_assignment -to "UARTDTRN" "Pin_J20"
-	set_location_assignment -to "UARTRIN" "Pin_J21"
-	set_location_assignment -to "UARTRTSN" "Pin_H21"
-	set_location_assignment -to "UARTRXD" "Pin_F21"
-	set_location_assignment -to "UARTTXD" "Pin_G21"
-	set_location_assignment -to "dummy1" "Pin_M3"
-	set_location_assignment -to "dummy2" "Pin_P21"
-	set_location_assignment -to "nPOR" "Pin_J24"
-	set_location_assignment -to "nRESET" "Pin_B16"
-	set_location_assignment -to "~INIT_DONE~" "Pin_A23"
-	set_global_assignment -name "RESERVE_NCEO_AFTER_CONFIGURATION" "Use as regular IO"
-	set_global_assignment -name "RESERVE_NWS_NRS_NCS_CS_AFTER_CONFIGURATION" "Use as regular IO"
-	set_global_assignment -name "ON_CHIP_BITSTREAM_DECOMPRESSION" "OFF"
-	set_global_assignment -name "FLEX10K_ENABLE_LOCK_OUTPUT" "OFF"
-	set_global_assignment -name "APEX20K_CONFIGURATION_SCHEME" "PASSIVE SERIAL"
-	set_global_assignment -name "APEXII_CONFIGURATION_SCHEME" "PASSIVE SERIAL"
-	set_global_assignment -name "MERCURY_CONFIGURATION_SCHEME" "PASSIVE SERIAL"
-	set_global_assignment -name "EXCALIBUR_CONFIGURATION_SCHEME" "PASSIVE SERIAL"
-	set_global_assignment -name "FLEX10K_CONFIGURATION_SCHEME" "PASSIVE SERIAL"
-	set_global_assignment -name "FLEX6K_CONFIGURATION_SCHEME" "PASSIVE SERIAL"
-	set_global_assignment -name "CYCLONE_CONFIGURATION_SCHEME" "PASSIVE SERIAL"
-	set_global_assignment -name "STRATIX_CONFIGURATION_SCHEME" "PASSIVE SERIAL"
-	set_global_assignment -name "RESERVE_RDYNBUSY_AFTER_CONFIGURATION" "Use as regular IO"
-	set_global_assignment -name "RELEASE_CLEARS_BEFORE_TRI_STATES" "OFF"
-	set_global_assignment -name "RESERVE_ALL_UNUSED_PINS" "AS INPUT TRI-STATED"
-	set_instance_assignment -name "RESERVE_PIN" -to "dummy1" "AS INPUT TRI-STATED"
-	set_instance_assignment -name "RESERVE_PIN" -to "dummy2" "AS INPUT TRI-STATED"
-	set_global_assignment -name "RESERVE_ASDO_AFTER_CONFIGURATION" "Use as regular IO"
-	set_global_assignment -name "SECURITY_BIT" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ATWD0VDD_SUP" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ATWD0_D\[0\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ATWD0_D\[1\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ATWD0_D\[2\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ATWD0_D\[3\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ATWD0_D\[4\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ATWD0_D\[5\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ATWD0_D\[6\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ATWD0_D\[7\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ATWD0_D\[8\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ATWD0_D\[9\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ATWD1VDD_SUP" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ATWD1_D\[0\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ATWD1_D\[1\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ATWD1_D\[2\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ATWD1_D\[3\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ATWD1_D\[4\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ATWD1_D\[5\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ATWD1_D\[6\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ATWD1_D\[7\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ATWD1_D\[8\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ATWD1_D\[9\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ATWDTrigger_0" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ATWDTrigger_1" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "A_nB" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "AnalogReset_0" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "AnalogReset_1" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "CLK1p" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "CLK2p" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "CLK3p" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "CLK4p" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "CLKLK_OUT2p" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "CLK_REF" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COINCIDENCE_OUT_DOWN" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COINCIDENCE_OUT_UP" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COINC_DOWN_A" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COINC_DOWN_ABAR" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COINC_DOWN_ALATCH" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COINC_DOWN_B" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COINC_DOWN_BBAR" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COINC_DOWN_BLATCH" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COINC_UP_A" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COINC_UP_ABAR" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COINC_UP_ALATCH" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COINC_UP_B" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COINC_UP_BBAR" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COINC_UP_BLATCH" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COM_AD_D\[0\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COM_AD_D\[1\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COM_AD_D\[2\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COM_AD_D\[3\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COM_AD_D\[4\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COM_AD_D\[5\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COM_AD_D\[6\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COM_AD_D\[7\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COM_AD_D\[8\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COM_AD_D\[9\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COM_AD_OTR" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COM_DB\[10\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COM_DB\[11\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COM_DB\[12\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COM_DB\[13\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COM_DB\[6\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COM_DB\[7\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COM_DB\[8\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COM_DB\[9\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "COM_TX_SLEEP" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ChannelSelect_0\[0\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ChannelSelect_0\[1\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ChannelSelect_1\[0\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ChannelSelect_1\[1\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "CounterClock_0" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "CounterClock_1" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "DigitalReset_0" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "DigitalReset_1" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "DigitalSet_0" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "DigitalSet_1" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIACK" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIADDR\[0\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIADDR\[10\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIADDR\[11\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIADDR\[12\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIADDR\[13\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIADDR\[14\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIADDR\[15\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIADDR\[16\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIADDR\[17\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIADDR\[18\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIADDR\[19\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIADDR\[1\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIADDR\[20\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIADDR\[21\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIADDR\[22\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIADDR\[23\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIADDR\[24\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIADDR\[2\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIADDR\[3\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIADDR\[4\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIADDR\[5\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIADDR\[6\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIADDR\[7\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIADDR\[8\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIADDR\[9\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIBE\[0\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIBE\[1\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBICLK" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBICSN\[0\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBICSN\[1\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBICSN\[2\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBICSN\[3\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIDQ\[0\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIDQ\[10\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIDQ\[11\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIDQ\[12\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIDQ\[13\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIDQ\[14\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIDQ\[15\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIDQ\[1\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIDQ\[2\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIDQ\[3\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIDQ\[4\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIDQ\[5\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIDQ\[6\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIDQ\[7\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIDQ\[8\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIDQ\[9\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIOEN" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "EBIWEN" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "FE_PULSER_N\[0\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "FE_PULSER_N\[1\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "FE_PULSER_N\[2\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "FE_PULSER_N\[3\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "FE_PULSER_P\[0\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "FE_PULSER_P\[1\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "FE_PULSER_P\[2\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "FE_PULSER_P\[3\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "FE_TEST_PULSE" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "FLASH_AD_D\[0\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "FLASH_AD_D\[1\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "FLASH_AD_D\[2\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "FLASH_AD_D\[3\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "FLASH_AD_D\[4\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "FLASH_AD_D\[5\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "FLASH_AD_D\[6\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "FLASH_AD_D\[7\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "FLASH_AD_D\[8\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "FLASH_AD_D\[9\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "FLASH_AD_STBY" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "FLASH_NCO" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "FL_ATTN" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "FL_PRE_TRIG" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "FL_TCK" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "FL_TDI" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "FL_TDO" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "FL_TMS" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "FL_Trigger" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "FL_Trigger_bar" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "HDV_IN" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "HDV_Rx" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "HDV_RxENA" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "HDV_TxENA" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "INTEXTPIN" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "MultiSPE" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "MultiSPE_nl" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "OneSPE" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "OneSPE_nl" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "OutputEnable_0" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "OutputEnable_1" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "PDL_FPGA_D\[0\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "PDL_FPGA_D\[1\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "PDL_FPGA_D\[2\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "PDL_FPGA_D\[3\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "PDL_FPGA_D\[4\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "PDL_FPGA_D\[5\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "PDL_FPGA_D\[6\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "PDL_FPGA_D\[7\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "PGM\[0\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "PGM\[10\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "PGM\[11\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "PGM\[12\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "PGM\[13\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "PGM\[14\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "PGM\[15\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "PGM\[1\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "PGM\[2\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "PGM\[3\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "PGM\[4\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "PGM\[5\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "PGM\[6\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "PGM\[7\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "PGM\[8\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "PGM\[9\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "R2BUS\[0\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "R2BUS\[1\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "R2BUS\[2\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "R2BUS\[3\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "R2BUS\[4\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "R2BUS\[5\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "R2BUS\[6\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "RampSet_0" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "RampSet_1" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ReadWrite_0" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ReadWrite_1" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMADDR\[0\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMADDR\[10\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMADDR\[11\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMADDR\[12\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMADDR\[13\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMADDR\[14\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMADDR\[1\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMADDR\[2\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMADDR\[3\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMADDR\[4\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMADDR\[5\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMADDR\[6\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMADDR\[7\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMADDR\[8\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMADDR\[9\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMCASN" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMCLK" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMCLKE" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMCLKN" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMCSN\[0\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMCSN\[1\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQM\[0\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQM\[1\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQM\[2\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQM\[3\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQS\[0\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQS\[1\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQS\[2\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQS\[3\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[0\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[10\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[11\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[12\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[13\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[14\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[15\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[16\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[17\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[18\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[19\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[1\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[20\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[21\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[22\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[23\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[24\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[25\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[26\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[27\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[28\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[29\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[2\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[30\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[31\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[3\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[4\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[5\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[6\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[7\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[8\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMDQ\[9\]" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMRASN" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SDRAMWEN" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ShiftClock_0" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "ShiftClock_1" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "SingleLED_TRIGGER" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "TriggerComplete_0" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "TriggerComplete_1" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "UARTCTSN" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "UARTDCDN" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "UARTDSRN" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "UARTDTRN" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "UARTRIN" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "UARTRTSN" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "UARTRXD" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "UARTTXD" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "dummy1" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "dummy2" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "nPOR" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "nRESET" "OFF"
-	set_instance_assignment -name "SIGNALPROBE_ENABLE" -to "~INIT_DONE~" "OFF"
-	set_global_assignment -name "USER_START_UP_CLOCK" "OFF"
-	set_global_assignment -name "STRATIX_UPDATE_MODE" "STANDARD"
-	set_global_assignment -name "APEX20K_JTAG_USER_CODE" "FFFFFFFF"
-	set_global_assignment -name "MERCURY_JTAG_USER_CODE" "FFFFFFFF"
-	set_global_assignment -name "FLEX10K_JTAG_USER_CODE" "7F"
-	set_global_assignment -name "MAX7000_JTAG_USER_CODE" "FFFFFFFF"
-	set_global_assignment -name "STRATIX_JTAG_USER_CODE" "FFFFFFFF"
-	set_global_assignment -name "USE_CHECKSUM_AS_USERCODE" "OFF"
-	set_global_assignment -name "MAX7000_USE_CHECKSUM_AS_USERCODE" "OFF"
-	set_global_assignment -name "APEX20K_CONFIGURATION_DEVICE" "EPC2"
-	set_global_assignment -name "CYCLONE_CONFIGURATION_DEVICE" "EPC2"
-	set_global_assignment -name "MERCURY_CONFIGURATION_DEVICE" "EPC2"
-	set_global_assignment -name "EXCALIBUR_CONFIGURATION_DEVICE" "EPC2"
-	set_global_assignment -name "FLEX10K_CONFIGURATION_DEVICE" "EPC2"
-	set_global_assignment -name "FLEX6K_CONFIGURATION_DEVICE" "EPC1"
-	set_global_assignment -name "STRATIX_CONFIGURATION_DEVICE" "EPC2"
-	set_global_assignment -name "USE_CONFIGURATION_DEVICE" "ON"
-	set_global_assignment -name "AUTO_ENABLE_SMART_COMPILE" "On"
-	set_global_assignment -name "ENABLE_SIGNALTAP" "Off"
-
-	# Simulator Assignments for simpletest
-	set_project_settings -sim "simpletest"
-	set_global_assignment -name "ADD_DEFAULT_PINS_TO_SIMULATION_OUTPUT_WAVEFORMS" "ON"
-	set_global_assignment -name "CHECK_OUTPUTS" "OFF"
-	set_global_assignment -name "SIMULATION_COVERAGE" "ON"
-	set_global_assignment -name "ESTIMATE_POWER_CONSUMPTION" "OFF"
-	set_global_assignment -name "GLITCH_DETECTION" "OFF"
-	set_global_assignment -name "GLITCH_INTERVAL" "1ns"
-	set_global_assignment -name "POWER_ESTIMATION_START_TIME" "0 ns"
-	set_global_assignment -name "SETUP_HOLD_DETECTION" "OFF"
-	set_global_assignment -name "SIMULATION_MODE" "TIMING"
-	set_global_assignment -name "START_TIME" "0ns"
-	set_global_assignment -name "USE_COMPILER_SETTINGS" "simpletest"
-
-	# Software Build Assignments for release
-	set_project_settings -swb "release"
-	set_global_assignment -name "ARM_CPP_COMMAND_LINE" "\"-O2\""
-	set_global_assignment -name "BYTE_ORDER" "LITTLE ENDIAN"
-	set_global_assignment -name "DO_POST_BUILD_COMMAND_LINE" "OFF"
-	set_global_assignment -name "GNUPRO_ARM_CPP_COMMAND_LINE" "\"-O3 -fomit-frame-pointer\""
-	set_global_assignment -name "GNUPRO_NIOS_CPP_COMMAND_LINE" "\"-O3\""
-	set_global_assignment -name "OUTPUT_FILE_NAME" "Release\\simpletest.hex"
-	set_global_assignment -name "OUTPUT_TYPE" "INTEL HEX"
-	set_global_assignment -name "PROCESSOR" "ARM922T"
-	set_global_assignment -name "PROGRAMMING_FILE_TYPE" "NO PROGRAMMING FILE"
-	set_global_assignment -name "TOOLSET" "CUSTOM BUILD"
-	set_global_assignment -name "USE_C_PREPROCESSOR_FOR_GNU_ASM_FILES" "ON"
-
-	# Software Build Assignments for debug
-	set_project_settings -swb "debug"
-	set_global_assignment -name "BYTE_ORDER" "LITTLE ENDIAN"
-	set_global_assignment -name "DO_POST_BUILD_COMMAND_LINE" "OFF"
-	set_global_assignment -name "OUTPUT_TYPE" "INTEL HEX"
-	set_global_assignment -name "PROCESSOR" "ARM922T"
-	set_global_assignment -name "PROGRAMMING_FILE_TYPE" "NO PROGRAMMING FILE"
-	set_global_assignment -name "TOOLSET" "CUSTOM BUILD"
-	set_global_assignment -name "USE_C_PREPROCESSOR_FOR_GNU_ASM_FILES" "ON"
-
-	# Entity Assignments for simpletest
-	set_instance_assignment -name "TCO_REQUIREMENT" -to "ATWDTrigger_0" -entity "simpletest" "1ns"
-	set_instance_assignment -name "TCO_REQUIREMENT" -to "ATWDTrigger_1" -entity "simpletest" "1ns"
-	set_instance_assignment -name "TSU_REQUIREMENT" -to "OneSPE" -entity "simpletest" "1ns"
-
-	# Entity Assignments for alt_exc_stripe
-	set_instance_assignment -name "ADV_NETLIST_OPT_ALLOWED" -to "lcell_hgrant" -entity "alt_exc_stripe" "NEVER_ALLOW"
-	set_instance_assignment -name "ADV_NETLIST_OPT_ALLOWED" -to "lcell_hresp0" -entity "alt_exc_stripe" "NEVER_ALLOW"
-	set_instance_assignment -name "ADV_NETLIST_OPT_ALLOWED" -to "lcell_hresp1" -entity "alt_exc_stripe" "NEVER_ALLOW"
-	set_instance_assignment -name "IMPLEMENT_AS_OUTPUT_OF_LOGIC_CELL" -to "lcell_hgrant" -entity "alt_exc_stripe" "ON"
-	set_instance_assignment -name "IMPLEMENT_AS_OUTPUT_OF_LOGIC_CELL" -to "lcell_hresp0" -entity "alt_exc_stripe" "ON"
-	set_instance_assignment -name "IMPLEMENT_AS_OUTPUT_OF_LOGIC_CELL" -to "lcell_hresp1" -entity "alt_exc_stripe" "ON"
-
-	# Commit assignments
-	export_assignments
-
-	# Close project
-	if {$need_to_close_project} {
-		project_close
-	}
-}

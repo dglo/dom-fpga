@@ -5,10 +5,6 @@
 #
 sdir=../../scripts
 
-if [[ ! -d ${sdir} ]]; then
-    sdir=../scripts
-fi
-
 #
 # make a new build number...
 #
@@ -45,17 +41,8 @@ for f in $vals; do
     last=${f}
 done
 
-# pad the modules...
 last=`expr ${last} + 1`
-echo "[${last}..99] : 0;"
-
-# add the dom comm revision number
-taf=${sdir}/../common/comDPM/test_and_tresholds.tdf
-dcrev=`awk '$2 ~ /^DCFREV$/ { print $4; }' ${taf} | \
-	sed 's/^00*//1' | sed 's/;.*//1'`
-
-echo "       100 : ${dcrev};"        
-echo "[101..127] : 0;"
+echo "[${last}..127] : 0;"
 
 echo "END;"
 
