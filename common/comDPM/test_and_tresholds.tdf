@@ -1,7 +1,7 @@
-TITLE "DCOM test signals, K.-H. Sulanke,DESY Zeuthen, 2004-07-15";
+TITLE "DCOM test signals, K.-H. Sulanke,DESY Zeuthen, 2004-07-22";
 -- plus comm. and DAC level control tresholds
 
-CONSTANT DCFREV		= 022;			-- DOM Communication module revision (dec.)
+CONSTANT DCFREV		= 023;			-- DOM Communication module revision (dec.)
 
 CONSTANT LOW_THRESH	=  66;	--77;	-- HL-edge length after 6 clocks, weak signal (long cable)
 CONSTANT LRG_THRESH	= 255;	-- HL-edge length after 3 clocks, strong signal (short cable)

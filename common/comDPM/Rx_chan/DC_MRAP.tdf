@@ -1,6 +1,6 @@
 % C:\PROJECTS\ICECUBE\DOR\FPGA\DCOM_01\RX_CHAN\DC_MRAP.tdf %
 % AHDL code created by Visual Software Solution's StateCAD 4.11 %
-% Fri Jul 09 09:43:10 2004 %
+% Wed Jul 21 17:14:18 2004 %
 
 % This AHDL code was generated using: %
 %  one-hot state assignment with boolean code format. %
@@ -41,10 +41,10 @@ VARIABLE
 	BYTE1 :	DFF;
 	BYTE2 :	DFF;
 	BYTE3 :	DFF;
+	CRC_ERR :	DFF;
 	CTR_ERR :	DFF;
 	CTR_MSG :	DFF;
 	CTRL_OK :	DFF;
-	DAT_ERR :	DFF;
 	DAT_MSG :	DFF;
 	DATA_OK :	DFF;
 	DCMD_SEQ1 :	DFF;
@@ -64,10 +64,10 @@ BEGIN
 	BYTE1.clk=CLK;
 	BYTE2.clk=CLK;
 	BYTE3.clk=CLK;
+	CRC_ERR.clk=CLK;
 	CTR_ERR.clk=CLK;
 	CTR_MSG.clk=CLK;
 	CTRL_OK.clk=CLK;
-	DAT_ERR.clk=CLK;
 	DAT_MSG.clk=CLK;
 	DATA_OK.clk=CLK;
 	DCMD_SEQ1.clk=CLK;
@@ -80,8 +80,9 @@ BEGIN
 	START.clk=CLK;
 	STF_WAIT.clk=CLK;
 
-BYTE0 =  !eof_stb & !data_stb & !stf_stb & BYTE0  #  !stf_stb & data_stb & 
-	BYTE3  #  !stf_stb & data_stb & data_msg & DCMD_SEQ1 ;
+BYTE0 =  !eof_stb & !DAT_MSG & !stf_stb & BYTE0  #  !eof_stb & !data_stb & !
+	stf_stb & BYTE0  #  !stf_stb & data_stb & BYTE3  #  !stf_stb & data_stb & 
+	data_msg & DCMD_SEQ1 ;
 
 BYTE1 =  !data_stb & !stf_stb & BYTE1  #  !stf_stb & DPR_DAT_WR ;
 
@@ -96,7 +97,7 @@ DATA_OK =  !stf_stb & eof_stb & crc_zero & BYTE0 ;
 DCMD_SEQ1 =  !data_stb & !stf_stb & DCMD_SEQ1  #  !stf_stb & data_stb & 
 	PTYPE_SEQ0 ;
 
-DPR_DAT_WR =  !stf_stb & data_stb & BYTE0 ;
+DPR_DAT_WR =  !stf_stb & data_stb & DAT_MSG & BYTE0 ;
 
 EOF_WAIT =  !stf_stb & data_stb & ctrl_msg & DCMD_SEQ1  #  !eof_stb & !
 	stf_stb & EOF_WAIT ;
@@ -118,32 +119,32 @@ STF_WAIT =  !stf_stb & eof_stb & !crc_zero & BYTE0  #  !stf_stb & CTRL_OK  #
 
 
 	IF ( RESET ) THEN
+		CRC_ERR.clrn=GND;
 		CTR_ERR.clrn=GND;
 		CTR_MSG.clrn=GND;
-		DAT_ERR.clrn=GND;
 		DAT_MSG.clrn=GND;
 		IDLE.prn=GND;
 	ELSE
+		CRC_ERR.clrn=VCC;
 		CTR_ERR.clrn=VCC;
 		CTR_MSG.clrn=VCC;
-		DAT_ERR.clrn=VCC;
 		DAT_MSG.clrn=VCC;
 		IDLE.prn=VCC;
 	END IF;
+CRC_ERR =  stf_stb & DAT_MSG  #  eof_stb & !BYTE0 & DAT_MSG  #  eof_stb & !
+	crc_zero & DAT_MSG ;
+
 CTR_ERR =  stf_stb & CTR_MSG  #  eof_stb & !EOF_WAIT & CTR_MSG  #  eof_stb & 
 	!crc_zero & CTR_MSG ;
 
 CTR_MSG =  !eof_stb & !stf_stb & CTR_MSG  #  DCMD_SEQ1 & data_stb & ctrl_msg 
 	& IDLE ;
 
-DAT_ERR =  stf_stb & DAT_MSG  #  eof_stb & !BYTE0 & DAT_MSG  #  eof_stb & !
-	crc_zero & DAT_MSG ;
-
 DAT_MSG =  !eof_stb & !stf_stb & DAT_MSG  #  DCMD_SEQ1 & data_stb & data_msg 
 	& IDLE ;
 
-IDLE =  CTR_ERR  #  EOF_WAIT & eof_stb & crc_zero & CTR_MSG  #  DAT_ERR  #  
-	BYTE0 & eof_stb & crc_zero & DAT_MSG  #  !ctrl_msg & !data_msg & IDLE  #  !
+IDLE =  CRC_ERR  #  CTR_ERR  #  EOF_WAIT & eof_stb & crc_zero & CTR_MSG  #  
+	BYTE0 & eof_stb & crc_zero & DAT_MSG  #  !data_msg & !ctrl_msg & IDLE  #  !
 	data_stb & IDLE  #  !DCMD_SEQ1 & IDLE ;
 
 
@@ -184,8 +185,8 @@ IDLE =  CTR_ERR  #  EOF_WAIT & eof_stb & crc_zero & CTR_MSG  #  DAT_ERR  #
 	STF_WAIT, STF_WAIT, STF_WAIT, STF_WAIT, STF_WAIT) & ((0,0,0,0,0,0,0,0,0,1,0,0
 	,0,1) ) );
 
-(first_wadr_rld,data_error,ctrl_error)= (  ( CTR_ERR, CTR_ERR, CTR_ERR) & ((0
-	,0,1) ) ) # (  ( CTR_MSG, CTR_MSG, CTR_MSG) & ((0,0,0) ) ) # (  ( DAT_ERR, 
-	DAT_ERR, DAT_ERR) & ((1,1,0) ) ) # (  ( DAT_MSG, DAT_MSG, DAT_MSG) & ((0,0,0)
+(first_wadr_rld,data_error,ctrl_error)= (  ( CRC_ERR, CRC_ERR, CRC_ERR) & ((1
+	,1,0) ) ) # (  ( CTR_ERR, CTR_ERR, CTR_ERR) & ((0,0,1) ) ) # (  ( CTR_MSG, 
+	CTR_MSG, CTR_MSG) & ((0,0,0) ) ) # (  ( DAT_MSG, DAT_MSG, DAT_MSG) & ((0,0,0)
 	 ) ) # (  ( IDLE, IDLE, IDLE) & ((0,0,0) ) );
 END;
