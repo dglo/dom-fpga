@@ -304,6 +304,8 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL atwd0_rdata		: STD_LOGIC_VECTOR(15 downto 0);
 	SIGNAL atwd0_address	: STD_LOGIC_VECTOR(8 downto 0);
 	SIGNAL atwd0_write_en	: STD_LOGIC;
+	SIGNAL atwd0_trigger    : STD_LOGIC;
+	SIGNAL atwd0_trig_doneB : STD_LOGIC;
 	
 	-- ATWD1
 	SIGNAL atwd1_enable		: STD_LOGIC;
@@ -313,6 +315,8 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL atwd1_rdata		: STD_LOGIC_VECTOR(15 downto 0);
 	SIGNAL atwd1_address	: STD_LOGIC_VECTOR(8 downto 0);
 	SIGNAL atwd1_write_en	: STD_LOGIC;
+	SIGNAL atwd1_trigger    : STD_LOGIC;
+	SIGNAL atwd1_trig_doneB : STD_LOGIC;
 	
 	-- AHB master
 	SIGNAL start_trans		: STD_LOGIC;
@@ -366,8 +370,13 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL drbt_gnt			: STD_LOGIC;
 	SIGNAL com_aval			: STD_LOGIC;
 	SIGNAL rs485_not_dac	: STD_LOGIC;
+	SIGNAL sys_reset		: STD_LOGIC;
+	SIGNAL cal_thr			: STD_LOGIC_VECTOR (9 DOWNTO 0);
 	
 	SIGNAL systime			: STD_LOGIC_VECTOR (47 DOWNTO 0);
+	SIGNAL atwd0_timestamp  : STD_LOGIC_VECTOR (47 DOWNTO 0);
+	SIGNAL atwd1_timestamp  : STD_LOGIC_VECTOR (47 DOWNTO 0);
+	SIGNAL dom_id			: STD_LOGIC_VECTOR (63 DOWNTO 0);
 	
 	COMPONENT ROC
 		PORT (
@@ -555,6 +564,9 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			hitcounter_o_ff	: IN	STD_LOGIC_VECTOR(31 downto 0);
 			hitcounter_m_ff	: IN	STD_LOGIC_VECTOR(31 downto 0);
 			systime			: IN	STD_LOGIC_VECTOR(47 DOWNTO 0);
+			atwd0_timestamp	: IN	STD_LOGIC_VECTOR(47 DOWNTO 0);
+			atwd1_timestamp : IN	STD_LOGIC_VECTOR(47 DOWNTO 0);
+			dom_id			: OUT	STD_LOGIC_VECTOR(63 DOWNTO 0);
 			-- COM ADC RX interface
 			com_adc_wdata		: OUT STD_LOGIC_VECTOR (15 downto 0);
 			com_adc_rdata		: IN STD_LOGIC_VECTOR (15 downto 0);
@@ -789,10 +801,49 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			DigitalReset	: OUT STD_LOGIC;
 			DigitalSet		: OUT STD_LOGIC;
 			ATWD_VDD_SUP	: OUT STD_LOGIC;
+			-- for ping-pong
+            atwd_trig_doneB	: OUT STD_LOGIC;
 			-- test connector
 			TC					: OUT STD_LOGIC_VECTOR(7 downto 0)
 		);
 	END COMPONENT;
+	
+	COMPONENT atwd_ping_pong
+        PORT (
+            CLK40		: IN STD_LOGIC;
+            RST			: IN STD_LOGIC;
+            -- single atwd discriminator enables from command register
+            cmd_atwd0_enable_disc : IN STD_LOGIC;
+            cmd_atwd1_enable_disc : IN STD_LOGIC;
+            -- ping-pong mode from command register
+            cmd_ping_pong         : IN STD_LOGIC;        
+            -- CPU atwd read handshake
+            cmd_atwd0_read_done   : IN STD_LOGIC;
+            cmd_atwd1_read_done   : IN STD_LOGIC;
+            -- atwd interface
+            atwd0_trig_doneB      : IN STD_LOGIC;
+            atwd1_trig_doneB      : IN STD_LOGIC;
+            atwd0_enable_disc     : OUT STD_LOGIC;
+            atwd1_enable_disc     : OUT STD_LOGIC;
+			-- test connector
+			TC					  : OUT STD_LOGIC_VECTOR(7 downto 0)
+            );
+    END COMPONENT;
+
+	COMPONENT atwd_timestamp
+        PORT (
+            CLK40		: IN STD_LOGIC;
+            RST			: IN STD_LOGIC;
+            -- ATWD triggers
+            atwd0_trigger   : IN    STD_LOGIC;
+            atwd1_trigger   : IN    STD_LOGIC;        
+            -- system time
+            systime			: IN	STD_LOGIC_VECTOR(47 DOWNTO 0);
+            -- timestamps
+            atwd0_timestamp : OUT	STD_LOGIC_VECTOR(47 DOWNTO 0);
+            atwd1_timestamp : OUT	STD_LOGIC_VECTOR(47 DOWNTO 0)
+            );
+    END COMPONENT;
 	
 	COMPONENT master_data_source
 		PORT (
@@ -861,7 +912,6 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 
 	COMPONENT dcom
 		port (
-			BCLK :  IN  STD_LOGIC;
 			CCLK :  IN  STD_LOGIC;
 			mono_clk_en :  IN  STD_LOGIC;
 			rs4_out :  IN  STD_LOGIC;
@@ -870,14 +920,16 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			dom_B_sel_L :  IN  STD_LOGIC;
 			reset :  IN  STD_LOGIC;
 			tx_wrreq :  IN  STD_LOGIC;
-			line_quiet :  IN  STD_LOGIC;
-			pulse_rcvd :  IN  STD_LOGIC;
-			pulse_sent :  IN  STD_LOGIC;
 			rx_rdreq :  IN  STD_LOGIC;
 			drbt_req :  IN  STD_LOGIC;
 			rs485_not_dac :  IN  STD_LOGIC;
+			id_stb_L :  IN  STD_LOGIC;
+			id_stb_H :  IN  STD_LOGIC;
+			cal_thr :  IN  STD_LOGIC_VECTOR(9 downto 0);
 			dudt :  IN  STD_LOGIC_VECTOR(7 downto 0);
 			fc_adc :  IN  STD_LOGIC_VECTOR(9 downto 0);
+			id :  IN  STD_LOGIC_VECTOR(47 downto 0);
+			time :  IN  STD_LOGIC_VECTOR(47 downto 0);
 			tx_fd :  IN  STD_LOGIC_VECTOR(7 downto 0);
 			txd :  OUT  STD_LOGIC;
 			last_byte :  OUT  STD_LOGIC;
@@ -918,6 +970,10 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			drbt_gnt :  OUT  STD_LOGIC;
 			com_aval :  OUT  STD_LOGIC;
 			sys_res       : OUT STD_LOGIC;
+			tcal_rcvd :  OUT  STD_LOGIC;
+			pulse_rcvd :  OUT  STD_LOGIC;
+			pulse_sent :  OUT  STD_LOGIC;
+			idreq_rcvd :  OUT  STD_LOGIC;
 			dac_db :  OUT  STD_LOGIC_VECTOR(7 downto 0);
 			data :  OUT  STD_LOGIC_VECTOR(7 downto 0);
 			msg_ct_q :  OUT  STD_LOGIC_VECTOR(7 downto 0);
@@ -997,11 +1053,11 @@ BEGIN
 	
 	-- ATWD0
 	atwd0_enable	<= command_0(0);
-	atwd0_enable_disc	<= command_0(1);
+	-- atwd0_enable_disc	<= command_0(1);
 	response_0(0)	<= atwd0_done;
 	-- ATWD1
 	atwd1_enable	<= command_0(8);
-	atwd1_enable_disc	<= command_0(9);
+	-- atwd1_enable_disc	<= command_0(9);
 	response_0(8)	<= atwd1_done;
 	-- flash ADC test
 	flash_adc_enable		<= command_0(16);
@@ -1108,7 +1164,7 @@ BEGIN
 	com_status(20)	<= txrdef;
 	drbt_req		<= com_ctrl(2);
 	dudt			<= com_ctrl(15 downto 8);
---	dec_thr			<= com_ctrl(25 downto 16);
+	cal_thr			<= com_ctrl(25 downto 16);
 	rs485_not_dac	<= com_ctrl(3);
 	
 --	PROCESS (RST,CLK20)
@@ -1316,6 +1372,9 @@ BEGIN
 			hitcounter_o_ff	=> hitcounter_o_ff,
 			hitcounter_m_ff	=> hitcounter_m_ff,
 			systime			=> systime,
+			atwd0_timestamp	=> atwd0_timestamp, 
+			atwd1_timestamp	=> atwd1_timestamp,
+			dom_id			=> dom_id,
 			-- COM ADC RX interface
 			com_adc_wdata		=> com_adc_wdata,
 			com_adc_rdata		=> com_adc_rdata,
@@ -1527,7 +1586,7 @@ BEGIN
 			write_en	=> atwd0_write_en,
 			-- atwd
 			ATWD_D			=> ATWD0_D,
-			ATWDTrigger		=> ATWDTrigger_0,
+			ATWDTrigger		=> atwd0_trigger,
 			TriggerComplete	=> TriggerComplete_0,
 			OutputEnable	=> OutputEnable_0,
 			CounterClock	=> CounterClock_0,
@@ -1539,9 +1598,12 @@ BEGIN
 			DigitalReset	=> DigitalReset_0,
 			DigitalSet		=> DigitalSet_0,
 			ATWD_VDD_SUP	=> ATWD0VDD_SUP,
+			-- for ping-pong
+            atwd_trig_doneB => atwd0_trig_doneB,
 			-- test connector
 			TC				=> open
 		);
+	ATWDTrigger_0 <= atwd0_trigger;
 	
 	atwd1 : atwd
 		PORT MAP (
@@ -1562,7 +1624,7 @@ BEGIN
 			write_en	=> atwd1_write_en,
 			-- atwd
 			ATWD_D			=> ATWD1_D,
-			ATWDTrigger		=> ATWDTrigger_1,
+			ATWDTrigger		=> atwd1_trigger,
 			TriggerComplete	=> TriggerComplete_1,
 			OutputEnable	=> OutputEnable_1,
 			CounterClock	=> CounterClock_1,
@@ -1574,9 +1636,47 @@ BEGIN
 			DigitalReset	=> DigitalReset_1,
 			DigitalSet		=> DigitalSet_1,
 			ATWD_VDD_SUP	=> ATWD1VDD_SUP,
+			-- for ping-pong
+            atwd_trig_doneB => atwd1_trig_doneB,
 			-- test connector
 			TC				=> open
 		);
+	ATWDTrigger_1 <= atwd1_trigger;
+		
+	inst_atwd_ping_pong : atwd_ping_pong
+        PORT MAP (
+            CLK40                 => CLK40,
+            RST                   => RST,
+            -- single atwd discriminator enables from command register
+            cmd_atwd0_enable_disc => command_0(1),
+            cmd_atwd1_enable_disc => command_0(9),
+            -- ping-pong mode from command register
+            cmd_ping_pong         => command_0(15), 
+            -- CPU atwd read handshake
+            cmd_atwd0_read_done   => command_0(2),
+            cmd_atwd1_read_done   => command_0(10),
+            -- atwd interface
+            atwd0_trig_doneB      => atwd0_trig_doneB,
+            atwd1_trig_doneB      => atwd1_trig_doneB,
+            atwd0_enable_disc     => atwd0_enable_disc,
+            atwd1_enable_disc     => atwd1_enable_disc,
+			-- test connector
+			TC                    => open       
+        );
+	
+    inst_atwd_timestamp : atwd_timestamp
+        PORT MAP (
+            CLK40                 => CLK40,
+            RST                   => RST,
+            -- ATWD triggers
+            atwd0_trigger         => atwd0_trigger,
+            atwd1_trigger         => atwd1_trigger,
+            -- system time
+            systime               => systime,
+            -- timestamps
+            atwd0_timestamp       => atwd0_timestamp,
+            atwd1_timestamp       => atwd1_timestamp
+        );
 		
 	inst_master_data_source : master_data_source
 		PORT MAP (
@@ -1643,11 +1743,11 @@ BEGIN
 	RST_kalle	<= RST OR com_ctrl(4);
 	-- TC(0)	<= tx_fifo_wr;
 	-- TC(1)	<= fifo_msg;
-	TC(3)	<= drbt_gnt;
-	TC(4)	<= drbt_req;
+	-- TC(1)	<= com_aval;
+	TC(2)	<= drbt_gnt;
+	TC(3)	<= drbt_req;
 	dcom_inst : dcom
 		port MAP (
-			BCLK		=> CLK20,
 			CCLK		=> CLK20,
 			mono_clk_en	=> low,
 			rs4_out		=> HDV_Rx,
@@ -1656,14 +1756,16 @@ BEGIN
 			dom_B_sel_L	=> A_nB,
 			reset		=> RST_kalle,
 			tx_wrreq	=> tx_fifo_wr,
-			line_quiet	=> low,
-			pulse_rcvd	=> low,
-			pulse_sent	=> low,
 			rx_rdreq	=> rx_fifo_rd,
 			drbt_req 	=> drbt_req,
 			rs485_not_dac 	=> rs485_not_dac,
+			id_stb_L	=> high,
+			id_stb_H	=> dom_id(48),
+			cal_thr		=> cal_thr,
 			dudt 		=> dudt,
 			fc_adc		=> COM_AD_D,
+			id			=> dom_id(47 downto 0),
+			time		=> systime,
 			tx_fd		=> com_tx_fifo,
 			txd			=> TC(6),
 			last_byte	=> open,
@@ -1698,12 +1800,16 @@ BEGIN
 			msg_err		=> open,
 			fifo_msg	=> fifo_msg,
 			nerr_led	=> open,
-			hl_edge 	=> TC(2),
+			hl_edge 	=> open, --TC(2),
 			lh_edge 	=> open,
 			rxd 		=> open,
 			drbt_gnt	=> drbt_gnt,
 			com_aval	=> com_aval,
-			sys_res     => open,
+			sys_res     => sys_reset,
+			tcal_rcvd	=> open,
+			pulse_rcvd	=> open,
+			pulse_sent	=> open,
+			idreq_rcvd	=> open,
 			dac_db		=> COM_DB,
 			data		=> temp_data,
 			msg_ct_q	=> msg_ct_q,
@@ -1729,7 +1835,9 @@ BEGIN
 	PGM(7 downto 0) <= TC;
 	
 	-- indicate FPGA is configured
-	PDL_FPGA_D	<= "01010101";
+	PDL_FPGA_D (5 DOWNTO 0)	<= "010101";
+	PDL_FPGA_D (6) <= NOT sys_reset;
+	PDL_FPGA_D (7) <= '0';
 	
 	process(CLK20)
 		variable CNT	: STD_LOGIC_VECTOR(2 downto 0);

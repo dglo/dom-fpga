@@ -13,6 +13,25 @@ SOFTWARE_SETTINGS_LIST
 }
 FILES
 {
+	AHDL_FILE = ..\..\common\com\Tx_chan\dac_rs_tab_rect_01.tdf;
+	VHDL_FILE = ..\common\atwd_timestamp.vhd;
+	VHDL_FILE = ..\common\atwd_ping_pong.vhd;
+	AHDL_FILE = ..\..\common\com\DCREV.tdf;
+	INCLUDE_FILE = ..\..\common\com\Tcal\dc_tcal_ct.inc;
+	AHDL_FILE = ..\..\common\com\Tcal\thr_add.tdf;
+	GDF_FILE = ..\..\common\com\Tcal\dc_rapcal_lh.gdf;
+	AHDL_FILE = ..\..\common\com\Tcal\dc_tcal_ct.tdf;
+	AHDL_FILE = ..\..\common\com\Tcal\mux2x8.tdf;
+	AHDL_FILE = ..\..\common\com\Tcal\RX_TCAL.tdf;
+	AHDL_FILE = ..\..\common\com\Tcal\TCAL_Timer.tdf;
+	AHDL_FILE = ..\..\common\com\Tcal\tcwf_16x10.tdf;
+	AHDL_FILE = ..\..\common\com\Tcal\tcwf_ct.tdf;
+	AHDL_FILE = ..\..\common\com\Tcal\comp_10.tdf;
+	AHDL_FILE = ..\..\common\com\Tx_chan\shift_ct.tdf;
+	AHDL_FILE = ..\..\common\com\Tx_chan\shrg48pld.tdf;
+	AHDL_FILE = ..\..\common\com\Tx_chan\ID_HDR_BYTE_0.tdf;
+	AHDL_FILE = ..\..\common\com\Tx_chan\ID_HDR_BYTE_2.tdf;
+	AHDL_FILE = ..\..\common\com\Tx_chan\mux16x8.tdf;
 	AHDL_FILE = ..\..\common\com\rev_005.tdf;
 	VHDL_FILE = ..\common\slaveregister.vhd;
 	VHDL_FILE = ..\common\timer.vhd;
