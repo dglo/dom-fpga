@@ -278,6 +278,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	-- frontend pulser
 	SIGNAL fe_pulser_enable		: STD_LOGIC;
 	SIGNAL fe_divider			: STD_LOGIC_VECTOR(3 downto 0);
+	SIGNAL FE_pulse				: STD_LOGIC;
 	-- single LED
 	SIGNAL single_led_enable	: STD_LOGIC;
 	SIGNAL LEDtrig				: STD_LOGIC;
@@ -794,6 +795,8 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			-- output
 			multiSPEcnt		: OUT STD_LOGIC_VECTOR(15 downto 0);
 			oneSPEcnt		: OUT STD_LOGIC_VECTOR(15 downto 0);
+			-- frontend pulser
+			FE_pulse		: IN STD_LOGIC;
 			-- test connector
 			TC					: OUT STD_LOGIC_VECTOR(7 downto 0)
 		);
@@ -1549,8 +1552,10 @@ BEGIN
 			enable		=> fe_pulser_enable,
 			divider		=> fe_divider,
 			-- LED trigger
-			FE_TEST_PULSE	=> FE_TEST_PULSE
+			FE_TEST_PULSE	=> FE_pulse
 		);
+	FE_TEST_PULSE <= FE_pulse;	
+	
 	
 	inst_single_led : single_led
 		PORT MAP (
@@ -1596,7 +1601,7 @@ BEGIN
 			COINC_UP_BBAR		=> COINC_UP_BBAR,
 			COINC_UP_B			=> COINC_UP_B,
 			-- test connector
-			TC					=> open --TC
+			TC					=> open
 		);
 		
 	inst_hit_counter : hit_counter
@@ -1632,6 +1637,8 @@ BEGIN
 			-- output
 			multiSPEcnt		=> multiSPEcnt_ff,
 			oneSPEcnt		=> oneSPEcnt_ff,
+			-- frontend pulser
+			FE_pulse		=> FE_pulse,
 			-- test connector
 			TC				=> open
 		);
@@ -1821,12 +1828,12 @@ BEGIN
 	B_nA	<= NOT A_nB;
 	RST_kalle	<= RST OR com_ctrl(4);
 	-- TC(0)	<= tx_fifo_wr;
-	TC(0)	<= sys_reset;
+	-- TC(0)	<= sys_reset;
 	-- TC(1)	<= fifo_msg;
 	-- TC(1)	<= com_aval;
 	-- TC(2)	<= drbt_gnt;
 	-- TC(3)	<= drbt_req;
-	TC(3)	<= drbt_gnt;
+	-- TC(3)	<= drbt_gnt;
 	dcom_inst : dcom
 		port MAP (
 			CCLK		=> CLK20,
@@ -1846,7 +1853,7 @@ BEGIN
 			id			=> dom_id(47 downto 0),
 			systime		=> systime,
 			tx_fd		=> com_tx_fifo,
-			txd			=> TC(6),
+			txd			=> open, --TC(6),
 			last_byte	=> open,
 			dac_clk		=> open,
 			dac_slp		=> COM_TX_SLEEP,
@@ -1856,7 +1863,7 @@ BEGIN
 			txwraef		=> txwraef,
 			txrdef		=> txrdef,
 			txwraff		=> txwraff,
-			ctrl_sent	=> TC(5),
+			ctrl_sent	=> open, --TC(5),
 			rs4_ren		=> HDV_RxENA,
 			adc_clk		=> open,
 			data_stb	=> open, --TC(3),
@@ -1880,8 +1887,8 @@ BEGIN
 			com_aval	=> com_aval,
 			sys_res     => sys_reset,
 			tcal_rcvd	=> open, --TC(0),
-			pulse_rcvd	=> TC(1),
-			pulse_sent	=> TC(2),
+			pulse_rcvd	=> open, --TC(1),
+			pulse_sent	=> open, --TC(2),
 			idreq_rcvd	=> open,
 			max_ena		=> open, --TC(3),
 			min_ena		=> open,
@@ -1912,6 +1919,8 @@ BEGIN
 		);
 	trigLED	<= trigLED_flasher OR trigLED_onboard;
 	
+	
+	TC(0)	<= FE_pulse;
 	
 	-- PGM(15 downto 12) <= (others=>'0');
 	PGM(15) <= '1';

@@ -39,6 +39,8 @@ ENTITY hit_counter_ff IS
 		-- output
 		multiSPEcnt		: OUT STD_LOGIC_VECTOR(15 downto 0);
 		oneSPEcnt		: OUT STD_LOGIC_VECTOR(15 downto 0);
+		-- frontend pulser
+		FE_pulse		: IN STD_LOGIC;
 		-- test connector
 		TC					: OUT STD_LOGIC_VECTOR(7 downto 0)
 	);
@@ -57,6 +59,9 @@ ARCHITECTURE arch_hit_counter_ff OF hit_counter_ff IS
 	SIGNAL OneSPE2		: STD_LOGIC;
 	SIGNAL OneSPErst	: STD_LOGIC;
 	
+	SIGNAL blank_disc	: STD_LOGIC;
+	SIGNAL FE_pulse_local	: STD_LOGIC;
+
 BEGIN
 	
 	PROCESS(RST, CLK)
@@ -106,7 +111,11 @@ BEGIN
 		IF OneSPErst='1' THEN	--OneSPE1='1' THEN
 			OneSPE_latch	<= '0';
 		ELSIF OneSPE'EVENT AND OneSPE='1' THEN
-			OneSPE_latch	<= '1';
+			IF blank_disc='1' THEN
+				OneSPE_latch	<= '0';
+			ELSE
+				OneSPE_latch	<= '1';
+			END IF;
 		END IF;
 	END PROCESS;
 	
@@ -115,7 +124,11 @@ BEGIN
 		IF MultiSPErst='1' THEN
 			MultiSPE_latch	<= '0';
 		ELSIF MultiSPE'EVENT AND MultiSPE='1' THEN
-			MultiSPE_latch	<= '1';
+			IF blank_disc='1' THEN
+				MultiSPE_latch	<= '0';
+			ELSE
+				MultiSPE_latch	<= '1';
+			END IF;
 		END IF;
 	END PROCESS;
 	
@@ -160,4 +173,14 @@ BEGIN
 			END IF;
 		END IF;
 	END PROCESS;
+	
+	PROCESS (CLK,RST)
+	BEGIN
+		IF RST='1' THEN
+			FE_pulse_local	<= '0';
+		ELSIF CLK'EVENT and CLK='1' THEN
+			FE_pulse_local	<= FE_pulse;
+		END IF;
+	END PROCESS;
+	blank_disc <= '1' WHEN FE_pulse='1' and FE_pulse_local='0' ELSE '0';
 END;
