@@ -18,6 +18,7 @@
 -- Revisions  :
 -- Date        Version     Author    Description
 -- 2003-10-07  V01-01-00   thorsten  
+-- 2005-04-04              thorsten  modified raw header data
 -------------------------------------------------------------------------------
 
 LIBRARY IEEE;
@@ -313,20 +314,35 @@ BEGIN
 	read_done_b <= read_done WHEN AnB='0' ELSE '0';
 	
 	-- engineering header
-	header0(15 DOWNTO 0) <= CONV_STD_LOGIC_VECTOR(16+512*CONV_INTEGER(header.FADCavail)+256*(CONV_INTEGER(header.ATWDsize)+1),16) WHEN header.ATWDavail='1' ELSE CONV_STD_LOGIC_VECTOR(16+512*CONV_INTEGER(header.FADCavail),16);
-	header0(31 DOWNTO 16) <= X"0001" WHEN header.eventtype=eventEngineering ELSE
-						X"0002" WHEN header.eventtype=eventTimestamp ELSE
-						X"0000";
-	header1(0) <= header.ATWD_AB;
-	header1(7 DOWNTO 1)	<= (OTHERS=>'0');
-	header1(15 DOWNTO 8)	<= X"FF" WHEN header.FADCavail='1' ELSE X"00";	-- FADC
-	header1(19 DOWNTO 16)	<= X"F" WHEN header.ATWDavail='1' ELSE X"0";	-- ATWD channel 0
-	header1(23 DOWNTO 20)	<= X"F" WHEN header.ATWDavail='1' AND header.ATWDsize>=1 ELSE X"0";	-- ATWD channel 1
-	header1(27 DOWNTO 24)	<= X"F" WHEN header.ATWDavail='1' AND header.ATWDsize>=2 ELSE X"0";	-- ATWD channel 2
-	header1(31 DOWNTO 28)	<= X"F" WHEN header.ATWDavail='1' AND header.ATWDsize=3 ELSE X"0";	-- ATWD channel 3
+	--header0(15 DOWNTO 0) <= CONV_STD_LOGIC_VECTOR(16+512*CONV_INTEGER(header.FADCavail)+256*(CONV_INTEGER(header.ATWDsize)+1),16) WHEN header.ATWDavail='1' ELSE CONV_STD_LOGIC_VECTOR(16+512*CONV_INTEGER(header.FADCavail),16);
+	--header0(31 DOWNTO 16) <= X"0001" WHEN header.eventtype=eventEngineering ELSE
+	--					X"0002" WHEN header.eventtype=eventTimestamp ELSE
+	--					X"0000";
+	--header1(0) <= header.ATWD_AB;
+	--header1(7 DOWNTO 1)	<= (OTHERS=>'0');
+	--header1(15 DOWNTO 8)	<= X"FF" WHEN header.FADCavail='1' ELSE X"00";	-- FADC
+	--header1(19 DOWNTO 16)	<= X"F" WHEN header.ATWDavail='1' ELSE X"0";	-- ATWD channel 0
+	--header1(23 DOWNTO 20)	<= X"F" WHEN header.ATWDavail='1' AND header.ATWDsize>=1 ELSE X"0";	-- ATWD channel 1
+	--header1(27 DOWNTO 24)	<= X"F" WHEN header.ATWDavail='1' AND header.ATWDsize>=2 ELSE X"0";	-- ATWD channel 2
+	--header1(31 DOWNTO 28)	<= X"F" WHEN header.ATWDavail='1' AND header.ATWDsize=3 ELSE X"0";	-- ATWD channel 3
+	--header2(15 DOWNTO 0)	<= header.trigger_word;
+	--header2(31 DOWNTO 16)	<= header.timestamp(15 DOWNTO 0);
+	--header3 <= header.timestamp(47 DOWNTO 16);
+	
+	-- New header format after talking to Arthur and Joshua
+	header0(31 DOWNTO 16)	<= X"0001";
+	header0(15 DOWNTO 0)	<= header.timestamp(15 DOWNTO 0);
+	header1 				<= header.timestamp(47 DOWNTO 16);
 	header2(15 DOWNTO 0)	<= header.trigger_word;
-	header2(31 DOWNTO 16)	<= header.timestamp(15 DOWNTO 0);
-	header3 <= header.timestamp(47 DOWNTO 16);
+	header2(16)				<= header.ATWD_AB;
+	header2(17)				<= header.FADCavail;
+	header2(18)				<= header.ATWDavail;
+	header2(20 DOWNTO 19)	<= header.ATWDsize;
+	header2(23 DOWNTO 21)	<= "000";
+	header2(25 DOWNTO 24)	<= header.LC;
+	header2(31 DOWNTO 26)	<= "000000";
+	header3(15 DOWNTO 0)	<= header.deadtime;
+	header3(31 DOWNTO 16)	<= (OTHERS=>'0');
 	
 	-- select data source
 	wdata <= header0 WHEN state_old=ENG_HDR0 ELSE
