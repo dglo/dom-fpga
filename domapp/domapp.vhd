@@ -417,6 +417,7 @@ ARCHITECTURE arch_domapp OF domapp IS
 			
 			DOM_status		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 			COMPR_ctrl		: OUT COMPR_STRUCT;
+			debugging		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 			-- pointers
 			LBM_ptr			: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 			-- kale communication interface
@@ -665,6 +666,9 @@ ARCHITECTURE arch_domapp OF domapp IS
 	
 	-- Compression
 	SIGNAL COMPR_ctrl	: COMPR_STRUCT;
+	
+	-- debugging
+	SIGNAL debugging		: STD_LOGIC_VECTOR (31 DOWNTO 0);
 	
 BEGIN
 	-- general
@@ -930,6 +934,7 @@ BEGIN
 			COMM_STAT		=> COMM_STAT,
 			DOM_status		=> X"00000000",
 			COMPR_ctrl		=> COMPR_ctrl,
+			debugging		=> debugging,
 			-- pointers
 			LBM_ptr			=> LBM_ptr,
 			-- kale communication interface
@@ -1073,5 +1078,20 @@ BEGIN
 	-- Test connector (JP19)
 	PGM			<= (OTHERS=>'Z');
 		
+	
+	--------------------------
+	-- LC debugging
+	--------------------------
+	process (CLK20, RST)
+	begin
+		if RST='1' THEN
+			debugging <= (others=>'0');
+		elsif CLK20'EVENT and CLK20='1' THEN
+			if lc_daq_trigger(0)='1' OR lc_daq_trigger(1)='1' THEN
+				debugging <= debugging + 1;
+			end if;
+		end if;
+	end process;
+	
 	
 END arch_domapp;
