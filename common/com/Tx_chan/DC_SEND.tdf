@@ -1,0 +1,268 @@
+% C:\PROJECTS\ICECUBE\DOR\FPGA\DOR_10\DCOM_12\TX_CHAN\DC_SEND.tdf %
+% AHDL code created by Visual Software Solution's StateCAD 5.0 %
+% Sun May 11 09:57:50 2003 %
+
+% This AHDL code was generated using: %
+%  binary encoded state assignment with structured code format. %
+%  Minimization is enabled,  implied else is enabled,  %
+%  and outputs are speed optimized. %
+
+SUBDESIGN DC_SEND(
+	CLK :	INPUT;
+	last_byte :	INPUT;
+	RESET :	INPUT;
+	send_ctrl :	INPUT;
+	send_data :	INPUT;
+	txrdef :	INPUT;
+	uart_done :	INPUT;
+	uart_lat :	INPUT;
+	ctrl_sent :	OUTPUT;
+	data_val :	OUTPUT;
+	frd_next :	OUTPUT;
+	msg_sent :	OUTPUT;
+	muxsel0 :	OUTPUT;
+	muxsel1 :	OUTPUT;
+	plct_en :	OUTPUT;
+	plct_sload_H :	OUTPUT;
+	plct_sload_L :	OUTPUT;
+)
+
+
+VARIABLE
+	sreg : MACHINE OF BITS (SV0, SV1, SV2, SV3, SV4)
+		WITH STATES (
+			TMIDL =	B"10000",
+			CMD =	B"00000",
+			CMDSNT =	B"00001",
+			CMDWT =	B"00010",
+			EOF =	B"00011",
+			EOF_CHK =	B"00100",
+			FCHK0 =	B"00101",
+			FCHK1 =	B"00110",
+			FCHK2 =	B"00111",
+			FCHK3 =	B"01000",
+			FRD =	B"01001",
+			MSTH =	B"01010",
+			MSTL =	B"01011",
+			PCT =	B"01100",
+			PLH =	B"01101",
+			PLL =	B"01110",
+			STF_SNT =	B"01111"
+		);
+
+	ctrl_sent :	DFF;
+	data_val :	DFF;
+	frd_next :	DFF;
+	msg_sent :	DFF;
+	muxsel0 :	DFF;
+	muxsel1 :	DFF;
+	plct_en :	DFF;
+	plct_sload_H :	DFF;
+	plct_sload_L :	DFF;
+
+BEGIN
+
+% Clock setup %
+	ctrl_sent.clk=CLK;
+	data_val.clk=CLK;
+	frd_next.clk=CLK;
+	msg_sent.clk=CLK;
+	muxsel0.clk=CLK;
+	muxsel1.clk=CLK;
+	plct_en.clk=CLK;
+	plct_sload_H.clk=CLK;
+	plct_sload_L.clk=CLK;
+	sreg.clk=CLK;
+
+	sreg.reset =  RESET ;
+
+	IF ( RESET ) THEN
+		msg_sent.clrn=GND;
+		ctrl_sent.clrn=GND;
+		data_val.clrn=GND;
+		frd_next.clrn=GND;
+		plct_en.clrn=GND;
+		plct_sload_H.clrn=GND;
+		plct_sload_L.clrn=GND;
+		muxsel1.clrn=GND;
+		muxsel0.clrn=GND;
+	ELSE
+		msg_sent.clrn=VCC;
+		ctrl_sent.clrn=VCC;
+		data_val.clrn=VCC;
+		frd_next.clrn=VCC;
+		plct_en.clrn=VCC;
+		plct_sload_H.clrn=VCC;
+		plct_sload_L.clrn=VCC;
+		muxsel1.clrn=VCC;
+		muxsel0.clrn=VCC;
+	END IF;
+
+	CASE sreg IS
+		WHEN CMD =>
+			IF ( !send_ctrl  #  !uart_lat ) THEN 
+				sreg = CMD;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(0,0,1,0,0,0,0,0,1);
+			END IF;
+			IF ( !send_data & send_ctrl & uart_lat ) THEN 
+				sreg = CMDWT;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(0,0,0,0,0,0,0,0,1);
+			END IF;
+			IF ( send_data & send_ctrl & uart_lat ) THEN 
+				sreg = STF_SNT;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(0,1,0,0,0,0,0,0,0);
+			END IF;
+		WHEN CMDSNT =>
+			sreg = TMIDL;
+			(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+				muxsel1,muxsel0)=(0,0,0,0,0,0,0,0,0);
+		WHEN CMDWT =>
+			IF ( uart_done ) THEN 
+				sreg = CMDSNT;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(0,1,0,0,0,0,0,0,0);
+			ELSE
+				sreg = CMDWT;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(0,0,0,0,0,0,0,0,1);
+			END IF;
+		WHEN EOF =>
+			sreg = CMD;
+			(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+				muxsel1,muxsel0)=(0,0,1,0,0,0,0,0,1);
+		WHEN EOF_CHK =>
+			IF ( !last_byte & txrdef ) THEN 
+				sreg = FCHK3;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(0,0,0,0,0,0,0,0,0);
+			END IF;
+			IF ( !last_byte & !txrdef ) THEN 
+				sreg = FRD;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(0,0,1,1,1,0,0,0,0);
+			END IF;
+			IF ( last_byte ) THEN 
+				sreg = PCT;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(0,0,1,0,0,0,0,1,0);
+			END IF;
+		WHEN FCHK0 =>
+			IF ( !txrdef ) THEN 
+				sreg = MSTH;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(0,0,1,1,0,0,0,0,0);
+			ELSE
+				sreg = FCHK0;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(0,0,0,0,0,0,0,0,0);
+			END IF;
+		WHEN FCHK1 =>
+			IF ( !txrdef ) THEN 
+				sreg = PLL;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(0,0,1,1,0,0,1,0,0);
+			ELSE
+				sreg = FCHK1;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(0,0,0,0,0,0,0,0,0);
+			END IF;
+		WHEN FCHK2 =>
+			IF ( !txrdef ) THEN 
+				sreg = PLH;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(0,0,1,1,0,1,0,0,0);
+			ELSE
+				sreg = FCHK2;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(0,0,0,0,0,0,0,0,0);
+			END IF;
+		WHEN FCHK3 =>
+			IF ( !txrdef ) THEN 
+				sreg = FRD;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(0,0,1,1,1,0,0,0,0);
+			ELSE
+				sreg = FCHK3;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(0,0,0,0,0,0,0,0,0);
+			END IF;
+		WHEN FRD =>
+			IF ( uart_lat ) THEN 
+				sreg = EOF_CHK;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(0,0,0,0,0,0,0,0,0);
+			ELSE
+				sreg = FRD;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(0,0,1,1,1,0,0,0,0);
+			END IF;
+		WHEN MSTH =>
+			IF ( uart_lat ) THEN 
+				sreg = FCHK1;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(0,0,0,0,0,0,0,0,0);
+			ELSE
+				sreg = MSTH;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(0,0,1,1,0,0,0,0,0);
+			END IF;
+		WHEN MSTL =>
+			IF ( uart_lat ) THEN 
+				sreg = FCHK0;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(0,0,0,0,0,0,0,0,0);
+			ELSE
+				sreg = MSTL;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(0,0,1,1,0,0,0,0,0);
+			END IF;
+		WHEN PCT =>
+			IF ( uart_lat ) THEN 
+				sreg = EOF;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(1,0,1,0,0,0,0,0,1);
+			ELSE
+				sreg = PCT;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(0,0,1,0,0,0,0,1,0);
+			END IF;
+		WHEN PLH =>
+			IF ( uart_lat ) THEN 
+				sreg = EOF_CHK;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(0,0,0,0,0,0,0,0,0);
+			ELSE
+				sreg = PLH;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(0,0,1,1,0,1,0,0,0);
+			END IF;
+		WHEN PLL =>
+			IF ( uart_lat ) THEN 
+				sreg = FCHK2;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(0,0,0,0,0,0,0,0,0);
+			ELSE
+				sreg = PLL;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(0,0,1,1,0,0,1,0,0);
+			END IF;
+		WHEN STF_SNT =>
+			sreg = MSTL;
+			(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+				muxsel1,muxsel0)=(0,0,1,1,0,0,0,0,0);
+		WHEN TMIDL =>
+			IF ( send_ctrl ) THEN 
+				sreg = CMD;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(0,0,1,0,0,0,0,0,1);
+			ELSE
+				sreg = TMIDL;
+				(msg_sent,ctrl_sent,data_val,frd_next,plct_en,plct_sload_H,plct_sload_L,
+					muxsel1,muxsel0)=(0,0,0,0,0,0,0,0,0);
+			END IF;
+	END CASE;
+
+END;
