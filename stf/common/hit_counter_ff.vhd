@@ -30,6 +30,9 @@ ENTITY hit_counter_ff IS
 	PORT (
 		CLK			: IN STD_LOGIC;
 		RST			: IN STD_LOGIC;
+		-- setup
+		gatetime	: IN STD_LOGIC := '0';
+		deadtime	: IN STD_LOGIC_VECTOR (3 DOWNTO 0); 
 		-- discriminator input
 		MultiSPE		: IN STD_LOGIC;
 		OneSPE			: IN STD_LOGIC;
@@ -47,31 +50,37 @@ ARCHITECTURE arch_hit_counter_ff OF hit_counter_ff IS
 	SIGNAL MultiSPE0	: STD_LOGIC;
 	SIGNAL MultiSPE1	: STD_LOGIC;
 	SIGNAL MultiSPE2	: STD_LOGIC;
-	SIGNAL OneSPE_latch		: STD_LOGIC;
+	SIGNAL MultiSPErst	: STD_LOGIC;
+	SIGNAL OneSPE_latch	: STD_LOGIC;
 	SIGNAL OneSPE0		: STD_LOGIC;
 	SIGNAL OneSPE1		: STD_LOGIC;
 	SIGNAL OneSPE2		: STD_LOGIC;
+	SIGNAL OneSPErst	: STD_LOGIC;
 	
 BEGIN
 	
 	PROCESS(RST, CLK)
-		VARIABLE cnt100ms	: integer;
+		VARIABLE cntXms	: integer;
 		VARIABLE multiSPEcnt_int	: STD_LOGIC_VECTOR (15 downto 0);
 		VARIABLE oneSPEcnt_int		: STD_LOGIC_VECTOR (15 downto 0);
 	BEGIN
 		IF RST='1' THEN
-			cnt100ms	:= 2000000;
+			cntXms	:= 2000000;
 			MultiSPE1	<= '1';
 			OneSPE1		<= '1';
 		ELSIF CLK'EVENT AND CLK='1' THEN
-			IF cnt100ms = 0 THEN
+			IF cntXms = 0 THEN
 				multiSPEcnt	<= multiSPEcnt_int;
 				oneSPEcnt	<= oneSPEcnt_int;
-				cnt100ms	:= 2000000;
+				IF gatetime='0' THEN
+					cntXms	:= 2000000;	-- 100ms
+				ELSE
+					cntXms	:= 200000;	-- 10ms
+				END IF;
 				multiSPEcnt_int	:= (others=>'0');
 				oneSPEcnt_int	:= (others=>'0');
 			ELSE
-				cnt100ms	:= cnt100ms - 1;
+				cntXms	:= cntXms - 1;
 				
 				IF MultiSPE2='0' AND MultiSPE1='1' THEN
 					multiSPEcnt_int	:= multiSPEcnt_int+1;
@@ -94,7 +103,7 @@ BEGIN
 	
 	PROCESS(OneSPE,OneSPE1)
 	BEGIN
-		IF OneSPE1='1' THEN
+		IF OneSPErst='1' THEN	--OneSPE1='1' THEN
 			OneSPE_latch	<= '0';
 		ELSIF OneSPE'EVENT AND OneSPE='1' THEN
 			OneSPE_latch	<= '1';
@@ -103,11 +112,52 @@ BEGIN
 	
 	PROCESS(MultiSPE,MultiSPE1)
 	BEGIN
-		IF MultiSPE1='1' THEN
+		IF MultiSPErst='1' THEN
 			MultiSPE_latch	<= '0';
 		ELSIF MultiSPE'EVENT AND MultiSPE='1' THEN
 			MultiSPE_latch	<= '1';
 		END IF;
 	END PROCESS;
 	
+	OneSPEreset : PROCESS (CLK,RST)
+		VARIABLE cnt	: STD_LOGIC_VECTOR (11 DOWNTO 0);
+	BEGIN
+		IF RST='1' THEN
+			OneSPErst	<= '1';
+			cnt			:= CONV_STD_LOGIC_VECTOR(1,12);
+		ELSIF CLK'EVENT AND CLK='1' THEN
+			IF OneSPE_latch='1' THEN
+				IF cnt(1+CONV_INTEGER(deadtime))='1' THEN
+					OneSPErst	<= '1';
+				ELSE
+					OneSPErst	<= '0';
+				END IF;
+				cnt	:= cnt + 1;
+			ELSE
+				OneSPErst	<= '0';
+				cnt			:= CONV_STD_LOGIC_VECTOR(1,12);
+			END IF;
+		END IF;
+	END PROCESS;
+	
+	MultiSPEreset : PROCESS (CLK,RST)
+		VARIABLE cnt	: STD_LOGIC_VECTOR (11 DOWNTO 0);
+	BEGIN
+		IF RST='1' THEN
+			MultiSPErst	<= '1';
+			cnt			:= CONV_STD_LOGIC_VECTOR(1,12);
+		ELSIF CLK'EVENT AND CLK='1' THEN
+			IF MultiSPE_latch='1' THEN
+				IF cnt(1+CONV_INTEGER(deadtime))='1' THEN
+					MultiSPErst	<= '1';
+				ELSE
+					MultiSPErst	<= '0';
+				END IF;
+				cnt	:= cnt + 1;
+			ELSE
+				MultiSPErst	<= '0';
+				cnt			:= CONV_STD_LOGIC_VECTOR(1,12);
+			END IF;
+		END IF;
+	END PROCESS;
 END;
