@@ -1,4 +1,4 @@
-TITLE "ADC to serial decoder, LAST CHANGE: 2003/10/20";
+TITLE "ADC to serial decoder, LAST CHANGE: 2003/10/30";
 
 INCLUDE "GET_DUDT";
 INCLUDE "ctup5";
@@ -9,7 +9,7 @@ INCLUDE "ctup5";
 --FUNCTION ctup5 (clock,	aclr)
 --RETURNS (	q[4..0],	cout);
 
---FUNCTION GET_DUDT (CLK, max_level, min_level, cteq16, cteq4, hl_edge, lh_edge, res, uart_done)
+--FUNCTION GET_DUDT (CLK, max_level, min_level, cteq16, cteq4, hl_edge, res, uart_done)
 --	RETURNS (ct_aclr, dudt_ena, find_dudt, max_ena, min_ena, rxd);
 
 
@@ -57,8 +57,8 @@ BEGIN
 ct.clock					= clk;
 ct.aclr						= get_dudt_stm.ct_aclr;
 
-get_dudt_stm.(CLK, max_level, min_level, cteq16,  cteq4,  hl_edge, lh_edge, res, uart_done)	=
-			(clk, max_level, min_level, ct.q[4],  ct.q[2], hl_edge, lh_edge, reset, uart_done);
+get_dudt_stm.(CLK, max_level, min_level, cteq16,  cteq4,  hl_edge, res, uart_done)	=
+			(clk, max_level, min_level, ct.q[4],  ct.q[2], hl_edge, reset, uart_done);
 			
 	ina[].clk				= clk;
 	inb[].clk				= clk;
@@ -75,9 +75,14 @@ get_dudt_stm.(CLK, max_level, min_level, cteq16,  cteq4,  hl_edge, lh_edge, res,
 	inc[].d					= inb[].q;
 	ind[].d					= inc[].q;
 	
-	dudt[].clk				= clk;		
-	dudt[].d				= (GND,low_thr[9..1]) & get_dudt_stm.min_ena	-- last change 2003/10/20
-							# (GND,lrg_thr[9..1]) & get_dudt_stm.max_ena;
+	dudt[].clk				= clk;
+	
+	dudt[].d				= (low_thr[9..0]) 					& get_dudt_stm.min_ena
+							# (lrg_thr[9..6],GND,lrg_thr[4..0]) & get_dudt_stm.max_ena;
+																			-- dudt 32x2mV smaller now
+	
+--	dudt[].d				= 	  (low_thr[9..0]) & get_dudt_stm.min_ena	-- last change 2003/10/20
+--							# (GND,lrg_thr[9..1]) & get_dudt_stm.max_ena;
 							
 	dudt[].ena				= get_dudt_stm.dudt_ena;
 

@@ -1,6 +1,6 @@
 % C:\PROJECTS\ICECUBE\DOR\FPGA\DCOM_01\DC_CTRL.tdf %
 % AHDL code created by Visual Software Solution's StateCAD 5.0 %
-% Wed Sep 10 18:25:46 2003 %
+% Tue Nov 11 15:35:19 2003 %
 
 % This AHDL code was generated using: %
 %  binary encoded state assignment with structured code format. %
@@ -11,7 +11,10 @@ SUBDESIGN DC_CTRL(
 	CLK :	INPUT;
 	bfstat_rcvd :	INPUT;
 	comres_rcvd :	INPUT;
+	ctrl_err :	INPUT;
 	ctrl_sent :	INPUT;
+	ctrl_stb :	INPUT;
+	data_stb :	INPUT;
 	del_15us :	INPUT;
 	drbt_req :	INPUT;
 	drreq_rcvd :	INPUT;
@@ -21,6 +24,7 @@ SUBDESIGN DC_CTRL(
 	idreq_rcvd :	INPUT;
 	msg_err :	INPUT;
 	msg_sent :	INPUT;
+	my_adr :	INPUT;
 	pulse_rcvd :	INPUT;
 	pulse_sent :	INPUT;
 	reset :	INPUT;
@@ -86,12 +90,14 @@ VARIABLE
 
 	sreg2 : MACHINE OF BITS (SV10, SV11, SV12)
 		WITH STATES (
-			FPGA_RDY =	B"011",
+			FPGA_RDY =	B"110",
 			COM_RES =	B"000",
-			CRES_WAIT =	B"001",
-			DOM_RBT =	B"010",
-			RES_SYNC =	B"100",
-			WAIT_6ms =	B"101"
+			CRES_1 =	B"001",
+			CRES_2 =	B"010",
+			CRES_3 =	B"011",
+			CRES_WAIT =	B"100",
+			DOM_RBT =	B"101",
+			WAIT_6ms =	B"111"
 		);
 
 	cmd_snd0 :	DFF;
@@ -113,6 +119,7 @@ VARIABLE
 	tcal_psnd :	DFF;
 	timer_clrn :	DFF;
 
+	noise :	NODE;
 BEGIN
 
 % Clock setup %
@@ -138,10 +145,10 @@ BEGIN
 	sreg1.clk=CLK;
 	sreg2.clk=CLK;
 
-	sreg.reset =  SV10 & comres_rcvd  #  !SV11 & comres_rcvd  #  SV12 & 
+	sreg.reset =  !SV10 & comres_rcvd  #  SV11 & comres_rcvd  #  !SV12 & 
 		comres_rcvd ;
 
-	IF ( SV10 & comres_rcvd  #  !SV11 & comres_rcvd  #  SV12 & comres_rcvd ) 
+	IF ( !SV10 & comres_rcvd  #  SV11 & comres_rcvd  #  !SV12 & comres_rcvd ) 
 		THEN
 		timer_clrn.clrn=GND;
 		send_id.clrn=GND;
@@ -181,8 +188,8 @@ BEGIN
 	CASE sreg IS
 		WHEN CMD_WAIT =>
 			IF ( !idle_rcvd & !drreq_rcvd & !sysres_rcvd & !bfstat_rcvd & !stf_rcvd & 
-				!idreq_rcvd & !tcal_rcvd  #  !idle_rcvd & !drreq_rcvd & !sysres_rcvd & !
-				bfstat_rcvd & !stf_rcvd & !id_data_avail & !tcal_rcvd ) THEN 
+				!tcal_rcvd & !idreq_rcvd  #  !idle_rcvd & !drreq_rcvd & !sysres_rcvd & !
+				bfstat_rcvd & !stf_rcvd & !tcal_rcvd & !id_data_avail ) THEN 
 				sreg = CMD_WAIT;
 				(timer_clrn,send_id,drbt_gnt,sys_res,tcal_data,tcal_psnd,tcal_prec,
 					tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,
@@ -236,17 +243,17 @@ BEGIN
 					tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,
 					send_ctrl)=(0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0);
 			END IF;
-			IF ( idreq_rcvd & id_data_avail ) THEN 
-				sreg = SND_ID_STF;
-				(timer_clrn,send_id,drbt_gnt,sys_res,tcal_data,tcal_psnd,tcal_prec,
-					tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,
-					send_ctrl)=(0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1);
-			END IF;
 			IF ( tcal_rcvd ) THEN 
 				sreg = REC_WT;
 				(timer_clrn,send_id,drbt_gnt,sys_res,tcal_data,tcal_psnd,tcal_prec,
 					tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,
 					send_ctrl)=(1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0);
+			END IF;
+			IF ( idreq_rcvd & id_data_avail ) THEN 
+				sreg = SND_ID_STF;
+				(timer_clrn,send_id,drbt_gnt,sys_res,tcal_data,tcal_psnd,tcal_prec,
+					tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,
+					send_ctrl)=(0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1);
 			END IF;
 		WHEN COM_START =>
 			IF ( !SV10 & !SV11 & !SV12 ) THEN 
@@ -541,9 +548,48 @@ BEGIN
 				sreg2 = COM_RES;
 				rec_ena=VCC;
 			END IF;
+		WHEN CRES_1 =>
+			IF ( !comres_rcvd & !noise ) THEN 
+				sreg2 = CRES_1;
+				rec_ena=VCC;
+			END IF;
+			IF ( comres_rcvd ) THEN 
+				sreg2 = CRES_2;
+				rec_ena=VCC;
+			END IF;
+			IF ( noise ) THEN 
+				sreg2 = CRES_WAIT;
+				rec_ena=VCC;
+			END IF;
+		WHEN CRES_2 =>
+			IF ( !noise & !comres_rcvd ) THEN 
+				sreg2 = CRES_2;
+				rec_ena=VCC;
+			END IF;
+			IF ( noise ) THEN 
+				sreg2 = CRES_WAIT;
+				rec_ena=VCC;
+			END IF;
+			IF ( comres_rcvd ) THEN 
+				sreg2 = CRES_3;
+				rec_ena=VCC;
+			END IF;
+		WHEN CRES_3 =>
+			IF ( !comres_rcvd & !noise ) THEN 
+				sreg2 = CRES_3;
+				rec_ena=VCC;
+			END IF;
+			IF ( comres_rcvd ) THEN 
+				sreg2 = COM_RES;
+				rec_ena=VCC;
+			END IF;
+			IF ( noise ) THEN 
+				sreg2 = CRES_WAIT;
+				rec_ena=VCC;
+			END IF;
 		WHEN CRES_WAIT =>
 			IF ( comres_rcvd ) THEN 
-				sreg2 = RES_SYNC;
+				sreg2 = CRES_1;
 				rec_ena=VCC;
 			ELSE
 				sreg2 = CRES_WAIT;
@@ -555,14 +601,6 @@ BEGIN
 		WHEN FPGA_RDY =>
 			sreg2 = WAIT_6ms;
 			rec_ena=GND;
-		WHEN RES_SYNC =>
-			IF ( comres_rcvd ) THEN 
-				sreg2 = COM_RES;
-				rec_ena=VCC;
-			ELSE
-				sreg2 = RES_SYNC;
-				rec_ena=VCC;
-			END IF;
 		WHEN WAIT_6ms =>
 			IF ( time_bit_18 ) THEN 
 				sreg2 = CRES_WAIT;
@@ -572,5 +610,10 @@ BEGIN
 				rec_ena=GND;
 			END IF;
 	END CASE;
+
+
+% Logic Equations %
+noise =  my_adr & ctrl_stb & !comres_rcvd  #  my_adr & ctrl_err  #  my_adr & 
+	data_stb ;
 
 END;

@@ -51,6 +51,8 @@ BEGIN
 		VARIABLE tick_old	: STD_LOGIC;
 		VARIABLE tick_old0	: STD_LOGIC;
 		VARIABLE tick_old1	: STD_LOGIC;
+		VARIABLE tick_old2	: STD_LOGIC;
+		VARIABLE tick_old3	: STD_LOGIC;
 	BEGIN
 		IF RST='1' THEN
 			cnt			:= (others=>'0');
@@ -69,9 +71,13 @@ BEGIN
 	--		END IF;
 			IF (tick OR tick_old OR tick_old0 OR tick_old1)='1' THEN
 				FE_TEST_PULSE	<= '1';
+			ELSIF (tick_old2 OR tick_old3)='1' THEN
+				FE_TEST_PULSE	<= '0';
 			ELSE
 				FE_TEST_PULSE	<= 'Z';
 			END IF;
+			tick_old3	:= tick_old2;
+			tick_old2	:= tick_old1;
 			tick_old1	:= tick_old0;
 			tick_old0	:= tick_old;
 			tick_old	:= tick;

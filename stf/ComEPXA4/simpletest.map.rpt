@@ -1,0 +1,543 @@
+Analysis & Synthesis report for simpletest compilation.
+Wed Dec 17 17:22:29 2003
+Version 3.0 Build 245 10/09/2003 Service Pack 2 SJ Full Version
+
+Command: quartus_map --import_settings_files=on --export_settings_files=off simpletest -c simpletest
+
+
+
+---------------------
+; Table of Contents ;
+---------------------
+   1. Legal Notice
+   2. Flow Summary
+   3. Flow Settings
+   4. Flow Elapsed Time
+   5. Analysis & Synthesis Summary
+   6. Analysis & Synthesis Settings
+   7. Analysis & Synthesis Messages
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2003 Altera Corporation
+Any  megafunction  design,  and related netlist (encrypted  or  decrypted),
+support information,  device programming or simulation file,  and any other
+associated  documentation or information  provided by  Altera  or a partner
+under  Altera's   Megafunction   Partnership   Program  may  be  used  only
+to program  PLD  devices (but not masked  PLD  devices) from  Altera.   Any
+other  use  of such  megafunction  design,  netlist,  support  information,
+device programming or simulation file,  or any other  related documentation
+or information  is prohibited  for  any  other purpose,  including, but not
+limited to  modification,  reverse engineering,  de-compiling, or use  with
+any other  silicon devices,  unless such use is  explicitly  licensed under
+a separate agreement with  Altera  or a megafunction partner.  Title to the
+intellectual property,  including patents,  copyrights,  trademarks,  trade
+secrets,  or maskworks,  embodied in any such megafunction design, netlist,
+support  information,  device programming or simulation file,  or any other
+related documentation or information provided by  Altera  or a megafunction
+partner, remains with Altera, the megafunction partner, or their respective
+licensors. No other licenses, including any licenses needed under any third
+party's intellectual property, are provided herein.
+
+
+
+------------------------------------------------------------------
+; Flow Summary                                                   ;
+------------------------------------------------------------------
+; Flow Status           ; Flow Failed - Wed Dec 17 17:22:29 2003 ;
+; Compiler Setting Name ; simpletest                             ;
+; Top-level Entity Name ; simpletest                             ;
+; Family                ; EXCALIBUR_ARM                          ;
+; Device                ; EPXA4F672I2                            ;
+------------------------------------------------------------------
+
+
+-----------------------------------------------
+; Flow Settings                               ;
+-----------------------------------------------
+; Option                ; Setting             ;
+-----------------------------------------------
+; Start date & time     ; 12/17/2003 17:22:20 ;
+; Main task             ; Compilation         ;
+; Compiler Setting Name ; simpletest          ;
+-----------------------------------------------
+
+
+---------------------------------------
+; Flow Elapsed Time                   ;
+---------------------------------------
+; Module Name          ; Elapsed Time ;
+---------------------------------------
+; Analysis & Synthesis ; 00:00:09     ;
+; Total                ; 00:00:09     ;
+---------------------------------------
+
+
+-------------------------------------------------------------------
+; Analysis & Synthesis Summary                                    ;
+-------------------------------------------------------------------
+; Analysis & Synthesis Status ; Failed - Wed Dec 17 17:22:29 2003 ;
+; Compiler Setting Name       ; simpletest                        ;
+; Top-level Entity Name       ; simpletest                        ;
+; Family                      ; EXCALIBUR_ARM                     ;
+-------------------------------------------------------------------
+
+
+-----------------------------------------------------------------
+; Analysis & Synthesis Settings                                 ;
+-----------------------------------------------------------------
+; Option                                        ; Setting       ;
+-----------------------------------------------------------------
+; Use Generated Physical Constraints File       ; On            ;
+; Physical Synthesis Level for Resynthesis      ; Normal        ;
+; Resynthesis Optimization Effort               ; Normal        ;
+; Type of Retiming Performed During Resynthesis ; Full          ;
+; Perform gate-level register retiming          ; Off           ;
+; Perform WYSIWYG primitive resynthesis         ; Off           ;
+; Focus entity name                             ; |simpletest   ;
+; Family name                                   ; EXCALIBUR_ARM ;
+; Preserve fewer node names                     ; On            ;
+; Disk space/compilation speed tradeoff         ; Normal        ;
+-----------------------------------------------------------------
+
+
+----------------------------------
+; Analysis & Synthesis Messages  ;
+----------------------------------
+Info: *******************************************************************
+Info: Running Quartus II Analysis & Synthesis
+  Info: Version 3.0 Build 245 10/09/2003 Service Pack 2 SJ Full Version
+  Info: Processing started: Wed Dec 17 17:22:20 2003
+Info: Command: quartus_map --import_settings_files=on --export_settings_files=off simpletest -c simpletest
+Info: Found 2 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\common\slaveregister.vhd
+  Info: Found design unit 1: slaveregister-arch_slaveregister
+  Info: Found entity 1: slaveregister
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\and16b.tdf
+  Info: Found entity 1: and16b
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\DCREV_DPR.tdf
+  Info: Found entity 1: DCREV_DPR
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tcal\DCOM_tcal_timer.tdf
+  Info: Found entity 1: DCOM_tcal_timer
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\DCC_DPR.tdf
+  Info: Found entity 1: DCC_DPR
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\rx_packet_ct.tdf
+  Info: Found entity 1: rx_packet_ct
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\rx_dpr_adr_ct.tdf
+  Info: Found entity 1: rx_dpr_adr_ct
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\Rx_dpr_ctrl.tdf
+  Info: Found entity 1: Rx_dpr_ctrl
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\reset_ct2.tdf
+  Info: Found entity 1: reset_ct2
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\DC_Rx_chan_dpr.bdf
+  Info: Found entity 1: DC_Rx_chan_dpr
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tx_chan\tx_dpr_radr_ct.tdf
+  Info: Found entity 1: tx_dpr_radr_ct
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tx_chan\Tx_dpr_ctrl.tdf
+  Info: Found entity 1: Tx_dpr_ctrl
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tx_chan\tx_packet_ct.tdf
+  Info: Found entity 1: tx_packet_ct
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\or16b.tdf
+  Info: Found entity 1: or16b
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tx_chan\DC_Tx_chan_dpr.bdf
+  Info: Found entity 1: DC_Tx_chan_dpr
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\dcom_dpr.bdf
+  Info: Found entity 1: dcom_dpr
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\DCREV.tdf
+  Info: Found entity 1: DCREV
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\UART\rxct4.tdf
+  Info: Found entity 1: rxct4
+Info: Found 2 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\dec_threshold.vhd
+  Info: Found design unit 1: dec_threshold-syn
+  Info: Found entity 1: dec_threshold
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\DC_CTRL.tdf
+  Info: Found entity 1: DC_CTRL
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Mono_flop\mono.bdf
+  Info: Found entity 1: mono
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Parity\Par_74180.bdf
+  Info: Found entity 1: Par_74180
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tx_chan\txshr10.tdf
+  Info: Found entity 1: txshr10
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tx_chan\dac_tab_10_trap.tdf
+  Info: Found entity 1: dac_tab_10_trap
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tx_chan\DC_SEND.tdf
+  Info: Found entity 1: DC_SEND
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tx_chan\dc_tx_fifo.tdf
+  Info: Found entity 1: dc_tx_fifo
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tx_chan\dc_tx_plct.tdf
+  Info: Found entity 1: dc_tx_plct
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tx_chan\tx_mux_4x8.tdf
+  Info: Found entity 1: tx_mux_4x8
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tx_chan\tx_pack_ct.tdf
+  Info: Found entity 1: tx_pack_ct
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tx_chan\TX_UART.tdf
+  Info: Found entity 1: TX_UART
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tx_chan\tx_uart_12.bdf
+  Info: Found entity 1: tx_uart_12
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tx_chan\txbitct.tdf
+  Info: Found entity 1: txbitct
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tx_chan\txct.tdf
+  Info: Found entity 1: txct
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tx_chan\control_byte.tdf
+  Info: Found entity 1: control_byte
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\meanval\or10.tdf
+  Info: Found entity 1: or10
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\meanval\dec2.tdf
+  Info: Found entity 1: dec2
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\meanval\mean_val.gdf
+  Info: Found entity 1: mean_val
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\meanval\mux4x10.tdf
+  Info: Found entity 1: mux4x10
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\meanval\add10.tdf
+  Info: Found entity 1: add10
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\RX_MREC.tdf
+  Info: Found entity 1: RX_MREC
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\UART\RX_UART_12.bdf
+  Info: Found entity 1: RX_UART_12
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\UART\rxct5.tdf
+  Info: Found entity 1: rxct5
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\UART\rxct8.tdf
+  Info: Found entity 1: rxct8
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\UART\rxshr8.tdf
+  Info: Found entity 1: rxshr8
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\UART\UA_RX_12.tdf
+  Info: Found entity 1: UA_RX_12
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\edges\sub10.tdf
+  Info: Found entity 1: sub10
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\edges\ctup5.tdf
+  Info: Found entity 1: ctup5
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\edges\edge_discr.tdf
+  Info: Found entity 1: edge_discr
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\edges\HL_DEC.tdf
+  Info: Found entity 1: HL_DEC
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\edges\HL_diff.gdf
+  Info: Found entity 1: HL_diff
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\edges\cmp10.tdf
+  Info: Found entity 1: cmp10
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\meanval\ctup4.tdf
+  Info: Found entity 1: ctup4
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\rx_msg_ct.tdf
+  Info: Found entity 1: rx_msg_ct
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\dc_rx_plct.tdf
+  Info: Found entity 1: dc_rx_plct
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\DC_MREC.tdf
+  Info: Found entity 1: DC_MREC
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\DC_Rx_chan_04.bdf
+  Info: Found entity 1: DC_Rx_chan_04
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\dc_rx_fifo.tdf
+  Info: Found entity 1: dc_rx_fifo
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\and8b.tdf
+  Info: Found entity 1: and8b
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\or8b.tdf
+  Info: Found entity 1: or8b
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\edges\adc_to_digital.tdf
+  Info: Found entity 1: adc_to_digital
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\edges\ONE_DET.tdf
+  Info: Found entity 1: ONE_DET
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tx_chan\DC_Tx_chan_04.bdf
+  Info: Found entity 1: DC_Tx_chan_04
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tx_chan\dac_rs_tab_trap_01.tdf
+  Info: Found entity 1: dac_rs_tab_trap_01
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tx_chan\ID_HDR_BYTE_0.tdf
+  Info: Found entity 1: ID_HDR_BYTE_0
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tx_chan\ID_HDR_BYTE_2.tdf
+  Info: Found entity 1: ID_HDR_BYTE_2
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tx_chan\mux16x8.tdf
+  Info: Found entity 1: mux16x8
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tx_chan\shift_ct.tdf
+  Info: Found entity 1: shift_ct
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tx_chan\shrg48pld.tdf
+  Info: Found entity 1: shrg48pld
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tx_chan\dac_rs_tab_rect_01.tdf
+  Info: Found entity 1: dac_rs_tab_rect_01
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\edges\adc_to_ser_dudt.tdf
+  Info: Found entity 1: adc_to_ser_dudt
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Rx_chan\edges\GET_DUDT.tdf
+  Info: Found entity 1: GET_DUDT
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tcal\TCAL_Timer.tdf
+  Info: Found entity 1: tcal_timer
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tcal\dc_rapcal_lh.gdf
+  Info: Found entity 1: dc_rapcal_lh
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tcal\dc_tcal_ct.tdf
+  Info: Found entity 1: dc_tcal_ct
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tcal\DCTC_FWR.tdf
+  Info: Found entity 1: DCTC_FWR
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tcal\mux2x8.tdf
+  Info: Found entity 1: mux2x8
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tcal\RX_TCAL.tdf
+  Info: Found entity 1: RX_TCAL
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tcal\TCAL_SAMPLES.tdf
+  Info: Found entity 1: TCAL_SAMPLES
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tcal\comp_10.tdf
+  Info: Found entity 1: comp_10
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tcal\TCWF_64x10.tdf
+  Info: Found entity 1: TCWF_64x10
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tcal\TCWF_64x12.tdf
+  Info: Found entity 1: TCWF_64x12
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tcal\tcwf_af_ct.tdf
+  Info: Found entity 1: tcwf_af_ct
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tcal\tcwf_ct.tdf
+  Info: Found entity 1: tcwf_ct
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tcal\TCWF_FIFO_32x10.tdf
+  Info: Found entity 1: TCWF_FIFO_32x10
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\common\com\Tcal\thr_add.tdf
+  Info: Found entity 1: thr_add
+Info: Found 2 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\common\LED2ATWDdelay.vhd
+  Info: Found design unit 1: led2atwddelay-arch_led2atwddelay
+  Info: Found entity 1: led2atwddelay
+Info: Found 2 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\common\atwd_timestamp.vhd
+  Info: Found design unit 1: atwd_timestamp-arch_atwd_timestamp
+  Info: Found entity 1: atwd_timestamp
+Info: Found 2 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\common\atwd_ping_pong.vhd
+  Info: Found design unit 1: atwd_ping_pong-arch_atwd_ping_pong
+  Info: Found entity 1: atwd_ping_pong
+Info: Found 2 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\common\timer.vhd
+  Info: Found design unit 1: timer-timer_arch
+  Info: Found entity 1: timer
+Info: Found 2 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\common\ahb_slave.vhd
+  Info: Found design unit 1: ahb_slave-ahb_slave_arch
+  Info: Found entity 1: ahb_slave
+Info: Found 2 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\common\atwd.vhd
+  Info: Found design unit 1: atwd-arch_atwd
+  Info: Found entity 1: atwd
+Info: Found 2 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\common\atwd_control.vhd
+  Info: Found design unit 1: atwd_control-arch_atwd_control
+  Info: Found entity 1: atwd_control
+Info: Found 2 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\common\atwd_readout.vhd
+  Info: Found design unit 1: atwd_readout-arch_atwd_readout
+  Info: Found entity 1: atwd_readout
+Info: Found 2 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\common\atwd_trigger.vhd
+  Info: Found design unit 1: atwd_trigger-arch_atwd_trigger
+  Info: Found entity 1: atwd_trigger
+Info: Found 2 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\common\coinc.vhd
+  Info: Found design unit 1: coinc-arch_coinc
+  Info: Found entity 1: coinc
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\common\com_adc_mem.v
+  Info: Found entity 1: com_adc_mem
+Info: Found 2 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\common\com_ADC_RX.vhd
+  Info: Found design unit 1: com_adc_rc-arch_com_adc_rc
+  Info: Found entity 1: com_adc_rc
+Info: Found 2 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\common\com_DAC_TX.vhd
+  Info: Found design unit 1: com_dac_tx-arch_com_dac_tx
+  Info: Found entity 1: com_dac_tx
+Info: Found 2 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\common\fe_r2r.vhd
+  Info: Found design unit 1: fe_r2r-arch_fe_r2r
+  Info: Found entity 1: fe_r2r
+Info: Found 2 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\common\fe_testpulse.vhd
+  Info: Found design unit 1: fe_testpulse-fe_test_pulsearch
+  Info: Found entity 1: fe_testpulse
+Info: Found 2 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\common\flash_adc.vhd
+  Info: Found design unit 1: flash_adc-arch_flash_adc
+  Info: Found entity 1: flash_adc
+Info: Found 2 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\common\flasher_board.vhd
+  Info: Found design unit 1: flasher_board-flasher_board_arch
+  Info: Found entity 1: flasher_board
+Info: Found 2 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\common\gray2bin.vhd
+  Info: Found design unit 1: gray2bin-gray2bin
+  Info: Found entity 1: gray2bin
+Info: Found 2 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\common\hit_counter.vhd
+  Info: Found design unit 1: hit_counter-arch_hit_counter
+  Info: Found entity 1: hit_counter
+Info: Found 2 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\common\hit_counter_ff.vhd
+  Info: Found design unit 1: hit_counter_ff-arch_hit_counter_ff
+  Info: Found entity 1: hit_counter_ff
+Info: Found 2 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\common\master_data_source.vhd
+  Info: Found design unit 1: master_data_source-arch_master_data_source
+  Info: Found entity 1: master_data_source
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\common\pll2x.v
+  Info: Found entity 1: pll2x
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\common\pll4x.v
+  Info: Found entity 1: pll4x
+Info: Found 2 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\common\r2r.vhd
+  Info: Found design unit 1: r2r-arch_r2r
+  Info: Found entity 1: r2r
+Info: Found 2 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\common\ROC.vhd
+  Info: Found design unit 1: roc-arch_roc
+  Info: Found entity 1: roc
+Info: Found 2 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\common\rs486.vhd
+  Info: Found design unit 1: rs486-arch_rs486
+  Info: Found entity 1: rs486
+Info: Found 2 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\common\single_led.vhd
+  Info: Found design unit 1: single_led-single_led_arch
+  Info: Found entity 1: single_led
+Info: Found 2 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\common\ahb_master.vhd
+  Info: Found design unit 1: ahb_master-ahb_ahb_master
+  Info: Found entity 1: ahb_master
+Info: Found 2 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\ComEPXA4\simpletest.vhd
+  Info: Found design unit 1: simpletest-simpletest_arch
+  Info: Found entity 1: simpletest
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\altclklock.tdf
+  Info: Found entity 1: altclklock
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\ComEPXA4\stripe.v
+  Info: Found entity 1: stripe
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\alt_exc_stripe.tdf
+  Info: Found entity 1: alt_exc_stripe
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\alt_exc_upcore.tdf
+  Info: Found entity 1: alt_exc_upcore
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\apex20ke_io_in.v
+  Info: Found entity 1: apex20ke_io_in
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\apex20ke_io_bidir_od.v
+  Info: Found entity 1: apex20ke_io_bidir_od
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\apex20ke_io_out.v
+  Info: Found entity 1: apex20ke_io_out
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\apex20ke_io_bidir.v
+  Info: Found entity 1: apex20ke_io_bidir
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\alt_exc_dpram.tdf
+  Info: Found entity 1: alt_exc_dpram
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\ComEPXA4\version_rom.v
+  Info: Found entity 1: version_rom
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\lpm_rom.tdf
+  Info: Found entity 1: lpm_rom
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\altrom.tdf
+  Info: Found entity 1: altrom
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\lpm_ram_dp.tdf
+  Info: Found entity 1: lpm_ram_dp
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\altdpram.tdf
+  Info: Found entity 1: altdpram
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\lpm_shiftreg.tdf
+  Info: Found entity 1: lpm_shiftreg
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\lpm_counter.tdf
+  Info: Found entity 1: lpm_counter
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\alt_synch_counter.tdf
+  Info: Found entity 1: alt_synch_counter
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\lpm_constant.tdf
+  Info: Found entity 1: lpm_constant
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\lpm_compare.tdf
+  Info: Found entity 1: lpm_compare
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\comptree.tdf
+  Info: Found entity 1: comptree
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\cmpchain.tdf
+  Info: Found entity 1: cmpchain
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\altshift.tdf
+  Info: Found entity 1: altshift
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\lpm_mux.tdf
+  Info: Found entity 1: lpm_mux
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\bypassff.tdf
+  Info: Found entity 1: bypassff
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\muxlut.tdf
+  Info: Found entity 1: muxlut
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\lpm_or.tdf
+  Info: Found entity 1: lpm_or
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\lpm_add_sub.tdf
+  Info: Found entity 1: lpm_add_sub
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\addcore.tdf
+  Info: Found entity 1: addcore
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\a_csnbuffer.tdf
+  Info: Found entity 1: a_csnbuffer
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\lpm_decode.tdf
+  Info: Found entity 1: lpm_decode
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\scfifo.tdf
+  Info: Found entity 1: scfifo
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\ComEPXA4\db\scfifo_66i.tdf
+  Info: Found entity 1: scfifo_66i
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\ComEPXA4\db\a_dpfifo_4dj.tdf
+  Info: Found entity 1: a_dpfifo_4dj
+Info: Found 1 design units and 1 entities in source file C:\work_lbnl\IceCubeCVS\dom-fpga\stf\ComEPXA4\db\a_fefifo_vve.tdf
+  Info: Found entity 1: a_fefifo_vve
+Info: Found 1 design units and 1 entities in source file c:\fpgatools\quartus\libraries\megafunctions\lpm_and.tdf
+  Info: Found entity 1: lpm_and
+Error: Port rx_addr[0] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[10] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[11] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[12] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[13] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[14] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[15] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[16] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[17] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[18] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[19] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[1] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[20] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[21] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[22] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[23] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[24] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[25] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[26] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[27] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[28] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[29] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[2] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[30] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[31] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[3] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[4] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[5] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[6] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[7] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[8] does not exist in macrofunction slaveregister_inst
+Error: Port rx_addr[9] does not exist in macrofunction slaveregister_inst
+Error: Port rx_dpr_radr[0] does not exist in macrofunction slaveregister_inst
+Error: Port rx_dpr_radr[10] does not exist in macrofunction slaveregister_inst
+Error: Port rx_dpr_radr[11] does not exist in macrofunction slaveregister_inst
+Error: Port rx_dpr_radr[12] does not exist in macrofunction slaveregister_inst
+Error: Port rx_dpr_radr[13] does not exist in macrofunction slaveregister_inst
+Error: Port rx_dpr_radr[14] does not exist in macrofunction slaveregister_inst
+Error: Port rx_dpr_radr[15] does not exist in macrofunction slaveregister_inst
+Error: Port rx_dpr_radr[1] does not exist in macrofunction slaveregister_inst
+Error: Port rx_dpr_radr[2] does not exist in macrofunction slaveregister_inst
+Error: Port rx_dpr_radr[3] does not exist in macrofunction slaveregister_inst
+Error: Port rx_dpr_radr[4] does not exist in macrofunction slaveregister_inst
+Error: Port rx_dpr_radr[5] does not exist in macrofunction slaveregister_inst
+Error: Port rx_dpr_radr[6] does not exist in macrofunction slaveregister_inst
+Error: Port rx_dpr_radr[7] does not exist in macrofunction slaveregister_inst
+Error: Port rx_dpr_radr[8] does not exist in macrofunction slaveregister_inst
+Error: Port rx_dpr_radr[9] does not exist in macrofunction slaveregister_inst
+Error: Port rx_dpr_radr_stb does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[0] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[10] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[11] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[12] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[13] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[14] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[15] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[16] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[17] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[18] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[19] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[1] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[20] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[21] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[22] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[23] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[24] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[25] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[26] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[27] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[28] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[29] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[2] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[30] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[31] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[3] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[4] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[5] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[6] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[7] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[8] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_radr[9] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_wadr[0] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_wadr[10] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_wadr[11] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_wadr[12] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_wadr[13] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_wadr[14] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_wadr[15] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_wadr[1] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_wadr[2] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_wadr[3] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_wadr[4] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_wadr[5] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_wadr[6] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_wadr[7] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_wadr[8] does not exist in macrofunction slaveregister_inst
+Error: Port tx_dpr_wadr[9] does not exist in macrofunction slaveregister_inst
+Error: Port tx_pack_rdy does not exist in macrofunction slaveregister_inst
+Error: Quartus II Analysis & Synthesis was unsuccessful. 98 errors, 0 warnings
+  Error: Processing ended: Wed Dec 17 17:22:29 2003
+  Error: Elapsed time: 00:00:08
+Info: Writing report file simpletest.map.rpt
+
+
