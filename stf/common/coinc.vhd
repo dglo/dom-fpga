@@ -184,16 +184,16 @@ BEGIN
 						END IF;
 				END CASE;		
 			ELSE	-- manual control
-				IF coinc_up_high='1' AND coinc_up_high_delay(2)='0' THEN
+				IF coinc_up_high='1' AND coinc_up_high_delay(0)='0' THEN  --(2)
 					COINCIDENCE_OUT_UP	<= '1';
-				ELSIF coinc_up_low='1' AND coinc_up_low_delay(2)='0' THEN
+				ELSIF coinc_up_low='1' AND coinc_up_low_delay(0)='0' THEN  --(2)
 					COINCIDENCE_OUT_UP	<= '0';
 				ELSE
 					COINCIDENCE_OUT_UP	<= 'Z';
 				END IF;
-				IF coinc_down_high='1' AND coinc_down_high_delay(2)='0' THEN
+				IF coinc_down_high='1' AND coinc_down_high_delay(0)='0' THEN  --(2)
 					COINCIDENCE_OUT_DOWN	<= '1';
-				ELSIF coinc_down_low='1' AND coinc_down_low_delay(2)='0' THEN
+				ELSIF coinc_down_low='1' AND coinc_down_low_delay(0)='0' THEN  --(2)
 					COINCIDENCE_OUT_DOWN	<= '0';
 				ELSE
 					COINCIDENCE_OUT_DOWN	<= 'Z';
