@@ -54,6 +54,7 @@ ENTITY slaveregister IS
 		DAQ_ctrl		: OUT DAQ_STRUCT;
 		CS_ctrl			: OUT CS_STRUCT;
 		cs_flash_time	: IN STD_LOGIC_VECTOR (47 DOWNTO 0);
+		cs_flash_now	: IN STD_LOGIC;
 		LC_ctrl			: OUT LC_STRUCT;
 		RM_ctrl			: OUT RM_CTRL_STRUCT;
 		RM_stat			: IN  RM_STAT_STRUCT;
@@ -603,9 +604,9 @@ BEGIN
 			-- Interrupt to Stripe
 			intpld      => intpld,
 			-- Interrupt sources
-			int0        => '0',
-			int1        => '0',
-			int2        => '0',
+			int0        => cs_flash_now,
+			int1        => RM_stat.RM_rate_update,
+			int2        => RM_stat.SN_rate_update,
 			int3        => '0',
 			int4        => '0',
 			int5        => '0',

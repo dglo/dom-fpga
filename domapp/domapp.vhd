@@ -408,6 +408,7 @@ ARCHITECTURE arch_domapp OF domapp IS
 			DAQ_ctrl		: OUT DAQ_STRUCT;
 			CS_ctrl			: OUT CS_STRUCT;
 			cs_flash_time	: IN STD_LOGIC_VECTOR (47 DOWNTO 0);
+			cs_flash_now	: IN STD_LOGIC;
 			LC_ctrl			: OUT LC_STRUCT;
 			RM_ctrl			: OUT RM_CTRL_STRUCT;
 			RM_stat			: IN  RM_STAT_STRUCT;
@@ -653,6 +654,7 @@ ARCHITECTURE arch_domapp OF domapp IS
 	SIGNAL CS_trigger	: STD_LOGIC_VECTOR (5 DOWNTO 0);
 	SIGNAL cs_wf_data	: STD_LOGIC_VECTOR (7 DOWNTO 0);
 	SIGNAL cs_wf_addr	: STD_LOGIC_VECTOR (7 DOWNTO 0);
+	SIGNAL cs_flash_now	: STD_LOGIC;
 	
 	-- local coincidence
 	SIGNAL LC_ctrl			: LC_STRUCT;
@@ -920,6 +922,7 @@ BEGIN
 			DAQ_ctrl		=> DAQ_ctrl,
 			CS_ctrl			=> CS_ctrl,
 			cs_flash_time	=> cs_flash_time,
+			cs_flash_now	=> cs_flash_now,
 			LC_ctrl			=> LC_ctrl,
 			RM_ctrl			=> RM_ctrl,
 			RM_stat			=> RM_stat,
@@ -999,7 +1002,7 @@ BEGIN
 			cs_ctrl				=> CS_ctrl,
 			cs_wf_data			=> cs_wf_data,
 			cs_wf_addr			=> cs_wf_addr,
-			cs_flash_now		=> open,
+			cs_flash_now		=> cs_flash_now,
 			cs_flash_time		=> cs_flash_time,
 			-- DAQ interface
 			cs_daq_trigger		=> CS_trigger,
