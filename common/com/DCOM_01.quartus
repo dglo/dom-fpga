@@ -1,24 +1,5 @@
-FILES
-{
-	AHDL_FILE = Tx_chan\dac_tab_ap01_trap.tdf;
-	BDF_FILE = Tx_chan\tx_uart_13.bdf;
-	AHDL_FILE = Rx_chan\edges\adc_to_digital.tdf;
-	BDF_FILE = Rx_chan\DC_Rx_chan_04.bdf;
-	BDF_FILE = Tx_chan\DC_Tx_chan_04.bdf;
-	BDF_FILE = dcom_04.bdf;
-	GDF_FILE = Tcal\dc_rapcal_lh.gdf;
-	BDF_FILE = Tx_chan\DC_Tx_chan_01.bdf;
-	AHDL_FILE = Tcal\TCAL_Timer.tdf;
-	BDF_FILE = Tx_chan\DC_Tx_chan_04_DOR.bdf;
-	BDF_FILE = Rx_chan\DC_Rx_chan_04_DOR.bdf;
-	BDF_FILE = dcom.bdf;
-}
 COMPILER_SETTINGS_LIST
 {
-	COMPILER_SETTINGS = DCOM_01;
-	COMPILER_SETTINGS = dcom_02;
-	COMPILER_SETTINGS = dcom_03;
-	COMPILER_SETTINGS = dcom_04;
 	COMPILER_SETTINGS = dcom;
 }
 SIMULATOR_SETTINGS_LIST

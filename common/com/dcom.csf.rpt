@@ -50,7 +50,7 @@ party's intellectual property, are provided herein.
 +-----------------+-------------------+
 |Option           |Setting            |
 +-----------------+-------------------+
-|Start date & time|08/22/2003 19:23:08|
+|Start date & time|09/04/2003 11:35:42|
 |Main task        |Compilation        |
 |Settings name    |dcom               |
 +-----------------+-------------------+
@@ -106,11 +106,9 @@ party's intellectual property, are provided herein.
 +-----------------------------------------------------------------------------+
 Info: Found 1 design units and 1 entities in source file c:\projects\icecube\dor\fpga\dcom_01\dcom.bdf
   Info: Found entity 1: dcom
-Warning: Port mono_clk_en of type DC_Tx_chan_04 and instance DC_Tx_chan_04 is missing source signal
-Warning: Port mono_clk_en of type DC_Rx_chan_04 and instance DC_Rx_chan_04 is missing source signal
 Warning: Pin rs4_out not connected
 Warning: Primitive GND of instance inst not used
-Info: Design dcom: BDF to VHDL file generation was successful. 0 errors, 4 warnings
+Info: Design dcom: BDF to VHDL file generation was successful. 0 errors, 2 warnings
 
 +-----------------------------------------------------------------------------+
 |Processing Time                                                              |

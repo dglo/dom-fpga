@@ -1,0 +1,146 @@
+% C:\PROJECTS\ICECUBE\DOR\FPGA\DCOM_01\RX_CHAN\EDGES\GET_DUDT.tdf %
+% AHDL code created by Visual Software Solution's StateCAD 5.0 %
+% Tue Sep 02 19:20:07 2003 %
+
+% This AHDL code was generated using: %
+%  binary encoded state assignment with structured code format. %
+%  Minimization is enabled,  implied else is enabled,  %
+%  and outputs are speed optimized. %
+
+SUBDESIGN GET_DUDT(
+	CLK :	INPUT;
+	cteq4 :	INPUT;
+	cteq16 :	INPUT;
+	hl_edge :	INPUT;
+	lh_edge :	INPUT;
+	max_level :	INPUT;
+	min_level :	INPUT;
+	res :	INPUT;
+	uart_done :	INPUT;
+	ct_aclr :	OUTPUT;
+	dudt_ena :	OUTPUT;
+	find_dudt :	OUTPUT;
+	max_ena :	OUTPUT;
+	min_ena :	OUTPUT;
+	rxd :	OUTPUT;
+)
+
+
+VARIABLE
+	sreg : MACHINE OF BITS (SV0, SV4, SV5)
+		WITH STATES (
+			IDLE =	B"001",
+			HLWT =	B"000",
+			LHWT =	B"010",
+			MAX_DUDT =	B"011",
+			MIN_DUDT =	B"100",
+			START =	B"101",
+			STB =	B"110"
+		);
+
+	ct_aclr :	DFF;
+	dudt_ena :	DFF;
+	find_dudt :	DFF;
+	max_ena :	DFF;
+	min_ena :	DFF;
+	rxd :	DFF;
+
+BEGIN
+
+% Clock setup %
+	ct_aclr.clk=CLK;
+	dudt_ena.clk=CLK;
+	find_dudt.clk=CLK;
+	max_ena.clk=CLK;
+	min_ena.clk=CLK;
+	rxd.clk=CLK;
+	sreg.clk=CLK;
+
+	sreg.reset =  res ;
+
+	IF ( res ) THEN
+		rxd.clrn=GND;
+		ct_aclr.prn=GND;
+		find_dudt.clrn=GND;
+		dudt_ena.prn=GND;
+		max_ena.clrn=GND;
+		min_ena.prn=GND;
+	ELSE
+		rxd.clrn=VCC;
+		ct_aclr.prn=VCC;
+		find_dudt.clrn=VCC;
+		dudt_ena.prn=VCC;
+		max_ena.clrn=VCC;
+		min_ena.prn=VCC;
+	END IF;
+
+	CASE sreg IS
+		WHEN HLWT =>
+			IF ( !uart_done & !hl_edge ) THEN 
+				sreg = HLWT;
+				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,1,0,0,0,0);
+			END IF;
+			IF ( uart_done ) THEN 
+				sreg = IDLE;
+				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,1,0,1,0,1);
+			END IF;
+			IF ( hl_edge & !uart_done ) THEN 
+				sreg = STB;
+				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(1,1,0,0,0,0);
+			END IF;
+		WHEN IDLE =>
+			IF ( !min_level & !max_level  #  !uart_done ) THEN 
+				sreg = IDLE;
+				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,1,0,1,0,1);
+			END IF;
+			IF ( min_level & !max_level & uart_done ) THEN 
+				sreg = MIN_DUDT;
+				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,0,1,1,0,1);
+			END IF;
+			IF ( max_level & uart_done ) THEN 
+				sreg = MAX_DUDT;
+				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,0,1,1,1,0);
+			END IF;
+		WHEN LHWT =>
+			IF ( lh_edge  #  cteq16 ) THEN 
+				sreg = HLWT;
+				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,1,0,0,0,0);
+			ELSE
+				sreg = LHWT;
+				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,0,0,0,0,0);
+			END IF;
+		WHEN MAX_DUDT =>
+			IF ( cteq4 ) THEN 
+				sreg = START;
+				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,1,0,0,0,0);
+			ELSE
+				sreg = MAX_DUDT;
+				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,0,1,1,1,0);
+			END IF;
+		WHEN MIN_DUDT =>
+			IF ( !max_level & !cteq4 ) THEN 
+				sreg = MIN_DUDT;
+				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,0,1,1,0,1);
+			END IF;
+			IF ( max_level & !cteq4 ) THEN 
+				sreg = MAX_DUDT;
+				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,0,1,1,1,0);
+			END IF;
+			IF ( cteq4 ) THEN 
+				sreg = START;
+				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,1,0,0,0,0);
+			END IF;
+		WHEN START =>
+			IF ( hl_edge ) THEN 
+				sreg = STB;
+				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(1,1,0,0,0,0);
+			ELSE
+				sreg = START;
+				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,1,0,0,0,0);
+			END IF;
+		WHEN STB =>
+			sreg = LHWT;
+			(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,0,0,0,0,0);
+	END CASE;
+
+END;
