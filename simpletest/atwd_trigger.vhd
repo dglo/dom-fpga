@@ -8,7 +8,6 @@ USE IEEE.std_logic_arith.all;
 USE IEEE.std_logic_unsigned.all;
 
 
-
 ENTITY atwd_trigger IS
 	PORT (
 		CLK20		: IN STD_LOGIC;
