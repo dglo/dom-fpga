@@ -841,12 +841,12 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			dom_A_sel_L :  IN  STD_LOGIC;
 			dom_B_sel_L :  IN  STD_LOGIC;
 			reset :  IN  STD_LOGIC;
-			dec_thr : IN STD_LOGIC_VECTOR(9 downto 0);
 			tx_wrreq :  IN  STD_LOGIC;
 			line_quiet :  IN  STD_LOGIC;
 			pulse_rcvd :  IN  STD_LOGIC;
 			pulse_sent :  IN  STD_LOGIC;
 			rx_rdreq :  IN  STD_LOGIC;
+			dec_thr : IN STD_LOGIC_VECTOR(9 downto 0);
 			fc_adc :  IN  STD_LOGIC_VECTOR(9 downto 0);
 			tx_fd :  IN  STD_LOGIC_VECTOR(7 downto 0);
 			txd :  OUT  STD_LOGIC;
@@ -1595,12 +1595,12 @@ BEGIN
 			dom_A_sel_L	=> B_nA,
 			dom_B_sel_L	=> A_nB,
 			reset		=> RST_kalle,
-			dec_thr		=> dec_thr,
 			tx_wrreq	=> tx_fifo_wr,
 			line_quiet	=> low,
 			pulse_rcvd	=> low,
 			pulse_sent	=> low,
 			rx_rdreq	=> rx_fifo_rd,
+			dec_thr		=> dec_thr,
 			fc_adc		=> COM_AD_D,
 			tx_fd		=> com_tx_fifo,
 			txd			=> TC(6),
