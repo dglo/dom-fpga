@@ -1,5 +1,5 @@
 ---------------------------------------------------
----  simple transmitter for the ATWD MUX R2R ladder
+--- simple transmitter for the ATWD MUX R2R ladder
 ---------------------------------------------------
 
 LIBRARY IEEE;

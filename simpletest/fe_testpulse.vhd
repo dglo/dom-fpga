@@ -49,11 +49,7 @@ BEGIN
 	--		IF enable='1' THEN
 				cnt_o		:= cnt(CONV_INTEGER(divider)+8);
 	--		END IF;
-			IF (tick OR tick_old OR tick_old0 OR tick_old1)='1' THEN
-				FE_TEST_PULSE	<= '1';
-			ELSE
-				FE_TEST_PULSE	<= 'Z';
-			END IF;
+			FE_TEST_PULSE	<= tick OR tick_old OR tick_old0 OR tick_old1;
 			tick_old1	:= tick_old0;
 			tick_old0	:= tick_old;
 			tick_old	:= tick;
