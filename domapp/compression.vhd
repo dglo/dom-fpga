@@ -69,7 +69,7 @@ BEGIN
 	--compr_avail_out <= '0';
 	--compr_size		<= (OTHERS=>'0');
 	compr_avail_out <= data_avail_in;
-	compr_size		<= "111111111";
+	compr_size		<= "111111011";
 	PROCESS(CLK40)
 	BEGIN
 		IF CLK40'EVENT AND CLK40='1' THEN
@@ -78,6 +78,7 @@ BEGIN
 			ELSE
 				compr_data (8 DOWNTO 0) <= compr_addr;
 				compr_data (31 DOWNTO 9) <= (OTHERS=>'0');
+				compr_data (24) <= '1';
 			END IF;
 		END IF;
 	END PROCESS;
