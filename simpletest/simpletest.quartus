@@ -13,9 +13,6 @@ SOFTWARE_SETTINGS_LIST
 }
 FILES
 {
-	VHDL_FILE = dec_threshold.vhd;
-	AHDL_FILE = DC_CTRL.tdf;
-	BDF_FILE = dcom_01.bdf;
 	VHDL_FILE = simpletest.vhd;
 	VHDL_FILE = ahb_slave.vhd;
 	VHDL_FILE = slaveregister.vhd;
