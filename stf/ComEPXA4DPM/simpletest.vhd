@@ -309,7 +309,12 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL atwd0_LC_abort		: STD_LOGIC;
 	SIGNAL atwd1_LC_abort		: STD_LOGIC;
 	SIGNAL LC_rx_down_en		: STD_LOGIC;
-	SIGNAL LC_rx_up_en			: STD_LOGIC;
+	SIGNAL LC_rx_up_en		: STD_LOGIC;
+	SIGNAL atwd0_trigger_delay	: STD_LOGIC;
+	SIGNAL atwd0_trigger_latch	: STD_LOGIC;
+	SIGNAL atwd1_trigger_delay	: STD_LOGIC;
+	SIGNAL atwd1_trigger_latch	: STD_LOGIC;
+	SIGNAL flash_adc_enable_lc	: STD_LOGIC;                                  
 	
 	-- hit counter
 	SIGNAL oneSPEcnt		: STD_LOGIC_VECTOR(15 downto 0);
@@ -1664,7 +1669,7 @@ BEGIN
 			address		=> flash_adc_address,
 			write_en	=> flash_adc_write_en,
 			-- enable for RX
-			enable		=> flash_adc_enable,
+			enable		=> flash_adc_enable_lc,
 			enable_disc	=> flash_adc_enable_disc,
 			done		=> flash_adc_done,
 			-- disc
@@ -1754,6 +1759,31 @@ BEGIN
 			-- test connector
 			TC					=> TC
 		);
+	-- for simple local coincidence FADC launch
+	--flash_adc_enable_disc_lc	<= flash_adc_enable_disc WHEN enable_coinc_atwd='0' ELSE flash_adc_enable_disc AND NOT (atwd0_LC_abort OR atwd1_LC_abort);
+	flash_adc_enable_lc	<= flash_adc_enable WHEN enable_coinc_atwd='0' ELSE (((atwd0_trigger AND NOT atwd0_trigger_delay) OR atwd0_trigger_latch) OR ((atwd1_trigger AND NOT atwd1_trigger_delay) OR atwd1_trigger_latch)) AND flash_adc_enable;
+	PROCESS(CLK40,RST)
+	BEGIN
+		IF RST='1' THEN
+		ELSIF CLK40'EVENT AND CLK40='1' THEN
+			-- ATWD 0
+			atwd0_trigger_delay	<= atwd0_trigger;
+			IF atwd0_trigger='1' AND atwd0_trigger_delay='0' THEN
+				atwd0_trigger_latch <= '1';
+			END IF;
+			IF atwd0_LC_abort='1' OR flash_adc_enable='0' THEN
+				atwd0_trigger_latch	<= '0';
+			END IF;
+			-- ATWD 1
+			atwd1_trigger_delay	<= atwd1_trigger;
+			IF atwd1_trigger='1' AND atwd1_trigger_delay='0' THEN
+				atwd1_trigger_latch <= '1';
+			END IF;
+			IF atwd1_LC_abort='1' OR flash_adc_enable='0' THEN
+				atwd1_trigger_latch	<= '0';
+			END IF;
+		END IF;
+	END PROCESS;
 		
 	inst_hit_counter : hit_counter
 		PORT MAP (

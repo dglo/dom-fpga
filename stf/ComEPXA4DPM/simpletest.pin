@@ -546,7 +546,7 @@ RESERVED_INPUT               : Y8        :        :                   :         
 RESERVED_INPUT               : Y9        :        :                   :         : 11        :                
 RESERVED_INPUT               : Y10       :        :                   :         : 11        :                
 RESERVED_INPUT               : Y11       :        :                   :         : 11        :                
-RESERVED_INPUT               : Y12       :        :                   :         : 11        :                
+CLK3p                        : Y12       : input  : LVTTL             :         : 11        : N              
 RESERVED_INPUT               : Y13       :        :                   :         : 11        :                
 RESERVED_INPUT               : Y14       :        :                   :         : 11        :                
 ATWD0_D[0]                   : Y15       : input  : LVTTL             :         : 10        : Y              
@@ -562,7 +562,7 @@ RESERVED_INPUT               : Y24       :        :                   :         
 RESERVED_INPUT               : Y25       :        :                   :         : 8         :                
 RESERVED_INPUT               : Y26       :        :                   :         : 8         :                
 SingleLED_TRIGGER            : AA1       : output : LVTTL             :         : 12        : Y              
-CLK3p                        : AA2       : input  : LVTTL             :         : 12        : N              
+RESERVED_INPUT               : AA2       :        :                   :         : 12        :                
 RESERVED_INPUT               : AA3       :        :                   :         : 12        :                
 RESERVED_INPUT               : AA4       :        :                   :         : 12        :                
 RESERVED_INPUT               : AA5       :        :                   :         : 12        :                
