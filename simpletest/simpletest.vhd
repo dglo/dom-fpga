@@ -52,11 +52,11 @@ ENTITY simpletest IS
 		CLK4p			: IN STD_LOGIC;
 		CLKLK_OUT2p		: OUT STD_LOGIC;	-- 40MHz outpout for FADC
 		-- Communications DAC
-		COM_DAC_CLK		: OUT STD_LOGIC;
+		-- COM_DAC_CLK		: OUT STD_LOGIC;
 		COM_TX_SLEEP	: OUT STD_LOGIC;
 		COM_DB			: OUT STD_LOGIC_VECTOR (13 downto 6);
 		-- Communications ADC
-		COM_AD_CLK		: OUT STD_LOGIC;
+		-- COM_AD_CLK		: OUT STD_LOGIC;
 		COM_AD_D		: IN STD_LOGIC_VECTOR (9 downto 0);
 		COM_AD_OTR		: IN STD_LOGIC;
 		-- Communications RS485
@@ -66,7 +66,7 @@ ENTITY simpletest IS
 		HDV_IN			: OUT STD_LOGIC;
 		-- FLASH ADC
 		FLASH_AD_D		: IN STD_LOGIC_VECTOR (9 downto 0);
-		FLASH_AD_CLK	: OUT STD_LOGIC;
+		-- FLASH_AD_CLK	: OUT STD_LOGIC;
 		FLASH_AD_STBY	: OUT STD_LOGIC;
 		FLASH_NCO		: IN STD_LOGIC;
 		-- ATWD 0
@@ -1104,7 +1104,7 @@ BEGIN
 			enable			=> enable,
 			enable_square	=> enable_square,
 			-- communications DAC connections
-			COM_DAC_CLK		=> COM_DAC_CLK,
+			COM_DAC_CLK		=> open, --COM_DAC_CLK,
 			COM_TX_SLEEP	=> COM_TX_SLEEP,
 			COM_DB			=> COM_DB,
 			-- test connector
@@ -1144,7 +1144,7 @@ BEGIN
 			enable		=> com_adc_enable,
 			done		=> com_adc_done,
 			-- communications ADC connections
-			COM_AD_CLK	=> COM_AD_CLK,
+			COM_AD_CLK	=> open, --COM_AD_CLK,
 			COM_AD_D	=> COM_AD_D,
 			COM_AD_OTR	=> COM_AD_OTR,
 			-- test connector
@@ -1169,7 +1169,7 @@ BEGIN
 			OneSPE		=> OneSPE,
 			-- communications ADC connections
 			FLASH_AD_D		=> FLASH_AD_D,
-			FLASH_AD_CLK	=> FLASH_AD_CLK,
+			FLASH_AD_CLK	=> open, --FLASH_AD_CLK,
 			FLASH_AD_STBY	=> FLASH_AD_STBY,
 			FLASH_NCO		=> FLASH_NCO,
 			-- test connector
