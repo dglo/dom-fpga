@@ -151,9 +151,8 @@ HDL_SETTINGS
 }
 PROJECT_INFO(simpletest)
 {
-	USER_LIBRARIES = "c:\documents and settings\thorsten\desktop\an192_1_1\example_designs\stripe_performance\microprocessor\rtl\";
 	ORIGINAL_QUARTUS_VERSION = 2.2;
-	LAST_QUARTUS_VERSION = 3.0;
+	LAST_QUARTUS_VERSION = "3.0 SP2";
 	SHOW_REGISTRATION_MESSAGE = ON;
 }
 THIRD_PARTY_EDA_TOOLS(simpletest)
