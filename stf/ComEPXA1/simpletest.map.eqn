@@ -2263,214 +2263,214 @@ JE1_outclock0 = PLL(CLK4p, , );
 JE1_outclock1 = PLL(CLK4p, , );
 
 
---UB1L27 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~1
+--UB1L17 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~1
 --operation mode is arithmetic
 
-UB1L27 = UB1_ind[0] $ UB1_ina[0];
+UB1L17 = UB1_ind[0] $ UB1_ina[0];
 
---UB1L37 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~1COUT
+--UB1L27 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~1COUT
 --operation mode is arithmetic
 
-UB1L37 = CARRY(UB1_ina[0] # !UB1_ind[0]);
+UB1L27 = CARRY(UB1_ina[0] # !UB1_ind[0]);
 
 
---UB1L47 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~2
+--UB1L37 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~2
 --operation mode is arithmetic
 
-UB1L47 = UB1_ind[1] $ UB1_ina[1] $ !UB1L37;
+UB1L37 = UB1_ind[1] $ UB1_ina[1] $ !UB1L27;
 
---UB1L57 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~2COUT
+--UB1L47 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~2COUT
 --operation mode is arithmetic
 
-UB1L57 = CARRY(UB1_ind[1] & (!UB1L37 # !UB1_ina[1]) # !UB1_ind[1] & !UB1_ina[1] & !UB1L37);
+UB1L47 = CARRY(UB1_ind[1] & (!UB1L27 # !UB1_ina[1]) # !UB1_ind[1] & !UB1_ina[1] & !UB1L27);
 
 
---UB1L67 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~3
+--UB1L57 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~3
 --operation mode is arithmetic
 
-UB1L67 = UB1_ind[2] $ UB1_ina[2] $ UB1L57;
+UB1L57 = UB1_ind[2] $ UB1_ina[2] $ UB1L47;
 
---UB1L77 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~3COUT
+--UB1L67 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~3COUT
 --operation mode is arithmetic
 
-UB1L77 = CARRY(UB1_ind[2] & UB1_ina[2] & !UB1L57 # !UB1_ind[2] & (UB1_ina[2] # !UB1L57));
+UB1L67 = CARRY(UB1_ind[2] & UB1_ina[2] & !UB1L47 # !UB1_ind[2] & (UB1_ina[2] # !UB1L47));
 
 
---UB1L87 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~4
+--UB1L77 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~4
 --operation mode is arithmetic
 
-UB1L87 = UB1_ind[3] $ UB1_ina[3] $ !UB1L77;
+UB1L77 = UB1_ind[3] $ UB1_ina[3] $ !UB1L67;
 
---UB1L97 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~4COUT
+--UB1L87 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~4COUT
 --operation mode is arithmetic
 
-UB1L97 = CARRY(UB1_ind[3] & (!UB1L77 # !UB1_ina[3]) # !UB1_ind[3] & !UB1_ina[3] & !UB1L77);
+UB1L87 = CARRY(UB1_ind[3] & (!UB1L67 # !UB1_ina[3]) # !UB1_ind[3] & !UB1_ina[3] & !UB1L67);
 
 
---UB1L08 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~5
+--UB1L97 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~5
 --operation mode is arithmetic
 
-UB1L08 = UB1_ind[4] $ UB1_ina[4] $ UB1L97;
+UB1L97 = UB1_ind[4] $ UB1_ina[4] $ UB1L87;
 
---UB1L18 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~5COUT
+--UB1L08 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~5COUT
 --operation mode is arithmetic
 
-UB1L18 = CARRY(UB1_ind[4] & UB1_ina[4] & !UB1L97 # !UB1_ind[4] & (UB1_ina[4] # !UB1L97));
+UB1L08 = CARRY(UB1_ind[4] & UB1_ina[4] & !UB1L87 # !UB1_ind[4] & (UB1_ina[4] # !UB1L87));
 
 
---UB1L28 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~6
+--UB1L18 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~6
 --operation mode is arithmetic
 
-UB1L28 = UB1_ind[5] $ UB1_ina[5] $ !UB1L18;
+UB1L18 = UB1_ind[5] $ UB1_ina[5] $ !UB1L08;
 
---UB1L38 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~6COUT
+--UB1L28 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~6COUT
 --operation mode is arithmetic
 
-UB1L38 = CARRY(UB1_ind[5] & (!UB1L18 # !UB1_ina[5]) # !UB1_ind[5] & !UB1_ina[5] & !UB1L18);
+UB1L28 = CARRY(UB1_ind[5] & (!UB1L08 # !UB1_ina[5]) # !UB1_ind[5] & !UB1_ina[5] & !UB1L08);
 
 
---UB1L48 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~7
+--UB1L38 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~7
 --operation mode is arithmetic
 
-UB1L48 = UB1_ind[6] $ UB1_ina[6] $ UB1L38;
+UB1L38 = UB1_ind[6] $ UB1_ina[6] $ UB1L28;
 
---UB1L58 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~7COUT
+--UB1L48 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~7COUT
 --operation mode is arithmetic
 
-UB1L58 = CARRY(UB1_ind[6] & UB1_ina[6] & !UB1L38 # !UB1_ind[6] & (UB1_ina[6] # !UB1L38));
+UB1L48 = CARRY(UB1_ind[6] & UB1_ina[6] & !UB1L28 # !UB1_ind[6] & (UB1_ina[6] # !UB1L28));
 
 
---UB1L68 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~8
+--UB1L58 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~8
 --operation mode is arithmetic
 
-UB1L68 = UB1_ind[7] $ UB1_ina[7] $ !UB1L58;
+UB1L58 = UB1_ind[7] $ UB1_ina[7] $ !UB1L48;
 
---UB1L78 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~8COUT
+--UB1L68 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~8COUT
 --operation mode is arithmetic
 
-UB1L78 = CARRY(UB1_ind[7] & (!UB1L58 # !UB1_ina[7]) # !UB1_ind[7] & !UB1_ina[7] & !UB1L58);
+UB1L68 = CARRY(UB1_ind[7] & (!UB1L48 # !UB1_ina[7]) # !UB1_ind[7] & !UB1_ina[7] & !UB1L48);
 
 
---UB1L88 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~9
+--UB1L78 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~9
 --operation mode is arithmetic
 
-UB1L88 = UB1_ind[8] $ UB1_ina[8] $ UB1L78;
+UB1L78 = UB1_ind[8] $ UB1_ina[8] $ UB1L68;
 
---UB1L98 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~9COUT
+--UB1L88 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~9COUT
 --operation mode is arithmetic
 
-UB1L98 = CARRY(UB1_ind[8] & UB1_ina[8] & !UB1L78 # !UB1_ind[8] & (UB1_ina[8] # !UB1L78));
+UB1L88 = CARRY(UB1_ind[8] & UB1_ina[8] & !UB1L68 # !UB1_ind[8] & (UB1_ina[8] # !UB1L68));
 
 
---UB1L09 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~10
+--UB1L98 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_1~10
 --operation mode is normal
 
-UB1L09 = UB1_ind[9] $ UB1_ina[9] $ !UB1L98;
+UB1L98 = UB1_ind[9] $ UB1_ina[9] $ !UB1L88;
 
 
---UB1L39 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~1
+--UB1L19 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~1
 --operation mode is arithmetic
 
-UB1L39 = UB1_ind[0] $ UB1_ina[0];
+UB1L19 = UB1_ind[0] $ UB1_ina[0];
 
---UB1L49 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~1COUT
+--UB1L29 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~1COUT
 --operation mode is arithmetic
 
-UB1L49 = CARRY(UB1_ind[0] # !UB1_ina[0]);
+UB1L29 = CARRY(UB1_ind[0] # !UB1_ina[0]);
 
 
---UB1L59 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~2
+--UB1L39 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~2
 --operation mode is arithmetic
 
-UB1L59 = UB1_ind[1] $ UB1_ina[1] $ !UB1L49;
+UB1L39 = UB1_ind[1] $ UB1_ina[1] $ !UB1L29;
 
---UB1L69 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~2COUT
+--UB1L49 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~2COUT
 --operation mode is arithmetic
 
-UB1L69 = CARRY(UB1_ind[1] & UB1_ina[1] & !UB1L49 # !UB1_ind[1] & (UB1_ina[1] # !UB1L49));
+UB1L49 = CARRY(UB1_ind[1] & UB1_ina[1] & !UB1L29 # !UB1_ind[1] & (UB1_ina[1] # !UB1L29));
 
 
---UB1L79 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~3
+--UB1L59 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~3
 --operation mode is arithmetic
 
-UB1L79 = UB1_ind[2] $ UB1_ina[2] $ UB1L69;
+UB1L59 = UB1_ind[2] $ UB1_ina[2] $ UB1L49;
 
---UB1L89 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~3COUT
+--UB1L69 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~3COUT
 --operation mode is arithmetic
 
-UB1L89 = CARRY(UB1_ind[2] & (!UB1L69 # !UB1_ina[2]) # !UB1_ind[2] & !UB1_ina[2] & !UB1L69);
+UB1L69 = CARRY(UB1_ind[2] & (!UB1L49 # !UB1_ina[2]) # !UB1_ind[2] & !UB1_ina[2] & !UB1L49);
 
 
---UB1L99 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~4
+--UB1L79 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~4
 --operation mode is arithmetic
 
-UB1L99 = UB1_ind[3] $ UB1_ina[3] $ !UB1L89;
+UB1L79 = UB1_ind[3] $ UB1_ina[3] $ !UB1L69;
 
---UB1L001 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~4COUT
+--UB1L89 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~4COUT
 --operation mode is arithmetic
 
-UB1L001 = CARRY(UB1_ind[3] & UB1_ina[3] & !UB1L89 # !UB1_ind[3] & (UB1_ina[3] # !UB1L89));
+UB1L89 = CARRY(UB1_ind[3] & UB1_ina[3] & !UB1L69 # !UB1_ind[3] & (UB1_ina[3] # !UB1L69));
 
 
---UB1L101 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~5
+--UB1L99 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~5
 --operation mode is arithmetic
 
-UB1L101 = UB1_ind[4] $ UB1_ina[4] $ UB1L001;
+UB1L99 = UB1_ind[4] $ UB1_ina[4] $ UB1L89;
 
---UB1L201 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~5COUT
+--UB1L001 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~5COUT
 --operation mode is arithmetic
 
-UB1L201 = CARRY(UB1_ind[4] & (!UB1L001 # !UB1_ina[4]) # !UB1_ind[4] & !UB1_ina[4] & !UB1L001);
+UB1L001 = CARRY(UB1_ind[4] & (!UB1L89 # !UB1_ina[4]) # !UB1_ind[4] & !UB1_ina[4] & !UB1L89);
 
 
---UB1L301 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~6
+--UB1L101 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~6
 --operation mode is arithmetic
 
-UB1L301 = UB1_ind[5] $ UB1_ina[5] $ !UB1L201;
+UB1L101 = UB1_ind[5] $ UB1_ina[5] $ !UB1L001;
 
---UB1L401 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~6COUT
+--UB1L201 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~6COUT
 --operation mode is arithmetic
 
-UB1L401 = CARRY(UB1_ind[5] & UB1_ina[5] & !UB1L201 # !UB1_ind[5] & (UB1_ina[5] # !UB1L201));
+UB1L201 = CARRY(UB1_ind[5] & UB1_ina[5] & !UB1L001 # !UB1_ind[5] & (UB1_ina[5] # !UB1L001));
 
 
---UB1L501 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~7
+--UB1L301 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~7
 --operation mode is arithmetic
 
-UB1L501 = UB1_ind[6] $ UB1_ina[6] $ UB1L401;
+UB1L301 = UB1_ind[6] $ UB1_ina[6] $ UB1L201;
 
---UB1L601 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~7COUT
+--UB1L401 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~7COUT
 --operation mode is arithmetic
 
-UB1L601 = CARRY(UB1_ind[6] & (!UB1L401 # !UB1_ina[6]) # !UB1_ind[6] & !UB1_ina[6] & !UB1L401);
+UB1L401 = CARRY(UB1_ind[6] & (!UB1L201 # !UB1_ina[6]) # !UB1_ind[6] & !UB1_ina[6] & !UB1L201);
 
 
---UB1L701 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~8
+--UB1L501 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~8
 --operation mode is arithmetic
 
-UB1L701 = UB1_ind[7] $ UB1_ina[7] $ !UB1L601;
+UB1L501 = UB1_ind[7] $ UB1_ina[7] $ !UB1L401;
 
---UB1L801 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~8COUT
+--UB1L601 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~8COUT
 --operation mode is arithmetic
 
-UB1L801 = CARRY(UB1_ind[7] & UB1_ina[7] & !UB1L601 # !UB1_ind[7] & (UB1_ina[7] # !UB1L601));
+UB1L601 = CARRY(UB1_ind[7] & UB1_ina[7] & !UB1L401 # !UB1_ind[7] & (UB1_ina[7] # !UB1L401));
 
 
---UB1L901 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~9
+--UB1L701 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~9
 --operation mode is arithmetic
 
-UB1L901 = UB1_ind[8] $ UB1_ina[8] $ UB1L801;
+UB1L701 = UB1_ind[8] $ UB1_ina[8] $ UB1L601;
 
---UB1L011 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~9COUT
+--UB1L801 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~9COUT
 --operation mode is arithmetic
 
-UB1L011 = CARRY(UB1_ind[8] & (!UB1L801 # !UB1_ina[8]) # !UB1_ind[8] & !UB1_ina[8] & !UB1L801);
+UB1L801 = CARRY(UB1_ind[8] & (!UB1L601 # !UB1_ina[8]) # !UB1_ind[8] & !UB1_ina[8] & !UB1L601);
 
 
---UB1L111 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~10
+--UB1L901 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_5~10
 --operation mode is normal
 
-UB1L111 = UB1_ind[9] $ UB1_ina[9] $ !UB1L011;
+UB1L901 = UB1_ind[9] $ UB1_ina[9] $ !UB1L801;
 
 
 --CB2L1 is atwd:atwd1|atwd_readout:inst_atwd_readout|add_28~0
@@ -12109,7 +12109,7 @@ MB1_inst11 = TB1L7 # V1L4Q # Y1_com_ctrl_local[4];
 --UB1_max_level is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|max_level
 --operation mode is normal
 
-UB1_max_level_lut_out = UB1L2 & (UB1L09 # UB1L88 & UB1L01);
+UB1_max_level_lut_out = UB1L2 & (UB1L58 & UB1L11 # !UB1L31);
 UB1_max_level = DFFE(UB1_max_level_lut_out, GLOBAL(JE1_outclock0), !LB1L1, , );
 
 
@@ -12149,7 +12149,7 @@ LB1L1 = KB1L411Q # KB1L15Q # KB1L84Q # !KB1L93Q;
 --HD1L7Q is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|dc_rapcal_lh:inst29|DCTC_FWR:inst2|sreg~16
 --operation mode is normal
 
-HD1L7Q_lut_out = UB1L42Q & (HD1L6Q # SC01_agb_out & HD1L7Q) # !UB1L42Q & SC01_agb_out & HD1L7Q;
+HD1L7Q_lut_out = UB1L32Q & (HD1L6Q # SC01_agb_out & HD1L7Q) # !UB1L32Q & SC01_agb_out & HD1L7Q;
 HD1L7Q = DFFE(HD1L7Q_lut_out, GLOBAL(JE1_outclock0), !TB1L72, , );
 
 
@@ -12169,7 +12169,7 @@ ED1L6 = GB31_sload_path[0] & !GB31_sload_path[3] & !GB31_sload_path[4] & !GB31_s
 --GC1L41Q is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|GET_DUDT:get_dudt_stm|rxd~reg
 --operation mode is normal
 
-GC1L41Q_lut_out = UB1L42Q & (GC1L2 # ED1L4Q & GC1L61Q);
+GC1L41Q_lut_out = UB1L32Q & (GC1L2 # ED1L4Q & GC1L61Q);
 GC1L41Q = DFFE(GC1L41Q_lut_out, GLOBAL(JE1_outclock0), !LB1L1, , );
 
 
@@ -19545,22 +19545,22 @@ UB1_ind[9] = DFFE(UB1_ind[9]_lut_out, GLOBAL(JE1_outclock0), , , );
 UB1L2 = UB1_ina[9] & (UB1L1 # !UB1_ind[9]) # !UB1_ina[9] & UB1L1 & !UB1_ind[9];
 
 
---UB1L19 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_4~13
+--UB1L09 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_4~70
 --operation mode is normal
 
-UB1L19 = UB1L87 # UB1L27 # UB1L47 # UB1L67;
+UB1L09 = !UB1L17 & !UB1L37 & !UB1L57 & !UB1L77;
 
 
---UB1L31 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|altr_temp~867
+--UB1L11 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|altr_temp~77
 --operation mode is normal
 
-UB1L31 = !UB1L28 & !UB1L48;
+UB1L11 = UB1L97 # UB1L18 # UB1L38 # !UB1L09;
 
 
---UB1L01 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|altr_temp~50
+--UB1L31 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|altr_temp~852
 --operation mode is normal
 
-UB1L01 = UB1L19 # UB1L08 # UB1L68 # !UB1L31;
+UB1L31 = !UB1L78 & !UB1L98;
 
 
 --GC1L11 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|GET_DUDT:get_dudt_stm|MIN_DUDT~15
@@ -19578,7 +19578,7 @@ GC1L01 = !ED1L4Q & !GC1L51Q;
 --UB1_min_level is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|min_level
 --operation mode is normal
 
-UB1_min_level_lut_out = UB1L11 & (UB1_ina[9] & (UB1L1 # !UB1_ind[9]) # !UB1_ina[9] & UB1L1 & !UB1_ind[9]);
+UB1_min_level_lut_out = UB1L2 & (UB1L01 # UB1L38 # !UB1L711);
 UB1_min_level = DFFE(UB1_min_level_lut_out, GLOBAL(JE1_outclock0), !LB1L1, , );
 
 
@@ -19598,14 +19598,14 @@ GC1L1 = !GC1L51Q & (ED1L4Q # !UB1_max_level & !UB1_min_level);
 --GC1L61Q is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|GET_DUDT:get_dudt_stm|sreg~13
 --operation mode is normal
 
-GC1L61Q_lut_out = GC1L6 # ED1L4Q & GC1L61Q & !UB1L42Q;
+GC1L61Q_lut_out = GC1L6 # ED1L4Q & GC1L61Q & !UB1L32Q;
 GC1L61Q = DFFE(GC1L61Q_lut_out, GLOBAL(JE1_outclock0), !LB1L1, , );
 
 
 --GC1L91Q is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|GET_DUDT:get_dudt_stm|sreg~17
 --operation mode is normal
 
-GC1L91Q_lut_out = GB11_sload_path[2] & (GC1L02 # GC1L2 & !UB1L42Q) # !GB11_sload_path[2] & GC1L2 & !UB1L42Q;
+GC1L91Q_lut_out = GB11_sload_path[2] & (GC1L02 # GC1L2 & !UB1L32Q) # !GB11_sload_path[2] & GC1L2 & !UB1L32Q;
 GC1L91Q = DFFE(GC1L91Q_lut_out, GLOBAL(JE1_outclock0), !LB1L1, , );
 
 
@@ -19621,17 +19621,17 @@ GC1L7 = ED1L4Q & (!GC1L91Q # !GB11_sload_path[4]) # !ED1L4Q & !GC1L61Q & (!GC1L9
 KB1L6 = KB1L07Q & (KB1_SV1 # !KB1L8);
 
 
---UB1L42Q is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|hl_edge~reg
+--UB1L32Q is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|hl_edge~reg
 --operation mode is normal
 
-UB1L42Q_lut_out = UB1L211 & (UB1_ind[9] & (UB1L21 # !UB1_ina[9]) # !UB1_ind[9] & UB1L21 & !UB1_ina[9]);
-UB1L42Q = DFFE(UB1L42Q_lut_out, GLOBAL(JE1_outclock0), !LB1L1, , );
+UB1L32Q_lut_out = UB1L111 & (UB1_ind[9] & (UB1L21 # !UB1_ina[9]) # !UB1_ind[9] & UB1L21 & !UB1_ina[9]);
+UB1L32Q = DFFE(UB1L32Q_lut_out, GLOBAL(JE1_outclock0), !LB1L1, , );
 
 
 --HD1L6Q is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|dc_rapcal_lh:inst29|DCTC_FWR:inst2|sreg~15
 --operation mode is normal
 
-HD1L6Q_lut_out = GB81L41 & (HD1L8Q # HD1L6Q & !UB1L42Q) # !GB81L41 & HD1L6Q & !UB1L42Q;
+HD1L6Q_lut_out = GB81L41 & (HD1L8Q # HD1L6Q & !UB1L32Q) # !GB81L41 & HD1L6Q & !UB1L32Q;
 HD1L6Q = DFFE(HD1L6Q_lut_out, GLOBAL(JE1_outclock0), !TB1L72, , );
 
 
@@ -22223,42 +22223,42 @@ UB1_inc[9]_lut_out = UB1_inb[9];
 UB1_inc[9] = DFFE(UB1_inc[9]_lut_out, GLOBAL(JE1_outclock0), , , );
 
 
---UB1L41 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|altr_temp~903
+--UB1L01 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|altr_temp~64
 --operation mode is normal
 
-UB1L41 = UB1L48 # UB1L68 # UB1L09 # UB1L88;
+UB1L01 = UB1L18 & (UB1L97 # !UB1L09);
 
 
---UB1L11 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|altr_temp~62
+--UB1L711 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_8_rtl_283_rtl_287_rtl_291_rtl_295~318
 --operation mode is normal
 
-UB1L11 = UB1L41 # UB1L19 & UB1L28 & UB1L08;
+UB1L711 = !UB1L58 & !UB1L78 & !UB1L98;
 
 
 --GC1L71Q is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|GET_DUDT:get_dudt_stm|sreg~14
 --operation mode is normal
 
-GC1L71Q_lut_out = GC1L41Q # GC1L71Q & !GB11_sload_path[4] & !UB1L96Q;
+GC1L71Q_lut_out = GC1L41Q # GC1L71Q & !GB11_sload_path[4] & !UB1L86Q;
 GC1L71Q = DFFE(GC1L71Q_lut_out, GLOBAL(JE1_outclock0), !LB1L1, , );
 
 
---UB1L96Q is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|lh_edge~reg
+--UB1L86Q is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|lh_edge~reg
 --operation mode is normal
 
-UB1L96Q_lut_out = UB1L811 & (UB1_ina[9] & (UB1L1 # !UB1_ind[9]) # !UB1_ina[9] & UB1L1 & !UB1_ind[9]);
-UB1L96Q = DFFE(UB1L96Q_lut_out, GLOBAL(JE1_outclock0), !LB1L1, , );
+UB1L86Q_lut_out = UB1L611 & (UB1_ina[9] & (UB1L1 # !UB1_ind[9]) # !UB1_ina[9] & UB1L1 & !UB1_ind[9]);
+UB1L86Q = DFFE(UB1L86Q_lut_out, GLOBAL(JE1_outclock0), !LB1L1, , );
 
 
 --GC1L6 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|GET_DUDT:get_dudt_stm|HLWT~10
 --operation mode is normal
 
-GC1L6 = GC1L71Q & (GB11_sload_path[4] # UB1L96Q);
+GC1L6 = GC1L71Q & (GB11_sload_path[4] # UB1L86Q);
 
 
 --GC1L3 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|GET_DUDT:get_dudt_stm|ct_aclr~17
 --operation mode is normal
 
-GC1L3 = GC1L91Q & (GB11_sload_path[4] # UB1L42Q);
+GC1L3 = GC1L91Q & (GB11_sload_path[4] # UB1L32Q);
 
 
 --GC1L02 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|GET_DUDT:get_dudt_stm|START~4
@@ -22267,10 +22267,10 @@ GC1L3 = GC1L91Q & (GB11_sload_path[4] # UB1L42Q);
 GC1L02 = GC1L9Q # GC1L81Q;
 
 
---UB1L711 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_6_rtl_281_rtl_285_rtl_289_rtl_293~419
+--UB1L311 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_6_rtl_281_rtl_285_rtl_289_rtl_293~315
 --operation mode is normal
 
-UB1L711 = UB1L901 # UB1L111;
+UB1L311 = UB1L19 # UB1L39 # UB1L59 # UB1L79;
 
 
 --UB1_dudt[4] is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|dudt[4]
@@ -22280,83 +22280,77 @@ UB1_dudt[4]_lut_out = !GC1L31Q;
 UB1_dudt[4] = DFFE(UB1_dudt[4]_lut_out, GLOBAL(JE1_outclock0), , , !GC1L5Q);
 
 
---UB1L311 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_6_rtl_281_rtl_285_rtl_289_rtl_293~102
+--UB1L011 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_6_rtl_281_rtl_285_rtl_289_rtl_293~23
 --operation mode is normal
 
-UB1L311 = UB1L99 & UB1L101 # !UB1_dudt[4];
+UB1L011 = UB1L101 # UB1L311 & (UB1L99 # !UB1_dudt[4]) # !UB1L311 & UB1L99 & !UB1_dudt[4];
 
 
---UB1L411 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_6_rtl_281_rtl_285_rtl_289_rtl_293~113
+--UB1_dudt[6] is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|dudt[6]
 --operation mode is normal
 
-UB1L411 = UB1L311 & (UB1L39 # UB1L59 # UB1L79);
+UB1_dudt[6]_lut_out = GC1L9Q;
+UB1_dudt[6] = DFFE(UB1_dudt[6]_lut_out, GLOBAL(JE1_outclock0), , , !GC1L5Q);
 
 
---UB1L511 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_6_rtl_281_rtl_285_rtl_289_rtl_293~114
+--UB1L211 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_6_rtl_281_rtl_285_rtl_289_rtl_293~30
 --operation mode is normal
 
-UB1L511 = !UB1_dudt[4] & (UB1L99 # UB1L101);
+UB1L211 = UB1L011 & (UB1L301 $ !UB1_dudt[6]);
 
 
---UB1L611 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_6_rtl_281_rtl_285_rtl_289_rtl_293~404
+--UB1L411 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_6_rtl_281_rtl_285_rtl_289_rtl_293~335
 --operation mode is normal
 
-UB1L611 = UB1L411 # UB1L501 # UB1L301 # UB1L511;
+UB1L411 = UB1L501 # UB1L701 # UB1L301 & !UB1_dudt[6];
 
 
---UB1_dudt[7] is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|dudt[7]
+--UB1L111 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_6_rtl_281_rtl_285_rtl_289_rtl_293~29
 --operation mode is normal
 
-UB1_dudt[7]_lut_out = GC1L9Q;
-UB1_dudt[7] = DFFE(UB1_dudt[7]_lut_out, GLOBAL(JE1_outclock0), , , !GC1L5Q);
+UB1L111 = UB1L211 # UB1L901 # UB1L411;
 
 
---UB1L211 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_6_rtl_281_rtl_285_rtl_289_rtl_293~39
+--UB1L51 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|d_greater_a~117
 --operation mode is normal
 
-UB1L211 = UB1L711 # UB1L611 & (UB1L701 # !UB1_dudt[7]) # !UB1L611 & UB1L701 & !UB1_dudt[7];
+UB1L51 = UB1_ind[1] & (UB1_ind[0] & !UB1_ina[0] # !UB1_ina[1]) # !UB1_ind[1] & UB1_ind[0] & !UB1_ina[0] & !UB1_ina[1];
 
 
---UB1L61 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|d_greater_a~117
+--UB1L61 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|d_greater_a~122
 --operation mode is normal
 
-UB1L61 = UB1_ind[1] & (UB1_ind[0] & !UB1_ina[0] # !UB1_ina[1]) # !UB1_ind[1] & UB1_ind[0] & !UB1_ina[0] & !UB1_ina[1];
+UB1L61 = UB1_ind[2] & (UB1L51 # !UB1_ina[2]) # !UB1_ind[2] & UB1L51 & !UB1_ina[2];
 
 
---UB1L71 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|d_greater_a~122
+--UB1L71 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|d_greater_a~127
 --operation mode is normal
 
-UB1L71 = UB1_ind[2] & (UB1L61 # !UB1_ina[2]) # !UB1_ind[2] & UB1L61 & !UB1_ina[2];
+UB1L71 = UB1_ind[3] & (UB1L61 # !UB1_ina[3]) # !UB1_ind[3] & UB1L61 & !UB1_ina[3];
 
 
---UB1L81 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|d_greater_a~127
+--UB1L81 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|d_greater_a~132
 --operation mode is normal
 
-UB1L81 = UB1_ind[3] & (UB1L71 # !UB1_ina[3]) # !UB1_ind[3] & UB1L71 & !UB1_ina[3];
+UB1L81 = UB1_ind[4] & (UB1L71 # !UB1_ina[4]) # !UB1_ind[4] & UB1L71 & !UB1_ina[4];
 
 
---UB1L91 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|d_greater_a~132
+--UB1L41 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|d_greater_a~109
 --operation mode is normal
 
-UB1L91 = UB1_ind[4] & (UB1L81 # !UB1_ina[4]) # !UB1_ind[4] & UB1L81 & !UB1_ina[4];
+UB1L41 = UB1L8 & (UB1_ind[5] & (UB1L81 # !UB1_ina[5]) # !UB1_ind[5] & UB1L81 & !UB1_ina[5]);
 
 
---UB1L51 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|d_greater_a~109
+--UB1L91 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|d_greater_a~497
 --operation mode is normal
 
-UB1L51 = UB1L8 & (UB1_ind[5] & (UB1L91 # !UB1_ina[5]) # !UB1_ind[5] & UB1L91 & !UB1_ina[5]);
-
-
---UB1L02 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|d_greater_a~497
---operation mode is normal
-
-UB1L02 = UB1_ind[7] & (UB1_ind[6] & !UB1_ina[6] # !UB1_ina[7]) # !UB1_ind[7] & UB1_ind[6] & !UB1_ina[6] & !UB1_ina[7];
+UB1L91 = UB1_ind[7] & (UB1_ind[6] & !UB1_ina[6] # !UB1_ina[7]) # !UB1_ind[7] & UB1_ind[6] & !UB1_ina[6] & !UB1_ina[7];
 
 
 --UB1L21 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|altr_temp~87
 --operation mode is normal
 
-UB1L21 = UB1_ind[8] & (UB1L51 # UB1L02 # !UB1_ina[8]) # !UB1_ind[8] & !UB1_ina[8] & (UB1L51 # UB1L02);
+UB1L21 = UB1_ind[8] & (UB1L41 # UB1L91 # !UB1_ina[8]) # !UB1_ind[8] & !UB1_ina[8] & (UB1L41 # UB1L91);
 
 
 --HD1L8Q is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|dc_rapcal_lh:inst29|DCTC_FWR:inst2|sreg~17
@@ -24370,16 +24364,16 @@ UB1_inb[9]_lut_out = UB1_ina[9];
 UB1_inb[9] = DFFE(UB1_inb[9]_lut_out, GLOBAL(JE1_outclock0), , , );
 
 
---UB1L911 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_8_rtl_283_rtl_287_rtl_291_rtl_295~397
+--UB1L511 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_8_rtl_283_rtl_287_rtl_291_rtl_295~23
 --operation mode is normal
 
-UB1L911 = !UB1L09 & !UB1L88;
+UB1L511 = UB1L18 # UB1L97 & (!UB1_dudt[4] # !UB1L09) # !UB1L97 & !UB1L09 & !UB1_dudt[4];
 
 
---UB1L811 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_8_rtl_283_rtl_287_rtl_291_rtl_295~39
+--UB1L611 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_8_rtl_283_rtl_287_rtl_291_rtl_295~29
 --operation mode is normal
 
-UB1L811 = UB1L68 & (!UB1_dudt[7] # !UB1L121) # !UB1L68 & !UB1L121 & !UB1_dudt[7] # !UB1L911;
+UB1L611 = UB1L511 & (UB1L38 # !UB1_dudt[6]) # !UB1L511 & UB1L38 & !UB1_dudt[6] # !UB1L711;
 
 
 --GC1L31Q is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|GET_DUDT:get_dudt_stm|min_ena~reg
@@ -26908,24 +26902,6 @@ YC72_sout_node[0] = DFFE(YC72_sout_node[0]_lut_out, GLOBAL(JE1_outclock0), !VB1L
 --operation mode is arithmetic
 
 YC72_cout[0] = CARRY(COM_AD_D[7] & YC42_cs_buffer[0]);
-
-
---UB1L021 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_8_rtl_283_rtl_287_rtl_291_rtl_295~414
---operation mode is normal
-
-UB1L021 = UB1L31 & (UB1_dudt[4] # !UB1L87 & !UB1L08);
-
-
---UB1L29 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_4~69
---operation mode is normal
-
-UB1L29 = !UB1L27 & !UB1L47 & !UB1L67;
-
-
---UB1L121 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|adc_to_ser_dudt:inst18|op_8_rtl_283_rtl_287_rtl_291_rtl_295~423
---operation mode is normal
-
-UB1L121 = (UB1L29 # UB1_dudt[4] & (!UB1L08 # !UB1L87)) & CASCADE(UB1L021);
 
 
 --XB1_inst10[5] is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|dc_rapcal_lh:inst29|inst10[5]
