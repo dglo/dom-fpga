@@ -90,7 +90,7 @@ EDA_TOOL_SETTINGS(eda_formal_verification)
 PROJECT_INFO(DCOM_01)
 {
 	SHOW_REGISTRATION_MESSAGE = ON;
-	USER_LIBRARIES = "c:\projects\icecube\dor\fpga\dcom_01\rx_chan\meanval;c:\projects\icecube\dor\fpga\dcom_01\rx_chan\edges;c:\projects\icecube\dor\fpga\dcom_01\rx_chan\uart;c:\projects\icecube\dor\fpga\dcom_01\parity;c:\projects\icecube\dor\fpga\dcom_01\mono_flop;c:\projects\icecube\dor\fpga\dcom_01\tx_chan;c:\projects\icecube\dor\fpga\dcom_01\rx_chan";
+	USER_LIBRARIES = "c:\projects\icecube\dor\fpga\dcom_01\tcal;c:\projects\icecube\dor\fpga\dcom_01\rx_chan\meanval;c:\projects\icecube\dor\fpga\dcom_01\rx_chan\edges;c:\projects\icecube\dor\fpga\dcom_01\rx_chan\uart;c:\projects\icecube\dor\fpga\dcom_01\parity;c:\projects\icecube\dor\fpga\dcom_01\mono_flop;c:\projects\icecube\dor\fpga\dcom_01\tx_chan;c:\projects\icecube\dor\fpga\dcom_01\rx_chan";
 }
 HDL_SETTINGS
 {

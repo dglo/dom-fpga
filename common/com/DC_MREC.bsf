@@ -26,9 +26,9 @@ party's intellectual property, are provided herein.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 208 272)
+	(rect 16 16 208 304)
 	(text "DC_MREC" (rect 5 0 71 15)(font "Arial" ))
-	(text "inst" (rect 8 237 30 252)(font "Arial" ))
+	(text "inst" (rect 8 269 30 284)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -95,9 +95,16 @@ party's intellectual property, are provided herein.
 	(port
 		(pt 0 176)
 		(input)
-		(text "RESET" (rect 0 0 44 15)(font "Arial" ))
-		(text "RESET" (rect 21 171 65 186)(font "Arial" ))
+		(text "rec_ctrl" (rect 0 0 44 15)(font "Arial" ))
+		(text "rec_ctrl" (rect 21 171 65 186)(font "Arial" ))
 		(line (pt 0 176)(pt 16 176)(line_width 1))
+	)
+	(port
+		(pt 0 192)
+		(input)
+		(text "RESET" (rect 0 0 44 15)(font "Arial" ))
+		(text "RESET" (rect 21 187 65 202)(font "Arial" ))
+		(line (pt 0 192)(pt 16 192)(line_width 1))
 	)
 	(port
 		(pt 192 32)
@@ -123,8 +130,8 @@ party's intellectual property, are provided herein.
 	(port
 		(pt 192 80)
 		(output)
-		(text "plct_clk_en" (rect 0 0 68 15)(font "Arial" ))
-		(text "plct_clk_en" (rect 103 75 171 90)(font "Arial" ))
+		(text "plct_en" (rect 0 0 44 15)(font "Arial" ))
+		(text "plct_en" (rect 127 75 171 90)(font "Arial" ))
 		(line (pt 192 80)(pt 176 80)(line_width 1))
 	)
 	(port
@@ -172,25 +179,32 @@ party's intellectual property, are provided herein.
 	(port
 		(pt 192 192)
 		(output)
-		(text "stf_rcvd" (rect 0 0 46 15)(font "Arial" ))
-		(text "stf_rcvd" (rect 125 187 171 202)(font "Arial" ))
+		(text "idreq_rcvd" (rect 0 0 62 15)(font "Arial" ))
+		(text "idreq_rcvd" (rect 109 187 171 202)(font "Arial" ))
 		(line (pt 192 192)(pt 176 192)(line_width 1))
 	)
 	(port
 		(pt 192 208)
 		(output)
-		(text "sysres_rcvd" (rect 0 0 72 15)(font "Arial" ))
-		(text "sysres_rcvd" (rect 99 203 171 218)(font "Arial" ))
+		(text "stf_rcvd" (rect 0 0 46 15)(font "Arial" ))
+		(text "stf_rcvd" (rect 125 203 171 218)(font "Arial" ))
 		(line (pt 192 208)(pt 176 208)(line_width 1))
 	)
 	(port
 		(pt 192 224)
 		(output)
-		(text "tcal_rcvd" (rect 0 0 52 15)(font "Arial" ))
-		(text "tcal_rcvd" (rect 119 219 171 234)(font "Arial" ))
+		(text "sysres_rcvd" (rect 0 0 72 15)(font "Arial" ))
+		(text "sysres_rcvd" (rect 99 219 171 234)(font "Arial" ))
 		(line (pt 192 224)(pt 176 224)(line_width 1))
 	)
+	(port
+		(pt 192 240)
+		(output)
+		(text "tcal_rcvd" (rect 0 0 52 15)(font "Arial" ))
+		(text "tcal_rcvd" (rect 119 235 171 250)(font "Arial" ))
+		(line (pt 192 240)(pt 176 240)(line_width 1))
+	)
 	(drawing
-		(rectangle (rect 16 16 176 240)(line_width 1))
+		(rectangle (rect 16 16 176 272)(line_width 1))
 	)
 )

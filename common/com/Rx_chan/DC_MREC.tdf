@@ -1,6 +1,6 @@
 % C:\PROJECTS\ICECUBE\DOR\FPGA\DCOM_01\RX_CHAN\DC_MREC.tdf %
 % AHDL code created by Visual Software Solution's StateCAD 5.0 %
-% Tue May 20 08:34:48 2003 %
+% Fri Aug 15 13:14:27 2003 %
 
 % This AHDL code was generated using: %
 %  binary encoded state assignment with structured code format. %
@@ -29,6 +29,7 @@ SUBDESIGN DC_MREC(
 	comres_rcvd :	OUTPUT;
 	drreq_rcvd :	OUTPUT;
 	eof_rcvd :	OUTPUT;
+	idreq_rcvd :	OUTPUT;
 	stf_rcvd :	OUTPUT;
 	sysres_rcvd :	OUTPUT;
 	tcal_rcvd :	OUTPUT;
@@ -89,19 +90,19 @@ BEGIN
 
 	CASE sreg IS
 		WHEN EOF_CHK =>
-			IF ( !data_stb & !ctrl_stb & !eof_rcvd ) THEN 
+			IF ( !eof_rcvd & !data_stb & !ctrl_stb ) THEN 
 				sreg = EOF_CHK;
 				(msg_err,msg_rcvd,fifo_wrreq,plct_sload_H,plct_sload_L,plct_en)=(0,0,0,0,
-					0,0);
-			END IF;
-			IF ( data_stb  #  ctrl_stb & !eof_rcvd ) THEN 
-				sreg = EOF_ERR;
-				(msg_err,msg_rcvd,fifo_wrreq,plct_sload_H,plct_sload_L,plct_en)=(1,0,0,0,
 					0,0);
 			END IF;
 			IF ( eof_rcvd ) THEN 
 				sreg = MSG_CTUP;
 				(msg_err,msg_rcvd,fifo_wrreq,plct_sload_H,plct_sload_L,plct_en)=(0,1,0,0,
+					0,0);
+			END IF;
+			IF ( data_stb  #  ctrl_stb & !eof_rcvd ) THEN 
+				sreg = EOF_ERR;
+				(msg_err,msg_rcvd,fifo_wrreq,plct_sload_H,plct_sload_L,plct_en)=(1,0,0,0,
 					0,0);
 			END IF;
 		WHEN EOF_ERR =>
@@ -153,15 +154,15 @@ BEGIN
 					0,0);
 			END IF;
 		WHEN PLD =>
-			IF ( !last_byte ) THEN 
-				sreg = FIFO_WR;
-				(msg_err,msg_rcvd,fifo_wrreq,plct_sload_H,plct_sload_L,plct_en)=(0,0,1,0,
-					0,1);
-			END IF;
 			IF ( last_byte ) THEN 
 				sreg = PCT;
 				(msg_err,msg_rcvd,fifo_wrreq,plct_sload_H,plct_sload_L,plct_en)=(0,0,0,0,
 					0,0);
+			END IF;
+			IF ( !last_byte ) THEN 
+				sreg = FIFO_WR;
+				(msg_err,msg_rcvd,fifo_wrreq,plct_sload_H,plct_sload_L,plct_en)=(0,0,1,0,
+					0,1);
 			END IF;
 		WHEN PLH =>
 			IF ( data_stb ) THEN 
@@ -208,6 +209,9 @@ drreq_rcvd =  ctrl_stb & my_adr & rec_ctrl & cmd_rec0 & !cmd_rec1 & cmd_rec2
 
 eof_rcvd =  ctrl_stb & my_adr & rec_ctrl & !cmd_rec0 & cmd_rec1 & !cmd_rec2 &
 	 !cmd_rec3 ;
+
+idreq_rcvd =  ctrl_stb & my_adr & rec_ctrl & cmd_rec0 & cmd_rec1 & !cmd_rec2 
+	& !cmd_rec3 ;
 
 stf_rcvd =  ctrl_stb & my_adr & rec_ctrl & cmd_rec0 & !cmd_rec1 & !cmd_rec2 &
 	 !cmd_rec3 ;
