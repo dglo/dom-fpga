@@ -290,6 +290,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	-- local coincidence
 	SIGNAL enable_coinc_up		: STD_LOGIC;
 	SIGNAL enable_coinc_down	: STD_LOGIC;
+	SIGNAL enable_coinc_newFF	: STD_LOGIC;
 	SIGNAL coinc_down_high		: STD_LOGIC;
 	SIGNAL coinc_down_low		: STD_LOGIC;
 	SIGNAL coinc_up_high		: STD_LOGIC;
@@ -306,6 +307,8 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL multiSPEcnt_ff	: STD_LOGIC_VECTOR(15 downto 0);
 	SIGNAL hitcounter_o_ff	: STD_LOGIC_VECTOR(31 downto 0);
 	SIGNAL hitcounter_m_ff	: STD_LOGIC_VECTOR(31 downto 0);
+	SIGNAL hit_counter_gate	: STD_LOGIC;
+	SIGNAL hit_counter_dead	: STD_LOGIC_VECTOR(3 DOWNTO 0);
 	
 	-- ATWD0
 	SIGNAL atwd0_enable		: STD_LOGIC;
@@ -729,6 +732,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			-- enable
 			enable_coinc_down	: IN STD_LOGIC;
 			enable_coinc_up		: IN STD_LOGIC;
+			newFF				: IN STD_LOGIC;
 			-- manual control
 			coinc_up_high		: IN STD_LOGIC;
 			coinc_up_low		: IN STD_LOGIC;
@@ -760,6 +764,9 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 		PORT (
 			CLK			: IN STD_LOGIC;
 			RST			: IN STD_LOGIC;
+			-- setup
+			gatetime	: IN STD_LOGIC := '0';
+			deadtime	: IN STD_LOGIC_VECTOR (3 DOWNTO 0);
 			-- discriminator input
 			MultiSPE		: IN STD_LOGIC;
 			OneSPE			: IN STD_LOGIC;
@@ -778,6 +785,9 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 		PORT (
 			CLK			: IN STD_LOGIC;
 			RST			: IN STD_LOGIC;
+			-- setup
+			gatetime	: IN STD_LOGIC := '0';
+			deadtime	: IN STD_LOGIC_VECTOR (3 DOWNTO 0);
 			-- discriminator input
 			MultiSPE		: IN STD_LOGIC;
 			OneSPE			: IN STD_LOGIC;
@@ -1122,6 +1132,7 @@ BEGIN
 	-- local coincidence
 	enable_coinc_up		<= command_2(0);
 	enable_coinc_down	<= command_2(1);
+	enable_coinc_newFF	<= command_2(2);
 	coinc_down_high		<= command_2(8);
 	coinc_down_low		<= command_2(9);
 	coinc_up_high		<= command_2(10);
@@ -1154,6 +1165,8 @@ BEGIN
 	response_4	<= (others=>'0');
 	
 	-- hit counter
+	hit_counter_gate			<= command_4(8);
+	hit_counter_dead			<= command_4(15 DOWNTO 12);
 	hitcounter_o(15 downto 0)	<= oneSPEcnt;
 	hitcounter_o(31 downto 16)	<= (others=>'0');
 	hitcounter_m(15 downto 0)	<= multiSPEcnt;
@@ -1559,6 +1572,7 @@ BEGIN
 			-- enable
 			enable_coinc_down	=> enable_coinc_down,
 			enable_coinc_up		=> enable_coinc_up,
+			newFF				=> '1',
 			-- manual control
 			coinc_up_high		=> coinc_up_high,
 			coinc_up_low		=> coinc_up_low,
@@ -1589,6 +1603,9 @@ BEGIN
 		PORT MAP (
 			CLK				=> CLK20,
 			RST				=> RST,
+			-- setup
+			gatetime		=> hit_counter_gate,
+			deadtime		=> hit_counter_dead,
 			-- discriminator input
 			MultiSPE		=> MultiSPE,
 			OneSPE			=> OneSPE,
@@ -1606,6 +1623,9 @@ BEGIN
 		PORT MAP (
 			CLK				=> CLK20,
 			RST				=> RST,
+			-- setup
+			gatetime		=> hit_counter_gate,
+			deadtime		=> hit_counter_dead,
 			-- discriminator input
 			MultiSPE		=> MultiSPE,
 			OneSPE			=> OneSPE,
@@ -1916,7 +1936,7 @@ BEGIN
 	begin
 		IF CLK20'EVENT and CLK20='1' then
 			CNT := CNT + 1;
-			PGM(9 downto 8) <= CNT(1 downto 0);
+	--		PGM(9 downto 8) <= CNT(1 downto 0);
 		END IF;
 	END PROCESS;
 	
