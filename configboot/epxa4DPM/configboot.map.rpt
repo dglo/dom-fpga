@@ -1,5 +1,5 @@
 Analysis & Synthesis report for configboot
-Fri May 14 11:31:31 2004
+Tue May 25 09:35:25 2004
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -63,12 +63,12 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                        ;
 +-----------------------------+---------------------------------------+
-; Analysis & Synthesis Status ; Successful - Fri May 14 11:31:31 2004 ;
+; Analysis & Synthesis Status ; Successful - Tue May 25 09:35:25 2004 ;
 ; Revision Name               ; configboot                            ;
 ; Top-level Entity Name       ; configboot                            ;
 ; Family                      ; EXCALIBUR_ARM                         ;
-; Total logic elements        ; 1,687                                 ;
-; Total pins                  ; 161                                   ;
+; Total logic elements        ; 1,698                                 ;
+; Total pins                  ; 108                                   ;
 ; Total memory bits           ; 640                                   ;
 ; Total PLLs                  ; 1                                     ;
 +-----------------------------+---------------------------------------+
@@ -849,10 +849,10 @@ configboot
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Compilation Hierarchy Node                                     ; Logic Cells ; Registers ; Memory Bits ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Full Hierarchy Name                                                                                                                                                                                                                                                    ;
 +----------------------------------------------------------------+-------------+-----------+-------------+------+--------------+--------------+-------------------+------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; |configboot                                                    ; 1687 (1)    ; 877       ; 640         ; 161  ; 0            ; 810 (1)      ; 231 (0)           ; 646 (0)          ; 429 (0)         ; |configboot                                                                                                                                                                                                                                                            ;
+; |configboot                                                    ; 1698 (1)    ; 883       ; 640         ; 108  ; 0            ; 815 (1)      ; 231 (0)           ; 652 (0)          ; 429 (0)         ; |configboot                                                                                                                                                                                                                                                            ;
 ;    |ROC:inst_ROC|                                              ; 4 (4)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 2 (2)             ; 2 (2)            ; 0 (0)           ; |configboot|ROC:inst_ROC                                                                                                                                                                                                                                               ;
-;    |ahb_slave:ahb_slave_inst|                                  ; 44 (44)     ; 14        ; 0           ; 0    ; 0            ; 30 (30)      ; 0 (0)             ; 14 (14)          ; 0 (0)           ; |configboot|ahb_slave:ahb_slave_inst                                                                                                                                                                                                                                   ;
-;    |dcom_ap:dcom_ap_inst|                                      ; 1486 (0)    ; 760       ; 640         ; 0    ; 0            ; 726 (0)      ; 196 (0)           ; 564 (0)          ; 381 (0)         ; |configboot|dcom_ap:dcom_ap_inst                                                                                                                                                                                                                                       ;
+;    |ahb_slave:ahb_slave_inst|                                  ; 49 (49)     ; 19        ; 0           ; 0    ; 0            ; 30 (30)      ; 0 (0)             ; 19 (19)          ; 0 (0)           ; |configboot|ahb_slave:ahb_slave_inst                                                                                                                                                                                                                                   ;
+;    |dcom_ap:dcom_ap_inst|                                      ; 1484 (0)    ; 761       ; 640         ; 0    ; 0            ; 723 (0)      ; 196 (0)           ; 565 (0)          ; 381 (0)         ; |configboot|dcom_ap:dcom_ap_inst                                                                                                                                                                                                                                       ;
 ;       |DCOM_tcal_timer:DCOM_tcal_timer|                        ; 36 (16)     ; 20        ; 0           ; 0    ; 0            ; 16 (11)      ; 1 (1)             ; 19 (4)           ; 15 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer                                                                                                                                                                                                       ;
 ;          |dc_tcal_ct:timer|                                    ; 20 (0)      ; 15        ; 0           ; 0    ; 0            ; 5 (0)        ; 0 (0)             ; 15 (0)           ; 15 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer|dc_tcal_ct:timer                                                                                                                                                                                      ;
 ;             |lpm_counter:lpm_counter_component|                ; 20 (0)      ; 15        ; 0           ; 0    ; 0            ; 5 (0)        ; 0 (0)             ; 15 (0)           ; 15 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer|dc_tcal_ct:timer|lpm_counter:lpm_counter_component                                                                                                                                                    ;
@@ -867,8 +867,8 @@ configboot
 ;                               |cmpchain:cmp_end|               ; 1 (1)       ; 0         ; 0           ; 0    ; 0            ; 1 (1)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer|dc_tcal_ct:timer|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|lpm_compare:$00023|comptree:comparator|cmpchain:cmp_end|comptree:comp|cmpchain:cmp_end                              ;
 ;                               |comptree:sub_comptree|          ; 1 (0)       ; 0         ; 0           ; 0    ; 0            ; 1 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer|dc_tcal_ct:timer|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|lpm_compare:$00023|comptree:comparator|cmpchain:cmp_end|comptree:comp|comptree:sub_comptree                         ;
 ;                                  |cmpchain:cmp_end|            ; 1 (1)       ; 0         ; 0           ; 0    ; 0            ; 1 (1)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer|dc_tcal_ct:timer|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|lpm_compare:$00023|comptree:comparator|cmpchain:cmp_end|comptree:comp|comptree:sub_comptree|cmpchain:cmp_end        ;
-;       |DC_CTRAP:DC_CTRAP|                                      ; 101 (101)   ; 30        ; 0           ; 0    ; 0            ; 71 (71)      ; 0 (0)             ; 30 (30)          ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP                                                                                                                                                                                                                     ;
-;       |DC_Rx_chan_ap:DC_Rx_chan_ap|                            ; 699 (61)    ; 401       ; 640         ; 0    ; 0            ; 298 (4)      ; 161 (57)          ; 240 (0)          ; 246 (1)         ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap                                                                                                                                                                                                           ;
+;       |DC_CTRAP:DC_CTRAP|                                      ; 109 (109)   ; 31        ; 0           ; 0    ; 0            ; 78 (78)      ; 0 (0)             ; 31 (31)          ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP                                                                                                                                                                                                                     ;
+;       |DC_Rx_chan_ap:DC_Rx_chan_ap|                            ; 698 (60)    ; 401       ; 640         ; 0    ; 0            ; 297 (3)      ; 161 (57)          ; 240 (0)          ; 246 (1)         ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap                                                                                                                                                                                                           ;
 ;          |DC_MRAP:inst10|                                      ; 25 (25)     ; 19        ; 0           ; 0    ; 0            ; 6 (6)        ; 0 (0)             ; 19 (19)          ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10                                                                                                                                                                                            ;
 ;          |RX_UART_ap:inst|                                     ; 47 (0)      ; 29        ; 0           ; 0    ; 0            ; 18 (0)       ; 8 (0)             ; 21 (0)           ; 11 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst                                                                                                                                                                                           ;
 ;             |UA_RX_AP:inst|                                    ; 25 (25)     ; 12        ; 0           ; 0    ; 0            ; 13 (13)      ; 0 (0)             ; 12 (12)          ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst                                                                                                                                                                             ;
@@ -990,13 +990,13 @@ configboot
 ;          |rx_packet_ct:inst23|                                 ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|rx_packet_ct:inst23                                                                                                                                                                                       ;
 ;             |lpm_counter:lpm_counter_component|                ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|rx_packet_ct:inst23|lpm_counter:lpm_counter_component                                                                                                                                                     ;
 ;                |alt_synch_counter:wysi_counter|                ; 16 (16)     ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; 16 (16)         ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|rx_packet_ct:inst23|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter                                                                                                                      ;
-;       |DC_Tx_chan_ap:DC_Tx_chan_ap|                            ; 650 (27)    ; 309       ; 0           ; 0    ; 0            ; 341 (6)      ; 34 (17)           ; 275 (4)          ; 120 (0)         ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap                                                                                                                                                                                                           ;
-;          |DC_SNAP:inst11|                                      ; 166 (166)   ; 46        ; 0           ; 0    ; 0            ; 120 (120)    ; 0 (0)             ; 46 (46)          ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11                                                                                                                                                                                            ;
-;          |Tx_dpr_ctrl_ap:inst6|                                ; 85 (69)     ; 32        ; 0           ; 0    ; 0            ; 53 (53)      ; 16 (16)           ; 16 (0)           ; 57 (41)         ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|Tx_dpr_ctrl_ap:inst6                                                                                                                                                                                      ;
+;       |DC_Tx_chan_ap:DC_Tx_chan_ap|                            ; 641 (27)    ; 309       ; 0           ; 0    ; 0            ; 332 (6)      ; 34 (17)           ; 275 (4)          ; 120 (0)         ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap                                                                                                                                                                                                           ;
+;          |DC_SNAP:inst11|                                      ; 162 (162)   ; 46        ; 0           ; 0    ; 0            ; 116 (116)    ; 0 (0)             ; 46 (46)          ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11                                                                                                                                                                                            ;
+;          |Tx_dpr_ctrl_ap:inst6|                                ; 83 (67)     ; 32        ; 0           ; 0    ; 0            ; 51 (51)      ; 16 (16)           ; 16 (0)           ; 57 (41)         ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|Tx_dpr_ctrl_ap:inst6                                                                                                                                                                                      ;
 ;             |tx_dpr_radr_ct:tx_dpr_rad|                        ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|Tx_dpr_ctrl_ap:inst6|tx_dpr_radr_ct:tx_dpr_rad                                                                                                                                                            ;
 ;                |lpm_counter:lpm_counter_component|             ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|Tx_dpr_ctrl_ap:inst6|tx_dpr_radr_ct:tx_dpr_rad|lpm_counter:lpm_counter_component                                                                                                                          ;
 ;                   |alt_synch_counter:wysi_counter|             ; 16 (16)     ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; 16 (16)         ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|Tx_dpr_ctrl_ap:inst6|tx_dpr_radr_ct:tx_dpr_rad|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter                                                                                           ;
-;          |crc_tx:inst3|                                        ; 97 (51)     ; 55        ; 0           ; 0    ; 0            ; 42 (28)      ; 1 (1)             ; 54 (22)          ; 6 (6)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3                                                                                                                                                                                              ;
+;          |crc_tx:inst3|                                        ; 94 (48)     ; 55        ; 0           ; 0    ; 0            ; 39 (25)      ; 1 (1)             ; 54 (22)          ; 6 (6)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3                                                                                                                                                                                              ;
 ;             |crc32:inst_crc32|                                 ; 46 (46)     ; 32        ; 0           ; 0    ; 0            ; 14 (14)      ; 0 (0)             ; 32 (32)          ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|crc32:inst_crc32                                                                                                                                                                             ;
 ;          |dac_rs_tab_rect_01:inst15|                           ; 2 (2)       ; 0         ; 0           ; 0    ; 0            ; 2 (2)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dac_rs_tab_rect_01:inst15                                                                                                                                                                                 ;
 ;          |dc_tx_mux:inst5|                                     ; 84 (0)      ; 0         ; 0           ; 0    ; 0            ; 84 (0)       ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_tx_mux:inst5                                                                                                                                                                                           ;
@@ -1114,7 +1114,7 @@ configboot
 ;                |lpm_shiftreg:lpm_shiftreg_component|           ; 18 (18)     ; 10        ; 0           ; 0    ; 0            ; 8 (8)        ; 0 (0)             ; 10 (10)          ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|txshr10:53|lpm_shiftreg:lpm_shiftreg_component                                                                                                                                           ;
 ;    |pll2x:inst_pll2x|                                          ; 0 (0)       ; 0         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|pll2x:inst_pll2x                                                                                                                                                                                                                                           ;
 ;       |altclklock:altclklock_component|                        ; 0 (0)       ; 0         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|pll2x:inst_pll2x|altclklock:altclklock_component                                                                                                                                                                                                           ;
-;    |slaveregister:slaveregister_inst|                          ; 100 (100)   ; 51        ; 0           ; 0    ; 0            ; 49 (49)      ; 33 (33)           ; 18 (18)          ; 0 (0)           ; |configboot|slaveregister:slaveregister_inst                                                                                                                                                                                                                           ;
+;    |slaveregister:slaveregister_inst|                          ; 108 (108)   ; 51        ; 0           ; 0    ; 0            ; 57 (57)      ; 33 (33)           ; 18 (18)          ; 0 (0)           ; |configboot|slaveregister:slaveregister_inst                                                                                                                                                                                                                           ;
 ;    |stripe:stripe_inst|                                        ; 4 (0)       ; 0         ; 0           ; 55   ; 0            ; 4 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|stripe:stripe_inst                                                                                                                                                                                                                                         ;
 ;       |alt_exc_stripe:lpm_instance|                            ; 4 (4)       ; 0         ; 0           ; 55   ; 0            ; 4 (4)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|stripe:stripe_inst|alt_exc_stripe:lpm_instance                                                                                                                                                                                                             ;
 ;          |alt_exc_dpram:dp0|                                   ; 0 (0)       ; 0         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|stripe:stripe_inst|alt_exc_stripe:lpm_instance|alt_exc_dpram:dp0                                                                                                                                                                                           ;
@@ -1184,7 +1184,7 @@ configboot
 +---------------------------------+
 ; Analysis & Synthesis Equations  ;
 +---------------------------------+
-The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/configboot.map.eqn.
+The equations can be found in c:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/configboot.map.eqn.
 
 
 +---------------------------------------------------------------------------------+
@@ -1253,7 +1253,7 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4D
 ; configboot.vhd                                                           ; Read ;
 ; ../../common/comDPM/Rx_chan/dc_hdr_dec_ap.tdf                            ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/altclklock.tdf              ; Read ;
-; C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/stripe.v            ; Read ;
+; c:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/stripe.v            ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/alt_exc_stripe.tdf          ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/alt_exc_upcore.tdf          ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/apex20ke_io_in.v            ; Read ;
@@ -1278,9 +1278,9 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4D
 ; c:/fpgatools/quartus/libraries/megafunctions/a_csnbuffer.tdf             ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/lpm_decode.tdf              ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/scfifo.tdf                  ; Read ;
-; C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/db/scfifo_mcj.tdf   ; Read ;
-; C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/db/a_dpfifo_4dj.tdf ; Read ;
-; C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/db/a_fefifo_vve.tdf ; Read ;
+; c:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/db/scfifo_mcj.tdf   ; Read ;
+; c:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/db/a_dpfifo_4dj.tdf ; Read ;
+; c:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/db/a_fefifo_vve.tdf ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/altdpram.tdf                ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/lpm_and.tdf                 ; Read ;
 +--------------------------------------------------------------------------+------+
@@ -1291,16 +1291,16 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4D
 +---------------------------------------------------------------------------------------------
 ; Resource                      ; Usage                                                      ;
 +-------------------------------+------------------------------------------------------------+
-; Logic cells                   ; 1,687                                                      ;
-; Total combinational functions ; 1456                                                       ;
-; Total registers               ; 877                                                        ;
-; I/O pins                      ; 161                                                        ;
+; Logic cells                   ; 1,698                                                      ;
+; Total combinational functions ; 1467                                                       ;
+; Total registers               ; 883                                                        ;
+; I/O pins                      ; 108                                                        ;
 ; Total memory bits             ; 640                                                        ;
 ; Total PLLs                    ; 1                                                          ;
 ; Maximum fan-out node          ; pll2x:inst_pll2x|altclklock:altclklock_component|outclock0 ;
-; Maximum fan-out               ; 890                                                        ;
-; Total fan-out                 ; 7090                                                       ;
-; Average fan-out               ; 3.81                                                       ;
+; Maximum fan-out               ; 895                                                        ;
+; Total fan-out                 ; 7162                                                       ;
+; Average fan-out               ; 3.94                                                       ;
 +-------------------------------+------------------------------------------------------------+
 
 
@@ -1319,14 +1319,14 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4D
 ; Statistic                                              ; Value ;
 +--------------------------------------------------------+-------+
 ; Number of WYSIWYG cells                                ; 386   ;
-; Number of synthesis-generated cells                    ; 1301  ;
+; Number of synthesis-generated cells                    ; 1312  ;
 ; Number of WYSIWYG LUTs                                 ; 386   ;
-; Number of synthesis-generated LUTs                     ; 1070  ;
+; Number of synthesis-generated LUTs                     ; 1081  ;
 ; Number of WYSIWYG registers                            ; 241   ;
-; Number of synthesis-generated registers                ; 636   ;
-; Number of cells with combinational logic only          ; 810   ;
+; Number of synthesis-generated registers                ; 642   ;
+; Number of cells with combinational logic only          ; 815   ;
 ; Number of cells with registers only                    ; 231   ;
-; Number of cells with combinational logic and registers ; 646   ;
+; Number of cells with combinational logic and registers ; 652   ;
 +--------------------------------------------------------+-------+
 
 
@@ -1337,7 +1337,7 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4D
 +--------------------------------------+-------+
 ; Number of registers using SCLR       ; 35    ;
 ; Number of registers using SLOAD      ; 44    ;
-; Number of registers using ACLR       ; 544   ;
+; Number of registers using ACLR       ; 549   ;
 ; Number of registers using ALOAD      ; 0     ;
 ; Number of registers using CLK_ENABLE ; 445   ;
 ; Number of registers using OE         ; 0     ;
@@ -1351,7 +1351,20 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4D
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Fri May 14 11:30:37 2004
+    Info: Copyright (C) 1991-2004 Altera Corporation. All rights reserved.
+    Info: Quartus is a registered trademark of Altera Corporation in the 
+    Info: US and other countries.  Portions of the Quartus II software   
+    Info: code, and other portions of the code included in this download 
+    Info: or on this CD, are licensed to Altera Corporation and are the  
+    Info: copyrighted property of third parties who may include, without 
+    Info: limitation, Sun Microsystems, The Regents of the University of 
+    Info: California, Softel vdm., and Verific Design Automation Inc. 
+    Info: Warning:  This computer program is protected by copyright law  
+    Info: and international treaties. Unauthorized reproduction or       
+    Info: distribution of this program, or any portion of it, may result 
+    Info: in severe civil and criminal penalties, and will be prosecuted 
+    Info: to the maximum extent possible under the law.
+    Info: Processing started: Tue May 25 09:34:45 2004
 Info: Command: quartus_map --import_settings_files=on --export_settings_files=off configboot -c configboot
 Info: Found 2 design units and 1 entities in source file ahb_slave.vhd
     Info: Found design unit 1: ahb_slave-ahb_slave_arch
@@ -1515,8 +1528,8 @@ Info: Found 2 design units and 1 entities in source file configboot.vhd
     Info: Found entity 1: configboot
 Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/dc_hdr_dec_ap.tdf
     Info: Found entity 1: dc_hdr_dec_ap
-Warning: VHDL Signal Declaration warning at configboot.vhd(130): ignored default value for signal dp0_portadataout
-Warning: VHDL Signal Declaration warning at configboot.vhd(163): ignored default value for signal tx_dpr_radr
+Warning: VHDL Signal Declaration warning at configboot.vhd(117): ignored default value for signal dp0_portadataout
+Warning: VHDL Signal Declaration warning at configboot.vhd(150): ignored default value for signal tx_dpr_radr
 Info: Found 1 design units and 1 entities in source file ../../../../../fpgatools/quartus/libraries/megafunctions/altclklock.tdf
     Info: Found entity 1: altclklock
 Info: Using design file stripe.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
@@ -1586,7 +1599,11 @@ Info: Found 1 design units and 1 entities in source file ../../../../../fpgatool
     Info: Found entity 1: muxlut
 Info: Found 1 design units and 1 entities in source file ../../../../../fpgatools/quartus/libraries/megafunctions/lpm_or.tdf
     Info: Found entity 1: lpm_or
+Warning: Pin send_data not connected
+Warning: Pin send_ctrl not connected
+Warning: Pin tcal_psnd not connected
 Warning: Pin HVD_Rx not connected
+Warning: Pin RST not connected
 Warning: Primitive GND of instance inst15 not used
 Warning: Primitive GND of instance inst27 not used
 Warning: Primitive VCC of instance inst7 not used
@@ -1639,6 +1656,22 @@ Warning: Reduced register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|adc_t
 Warning: Reduced register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|adc_to_ser_dudt:inst18|dudt[5] with stuck data_in port to stuck value GND
 Warning: Reduced register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|adc_to_ser_dudt:inst18|dudt[2] with stuck data_in port to stuck value GND
 Warning: Reduced register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|shrg48pld:inst4|lpm_shiftreg:lpm_shiftreg_component|dffs[47] with stuck data_in port to stuck value GND
+Warning: Reduced register slaveregister:slaveregister_inst|reg_rdata[31]~reg0 with stuck data_in port to stuck value GND
+Warning: Reduced register slaveregister:slaveregister_inst|reg_rdata[30]~reg0 with stuck data_in port to stuck value GND
+Warning: Reduced register slaveregister:slaveregister_inst|reg_rdata[29]~reg0 with stuck data_in port to stuck value GND
+Warning: Reduced register slaveregister:slaveregister_inst|reg_rdata[28]~reg0 with stuck data_in port to stuck value GND
+Warning: Reduced register slaveregister:slaveregister_inst|reg_rdata[27]~reg0 with stuck data_in port to stuck value GND
+Warning: Reduced register slaveregister:slaveregister_inst|reg_rdata[26]~reg0 with stuck data_in port to stuck value GND
+Warning: Reduced register slaveregister:slaveregister_inst|reg_rdata[25]~reg0 with stuck data_in port to stuck value GND
+Warning: Reduced register slaveregister:slaveregister_inst|reg_rdata[24]~reg0 with stuck data_in port to stuck value GND
+Warning: Reduced register slaveregister:slaveregister_inst|reg_rdata[23]~reg0 with stuck data_in port to stuck value GND
+Warning: Reduced register slaveregister:slaveregister_inst|reg_rdata[22]~reg0 with stuck data_in port to stuck value GND
+Warning: Reduced register slaveregister:slaveregister_inst|reg_rdata[21]~reg0 with stuck data_in port to stuck value GND
+Warning: Reduced register slaveregister:slaveregister_inst|reg_rdata[20]~reg0 with stuck data_in port to stuck value GND
+Warning: Reduced register slaveregister:slaveregister_inst|reg_rdata[19]~reg0 with stuck data_in port to stuck value GND
+Warning: Reduced register slaveregister:slaveregister_inst|reg_rdata[18]~reg0 with stuck data_in port to stuck value GND
+Warning: Reduced register slaveregister:slaveregister_inst|reg_rdata[17]~reg0 with stuck data_in port to stuck value GND
+Warning: Reduced register slaveregister:slaveregister_inst|reg_rdata[16]~reg0 with stuck data_in port to stuck value GND
 Warning: Reduced register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|shrg48pld:inst4|lpm_shiftreg:lpm_shiftreg_component|dffs[46] with stuck data_in port to stuck value GND
 Warning: Reduced register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|shrg48pld:inst4|lpm_shiftreg:lpm_shiftreg_component|dffs[45] with stuck data_in port to stuck value GND
 Warning: Reduced register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|shrg48pld:inst4|lpm_shiftreg:lpm_shiftreg_component|dffs[44] with stuck data_in port to stuck value GND
@@ -1690,23 +1723,6 @@ Info: Duplicate registers merged to single register
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|adc_to_ser_dudt:inst18|dudt[3] merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|adc_to_ser_dudt:inst18|dudt[4]
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|adc_to_ser_dudt:inst18|dudt[1] merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|adc_to_ser_dudt:inst18|dudt[4]
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|adc_to_ser_dudt:inst18|dudt[0] merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|adc_to_ser_dudt:inst18|dudt[4]
-Info: Duplicate registers merged to single register
-    Info: Duplicate register slaveregister:slaveregister_inst|reg_rdata[30]~reg0 merged to single register slaveregister:slaveregister_inst|reg_rdata[31]~reg0
-    Info: Duplicate register slaveregister:slaveregister_inst|reg_rdata[29]~reg0 merged to single register slaveregister:slaveregister_inst|reg_rdata[31]~reg0
-    Info: Duplicate register slaveregister:slaveregister_inst|reg_rdata[28]~reg0 merged to single register slaveregister:slaveregister_inst|reg_rdata[31]~reg0
-    Info: Duplicate register slaveregister:slaveregister_inst|reg_rdata[27]~reg0 merged to single register slaveregister:slaveregister_inst|reg_rdata[31]~reg0
-    Info: Duplicate register slaveregister:slaveregister_inst|reg_rdata[26]~reg0 merged to single register slaveregister:slaveregister_inst|reg_rdata[31]~reg0
-    Info: Duplicate register slaveregister:slaveregister_inst|reg_rdata[25]~reg0 merged to single register slaveregister:slaveregister_inst|reg_rdata[31]~reg0
-    Info: Duplicate register slaveregister:slaveregister_inst|reg_rdata[24]~reg0 merged to single register slaveregister:slaveregister_inst|reg_rdata[31]~reg0
-    Info: Duplicate register slaveregister:slaveregister_inst|reg_rdata[23]~reg0 merged to single register slaveregister:slaveregister_inst|reg_rdata[31]~reg0
-    Info: Duplicate register slaveregister:slaveregister_inst|reg_rdata[22]~reg0 merged to single register slaveregister:slaveregister_inst|reg_rdata[31]~reg0
-    Info: Duplicate register slaveregister:slaveregister_inst|reg_rdata[21]~reg0 merged to single register slaveregister:slaveregister_inst|reg_rdata[31]~reg0
-    Info: Duplicate register slaveregister:slaveregister_inst|reg_rdata[20]~reg0 merged to single register slaveregister:slaveregister_inst|reg_rdata[31]~reg0
-    Info: Duplicate register slaveregister:slaveregister_inst|reg_rdata[19]~reg0 merged to single register slaveregister:slaveregister_inst|reg_rdata[31]~reg0
-    Info: Duplicate register slaveregister:slaveregister_inst|reg_rdata[18]~reg0 merged to single register slaveregister:slaveregister_inst|reg_rdata[31]~reg0
-    Info: Duplicate register slaveregister:slaveregister_inst|reg_rdata[17]~reg0 merged to single register slaveregister:slaveregister_inst|reg_rdata[31]~reg0
-    Info: Duplicate register slaveregister:slaveregister_inst|reg_rdata[16]~reg0 merged to single register slaveregister:slaveregister_inst|reg_rdata[31]~reg0
-Warning: Reduced register slaveregister:slaveregister_inst|reg_rdata[31]~reg0 with stuck data_in port to stuck value GND
 Warning: Reduced register ahb_slave:ahb_slave_inst|masterhresp[1]~reg0 with stuck data_in port to stuck value GND
 Info: Duplicate registers merged to single register
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|inst23[5] merged to single register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|inst23[6]
@@ -2032,8 +2048,8 @@ Info: Duplicate registers merged to single register
 Info: Registers with preset signals will power-up high
 Info: DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Info: Duplicate registers merged to single register
-    Info: Duplicate register dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|sreg~40 merged to single register dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|send_data~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|sreg~34 merged to single register dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|reboot_gnt~reg
+    Info: Duplicate register dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|sreg~40 merged to single register dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|send_data~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|sreg~47 merged to single register dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|tcal_psnd~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|first_wadr_ena~reg merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|sreg~39
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|msg_type_ena~reg merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|sreg~43
@@ -2051,23 +2067,6 @@ Info: Duplicate registers merged to single register
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|DCTC_FWR:inst2|sreg~30 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|DCTC_FWR:inst2|tcwf_aclr~reg, power-up level changed
 Info: Duplicate registers merged to single register
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|sreg~31 merged to single register dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|buf_res~reg, power-up level changed
-Warning: TRI or OPNDRN buffers permanently disabled
-    Warning: Node i154
-    Warning: Node i155
-    Warning: Node i156
-    Warning: Node i157
-    Warning: Node i158
-    Warning: Node i159
-    Warning: Node i160
-    Warning: Node i161
-    Warning: Node i162
-    Warning: Node i163
-    Warning: Node i164
-    Warning: Node i165
-    Warning: Node i166
-    Warning: Node i167
-    Warning: Node i168
-    Warning: Node i169
 Warning: Output pins are stuck at VCC or GND
     Warning: Pin COMM_RESET stuck at VCC
     Warning: Pin FPGA_LOADED stuck at GND
@@ -2075,7 +2074,6 @@ Warning: Output pins are stuck at VCC or GND
     Warning: Pin HDV_RxENA stuck at GND
     Warning: Pin HDV_TxENA stuck at GND
     Warning: Pin HDV_IN stuck at GND
-    Warning: Pin FLASH_AD_STBY stuck at GND
     Warning: Pin ATWDTrigger_0 stuck at GND
     Warning: Pin OutputEnable_0 stuck at GND
     Warning: Pin CounterClock_0 stuck at GND
@@ -2085,9 +2083,8 @@ Warning: Output pins are stuck at VCC or GND
     Warning: Pin ChannelSelect_0[0] stuck at GND
     Warning: Pin ReadWrite_0 stuck at GND
     Warning: Pin AnalogReset_0 stuck at GND
-    Warning: Pin DigitalReset_0 stuck at GND
+    Warning: Pin DigitalReset_0 stuck at VCC
     Warning: Pin DigitalSet_0 stuck at GND
-    Warning: Pin ATWD0VDD_SUP stuck at GND
     Warning: Pin ATWDTrigger_1 stuck at GND
     Warning: Pin OutputEnable_1 stuck at GND
     Warning: Pin CounterClock_1 stuck at GND
@@ -2097,9 +2094,8 @@ Warning: Output pins are stuck at VCC or GND
     Warning: Pin ChannelSelect_1[0] stuck at GND
     Warning: Pin ReadWrite_1 stuck at GND
     Warning: Pin AnalogReset_1 stuck at GND
-    Warning: Pin DigitalReset_1 stuck at GND
+    Warning: Pin DigitalReset_1 stuck at VCC
     Warning: Pin DigitalSet_1 stuck at GND
-    Warning: Pin ATWD1VDD_SUP stuck at GND
 Warning: CASCADE primitive dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_tx_mux:inst5|lpm_mux:lpm_mux_component|muxlut:$00010|muxlut:$00012|muxlut:$00016|$00012 is fed by non-combinatorial logic
 Warning: Primitive dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|muxsel1~reg of type DFFE cannot feed CASCADE primitive dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_tx_mux:inst5|lpm_mux:lpm_mux_component|muxlut:$00010|muxlut:$00012|muxlut:$00016|$00012 because the primitive already contains fan-out to one or more CASCADE primitives
 Warning: CASCADE primitive dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_tx_mux:inst5|lpm_mux:lpm_mux_component|muxlut:$00012|muxlut:$00012|muxlut:$00016|$00012 is fed by non-combinatorial logic
@@ -2113,56 +2109,23 @@ Info: Found the following redundant logic cells in design
     Info: Logic cell stripe:stripe_inst|alt_exc_stripe:lpm_instance|lcell_hresp1
     Info: Logic cell dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|txct:inst1|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|lpm_compare:$00013|comptree:comparator|cmpchain:cmp_end|comptree:comp|cmpchain:cmp_end|aeb_out
     Info: Logic cell dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|rxct5:inst3|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|lpm_compare:$00013|comptree:comparator|cmpchain:cmp_end|comptree:comp|cmpchain:cmp_end|aeb_out
-Warning: Design contains 38 input pin(s) that do not drive logic
+Warning: Design contains 5 input pin(s) that do not drive logic
     Warning: No output dependent on input pin CLK1p
     Warning: No output dependent on input pin CLK3p
     Warning: No output dependent on input pin CLK4p
     Warning: No output dependent on input pin COM_AD_OTR
     Warning: No output dependent on input pin HDV_Rx
-    Warning: No output dependent on input pin FLASH_AD_D[9]
-    Warning: No output dependent on input pin FLASH_AD_D[8]
-    Warning: No output dependent on input pin FLASH_AD_D[7]
-    Warning: No output dependent on input pin FLASH_AD_D[6]
-    Warning: No output dependent on input pin FLASH_AD_D[5]
-    Warning: No output dependent on input pin FLASH_AD_D[4]
-    Warning: No output dependent on input pin FLASH_AD_D[3]
-    Warning: No output dependent on input pin FLASH_AD_D[2]
-    Warning: No output dependent on input pin FLASH_AD_D[1]
-    Warning: No output dependent on input pin FLASH_AD_D[0]
-    Warning: No output dependent on input pin FLASH_NCO
-    Warning: No output dependent on input pin ATWD0_D[9]
-    Warning: No output dependent on input pin ATWD0_D[8]
-    Warning: No output dependent on input pin ATWD0_D[7]
-    Warning: No output dependent on input pin ATWD0_D[6]
-    Warning: No output dependent on input pin ATWD0_D[5]
-    Warning: No output dependent on input pin ATWD0_D[4]
-    Warning: No output dependent on input pin ATWD0_D[3]
-    Warning: No output dependent on input pin ATWD0_D[2]
-    Warning: No output dependent on input pin ATWD0_D[1]
-    Warning: No output dependent on input pin ATWD0_D[0]
-    Warning: No output dependent on input pin TriggerComplete_0
-    Warning: No output dependent on input pin ATWD1_D[9]
-    Warning: No output dependent on input pin ATWD1_D[8]
-    Warning: No output dependent on input pin ATWD1_D[7]
-    Warning: No output dependent on input pin ATWD1_D[6]
-    Warning: No output dependent on input pin ATWD1_D[5]
-    Warning: No output dependent on input pin ATWD1_D[4]
-    Warning: No output dependent on input pin ATWD1_D[3]
-    Warning: No output dependent on input pin ATWD1_D[2]
-    Warning: No output dependent on input pin ATWD1_D[1]
-    Warning: No output dependent on input pin ATWD1_D[0]
-    Warning: No output dependent on input pin TriggerComplete_1
-Info: Implemented 1862 device resources after synthesis - the final resource count might be different
-    Info: Implemented 54 input pins
-    Info: Implemented 90 output pins
+Info: Implemented 1820 device resources after synthesis - the final resource count might be different
+    Info: Implemented 21 input pins
+    Info: Implemented 70 output pins
     Info: Implemented 17 bidirectional pins
-    Info: Implemented 1687 logic cells
+    Info: Implemented 1698 logic cells
     Info: Implemented 10 RAM segments
     Info: Implemented 1 ClockLock PLLs
     Info: Implemented 2 dual-port RAM elements in Excalibur device
     Info: Implemented 1 microprocessor core elements in Excalibur device
-Info: Quartus II Analysis & Synthesis was successful. 0 errors, 182 warnings
-    Info: Processing ended: Fri May 14 11:31:31 2004
-    Info: Elapsed time: 00:00:54
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 148 warnings
+    Info: Processing ended: Tue May 25 09:35:25 2004
+    Info: Elapsed time: 00:00:39
 
 

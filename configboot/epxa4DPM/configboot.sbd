@@ -208,7 +208,7 @@ device configboot
 
         region pld[0]
         {
-            address_base = 0x90080000; 
+            address_base = 0x90000000; 
             enabled = true; 
             address_size = 0x4000; 
             prefetch = false; 
