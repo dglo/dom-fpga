@@ -1,6 +1,6 @@
 % C:\PROJECTS\ICECUBE\DOR\FPGA\DCOM_01\DC_CTRL.tdf %
 % AHDL code created by Visual Software Solution's StateCAD 5.0 %
-% Mon Jul 21 15:02:15 2003 %
+% Mon Jul 21 20:27:26 2003 %
 
 % This AHDL code was generated using: %
 %  binary encoded state assignment with structured code format. %
@@ -45,7 +45,7 @@ SUBDESIGN DC_CTRL(
 
 
 VARIABLE
-	sreg : MACHINE OF BITS (SV0, SV1, SV8, SV9, SV10)
+	sreg : MACHINE OF BITS (SV0, SV1, SV2, SV8, SV9)
 		WITH STATES (
 			COM_START =	B"00001",
 			CMD_WAIT =	B"00000",
@@ -70,16 +70,17 @@ VARIABLE
 			SYS_RESET =	B"10100"
 		);
 
-	sreg1 : MACHINE OF BITS (SV11)
+	sreg1 : MACHINE OF BITS (SV10)
 		WITH STATES (
 			COM_OFF =	B"0",
 			COM_ON =	B"1"
 		);
 
-	sreg2 : MACHINE OF BITS (SV12)
+	sreg2 : MACHINE OF BITS (SV11, SV12)
 		WITH STATES (
-			FPGA_RDY =	B"1",
-			COM_RES =	B"0"
+			FPGA_RDY =	B"01",
+			COM_RES =	B"00",
+			RES_SYNC =	B"10"
 		);
 
 	cmd_snd0 :	DFF;
@@ -87,7 +88,6 @@ VARIABLE
 	cmd_snd2 :	DFF;
 	cmd_snd3 :	DFF;
 	com_aval :	DFF;
-	comres_ena :	DFF;
 	drbt_gnt :	DFF;
 	rec_ctrl :	DFF;
 	rec_data :	DFF;
@@ -99,7 +99,6 @@ VARIABLE
 	tcal_prec :	DFF;
 	tcal_psnd :	DFF;
 
-	com_reset :	NODE;
 BEGIN
 
 % Clock setup %
@@ -108,7 +107,6 @@ BEGIN
 	cmd_snd2.clk=CLK;
 	cmd_snd3.clk=CLK;
 	com_aval.clk=CLK;
-	comres_ena.clk=CLK;
 	drbt_gnt.clk=CLK;
 	rec_ctrl.clk=CLK;
 	rec_data.clk=CLK;
@@ -123,9 +121,9 @@ BEGIN
 	sreg1.clk=CLK;
 	sreg2.clk=CLK;
 
-	sreg.reset =  com_reset ;
+	sreg.reset =  comres_rcvd ;
 
-	IF ( com_reset ) THEN
+	IF ( comres_rcvd ) THEN
 		drbt_gnt.clrn=GND;
 		sys_res.clrn=GND;
 		tcal_prec.clrn=GND;
@@ -159,42 +157,18 @@ BEGIN
 
 	CASE sreg IS
 		WHEN CMD_WAIT =>
-			IF ( !stf_rcvd & !bfstat_rcvd & !drreq_rcvd & !sysres_rcvd & !tcal_rcvd ) 
+			IF ( !drreq_rcvd & !sysres_rcvd & !bfstat_rcvd & !stf_rcvd & !tcal_rcvd ) 
 				THEN 
 				sreg = CMD_WAIT;
 				(drbt_gnt,sys_res,tcal_prec,tcal_psnd,tcal_data,tcal_cmd,cmd_snd3,
 					cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,send_ctrl)=(0,0,0,0,0,
 					0,0,0,0,0,0,1,0,0);
 			END IF;
-			IF ( stf_rcvd ) THEN 
-				sreg = REC_DAT;
+			IF ( drreq_rcvd & drbt_req & txrdef ) THEN 
+				sreg = SND_DRBT;
 				(drbt_gnt,sys_res,tcal_prec,tcal_psnd,tcal_data,tcal_cmd,cmd_snd3,
 					cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,send_ctrl)=(0,0,0,0,0,
-					0,0,0,0,0,1,1,0,0);
-			END IF;
-			IF ( bfstat_rcvd & !rxwraff ) THEN 
-				sreg = SND_MRWB;
-				(drbt_gnt,sys_res,tcal_prec,tcal_psnd,tcal_data,tcal_cmd,cmd_snd3,
-					cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,send_ctrl)=(0,0,0,0,0,
-					0,1,0,0,0,0,0,0,1);
-			END IF;
-			IF ( drreq_rcvd & !txrdef ) THEN 
-				sreg = SND_STF;
-				(drbt_gnt,sys_res,tcal_prec,tcal_psnd,tcal_data,tcal_cmd,cmd_snd3,
-					cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,send_ctrl)=(0,0,0,0,0,
-					0,0,0,0,1,0,0,1,1);
-			END IF;
-			IF ( drreq_rcvd & txrdef & !drbt_req ) THEN 
-				sreg = SND_DRAND;
-				(drbt_gnt,sys_res,tcal_prec,tcal_psnd,tcal_data,tcal_cmd,cmd_snd3,
-					cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,send_ctrl)=(0,0,0,0,0,
-					0,0,1,1,0,0,0,0,1);
-			END IF;
-			IF ( bfstat_rcvd & rxwraff ) THEN 
-				sreg = SND_MRNB;
-				(drbt_gnt,sys_res,tcal_prec,tcal_psnd,tcal_data,tcal_cmd,cmd_snd3,
-					cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,send_ctrl)=(0,0,0,0,0,
-					0,1,0,0,1,0,0,0,1);
+					0,0,1,1,1,0,0,0,1);
 			END IF;
 			IF ( sysres_rcvd ) THEN 
 				sreg = SYS_RESET;
@@ -202,11 +176,35 @@ BEGIN
 					cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,send_ctrl)=(0,1,0,0,0,
 					0,0,0,0,0,0,0,0,0);
 			END IF;
-			IF ( drreq_rcvd & drbt_req & txrdef ) THEN 
-				sreg = SND_DRBT;
+			IF ( bfstat_rcvd & rxwraff ) THEN 
+				sreg = SND_MRNB;
 				(drbt_gnt,sys_res,tcal_prec,tcal_psnd,tcal_data,tcal_cmd,cmd_snd3,
 					cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,send_ctrl)=(0,0,0,0,0,
-					0,0,1,1,1,0,0,0,1);
+					0,1,0,0,1,0,0,0,1);
+			END IF;
+			IF ( drreq_rcvd & txrdef & !drbt_req ) THEN 
+				sreg = SND_DRAND;
+				(drbt_gnt,sys_res,tcal_prec,tcal_psnd,tcal_data,tcal_cmd,cmd_snd3,
+					cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,send_ctrl)=(0,0,0,0,0,
+					0,0,1,1,0,0,0,0,1);
+			END IF;
+			IF ( drreq_rcvd & !txrdef ) THEN 
+				sreg = SND_STF;
+				(drbt_gnt,sys_res,tcal_prec,tcal_psnd,tcal_data,tcal_cmd,cmd_snd3,
+					cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,send_ctrl)=(0,0,0,0,0,
+					0,0,0,0,1,0,0,1,1);
+			END IF;
+			IF ( bfstat_rcvd & !rxwraff ) THEN 
+				sreg = SND_MRWB;
+				(drbt_gnt,sys_res,tcal_prec,tcal_psnd,tcal_data,tcal_cmd,cmd_snd3,
+					cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,send_ctrl)=(0,0,0,0,0,
+					0,1,0,0,0,0,0,0,1);
+			END IF;
+			IF ( stf_rcvd ) THEN 
+				sreg = REC_DAT;
+				(drbt_gnt,sys_res,tcal_prec,tcal_psnd,tcal_data,tcal_cmd,cmd_snd3,
+					cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,send_ctrl)=(0,0,0,0,0,
+					0,0,0,0,0,1,1,0,0);
 			END IF;
 			IF ( tcal_rcvd ) THEN 
 				sreg = REC_PULSE;
@@ -215,10 +213,17 @@ BEGIN
 					0,0,0,0,0,0,0,0,0);
 			END IF;
 		WHEN COM_START =>
-			sreg = SND_IDLE;
-			(drbt_gnt,sys_res,tcal_prec,tcal_psnd,tcal_data,tcal_cmd,cmd_snd3,cmd_snd2
-				,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,send_ctrl)=(0,0,0,0,0,0,1,1,1,
-				1,0,0,0,1);
+			IF ( !SV11 & !SV12 ) THEN 
+				sreg = SND_IDLE;
+				(drbt_gnt,sys_res,tcal_prec,tcal_psnd,tcal_data,tcal_cmd,cmd_snd3,
+					cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,send_ctrl)=(0,0,0,0,0,
+					0,1,1,1,1,0,0,0,1);
+			ELSE
+				sreg = COM_START;
+				(drbt_gnt,sys_res,tcal_prec,tcal_psnd,tcal_data,tcal_cmd,cmd_snd3,
+					cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,send_ctrl)=(0,0,0,0,0,
+					0,0,0,0,0,0,1,0,0);
+			END IF;
 		WHEN DEL10us =>
 			IF ( line_quiet ) THEN 
 				sreg = SND_TC_STF;
@@ -255,11 +260,11 @@ BEGIN
 					cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,send_ctrl)=(0,0,0,0,0,
 					0,0,0,0,0,1,1,0,0);
 			END IF;
-			IF ( eof_rcvd & !rxwraff & !msg_err ) THEN 
-				sreg = SND_MRWB;
+			IF ( eof_rcvd & rxwraff & !msg_err ) THEN 
+				sreg = SND_MRNB;
 				(drbt_gnt,sys_res,tcal_prec,tcal_psnd,tcal_data,tcal_cmd,cmd_snd3,
 					cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,send_ctrl)=(0,0,0,0,0,
-					0,1,0,0,0,0,0,0,1);
+					0,1,0,0,1,0,0,0,1);
 			END IF;
 			IF ( msg_err ) THEN 
 				sreg = SND_MRWE;
@@ -267,11 +272,11 @@ BEGIN
 					cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,send_ctrl)=(0,0,0,0,0,
 					0,1,0,1,0,0,0,0,1);
 			END IF;
-			IF ( eof_rcvd & rxwraff & !msg_err ) THEN 
-				sreg = SND_MRNB;
+			IF ( eof_rcvd & !rxwraff & !msg_err ) THEN 
+				sreg = SND_MRWB;
 				(drbt_gnt,sys_res,tcal_prec,tcal_psnd,tcal_data,tcal_cmd,cmd_snd3,
 					cmd_snd2,cmd_snd1,cmd_snd0,rec_data,rec_ctrl,send_data,send_ctrl)=(0,0,0,0,0,
-					0,1,0,0,1,0,0,0,1);
+					0,1,0,0,0,0,0,0,1);
 			END IF;
 		WHEN REC_PULSE =>
 			IF ( pulse_rcvd ) THEN 
@@ -458,7 +463,7 @@ BEGIN
 
 	CASE sreg1 IS
 		WHEN COM_OFF =>
-			IF ( !SV0 & SV1 & !SV8 & SV9 & SV10 & ctrl_sent ) THEN 
+			IF ( !SV0 & SV1 & !SV2 & SV8 & SV9 & ctrl_sent ) THEN 
 				sreg1 = COM_ON;
 				com_aval=VCC;
 			ELSE
@@ -472,28 +477,21 @@ BEGIN
 
 	sreg2.reset =  reset ;
 
-	IF ( reset ) THEN
-		comres_ena.clrn=GND;
-	ELSE
-		comres_ena.clrn=VCC;
-	END IF;
-
 	CASE sreg2 IS
 		WHEN COM_RES =>
 			sreg2 = COM_RES;
-			comres_ena=VCC;
 		WHEN FPGA_RDY =>
 			IF ( comres_rcvd ) THEN 
-				sreg2 = COM_RES;
-				comres_ena=VCC;
+				sreg2 = RES_SYNC;
 			ELSE
 				sreg2 = FPGA_RDY;
-				comres_ena=GND;
+			END IF;
+		WHEN RES_SYNC =>
+			IF ( comres_rcvd ) THEN 
+				sreg2 = COM_RES;
+			ELSE
+				sreg2 = RES_SYNC;
 			END IF;
 	END CASE;
-
-
-% Logic Equations %
-com_reset =  comres_ena & comres_rcvd & !drbt_req ;
 
 END;

@@ -1641,8 +1641,8 @@ BEGIN
 	
 	B_nA	<= NOT A_nB;
 	RST_kalle	<= RST OR com_ctrl(4);
-	TC(0)	<= tx_fifo_wr;
-	TC(1)	<= fifo_msg;
+	-- TC(0)	<= tx_fifo_wr;
+	-- TC(1)	<= fifo_msg;
 	TC(3)	<= drbt_gnt;
 	TC(4)	<= drbt_req;
 	dcom_inst : dcom
@@ -1692,8 +1692,8 @@ BEGIN
 			eof_rcvd	=> open, --TC(2),
 			bfstat_rcvd	=> open,
 			drreq_rcvd	=> open,
-			sysres_rcvd	=> open,
-			comres_rcvd	=> open, --TC(0),
+			sysres_rcvd	=> TC(1),
+			comres_rcvd	=> TC(0),
 			msg_rcvd	=> open,
 			msg_err		=> open,
 			fifo_msg	=> fifo_msg,
