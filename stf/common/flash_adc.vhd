@@ -95,7 +95,7 @@ BEGIN
 			MEM_write_addr	:= (others=>'0');
 			wraddress	<= (others=>'0');
 		ELSIF CLK'EVENT AND CLK='1' THEN
-			IF enable = '0' AND enable_disc='0' THEN		-- do not take date
+			IF enable = '0' AND enable_disc='0' THEN		-- do not take data
 				wren	<= '0';
 				done	<= '0';
 				MEM_write_addr	:= (others=>'0');

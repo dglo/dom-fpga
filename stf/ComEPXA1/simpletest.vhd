@@ -336,7 +336,6 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL txrdef			: STD_LOGIC;
 	SIGNAL rxwrff			: STD_LOGIC;
 	SIGNAL rxwraff			: STD_LOGIC;
-	SIGNAL dec_thr			: STD_LOGIC_VECTOR (9 downto 0);
 	SIGNAL temp_data		: STD_LOGIC_VECTOR (7 downto 0);
 	SIGNAL RST_kalle		: STD_LOGIC;
 	SIGNAL ctrl_err			: STD_LOGIC;
@@ -346,6 +345,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL drbt_req			: STD_LOGIC;
 	SIGNAL drbt_gnt			: STD_LOGIC;
 	SIGNAL com_aval			: STD_LOGIC;
+	SIGNAL rs485_not_dac	: STD_LOGIC;
 	
 	COMPONENT ROC
 		PORT (
@@ -836,7 +836,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 		);
 	END COMPONENT;
 
-	COMPONENT dcom_03 
+	COMPONENT dcom
 		port (
 			BCLK :  IN  STD_LOGIC;
 			CCLK :  IN  STD_LOGIC;
@@ -852,7 +852,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			pulse_sent :  IN  STD_LOGIC;
 			rx_rdreq :  IN  STD_LOGIC;
 			drbt_req :  IN  STD_LOGIC;
-			dec_thr :  IN  STD_LOGIC_VECTOR(9 downto 0);
+			rs485_not_dac :  IN  STD_LOGIC;
 			dudt :  IN  STD_LOGIC_VECTOR(7 downto 0);
 			fc_adc :  IN  STD_LOGIC_VECTOR(9 downto 0);
 			tx_fd :  IN  STD_LOGIC_VECTOR(7 downto 0);
@@ -1076,7 +1076,9 @@ BEGIN
 	com_status(20)	<= txrdef;
 	drbt_req		<= com_ctrl(2);
 	dudt			<= com_ctrl(15 downto 8);
-	dec_thr			<= com_ctrl(25 downto 16);
+--	dec_thr			<= com_ctrl(25 downto 16);
+	rs485_not_dac	<= com_ctrl(3);
+	
 --	PROCESS (RST,CLK20)
 --	BEGIN
 --		IF RST='1' THEN
@@ -1323,24 +1325,24 @@ BEGIN
 --			TC				=> open
 --		);
 	
-	inst_rs486 : rs486
-		PORT MAP (
-			CLK			=> CLK20,
-			RST			=> RST,
-			-- control
-			enable		=> enable_rs485,
-			-- manual control
-			rs486_ena	=> rs486_ena,
-			rs486_tx	=> rs486_tx,
-			rs486_rx	=> rs486_rx,
-			-- Communications RS485
-			HDV_Rx		=> HDV_Rx,
-			HDV_RxENA	=> HDV_RxENA,
-			HDV_TxENA	=> HDV_TxENA,
-			HDV_IN		=> HDV_IN,
-			-- test connector
-			TC			=> open
-		);
+--	inst_rs486 : rs486
+--		PORT MAP (
+--			CLK			=> CLK20,
+--			RST			=> RST,
+--			-- control
+--			enable		=> enable_rs485,
+--			-- manual control
+--			rs486_ena	=> rs486_ena,
+--			rs486_tx	=> rs486_tx,
+--			rs486_rx	=> rs486_rx,
+--			-- Communications RS485
+--			HDV_Rx		=> HDV_Rx,
+--			HDV_RxENA	=> HDV_RxENA,
+--			HDV_TxENA	=> HDV_TxENA,
+--			HDV_IN		=> HDV_IN,
+--			-- test connector
+--			TC			=> open
+--		);
 		
 --	inst_com_ADC_RC : com_ADC_RC
 --		PORT MAP(
@@ -1610,12 +1612,12 @@ BEGIN
 	TC(1)	<= fifo_msg;
 	TC(3)	<= drbt_gnt;
 	TC(4)	<= drbt_req;
-	dcom_03_inst : dcom_03 
+	dcom_inst : dcom
 		port MAP (
 			BCLK		=> CLK20,
 			CCLK		=> CLK20,
 			mono_clk_en	=> low,
-			rs4_out		=> low,
+			rs4_out		=> HDV_Rx,
 			msg_rd		=> msg_rd,
 			dom_A_sel_L	=> B_nA,
 			dom_B_sel_L	=> A_nB,
@@ -1626,7 +1628,7 @@ BEGIN
 			pulse_sent	=> low,
 			rx_rdreq	=> rx_fifo_rd,
 			drbt_req 	=> drbt_req,
-			dec_thr 	=> dec_thr,
+			rs485_not_dac 	=> rs485_not_dac,
 			dudt 		=> dudt,
 			fc_adc		=> COM_AD_D,
 			tx_fd		=> com_tx_fifo,
@@ -1634,8 +1636,8 @@ BEGIN
 			last_byte	=> open,
 			dac_clk		=> open,
 			dac_slp		=> COM_TX_SLEEP,
-			rs4_in		=> open,
-			rs4_den		=> open,
+			rs4_in		=> HDV_IN,
+			rs4_den		=> HDV_TxENA,
 			ntx_led		=> open,
 			msg_sent	=> open,
 			txwref		=> open,
@@ -1644,7 +1646,7 @@ BEGIN
 			txrdef		=> txrdef,
 			txwraff		=> txwraff,
 			ctrl_sent	=> TC(5),
-			rs4_ren		=> open,
+			rs4_ren		=> HDV_RxENA,
 			nrx_led		=> open,
 			adc_clk		=> open,
 			data_stb	=> open, --TC(3),

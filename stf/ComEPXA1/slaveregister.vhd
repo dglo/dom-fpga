@@ -91,6 +91,7 @@ BEGIN
 				registers(i) <= (others=>'0');
 			END LOOP;
 			registers(2) <= "00000000000000001111000000000000";
+			registers(12) <= "00000000000000000001011000000000";
 		ELSIF CLK'EVENT AND CLK='1' THEN
 	--		com_adc_write_en <= '0';
 	--		flash_adc_write_en <= '0';

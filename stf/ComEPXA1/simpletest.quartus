@@ -13,8 +13,14 @@ SOFTWARE_SETTINGS_LIST
 }
 FILES
 {
-	AHDL_FILE = ..\..\common\com\rev_003.tdf;
-	BDF_FILE = ..\..\common\com\dcom_03.bdf;
+	AHDL_FILE = ..\..\common\com\Rx_chan\edges\ONE_DET.tdf;
+	INCLUDE_FILE = ..\..\common\com\Rx_chan\edges\ONE_DET.inc;
+	AHDL_FILE = ..\..\common\com\Rx_chan\edges\adc_to_digital.tdf;
+	AHDL_FILE = ..\..\common\com\Tx_chan\dac_rs_tab_trap_01.tdf;
+	BDF_FILE = ..\..\common\com\Rx_chan\DC_Rx_chan_04.bdf;
+	BDF_FILE = ..\..\common\com\Tx_chan\DC_Tx_chan_04.bdf;
+	AHDL_FILE = ..\..\common\com\rev_004.tdf;
+	BDF_FILE = ..\..\common\com\dcom.bdf;
 	VHDL_FILE = slaveregister.vhd;
 	AHDL_FILE = ..\..\common\com\Rx_chan\DC_MREC.tdf;
 	INCLUDE_FILE = ..\..\common\com\Parity\Par_74180.inc;
@@ -38,7 +44,6 @@ FILES
 	AHDL_FILE = ..\..\common\com\Rx_chan\UART\rxshr8.tdf;
 	AHDL_FILE = ..\..\common\com\Rx_chan\UART\UA_RX_12.tdf;
 	AHDL_FILE = ..\..\common\com\Rx_chan\RX_MREC.tdf;
-	BDF_FILE = ..\..\common\com\Rx_chan\DC_Rx_chan_01.bdf;
 	AHDL_FILE = ..\..\common\com\Rx_chan\meanval\dec2.tdf;
 	AHDL_FILE = ..\..\common\com\Rx_chan\meanval\add10.tdf;
 	GDF_FILE = ..\..\common\com\Rx_chan\meanval\mean_val.gdf;
@@ -57,7 +62,6 @@ FILES
 	AHDL_FILE = ..\..\common\com\Tx_chan\txbitct.tdf;
 	AHDL_FILE = ..\..\common\com\Tx_chan\txct.tdf;
 	AHDL_FILE = ..\..\common\com\Tx_chan\txshr10.tdf;
-	BDF_FILE = ..\..\common\com\Tx_chan\DC_Tx_chan_01.bdf;
 	BDF_FILE = ..\..\common\com\Parity\Par_74180.bdf;
 	BDF_FILE = ..\..\common\com\Mono_flop\mono.bdf;
 	VHDL_FILE = ..\..\common\com\dec_threshold.vhd;
