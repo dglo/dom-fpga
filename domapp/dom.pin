@@ -1,0 +1,717 @@
+ -- Copyright (C) 1991-2004 Altera Corporation
+ -- Any  megafunction  design,  and related netlist (encrypted  or  decrypted),
+ -- support information,  device programming or simulation file,  and any other
+ -- associated  documentation or information  provided by  Altera  or a partner
+ -- under  Altera's   Megafunction   Partnership   Program  may  be  used  only
+ -- to program  PLD  devices (but not masked  PLD  devices) from  Altera.   Any
+ -- other  use  of such  megafunction  design,  netlist,  support  information,
+ -- device programming or simulation file,  or any other  related documentation
+ -- or information  is prohibited  for  any  other purpose,  including, but not
+ -- limited to  modification,  reverse engineering,  de-compiling, or use  with
+ -- any other  silicon devices,  unless such use is  explicitly  licensed under
+ -- a separate agreement with  Altera  or a megafunction partner.  Title to the
+ -- intellectual property,  including patents,  copyrights,  trademarks,  trade
+ -- secrets,  or maskworks,  embodied in any such megafunction design, netlist,
+ -- support  information,  device programming or simulation file,  or any other
+ -- related documentation or information provided by  Altera  or a megafunction
+ -- partner, remains with Altera, the megafunction partner, or their respective
+ -- licensors. No other licenses, including any licenses needed under any third
+ -- party's intellectual property, are provided herein.
+ ------------------------------------------------------------------------------
+
+
+
+ ------------------------------------------------------------------------------
+ -- NC         : No Connect. This pin has no internal connection to the device.
+ -- VCC_INT    : Dedicated power pin, which MUST be connected to VCC  (1.8V).
+ -- VCC_IO     : Dedicated power pin, which MUST be connected to VCC  (Refer to
+ --              the table below for voltage).
+ -- GND        : Dedicated ground pin, which MUST be connected to GND.
+ -- GND+       : Unused input. This pin should be connected to GND. It may also
+ --              be connected  to a  valid signal  on the board  (low, high, or
+ --              toggling)  if that signal is required for a different revision
+ --              of the design.
+ -- GND*       : Unused  I/O  pin.   This pin can either be left unconnected or
+ --              connected to GND.  Connecting this pin to GND will improve the
+ --              device's immunity to noise.
+ -- RESERVED_INPUT : Pin is tri-stated and should be connected to the board.
+ ------------------------------------------------------------------------------
+
+
+Quartus II Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
+CHIP  "dom"  ASSIGNED TO AN: EPXA4F672I2
+
+Pin Name/Usage               : Location  : Dir.   : I/O Standard      : Voltage : I/O Bank  : User Assignment
+-------------------------------------------------------------------------------------------------------------
+GND                          : A2        : gnd    :                   :         :           :                
+VCC_INT                      : A3        : power  :                   : 1.8V    :           :                
+SDRAMADDR[5]                 : A4        : output : LVTTL             :         : 2         : N              
+SDRAMWEN                     : A5        : output : LVTTL             :         : 2         : N              
+VCC_IO                       : A6        : power  :                   : 3.3V    :           :                
+SD_DQ26                      : A7        : bidir  : LVTTL             :         :           : N              
+GND                          : A8        : gnd    :                   :         :           :                
+SDRAMDQ[16]                  : A9        : bidir  : LVTTL             :         : 2         : N              
+GND                          : A10       : gnd    :                   :         :           :                
+SDRAMDQ[15]                  : A11       : bidir  : LVTTL             :         : 2         : N              
+SDRAMDQ[11]                  : A12       : bidir  : LVTTL             :         : 2         : N              
+VCC_IO                       : A13       : power  :                   : 3.3V    :           :                
+GND                          : A14       : gnd    :                   :         :           :                
+GND+                         : A15       :        :                   :         : 3         :                
+GND+                         : A16       :        :                   :         : 3         :                
+GND                          : A17       : gnd    :                   :         :           :                
+PGM[4]                       : A18       : output : LVTTL             :         : 3         : Y              
+GND                          : A19       : gnd    :                   :         :           :                
+PGM[3]                       : A20       : output : LVTTL             :         : 3         : Y              
+VCC_IO                       : A21       : power  :                   : 3.3V    :           :                
+RESERVED_INPUT               : A22       :        :                   :         : 3         :                
+~INIT_DONE~                  : A23       : output : LVTTL             :         : 3         : N              
+VCC_INT                      : A24       : power  :                   : 1.8V    :           :                
+GND                          : A25       : gnd    :                   :         :           :                
+GND                          : B1        : gnd    :                   :         :           :                
+GND                          : B2        : gnd    :                   :         :           :                
+VCC_INT                      : B3        : power  :                   : 1.8V    :           :                
+SDRAMADDR[6]                 : B4        : output : LVTTL             :         : 2         : N              
+SDRAMCLK                     : B5        : output : LVTTL             :         : 2         : N              
+GND                          : B6        : gnd    :                   :         :           :                
+SD_DQ27                      : B7        : bidir  : LVTTL             :         :           : N              
+VCC_INT                      : B8        : power  :                   : 1.8V    :           :                
+SDRAMDQ[18]                  : B9        : bidir  : LVTTL             :         : 2         : N              
+VCC_INT                      : B10       : power  :                   : 1.8V    :           :                
+SDRAMDQ[13]                  : B11       : bidir  : LVTTL             :         : 2         : N              
+SDRAMDQ[7]                   : B12       : bidir  : LVTTL             :         : 2         : N              
+GND                          : B13       : gnd    :                   :         :           :                
+VCC_IO                       : B14       : power  :                   : 3.3V    :           :                
+TDO                          : B15       : output :                   :         :           :                
+NRESET                       : B16       : bidir  : LVTTL             :         :           : N              
+VCC_INT                      : B17       : power  :                   : 1.8V    :           :                
+PGM[1]                       : B18       : output : LVTTL             :         : 3         : Y              
+VCC_INT                      : B19       : power  :                   : 1.8V    :           :                
+PGM[0]                       : B20       : output : LVTTL             :         : 3         : Y              
+GND                          : B21       : gnd    :                   :         :           :                
+PGM[2]                       : B22       : output : LVTTL             :         : 3         : Y              
+RESERVED_INPUT               : B23       :        :                   :         : 3         :                
+VCC_INT                      : B24       : power  :                   : 1.8V    :           :                
+GND                          : B25       : gnd    :                   :         :           :                
+GND                          : B26       : gnd    :                   :         :           :                
+VCC_INT                      : C1        : power  :                   : 1.8V    :           :                
+VCC_INT                      : C2        : power  :                   : 1.8V    :           :                
+GND                          : C3        : gnd    :                   :         :           :                
+VCC_INT                      : C4        : power  :                   : 1.8V    :           :                
+SDRAMADDR[1]                 : C5        : output : LVTTL             :         : 2         : N              
+SDRAMDQM[3]                  : C6        : output : LVTTL             :         : 2         : N              
+SD_DQ30                      : C7        : bidir  : LVTTL             :         :           : N              
+DDR_VS2                      : C8        :        :                   :         :           :                
+SDRAMDQ[19]                  : C9        : bidir  : LVTTL             :         : 2         : N              
+SD_DQ_ECC2                   : C10       :        :                   :         :           :                
+SD_DQ_ECC3                   : C11       :        :                   :         :           :                
+SDRAMDQ[12]                  : C12       : bidir  : LVTTL             :         : 2         : N              
+SDRAMDQ[6]                   : C13       : bidir  : LVTTL             :         : 2         : N              
+JSELECT                      : C14       :        :                   :         :           :                
+GND                          : C15       :        :                   :         :           :                
+BOOT_FLASH                   : C16       :        :                   :         :           :                
+EBIDQ[0]                     : C17       : bidir  : LVTTL             :         : 6         : N              
+EBI_A22                      : C18       : output : LVTTL             :         :           : N              
+EBIADDR[15]                  : C19       : output : LVTTL             :         : 6         : N              
+EBIADDR[12]                  : C20       : output : LVTTL             :         : 6         : N              
+EBIADDR[1]                   : C21       : output : LVTTL             :         : 6         : N              
+EBIOEN                       : C22       : output : LVTTL             :         : 6         : N              
+VCC_INT                      : C23       : power  :                   : 1.8V    :           :                
+GND                          : C24       : gnd    :                   :         :           :                
+VCC_INT                      : C25       : power  :                   : 1.8V    :           :                
+VCC_INT                      : C26       : power  :                   : 1.8V    :           :                
+RESERVED_INPUT               : D1        :        :                   :         : 12        :                
+RESERVED_INPUT               : D2        :        :                   :         : 12        :                
+VCC_INT                      : D3        : power  :                   : 1.8V    :           :                
+GND                          : D4        : gnd    :                   :         :           :                
+SDRAMADDR[8]                 : D5        : output : LVTTL             :         : 2         : N              
+SDRAMCSN[1]                  : D6        : output : LVTTL             :         : 2         : N              
+SD_DQ31                      : D7        : bidir  : LVTTL             :         :           : N              
+SD_DQ24                      : D8        : bidir  : LVTTL             :         :           : N              
+SDRAMDQ[22]                  : D9        : bidir  : LVTTL             :         : 2         : N              
+SD_DQM_ECC                   : D10       :        :                   :         :           :                
+SD_DQ_ECC5                   : D11       :        :                   :         :           :                
+~SD_DDR_VS0~                 : D12       : output : LVTTL             :         : 2         : N              
+SDRAMDQ[5]                   : D13       : bidir  : LVTTL             :         : 2         : N              
+DEBUG_EN                     : D14       :        :                   :         :           :                
+nCEO                         : D15       : output :                   :         :           :                
+TRST                         : D16       : input  :                   :         :           :                
+EBIDQ[2]                     : D17       : bidir  : LVTTL             :         : 6         : N              
+EBIADDR[18]                  : D18       : output : LVTTL             :         : 6         : N              
+EBIADDR[13]                  : D19       : output : LVTTL             :         : 6         : N              
+EBIADDR[8]                   : D20       : output : LVTTL             :         : 6         : N              
+EBICLK                       : D21       : output : LVTTL             :         : 6         : N              
+EBIBE[0]                     : D22       : output : LVTTL             :         : 6         : N              
+GND                          : D23       : gnd    :                   :         :           :                
+VCC_INT                      : D24       : power  :                   : 1.8V    :           :                
+RESERVED_INPUT               : D25       :        :                   :         : 8         :                
+RESERVED_INPUT               : D26       :        :                   :         : 8         :                
+RESERVED_INPUT               : E1        :        :                   :         : 12        :                
+RESERVED_INPUT               : E2        :        :                   :         : 12        :                
+FPGA_DA                      : E3        : output : LVTTL             :         : 13        : Y              
+A_nB                         : E4        : input  : LVTTL             :         : 13        : Y              
+SDRAMADDR[11]                : E5        : output : LVTTL             :         : 2         : N              
+SDRAMADDR[2]                 : E6        : output : LVTTL             :         : 2         : N              
+SDRAMCSN[0]                  : E7        : output : LVTTL             :         : 2         : N              
+SD_DQ28                      : E8        : bidir  : LVTTL             :         :           : N              
+SDRAMDQ[20]                  : E9        : bidir  : LVTTL             :         : 2         : N              
+SD_DQ_ECC4                   : E10       :        :                   :         :           :                
+~SD_DDR_VS1~                 : E11       : output : LVTTL             :         : 2         : N              
+SDRAMDQ[8]                   : E12       : bidir  : LVTTL             :         : 2         : N              
+SDRAMDQ[4]                   : E13       : bidir  : LVTTL             :         : 2         : N              
+EBIDQ[11]                    : E14       : bidir  : LVTTL             :         : 6         : N              
+EBIDQ[9]                     : E15       : bidir  : LVTTL             :         : 6         : N              
+EBIDQ[3]                     : E16       : bidir  : LVTTL             :         : 6         : N              
+EBI_A24                      : E17       : output : LVTTL             :         :           : N              
+EBIADDR[19]                  : E18       : output : LVTTL             :         : 6         : N              
+EBIADDR[11]                  : E19       : output : LVTTL             :         : 6         : N              
+EBIADDR[2]                   : E20       : output : LVTTL             :         : 6         : N              
+EBIWEN                       : E21       : output : LVTTL             :         : 6         : N              
+VCC_CKLK5                    : E22       : power  :                   : 1.8V    :           :                
+VCC_CKLK6                    : E23       : power  :                   : 1.8V    :           :                
+PROC_TMS                     : E24       :        :                   :         :           :                
+RESERVED_INPUT               : E25       :        :                   :         : 8         :                
+RESERVED_INPUT               : E26       :        :                   :         : 8         :                
+RESERVED_INPUT               : F1        :        :                   :         : 12        :                
+RESERVED_INPUT               : F2        :        :                   :         : 12        :                
+FPGA_CE                      : F3        : output : LVTTL             :         : 13        : Y              
+HDV_IN                       : F4        : output : LVTTL             :         : 13        : Y              
+SDRAMADDR[7]                 : F5        : output : LVTTL             :         : 2         : N              
+SDRAMADDR[14]                : F6        : output : LVTTL             :         : 2         : N              
+SD_CLKE                      : F7        : output : LVTTL             :         :           : N              
+SDRAMCASN                    : F8        : output : LVTTL             :         : 2         : N              
+SDRAMDQM[2]                  : F9        : output : LVTTL             :         : 2         : N              
+SD_DQS_ECC                   : F10       :        :                   :         :           :                
+SD_DQ_ECC6                   : F11       :        :                   :         :           :                
+SDRAMDQS[0]                  : F12       : bidir  : LVTTL             :         : 2         : N              
+SDRAMDQ[2]                   : F13       : bidir  : LVTTL             :         : 2         : N              
+EBIDQ[14]                    : F14       : bidir  : LVTTL             :         : 6         : N              
+EBIDQ[7]                     : F15       : bidir  : LVTTL             :         : 6         : N              
+EBIDQ[5]                     : F16       : bidir  : LVTTL             :         : 6         : N              
+EBIADDR[21]                  : F17       : output : LVTTL             :         : 6         : N              
+EBIADDR[14]                  : F18       : output : LVTTL             :         : 6         : N              
+EBIADDR[9]                   : F19       : output : LVTTL             :         : 6         : N              
+EBIADDR[0]                   : F20       : output : LVTTL             :         : 6         : N              
+UARTRXD                      : F21       : input  : LVTTL             :         : 7         : N              
+GND_CKLK5                    : F22       : gnd    :                   :         :           :                
+GND_CKLK6                    : F23       : gnd    :                   :         :           :                
+PROC_TCK                     : F24       :        :                   :         :           :                
+RESERVED_INPUT               : F25       :        :                   :         : 8         :                
+RESERVED_INPUT               : F26       :        :                   :         : 8         :                
+RESERVED_INPUT               : G1        :        :                   :         : 12        :                
+RESERVED_INPUT               : G2        :        :                   :         : 12        :                
+HDV_TxENA                    : G3        : output : LVTTL             :         : 13        : Y              
+HDV_RxENA                    : G4        : output : LVTTL             :         : 13        : Y              
+SDRAMADDR[9]                 : G5        : output : LVTTL             :         : 2         : N              
+SDRAMADDR[3]                 : G6        : output : LVTTL             :         : 2         : N              
+SDRAMCLKN                    : G7        : output : LVTTL             :         : 2         : N              
+SD_DQ29                      : G8        : bidir  : LVTTL             :         :           : N              
+SDRAMDQ[23]                  : G9        : bidir  : LVTTL             :         : 2         : N              
+SD_DQ_ECC0                   : G10       :        :                   :         :           :                
+SDRAMDQM[1]                  : G11       : output : LVTTL             :         : 2         : N              
+SDRAMDQ[9]                   : G12       : bidir  : LVTTL             :         : 2         : N              
+SDRAMDQ[3]                   : G13       : bidir  : LVTTL             :         : 2         : N              
+EBIDQ[13]                    : G14       : bidir  : LVTTL             :         : 6         : N              
+EBIDQ[6]                     : G15       : bidir  : LVTTL             :         : 6         : N              
+EBIDQ[1]                     : G16       : bidir  : LVTTL             :         : 6         : N              
+EBIADDR[16]                  : G17       : output : LVTTL             :         : 6         : N              
+EBIADDR[7]                   : G18       : output : LVTTL             :         : 6         : N              
+EBIADDR[4]                   : G19       : output : LVTTL             :         : 6         : N              
+EBICSN[3]                    : G20       : output : LVTTL             :         : 6         : N              
+UARTTXD                      : G21       : output : LVTTL             :         : 7         : N              
+UARTCTSN                     : G22       : input  : LVTTL             :         : 7         : N              
+PROC_TDO                     : G23       :        :                   :         :           :                
+PROC_TRST                    : G24       :        :                   :         :           :                
+RESERVED_INPUT               : G25       :        :                   :         : 8         :                
+RESERVED_INPUT               : G26       :        :                   :         : 8         :                
+RESERVED_INPUT               : H1        :        :                   :         : 12        :                
+RESERVED_INPUT               : H2        :        :                   :         : 12        :                
+HDV_Rx                       : H3        : input  : LVTTL             :         : 13        : Y              
+COM_AD_OTR                   : H4        : input  : LVTTL             :         : 13        : Y              
+COM_AD_D[11]                 : H5        : input  : LVTTL             :         : 13        : Y              
+TRACEPIPESTAT0               : H6        :        :                   :         :           :                
+TRACEPIPESTAT1               : H7        :        :                   :         :           :                
+SDRAMADDR[12]                : H8        : output : LVTTL             :         : 2         : N              
+SD_DQ25                      : H9        : bidir  : LVTTL             :         :           : N              
+SDRAMDQ[17]                  : H10       : bidir  : LVTTL             :         : 2         : N              
+SDRAMDQS[1]                  : H11       : bidir  : LVTTL             :         : 2         : N              
+SDRAMDQM[0]                  : H12       : output : LVTTL             :         : 2         : N              
+SDRAMDQ[1]                   : H13       : bidir  : LVTTL             :         : 2         : N              
+EBIDQ[15]                    : H14       : bidir  : LVTTL             :         : 6         : N              
+EBIDQ[8]                     : H15       : bidir  : LVTTL             :         : 6         : N              
+EBIADDR[20]                  : H16       : output : LVTTL             :         : 6         : N              
+EBIADDR[10]                  : H17       : output : LVTTL             :         : 6         : N              
+EBIADDR[3]                   : H18       : output : LVTTL             :         : 6         : N              
+INTEXTPIN                    : H19       : input  : LVTTL             :         : 6         : N              
+EBICSN[1]                    : H20       : output : LVTTL             :         : 6         : N              
+UARTRTSN                     : H21       : output : LVTTL             :         : 7         : N              
+UARTDSRN                     : H22       : input  : LVTTL             :         : 7         : N              
+PROC_TDI                     : H23       :        :                   :         :           :                
+CLK_REF                      : H24       : input  : LVTTL             :         :           : N              
+RESERVED_INPUT               : H25       :        :                   :         : 8         :                
+RESERVED_INPUT               : H26       :        :                   :         : 8         :                
+RESERVED_INPUT               : J1        :        :                   :         : 12        :                
+RESERVED_INPUT               : J2        :        :                   :         : 12        :                
+COM_AD_D[10]                 : J3        : input  : LVTTL             :         : 13        : Y              
+COM_AD_D[9]                  : J4        : input  : LVTTL             :         : 13        : Y              
+COM_AD_D[8]                  : J5        : input  : LVTTL             :         : 13        : Y              
+TRACESYNC                    : J6        :        :                   :         :           :                
+TRACEPKT4                    : J7        :        :                   :         :           :                
+SDRAMADDR[13]                : J8        : output : LVTTL             :         : 2         : N              
+SDRAMRASN                    : J9        : output : LVTTL             :         : 2         : N              
+SDRAMDQS[2]                  : J10       : bidir  : LVTTL             :         : 2         : N              
+SD_DQ_ECC1                   : J11       :        :                   :         :           :                
+SDRAMDQ[10]                  : J12       : bidir  : LVTTL             :         : 2         : N              
+SDRAMDQ[0]                   : J13       : bidir  : LVTTL             :         : 2         : N              
+EBIDQ[10]                    : J14       : bidir  : LVTTL             :         : 6         : N              
+EBIDQ[4]                     : J15       : bidir  : LVTTL             :         : 6         : N              
+EBI_A23                      : J16       : output : LVTTL             :         :           : N              
+EBIADDR[6]                   : J17       : output : LVTTL             :         : 6         : N              
+EBIADDR[5]                   : J18       : output : LVTTL             :         : 6         : N              
+EBICSN[2]                    : J19       : output : LVTTL             :         : 6         : N              
+UARTDTRN                     : J20       : output : LVTTL             :         : 7         : N              
+UARTRIN                      : J21       : bidir  : LVTTL             :         : 7         : N              
+UARTDCDN                     : J22       : bidir  : LVTTL             :         : 7         : N              
+EN_SELECT                    : J23       :        :                   :         :           :                
+NPOR                         : J24       : input  : LVTTL             :         :           : N              
+RESERVED_INPUT               : J25       :        :                   :         : 8         :                
+RESERVED_INPUT               : J26       :        :                   :         : 8         :                
+RESERVED_INPUT               : K1        :        :                   :         : 12        :                
+COM_DB[5]                    : K2        : output : LVTTL             :         : 12        : Y              
+COM_AD_D[7]                  : K3        : input  : LVTTL             :         : 13        : Y              
+COM_AD_D[6]                  : K4        : input  : LVTTL             :         : 13        : Y              
+COM_AD_D[5]                  : K5        : input  : LVTTL             :         : 13        : Y              
+TRACEPKT3                    : K6        :        :                   :         :           :                
+TRACEPKT8                    : K7        :        :                   :         :           :                
+SDRAMADDR[4]                 : K8        : output : LVTTL             :         : 2         : N              
+SDRAMADDR[0]                 : K9        : output : LVTTL             :         : 2         : N              
+SD_DQS3                      : K10       : bidir  : LVTTL             :         :           : N              
+SDRAMADDR[10]                : K11       : output : LVTTL             :         : 2         : N              
+SDRAMDQ[21]                  : K12       : bidir  : LVTTL             :         : 2         : N              
+SDRAMDQ[14]                  : K13       : bidir  : LVTTL             :         : 2         : N              
+EBIDQ[12]                    : K14       : bidir  : LVTTL             :         : 6         : N              
+EBIADDR[17]                  : K15       : output : LVTTL             :         : 6         : N              
+EBIACK                       : K16       : input  : LVTTL             :         : 6         : N              
+EBICSN[0]                    : K17       : output : LVTTL             :         : 6         : N              
+EBIBE[1]                     : K18       : output : LVTTL             :         : 6         : N              
+RESERVED_INPUT               : K19       :        :                   :         : 8         :                
+RESERVED_INPUT               : K20       :        :                   :         : 8         :                
+RESERVED_INPUT               : K21       :        :                   :         : 8         :                
+RESERVED_INPUT               : K22       :        :                   :         : 8         :                
+GND                          : K23       : gnd    :                   :         :           :                
+RESERVED_INPUT               : K24       :        :                   :         : 8         :                
+RESERVED_INPUT               : K25       :        :                   :         : 8         :                
+RESERVED_INPUT               : K26       :        :                   :         : 8         :                
+COM_DB[6]                    : L1        : output : LVTTL             :         : 12        : Y              
+COM_DB[7]                    : L2        : output : LVTTL             :         : 12        : Y              
+COM_AD_D[4]                  : L3        : input  : LVTTL             :         : 13        : Y              
+COM_AD_D[3]                  : L4        : input  : LVTTL             :         : 13        : Y              
+COM_AD_D[2]                  : L5        : input  : LVTTL             :         : 13        : Y              
+TRACEPKT7                    : L6        :        :                   :         :           :                
+TRACEPKT14                   : L7        :        :                   :         :           :                
+TRACEPKT2                    : L8        :        :                   :         :           :                
+TRACECLK                     : L9        :        :                   :         :           :                
+TRACEPIPESTAT2               : L10       :        :                   :         :           :                
+GND                          : L11       : gnd    :                   :         :           :                
+VCC_IO                       : L12       : power  :                   : 3.3V    :           :                
+VCC_INT                      : L13       : power  :                   : 1.8V    :           :                
+VCC_IO                       : L14       : power  :                   : 3.3V    :           :                
+VCC_INT                      : L15       : power  :                   : 1.8V    :           :                
+GND                          : L16       : gnd    :                   :         :           :                
+VCC_IO                       : L17       : power  :                   : 3.3V    :           :                
+GND_CKLK3                    : L18       : gnd    :                   :         :           :                
+FL_TMS                       : L19       : output : LVTTL             :         : 8         : Y              
+FL_TDO                       : L20       : input  : LVTTL             :         : 8         : Y              
+RESERVED_INPUT               : L21       :        :                   :         : 8         :                
+RESERVED_INPUT               : L22       :        :                   :         : 8         :                
+RESERVED_INPUT               : L23       :        :                   :         : 8         :                
+RESERVED_INPUT               : L24       :        :                   :         : 8         :                
+RESERVED_INPUT               : L25       :        :                   :         : 8         :                
+RESERVED_INPUT               : L26       :        :                   :         : 8         :                
+COM_DB[8]                    : M1        : output : LVTTL             :         : 12        : Y              
+COM_DB[9]                    : M2        : output : LVTTL             :         : 12        : Y              
+RESERVED_INPUT               : M3        :        :                   :         : 12        :                
+CLKLK_OUT2p                  : M4        : output : LVTTL             :         :           : Y              
+PGM[12]                      : M5        : output : LVTTL             :         : 13        : Y              
+TRACEPKT12                   : M6        :        :                   :         :           :                
+TRACEPKT10                   : M7        :        :                   :         :           :                
+TRACEPKT0                    : M8        :        :                   :         :           :                
+TRACEPKT5                    : M9        :        :                   :         :           :                
+VCC_IO                       : M10       : power  :                   : 3.3V    :           :                
+VCC_IO                       : M11       : power  :                   : 3.3V    :           :                
+GND                          : M12       : gnd    :                   :         :           :                
+VCC_INT                      : M13       : power  :                   : 1.8V    :           :                
+VCC_IO                       : M14       : power  :                   : 3.3V    :           :                
+GND                          : M15       : gnd    :                   :         :           :                
+VCC_INT                      : M16       : power  :                   : 1.8V    :           :                
+GND                          : M17       : gnd    :                   :         :           :                
+GND_CKLK3                    : M18       : gnd    :                   :         :           :                
+FL_TDI                       : M19       : output : LVTTL             :         : 8         : Y              
+NCONFIG                      : M20       : input  :                   :         :           :                
+FL_TCK                       : M21       : output : LVTTL             :         : 8         : Y              
+RESERVED_INPUT               : M22       :        :                   :         : 8         :                
+FL_Trigger                   : M23       : output : LVTTL             :         : 8         : Y              
+FL_ATTN                      : M24       : input  : LVTTL             :         : 8         : Y              
+FL_AUX_RESET                 : M25       : output : LVTTL             :         : 8         : Y              
+RESERVED_INPUT               : M26       :        :                   :         : 8         :                
+GND                          : N1        : gnd    :                   :         :           :                
+VCC_INT                      : N2        : power  :                   : 1.8V    :           :                
+VCC_IO                       : N3        : power  :                   : 3.3V    :           :                
+GND                          : N4        : gnd    :                   :         :           :                
+GND+                         : N5        :        :                   :         :           :                
+TRACEPKT15                   : N6        :        :                   :         :           :                
+TRACEPKT13                   : N7        :        :                   :         :           :                
+TRACEPKT6                    : N8        :        :                   :         :           :                
+TRACEPKT1                    : N9        :        :                   :         :           :                
+VCC_INT                      : N10       : power  :                   : 1.8V    :           :                
+GND                          : N11       : gnd    :                   :         :           :                
+VCC_INT                      : N12       : power  :                   : 1.8V    :           :                
+GND                          : N13       : gnd    :                   :         :           :                
+GND                          : N14       : gnd    :                   :         :           :                
+VCC_IO                       : N15       : power  :                   : 3.3V    :           :                
+GND                          : N16       : gnd    :                   :         :           :                
+VCC_IO                       : N17       : power  :                   : 3.3V    :           :                
+GND                          : N18       : gnd    :                   :         :           :                
+VCC_CKLK3                    : N19       : power  :                   : 1.8V    :           :                
+RESERVED_INPUT               : N20       :        :                   :         : 9         :                
+MSEL1                        : N21       : input  :                   :         :           :                
+MSEL0                        : N22       : input  :                   :         :           :                
+FL_Trigger_bar               : N23       : output : LVTTL             :         : 8         : Y              
+VCC_IO                       : N24       : power  :                   : 3.3V    :           :                
+RESERVED_INPUT               : N25       :        :                   :         : 8         :                
+GND                          : N26       : gnd    :                   :         :           :                
+GND                          : P1        : gnd    :                   :         :           :                
+GND                          : P2        : gnd    :                   :         :           :                
+GND                          : P3        : gnd    :                   :         :           :                
+RESERVED_INPUT               : P4        :        :                   :         : 12        :                
+TDI                          : P5        : input  :                   :         :           :                
+nCE                          : P6        : input  :                   :         :           :                
+RESERVED_INPUT               : P7        :        :                   :         : 13        :                
+TRACEPKT11                   : P8        :        :                   :         :           :                
+TRACEPKT9                    : P9        :        :                   :         :           :                
+VCC_IO                       : P10       : power  :                   : 3.3V    :           :                
+VCC_IO                       : P11       : power  :                   : 3.3V    :           :                
+VCC_IO                       : P12       : power  :                   : 3.3V    :           :                
+GND                          : P13       : gnd    :                   :         :           :                
+GND                          : P14       : gnd    :                   :         :           :                
+VCC_INT                      : P15       : power  :                   : 1.8V    :           :                
+GND                          : P16       : gnd    :                   :         :           :                
+VCC_IO                       : P17       : power  :                   : 3.3V    :           :                
+VCC_INT                      : P18       : power  :                   : 1.8V    :           :                
+GND_CKOUT1                   : P19       : gnd    :                   :         :           :                
+CLK1p                        : P20       : input  : LVTTL             :         : 9         : Y              
+PGM[11]                      : P21       : output : LVTTL             :         : 8         : Y              
+GND*                         : P22       :        :                   :         :           :                
+GND                          : P23       : gnd    :                   :         :           :                
+VCC_INT                      : P24       : power  :                   : 1.8V    :           :                
+VCC_INT                      : P25       : power  :                   : 1.8V    :           :                
+GND                          : P26       : gnd    :                   :         :           :                
+COM_DB[10]                   : R1        : output : LVTTL             :         : 12        : Y              
+COM_DB[11]                   : R2        : output : LVTTL             :         : 12        : Y              
+RESERVED_INPUT               : R3        :        :                   :         : 13        :                
+RESERVED_INPUT               : R4        :        :                   :         : 13        :                
+COM_AD_D[1]                  : R5        : input  : LVTTL             :         : 13        : Y              
+COM_AD_D[0]                  : R6        : input  : LVTTL             :         : 13        : Y              
+DCLK                         : R7        : bidir  :                   :         :           :                
+GND_CKLK4                    : R8        : gnd    :                   :         :           :                
+VCC_CKLK4                    : R9        : power  :                   : 1.8V    :           :                
+VCC_INT                      : R10       : power  :                   : 1.8V    :           :                
+VCC_INT                      : R11       : power  :                   : 1.8V    :           :                
+GND                          : R12       : gnd    :                   :         :           :                
+VCC_IO                       : R13       : power  :                   : 3.3V    :           :                
+VCC_INT                      : R14       : power  :                   : 1.8V    :           :                
+GND                          : R15       : gnd    :                   :         :           :                
+VCC_IO                       : R16       : power  :                   : 3.3V    :           :                
+GND                          : R17       : gnd    :                   :         :           :                
+VCC_IO                       : R18       : power  :                   : 3.3V    :           :                
+VCC_CKOUT1                   : R19       : power  :                   : 3.3V    :           :                
+PLD_FPGA[0]                  : R20       : bidir  : LVTTL             :         : 9         : Y              
+VCC_INT                      : R21       :        :                   :         :           :                
+RESERVED_INPUT               : R22       :        :                   :         : 9         :                
+CLK3p                        : R23       : input  : LVTTL             :         : 9         : Y              
+PGM[9]                       : R24       : output : LVTTL             :         : 8         : Y              
+RESERVED_INPUT               : R25       :        :                   :         : 8         :                
+RESERVED_INPUT               : R26       :        :                   :         : 8         :                
+COM_DB[12]                   : T1        : output : LVTTL             :         : 12        : Y              
+COM_DB[13]                   : T2        : output : LVTTL             :         : 12        : Y              
+RESERVED_INPUT               : T3        :        :                   :         : 13        :                
+RESERVED_INPUT               : T4        :        :                   :         : 13        :                
+RESERVED_INPUT               : T5        :        :                   :         : 13        :                
+RESERVED_INPUT               : T6        :        :                   :         : 13        :                
+PGM[6]                       : T7        : output : LVTTL             :         : 13        : Y              
+VCC_CKLK2                    : T8        : power  :                   : 1.8V    :           :                
+GND_CKLK2                    : T9        : gnd    :                   :         :           :                
+VCC_IO                       : T10       : power  :                   : 3.3V    :           :                
+GND                          : T11       : gnd    :                   :         :           :                
+VCC_INT                      : T12       : power  :                   : 1.8V    :           :                
+GND                          : T13       : gnd    :                   :         :           :                
+GND                          : T14       : gnd    :                   :         :           :                
+VCC_IO                       : T15       : power  :                   : 3.3V    :           :                
+GND                          : T16       : gnd    :                   :         :           :                
+VCC_INT                      : T17       : power  :                   : 1.8V    :           :                
+GND                          : T18       : gnd    :                   :         :           :                
+GND_CKLK1                    : T19       : gnd    :                   :         :           :                
+PLD_FPGA[2]                  : T20       : bidir  : LVTTL             :         : 9         : Y              
+PLD_FPGA[1]                  : T21       : bidir  : LVTTL             :         : 9         : Y              
+FE_PULSER_P[3]               : T22       : output : LVTTL             :         : 9         : Y              
+GND+                         : T23       :        :                   :         :           :                
+FE_PULSER_N[3]               : T24       : output : LVTTL             :         : 9         : Y              
+RESERVED_INPUT               : T25       :        :                   :         : 8         :                
+RESERVED_INPUT               : T26       :        :                   :         : 8         :                
+COM_DB[4]                    : U1        : output : LVTTL             :         : 12        : Y              
+COM_TX_SLEEP                 : U2        : output : LVTTL             :         : 12        : Y              
+RESERVED_INPUT               : U3        :        :                   :         : 13        :                
+RESERVED_INPUT               : U4        :        :                   :         : 13        :                
+RESERVED_INPUT               : U5        :        :                   :         : 13        :                
+RESERVED_INPUT               : U6        :        :                   :         : 13        :                
+RESERVED_INPUT               : U7        :        :                   :         : 13        :                
+VCC_CKOUT2                   : U8        : power  :                   : 3.3V    :           :                
+VCC_INT                      : U9        : power  :                   : 1.8V    :           :                
+GND                          : U10       : gnd    :                   :         :           :                
+VCC_IO                       : U11       : power  :                   : 3.3V    :           :                
+GND                          : U12       : gnd    :                   :         :           :                
+VCC_IO                       : U13       : power  :                   : 3.3V    :           :                
+VCC_INT                      : U14       : power  :                   : 1.8V    :           :                
+VCC_IO                       : U15       : power  :                   : 3.3V    :           :                
+VCC_INT                      : U16       : power  :                   : 1.8V    :           :                
+GND                          : U17       : gnd    :                   :         :           :                
+VCC_IO                       : U18       : power  :                   : 3.3V    :           :                
+VCC_CKLK1                    : U19       : power  :                   : 1.8V    :           :                
+PLD_FPGA[4]                  : U20       : bidir  : LVTTL             :         : 9         : Y              
+PLD_FPGA[3]                  : U21       : bidir  : LVTTL             :         : 9         : Y              
+FE_PULSER_P[2]               : U22       : output : LVTTL             :         : 9         : Y              
+FE_PULSER_N[2]               : U23       : output : LVTTL             :         : 9         : Y              
+PGM[7]                       : U24       : output : LVTTL             :         : 9         : Y              
+RESERVED_INPUT               : U25       :        :                   :         : 8         :                
+RESERVED_INPUT               : U26       :        :                   :         : 8         :                
+FPGA_D[2]                    : V1        : output : LVTTL             :         : 12        : Y              
+FPGA_D[3]                    : V2        : output : LVTTL             :         : 12        : Y              
+PGM[5]                       : V3        : output : LVTTL             :         : 13        : Y              
+RESERVED_INPUT               : V4        :        :                   :         : 13        :                
+RESERVED_INPUT               : V5        :        :                   :         : 13        :                
+RESERVED_INPUT               : V6        :        :                   :         : 13        :                
+PGM[13]                      : V7        : output : LVTTL             :         : 13        : Y              
+GND_CKOUT2                   : V8        : gnd    :                   :         :           :                
+GND                          : V9        : gnd    :                   :         :           :                
+VCC_IO                       : V10       : power  :                   : 3.3V    :           :                
+RESERVED_INPUT               : V11       :        :                   :         : 11        :                
+RESERVED_INPUT               : V12       :        :                   :         : 11        :                
+RESERVED_INPUT               : V13       :        :                   :         : 11        :                
+RESERVED_INPUT               : V14       :        :                   :         : 11        :                
+ATWD0_D[1]                   : V15       : input  : LVTTL             :         : 10        : Y              
+DigitalReset_0               : V16       : output : LVTTL             :         : 10        : Y              
+VCC_IO                       : V17       : power  :                   : 3.3V    :           :                
+GND                          : V18       : gnd    :                   :         :           :                
+PLD_FPGA_BUSY                : V19       : output : LVTTL             :         : 9         : Y              
+PLD_FPGA[7]                  : V20       : bidir  : LVTTL             :         : 9         : Y              
+PLD_FPGA[6]                  : V21       : bidir  : LVTTL             :         : 9         : Y              
+PLD_FPGA[5]                  : V22       : bidir  : LVTTL             :         : 9         : Y              
+FE_PULSER_P[1]               : V23       : output : LVTTL             :         : 9         : Y              
+FE_PULSER_N[1]               : V24       : output : LVTTL             :         : 9         : Y              
+RESERVED_INPUT               : V25       :        :                   :         : 8         :                
+RESERVED_INPUT               : V26       :        :                   :         : 8         :                
+FPGA_D[0]                    : W1        : output : LVTTL             :         : 12        : Y              
+FPGA_D[1]                    : W2        : output : LVTTL             :         : 12        : Y              
+RESERVED_INPUT               : W3        :        :                   :         : 13        :                
+RESERVED_INPUT               : W4        :        :                   :         : 13        :                
+RESERVED_INPUT               : W5        :        :                   :         : 13        :                
+CLK2p                        : W6        : input  : LVTTL             :         : 13        : Y              
+DATA0                        : W7        : input  :                   :         :           :                
+GND                          : W8        : gnd    :                   :         :           :                
+RESERVED_INPUT               : W9        :        :                   :         : 11        :                
+RESERVED_INPUT               : W10       :        :                   :         : 11        :                
+RESERVED_INPUT               : W11       :        :                   :         : 11        :                
+RESERVED_INPUT               : W12       :        :                   :         : 11        :                
+RESERVED_INPUT               : W13       :        :                   :         : 11        :                
+OutputEnable_0               : W14       : output : LVTTL             :         : 10        : Y              
+CounterClock_0               : W15       : output : LVTTL             :         : 10        : Y              
+ATWD0_D[7]                   : W16       : input  : LVTTL             :         : 10        : Y              
+OutputEnable_1               : W17       : output : LVTTL             :         : 10        : Y              
+DigitalReset_1               : W18       : output : LVTTL             :         : 10        : Y              
+GND                          : W19       : gnd    :                   :         :           :                
+COM_DB[3]                    : W20       : output : LVTTL             :         : 9         : Y              
+FPGA_RW                      : W21       : output : LVTTL             :         : 9         : Y              
+PLD_FPGA_nWE                 : W22       : input  : LVTTL             :         : 9         : Y              
+FE_PULSER_N[0]               : W23       : output : LVTTL             :         : 9         : Y              
+FE_PULSER_P[0]               : W24       : output : LVTTL             :         : 9         : Y              
+RESERVED_INPUT               : W25       :        :                   :         : 8         :                
+RESERVED_INPUT               : W26       :        :                   :         : 8         :                
+FPGA_D[4]                    : Y1        : output : LVTTL             :         : 12        : Y              
+FPGA_D[5]                    : Y2        : output : LVTTL             :         : 12        : Y              
+PGM[15]                      : Y3        : output : LVTTL             :         : 13        : Y              
+PGM[14]                      : Y4        : output : LVTTL             :         : 13        : Y              
+CLK4p                        : Y5        : input  : LVTTL             :         : 13        : Y              
+RESERVED_INPUT               : Y6        :        :                   :         : 13        :                
+RESERVED_INPUT               : Y7        :        :                   :         : 12        :                
+RESERVED_INPUT               : Y8        :        :                   :         : 11        :                
+RESERVED_INPUT               : Y9        :        :                   :         : 11        :                
+RESERVED_INPUT               : Y10       :        :                   :         : 11        :                
+RESERVED_INPUT               : Y11       :        :                   :         : 11        :                
+RESERVED_INPUT               : Y12       :        :                   :         : 11        :                
+RESERVED_INPUT               : Y13       :        :                   :         : 11        :                
+RESERVED_INPUT               : Y14       :        :                   :         : 11        :                
+ATWD0_D[0]                   : Y15       : input  : LVTTL             :         : 10        : Y              
+DigitalSet_0                 : Y16       : output : LVTTL             :         : 10        : Y              
+ShiftClock_1                 : Y17       : output : LVTTL             :         : 10        : Y              
+ChannelSelect_1[1]           : Y18       : output : LVTTL             :         : 10        : Y              
+COM_DB[2]                    : Y19       : output : LVTTL             :         : 9         : Y              
+R2BUS[5]                     : Y20       : output : LVTTL             :         : 9         : Y              
+R2BUS[6]                     : Y21       : output : LVTTL             :         : 9         : Y              
+R2BUS[7]                     : Y22       : output : LVTTL             :         : 9         : Y              
+FPGA_LOADED                  : Y23       : output : LVTTL             :         : 9         : Y              
+PLD_FPGA_nOE                 : Y24       : input  : LVTTL             :         : 9         : Y              
+RESERVED_INPUT               : Y25       :        :                   :         : 8         :                
+RESERVED_INPUT               : Y26       :        :                   :         : 8         :                
+SingleLED_TRIGGER            : AA1       : output : LVTTL             :         : 12        : Y              
+FPGA_D[6]                    : AA2       : output : LVTTL             :         : 12        : Y              
+RESERVED_INPUT               : AA3       :        :                   :         : 12        :                
+RESERVED_INPUT               : AA4       :        :                   :         : 12        :                
+RESERVED_INPUT               : AA5       :        :                   :         : 12        :                
+RESERVED_INPUT               : AA6       :        :                   :         : 12        :                
+RESERVED_INPUT               : AA7       :        :                   :         : 12        :                
+RESERVED_INPUT               : AA8       :        :                   :         : 11        :                
+RESERVED_INPUT               : AA9       :        :                   :         : 11        :                
+COINC_DOWN_A                 : AA10      : input  : LVTTL             :         : 11        : Y              
+COINC_UP_BLATCH              : AA11      : output : LVTTL             :         : 11        : Y              
+FLASH_AD_D[6]                : AA12      : input  : LVTTL             :         : 11        : Y              
+FLASH_AD_D[1]                : AA13      : input  : LVTTL             :         : 11        : Y              
+TriggerComplete_0            : AA14      : input  : LVTTL             :         : 10        : Y              
+ATWD0_D[3]                   : AA15      : input  : LVTTL             :         : 10        : Y              
+ATWD0_D[6]                   : AA16      : input  : LVTTL             :         : 10        : Y              
+ATWD1_D[0]                   : AA17      : input  : LVTTL             :         : 10        : Y              
+ATWD1_D[7]                   : AA18      : input  : LVTTL             :         : 10        : Y              
+COM_DB[1]                    : AA19      : output : LVTTL             :         : 9         : Y              
+R2BUS[3]                     : AA20      : output : LVTTL             :         : 9         : Y              
+R2BUS[4]                     : AA21      : output : LVTTL             :         : 9         : Y              
+FLASH_AD_D[0]                : AA22      : input  : LVTTL             :         : 9         : Y              
+RESERVED_INPUT               : AA23      :        :                   :         : 9         :                
+COMM_RESET                   : AA24      : output : LVTTL             :         : 9         : Y              
+RESERVED_INPUT               : AA25      :        :                   :         : 8         :                
+RESERVED_INPUT               : AA26      :        :                   :         : 8         :                
+COINCIDENCE_OUT_UP           : AB1       : output : LVTTL             :         : 12        : Y              
+COINCIDENCE_OUT_DOWN         : AB2       : output : LVTTL             :         : 12        : Y              
+PGM[8]                       : AB3       : output : LVTTL             :         : 12        : Y              
+PGM[10]                      : AB4       : output : LVTTL             :         : 12        : Y              
+RESERVED_INPUT               : AB5       :        :                   :         : 12        :                
+RESERVED_INPUT               : AB6       :        :                   :         : 12        :                
+RESERVED_INPUT               : AB7       :        :                   :         : 12        :                
+ATWDTrigger_0                : AB8       : output : LVTTL             :         : 11        : Y              
+COINC_DOWN_BBAR              : AB9       : input  : LVTTL             :         : 11        : Y              
+COINC_UP_A                   : AB10      : input  : LVTTL             :         : 11        : Y              
+FLASH_AD_D[2]                : AB11      : input  : LVTTL             :         : 11        : Y              
+FLASH_AD_D[7]                : AB12      : input  : LVTTL             :         : 11        : Y              
+FLASH_AD_STBY                : AB13      : output : LVTTL             :         : 11        : Y              
+FLASH_NCO                    : AB14      : input  : LVTTL             :         : 11        : Y              
+ChannelSelect_0[1]           : AB15      : output : LVTTL             :         : 10        : Y              
+ATWD0_D[5]                   : AB16      : input  : LVTTL             :         : 10        : Y              
+CounterClock_1               : AB17      : output : LVTTL             :         : 10        : Y              
+ATWD1_D[2]                   : AB18      : input  : LVTTL             :         : 10        : Y              
+OneSPE_nl                    : AB19      : output : LVTTL             :         : 9         : Y              
+R2BUS[2]                     : AB20      : output : LVTTL             :         : 9         : Y              
+R2BUS[1]                     : AB21      : output : LVTTL             :         : 9         : Y              
+COM_DB[0]                    : AB22      : output : LVTTL             :         : 9         : Y              
+RESERVED_INPUT               : AB23      :        :                   :         : 9         :                
+RESERVED_INPUT               : AB24      :        :                   :         : 9         :                
+RESERVED_INPUT               : AB25      :        :                   :         : 8         :                
+RESERVED_INPUT               : AB26      :        :                   :         : 8         :                
+RESERVED_INPUT               : AC1       :        :                   :         : 12        :                
+FPGA_D[7]                    : AC2       : output : LVTTL             :         : 12        : Y              
+VCC_INT                      : AC3       : power  :                   : 1.8V    :           :                
+GND                          : AC4       : gnd    :                   :         :           :                
+RESERVED_INPUT               : AC5       :        :                   :         : 12        :                
+RESERVED_INPUT               : AC6       :        :                   :         : 12        :                
+RESERVED_INPUT               : AC7       :        :                   :         : 12        :                
+RESERVED_INPUT               : AC8       :        :                   :         : 11        :                
+COINC_DOWN_ALATCH            : AC9       : output : LVTTL             :         : 11        : Y              
+COINC_DOWN_B                 : AC10      : input  : LVTTL             :         : 11        : Y              
+FLASH_AD_D[3]                : AC11      : input  : LVTTL             :         : 11        : Y              
+FLASH_AD_D[9]                : AC12      : input  : LVTTL             :         : 11        : Y              
+FLASH_AD_D[11]               : AC13      : input  : LVTTL             :         : 11        : Y              
+ShiftClock_0                 : AC14      : output : LVTTL             :         : 10        : Y              
+ATWD0_D[2]                   : AC15      : input  : LVTTL             :         : 10        : Y              
+AnalogReset_0                : AC16      : output : LVTTL             :         : 10        : Y              
+TriggerComplete_1            : AC17      : input  : LVTTL             :         : 10        : Y              
+AnalogReset_1                : AC18      : output : LVTTL             :         : 10        : Y              
+ATWD1_D[5]                   : AC19      : input  : LVTTL             :         : 10        : Y              
+ATWD1_D[4]                   : AC20      : input  : LVTTL             :         : 10        : Y              
+RESERVED_INPUT               : AC21      :        :                   :         : 10        :                
+FE_TEST_PULSE                : AC22      : output : LVTTL             :         : 9         : Y              
+GND                          : AC23      : gnd    :                   :         :           :                
+VCC_INT                      : AC24      : power  :                   : 1.8V    :           :                
+ATWD1VDD_SUP                 : AC25      : output : LVTTL             :         : 9         : Y              
+ATWD0VDD_SUP                 : AC26      : output : LVTTL             :         : 9         : Y              
+VCC_INT                      : AD1       : power  :                   : 1.8V    :           :                
+VCC_INT                      : AD2       : power  :                   : 1.8V    :           :                
+GND                          : AD3       : gnd    :                   :         :           :                
+VCC_INT                      : AD4       : power  :                   : 1.8V    :           :                
+RESERVED_INPUT               : AD5       :        :                   :         : 12        :                
+RESERVED_INPUT               : AD6       :        :                   :         : 12        :                
+ATWDTrigger_1                : AD7       : output : LVTTL             :         : 11        : Y              
+MultiSPE_nl                  : AD8       : output : LVTTL             :         : 11        : Y              
+COINC_DOWN_BLATCH            : AD9       : output : LVTTL             :         : 11        : Y              
+COINC_UP_B                   : AD10      : input  : LVTTL             :         : 11        : Y              
+FLASH_AD_D[4]                : AD11      : input  : LVTTL             :         : 11        : Y              
+FLASH_AD_D[10]               : AD12      : input  : LVTTL             :         : 11        : Y              
+CONF_DONE                    : AD13      : bidir  :                   :         :           :                
+TCK                          : AD14      : input  :                   :         :           :                
+RampSet_0                    : AD15      : output : LVTTL             :         : 10        : Y              
+ReadWrite_0                  : AD16      : output : LVTTL             :         : 10        : Y              
+ATWD0_D[9]                   : AD17      : input  : LVTTL             :         : 10        : Y              
+ATWD1_D[3]                   : AD18      : input  : LVTTL             :         : 10        : Y              
+ChannelSelect_1[0]           : AD19      : output : LVTTL             :         : 10        : Y              
+ReadWrite_1                  : AD20      : output : LVTTL             :         : 10        : Y              
+ATWD1_D[8]                   : AD21      : input  : LVTTL             :         : 10        : Y              
+R2BUS[0]                     : AD22      : output : LVTTL             :         : 9         : Y              
+VCC_INT                      : AD23      : power  :                   : 1.8V    :           :                
+GND                          : AD24      : gnd    :                   :         :           :                
+VCC_INT                      : AD25      : power  :                   : 1.8V    :           :                
+VCC_INT                      : AD26      : power  :                   : 1.8V    :           :                
+GND                          : AE1       : gnd    :                   :         :           :                
+GND                          : AE2       : gnd    :                   :         :           :                
+VCC_INT                      : AE3       : power  :                   : 1.8V    :           :                
+RESERVED_INPUT               : AE4       :        :                   :         : 12        :                
+RESERVED_INPUT               : AE5       :        :                   :         : 12        :                
+GND                          : AE6       : gnd    :                   :         :           :                
+RESERVED_INPUT               : AE7       :        :                   :         : 11        :                
+VCC_INT                      : AE8       : power  :                   : 1.8V    :           :                
+COINC_DOWN_ABAR              : AE9       : input  : LVTTL             :         : 11        : Y              
+COINC_UP_ABAR                : AE10      : input  : LVTTL             :         : 11        : Y              
+FLASH_AD_D[8]                : AE11      : input  : LVTTL             :         : 11        : Y              
+NSTATUS                      : AE12      : bidir  :                   :         :           :                
+GND                          : AE13      : gnd    :                   :         :           :                
+VCC_IO                       : AE14      : power  :                   : 3.3V    :           :                
+TMS                          : AE15      : input  :                   :         :           :                
+ATWD0_D[4]                   : AE16      : input  : LVTTL             :         : 10        : Y              
+RESERVED_INPUT               : AE17      :        :                   :         : 10        :                
+RampSet_1                    : AE18      : output : LVTTL             :         : 10        : Y              
+VCC_INT                      : AE19      : power  :                   : 1.8V    :           :                
+ATWD1_D[9]                   : AE20      : input  : LVTTL             :         : 10        : Y              
+GND                          : AE21      : gnd    :                   :         :           :                
+ATWD1_D[6]                   : AE22      : input  : LVTTL             :         : 10        : Y              
+DigitalSet_1                 : AE23      : output : LVTTL             :         : 10        : Y              
+VCC_INT                      : AE24      : power  :                   : 1.8V    :           :                
+GND                          : AE25      : gnd    :                   :         :           :                
+GND                          : AE26      : gnd    :                   :         :           :                
+GND                          : AF2       : gnd    :                   :         :           :                
+VCC_INT                      : AF3       : power  :                   : 1.8V    :           :                
+RESERVED_INPUT               : AF4       :        :                   :         : 12        :                
+RESERVED_INPUT               : AF5       :        :                   :         : 12        :                
+VCC_IO                       : AF6       : power  :                   : 3.3V    :           :                
+RESERVED_INPUT               : AF7       :        :                   :         : 11        :                
+GND                          : AF8       : gnd    :                   :         :           :                
+COINC_UP_ALATCH              : AF9       : output : LVTTL             :         : 11        : Y              
+COINC_UP_BBAR                : AF10      : input  : LVTTL             :         : 11        : Y              
+FLASH_AD_D[5]                : AF11      : input  : LVTTL             :         : 11        : Y              
+MultiSPE                     : AF12      : input  : LVTTL             :         : 10        : Y              
+VCC_IO                       : AF13      : power  :                   : 3.3V    :           :                
+GND                          : AF14      : gnd    :                   :         :           :                
+OneSPE                       : AF15      : input  : LVTTL             :         : 10        : Y              
+ChannelSelect_0[0]           : AF16      : output : LVTTL             :         : 10        : Y              
+ATWD0_D[8]                   : AF17      : input  : LVTTL             :         : 10        : Y              
+ATWD1_D[1]                   : AF18      : input  : LVTTL             :         : 10        : Y              
+GND                          : AF19      : gnd    :                   :         :           :                
+RESERVED_INPUT               : AF20      :        :                   :         : 10        :                
+VCC_IO                       : AF21      : power  :                   : 3.3V    :           :                
+RESERVED_INPUT               : AF22      :        :                   :         : 10        :                
+RESERVED_INPUT               : AF23      :        :                   :         : 10        :                
+VCC_INT                      : AF24      : power  :                   : 1.8V    :           :                
+GND                          : AF25      : gnd    :                   :         :           :                

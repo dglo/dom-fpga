@@ -1,0 +1,24 @@
+-- mkmif.sh generated .mif file
+ 
+WIDTH=16;
+DEPTH=128;
+ 
+ADDRESS_RADIX=UNS;
+DATA_RADIX=UNS;
+ 
+CONTENT BEGIN
+        0 : 2;
+        1 : 102;
+        2 : 0;
+        3 : 0;
+        4 : 1;
+        5 : 0;
+        6 : 0;
+        7 : 0;
+        8 : 0;
+        9 : 0;
+       10 : 0;
+       11 : 0;
+       12 : 0;
+[13..127] : 0;
+END;

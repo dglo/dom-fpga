@@ -5,6 +5,10 @@
 #
 sdir=../../scripts
 
+if [[ ! -d ${sdir} ]]; then
+    sdir=../scripts
+fi
+
 #
 # make a new build number...
 #
