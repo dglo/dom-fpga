@@ -6714,12 +6714,77 @@ JB2_sload_path[0] = DFFE(JB2_sload_path[0]_reg_input, GLOBAL(MB1_outclock1), !W1
 JB2L3 = CARRY(JB2_sload_path[0]);
 
 
---JB11_sload_path[10] is single_led:inst_single_led|lpm_counter:cnt_rtl_375|alt_synch_counter:wysi_counter|sload_path[10]
+--JB11_sload_path[15] is single_led:inst_single_led|lpm_counter:cnt_rtl_375|alt_synch_counter:wysi_counter|sload_path[15]
 --operation mode is normal
+
+JB11_sload_path[15]_lut_out = JB11_sload_path[15] $ JB11L13;
+JB11_sload_path[15]_reg_input = AB1_command_0_local[26] & JB11_sload_path[15]_lut_out;
+JB11_sload_path[15] = DFFE(JB11_sload_path[15]_reg_input, GLOBAL(MB1_outclock0), !W1L4Q, , );
+
+
+--JB11_sload_path[14] is single_led:inst_single_led|lpm_counter:cnt_rtl_375|alt_synch_counter:wysi_counter|sload_path[14]
+--operation mode is counter
+
+JB11_sload_path[14]_lut_out = JB11_sload_path[14] $ !JB11L92;
+JB11_sload_path[14]_reg_input = AB1_command_0_local[26] & JB11_sload_path[14]_lut_out;
+JB11_sload_path[14] = DFFE(JB11_sload_path[14]_reg_input, GLOBAL(MB1_outclock0), !W1L4Q, , );
+
+--JB11L13 is single_led:inst_single_led|lpm_counter:cnt_rtl_375|alt_synch_counter:wysi_counter|counter_cell[14]~COUT
+--operation mode is counter
+
+JB11L13 = CARRY(JB11_sload_path[14] & !JB11L92);
+
+
+--JB11_sload_path[13] is single_led:inst_single_led|lpm_counter:cnt_rtl_375|alt_synch_counter:wysi_counter|sload_path[13]
+--operation mode is counter
+
+JB11_sload_path[13]_lut_out = JB11_sload_path[13] $ JB11L72;
+JB11_sload_path[13]_reg_input = AB1_command_0_local[26] & JB11_sload_path[13]_lut_out;
+JB11_sload_path[13] = DFFE(JB11_sload_path[13]_reg_input, GLOBAL(MB1_outclock0), !W1L4Q, , );
+
+--JB11L92 is single_led:inst_single_led|lpm_counter:cnt_rtl_375|alt_synch_counter:wysi_counter|counter_cell[13]~COUT
+--operation mode is counter
+
+JB11L92 = CARRY(!JB11L72 # !JB11_sload_path[13]);
+
+
+--JB11_sload_path[12] is single_led:inst_single_led|lpm_counter:cnt_rtl_375|alt_synch_counter:wysi_counter|sload_path[12]
+--operation mode is counter
+
+JB11_sload_path[12]_lut_out = JB11_sload_path[12] $ !JB11L52;
+JB11_sload_path[12]_reg_input = AB1_command_0_local[26] & JB11_sload_path[12]_lut_out;
+JB11_sload_path[12] = DFFE(JB11_sload_path[12]_reg_input, GLOBAL(MB1_outclock0), !W1L4Q, , );
+
+--JB11L72 is single_led:inst_single_led|lpm_counter:cnt_rtl_375|alt_synch_counter:wysi_counter|counter_cell[12]~COUT
+--operation mode is counter
+
+JB11L72 = CARRY(JB11_sload_path[12] & !JB11L52);
+
+
+--JB11_sload_path[11] is single_led:inst_single_led|lpm_counter:cnt_rtl_375|alt_synch_counter:wysi_counter|sload_path[11]
+--operation mode is counter
+
+JB11_sload_path[11]_lut_out = JB11_sload_path[11] $ JB11L32;
+JB11_sload_path[11]_reg_input = AB1_command_0_local[26] & JB11_sload_path[11]_lut_out;
+JB11_sload_path[11] = DFFE(JB11_sload_path[11]_reg_input, GLOBAL(MB1_outclock0), !W1L4Q, , );
+
+--JB11L52 is single_led:inst_single_led|lpm_counter:cnt_rtl_375|alt_synch_counter:wysi_counter|counter_cell[11]~COUT
+--operation mode is counter
+
+JB11L52 = CARRY(!JB11L32 # !JB11_sload_path[11]);
+
+
+--JB11_sload_path[10] is single_led:inst_single_led|lpm_counter:cnt_rtl_375|alt_synch_counter:wysi_counter|sload_path[10]
+--operation mode is counter
 
 JB11_sload_path[10]_lut_out = JB11_sload_path[10] $ !JB11L12;
 JB11_sload_path[10]_reg_input = AB1_command_0_local[26] & JB11_sload_path[10]_lut_out;
 JB11_sload_path[10] = DFFE(JB11_sload_path[10]_reg_input, GLOBAL(MB1_outclock0), !W1L4Q, , );
+
+--JB11L32 is single_led:inst_single_led|lpm_counter:cnt_rtl_375|alt_synch_counter:wysi_counter|counter_cell[10]~COUT
+--operation mode is counter
+
+JB11L32 = CARRY(JB11_sload_path[10] & !JB11L12);
 
 
 --JB11_sload_path[9] is single_led:inst_single_led|lpm_counter:cnt_rtl_375|alt_synch_counter:wysi_counter|sload_path[9]
@@ -8301,7 +8366,7 @@ V1L82Q = DFFE(V1L82Q_lut_out, GLOBAL(MB1_outclock0), , , !W1L4Q);
 --Y1L3Q is single_led:inst_single_led|SingleLED_TRIGGER~reg0
 --operation mode is normal
 
-Y1L3Q_lut_out = Y1_tick # Y1_cnt_old[10] $ JB11_sload_path[10];
+Y1L3Q_lut_out = Y1_tick # Y1_cnt_old[15] $ JB11_sload_path[15];
 Y1L3Q = DFFE(Y1L3Q_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , );
 
 
@@ -9648,29 +9713,29 @@ V1_cnt[0] = DFFE(V1_cnt[0]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , );
 --Y1_tick is single_led:inst_single_led|tick
 --operation mode is normal
 
-Y1_tick_lut_out = Y1_cnt_old[10] $ JB11_sload_path[10];
+Y1_tick_lut_out = Y1_cnt_old[15] $ JB11_sload_path[15];
 Y1_tick = DFFE(Y1_tick_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , );
 
 
---Y1_cnt_old[10] is single_led:inst_single_led|cnt_old[10]
+--Y1_cnt_old[15] is single_led:inst_single_led|cnt_old[15]
 --operation mode is normal
 
-Y1_cnt_old[10]_lut_out = JB11_sload_path[10];
-Y1_cnt_old[10] = DFFE(Y1_cnt_old[10]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , );
+Y1_cnt_old[15]_lut_out = JB11_sload_path[15];
+Y1_cnt_old[15] = DFFE(Y1_cnt_old[15]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , );
 
 
---K1L061Q is coinc:inst_coinc|COINCIDENCE_OUT_DOWN~reg0
+--K1L671Q is coinc:inst_coinc|COINCIDENCE_OUT_DOWN~reg0
 --operation mode is normal
 
-K1L061Q_lut_out = K1L261 & (K1L112Q $ K1_last_down_pol) # !K1L261 & AB1_command_2_local[8];
-K1L061Q = DFFE(K1L061Q_lut_out, GLOBAL(MB1_outclock0), , , );
+K1L671Q_lut_out = K1L871 & (K1L822Q $ K1_last_down_pol) # !K1L871 & K1L681;
+K1L671Q = DFFE(K1L671Q_lut_out, GLOBAL(MB1_outclock0), , , );
 
 
---K1L361Q is coinc:inst_coinc|i~193
+--K1L971Q is coinc:inst_coinc|i~197
 --operation mode is normal
 
-K1L361Q_lut_out = K1L761 # K1L861 & (K1L212Q # K1L112Q);
-K1L361Q = DFFE(K1L361Q_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , );
+K1L971Q_lut_out = K1L871 & !K1L581 & !K1L181 # !K1L871 & K1L481;
+K1L971Q = DFFE(K1L971Q_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , );
 
 
 --AB1_command_2_local[12] is slaveregister:slaveregister_inst|command_2_local[12]
@@ -9687,18 +9752,18 @@ AB1_command_2_local[13]_lut_out = SB1_MASTERHWDATA[13];
 AB1_command_2_local[13] = DFFE(AB1_command_2_local[13]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , AB1L231);
 
 
---K1L161Q is coinc:inst_coinc|COINCIDENCE_OUT_UP~reg0
+--K1L771Q is coinc:inst_coinc|COINCIDENCE_OUT_UP~reg0
 --operation mode is normal
 
-K1L161Q_lut_out = K1L261 & (K1_last_up_pol $ K1L112Q) # !K1L261 & AB1_command_2_local[10];
-K1L161Q = DFFE(K1L161Q_lut_out, GLOBAL(MB1_outclock0), , , );
+K1L771Q_lut_out = K1L871 & (K1_last_up_pol $ K1L822Q) # !K1L871 & K1L781;
+K1L771Q = DFFE(K1L771Q_lut_out, GLOBAL(MB1_outclock0), , , );
 
 
---K1L461Q is coinc:inst_coinc|i~194
+--K1L081Q is coinc:inst_coinc|i~198
 --operation mode is normal
 
-K1L461Q_lut_out = K1L961 # !K1L261 & (AB1_command_2_local[11] # AB1_command_2_local[10]);
-K1L461Q = DFFE(K1L461Q_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , );
+K1L081Q_lut_out = K1L871 & K1L722Q & K1L181 # !K1L871 & K1L281;
+K1L081Q = DFFE(K1L081Q_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , );
 
 
 --AB1_command_2_local[14] is slaveregister:slaveregister_inst|command_2_local[14]
@@ -14998,7 +15063,7 @@ A1L232 = AB1_com_ctrl_local[23] & !B1L9Q & !B1L21Q;
 AB1L552 = AB1L452 & (A1L232 # !B1L11Q) # !AB1L452 & A1L213 & B1L11Q;
 
 
---AB1L331 is slaveregister:slaveregister_inst|command_2_local[24]~121
+--AB1L331 is slaveregister:slaveregister_inst|command_2_local[24]~101
 --operation mode is normal
 
 AB1L331 = B1L01Q & B1L9Q & !B1L11Q;
@@ -17746,70 +17811,116 @@ V1L62 = V1_up & (V1_cnt[6] # V1_cnt[0] & !V1_cnt[5]) # !V1_up & V1_cnt[0] & !V1_
 V1L22 = V1L72 # V1L62 # V1_cnt[5] & !V1_up;
 
 
---K1L261 is coinc:inst_coinc|i~5
+--K1_coinc_down_high_delay[2] is coinc:inst_coinc|coinc_down_high_delay[2]
 --operation mode is normal
 
-K1L261 = AB1_command_2_local[1] # AB1_command_2_local[0];
+K1_coinc_down_high_delay[2]_lut_out = K1_coinc_down_high_delay[1];
+K1_coinc_down_high_delay[2] = DFFE(K1_coinc_down_high_delay[2]_lut_out, GLOBAL(MB1_outclock0), , , !W1L4Q);
 
 
---K1L112Q is coinc:inst_coinc|state~9
+--K1L681 is coinc:inst_coinc|i~1121
 --operation mode is normal
 
-K1L112Q_lut_out = K1L312 # K1L261 & !K1_reduce_nor_22 & !K1L012Q;
-K1L112Q = DFFE(K1L112Q_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , );
+K1L681 = AB1_command_2_local[8] & !K1_coinc_down_high_delay[2];
+
+
+--K1L871 is coinc:inst_coinc|i~5
+--operation mode is normal
+
+K1L871 = AB1_command_2_local[1] # AB1_command_2_local[0];
+
+
+--K1L822Q is coinc:inst_coinc|state~9
+--operation mode is normal
+
+K1L822Q_lut_out = K1L032 # K1L871 & !K1_reduce_nor_22 & !K1L722Q;
+K1L822Q = DFFE(K1L822Q_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , );
 
 
 --K1_last_down_pol is coinc:inst_coinc|last_down_pol
 --operation mode is normal
 
 K1_last_down_pol_lut_out = !K1_last_down_pol;
-K1_last_down_pol = DFFE(K1_last_down_pol_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L271);
+K1_last_down_pol = DFFE(K1_last_down_pol_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L091);
 
 
---K1L761 is coinc:inst_coinc|i~629
+--K1_coinc_down_low_delay[2] is coinc:inst_coinc|coinc_down_low_delay[2]
 --operation mode is normal
 
-K1L761 = !AB1_command_2_local[1] & !AB1_command_2_local[0] & (AB1_command_2_local[9] # AB1_command_2_local[8]);
+K1_coinc_down_low_delay[2]_lut_out = K1_coinc_down_low_delay[1];
+K1_coinc_down_low_delay[2] = DFFE(K1_coinc_down_low_delay[2]_lut_out, GLOBAL(MB1_outclock0), , , !W1L4Q);
+
+
+--K1L481 is coinc:inst_coinc|i~645
+--operation mode is normal
+
+K1L481 = AB1_command_2_local[9] & (AB1_command_2_local[8] & !K1_coinc_down_high_delay[2] # !K1_coinc_down_low_delay[2]) # !AB1_command_2_local[9] & AB1_command_2_local[8] & !K1_coinc_down_high_delay[2];
+
+
+--K1L922Q is coinc:inst_coinc|state~10
+--operation mode is normal
+
+K1L922Q_lut_out = K1L871 & (K1_reduce_nor_96 & K1L922Q # !K1_reduce_nor_96 & K1L822Q) # !K1L871 & K1L922Q;
+K1L922Q = DFFE(K1L922Q_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , );
+
+
+--K1L581 is coinc:inst_coinc|i~1120
+--operation mode is normal
+
+K1L581 = !K1L922Q & !K1L822Q;
 
 
 --K1_last_down is coinc:inst_coinc|last_down
 --operation mode is normal
 
-K1_last_down_lut_out = K1L561 $ (!K1L791 & !K1L891 & K1L212Q);
-K1_last_down = DFFE(K1_last_down_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_last_down_lut_out = K1L181 $ (!K1L412 & !K1L512 & K1L922Q);
+K1_last_down = DFFE(K1_last_down_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
---K1L861 is coinc:inst_coinc|i~1106
+--K1L181 is coinc:inst_coinc|i~331
 --operation mode is normal
 
-K1L861 = AB1_command_2_local[1] & (!AB1_command_2_local[0] # !K1_last_down);
+K1L181 = K1_last_down & AB1_command_2_local[0] # !AB1_command_2_local[1];
 
 
---K1L212Q is coinc:inst_coinc|state~10
+--K1_coinc_up_high_delay[2] is coinc:inst_coinc|coinc_up_high_delay[2]
 --operation mode is normal
 
-K1L212Q_lut_out = K1L261 & (K1_reduce_nor_96 & K1L212Q # !K1_reduce_nor_96 & K1L112Q) # !K1L261 & K1L212Q;
-K1L212Q = DFFE(K1L212Q_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , );
+K1_coinc_up_high_delay[2]_lut_out = K1_coinc_up_high_delay[1];
+K1_coinc_up_high_delay[2] = DFFE(K1_coinc_up_high_delay[2]_lut_out, GLOBAL(MB1_outclock0), , , !W1L4Q);
+
+
+--K1L781 is coinc:inst_coinc|i~1122
+--operation mode is normal
+
+K1L781 = AB1_command_2_local[10] & !K1_coinc_up_high_delay[2];
 
 
 --K1_last_up_pol is coinc:inst_coinc|last_up_pol
 --operation mode is normal
 
 K1_last_up_pol_lut_out = !K1_last_up_pol;
-K1_last_up_pol = DFFE(K1_last_up_pol_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L571);
+K1_last_up_pol = DFFE(K1_last_up_pol_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L291);
 
 
---K1L012Q is coinc:inst_coinc|state~8
+--K1L722Q is coinc:inst_coinc|state~8
 --operation mode is normal
 
-K1L012Q_lut_out = !K1L212Q & K1L012Q # !K1L661;
-K1L012Q = DFFE(K1L012Q_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , );
+K1L722Q_lut_out = K1L381 & K1L722Q & (K1L581 # !K1L871) # !K1L381 & (K1L871 # K1L722Q);
+K1L722Q = DFFE(K1L722Q_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , );
 
 
---K1L961 is coinc:inst_coinc|i~1112
+--K1_coinc_up_low_delay[2] is coinc:inst_coinc|coinc_up_low_delay[2]
 --operation mode is normal
 
-K1L961 = K1L012Q & AB1_command_2_local[0] & (K1_last_down # !AB1_command_2_local[1]);
+K1_coinc_up_low_delay[2]_lut_out = K1_coinc_up_low_delay[1];
+K1_coinc_up_low_delay[2] = DFFE(K1_coinc_up_low_delay[2]_lut_out, GLOBAL(MB1_outclock0), , , !W1L4Q);
+
+
+--K1L281 is coinc:inst_coinc|i~610
+--operation mode is normal
+
+K1L281 = AB1_command_2_local[11] & (AB1_command_2_local[10] & !K1_coinc_up_high_delay[2] # !K1_coinc_up_low_delay[2]) # !AB1_command_2_local[11] & AB1_command_2_local[10] & !K1_coinc_up_high_delay[2];
 
 
 --B1_reduce_nor_10 is ahb_slave:ahb_slave_inst|reduce_nor_10
@@ -20888,626 +20999,642 @@ V1L52 = V1_cnt[5] & (V1_cnt[6] # !V1_up) # !V1_cnt[5] & (V1_cnt[0] # V1_cnt[6] &
 V1L63 = AB1_command_0_local[28] & !V1L72 & !V1L52;
 
 
+--K1_coinc_down_high_delay[1] is coinc:inst_coinc|coinc_down_high_delay[1]
+--operation mode is normal
+
+K1_coinc_down_high_delay[1]_lut_out = K1_coinc_down_high_delay[0];
+K1_coinc_down_high_delay[1] = DFFE(K1_coinc_down_high_delay[1]_lut_out, GLOBAL(MB1_outclock0), , , !W1L4Q);
+
+
 --K1_wait_cnt[28] is coinc:inst_coinc|wait_cnt[28]
 --operation mode is normal
 
-K1_wait_cnt[28]_lut_out = K1L991 & (K1_wait_cnt[28] # K1L002 & K1L021) # !K1L991 & K1L002 & K1L021;
-K1_wait_cnt[28] = DFFE(K1_wait_cnt[28]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[28]_lut_out = K1L612 & (K1_wait_cnt[28] # K1L712 & K1L021) # !K1L612 & K1L712 & K1L021;
+K1_wait_cnt[28] = DFFE(K1_wait_cnt[28]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
 --K1_wait_cnt[29] is coinc:inst_coinc|wait_cnt[29]
 --operation mode is normal
 
-K1_wait_cnt[29]_lut_out = K1L991 & (K1_wait_cnt[29] # K1L002 & K1L221) # !K1L991 & K1L002 & K1L221;
-K1_wait_cnt[29] = DFFE(K1_wait_cnt[29]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[29]_lut_out = K1L612 & (K1_wait_cnt[29] # K1L712 & K1L221) # !K1L612 & K1L712 & K1L221;
+K1_wait_cnt[29] = DFFE(K1_wait_cnt[29]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
 --K1_wait_cnt[30] is coinc:inst_coinc|wait_cnt[30]
 --operation mode is normal
 
-K1_wait_cnt[30]_lut_out = K1L991 & (K1_wait_cnt[30] # K1L002 & K1L421) # !K1L991 & K1L002 & K1L421;
-K1_wait_cnt[30] = DFFE(K1_wait_cnt[30]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[30]_lut_out = K1L612 & (K1_wait_cnt[30] # K1L712 & K1L421) # !K1L612 & K1L712 & K1L421;
+K1_wait_cnt[30] = DFFE(K1_wait_cnt[30]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
 --K1_wait_cnt[31] is coinc:inst_coinc|wait_cnt[31]
 --operation mode is normal
 
-K1_wait_cnt[31]_lut_out = K1L991 & (K1_wait_cnt[31] # K1L002 & K1L621) # !K1L991 & K1L002 & K1L621;
-K1_wait_cnt[31] = DFFE(K1_wait_cnt[31]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[31]_lut_out = K1L612 & (K1_wait_cnt[31] # K1L712 & K1L621) # !K1L612 & K1L712 & K1L621;
+K1_wait_cnt[31] = DFFE(K1_wait_cnt[31]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
---K1L981 is coinc:inst_coinc|reduce_nor_96~107
+--K1L602 is coinc:inst_coinc|reduce_nor_96~107
 --operation mode is normal
 
-K1L981 = K1_wait_cnt[28] # K1_wait_cnt[29] # K1_wait_cnt[30] # K1_wait_cnt[31];
+K1L602 = K1_wait_cnt[28] # K1_wait_cnt[29] # K1_wait_cnt[30] # K1_wait_cnt[31];
 
 
 --K1_wait_cnt[24] is coinc:inst_coinc|wait_cnt[24]
 --operation mode is normal
 
-K1_wait_cnt[24]_lut_out = K1L991 & (K1_wait_cnt[24] # K1L002 & K1L211) # !K1L991 & K1L002 & K1L211;
-K1_wait_cnt[24] = DFFE(K1_wait_cnt[24]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[24]_lut_out = K1L612 & (K1_wait_cnt[24] # K1L712 & K1L211) # !K1L612 & K1L712 & K1L211;
+K1_wait_cnt[24] = DFFE(K1_wait_cnt[24]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
 --K1_wait_cnt[25] is coinc:inst_coinc|wait_cnt[25]
 --operation mode is normal
 
-K1_wait_cnt[25]_lut_out = K1L991 & (K1_wait_cnt[25] # K1L002 & K1L411) # !K1L991 & K1L002 & K1L411;
-K1_wait_cnt[25] = DFFE(K1_wait_cnt[25]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[25]_lut_out = K1L612 & (K1_wait_cnt[25] # K1L712 & K1L411) # !K1L612 & K1L712 & K1L411;
+K1_wait_cnt[25] = DFFE(K1_wait_cnt[25]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
 --K1_wait_cnt[26] is coinc:inst_coinc|wait_cnt[26]
 --operation mode is normal
 
-K1_wait_cnt[26]_lut_out = K1L991 & (K1_wait_cnt[26] # K1L002 & K1L611) # !K1L991 & K1L002 & K1L611;
-K1_wait_cnt[26] = DFFE(K1_wait_cnt[26]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[26]_lut_out = K1L612 & (K1_wait_cnt[26] # K1L712 & K1L611) # !K1L612 & K1L712 & K1L611;
+K1_wait_cnt[26] = DFFE(K1_wait_cnt[26]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
 --K1_wait_cnt[27] is coinc:inst_coinc|wait_cnt[27]
 --operation mode is normal
 
-K1_wait_cnt[27]_lut_out = K1L991 & (K1_wait_cnt[27] # K1L002 & K1L811) # !K1L991 & K1L002 & K1L811;
-K1_wait_cnt[27] = DFFE(K1_wait_cnt[27]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[27]_lut_out = K1L612 & (K1_wait_cnt[27] # K1L712 & K1L811) # !K1L612 & K1L712 & K1L811;
+K1_wait_cnt[27] = DFFE(K1_wait_cnt[27]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
---K1L091 is coinc:inst_coinc|reduce_nor_96~112
+--K1L702 is coinc:inst_coinc|reduce_nor_96~112
 --operation mode is normal
 
-K1L091 = K1_wait_cnt[24] # K1_wait_cnt[25] # K1_wait_cnt[26] # K1_wait_cnt[27];
+K1L702 = K1_wait_cnt[24] # K1_wait_cnt[25] # K1_wait_cnt[26] # K1_wait_cnt[27];
 
 
 --K1_wait_cnt[20] is coinc:inst_coinc|wait_cnt[20]
 --operation mode is normal
 
-K1_wait_cnt[20]_lut_out = K1L991 & (K1_wait_cnt[20] # K1L002 & K1L401) # !K1L991 & K1L002 & K1L401;
-K1_wait_cnt[20] = DFFE(K1_wait_cnt[20]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[20]_lut_out = K1L612 & (K1_wait_cnt[20] # K1L712 & K1L401) # !K1L612 & K1L712 & K1L401;
+K1_wait_cnt[20] = DFFE(K1_wait_cnt[20]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
 --K1_wait_cnt[21] is coinc:inst_coinc|wait_cnt[21]
 --operation mode is normal
 
-K1_wait_cnt[21]_lut_out = K1L991 & (K1_wait_cnt[21] # K1L002 & K1L601) # !K1L991 & K1L002 & K1L601;
-K1_wait_cnt[21] = DFFE(K1_wait_cnt[21]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[21]_lut_out = K1L612 & (K1_wait_cnt[21] # K1L712 & K1L601) # !K1L612 & K1L712 & K1L601;
+K1_wait_cnt[21] = DFFE(K1_wait_cnt[21]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
 --K1_wait_cnt[22] is coinc:inst_coinc|wait_cnt[22]
 --operation mode is normal
 
-K1_wait_cnt[22]_lut_out = K1L991 & (K1_wait_cnt[22] # K1L002 & K1L801) # !K1L991 & K1L002 & K1L801;
-K1_wait_cnt[22] = DFFE(K1_wait_cnt[22]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[22]_lut_out = K1L612 & (K1_wait_cnt[22] # K1L712 & K1L801) # !K1L612 & K1L712 & K1L801;
+K1_wait_cnt[22] = DFFE(K1_wait_cnt[22]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
 --K1_wait_cnt[23] is coinc:inst_coinc|wait_cnt[23]
 --operation mode is normal
 
-K1_wait_cnt[23]_lut_out = K1L991 & (K1_wait_cnt[23] # K1L002 & K1L011) # !K1L991 & K1L002 & K1L011;
-K1_wait_cnt[23] = DFFE(K1_wait_cnt[23]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[23]_lut_out = K1L612 & (K1_wait_cnt[23] # K1L712 & K1L011) # !K1L612 & K1L712 & K1L011;
+K1_wait_cnt[23] = DFFE(K1_wait_cnt[23]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
---K1L191 is coinc:inst_coinc|reduce_nor_96~121
+--K1L802 is coinc:inst_coinc|reduce_nor_96~121
 --operation mode is normal
 
-K1L191 = K1_wait_cnt[20] # K1_wait_cnt[21] # K1_wait_cnt[22] # K1_wait_cnt[23];
+K1L802 = K1_wait_cnt[20] # K1_wait_cnt[21] # K1_wait_cnt[22] # K1_wait_cnt[23];
 
 
 --K1_wait_cnt[16] is coinc:inst_coinc|wait_cnt[16]
 --operation mode is normal
 
-K1_wait_cnt[16]_lut_out = K1L991 & (K1_wait_cnt[16] # K1L002 & K1L69) # !K1L991 & K1L002 & K1L69;
-K1_wait_cnt[16] = DFFE(K1_wait_cnt[16]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[16]_lut_out = K1L612 & (K1_wait_cnt[16] # K1L712 & K1L69) # !K1L612 & K1L712 & K1L69;
+K1_wait_cnt[16] = DFFE(K1_wait_cnt[16]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
 --K1_wait_cnt[17] is coinc:inst_coinc|wait_cnt[17]
 --operation mode is normal
 
-K1_wait_cnt[17]_lut_out = K1L991 & (K1_wait_cnt[17] # K1L002 & K1L89) # !K1L991 & K1L002 & K1L89;
-K1_wait_cnt[17] = DFFE(K1_wait_cnt[17]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[17]_lut_out = K1L612 & (K1_wait_cnt[17] # K1L712 & K1L89) # !K1L612 & K1L712 & K1L89;
+K1_wait_cnt[17] = DFFE(K1_wait_cnt[17]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
 --K1_wait_cnt[18] is coinc:inst_coinc|wait_cnt[18]
 --operation mode is normal
 
-K1_wait_cnt[18]_lut_out = K1L991 & (K1_wait_cnt[18] # K1L002 & K1L001) # !K1L991 & K1L002 & K1L001;
-K1_wait_cnt[18] = DFFE(K1_wait_cnt[18]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[18]_lut_out = K1L612 & (K1_wait_cnt[18] # K1L712 & K1L001) # !K1L612 & K1L712 & K1L001;
+K1_wait_cnt[18] = DFFE(K1_wait_cnt[18]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
 --K1_wait_cnt[19] is coinc:inst_coinc|wait_cnt[19]
 --operation mode is normal
 
-K1_wait_cnt[19]_lut_out = K1L991 & (K1_wait_cnt[19] # K1L002 & K1L201) # !K1L991 & K1L002 & K1L201;
-K1_wait_cnt[19] = DFFE(K1_wait_cnt[19]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[19]_lut_out = K1L612 & (K1_wait_cnt[19] # K1L712 & K1L201) # !K1L612 & K1L712 & K1L201;
+K1_wait_cnt[19] = DFFE(K1_wait_cnt[19]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
---K1L291 is coinc:inst_coinc|reduce_nor_96~134
+--K1L902 is coinc:inst_coinc|reduce_nor_96~134
 --operation mode is normal
 
-K1L291 = K1_wait_cnt[16] # K1_wait_cnt[17] # K1_wait_cnt[18] # K1_wait_cnt[19];
+K1L902 = K1_wait_cnt[16] # K1_wait_cnt[17] # K1_wait_cnt[18] # K1_wait_cnt[19];
 
 
---K1L791 is coinc:inst_coinc|reduce_nor_96~275
+--K1L412 is coinc:inst_coinc|reduce_nor_96~275
 --operation mode is normal
 
-K1L791 = K1L981 # K1L091 # K1L191 # K1L291;
+K1L412 = K1L602 # K1L702 # K1L802 # K1L902;
 
 
 --K1_wait_cnt[12] is coinc:inst_coinc|wait_cnt[12]
 --operation mode is normal
 
-K1_wait_cnt[12]_lut_out = K1L991 & (K1_wait_cnt[12] # K1L002 & K1L88) # !K1L991 & K1L002 & K1L88;
-K1_wait_cnt[12] = DFFE(K1_wait_cnt[12]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[12]_lut_out = K1L612 & (K1_wait_cnt[12] # K1L712 & K1L88) # !K1L612 & K1L712 & K1L88;
+K1_wait_cnt[12] = DFFE(K1_wait_cnt[12]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
 --K1_wait_cnt[13] is coinc:inst_coinc|wait_cnt[13]
 --operation mode is normal
 
-K1_wait_cnt[13]_lut_out = K1L991 & (K1_wait_cnt[13] # K1L002 & K1L09) # !K1L991 & K1L002 & K1L09;
-K1_wait_cnt[13] = DFFE(K1_wait_cnt[13]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[13]_lut_out = K1L612 & (K1_wait_cnt[13] # K1L712 & K1L09) # !K1L612 & K1L712 & K1L09;
+K1_wait_cnt[13] = DFFE(K1_wait_cnt[13]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
 --K1_wait_cnt[14] is coinc:inst_coinc|wait_cnt[14]
 --operation mode is normal
 
-K1_wait_cnt[14]_lut_out = K1L991 & (K1_wait_cnt[14] # K1L002 & K1L29) # !K1L991 & K1L002 & K1L29;
-K1_wait_cnt[14] = DFFE(K1_wait_cnt[14]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[14]_lut_out = K1L612 & (K1_wait_cnt[14] # K1L712 & K1L29) # !K1L612 & K1L712 & K1L29;
+K1_wait_cnt[14] = DFFE(K1_wait_cnt[14]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
 --K1_wait_cnt[15] is coinc:inst_coinc|wait_cnt[15]
 --operation mode is normal
 
-K1_wait_cnt[15]_lut_out = K1L991 & (K1_wait_cnt[15] # K1L002 & K1L49) # !K1L991 & K1L002 & K1L49;
-K1_wait_cnt[15] = DFFE(K1_wait_cnt[15]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[15]_lut_out = K1L612 & (K1_wait_cnt[15] # K1L712 & K1L49) # !K1L612 & K1L712 & K1L49;
+K1_wait_cnt[15] = DFFE(K1_wait_cnt[15]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
---K1L391 is coinc:inst_coinc|reduce_nor_96~151
+--K1L012 is coinc:inst_coinc|reduce_nor_96~151
 --operation mode is normal
 
-K1L391 = K1_wait_cnt[12] # K1_wait_cnt[13] # K1_wait_cnt[14] # K1_wait_cnt[15];
+K1L012 = K1_wait_cnt[12] # K1_wait_cnt[13] # K1_wait_cnt[14] # K1_wait_cnt[15];
 
 
 --K1_wait_cnt[8] is coinc:inst_coinc|wait_cnt[8]
 --operation mode is normal
 
-K1_wait_cnt[8]_lut_out = K1L991 & (K1_wait_cnt[8] # K1L002 & K1L08) # !K1L991 & K1L002 & K1L08;
-K1_wait_cnt[8] = DFFE(K1_wait_cnt[8]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[8]_lut_out = K1L612 & (K1_wait_cnt[8] # K1L712 & K1L08) # !K1L612 & K1L712 & K1L08;
+K1_wait_cnt[8] = DFFE(K1_wait_cnt[8]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
 --K1_wait_cnt[9] is coinc:inst_coinc|wait_cnt[9]
 --operation mode is normal
 
-K1_wait_cnt[9]_lut_out = K1L991 & (K1_wait_cnt[9] # K1L002 & K1L28) # !K1L991 & K1L002 & K1L28;
-K1_wait_cnt[9] = DFFE(K1_wait_cnt[9]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[9]_lut_out = K1L612 & (K1_wait_cnt[9] # K1L712 & K1L28) # !K1L612 & K1L712 & K1L28;
+K1_wait_cnt[9] = DFFE(K1_wait_cnt[9]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
 --K1_wait_cnt[10] is coinc:inst_coinc|wait_cnt[10]
 --operation mode is normal
 
-K1_wait_cnt[10]_lut_out = K1L991 & (K1_wait_cnt[10] # K1L002 & K1L48) # !K1L991 & K1L002 & K1L48;
-K1_wait_cnt[10] = DFFE(K1_wait_cnt[10]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[10]_lut_out = K1L612 & (K1_wait_cnt[10] # K1L712 & K1L48) # !K1L612 & K1L712 & K1L48;
+K1_wait_cnt[10] = DFFE(K1_wait_cnt[10]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
 --K1_wait_cnt[11] is coinc:inst_coinc|wait_cnt[11]
 --operation mode is normal
 
-K1_wait_cnt[11]_lut_out = K1L991 & (K1_wait_cnt[11] # K1L002 & K1L68) # !K1L991 & K1L002 & K1L68;
-K1_wait_cnt[11] = DFFE(K1_wait_cnt[11]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[11]_lut_out = K1L612 & (K1_wait_cnt[11] # K1L712 & K1L68) # !K1L612 & K1L712 & K1L68;
+K1_wait_cnt[11] = DFFE(K1_wait_cnt[11]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
---K1L491 is coinc:inst_coinc|reduce_nor_96~172
+--K1L112 is coinc:inst_coinc|reduce_nor_96~172
 --operation mode is normal
 
-K1L491 = K1_wait_cnt[8] # K1_wait_cnt[9] # K1_wait_cnt[10] # K1_wait_cnt[11];
+K1L112 = K1_wait_cnt[8] # K1_wait_cnt[9] # K1_wait_cnt[10] # K1_wait_cnt[11];
 
 
 --K1_wait_cnt[4] is coinc:inst_coinc|wait_cnt[4]
 --operation mode is normal
 
-K1_wait_cnt[4]_lut_out = K1L991 & (K1_wait_cnt[4] # K1L002 & K1L27) # !K1L991 & K1L002 & K1L27;
-K1_wait_cnt[4] = DFFE(K1_wait_cnt[4]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[4]_lut_out = K1L612 & (K1_wait_cnt[4] # K1L712 & K1L27) # !K1L612 & K1L712 & K1L27;
+K1_wait_cnt[4] = DFFE(K1_wait_cnt[4]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
 --K1_wait_cnt[5] is coinc:inst_coinc|wait_cnt[5]
 --operation mode is normal
 
-K1_wait_cnt[5]_lut_out = K1L991 & (K1_wait_cnt[5] # K1L002 & K1L47) # !K1L991 & K1L002 & K1L47;
-K1_wait_cnt[5] = DFFE(K1_wait_cnt[5]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[5]_lut_out = K1L612 & (K1_wait_cnt[5] # K1L712 & K1L47) # !K1L612 & K1L712 & K1L47;
+K1_wait_cnt[5] = DFFE(K1_wait_cnt[5]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
 --K1_wait_cnt[6] is coinc:inst_coinc|wait_cnt[6]
 --operation mode is normal
 
-K1_wait_cnt[6]_lut_out = K1L991 & (K1_wait_cnt[6] # K1L002 & K1L67) # !K1L991 & K1L002 & K1L67;
-K1_wait_cnt[6] = DFFE(K1_wait_cnt[6]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[6]_lut_out = K1L612 & (K1_wait_cnt[6] # K1L712 & K1L67) # !K1L612 & K1L712 & K1L67;
+K1_wait_cnt[6] = DFFE(K1_wait_cnt[6]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
 --K1_wait_cnt[7] is coinc:inst_coinc|wait_cnt[7]
 --operation mode is normal
 
-K1_wait_cnt[7]_lut_out = K1L991 & (K1_wait_cnt[7] # K1L002 & K1L87) # !K1L991 & K1L002 & K1L87;
-K1_wait_cnt[7] = DFFE(K1_wait_cnt[7]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[7]_lut_out = K1L612 & (K1_wait_cnt[7] # K1L712 & K1L87) # !K1L612 & K1L712 & K1L87;
+K1_wait_cnt[7] = DFFE(K1_wait_cnt[7]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
---K1L591 is coinc:inst_coinc|reduce_nor_96~197
+--K1L212 is coinc:inst_coinc|reduce_nor_96~197
 --operation mode is normal
 
-K1L591 = K1_wait_cnt[4] # K1_wait_cnt[5] # K1_wait_cnt[6] # K1_wait_cnt[7];
+K1L212 = K1_wait_cnt[4] # K1_wait_cnt[5] # K1_wait_cnt[6] # K1_wait_cnt[7];
 
 
 --K1_wait_cnt[0] is coinc:inst_coinc|wait_cnt[0]
 --operation mode is normal
 
-K1_wait_cnt[0]_lut_out = K1L991 & (K1_wait_cnt[0] # K1L002 & K1L46) # !K1L991 & K1L002 & K1L46;
-K1_wait_cnt[0] = DFFE(K1_wait_cnt[0]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[0]_lut_out = K1L612 & (K1_wait_cnt[0] # K1L712 & K1L46) # !K1L612 & K1L712 & K1L46;
+K1_wait_cnt[0] = DFFE(K1_wait_cnt[0]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
 --K1_wait_cnt[1] is coinc:inst_coinc|wait_cnt[1]
 --operation mode is normal
 
-K1_wait_cnt[1]_lut_out = K1L991 & (K1_wait_cnt[1] # K1L002 & K1L66) # !K1L991 & K1L002 & K1L66;
-K1_wait_cnt[1] = DFFE(K1_wait_cnt[1]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[1]_lut_out = K1L612 & (K1_wait_cnt[1] # K1L712 & K1L66) # !K1L612 & K1L712 & K1L66;
+K1_wait_cnt[1] = DFFE(K1_wait_cnt[1]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
 --K1_wait_cnt[3] is coinc:inst_coinc|wait_cnt[3]
 --operation mode is normal
 
-K1_wait_cnt[3]_lut_out = K1L991 & (K1_wait_cnt[3] # K1L002 & K1L07) # !K1L991 & K1L002 & K1L07;
-K1_wait_cnt[3] = DFFE(K1_wait_cnt[3]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[3]_lut_out = K1L612 & (K1_wait_cnt[3] # K1L712 & K1L07) # !K1L612 & K1L712 & K1L07;
+K1_wait_cnt[3] = DFFE(K1_wait_cnt[3]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
 --K1_wait_cnt[2] is coinc:inst_coinc|wait_cnt[2]
 --operation mode is normal
 
-K1_wait_cnt[2]_lut_out = K1L202 # K1L102 # K1L991 & K1_wait_cnt[2];
-K1_wait_cnt[2] = DFFE(K1_wait_cnt[2]_lut_out, GLOBAL(MB1_outclock0), , , K1L742);
+K1_wait_cnt[2]_lut_out = K1L912 # K1L812 # K1L612 & K1_wait_cnt[2];
+K1_wait_cnt[2] = DFFE(K1_wait_cnt[2]_lut_out, GLOBAL(MB1_outclock0), , , K1L462);
 
 
---K1L691 is coinc:inst_coinc|reduce_nor_96~226
+--K1L312 is coinc:inst_coinc|reduce_nor_96~226
 --operation mode is normal
 
-K1L691 = K1_wait_cnt[0] # K1_wait_cnt[1] # K1_wait_cnt[3] # !K1_wait_cnt[2];
+K1L312 = K1_wait_cnt[0] # K1_wait_cnt[1] # K1_wait_cnt[3] # !K1_wait_cnt[2];
 
 
---K1L891 is coinc:inst_coinc|reduce_nor_96~280
+--K1L512 is coinc:inst_coinc|reduce_nor_96~280
 --operation mode is normal
 
-K1L891 = K1L391 # K1L491 # K1L591 # K1L691;
+K1L512 = K1L012 # K1L112 # K1L212 # K1L312;
 
 
---K1L312 is coinc:inst_coinc|state~169
+--K1L032 is coinc:inst_coinc|state~169
 --operation mode is normal
 
-K1L312 = K1L112Q & (K1L791 # K1L891 # !K1L261);
+K1L032 = K1L822Q & (K1L412 # K1L512 # !K1L871);
 
 
 --K1_cnt[28] is coinc:inst_coinc|cnt[28]
 --operation mode is normal
 
-K1_cnt[28]_lut_out = K1L991 & (K1L75 # K1L302 & K1_cnt[28]) # !K1L991 & K1L302 & K1_cnt[28];
-K1_cnt[28] = DFFE(K1_cnt[28]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[28]_lut_out = K1L612 & (K1L75 # K1L022 & K1_cnt[28]) # !K1L612 & K1L022 & K1_cnt[28];
+K1_cnt[28] = DFFE(K1_cnt[28]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
 --K1_cnt[29] is coinc:inst_coinc|cnt[29]
 --operation mode is normal
 
-K1_cnt[29]_lut_out = K1L991 & (K1L95 # K1L302 & K1_cnt[29]) # !K1L991 & K1L302 & K1_cnt[29];
-K1_cnt[29] = DFFE(K1_cnt[29]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[29]_lut_out = K1L612 & (K1L95 # K1L022 & K1_cnt[29]) # !K1L612 & K1L022 & K1_cnt[29];
+K1_cnt[29] = DFFE(K1_cnt[29]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
 --K1_cnt[30] is coinc:inst_coinc|cnt[30]
 --operation mode is normal
 
-K1_cnt[30]_lut_out = K1L991 & (K1L16 # K1L302 & K1_cnt[30]) # !K1L991 & K1L302 & K1_cnt[30];
-K1_cnt[30] = DFFE(K1_cnt[30]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[30]_lut_out = K1L612 & (K1L16 # K1L022 & K1_cnt[30]) # !K1L612 & K1L022 & K1_cnt[30];
+K1_cnt[30] = DFFE(K1_cnt[30]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
 --K1_cnt[31] is coinc:inst_coinc|cnt[31]
 --operation mode is normal
 
-K1_cnt[31]_lut_out = K1L991 & (K1L36 # K1L302 & K1_cnt[31]) # !K1L991 & K1L302 & K1_cnt[31];
-K1_cnt[31] = DFFE(K1_cnt[31]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[31]_lut_out = K1L612 & (K1L36 # K1L022 & K1_cnt[31]) # !K1L612 & K1L022 & K1_cnt[31];
+K1_cnt[31] = DFFE(K1_cnt[31]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
---K1L871 is coinc:inst_coinc|reduce_nor_22~125
+--K1L591 is coinc:inst_coinc|reduce_nor_22~125
 --operation mode is normal
 
-K1L871 = K1_cnt[28] # K1_cnt[29] # K1_cnt[30] # K1_cnt[31];
+K1L591 = K1_cnt[28] # K1_cnt[29] # K1_cnt[30] # K1_cnt[31];
 
 
 --K1_cnt[24] is coinc:inst_coinc|cnt[24]
 --operation mode is normal
 
-K1_cnt[24]_lut_out = K1L991 & (K1L94 # K1L302 & K1_cnt[24]) # !K1L991 & K1L302 & K1_cnt[24];
-K1_cnt[24] = DFFE(K1_cnt[24]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[24]_lut_out = K1L612 & (K1L94 # K1L022 & K1_cnt[24]) # !K1L612 & K1L022 & K1_cnt[24];
+K1_cnt[24] = DFFE(K1_cnt[24]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
 --K1_cnt[25] is coinc:inst_coinc|cnt[25]
 --operation mode is normal
 
-K1_cnt[25]_lut_out = K1L991 & (K1L15 # K1L302 & K1_cnt[25]) # !K1L991 & K1L302 & K1_cnt[25];
-K1_cnt[25] = DFFE(K1_cnt[25]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[25]_lut_out = K1L612 & (K1L15 # K1L022 & K1_cnt[25]) # !K1L612 & K1L022 & K1_cnt[25];
+K1_cnt[25] = DFFE(K1_cnt[25]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
 --K1_cnt[26] is coinc:inst_coinc|cnt[26]
 --operation mode is normal
 
-K1_cnt[26]_lut_out = K1L991 & (K1L35 # K1L302 & K1_cnt[26]) # !K1L991 & K1L302 & K1_cnt[26];
-K1_cnt[26] = DFFE(K1_cnt[26]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[26]_lut_out = K1L612 & (K1L35 # K1L022 & K1_cnt[26]) # !K1L612 & K1L022 & K1_cnt[26];
+K1_cnt[26] = DFFE(K1_cnt[26]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
 --K1_cnt[27] is coinc:inst_coinc|cnt[27]
 --operation mode is normal
 
-K1_cnt[27]_lut_out = K1L991 & (K1L55 # K1L302 & K1_cnt[27]) # !K1L991 & K1L302 & K1_cnt[27];
-K1_cnt[27] = DFFE(K1_cnt[27]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[27]_lut_out = K1L612 & (K1L55 # K1L022 & K1_cnt[27]) # !K1L612 & K1L022 & K1_cnt[27];
+K1_cnt[27] = DFFE(K1_cnt[27]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
---K1L971 is coinc:inst_coinc|reduce_nor_22~130
+--K1L691 is coinc:inst_coinc|reduce_nor_22~130
 --operation mode is normal
 
-K1L971 = K1_cnt[24] # K1_cnt[25] # K1_cnt[26] # K1_cnt[27];
+K1L691 = K1_cnt[24] # K1_cnt[25] # K1_cnt[26] # K1_cnt[27];
 
 
 --K1_cnt[20] is coinc:inst_coinc|cnt[20]
 --operation mode is normal
 
-K1_cnt[20]_lut_out = K1L991 & (K1L14 # K1L302 & K1_cnt[20]) # !K1L991 & K1L302 & K1_cnt[20];
-K1_cnt[20] = DFFE(K1_cnt[20]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[20]_lut_out = K1L612 & (K1L14 # K1L022 & K1_cnt[20]) # !K1L612 & K1L022 & K1_cnt[20];
+K1_cnt[20] = DFFE(K1_cnt[20]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
 --K1_cnt[21] is coinc:inst_coinc|cnt[21]
 --operation mode is normal
 
-K1_cnt[21]_lut_out = K1L991 & (K1L34 # K1L302 & K1_cnt[21]) # !K1L991 & K1L302 & K1_cnt[21];
-K1_cnt[21] = DFFE(K1_cnt[21]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[21]_lut_out = K1L612 & (K1L34 # K1L022 & K1_cnt[21]) # !K1L612 & K1L022 & K1_cnt[21];
+K1_cnt[21] = DFFE(K1_cnt[21]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
 --K1_cnt[22] is coinc:inst_coinc|cnt[22]
 --operation mode is normal
 
-K1_cnt[22]_lut_out = K1L991 & (K1L54 # K1L302 & K1_cnt[22]) # !K1L991 & K1L302 & K1_cnt[22];
-K1_cnt[22] = DFFE(K1_cnt[22]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[22]_lut_out = K1L612 & (K1L54 # K1L022 & K1_cnt[22]) # !K1L612 & K1L022 & K1_cnt[22];
+K1_cnt[22] = DFFE(K1_cnt[22]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
 --K1_cnt[23] is coinc:inst_coinc|cnt[23]
 --operation mode is normal
 
-K1_cnt[23]_lut_out = K1L991 & (K1L74 # K1L302 & K1_cnt[23]) # !K1L991 & K1L302 & K1_cnt[23];
-K1_cnt[23] = DFFE(K1_cnt[23]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[23]_lut_out = K1L612 & (K1L74 # K1L022 & K1_cnt[23]) # !K1L612 & K1L022 & K1_cnt[23];
+K1_cnt[23] = DFFE(K1_cnt[23]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
---K1L081 is coinc:inst_coinc|reduce_nor_22~139
+--K1L791 is coinc:inst_coinc|reduce_nor_22~139
 --operation mode is normal
 
-K1L081 = K1_cnt[20] # K1_cnt[21] # K1_cnt[22] # K1_cnt[23];
+K1L791 = K1_cnt[20] # K1_cnt[21] # K1_cnt[22] # K1_cnt[23];
 
 
 --K1_cnt[16] is coinc:inst_coinc|cnt[16]
 --operation mode is normal
 
-K1_cnt[16]_lut_out = K1L991 & (K1L33 # K1L302 & K1_cnt[16]) # !K1L991 & K1L302 & K1_cnt[16];
-K1_cnt[16] = DFFE(K1_cnt[16]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[16]_lut_out = K1L612 & (K1L33 # K1L022 & K1_cnt[16]) # !K1L612 & K1L022 & K1_cnt[16];
+K1_cnt[16] = DFFE(K1_cnt[16]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
 --K1_cnt[17] is coinc:inst_coinc|cnt[17]
 --operation mode is normal
 
-K1_cnt[17]_lut_out = K1L991 & (K1L53 # K1L302 & K1_cnt[17]) # !K1L991 & K1L302 & K1_cnt[17];
-K1_cnt[17] = DFFE(K1_cnt[17]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[17]_lut_out = K1L612 & (K1L53 # K1L022 & K1_cnt[17]) # !K1L612 & K1L022 & K1_cnt[17];
+K1_cnt[17] = DFFE(K1_cnt[17]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
 --K1_cnt[18] is coinc:inst_coinc|cnt[18]
 --operation mode is normal
 
-K1_cnt[18]_lut_out = K1L991 & (K1L73 # K1L302 & K1_cnt[18]) # !K1L991 & K1L302 & K1_cnt[18];
-K1_cnt[18] = DFFE(K1_cnt[18]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[18]_lut_out = K1L612 & (K1L73 # K1L022 & K1_cnt[18]) # !K1L612 & K1L022 & K1_cnt[18];
+K1_cnt[18] = DFFE(K1_cnt[18]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
 --K1_cnt[19] is coinc:inst_coinc|cnt[19]
 --operation mode is normal
 
-K1_cnt[19]_lut_out = K1L991 & (K1L93 # K1L302 & K1_cnt[19]) # !K1L991 & K1L302 & K1_cnt[19];
-K1_cnt[19] = DFFE(K1_cnt[19]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[19]_lut_out = K1L612 & (K1L93 # K1L022 & K1_cnt[19]) # !K1L612 & K1L022 & K1_cnt[19];
+K1_cnt[19] = DFFE(K1_cnt[19]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
---K1L181 is coinc:inst_coinc|reduce_nor_22~152
+--K1L891 is coinc:inst_coinc|reduce_nor_22~152
 --operation mode is normal
 
-K1L181 = K1_cnt[16] # K1_cnt[17] # K1_cnt[18] # K1_cnt[19];
+K1L891 = K1_cnt[16] # K1_cnt[17] # K1_cnt[18] # K1_cnt[19];
 
 
---K1L681 is coinc:inst_coinc|reduce_nor_22~293
+--K1L302 is coinc:inst_coinc|reduce_nor_22~293
 --operation mode is normal
 
-K1L681 = K1L871 # K1L971 # K1L081 # K1L181;
+K1L302 = K1L591 # K1L691 # K1L791 # K1L891;
 
 
 --K1_cnt[12] is coinc:inst_coinc|cnt[12]
 --operation mode is normal
 
-K1_cnt[12]_lut_out = K1L991 & (K1L52 # K1L302 & K1_cnt[12]) # !K1L991 & K1L302 & K1_cnt[12];
-K1_cnt[12] = DFFE(K1_cnt[12]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[12]_lut_out = K1L612 & (K1L52 # K1L022 & K1_cnt[12]) # !K1L612 & K1L022 & K1_cnt[12];
+K1_cnt[12] = DFFE(K1_cnt[12]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
 --K1_cnt[13] is coinc:inst_coinc|cnt[13]
 --operation mode is normal
 
-K1_cnt[13]_lut_out = K1L991 & (K1L72 # K1L302 & K1_cnt[13]) # !K1L991 & K1L302 & K1_cnt[13];
-K1_cnt[13] = DFFE(K1_cnt[13]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[13]_lut_out = K1L612 & (K1L72 # K1L022 & K1_cnt[13]) # !K1L612 & K1L022 & K1_cnt[13];
+K1_cnt[13] = DFFE(K1_cnt[13]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
 --K1_cnt[14] is coinc:inst_coinc|cnt[14]
 --operation mode is normal
 
-K1_cnt[14]_lut_out = K1L991 & (K1L92 # K1L302 & K1_cnt[14]) # !K1L991 & K1L302 & K1_cnt[14];
-K1_cnt[14] = DFFE(K1_cnt[14]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[14]_lut_out = K1L612 & (K1L92 # K1L022 & K1_cnt[14]) # !K1L612 & K1L022 & K1_cnt[14];
+K1_cnt[14] = DFFE(K1_cnt[14]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
 --K1_cnt[15] is coinc:inst_coinc|cnt[15]
 --operation mode is normal
 
-K1_cnt[15]_lut_out = K1L991 & (K1L13 # K1L302 & K1_cnt[15]) # !K1L991 & K1L302 & K1_cnt[15];
-K1_cnt[15] = DFFE(K1_cnt[15]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[15]_lut_out = K1L612 & (K1L13 # K1L022 & K1_cnt[15]) # !K1L612 & K1L022 & K1_cnt[15];
+K1_cnt[15] = DFFE(K1_cnt[15]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
---K1L281 is coinc:inst_coinc|reduce_nor_22~169
+--K1L991 is coinc:inst_coinc|reduce_nor_22~169
 --operation mode is normal
 
-K1L281 = K1_cnt[12] # K1_cnt[13] # K1_cnt[14] # K1_cnt[15];
+K1L991 = K1_cnt[12] # K1_cnt[13] # K1_cnt[14] # K1_cnt[15];
 
 
 --K1_cnt[11] is coinc:inst_coinc|cnt[11]
 --operation mode is normal
 
-K1_cnt[11]_lut_out = K1L991 & (K1L32 # K1L302 & K1_cnt[11]) # !K1L991 & K1L302 & K1_cnt[11];
-K1_cnt[11] = DFFE(K1_cnt[11]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[11]_lut_out = K1L612 & (K1L32 # K1L022 & K1_cnt[11]) # !K1L612 & K1L022 & K1_cnt[11];
+K1_cnt[11] = DFFE(K1_cnt[11]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
 --K1_cnt[8] is coinc:inst_coinc|cnt[8]
 --operation mode is normal
 
-K1_cnt[8]_lut_out = K1L302 & (K1_cnt[8] # K1L602 & !K1L012Q) # !K1L302 & K1L602 & !K1L012Q;
-K1_cnt[8] = DFFE(K1_cnt[8]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[8]_lut_out = K1L022 & (K1_cnt[8] # K1L322 & !K1L722Q) # !K1L022 & K1L322 & !K1L722Q;
+K1_cnt[8] = DFFE(K1_cnt[8]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
 --K1_cnt[9] is coinc:inst_coinc|cnt[9]
 --operation mode is normal
 
-K1_cnt[9]_lut_out = K1L302 & (K1_cnt[9] # K1L502 & !K1L012Q) # !K1L302 & K1L502 & !K1L012Q;
-K1_cnt[9] = DFFE(K1_cnt[9]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[9]_lut_out = K1L022 & (K1_cnt[9] # K1L222 & !K1L722Q) # !K1L022 & K1L222 & !K1L722Q;
+K1_cnt[9] = DFFE(K1_cnt[9]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
 --K1_cnt[10] is coinc:inst_coinc|cnt[10]
 --operation mode is normal
 
-K1_cnt[10]_lut_out = K1L302 & (K1_cnt[10] # K1L402 & !K1L012Q) # !K1L302 & K1L402 & !K1L012Q;
-K1_cnt[10] = DFFE(K1_cnt[10]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[10]_lut_out = K1L022 & (K1_cnt[10] # K1L122 & !K1L722Q) # !K1L022 & K1L122 & !K1L722Q;
+K1_cnt[10] = DFFE(K1_cnt[10]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
---K1L381 is coinc:inst_coinc|reduce_nor_22~190
+--K1L002 is coinc:inst_coinc|reduce_nor_22~190
 --operation mode is normal
 
-K1L381 = K1_cnt[11] # !K1_cnt[10] # !K1_cnt[9] # !K1_cnt[8];
+K1L002 = K1_cnt[11] # !K1_cnt[10] # !K1_cnt[9] # !K1_cnt[8];
 
 
 --K1_cnt[5] is coinc:inst_coinc|cnt[5]
 --operation mode is normal
 
-K1_cnt[5]_lut_out = K1L991 & (K1L11 # K1L302 & K1_cnt[5]) # !K1L991 & K1L302 & K1_cnt[5];
-K1_cnt[5] = DFFE(K1_cnt[5]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[5]_lut_out = K1L612 & (K1L11 # K1L022 & K1_cnt[5]) # !K1L612 & K1L022 & K1_cnt[5];
+K1_cnt[5] = DFFE(K1_cnt[5]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
 --K1_cnt[4] is coinc:inst_coinc|cnt[4]
 --operation mode is normal
 
-K1_cnt[4]_lut_out = K1L302 & (K1_cnt[4] # K1L902 & !K1L012Q) # !K1L302 & K1L902 & !K1L012Q;
-K1_cnt[4] = DFFE(K1_cnt[4]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[4]_lut_out = K1L022 & (K1_cnt[4] # K1L622 & !K1L722Q) # !K1L022 & K1L622 & !K1L722Q;
+K1_cnt[4] = DFFE(K1_cnt[4]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
 --K1_cnt[6] is coinc:inst_coinc|cnt[6]
 --operation mode is normal
 
-K1_cnt[6]_lut_out = K1L302 & (K1_cnt[6] # K1L802 & !K1L012Q) # !K1L302 & K1L802 & !K1L012Q;
-K1_cnt[6] = DFFE(K1_cnt[6]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[6]_lut_out = K1L022 & (K1_cnt[6] # K1L522 & !K1L722Q) # !K1L022 & K1L522 & !K1L722Q;
+K1_cnt[6] = DFFE(K1_cnt[6]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
 --K1_cnt[7] is coinc:inst_coinc|cnt[7]
 --operation mode is normal
 
-K1_cnt[7]_lut_out = K1L302 & (K1_cnt[7] # K1L702 & !K1L012Q) # !K1L302 & K1L702 & !K1L012Q;
-K1_cnt[7] = DFFE(K1_cnt[7]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[7]_lut_out = K1L022 & (K1_cnt[7] # K1L422 & !K1L722Q) # !K1L022 & K1L422 & !K1L722Q;
+K1_cnt[7] = DFFE(K1_cnt[7]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
---K1L481 is coinc:inst_coinc|reduce_nor_22~215
+--K1L102 is coinc:inst_coinc|reduce_nor_22~215
 --operation mode is normal
 
-K1L481 = K1_cnt[5] # !K1_cnt[7] # !K1_cnt[6] # !K1_cnt[4];
+K1L102 = K1_cnt[5] # !K1_cnt[7] # !K1_cnt[6] # !K1_cnt[4];
 
 
 --K1_cnt[0] is coinc:inst_coinc|cnt[0]
 --operation mode is normal
 
-K1_cnt[0]_lut_out = K1L991 & (K1L1 # K1L302 & K1_cnt[0]) # !K1L991 & K1L302 & K1_cnt[0];
-K1_cnt[0] = DFFE(K1_cnt[0]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[0]_lut_out = K1L612 & (K1L1 # K1L022 & K1_cnt[0]) # !K1L612 & K1L022 & K1_cnt[0];
+K1_cnt[0] = DFFE(K1_cnt[0]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
 --K1_cnt[1] is coinc:inst_coinc|cnt[1]
 --operation mode is normal
 
-K1_cnt[1]_lut_out = K1L991 & (K1L3 # K1L302 & K1_cnt[1]) # !K1L991 & K1L302 & K1_cnt[1];
-K1_cnt[1] = DFFE(K1_cnt[1]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[1]_lut_out = K1L612 & (K1L3 # K1L022 & K1_cnt[1]) # !K1L612 & K1L022 & K1_cnt[1];
+K1_cnt[1] = DFFE(K1_cnt[1]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
 --K1_cnt[2] is coinc:inst_coinc|cnt[2]
 --operation mode is normal
 
-K1_cnt[2]_lut_out = K1L991 & (K1L5 # K1L302 & K1_cnt[2]) # !K1L991 & K1L302 & K1_cnt[2];
-K1_cnt[2] = DFFE(K1_cnt[2]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[2]_lut_out = K1L612 & (K1L5 # K1L022 & K1_cnt[2]) # !K1L612 & K1L022 & K1_cnt[2];
+K1_cnt[2] = DFFE(K1_cnt[2]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
 --K1_cnt[3] is coinc:inst_coinc|cnt[3]
 --operation mode is normal
 
-K1_cnt[3]_lut_out = K1L991 & (K1L7 # K1L302 & K1_cnt[3]) # !K1L991 & K1L302 & K1_cnt[3];
-K1_cnt[3] = DFFE(K1_cnt[3]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L261);
+K1_cnt[3]_lut_out = K1L612 & (K1L7 # K1L022 & K1_cnt[3]) # !K1L612 & K1L022 & K1_cnt[3];
+K1_cnt[3] = DFFE(K1_cnt[3]_lut_out, GLOBAL(MB1_outclock0), !W1L4Q, , K1L871);
 
 
---K1L581 is coinc:inst_coinc|reduce_nor_22~244
+--K1L202 is coinc:inst_coinc|reduce_nor_22~244
 --operation mode is normal
 
-K1L581 = K1_cnt[0] # K1_cnt[1] # K1_cnt[2] # K1_cnt[3];
+K1L202 = K1_cnt[0] # K1_cnt[1] # K1_cnt[2] # K1_cnt[3];
 
 
---K1L781 is coinc:inst_coinc|reduce_nor_22~298
+--K1L402 is coinc:inst_coinc|reduce_nor_22~298
 --operation mode is normal
 
-K1L781 = K1L281 # K1L381 # K1L481 # K1L581;
+K1L402 = K1L991 # K1L002 # K1L102 # K1L202;
 
 
 --K1_reduce_nor_22 is coinc:inst_coinc|reduce_nor_22
 --operation mode is normal
 
-K1_reduce_nor_22 = K1L681 # K1L781;
+K1_reduce_nor_22 = K1L302 # K1L402;
 
 
---K1L561 is coinc:inst_coinc|i~327
+--K1L091 is coinc:inst_coinc|last_down_pol~0
 --operation mode is normal
 
-K1L561 = K1_last_down & AB1_command_2_local[0] # !AB1_command_2_local[1];
+K1L091 = K1L922Q & !K1L412 & !K1L512 & !K1L181;
 
 
---K1L271 is coinc:inst_coinc|last_down_pol~0
+--K1_coinc_down_low_delay[1] is coinc:inst_coinc|coinc_down_low_delay[1]
 --operation mode is normal
 
-K1L271 = K1L212Q & !K1L791 & !K1L891 & !K1L561;
+K1_coinc_down_low_delay[1]_lut_out = K1_coinc_down_low_delay[0];
+K1_coinc_down_low_delay[1] = DFFE(K1_coinc_down_low_delay[1]_lut_out, GLOBAL(MB1_outclock0), , , !W1L4Q);
 
 
 --K1_reduce_nor_96 is coinc:inst_coinc|reduce_nor_96
 --operation mode is normal
 
-K1_reduce_nor_96 = K1L791 # K1L891;
+K1_reduce_nor_96 = K1L412 # K1L512;
 
 
---K1L671 is coinc:inst_coinc|last_up_pol~28
+--K1_coinc_up_high_delay[1] is coinc:inst_coinc|coinc_up_high_delay[1]
 --operation mode is normal
 
-K1L671 = K1L212Q & (K1_last_down & AB1_command_2_local[0] # !AB1_command_2_local[1]);
+K1_coinc_up_high_delay[1]_lut_out = K1_coinc_up_high_delay[0];
+K1_coinc_up_high_delay[1] = DFFE(K1_coinc_up_high_delay[1]_lut_out, GLOBAL(MB1_outclock0), , , !W1L4Q);
 
 
---K1L571 is coinc:inst_coinc|last_up_pol~0
+--K1L391 is coinc:inst_coinc|last_up_pol~28
 --operation mode is normal
 
-K1L571 = K1L261 & K1L671 & !K1L791 & !K1L891;
+K1L391 = K1L922Q & (K1_last_down & AB1_command_2_local[0] # !AB1_command_2_local[1]);
 
 
---K1L371 is coinc:inst_coinc|last_down_pol~22
+--K1L291 is coinc:inst_coinc|last_up_pol~0
 --operation mode is normal
 
-K1L371 = K1L212Q & !K1L791 & !K1L891;
+K1L291 = K1L871 & K1L391 & !K1L412 & !K1L512;
 
 
---K1L661 is coinc:inst_coinc|i~618
+--K1L381 is coinc:inst_coinc|i~635
 --operation mode is normal
 
-K1L661 = K1L371 & (K1L261 # !K1L012Q) # !K1L371 & !K1L012Q & (K1_reduce_nor_22 # !K1L261);
+K1L381 = K1_reduce_nor_22 & (K1L922Q & !K1_reduce_nor_96 # !K1L722Q) # !K1_reduce_nor_22 & K1L922Q & !K1_reduce_nor_96;
+
+
+--K1_coinc_up_low_delay[1] is coinc:inst_coinc|coinc_up_low_delay[1]
+--operation mode is normal
+
+K1_coinc_up_low_delay[1]_lut_out = K1_coinc_up_low_delay[0];
+K1_coinc_up_low_delay[1] = DFFE(K1_coinc_up_low_delay[1]_lut_out, GLOBAL(MB1_outclock0), , , !W1L4Q);
 
 
 --B1L92 is ahb_slave:ahb_slave_inst|Select_538_rtl_41~98
@@ -22074,76 +22201,104 @@ M1L55 = !M1L65Q & (!M1_cntp[3] # !M1L14);
 M1L13 = M1L14 & M1_cntp[3] & !M1L65Q;
 
 
---K1L991 is coinc:inst_coinc|Select_366_rtl_365~17
+--K1_coinc_down_high_delay[0] is coinc:inst_coinc|coinc_down_high_delay[0]
 --operation mode is normal
 
-K1L991 = !K1L012Q & (K1L681 # K1L781);
+K1_coinc_down_high_delay[0]_lut_out = AB1_command_2_local[8];
+K1_coinc_down_high_delay[0] = DFFE(K1_coinc_down_high_delay[0]_lut_out, GLOBAL(MB1_outclock0), , , !W1L4Q);
 
 
---K1L002 is coinc:inst_coinc|Select_371~15
+--K1L612 is coinc:inst_coinc|Select_366_rtl_365~17
 --operation mode is normal
 
-K1L002 = K1L791 & (K1L212Q # K1L112Q) # !K1L791 & K1L891 & (K1L212Q # K1L112Q);
+K1L612 = !K1L722Q & (K1L302 # K1L402);
 
 
---K1L742 is coinc:inst_coinc|wait_cnt[31]~0
+--K1L712 is coinc:inst_coinc|Select_371~15
 --operation mode is normal
 
-K1L742 = !W1L4Q & (AB1_command_2_local[1] # AB1_command_2_local[0]);
+K1L712 = K1L412 & (K1L922Q # K1L822Q) # !K1L412 & K1L512 & (K1L922Q # K1L822Q);
 
 
---K1L202 is coinc:inst_coinc|Select_400~12
+--K1L462 is coinc:inst_coinc|wait_cnt[31]~0
 --operation mode is normal
 
-K1L202 = K1L212Q & (K1L86 # !K1L791 & !K1L891);
+K1L462 = !W1L4Q & (AB1_command_2_local[1] # AB1_command_2_local[0]);
 
 
---K1L102 is coinc:inst_coinc|Select_400~2
+--K1L912 is coinc:inst_coinc|Select_400~12
 --operation mode is normal
 
-K1L102 = K1L86 & K1L112Q & (K1L791 # K1L891);
+K1L912 = K1L922Q & (K1L86 # !K1L412 & !K1L512);
 
 
---K1L302 is coinc:inst_coinc|Select_405~4
+--K1L812 is coinc:inst_coinc|Select_400~2
 --operation mode is normal
 
-K1L302 = K1L112Q # K1L212Q & (K1L791 # K1L891);
+K1L812 = K1L86 & K1L822Q & (K1L412 # K1L512);
 
 
---K1L602 is coinc:inst_coinc|Select_427~4
+--K1L022 is coinc:inst_coinc|Select_405~4
 --operation mode is normal
 
-K1L602 = K1L71 # !K1L681 & !K1L781;
+K1L022 = K1L822Q # K1L922Q & (K1L412 # K1L512);
 
 
---K1L502 is coinc:inst_coinc|Select_426~4
+--K1L322 is coinc:inst_coinc|Select_427~4
 --operation mode is normal
 
-K1L502 = K1L91 # !K1L681 & !K1L781;
+K1L322 = K1L71 # !K1L302 & !K1L402;
 
 
---K1L402 is coinc:inst_coinc|Select_425~4
+--K1L222 is coinc:inst_coinc|Select_426~4
 --operation mode is normal
 
-K1L402 = K1L12 # !K1L681 & !K1L781;
+K1L222 = K1L91 # !K1L302 & !K1L402;
 
 
---K1L902 is coinc:inst_coinc|Select_431~4
+--K1L122 is coinc:inst_coinc|Select_425~4
 --operation mode is normal
 
-K1L902 = K1L9 # !K1L681 & !K1L781;
+K1L122 = K1L12 # !K1L302 & !K1L402;
 
 
---K1L802 is coinc:inst_coinc|Select_429~4
+--K1L622 is coinc:inst_coinc|Select_431~4
 --operation mode is normal
 
-K1L802 = K1L31 # !K1L681 & !K1L781;
+K1L622 = K1L9 # !K1L302 & !K1L402;
 
 
---K1L702 is coinc:inst_coinc|Select_428~4
+--K1L522 is coinc:inst_coinc|Select_429~4
 --operation mode is normal
 
-K1L702 = K1L51 # !K1L681 & !K1L781;
+K1L522 = K1L31 # !K1L302 & !K1L402;
+
+
+--K1L422 is coinc:inst_coinc|Select_428~4
+--operation mode is normal
+
+K1L422 = K1L51 # !K1L302 & !K1L402;
+
+
+--K1_coinc_down_low_delay[0] is coinc:inst_coinc|coinc_down_low_delay[0]
+--operation mode is normal
+
+K1_coinc_down_low_delay[0]_lut_out = AB1_command_2_local[9];
+K1_coinc_down_low_delay[0] = DFFE(K1_coinc_down_low_delay[0]_lut_out, GLOBAL(MB1_outclock0), , , !W1L4Q);
+
+
+--K1_coinc_up_high_delay[0] is coinc:inst_coinc|coinc_up_high_delay[0]
+--operation mode is normal
+
+K1_coinc_up_high_delay[0]_lut_out = AB1_command_2_local[10];
+K1_coinc_up_high_delay[0] = DFFE(K1_coinc_up_high_delay[0]_lut_out, GLOBAL(MB1_outclock0), , , !W1L4Q);
+
+
+--K1_coinc_up_low_delay[0] is coinc:inst_coinc|coinc_up_low_delay[0]
+--operation mode is normal
+
+K1_coinc_up_low_delay[0]_lut_out = AB1_command_2_local[11];
+K1_coinc_up_low_delay[0] = DFFE(K1_coinc_up_low_delay[0]_lut_out, GLOBAL(MB1_outclock0), , , !W1L4Q);
 
 
 --R1_MultiSPE0 is hit_counter_ff:inst_hit_counter_ff|MultiSPE0
@@ -22990,7 +23145,7 @@ SingleLED_TRIGGER = OUTPUT(Y1L3Q);
 --COINCIDENCE_OUT_DOWN is COINCIDENCE_OUT_DOWN
 --operation mode is output
 
-COINCIDENCE_OUT_DOWN_tri_out = TRI(K1L061Q, K1L361Q);
+COINCIDENCE_OUT_DOWN_tri_out = TRI(K1L671Q, K1L971Q);
 COINCIDENCE_OUT_DOWN = OUTPUT(COINCIDENCE_OUT_DOWN_tri_out);
 
 
@@ -23011,7 +23166,7 @@ COINC_DOWN_BLATCH = OUTPUT(COINC_DOWN_BLATCH_open_drain_out);
 --COINCIDENCE_OUT_UP is COINCIDENCE_OUT_UP
 --operation mode is output
 
-COINCIDENCE_OUT_UP_tri_out = TRI(K1L161Q, K1L461Q);
+COINCIDENCE_OUT_UP_tri_out = TRI(K1L771Q, K1L081Q);
 COINCIDENCE_OUT_UP = OUTPUT(COINCIDENCE_OUT_UP_tri_out);
 
 

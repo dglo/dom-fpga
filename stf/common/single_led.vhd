@@ -42,8 +42,8 @@ ARCHITECTURE single_led_arch OF single_led IS
 BEGIN
 
 	PROCESS (RST,CLK)
-		VARIABLE cnt		: STD_LOGIC_VECTOR(13 downto 0);
-		VARIABLE cnt_old	: STD_LOGIC_VECTOR(13 downto 0);
+		VARIABLE cnt		: STD_LOGIC_VECTOR(15 downto 0);
+		VARIABLE cnt_old	: STD_LOGIC_VECTOR(15 downto 0);
 		VARIABLE tick		: STD_LOGIC;
 		VARIABLE tick_old	: STD_LOGIC;
 	BEGIN
@@ -55,7 +55,7 @@ BEGIN
 			SingleLED_TRIGGER	<= '0';
 		ELSIF CLK'EVENT AND CLK='1' THEN
 			tick_old	:= tick;
-			tick		:= cnt(10) XOR cnt_old(10);
+			tick		:= cnt(15) XOR cnt_old(15);
 			cnt_old		:= cnt;
 			SingleLED_TRIGGER	<= tick OR tick_old;
 			IF enable='0' THEN
