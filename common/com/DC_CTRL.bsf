@@ -1,0 +1,259 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 1991-2002 Altera Corporation
+Any  megafunction  design,  and related netlist (encrypted  or  decrypted),
+support information,  device programming or simulation file,  and any other
+associated  documentation or information  provided by  Altera  or a partner
+under  Altera's   Megafunction   Partnership   Program  may  be  used  only
+to program  PLD  devices (but not masked  PLD  devices) from  Altera.   Any
+other  use  of such  megafunction  design,  netlist,  support  information,
+device programming or simulation file,  or any other  related documentation
+or information  is prohibited  for  any  other purpose,  including, but not
+limited to  modification,  reverse engineering,  de-compiling, or use  with
+any other  silicon devices,  unless such use is  explicitly  licensed under
+a separate agreement with  Altera  or a megafunction partner.  Title to the
+intellectual property,  including patents,  copyrights,  trademarks,  trade
+secrets,  or maskworks,  embodied in any such megafunction design, netlist,
+support  information,  device programming or simulation file,  or any other
+related documentation or information provided by  Altera  or a megafunction
+partner, remains with Altera, the megafunction partner, or their respective
+licensors. No other licenses, including any licenses needed under any third
+party's intellectual property, are provided herein.
+*/
+(header "symbol" (version "1.1"))
+(symbol
+	(rect 16 16 216 336)
+	(text "DC_CTRL" (rect 5 0 67 15)(font "Arial" ))
+	(text "inst" (rect 8 301 30 316)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "CLK" (rect 0 0 26 15)(font "Arial" ))
+		(text "CLK" (rect 21 27 47 42)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32)(line_width 1))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "bfstat_rcvd" (rect 0 0 64 15)(font "Arial" ))
+		(text "bfstat_rcvd" (rect 21 43 85 58)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48)(line_width 1))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "comres_rcvd" (rect 0 0 78 15)(font "Arial" ))
+		(text "comres_rcvd" (rect 21 59 99 74)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64)(line_width 1))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "ctrl_sent" (rect 0 0 51 15)(font "Arial" ))
+		(text "ctrl_sent" (rect 21 75 72 90)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 1))
+	)
+	(port
+		(pt 0 96)
+		(input)
+		(text "drbt_req" (rect 0 0 50 15)(font "Arial" ))
+		(text "drbt_req" (rect 21 91 71 106)(font "Arial" ))
+		(line (pt 0 96)(pt 16 96)(line_width 1))
+	)
+	(port
+		(pt 0 112)
+		(input)
+		(text "drreq_rcvd" (rect 0 0 63 15)(font "Arial" ))
+		(text "drreq_rcvd" (rect 21 107 84 122)(font "Arial" ))
+		(line (pt 0 112)(pt 16 112)(line_width 1))
+	)
+	(port
+		(pt 0 128)
+		(input)
+		(text "eof_rcvd" (rect 0 0 50 15)(font "Arial" ))
+		(text "eof_rcvd" (rect 21 123 71 138)(font "Arial" ))
+		(line (pt 0 128)(pt 16 128)(line_width 1))
+	)
+	(port
+		(pt 0 144)
+		(input)
+		(text "line_quiet" (rect 0 0 59 15)(font "Arial" ))
+		(text "line_quiet" (rect 21 139 80 154)(font "Arial" ))
+		(line (pt 0 144)(pt 16 144)(line_width 1))
+	)
+	(port
+		(pt 0 160)
+		(input)
+		(text "msg_err" (rect 0 0 51 15)(font "Arial" ))
+		(text "msg_err" (rect 21 155 72 170)(font "Arial" ))
+		(line (pt 0 160)(pt 16 160)(line_width 1))
+	)
+	(port
+		(pt 0 176)
+		(input)
+		(text "msg_sent" (rect 0 0 61 15)(font "Arial" ))
+		(text "msg_sent" (rect 21 171 82 186)(font "Arial" ))
+		(line (pt 0 176)(pt 16 176)(line_width 1))
+	)
+	(port
+		(pt 0 192)
+		(input)
+		(text "pulse_rcvd" (rect 0 0 66 15)(font "Arial" ))
+		(text "pulse_rcvd" (rect 21 187 87 202)(font "Arial" ))
+		(line (pt 0 192)(pt 16 192)(line_width 1))
+	)
+	(port
+		(pt 0 208)
+		(input)
+		(text "pulse_sent" (rect 0 0 68 15)(font "Arial" ))
+		(text "pulse_sent" (rect 21 203 89 218)(font "Arial" ))
+		(line (pt 0 208)(pt 16 208)(line_width 1))
+	)
+	(port
+		(pt 0 224)
+		(input)
+		(text "rxwraff" (rect 0 0 38 15)(font "Arial" ))
+		(text "rxwraff" (rect 21 219 59 234)(font "Arial" ))
+		(line (pt 0 224)(pt 16 224)(line_width 1))
+	)
+	(port
+		(pt 0 240)
+		(input)
+		(text "stf_rcvd" (rect 0 0 46 15)(font "Arial" ))
+		(text "stf_rcvd" (rect 21 235 67 250)(font "Arial" ))
+		(line (pt 0 240)(pt 16 240)(line_width 1))
+	)
+	(port
+		(pt 0 256)
+		(input)
+		(text "sysres_rcvd" (rect 0 0 72 15)(font "Arial" ))
+		(text "sysres_rcvd" (rect 21 251 93 266)(font "Arial" ))
+		(line (pt 0 256)(pt 16 256)(line_width 1))
+	)
+	(port
+		(pt 0 272)
+		(input)
+		(text "tcal_rcvd" (rect 0 0 52 15)(font "Arial" ))
+		(text "tcal_rcvd" (rect 21 267 73 282)(font "Arial" ))
+		(line (pt 0 272)(pt 16 272)(line_width 1))
+	)
+	(port
+		(pt 0 288)
+		(input)
+		(text "txrdef" (rect 0 0 31 15)(font "Arial" ))
+		(text "txrdef" (rect 21 283 52 298)(font "Arial" ))
+		(line (pt 0 288)(pt 16 288)(line_width 1))
+	)
+	(port
+		(pt 200 32)
+		(output)
+		(text "cmd_snd0" (rect 0 0 64 15)(font "Arial" ))
+		(text "cmd_snd0" (rect 115 27 179 42)(font "Arial" ))
+		(line (pt 200 32)(pt 184 32)(line_width 1))
+	)
+	(port
+		(pt 200 48)
+		(output)
+		(text "cmd_snd1" (rect 0 0 64 15)(font "Arial" ))
+		(text "cmd_snd1" (rect 115 43 179 58)(font "Arial" ))
+		(line (pt 200 48)(pt 184 48)(line_width 1))
+	)
+	(port
+		(pt 200 64)
+		(output)
+		(text "cmd_snd2" (rect 0 0 64 15)(font "Arial" ))
+		(text "cmd_snd2" (rect 115 59 179 74)(font "Arial" ))
+		(line (pt 200 64)(pt 184 64)(line_width 1))
+	)
+	(port
+		(pt 200 80)
+		(output)
+		(text "cmd_snd3" (rect 0 0 64 15)(font "Arial" ))
+		(text "cmd_snd3" (rect 115 75 179 90)(font "Arial" ))
+		(line (pt 200 80)(pt 184 80)(line_width 1))
+	)
+	(port
+		(pt 200 96)
+		(output)
+		(text "com_aval" (rect 0 0 58 15)(font "Arial" ))
+		(text "com_aval" (rect 121 91 179 106)(font "Arial" ))
+		(line (pt 200 96)(pt 184 96)(line_width 1))
+	)
+	(port
+		(pt 200 112)
+		(output)
+		(text "drbt_gnt" (rect 0 0 49 15)(font "Arial" ))
+		(text "drbt_gnt" (rect 130 107 179 122)(font "Arial" ))
+		(line (pt 200 112)(pt 184 112)(line_width 1))
+	)
+	(port
+		(pt 200 128)
+		(output)
+		(text "rec_ctrl" (rect 0 0 44 15)(font "Arial" ))
+		(text "rec_ctrl" (rect 135 123 179 138)(font "Arial" ))
+		(line (pt 200 128)(pt 184 128)(line_width 1))
+	)
+	(port
+		(pt 200 144)
+		(output)
+		(text "rec_data" (rect 0 0 52 15)(font "Arial" ))
+		(text "rec_data" (rect 127 139 179 154)(font "Arial" ))
+		(line (pt 200 144)(pt 184 144)(line_width 1))
+	)
+	(port
+		(pt 200 160)
+		(output)
+		(text "send_ctrl" (rect 0 0 56 15)(font "Arial" ))
+		(text "send_ctrl" (rect 123 155 179 170)(font "Arial" ))
+		(line (pt 200 160)(pt 184 160)(line_width 1))
+	)
+	(port
+		(pt 200 176)
+		(output)
+		(text "send_data" (rect 0 0 64 15)(font "Arial" ))
+		(text "send_data" (rect 115 171 179 186)(font "Arial" ))
+		(line (pt 200 176)(pt 184 176)(line_width 1))
+	)
+	(port
+		(pt 200 192)
+		(output)
+		(text "sys_res" (rect 0 0 48 15)(font "Arial" ))
+		(text "sys_res" (rect 131 187 179 202)(font "Arial" ))
+		(line (pt 200 192)(pt 184 192)(line_width 1))
+	)
+	(port
+		(pt 200 208)
+		(output)
+		(text "tcal_cmd" (rect 0 0 55 15)(font "Arial" ))
+		(text "tcal_cmd" (rect 124 203 179 218)(font "Arial" ))
+		(line (pt 200 208)(pt 184 208)(line_width 1))
+	)
+	(port
+		(pt 200 224)
+		(output)
+		(text "tcal_data" (rect 0 0 55 15)(font "Arial" ))
+		(text "tcal_data" (rect 124 219 179 234)(font "Arial" ))
+		(line (pt 200 224)(pt 184 224)(line_width 1))
+	)
+	(port
+		(pt 200 240)
+		(output)
+		(text "tcal_prec" (rect 0 0 55 15)(font "Arial" ))
+		(text "tcal_prec" (rect 124 235 179 250)(font "Arial" ))
+		(line (pt 200 240)(pt 184 240)(line_width 1))
+	)
+	(port
+		(pt 200 256)
+		(output)
+		(text "tcal_psnd" (rect 0 0 59 15)(font "Arial" ))
+		(text "tcal_psnd" (rect 120 251 179 266)(font "Arial" ))
+		(line (pt 200 256)(pt 184 256)(line_width 1))
+	)
+	(drawing
+		(rectangle (rect 16 16 184 304)(line_width 1))
+	)
+)
