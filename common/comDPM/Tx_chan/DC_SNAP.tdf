@@ -1,9 +1,9 @@
 % C:\PROJECTS\ICECUBE\DOR\FPGA\DCOM_01\TX_CHAN\DC_SNAP.tdf %
 % AHDL code created by Visual Software Solution's StateCAD 4.11 %
-% Sun Apr 25 08:22:04 2004 %
+% Wed Jul 14 10:06:57 2004 %
 
 % This AHDL code was generated using: %
-%  binary encoded state assignment with structured code format. %
+%  one-hot state assignment with boolean code format. %
 %  Minimization is enabled,  implied else is enabled,  %
 %  and outputs are speed optimized. %
 
@@ -49,100 +49,156 @@ SUBDESIGN DC_SNAP(
 
 
 VARIABLE
-	sreg : MACHINE OF BITS (SV0, SV1, SV2, SV3, SV4)
-		WITH STATES (
-			SEND_IDLE =	B"10110",
-			BYT0 =	B"00000",
-			BYT1 =	B"00001",
-			BYT2 =	B"00010",
-			BYT3 =	B"00011",
-			CRC0 =	B"00100",
-			CRC1 =	B"00101",
-			CRC2 =	B"00110",
-			CRC3 =	B"00111",
-			CRC_WAIT =	B"01000",
-			DCMD_SEQ1 =	B"01001",
-			EOF =	B"01010",
-			EOF_SENT =	B"01011",
-			EOF_WAIT =	B"01100",
-			FRD_CHK =	B"01101",
-			ID_BYTE =	B"01110",
-			ID_LOAD =	B"01111",
-			ID_SHR8 =	B"10000",
-			LEN0 =	B"10001",
-			MTYPE_LEN1 =	B"10010",
-			PL_INC =	B"10011",
-			PTYPE_SEQ0 =	B"10100",
-			RXSHR8 =	B"10101",
-			STF =	B"10111",
-			TC_RX_TIME =	B"11000",
-			TC_TX_TIME =	B"11001",
-			TCWFM_FRD =	B"11010",
-			TCWFM_H =	B"11011",
-			TCWFM_L =	B"11100",
-			TXSHR8 =	B"11101"
-		);
-
-	sreg1 : MACHINE OF BITS (SV5)
-		WITH STATES (
-			DATA_HDR =	B"1",
-			DATA_BODY =	B"0"
-		);
-
+	BYT0 :	DFF;
+	BYT1 :	DFF;
+	BYT2 :	DFF;
+	BYT3 :	DFF;
+	CRC0 :	DFF;
+	CRC1 :	DFF;
+	CRC2 :	DFF;
+	CRC3 :	DFF;
 	crc_init :	DFF;
 	crc_last :	DFF;
+	CRC_WAIT :	DFF;
 	ctrl_val :	DFF;
+	DATA_BODY :	DFF;
+	DATA_HDR :	DFF;
 	data_val :	DFF;
+	DCMD_SEQ1 :	DFF;
 	dom_adr_en :	DFF;
 	dpr_ren :	DFF;
+	EOF :	DFF;
+	EOF_SENT :	DFF;
+	EOF_WAIT :	DFF;
+	FRD_CHK :	DFF;
+	ID_BYTE :	DFF;
+	ID_LOAD :	DFF;
 	id_shr :	DFF;
+	ID_SHR8 :	DFF;
 	id_shr_ld :	DFF;
+	LEN0 :	DFF;
 	msg_sent :	DFF;
+	MTYPE_LEN1 :	DFF;
 	muxsel0 :	DFF;
 	muxsel1 :	DFF;
 	muxsel2 :	DFF;
 	muxsel3 :	DFF;
 	muxsel4 :	DFF;
+	PL_INC :	DFF;
 	plen_clk_en :	DFF;
 	plen_ct_inc :	DFF;
 	plen_sload :	DFF;
+	PTYPE_SEQ0 :	DFF;
+	RXSHR8 :	DFF;
 	rxtime_shr :	DFF;
+	SEND_IDLE :	DFF;
 	shift_ct_aclr :	DFF;
 	shift_ct_en :	DFF;
+	STF :	DFF;
+	TC_RX_TIME :	DFF;
+	TC_TX_TIME :	DFF;
+	TCWF_CHK :	DFF;
 	tcwf_rd_next :	DFF;
+	TCWFM_FRD :	DFF;
+	TCWFM_H :	DFF;
+	TCWFM_L :	DFF;
+	TCWFM_WT :	DFF;
+	TXSHR8 :	DFF;
 	txtime_shr :	DFF;
 
 BEGIN
 
 % Clock setup %
+	BYT0.clk=CLK;
+	BYT1.clk=CLK;
+	BYT2.clk=CLK;
+	BYT3.clk=CLK;
+	CRC0.clk=CLK;
+	CRC1.clk=CLK;
+	CRC2.clk=CLK;
+	CRC3.clk=CLK;
 	crc_init.clk=CLK;
 	crc_last.clk=CLK;
+	CRC_WAIT.clk=CLK;
 	ctrl_val.clk=CLK;
+	DATA_BODY.clk=CLK;
+	DATA_HDR.clk=CLK;
 	data_val.clk=CLK;
+	DCMD_SEQ1.clk=CLK;
 	dom_adr_en.clk=CLK;
 	dpr_ren.clk=CLK;
+	EOF.clk=CLK;
+	EOF_SENT.clk=CLK;
+	EOF_WAIT.clk=CLK;
+	FRD_CHK.clk=CLK;
+	ID_BYTE.clk=CLK;
+	ID_LOAD.clk=CLK;
 	id_shr.clk=CLK;
+	ID_SHR8.clk=CLK;
 	id_shr_ld.clk=CLK;
+	LEN0.clk=CLK;
 	msg_sent.clk=CLK;
+	MTYPE_LEN1.clk=CLK;
 	muxsel0.clk=CLK;
 	muxsel1.clk=CLK;
 	muxsel2.clk=CLK;
 	muxsel3.clk=CLK;
 	muxsel4.clk=CLK;
+	PL_INC.clk=CLK;
 	plen_clk_en.clk=CLK;
 	plen_ct_inc.clk=CLK;
 	plen_sload.clk=CLK;
+	PTYPE_SEQ0.clk=CLK;
+	RXSHR8.clk=CLK;
 	rxtime_shr.clk=CLK;
+	SEND_IDLE.clk=CLK;
 	shift_ct_aclr.clk=CLK;
 	shift_ct_en.clk=CLK;
+	STF.clk=CLK;
+	TC_RX_TIME.clk=CLK;
+	TC_TX_TIME.clk=CLK;
+	TCWF_CHK.clk=CLK;
 	tcwf_rd_next.clk=CLK;
+	TCWFM_FRD.clk=CLK;
+	TCWFM_H.clk=CLK;
+	TCWFM_L.clk=CLK;
+	TCWFM_WT.clk=CLK;
+	TXSHR8.clk=CLK;
 	txtime_shr.clk=CLK;
-	sreg.clk=CLK;
-	sreg1.clk=CLK;
-
-	sreg.reset =  RESET ;
 
 	IF ( RESET ) THEN
+		BYT0.clrn=GND;
+		BYT1.clrn=GND;
+		BYT2.clrn=GND;
+		BYT3.clrn=GND;
+		CRC0.clrn=GND;
+		CRC1.clrn=GND;
+		CRC2.clrn=GND;
+		CRC3.clrn=GND;
+		CRC_WAIT.clrn=GND;
+		DCMD_SEQ1.clrn=GND;
+		EOF.clrn=GND;
+		EOF_SENT.clrn=GND;
+		EOF_WAIT.clrn=GND;
+		FRD_CHK.clrn=GND;
+		ID_BYTE.clrn=GND;
+		ID_LOAD.clrn=GND;
+		ID_SHR8.clrn=GND;
+		LEN0.clrn=GND;
+		MTYPE_LEN1.clrn=GND;
+		PL_INC.clrn=GND;
+		PTYPE_SEQ0.clrn=GND;
+		RXSHR8.clrn=GND;
+		SEND_IDLE.prn=GND;
+		STF.clrn=GND;
+		TC_RX_TIME.clrn=GND;
+		TC_TX_TIME.clrn=GND;
+		TCWF_CHK.clrn=GND;
+		TCWFM_FRD.clrn=GND;
+		TCWFM_H.clrn=GND;
+		TCWFM_L.clrn=GND;
+		TCWFM_WT.clrn=GND;
+		TXSHR8.clrn=GND;
 		tcwf_rd_next.clrn=GND;
 		dpr_ren.clrn=GND;
 		id_shr_ld.clrn=GND;
@@ -165,6 +221,38 @@ BEGIN
 		muxsel1.clrn=GND;
 		muxsel0.clrn=GND;
 	ELSE
+		BYT0.clrn=VCC;
+		BYT1.clrn=VCC;
+		BYT2.clrn=VCC;
+		BYT3.clrn=VCC;
+		CRC0.clrn=VCC;
+		CRC1.clrn=VCC;
+		CRC2.clrn=VCC;
+		CRC3.clrn=VCC;
+		CRC_WAIT.clrn=VCC;
+		DCMD_SEQ1.clrn=VCC;
+		EOF.clrn=VCC;
+		EOF_SENT.clrn=VCC;
+		EOF_WAIT.clrn=VCC;
+		FRD_CHK.clrn=VCC;
+		ID_BYTE.clrn=VCC;
+		ID_LOAD.clrn=VCC;
+		ID_SHR8.clrn=VCC;
+		LEN0.clrn=VCC;
+		MTYPE_LEN1.clrn=VCC;
+		PL_INC.clrn=VCC;
+		PTYPE_SEQ0.clrn=VCC;
+		RXSHR8.clrn=VCC;
+		SEND_IDLE.prn=VCC;
+		STF.clrn=VCC;
+		TC_RX_TIME.clrn=VCC;
+		TC_TX_TIME.clrn=VCC;
+		TCWF_CHK.clrn=VCC;
+		TCWFM_FRD.clrn=VCC;
+		TCWFM_H.clrn=VCC;
+		TCWFM_L.clrn=VCC;
+		TCWFM_WT.clrn=VCC;
+		TXSHR8.clrn=VCC;
 		tcwf_rd_next.clrn=VCC;
 		dpr_ren.clrn=VCC;
 		id_shr_ld.clrn=VCC;
@@ -187,488 +275,578 @@ BEGIN
 		muxsel1.clrn=VCC;
 		muxsel0.clrn=VCC;
 	END IF;
+BYT0 =  !uart_lat & BYT0  #  !last_byte & FRD_CHK  #  PL_INC  #  uart_lat & 
+	send_data & !odd_plen & STF ;
 
-	CASE sreg IS
-		WHEN BYT0 =>
-			IF ( uart_lat ) THEN 
-				sreg = BYT1;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1);
-			ELSE
-				sreg = BYT0;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0);
-			END IF;
-		WHEN BYT1 =>
-			IF ( uart_lat ) THEN 
-				sreg = BYT2;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0);
-			ELSE
-				sreg = BYT1;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1);
-			END IF;
-		WHEN BYT2 =>
-			IF ( uart_lat ) THEN 
-				sreg = BYT3;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1);
-			ELSE
-				sreg = BYT2;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0);
-			END IF;
-		WHEN BYT3 =>
-			IF ( uart_lat ) THEN 
-				sreg = FRD_CHK;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,1
-					,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0);
-			ELSE
-				sreg = BYT3;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1);
-			END IF;
-		WHEN CRC0 =>
-			IF ( uart_lat ) THEN 
-				sreg = EOF;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,1);
-			ELSE
-				sreg = CRC0;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0);
-			END IF;
-		WHEN CRC1 =>
-			IF ( uart_lat ) THEN 
-				sreg = CRC0;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0);
-			ELSE
-				sreg = CRC1;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,1);
-			END IF;
-		WHEN CRC2 =>
-			IF ( uart_lat ) THEN 
-				sreg = CRC1;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,1);
-			ELSE
-				sreg = CRC2;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0);
-			END IF;
-		WHEN CRC3 =>
-			IF ( uart_lat ) THEN 
-				sreg = CRC2;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0);
-			ELSE
-				sreg = CRC3;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,1);
-			END IF;
-		WHEN CRC_WAIT =>
-			IF ( crc_done ) THEN 
-				sreg = CRC3;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,1);
-			ELSE
-				sreg = CRC_WAIT;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0);
-			END IF;
-		WHEN DCMD_SEQ1 =>
-			IF ( !uart_lat  #  !send_ctrl & !send_id & !send_tcal ) THEN 
-				sreg = DCMD_SEQ1;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,1,1);
-			END IF;
-			IF ( uart_lat & send_ctrl ) THEN 
-				sreg = CRC_WAIT;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0);
-			END IF;
-			IF ( uart_lat & send_id ) THEN 
-				sreg = ID_LOAD;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-			END IF;
-			IF ( uart_lat & send_tcal ) THEN 
-				sreg = TC_RX_TIME;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,0);
-			END IF;
-		WHEN EOF =>
-			IF ( uart_lat ) THEN 
-				sreg = EOF_WAIT;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-			ELSE
-				sreg = EOF;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,1);
-			END IF;
-		WHEN EOF_SENT =>
-			sreg = SEND_IDLE;
-			(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,shift_ct_aclr
-				,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,data_val,
-				plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0,0,0,0,0,
-				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-		WHEN EOF_WAIT =>
-			IF ( uart_done ) THEN 
-				sreg = EOF_SENT;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0);
-			ELSE
-				sreg = EOF_WAIT;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-			END IF;
-		WHEN FRD_CHK =>
-			IF ( !last_byte ) THEN 
-				sreg = BYT0;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0);
-			END IF;
-			IF ( last_byte ) THEN 
-				sreg = CRC_WAIT;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0);
-			END IF;
-		WHEN ID_BYTE =>
-			IF ( uart_lat ) THEN 
-				sreg = ID_SHR8;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,1,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,1,0);
-			ELSE
-				sreg = ID_BYTE;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,1,0);
-			END IF;
-		WHEN ID_LOAD =>
-			sreg = ID_BYTE;
-			(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,shift_ct_aclr
-				,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,data_val,
-				plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0,0,0,0,0,
-				0,0,0,0,0,0,0,1,0,0,1,0,0,1,0);
-		WHEN ID_SHR8 =>
-			IF ( !shift_rdy & !last_byte_shr ) THEN 
-				sreg = ID_SHR8;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,1,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,1,0);
-			END IF;
-			IF ( shift_rdy & !last_byte_shr ) THEN 
-				sreg = ID_BYTE;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,1,0);
-			END IF;
-			IF ( last_byte_shr ) THEN 
-				sreg = CRC_WAIT;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0);
-			END IF;
-		WHEN LEN0 =>
-			IF ( uart_lat ) THEN 
-				sreg = MTYPE_LEN1;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,1);
-			ELSE
-				sreg = LEN0;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0);
-			END IF;
-		WHEN MTYPE_LEN1 =>
-			IF ( uart_lat ) THEN 
-				sreg = PTYPE_SEQ0;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0);
-			ELSE
-				sreg = MTYPE_LEN1;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,1);
-			END IF;
-		WHEN PL_INC =>
-			sreg = BYT0;
-			(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,shift_ct_aclr
-				,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,data_val,
-				plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0,0,0,0,0,
-				0,0,0,0,0,0,0,1,0,0,0,0,0,0,0);
-		WHEN PTYPE_SEQ0 =>
-			IF ( uart_lat ) THEN 
-				sreg = DCMD_SEQ1;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,1,1);
-			ELSE
-				sreg = PTYPE_SEQ0;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0);
-			END IF;
-		WHEN RXSHR8 =>
-			IF ( !shift_rdy & !last_byte_shr ) THEN 
-				sreg = RXSHR8;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,1,1,0);
-			END IF;
-			IF ( shift_rdy & !last_byte_shr ) THEN 
-				sreg = TC_RX_TIME;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,0);
-			END IF;
-			IF ( last_byte_shr ) THEN 
-				sreg = TC_TX_TIME;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,1);
-			END IF;
-		WHEN SEND_IDLE =>
-			IF ( send_ctrl  #  send_data  #  send_id  #  send_tcal ) THEN 
-				sreg = STF;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,1,0,1,0,0,0,1,0,1,1,0,1,1,0,0);
-			ELSE
-				sreg = SEND_IDLE;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-			END IF;
-		WHEN STF =>
-			IF ( !uart_lat ) THEN 
-				sreg = STF;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,1,0,1,0,0,0,1,0,1,1,0,1,1,0,0);
-			END IF;
-			IF ( uart_lat & !send_data ) THEN 
-				sreg = LEN0;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0);
-			END IF;
-			IF ( uart_lat & send_data & !odd_plen ) THEN 
-				sreg = BYT0;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0);
-			END IF;
-			IF ( uart_lat & send_data & odd_plen ) THEN 
-				sreg = PL_INC;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0);
-			END IF;
-		WHEN TC_RX_TIME =>
-			IF ( uart_lat ) THEN 
-				sreg = RXSHR8;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,1,1,0);
-			ELSE
-				sreg = TC_RX_TIME;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,0);
-			END IF;
-		WHEN TC_TX_TIME =>
-			IF ( uart_lat ) THEN 
-				sreg = TXSHR8;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,1,1,1,1);
-			ELSE
-				sreg = TC_TX_TIME;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,1);
-			END IF;
-		WHEN TCWFM_FRD =>
-			sreg = TCWFM_L;
-			(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,shift_ct_aclr
-				,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,data_val,
-				plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0,0,0,0,0,
-				0,0,0,0,0,0,0,1,0,0,1,0,0,0,0);
-		WHEN TCWFM_H =>
-			IF ( !uart_lat ) THEN 
-				sreg = TCWFM_H;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,1);
-			END IF;
-			IF ( uart_lat & !tcwf_ef ) THEN 
-				sreg = TCWFM_FRD;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(1,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0);
-			END IF;
-			IF ( uart_lat & tcwf_ef ) THEN 
-				sreg = CRC_WAIT;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0);
-			END IF;
-		WHEN TCWFM_L =>
-			IF ( uart_lat ) THEN 
-				sreg = TCWFM_H;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,1);
-			ELSE
-				sreg = TCWFM_L;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0);
-			END IF;
-		WHEN TXSHR8 =>
-			IF ( !shift_rdy & !last_byte_shr ) THEN 
-				sreg = TXSHR8;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,1,1,1,1);
-			END IF;
-			IF ( shift_rdy & !last_byte_shr ) THEN 
-				sreg = TC_TX_TIME;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,1);
-			END IF;
-			IF ( last_byte_shr ) THEN 
-				sreg = TCWFM_L;
-				(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,
-					shift_ct_aclr,shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,
-					data_val,plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0)=(0,0
-					,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0);
-			END IF;
-	END CASE;
+BYT1 =  uart_lat & BYT0  #  !uart_lat & BYT1 ;
 
-	sreg1.reset =  RESET ;
+BYT2 =  uart_lat & BYT1  #  !uart_lat & BYT2 ;
+
+BYT3 =  uart_lat & BYT2  #  !uart_lat & BYT3 ;
+
+CRC0 =  !uart_lat & CRC0  #  uart_lat & CRC1 ;
+
+CRC1 =  !uart_lat & CRC1  #  uart_lat & CRC2 ;
+
+CRC2 =  !uart_lat & CRC2  #  uart_lat & CRC3 ;
+
+CRC3 =  !uart_lat & CRC3  #  crc_done & CRC_WAIT ;
+
+CRC_WAIT =  !crc_done & CRC_WAIT  #  uart_lat & send_ctrl & DCMD_SEQ1  #  
+	last_byte & FRD_CHK  #  last_byte_shr & ID_SHR8  #  tcwf_ef & TCWF_CHK ;
+
+DCMD_SEQ1 =  !send_ctrl & !send_id & !send_tcal & DCMD_SEQ1  #  !uart_lat & 
+	DCMD_SEQ1  #  uart_lat & PTYPE_SEQ0 ;
+
+EOF =  uart_lat & CRC0  #  !uart_lat & EOF ;
+
+EOF_SENT =  uart_done & EOF_WAIT ;
+
+EOF_WAIT =  uart_lat & EOF  #  !uart_done & EOF_WAIT ;
+
+FRD_CHK =  uart_lat & BYT3 ;
+
+ID_BYTE =  !uart_lat & ID_BYTE  #  ID_LOAD  #  shift_rdy & !last_byte_shr & 
+	ID_SHR8 ;
+
+ID_LOAD =  uart_lat & send_id & DCMD_SEQ1 ;
+
+ID_SHR8 =  uart_lat & ID_BYTE  #  !shift_rdy & !last_byte_shr & ID_SHR8 ;
+
+LEN0 =  !uart_lat & LEN0  #  uart_lat & !send_data & STF ;
+
+MTYPE_LEN1 =  uart_lat & LEN0  #  !uart_lat & MTYPE_LEN1 ;
+
+PL_INC =  uart_lat & send_data & odd_plen & STF ;
+
+PTYPE_SEQ0 =  uart_lat & MTYPE_LEN1  #  !uart_lat & PTYPE_SEQ0 ;
+
+RXSHR8 =  !shift_rdy & !last_byte_shr & RXSHR8  #  uart_lat & TC_RX_TIME ;
+
+SEND_IDLE =  EOF_SENT  #  !send_ctrl & !send_data & !send_id & !send_tcal & 
+	SEND_IDLE ;
+
+STF =  send_tcal & SEND_IDLE  #  send_id & SEND_IDLE  #  send_data & 
+	SEND_IDLE  #  send_ctrl & SEND_IDLE  #  !uart_lat & STF ;
+
+TC_RX_TIME =  uart_lat & send_tcal & DCMD_SEQ1  #  shift_rdy & !last_byte_shr
+	 & RXSHR8  #  !uart_lat & TC_RX_TIME ;
+
+TC_TX_TIME =  last_byte_shr & RXSHR8  #  !uart_lat & TC_TX_TIME  #  shift_rdy
+	 & !last_byte_shr & TXSHR8 ;
+
+TCWF_CHK =  TCWFM_WT ;
+
+TCWFM_FRD =  uart_lat & TCWFM_H ;
+
+TCWFM_H =  !uart_lat & TCWFM_H  #  uart_lat & TCWFM_L ;
+
+TCWFM_L =  !tcwf_ef & TCWF_CHK  #  !uart_lat & TCWFM_L  #  last_byte_shr & 
+	TXSHR8 ;
+
+TCWFM_WT =  TCWFM_FRD ;
+
+TXSHR8 =  uart_lat & TC_TX_TIME  #  !shift_rdy & !last_byte_shr & TXSHR8 ;
+
 
 	IF ( RESET ) THEN
+		DATA_BODY.clrn=GND;
+		DATA_HDR.prn=GND;
 		dom_adr_en.prn=GND;
 	ELSE
+		DATA_BODY.clrn=VCC;
+		DATA_HDR.prn=VCC;
 		dom_adr_en.prn=VCC;
 	END IF;
+DATA_BODY =  !EOF_SENT & DATA_BODY  #  BYT2 & DATA_HDR ;
 
-	CASE sreg1 IS
-		WHEN DATA_BODY =>
-			IF ( !SV0 & SV1 & !SV2 & SV3 & SV4 ) THEN 
-				sreg1 = DATA_HDR;
-				dom_adr_en=VCC;
-			ELSE
-				sreg1 = DATA_BODY;
-				dom_adr_en=GND;
-			END IF;
-		WHEN DATA_HDR =>
-			IF ( !SV0 & !SV1 & !SV2 & SV3 & !SV4 ) THEN 
-				sreg1 = DATA_BODY;
-				dom_adr_en=GND;
-			ELSE
-				sreg1 = DATA_HDR;
-				dom_adr_en=VCC;
-			END IF;
-	END CASE;
+DATA_HDR =  EOF_SENT & DATA_BODY  #  !BYT2 & DATA_HDR ;
 
+
+
+dom_adr_en = EOF_SENT & DATA_BODY  #  !BYT2 & DATA_HDR ;
+
+(tcwf_rd_next,dpr_ren,id_shr_ld,id_shr,txtime_shr,rxtime_shr,shift_ct_aclr,
+	shift_ct_en,crc_init,crc_last,plen_ct_inc,msg_sent,ctrl_val,data_val,
+	plen_sload,plen_clk_en,muxsel4,muxsel3,muxsel2,muxsel1,muxsel0) = (  ( BYT0, 
+	BYT0, BYT0, BYT0, BYT0, BYT0, BYT0, BYT0, BYT0, BYT0, BYT0, BYT0, BYT0, BYT0,
+	 BYT0, BYT0, BYT0, BYT0, BYT0, BYT0, BYT0) & ( ! ( uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat) ) & ((0,0,0,0,0,0,0,0,0,0,0
+	,0,0,1,0,0,0,0,0,0,0) ) ) # (  ( FRD_CHK, FRD_CHK, FRD_CHK, FRD_CHK, FRD_CHK,
+	 FRD_CHK, FRD_CHK, FRD_CHK, FRD_CHK, FRD_CHK, FRD_CHK, FRD_CHK, FRD_CHK, 
+	FRD_CHK, FRD_CHK, FRD_CHK, FRD_CHK, FRD_CHK, FRD_CHK, FRD_CHK, FRD_CHK) & ( !
+	 ( last_byte, last_byte, last_byte, last_byte, last_byte, last_byte, 
+	last_byte, last_byte, last_byte, last_byte, last_byte, last_byte, last_byte, 
+	last_byte, last_byte, last_byte, last_byte, last_byte, last_byte, last_byte, 
+	last_byte) ) & ((0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0) ) ) # (  ( PL_INC
+	, PL_INC, PL_INC, PL_INC, PL_INC, PL_INC, PL_INC, PL_INC, PL_INC, PL_INC, 
+	PL_INC, PL_INC, PL_INC, PL_INC, PL_INC, PL_INC, PL_INC, PL_INC, PL_INC, 
+	PL_INC, PL_INC) & ((1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1) ) & ((0,0,0,0,
+	0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0) ) ) # (  ( STF, STF, STF, STF, STF, STF, 
+	STF, STF, STF, STF, STF, STF, STF, STF, STF, STF, STF, STF, STF, STF, STF) & 
+	(  ( uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat)&  ( 
+	send_data, send_data, send_data, send_data, send_data, send_data, send_data, 
+	send_data, send_data, send_data, send_data, send_data, send_data, send_data, 
+	send_data, send_data, send_data, send_data, send_data, send_data, send_data)&
+	 ! ( odd_plen, odd_plen, odd_plen, odd_plen, odd_plen, odd_plen, odd_plen, 
+	odd_plen, odd_plen, odd_plen, odd_plen, odd_plen, odd_plen, odd_plen, 
+	odd_plen, odd_plen, odd_plen, odd_plen, odd_plen, odd_plen, odd_plen) ) & ((0
+	,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0) ) ) # (  ( BYT0, BYT0, BYT0, BYT0, 
+	BYT0, BYT0, BYT0, BYT0, BYT0, BYT0, BYT0, BYT0, BYT0, BYT0, BYT0, BYT0, BYT0,
+	 BYT0, BYT0, BYT0, BYT0) & (  ( uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat) ) & ((0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1
+	) ) ) # (  ( BYT1, BYT1, BYT1, BYT1, BYT1, BYT1, BYT1, BYT1, BYT1, BYT1, BYT1
+	, BYT1, BYT1, BYT1, BYT1, BYT1, BYT1, BYT1, BYT1, BYT1, BYT1) & ( ! ( 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat) ) & ((0
+	,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1) ) ) # (  ( BYT1, BYT1, BYT1, BYT1, 
+	BYT1, BYT1, BYT1, BYT1, BYT1, BYT1, BYT1, BYT1, BYT1, BYT1, BYT1, BYT1, BYT1,
+	 BYT1, BYT1, BYT1, BYT1) & (  ( uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat) ) & ((0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0
+	) ) ) # (  ( BYT2, BYT2, BYT2, BYT2, BYT2, BYT2, BYT2, BYT2, BYT2, BYT2, BYT2
+	, BYT2, BYT2, BYT2, BYT2, BYT2, BYT2, BYT2, BYT2, BYT2, BYT2) & ( ! ( 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat) ) & ((0
+	,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0) ) ) # (  ( BYT2, BYT2, BYT2, BYT2, 
+	BYT2, BYT2, BYT2, BYT2, BYT2, BYT2, BYT2, BYT2, BYT2, BYT2, BYT2, BYT2, BYT2,
+	 BYT2, BYT2, BYT2, BYT2) & (  ( uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat) ) & ((0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1
+	) ) ) # (  ( BYT3, BYT3, BYT3, BYT3, BYT3, BYT3, BYT3, BYT3, BYT3, BYT3, BYT3
+	, BYT3, BYT3, BYT3, BYT3, BYT3, BYT3, BYT3, BYT3, BYT3, BYT3) & ( ! ( 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat) ) & ((0
+	,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1) ) ) # (  ( CRC0, CRC0, CRC0, CRC0, 
+	CRC0, CRC0, CRC0, CRC0, CRC0, CRC0, CRC0, CRC0, CRC0, CRC0, CRC0, CRC0, CRC0,
+	 CRC0, CRC0, CRC0, CRC0) & ( ! ( uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat) ) & ((0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0
+	) ) ) # (  ( CRC1, CRC1, CRC1, CRC1, CRC1, CRC1, CRC1, CRC1, CRC1, CRC1, CRC1
+	, CRC1, CRC1, CRC1, CRC1, CRC1, CRC1, CRC1, CRC1, CRC1, CRC1) & (  ( uart_lat
+	, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat) ) & ((0,0,0,0,0,0
+	,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0) ) ) # (  ( CRC1, CRC1, CRC1, CRC1, CRC1, CRC1
+	, CRC1, CRC1, CRC1, CRC1, CRC1, CRC1, CRC1, CRC1, CRC1, CRC1, CRC1, CRC1, 
+	CRC1, CRC1, CRC1) & ( ! ( uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat) ) & ((0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,1) ) ) # ( 
+	 ( CRC2, CRC2, CRC2, CRC2, CRC2, CRC2, CRC2, CRC2, CRC2, CRC2, CRC2, CRC2, 
+	CRC2, CRC2, CRC2, CRC2, CRC2, CRC2, CRC2, CRC2, CRC2) & (  ( uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat) ) & ((0,0,0,0,0,0
+	,0,0,0,0,0,0,0,1,0,0,0,0,1,0,1) ) ) # (  ( CRC2, CRC2, CRC2, CRC2, CRC2, CRC2
+	, CRC2, CRC2, CRC2, CRC2, CRC2, CRC2, CRC2, CRC2, CRC2, CRC2, CRC2, CRC2, 
+	CRC2, CRC2, CRC2) & ( ! ( uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat) ) & ((0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0) ) ) # ( 
+	 ( CRC3, CRC3, CRC3, CRC3, CRC3, CRC3, CRC3, CRC3, CRC3, CRC3, CRC3, CRC3, 
+	CRC3, CRC3, CRC3, CRC3, CRC3, CRC3, CRC3, CRC3, CRC3) & (  ( uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat) ) & ((0,0,0,0,0,0
+	,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0) ) ) # (  ( CRC3, CRC3, CRC3, CRC3, CRC3, CRC3
+	, CRC3, CRC3, CRC3, CRC3, CRC3, CRC3, CRC3, CRC3, CRC3, CRC3, CRC3, CRC3, 
+	CRC3, CRC3, CRC3) & ( ! ( uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat) ) & ((0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,1) ) ) # ( 
+	 ( CRC_WAIT, CRC_WAIT, CRC_WAIT, CRC_WAIT, CRC_WAIT, CRC_WAIT, CRC_WAIT, 
+	CRC_WAIT, CRC_WAIT, CRC_WAIT, CRC_WAIT, CRC_WAIT, CRC_WAIT, CRC_WAIT, 
+	CRC_WAIT, CRC_WAIT, CRC_WAIT, CRC_WAIT, CRC_WAIT, CRC_WAIT, CRC_WAIT) & (  ( 
+	crc_done, crc_done, crc_done, crc_done, crc_done, crc_done, crc_done, 
+	crc_done, crc_done, crc_done, crc_done, crc_done, crc_done, crc_done, 
+	crc_done, crc_done, crc_done, crc_done, crc_done, crc_done, crc_done) ) & ((0
+	,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,1) ) ) # (  ( CRC_WAIT, CRC_WAIT, 
+	CRC_WAIT, CRC_WAIT, CRC_WAIT, CRC_WAIT, CRC_WAIT, CRC_WAIT, CRC_WAIT, 
+	CRC_WAIT, CRC_WAIT, CRC_WAIT, CRC_WAIT, CRC_WAIT, CRC_WAIT, CRC_WAIT, 
+	CRC_WAIT, CRC_WAIT, CRC_WAIT, CRC_WAIT, CRC_WAIT) & ( ! ( crc_done, crc_done,
+	 crc_done, crc_done, crc_done, crc_done, crc_done, crc_done, crc_done, 
+	crc_done, crc_done, crc_done, crc_done, crc_done, crc_done, crc_done, 
+	crc_done, crc_done, crc_done, crc_done, crc_done) ) & ((0,0,0,0,0,0,0,0,0,1,0
+	,0,0,0,0,0,0,0,1,0,0) ) ) # (  ( DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, 
+	DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, 
+	DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, 
+	DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1) & (  ( uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat)&  ( send_ctrl, send_ctrl, send_ctrl, 
+	send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl, 
+	send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl, 
+	send_ctrl, send_ctrl, send_ctrl, send_ctrl) ) & ((0,0,0,0,0,0,0,0,0,1,0,0,0,0
+	,0,0,0,0,1,0,0) ) ) # (  ( FRD_CHK, FRD_CHK, FRD_CHK, FRD_CHK, FRD_CHK, 
+	FRD_CHK, FRD_CHK, FRD_CHK, FRD_CHK, FRD_CHK, FRD_CHK, FRD_CHK, FRD_CHK, 
+	FRD_CHK, FRD_CHK, FRD_CHK, FRD_CHK, FRD_CHK, FRD_CHK, FRD_CHK, FRD_CHK) & (  
+	( last_byte, last_byte, last_byte, last_byte, last_byte, last_byte, last_byte
+	, last_byte, last_byte, last_byte, last_byte, last_byte, last_byte, last_byte
+	, last_byte, last_byte, last_byte, last_byte, last_byte, last_byte, last_byte
+	) ) & ((0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0) ) ) # (  ( ID_SHR8, 
+	ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, 
+	ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, 
+	ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8) & (  ( last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr) ) & ((0,0,0,0,0,0
+	,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0) ) ) # (  ( TCWF_CHK, TCWF_CHK, TCWF_CHK, 
+	TCWF_CHK, TCWF_CHK, TCWF_CHK, TCWF_CHK, TCWF_CHK, TCWF_CHK, TCWF_CHK, 
+	TCWF_CHK, TCWF_CHK, TCWF_CHK, TCWF_CHK, TCWF_CHK, TCWF_CHK, TCWF_CHK, 
+	TCWF_CHK, TCWF_CHK, TCWF_CHK, TCWF_CHK) & (  ( tcwf_ef, tcwf_ef, tcwf_ef, 
+	tcwf_ef, tcwf_ef, tcwf_ef, tcwf_ef, tcwf_ef, tcwf_ef, tcwf_ef, tcwf_ef, 
+	tcwf_ef, tcwf_ef, tcwf_ef, tcwf_ef, tcwf_ef, tcwf_ef, tcwf_ef, tcwf_ef, 
+	tcwf_ef, tcwf_ef) ) & ((0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0) ) ) # (  (
+	 DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1,
+	 DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1,
+	 DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1)
+	 & ( ! ( uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat
+	, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat) #  ! ( 
+	send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl, 
+	send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl, 
+	send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl)&
+	 ! ( send_id, send_id, send_id, send_id, send_id, send_id, send_id, send_id, 
+	send_id, send_id, send_id, send_id, send_id, send_id, send_id, send_id, 
+	send_id, send_id, send_id, send_id, send_id)& ! ( send_tcal, send_tcal, 
+	send_tcal, send_tcal, send_tcal, send_tcal, send_tcal, send_tcal, send_tcal, 
+	send_tcal, send_tcal, send_tcal, send_tcal, send_tcal, send_tcal, send_tcal, 
+	send_tcal, send_tcal, send_tcal, send_tcal, send_tcal) ) & ((0,0,0,0,0,0,0,0,
+	0,0,0,0,0,1,0,0,0,1,0,1,1) ) ) # (  ( PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, 
+	PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, 
+	PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, 
+	PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0) & (  
+	( uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat) ) & ((0
+	,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,1,1) ) ) # (  ( CRC0, CRC0, CRC0, CRC0, 
+	CRC0, CRC0, CRC0, CRC0, CRC0, CRC0, CRC0, CRC0, CRC0, CRC0, CRC0, CRC0, CRC0,
+	 CRC0, CRC0, CRC0, CRC0) & (  ( uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat) ) & ((0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,1
+	) ) ) # (  ( EOF, EOF, EOF, EOF, EOF, EOF, EOF, EOF, EOF, EOF, EOF, EOF, EOF,
+	 EOF, EOF, EOF, EOF, EOF, EOF, EOF, EOF) & ( ! ( uart_lat, uart_lat, uart_lat
+	, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat) ) & ((0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+	,0,1,1,0,1) ) ) # (  ( EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, 
+	EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, 
+	EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, 
+	EOF_WAIT, EOF_WAIT) & (  ( uart_done, uart_done, uart_done, uart_done, 
+	uart_done, uart_done, uart_done, uart_done, uart_done, uart_done, uart_done, 
+	uart_done, uart_done, uart_done, uart_done, uart_done, uart_done, uart_done, 
+	uart_done, uart_done, uart_done) ) & ((0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,
+	0,0) ) ) # (  ( EOF, EOF, EOF, EOF, EOF, EOF, EOF, EOF, EOF, EOF, EOF, EOF, 
+	EOF, EOF, EOF, EOF, EOF, EOF, EOF, EOF, EOF) & (  ( uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat) ) & ((0,0,0,0,0,0,0,0,0,0,0
+	,0,0,0,0,0,0,0,0,0,0) ) ) # (  ( EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, 
+	EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, 
+	EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, 
+	EOF_WAIT, EOF_WAIT, EOF_WAIT) & ( ! ( uart_done, uart_done, uart_done, 
+	uart_done, uart_done, uart_done, uart_done, uart_done, uart_done, uart_done, 
+	uart_done, uart_done, uart_done, uart_done, uart_done, uart_done, uart_done, 
+	uart_done, uart_done, uart_done, uart_done) ) & ((0,0,0,0,0,0,0,0,0,0,0,0,0,0
+	,0,0,0,0,0,0,0) ) ) # (  ( BYT3, BYT3, BYT3, BYT3, BYT3, BYT3, BYT3, BYT3, 
+	BYT3, BYT3, BYT3, BYT3, BYT3, BYT3, BYT3, BYT3, BYT3, BYT3, BYT3, BYT3, BYT3)
+	 & (  ( uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat,
+	 uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat) ) & ((0
+	,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0) ) ) # (  ( ID_BYTE, ID_BYTE, 
+	ID_BYTE, ID_BYTE, ID_BYTE, ID_BYTE, ID_BYTE, ID_BYTE, ID_BYTE, ID_BYTE, 
+	ID_BYTE, ID_BYTE, ID_BYTE, ID_BYTE, ID_BYTE, ID_BYTE, ID_BYTE, ID_BYTE, 
+	ID_BYTE, ID_BYTE, ID_BYTE) & ( ! ( uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat) ) & ((0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,1,0
+	) ) ) # (  ( ID_LOAD, ID_LOAD, ID_LOAD, ID_LOAD, ID_LOAD, ID_LOAD, ID_LOAD, 
+	ID_LOAD, ID_LOAD, ID_LOAD, ID_LOAD, ID_LOAD, ID_LOAD, ID_LOAD, ID_LOAD, 
+	ID_LOAD, ID_LOAD, ID_LOAD, ID_LOAD, ID_LOAD, ID_LOAD) & ((1,1,1,1,1,1,1,1,1,1
+	,1,1,1,1,1,1,1,1,1,1,1) ) & ((0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,1,0) ) ) 
+	# (  ( ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8
+	, ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, 
+	ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8) & (  ( shift_rdy, shift_rdy, 
+	shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, 
+	shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, 
+	shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy)& ! ( last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr) ) 
+	& ((0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,1,0) ) ) # (  ( DCMD_SEQ1, 
+	DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, 
+	DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, 
+	DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1) & (  ( 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat)&  ( 
+	send_id, send_id, send_id, send_id, send_id, send_id, send_id, send_id, 
+	send_id, send_id, send_id, send_id, send_id, send_id, send_id, send_id, 
+	send_id, send_id, send_id, send_id, send_id) ) & ((0,0,1,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0) ) ) # (  ( ID_BYTE, ID_BYTE, ID_BYTE, ID_BYTE, ID_BYTE, 
+	ID_BYTE, ID_BYTE, ID_BYTE, ID_BYTE, ID_BYTE, ID_BYTE, ID_BYTE, ID_BYTE, 
+	ID_BYTE, ID_BYTE, ID_BYTE, ID_BYTE, ID_BYTE, ID_BYTE, ID_BYTE, ID_BYTE) & (  
+	( uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat) ) & ((0
+	,0,0,1,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,1,0) ) ) # (  ( ID_SHR8, ID_SHR8, 
+	ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, 
+	ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, ID_SHR8, 
+	ID_SHR8, ID_SHR8, ID_SHR8) & ( ! ( shift_rdy, shift_rdy, shift_rdy, shift_rdy
+	, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy
+	, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy
+	, shift_rdy, shift_rdy, shift_rdy)& ! ( last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr) ) & ((0,0,0,1,0,0
+	,0,1,0,0,0,0,0,1,0,0,1,0,0,1,0) ) ) # (  ( LEN0, LEN0, LEN0, LEN0, LEN0, LEN0
+	, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, 
+	LEN0, LEN0, LEN0) & ( ! ( uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat) ) & ((0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0) ) ) # ( 
+	 ( STF, STF, STF, STF, STF, STF, STF, STF, STF, STF, STF, STF, STF, STF, STF,
+	 STF, STF, STF, STF, STF, STF) & (  ( uart_lat, uart_lat, uart_lat, uart_lat,
+	 uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat)& ! ( send_data, send_data, send_data, send_data
+	, send_data, send_data, send_data, send_data, send_data, send_data, send_data
+	, send_data, send_data, send_data, send_data, send_data, send_data, send_data
+	, send_data, send_data, send_data) ) & ((0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,
+	0,0,0) ) ) # (  ( LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0,
+	 LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0) & (  ( 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat) ) & ((0
+	,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,1) ) ) # (  ( MTYPE_LEN1, MTYPE_LEN1, 
+	MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, 
+	MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, 
+	MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, 
+	MTYPE_LEN1) & ( ! ( uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat) ) & ((0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,1) ) ) # ( 
+	 ( STF, STF, STF, STF, STF, STF, STF, STF, STF, STF, STF, STF, STF, STF, STF,
+	 STF, STF, STF, STF, STF, STF) & (  ( uart_lat, uart_lat, uart_lat, uart_lat,
+	 uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat)&  ( send_data, send_data, send_data, send_data,
+	 send_data, send_data, send_data, send_data, send_data, send_data, send_data,
+	 send_data, send_data, send_data, send_data, send_data, send_data, send_data,
+	 send_data, send_data, send_data)&  ( odd_plen, odd_plen, odd_plen, odd_plen,
+	 odd_plen, odd_plen, odd_plen, odd_plen, odd_plen, odd_plen, odd_plen, 
+	odd_plen, odd_plen, odd_plen, odd_plen, odd_plen, odd_plen, odd_plen, 
+	odd_plen, odd_plen, odd_plen) ) & ((0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0
+	) ) ) # (  ( MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, 
+	MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, 
+	MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, 
+	MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1) & (  ( uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat) ) & ((0,0,0,0,0,0,0,0,0,0,0
+	,0,0,1,0,0,0,1,0,1,0) ) ) # (  ( PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, 
+	PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, 
+	PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, 
+	PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0) & ( !
+	 ( uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat) ) & ((0
+	,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0) ) ) # (  ( RXSHR8, RXSHR8, RXSHR8, 
+	RXSHR8, RXSHR8, RXSHR8, RXSHR8, RXSHR8, RXSHR8, RXSHR8, RXSHR8, RXSHR8, 
+	RXSHR8, RXSHR8, RXSHR8, RXSHR8, RXSHR8, RXSHR8, RXSHR8, RXSHR8, RXSHR8) & ( !
+	 ( shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, 
+	shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, 
+	shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, 
+	shift_rdy)& ! ( last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr) ) & ((0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,1,1,0
+	) ) ) # (  ( TC_RX_TIME, TC_RX_TIME, TC_RX_TIME, TC_RX_TIME, TC_RX_TIME, 
+	TC_RX_TIME, TC_RX_TIME, TC_RX_TIME, TC_RX_TIME, TC_RX_TIME, TC_RX_TIME, 
+	TC_RX_TIME, TC_RX_TIME, TC_RX_TIME, TC_RX_TIME, TC_RX_TIME, TC_RX_TIME, 
+	TC_RX_TIME, TC_RX_TIME, TC_RX_TIME, TC_RX_TIME) & (  ( uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat) ) & ((0,0,0,0,0,1,0,1,0,0,0
+	,0,0,0,0,0,0,1,1,1,0) ) ) # (  ( EOF_SENT, EOF_SENT, EOF_SENT, EOF_SENT, 
+	EOF_SENT, EOF_SENT, EOF_SENT, EOF_SENT, EOF_SENT, EOF_SENT, EOF_SENT, 
+	EOF_SENT, EOF_SENT, EOF_SENT, EOF_SENT, EOF_SENT, EOF_SENT, EOF_SENT, 
+	EOF_SENT, EOF_SENT, EOF_SENT) & ((1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1) 
+	) & ((0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0) ) ) # (  ( SEND_IDLE, 
+	SEND_IDLE, SEND_IDLE, SEND_IDLE, SEND_IDLE, SEND_IDLE, SEND_IDLE, SEND_IDLE, 
+	SEND_IDLE, SEND_IDLE, SEND_IDLE, SEND_IDLE, SEND_IDLE, SEND_IDLE, SEND_IDLE, 
+	SEND_IDLE, SEND_IDLE, SEND_IDLE, SEND_IDLE, SEND_IDLE, SEND_IDLE) & ( ! ( 
+	send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl, 
+	send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl, 
+	send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl)&
+	 ! ( send_data, send_data, send_data, send_data, send_data, send_data, 
+	send_data, send_data, send_data, send_data, send_data, send_data, send_data, 
+	send_data, send_data, send_data, send_data, send_data, send_data, send_data, 
+	send_data)& ! ( send_id, send_id, send_id, send_id, send_id, send_id, send_id
+	, send_id, send_id, send_id, send_id, send_id, send_id, send_id, send_id, 
+	send_id, send_id, send_id, send_id, send_id, send_id)& ! ( send_tcal, 
+	send_tcal, send_tcal, send_tcal, send_tcal, send_tcal, send_tcal, send_tcal, 
+	send_tcal, send_tcal, send_tcal, send_tcal, send_tcal, send_tcal, send_tcal, 
+	send_tcal, send_tcal, send_tcal, send_tcal, send_tcal, send_tcal) ) & ((0,0,0
+	,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0) ) ) # (  ( SEND_IDLE, SEND_IDLE, 
+	SEND_IDLE, SEND_IDLE, SEND_IDLE, SEND_IDLE, SEND_IDLE, SEND_IDLE, SEND_IDLE, 
+	SEND_IDLE, SEND_IDLE, SEND_IDLE, SEND_IDLE, SEND_IDLE, SEND_IDLE, SEND_IDLE, 
+	SEND_IDLE, SEND_IDLE, SEND_IDLE, SEND_IDLE, SEND_IDLE) & (  ( send_ctrl, 
+	send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl, 
+	send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl, 
+	send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl, send_ctrl) #   ( 
+	send_data, send_data, send_data, send_data, send_data, send_data, send_data, 
+	send_data, send_data, send_data, send_data, send_data, send_data, send_data, 
+	send_data, send_data, send_data, send_data, send_data, send_data, send_data) 
+	#   ( send_id, send_id, send_id, send_id, send_id, send_id, send_id, send_id,
+	 send_id, send_id, send_id, send_id, send_id, send_id, send_id, send_id, 
+	send_id, send_id, send_id, send_id, send_id) #   ( send_tcal, send_tcal, 
+	send_tcal, send_tcal, send_tcal, send_tcal, send_tcal, send_tcal, send_tcal, 
+	send_tcal, send_tcal, send_tcal, send_tcal, send_tcal, send_tcal, send_tcal, 
+	send_tcal, send_tcal, send_tcal, send_tcal, send_tcal) ) & ((0,0,0,0,0,0,1,0,
+	1,0,0,0,1,0,1,1,0,1,1,0,0) ) ) # (  ( STF, STF, STF, STF, STF, STF, STF, STF,
+	 STF, STF, STF, STF, STF, STF, STF, STF, STF, STF, STF, STF, STF) & ( ! ( 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat) ) & ((0
+	,0,0,0,0,0,1,0,1,0,0,0,1,0,1,1,0,1,1,0,0) ) ) # (  ( DCMD_SEQ1, DCMD_SEQ1, 
+	DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, 
+	DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, 
+	DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1) & (  ( uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat)&  ( send_tcal, 
+	send_tcal, send_tcal, send_tcal, send_tcal, send_tcal, send_tcal, send_tcal, 
+	send_tcal, send_tcal, send_tcal, send_tcal, send_tcal, send_tcal, send_tcal, 
+	send_tcal, send_tcal, send_tcal, send_tcal, send_tcal, send_tcal) ) & ((0,0,0
+	,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,0) ) ) # (  ( RXSHR8, RXSHR8, RXSHR8, 
+	RXSHR8, RXSHR8, RXSHR8, RXSHR8, RXSHR8, RXSHR8, RXSHR8, RXSHR8, RXSHR8, 
+	RXSHR8, RXSHR8, RXSHR8, RXSHR8, RXSHR8, RXSHR8, RXSHR8, RXSHR8, RXSHR8) & (  
+	( shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy
+	, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy
+	, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy
+	)& ! ( last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr) ) & ((0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,0
+	) ) ) # (  ( TC_RX_TIME, TC_RX_TIME, TC_RX_TIME, TC_RX_TIME, TC_RX_TIME, 
+	TC_RX_TIME, TC_RX_TIME, TC_RX_TIME, TC_RX_TIME, TC_RX_TIME, TC_RX_TIME, 
+	TC_RX_TIME, TC_RX_TIME, TC_RX_TIME, TC_RX_TIME, TC_RX_TIME, TC_RX_TIME, 
+	TC_RX_TIME, TC_RX_TIME, TC_RX_TIME, TC_RX_TIME) & ( ! ( uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat) ) & ((0,0,0,0,0,0,0,0,0,0,0
+	,0,0,1,0,0,0,1,1,1,0) ) ) # (  ( RXSHR8, RXSHR8, RXSHR8, RXSHR8, RXSHR8, 
+	RXSHR8, RXSHR8, RXSHR8, RXSHR8, RXSHR8, RXSHR8, RXSHR8, RXSHR8, RXSHR8, 
+	RXSHR8, RXSHR8, RXSHR8, RXSHR8, RXSHR8, RXSHR8, RXSHR8) & (  ( last_byte_shr,
+	 last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr) ) 
+	& ((0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,1) ) ) # (  ( TC_TX_TIME, 
+	TC_TX_TIME, TC_TX_TIME, TC_TX_TIME, TC_TX_TIME, TC_TX_TIME, TC_TX_TIME, 
+	TC_TX_TIME, TC_TX_TIME, TC_TX_TIME, TC_TX_TIME, TC_TX_TIME, TC_TX_TIME, 
+	TC_TX_TIME, TC_TX_TIME, TC_TX_TIME, TC_TX_TIME, TC_TX_TIME, TC_TX_TIME, 
+	TC_TX_TIME, TC_TX_TIME) & ( ! ( uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat) ) & ((0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,1
+	) ) ) # (  ( TXSHR8, TXSHR8, TXSHR8, TXSHR8, TXSHR8, TXSHR8, TXSHR8, TXSHR8, 
+	TXSHR8, TXSHR8, TXSHR8, TXSHR8, TXSHR8, TXSHR8, TXSHR8, TXSHR8, TXSHR8, 
+	TXSHR8, TXSHR8, TXSHR8, TXSHR8) & (  ( shift_rdy, shift_rdy, shift_rdy, 
+	shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, 
+	shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, 
+	shift_rdy, shift_rdy, shift_rdy, shift_rdy)& ! ( last_byte_shr, last_byte_shr
+	, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr) ) & ((0,0,0,0,0,0
+	,0,0,0,0,0,0,0,1,0,0,0,1,1,1,1) ) ) # (  ( TCWFM_WT, TCWFM_WT, TCWFM_WT, 
+	TCWFM_WT, TCWFM_WT, TCWFM_WT, TCWFM_WT, TCWFM_WT, TCWFM_WT, TCWFM_WT, 
+	TCWFM_WT, TCWFM_WT, TCWFM_WT, TCWFM_WT, TCWFM_WT, TCWFM_WT, TCWFM_WT, 
+	TCWFM_WT, TCWFM_WT, TCWFM_WT, TCWFM_WT) & ((1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+	,1,1,1,1) ) & ((0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0) ) ) # (  ( TCWFM_H
+	, TCWFM_H, TCWFM_H, TCWFM_H, TCWFM_H, TCWFM_H, TCWFM_H, TCWFM_H, TCWFM_H, 
+	TCWFM_H, TCWFM_H, TCWFM_H, TCWFM_H, TCWFM_H, TCWFM_H, TCWFM_H, TCWFM_H, 
+	TCWFM_H, TCWFM_H, TCWFM_H, TCWFM_H) & (  ( uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat) ) & ((1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+	,1,0,0,0,0) ) ) # (  ( TCWFM_H, TCWFM_H, TCWFM_H, TCWFM_H, TCWFM_H, TCWFM_H, 
+	TCWFM_H, TCWFM_H, TCWFM_H, TCWFM_H, TCWFM_H, TCWFM_H, TCWFM_H, TCWFM_H, 
+	TCWFM_H, TCWFM_H, TCWFM_H, TCWFM_H, TCWFM_H, TCWFM_H, TCWFM_H) & ( ! ( 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat) ) & ((0
+	,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,1) ) ) # (  ( TCWFM_L, TCWFM_L, 
+	TCWFM_L, TCWFM_L, TCWFM_L, TCWFM_L, TCWFM_L, TCWFM_L, TCWFM_L, TCWFM_L, 
+	TCWFM_L, TCWFM_L, TCWFM_L, TCWFM_L, TCWFM_L, TCWFM_L, TCWFM_L, TCWFM_L, 
+	TCWFM_L, TCWFM_L, TCWFM_L) & (  ( uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat) ) & ((0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,1
+	) ) ) # (  ( TCWF_CHK, TCWF_CHK, TCWF_CHK, TCWF_CHK, TCWF_CHK, TCWF_CHK, 
+	TCWF_CHK, TCWF_CHK, TCWF_CHK, TCWF_CHK, TCWF_CHK, TCWF_CHK, TCWF_CHK, 
+	TCWF_CHK, TCWF_CHK, TCWF_CHK, TCWF_CHK, TCWF_CHK, TCWF_CHK, TCWF_CHK, 
+	TCWF_CHK) & ( ! ( tcwf_ef, tcwf_ef, tcwf_ef, tcwf_ef, tcwf_ef, tcwf_ef, 
+	tcwf_ef, tcwf_ef, tcwf_ef, tcwf_ef, tcwf_ef, tcwf_ef, tcwf_ef, tcwf_ef, 
+	tcwf_ef, tcwf_ef, tcwf_ef, tcwf_ef, tcwf_ef, tcwf_ef, tcwf_ef) ) & ((0,0,0,0,
+	0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0) ) ) # (  ( TCWFM_L, TCWFM_L, TCWFM_L, 
+	TCWFM_L, TCWFM_L, TCWFM_L, TCWFM_L, TCWFM_L, TCWFM_L, TCWFM_L, TCWFM_L, 
+	TCWFM_L, TCWFM_L, TCWFM_L, TCWFM_L, TCWFM_L, TCWFM_L, TCWFM_L, TCWFM_L, 
+	TCWFM_L, TCWFM_L) & ( ! ( uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat) ) & ((0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0) ) ) # ( 
+	 ( TXSHR8, TXSHR8, TXSHR8, TXSHR8, TXSHR8, TXSHR8, TXSHR8, TXSHR8, TXSHR8, 
+	TXSHR8, TXSHR8, TXSHR8, TXSHR8, TXSHR8, TXSHR8, TXSHR8, TXSHR8, TXSHR8, 
+	TXSHR8, TXSHR8, TXSHR8) & (  ( last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr) ) & ((0,0,0,0,0,0,0,0,0,0,0,0,0,
+	1,0,0,1,0,0,0,0) ) ) # (  ( TCWFM_FRD, TCWFM_FRD, TCWFM_FRD, TCWFM_FRD, 
+	TCWFM_FRD, TCWFM_FRD, TCWFM_FRD, TCWFM_FRD, TCWFM_FRD, TCWFM_FRD, TCWFM_FRD, 
+	TCWFM_FRD, TCWFM_FRD, TCWFM_FRD, TCWFM_FRD, TCWFM_FRD, TCWFM_FRD, TCWFM_FRD, 
+	TCWFM_FRD, TCWFM_FRD, TCWFM_FRD) & ((1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+	1) ) & ((0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0) ) ) # (  ( TC_TX_TIME, 
+	TC_TX_TIME, TC_TX_TIME, TC_TX_TIME, TC_TX_TIME, TC_TX_TIME, TC_TX_TIME, 
+	TC_TX_TIME, TC_TX_TIME, TC_TX_TIME, TC_TX_TIME, TC_TX_TIME, TC_TX_TIME, 
+	TC_TX_TIME, TC_TX_TIME, TC_TX_TIME, TC_TX_TIME, TC_TX_TIME, TC_TX_TIME, 
+	TC_TX_TIME, TC_TX_TIME) & (  ( uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, uart_lat, 
+	uart_lat, uart_lat, uart_lat) ) & ((0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,1,1,1,1
+	) ) ) # (  ( TXSHR8, TXSHR8, TXSHR8, TXSHR8, TXSHR8, TXSHR8, TXSHR8, TXSHR8, 
+	TXSHR8, TXSHR8, TXSHR8, TXSHR8, TXSHR8, TXSHR8, TXSHR8, TXSHR8, TXSHR8, 
+	TXSHR8, TXSHR8, TXSHR8, TXSHR8) & ( ! ( shift_rdy, shift_rdy, shift_rdy, 
+	shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, 
+	shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, shift_rdy, 
+	shift_rdy, shift_rdy, shift_rdy, shift_rdy)& ! ( last_byte_shr, last_byte_shr
+	, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr, 
+	last_byte_shr, last_byte_shr, last_byte_shr, last_byte_shr) ) & ((0,0,0,0,1,0
+	,0,1,0,0,0,0,0,0,0,0,0,1,1,1,1) ) );
 
 % Logic Equations %
 data_stb =  data_val & uart_lat ;

@@ -21,11 +21,9 @@
 
 
 QUARTUS_VERSION = "4.0"
-DATE = "16:41:16  May 18, 2004"
+DATE = "10:00:41  July 16, 2004"
 
 
 # Active Revisions
 
 PROJECT_REVISION = "DCOM_01"
-PROJECT_REVISION = "dcom_dpr"
-PROJECT_REVISION = "dcom"

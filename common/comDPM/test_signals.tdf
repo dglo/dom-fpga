@@ -2,18 +2,18 @@ TITLE "DCOM test signals, K.-H. Sulanke,DESY Zeuthen, 2004-04-25";
 
 SUBDESIGN test_signals
 (
-	stf_stb			: INPUT;
-	data_stb		: INPUT;
-	eof_stb			: INPUT;
+--	stf_stb			: INPUT;
+--	data_stb		: INPUT;
+--	eof_stb			: INPUT;
 --	comres_rcvd		: INPUT;	
-	lh_edge			: INPUT;
-	data_error		: INPUT;
+--	lh_edge			: INPUT;
+--	data_error		: INPUT;
 --	ctrl_msg		: INPUT;
-	data_msg		: INPUT;	
-	crc_zero		: INPUT;
+--	data_msg		: INPUT;	
+--	crc_zero		: INPUT;
 --	rx_addr[1..0]	: INPUT;
 --	tx_dataout[15..12]	: INPUT;
-	rx_we			: INPUT;
+--	rx_we			: INPUT;
 --	drreq_rcvd		: INPUT;
 --	tx_empty		: INPUT;
 --	tx_alm_empty	: INPUT;	
@@ -40,14 +40,14 @@ SUBDESIGN test_signals
 
 BEGIN
 
-	tc[0]	= stf_stb;
-	tc[1]	= data_stb;
-	tc[2]	= eof_stb;
-	tc[3]	= lh_edge;
-	tc[4]	= data_error;
-	tc[5]	= data_msg;
-	tc[6]	= crc_zero;
-	tc[7]	= rx_we;
+	tc[0]	= reboot_req;
+	tc[1]	= drreq_rcvd;
+	tc[2]	= idle_rcvd;
+	tc[3]	= ctrl_error;
+	tc[4]	= buf_res;
+	tc[5]	= tcal_rcvd;
+	tc[6]	= pulse_rcvd;
+	tc[7]	= pulse_sent;
 --	tc[0]	= comres_rcvd;
 --	tc[1]	= drreq_rcvd;
 --	tc[2]	= data_msg;

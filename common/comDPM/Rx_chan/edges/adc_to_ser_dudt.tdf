@@ -89,15 +89,15 @@ get_dudt_stm.(CLK, max_level, min_level, cteq16,  cteq4,  hl_edge, res, uart_don
 	d_greater_a				= ind[] > ina[];
 	a_greater_d				= ina[] > ind[];
 	
-	if( a_greater_d & ((ina[] - ind[]) > low_thr[]) )
-		THEN	min_level	= VCC;
+	if( a_greater_d & ((ina[] - ind[]) > low_thr[]) )	-- LH-edge used to evaluate the signals strength
+		THEN	min_level	= VCC;						-- and to get the temporary dudt[] treshold
 		else	min_level	= GND;		END IF;		
 
 	if( a_greater_d & ((ina[] - ind[]) > lrg_thr[]) )
 		THEN	max_level	= VCC;
 		else	max_level	= GND;		END IF;		
 	
-	if( d_greater_a & ((ind[] - ina[]) > dudt[]) )
+	if( d_greater_a & ((ind[] - ina[]) > dudt[]) )	-- HL-edge used to detect a logic one
 		THEN	hl_edge		= VCC;
 		else	hl_edge		= GND;		END IF;		
 		

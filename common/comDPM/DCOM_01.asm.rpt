@@ -1,6 +1,6 @@
 Assembler report for DCOM_01
-Mon Apr 19 11:16:56 2004
-Version 4.0 Build 190 1/28/2004 SJ Full Version
+Tue Jun 08 19:16:15 2004
+Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
 ---------------------
@@ -45,7 +45,7 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Mon Apr 19 11:16:56 2004 ;
+; Assembler Status      ; Successful - Tue Jun 08 19:16:15 2004 ;
 ; Revision Name         ; DCOM_01                               ;
 ; Top-level Entity Name ; dcom_ap                               ;
 ; Family                ; APEX20KE                              ;
@@ -108,7 +108,7 @@ party's intellectual property, are provided herein.
 +----------------+-----------------------------------------------------------+
 ; Device         ; EP20K200EFC484-2X                                         ;
 ; JTAG usercode  ; 0xFFFFFFFF                                                ;
-; Checksum       ; 0x0010EC6E                                                ;
+; Checksum       ; 0x00118646                                                ;
 +----------------+-----------------------------------------------------------+
 
 
@@ -119,7 +119,7 @@ party's intellectual property, are provided herein.
 +----------------+-----------------------------------------------------------+
 ; Device         ; EPC2                                                      ;
 ; JTAG usercode  ; 0xFFFFFFFF                                                ;
-; Checksum       ; 0x00176EFD                                                ;
+; Checksum       ; 0x00174B6C                                                ;
 +----------------+-----------------------------------------------------------+
 
 
@@ -130,7 +130,7 @@ party's intellectual property, are provided herein.
 +----------------+-------------------------------------------------------------+
 ; Device         ; EPC2                                                        ;
 ; JTAG usercode  ; 0xFFFFFFFF                                                  ;
-; Checksum       ; 0x02B61270                                                  ;
+; Checksum       ; 0x02B69686                                                  ;
 +----------------+-------------------------------------------------------------+
 
 
@@ -139,11 +139,11 @@ party's intellectual property, are provided herein.
 +---------------------+
 Info: *******************************************************************
 Info: Running Quartus II Assembler
-    Info: Version 4.0 Build 190 1/28/2004 SJ Full Version
-    Info: Processing started: Mon Apr 19 11:16:52 2004
+    Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
+    Info: Processing started: Tue Jun 08 19:16:12 2004
 Info: Command: quartus_asm --lower_priority --import_settings_files=off --export_settings_files=off DCOM_01 -c DCOM_01
 Info: Quartus II Assembler was successful. 0 errors, 0 warnings
-    Info: Processing ended: Mon Apr 19 11:16:56 2004
+    Info: Processing ended: Tue Jun 08 19:16:15 2004
     Info: Elapsed time: 00:00:03
 
 

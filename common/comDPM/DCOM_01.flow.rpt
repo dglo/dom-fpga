@@ -1,5 +1,5 @@
 Flow report for DCOM_01
-Tue May 18 16:42:04 2004
+Fri Jul 16 10:00:42 2004
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -42,15 +42,11 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------+
 ; Flow Summary                                                  ;
 +-----------------------+---------------------------------------+
-; Flow Status           ; Successful - Tue May 18 16:42:04 2004 ;
+; Flow Status           ; Successful - Fri Jul 16 10:00:42 2004 ;
 ; Revision Name         ; DCOM_01                               ;
 ; Top-level Entity Name ; dcom_ap                               ;
 ; Family                ; APEX20KE                              ;
 ; Device                ; EP20K200EFC484-2X                     ;
-; Total logic elements  ; 1,501                                 ;
-; Total pins            ; 337                                   ;
-; Total memory bits     ; 640                                   ;
-; Total PLLs            ; 0                                     ;
 +-----------------------+---------------------------------------+
 
 
@@ -59,7 +55,7 @@ party's intellectual property, are provided herein.
 +------------------------------------------
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 05/18/2004 16:41:16 ;
+; Start date & time ; 07/16/2004 10:00:41 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; DCOM_01             ;
 +-------------------+---------------------+
@@ -70,15 +66,15 @@ party's intellectual property, are provided herein.
 +--------------------------------------
 ; Module Name          ; Elapsed Time ;
 +----------------------+--------------+
-; Analysis & Synthesis ; 00:00:48     ;
-; Total                ; 00:00:48     ;
+; Analysis & Synthesis ; 00:00:00     ;
+; Total                ; 00:00:00     ;
 +----------------------+--------------+
 
 
 ------------
 ; Flow Log ;
 ------------
-quartus_map --lower_priority --import_settings_files=on --export_settings_files=off DCOM_01 -c DCOM_01
+quartus_map --lower_priority --import_settings_files=on --export_settings_files=off DCOM_01 -c DCOM_01 --convert_bdf_to_vhdl=dcom_ap.bdf
 
 
 
