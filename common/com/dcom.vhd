@@ -44,7 +44,6 @@ ENTITY dcom IS
 		cal_thr :  IN  STD_LOGIC_VECTOR(9 downto 0);
 		fc_adc :  IN  STD_LOGIC_VECTOR(9 downto 0);
 		id :  IN  STD_LOGIC_VECTOR(47 downto 0);
-		low_thr :  IN  STD_LOGIC_VECTOR(7 downto 0);
 		systime :  IN  STD_LOGIC_VECTOR(47 downto 0);
 		tx_fd :  IN  STD_LOGIC_VECTOR(7 downto 0);
 		txd :  OUT  STD_LOGIC;
@@ -370,7 +369,6 @@ PORT MAP(CCLK => CCLK,
 		 msg_sent => altera_synthesized_wire_44,
 		 cal_thr => cal_thr,
 		 fc_adc => fc_adc,
-		 low_thr => low_thr,
 		 hl_edge => hl_edge,
 		 lh_edge => lh_edge,
 		 rxd => rxd,

@@ -130,16 +130,16 @@ party's intellectual property, are provided herein.
 	(port
 		(pt 0 256)
 		(input)
-		(text "cal_thr[9..0]" (rect 0 0 75 16)(font "Arial" (font_size 8)))
-		(text "cal_thr[9..0]" (rect 21 251 96 267)(font "Arial" (font_size 8)))
-		(line (pt 0 256)(pt 16 256)(line_width 3))
+		(text "msg_sent" (rect 0 0 62 16)(font "Arial" (font_size 8)))
+		(text "msg_sent" (rect 21 251 83 267)(font "Arial" (font_size 8)))
+		(line (pt 0 256)(pt 16 256)(line_width 1))
 	)
 	(port
 		(pt 0 272)
 		(input)
-		(text "msg_sent" (rect 0 0 62 16)(font "Arial" (font_size 8)))
-		(text "msg_sent" (rect 21 267 83 283)(font "Arial" (font_size 8)))
-		(line (pt 0 272)(pt 16 272)(line_width 1))
+		(text "cal_thr[9..0]" (rect 0 0 75 16)(font "Arial" (font_size 8)))
+		(text "cal_thr[9..0]" (rect 21 267 96 283)(font "Arial" (font_size 8)))
+		(line (pt 0 272)(pt 16 272)(line_width 3))
 	)
 	(port
 		(pt 0 288)

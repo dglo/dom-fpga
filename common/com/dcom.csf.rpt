@@ -50,7 +50,7 @@ party's intellectual property, are provided herein.
 +-----------------+-------------------+
 |Option           |Setting            |
 +-----------------+-------------------+
-|Start date & time|09/04/2003 15:03:27|
+|Start date & time|09/09/2003 08:40:58|
 |Main task        |Compilation        |
 |Settings name    |dcom               |
 +-----------------+-------------------+
@@ -106,9 +106,10 @@ party's intellectual property, are provided herein.
 +-----------------------------------------------------------------------------+
 Info: Found 1 design units and 1 entities in source file c:\projects\icecube\dor\fpga\dcom_01\dcom.bdf
   Info: Found entity 1: dcom
+Warning: Port low_thr of type DC_Rx_chan_04 and instance DC_Rx_chan_04 is missing source signal
 Warning: Pin rs4_out not connected
 Warning: Primitive GND of instance inst not used
-Info: Design dcom: BDF to VHDL file generation was successful. 0 errors, 2 warnings
+Info: Design dcom: BDF to VHDL file generation was successful. 0 errors, 3 warnings
 
 +-----------------------------------------------------------------------------+
 |Processing Time                                                              |

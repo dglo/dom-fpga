@@ -2,7 +2,7 @@ TITLE "timer used for DOM-TCAL, K.-H. Sulanke,DESY Zeuthen, 08/03/2003";
 
 INCLUDE "dc_tcal_ct.inc";
 
-CONSTANT QUIET_TIME = 200;	-- 10us
+CONSTANT QUIET_TIME = 400;	-- 20us
 
 OPTIONS	BIT0=LSB;
 
@@ -37,7 +37,7 @@ l_pulse.clk		= CCLK;
 pulse_sent.clk	= CCLK;
 tx_time_lat.clk	= CCLK;
 
-line_quiet.d	= (time.q[]==QUIET_TIME);		-- 10us delay
+line_quiet.d	= (time.q[]==QUIET_TIME);		-- 20us delay
 
 tx_time_lat.d	= (time.q[]==(QUIET_TIME+2));
 
