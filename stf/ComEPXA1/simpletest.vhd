@@ -938,7 +938,6 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			fc_adc :  IN  STD_LOGIC_VECTOR(9 downto 0);
 			id :  IN  STD_LOGIC_VECTOR(47 downto 0);
 			systime :  IN  STD_LOGIC_VECTOR(47 downto 0);
-			tcal_thr :  IN  STD_LOGIC_VECTOR(9 downto 0);
 			tx_fd :  IN  STD_LOGIC_VECTOR(7 downto 0);
 			txd :  OUT  STD_LOGIC;
 			last_byte :  OUT  STD_LOGIC;
@@ -1796,7 +1795,6 @@ BEGIN
 			fc_adc		=> COM_AD_D,
 			id			=> dom_id(47 downto 0),
 			systime		=> systime,
-			tcal_thr		=> cal_thr,
 			tx_fd		=> com_tx_fifo,
 			txd			=> TC(6),
 			last_byte	=> open,
