@@ -13,6 +13,7 @@ SOFTWARE_SETTINGS_LIST
 }
 FILES
 {
+	VHDL_FILE = ..\common\LED2ATWDdelay.vhd;
 	VHDL_FILE = ..\common\atwd_timestamp.vhd;
 	VHDL_FILE = ..\common\atwd_ping_pong.vhd;
 	VHDL_FILE = ..\common\timer.vhd;

@@ -35,12 +35,14 @@ ENTITY atwd_trigger IS
 		-- enable
 		enable		: IN STD_LOGIC;
 		enable_disc	: IN STD_LOGIC;
+		enable_LED	: IN STD_LOGIC;
 		done		: OUT STD_LOGIC;
 		-- controller
 		busy		: IN STD_LOGIC;
 		reset_trig	: IN STD_LOGIC;
 		-- disc
 		OneSPE		: IN STD_LOGIC;
+		LEDtrig		: IN STD_LOGIC;
 		-- atwd
 		ATWDTrigger			: OUT STD_LOGIC;
 		TriggerComplete_in	: IN STD_LOGIC;
@@ -85,6 +87,8 @@ ARCHITECTURE arch_atwd_trigger OF atwd_trigger IS
 	SIGNAL enable_disc_pos_edge			: STD_LOGIC;
 	SIGNAL enable_disc_old				: STD_LOGIC;
 	SIGNAL enable_disc_sig				: STD_LOGIC;
+	
+	SIGNAL enable_LED_force	: STD_LOGIC;
 			
 BEGIN
 	
@@ -140,7 +144,7 @@ BEGIN
 	enable_sig	<= NOT busy AND enable_disc_sig;
 	set_sig		<= triggered
 				OR (force AND NOT busy);
-	force	<= enable_pos_edge;
+	force	<= enable_pos_edge OR enable_LED_force;
 	rst_sig		<= reset_trig;
 	
 	launchmode : PROCESS(CLK,RST)
@@ -188,5 +192,7 @@ BEGIN
 			END IF;
 		END IF;
 	END PROCESS;
+	
+	enable_LED_force <= LEDtrig AND enable_LED;
 	
 END;

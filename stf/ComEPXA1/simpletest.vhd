@@ -244,6 +244,8 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL response_2	: STD_LOGIC_VECTOR(31 downto 0);
 	SIGNAL command_3	: STD_LOGIC_VECTOR(31 downto 0);
 	SIGNAL response_3	: STD_LOGIC_VECTOR(31 downto 0);
+	SIGNAL command_4	: STD_LOGIC_VECTOR(31 downto 0);
+	SIGNAL response_4	: STD_LOGIC_VECTOR(31 downto 0);
 	
 	-- com DAC test
 	SIGNAL enable			: STD_LOGIC;
@@ -275,6 +277,9 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL fe_divider			: STD_LOGIC_VECTOR(3 downto 0);
 	-- single LED
 	SIGNAL single_led_enable	: STD_LOGIC;
+	SIGNAL LEDtrig				: STD_LOGIC;
+	SIGNAL SingleLED_TRIGGER_sig	: STD_LOGIC;
+	SIGNAL LEDdelay				: STD_LOGIC_VECTOR (3 DOWNTO 0);
 	
 	-- local coincidence
 	SIGNAL enable_coinc_up		: STD_LOGIC;
@@ -299,6 +304,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	-- ATWD0
 	SIGNAL atwd0_enable		: STD_LOGIC;
 	SIGNAL atwd0_enable_disc	: STD_LOGIC;
+	SIGNAL atwd0_enable_LED	: STD_LOGIC;
 	SIGNAL atwd0_done		: STD_LOGIC;
 	SIGNAL atwd0_wdata		: STD_LOGIC_VECTOR(15 downto 0);
 	SIGNAL atwd0_rdata		: STD_LOGIC_VECTOR(15 downto 0);
@@ -310,6 +316,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	-- ATWD1
 	SIGNAL atwd1_enable		: STD_LOGIC;
 	SIGNAL atwd1_enable_disc	: STD_LOGIC;
+	SIGNAL atwd1_enable_LED	: STD_LOGIC;
 	SIGNAL atwd1_done		: STD_LOGIC;
 	SIGNAL atwd1_wdata		: STD_LOGIC_VECTOR(15 downto 0);
 	SIGNAL atwd1_rdata		: STD_LOGIC_VECTOR(15 downto 0);
@@ -567,6 +574,8 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			atwd0_timestamp	: IN	STD_LOGIC_VECTOR(47 DOWNTO 0);
 			atwd1_timestamp : IN	STD_LOGIC_VECTOR(47 DOWNTO 0);
 			dom_id			: OUT	STD_LOGIC_VECTOR(63 DOWNTO 0);
+			command_4		: OUT	STD_LOGIC_VECTOR(31 downto 0);
+			response_4		: IN	STD_LOGIC_VECTOR(31 downto 0);
 			-- COM ADC RX interface
 			com_adc_wdata		: OUT STD_LOGIC_VECTOR (15 downto 0);
 			com_adc_rdata		: IN STD_LOGIC_VECTOR (15 downto 0);
@@ -779,9 +788,11 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			-- enable
 			enable		: IN STD_LOGIC;
 			enable_disc	: IN STD_LOGIC;
+			enable_LED	: IN STD_LOGIC;
 			done		: OUT STD_LOGIC;
 			-- disc
 			OneSPE		: IN STD_LOGIC;
+			LEDtrig		: IN STD_LOGIC;
 			-- stripe interface
 			wdata		: IN STD_LOGIC_VECTOR (15 downto 0);
 			rdata		: OUT STD_LOGIC_VECTOR (15 downto 0);
@@ -984,6 +995,19 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			systime : OUT STD_LOGIC_VECTOR (47 DOWNTO 0)
 		);
 	END COMPONENT;
+	
+	COMPONENT LED2ATWDdelay
+		PORT (
+			CLK40		: IN STD_LOGIC;
+			RST			: IN STD_LOGIC;
+			delay		: IN STD_LOGIC_VECTOR (3 DOWNTO 0);
+			LEDin		: IN STD_LOGIC;
+			TRIGout		: OUT STD_LOGIC;
+			-- test connector
+			TC					: OUT STD_LOGIC_VECTOR(7 downto 0)
+		);
+	END COMPONENT;
+
 
 
 	
@@ -1049,10 +1073,12 @@ BEGIN
 	-- ATWD0
 	atwd0_enable	<= command_0(0);
 	-- atwd0_enable_disc	<= command_0(1);
+	atwd0_enable_LED	<= command_0(3);
 	response_0(0)	<= atwd0_done;
 	-- ATWD1
 	atwd1_enable	<= command_0(8);
 	-- atwd1_enable_disc	<= command_0(9);
+	atwd1_enable_LED	<= command_0(11);
 	response_0(8)	<= atwd1_done;
 	-- flash ADC test
 	flash_adc_enable		<= command_0(16);
@@ -1094,6 +1120,9 @@ BEGIN
 	response_2(24)	<= fl_board_read(0);
 	response_2(28)	<= fl_board_read(1);
 	
+	-- LED 2 ATWD trigger delay
+	LEDdelay	<= command_4(3 DOWNTO 0);
+	
 	
 	response_0(31 downto 17)	<= (others=>'0');
 	response_0(15 downto 9)		<= (others=>'0');
@@ -1107,6 +1136,8 @@ BEGIN
 	response_2(27 downto 25)	<= (others=>'0');
 	response_2(23 downto 16)	<= (others=>'0');
 	response_2(7 downto 0)		<= (others=>'0');
+	
+	response_4	<= (others=>'0');
 	
 	-- AHB master test
 --	master_enable	<= command_2(8);
@@ -1370,6 +1401,8 @@ BEGIN
 			atwd0_timestamp	=> atwd0_timestamp, 
 			atwd1_timestamp	=> atwd1_timestamp,
 			dom_id			=> dom_id,
+			command_4		=> command_4,
+			response_4		=> response_4,
 			-- COM ADC RX interface
 			com_adc_wdata		=> com_adc_wdata,
 			com_adc_rdata		=> com_adc_rdata,
@@ -1495,8 +1528,9 @@ BEGIN
 			-- enable flasher
 			enable		=> single_led_enable,
 			-- LED trigger
-			SingleLED_TRIGGER	=> SingleLED_TRIGGER
+			SingleLED_TRIGGER	=> SingleLED_TRIGGER_sig
 		);
+	SingleLED_TRIGGER <= SingleLED_TRIGGER_sig;
 		
 	inst_coinc : coinc
 		PORT MAP (
@@ -1571,9 +1605,11 @@ BEGIN
 			-- enable
 			enable		=> atwd0_enable,
 			enable_disc	=> atwd0_enable_disc,
+			enable_LED	=> atwd0_enable_LED,
 			done		=> atwd0_done,
 			-- disc
 			OneSPE		=> OneSPE,
+			LEDtrig		=> LEDtrig,
 			-- stripe interface
 			wdata		=> atwd0_wdata,
 			rdata		=> atwd0_rdata,
@@ -1609,9 +1645,11 @@ BEGIN
 			-- enable
 			enable		=> atwd1_enable,
 			enable_disc	=> atwd1_enable_disc,
+			enable_LED	=> atwd1_enable_LED,
 			done		=> atwd1_done,
 			-- disc
 			OneSPE		=> OneSPE,
+			LEDtrig		=> LEDtrig,
 			-- stripe interface
 			wdata		=> atwd1_wdata,
 			rdata		=> atwd1_rdata,
@@ -1812,6 +1850,17 @@ BEGIN
 			CLK		=> CLK40,
 			RST		=> RST,
 			systime	=> systime
+		);
+		
+	LED2ATWDdelay_inst : LED2ATWDdelay
+		PORT MAP (
+			CLK40		=> CLK40,
+			RST			=> RST,
+			delay		=> LEDdelay,
+			LEDin		=> SingleLED_TRIGGER_sig,
+			TRIGout		=> LEDtrig,
+			-- test connector
+			TC			=> open
 		);
 	
 	

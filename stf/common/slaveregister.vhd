@@ -59,6 +59,8 @@ ENTITY slaveregister IS
 		atwd0_timestamp	: IN	STD_LOGIC_VECTOR(47 DOWNTO 0);
 		atwd1_timestamp : IN	STD_LOGIC_VECTOR(47 DOWNTO 0);
 		dom_id			: OUT	STD_LOGIC_VECTOR(63 DOWNTO 0);
+		command_4		: OUT	STD_LOGIC_VECTOR(31 downto 0);
+		response_4		: IN	STD_LOGIC_VECTOR(31 downto 0);
 		-- COM ADC RX interface
 		com_adc_wdata		: OUT STD_LOGIC_VECTOR (15 downto 0);
 		com_adc_rdata		: IN STD_LOGIC_VECTOR (15 downto 0);
@@ -108,6 +110,7 @@ ARCHITECTURE arch_slaveregister OF slaveregister IS
 	SIGNAL command_2_local	: STD_LOGIC_VECTOR (31 DOWNTO 0);
 	SIGNAL command_3_local	: STD_LOGIC_VECTOR (31 DOWNTO 0);
 	SIGNAL com_ctrl_local	: STD_LOGIC_VECTOR (31 DOWNTO 0);
+	SIGNAL command_4_local	: STD_LOGIC_VECTOR (31 DOWNTO 0);
 	
 BEGIN
 	reg_wait_sig <= '1';
@@ -126,7 +129,8 @@ BEGIN
 			command_1_local	<= "00000000000000001111000000000000";
 			command_2_local	<= (others=>'0');
 			command_3_local	<= (others=>'0');
-			com_ctrl_local	<= "00000001010000000001011000000000";
+			com_ctrl_local	<= "00000001001000000001011000000000";
+			command_4_local	<= (others=>'0');
 			
 			dom_id			<= (others=>'0');
 			
@@ -289,6 +293,17 @@ BEGIN
 									ELSE
 									--	reg_rdata	<= dom_id (63 DOWNTO 32);
 									END IF;
+								WHEN "11000" => -- command 4
+									IF reg_write = '1' THEN
+										command_4_local <= reg_wdata;
+									ELSE
+										reg_rdata <= command_4_local;
+									END IF;
+								WHEN "11001" =>	-- response 4
+									IF reg_write = '1' THEN
+									ELSE
+										reg_rdata <= response_4;
+									END IF;
 								WHEN OTHERS =>
 									IF reg_write = '1' THEN
 									ELSE
@@ -361,6 +376,7 @@ BEGIN
 	command_2	<= command_2_local; --registers(6)(31 downto 0);
 	command_3	<= command_3_local; --registers(10)(31 downto 0);
 	com_ctrl	<= com_ctrl_local; --registers(12)(31 downto 0);
+	command_4	<= command_4_local;
 	-- com_tx_data	<= registers(14)(31 downto 0);
 	-- TC <= registers(CONV_INTEGER(15))(7 downto 0);
 	

@@ -115,4 +115,5 @@ FILES
 	VHDL_FILE = ..\common\ahb_master.vhd;
 	VHDL_FILE = simpletest.vhd;
 	MIF_FILE = version_rom.mif;
+	VHDL_FILE = ..\common\LED2ATWDdelay.vhd;
 }

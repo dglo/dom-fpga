@@ -37,12 +37,12 @@ AFC_IN_REPORT=False
 [ProjectWorkspace.Frames.ChildFrames.Document-2]
 ptn_Child1=ViewFrame-0
 [ProjectWorkspace.Frames.ChildFrames.Document-2.ViewFrame-0]
-DocPathName=FADC_interface.vhd
+DocPathName=fADC_input.vhd
 DocumentCLSID={ca385d57-a4c7-11d1-a098-0020affa43f2}
 InCompileMode=True
 InSimulateMode=False
 InFirmwareMode=False
-WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKHAAAAAALLAAAAAABLDAAAAACLCAAAAA
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKJAAAAAABKAAAAAAOMDAAAAAAHCAAAAA
 IsActiveChildFrame=True
 ptn_Child1=StateMap
 [ProjectWorkspace.Frames.ChildFrames.Document-2.ViewFrame-0.StateMap]
