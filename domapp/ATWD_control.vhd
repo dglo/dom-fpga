@@ -95,6 +95,7 @@ BEGIN
 					IF ATWDTrigger='1' AND ATWD_enable='1' THEN
 						state	<= wait_trig_compl;
 					END IF;
+					ReadWrite		<= '0';
 					DigitalSet		<= '0';
 					DigitalReset	<= '1';
 					channel			<= "00";
