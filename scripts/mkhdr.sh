@@ -38,7 +38,7 @@ echo "/* map fpga type to index, (rows of expected_versions) */"
 types=`cut -d ' ' -f 1 ${sdir}/tdata.txt`
 for t in $types; do
     nm=`fpga_type $t | tr [:lower:] [:upper:]`
-    printf "#define DOM_VERSIONS_TYPE_%s %d\n" ${nm} $t
+    printf "#define FPGA_VERSIONS_TYPE_%s %d\n" ${nm} $t
 done
 
 echo " "
