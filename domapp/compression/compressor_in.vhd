@@ -188,7 +188,7 @@ ARCHITECTURE rtl OF compressor_in IS
 	SIGNAL   data_t0			 	: STD_LOGIC_VECTOR (9 DOWNTO 0);
 
   	SIGNAL   same_value_count		: STD_LOGIC_VECTOR (9 DOWNTO 0); 
- 	SIGNAL   same_value_count1		: STD_LOGIC_VECTOR (9 DOWNTO 0); 
+ 	SIGNAL   same_value_count1		: STD_LOGIC_VECTOR (10 DOWNTO 0); 
 	SIGNAL   flagged_rl_data		: STD_LOGIC_VECTOR (10 DOWNTO 0); 
   	SIGNAL   flagged_rl_count		: STD_LOGIC_VECTOR (10 DOWNTO 0); 
  	SIGNAL   flagged_rl_compr		: STD_LOGIC_VECTOR (10 DOWNTO 0); 
@@ -484,17 +484,17 @@ same_d_counter: PROCESS (clk20, supr_compr_state, reset )
  
 BEGIN
  		IF (reset = '1') THEN
-  			same_value_count1 <= "1111111111" ;
+  			same_value_count1 <= "11111111111" ;
 		ELSIF (clk20 = '1') AND (clk20'EVENT) THEN 
   			IF (supr_compr_state = get) AND (cmp_data_t0_t1= '1') THEN 
 	 	  			  same_value_count1 <= same_value_count1 + 1 ;	
   			ELSIF (supr_compr_state = get) AND (atwd_bfr_en = '0') THEN
 	 	  			  same_value_count1 <= same_value_count1 + 1 ;	 
  			ELSIF (cmp_data_t0_t1= '0') AND (supr_compr_state = save)  THEN    
-	  				same_value_count1 <= "1111111111" ;  
+	  				same_value_count1 <= "11111111111" ;  
 			ELSIF (write_ring_state = wr_last_count) 
-					OR (supr_compr_state = init) THEN 
-	  				same_value_count1 <= "1111111111" ;  
+					OR (supr_compr_state = idle1) THEN 		--reset count Dec 3 04
+	  				same_value_count1 <= "11111111111" ;  
 			END IF;		 						 					
 		END IF;
  END PROCESS same_d_counter;
@@ -508,7 +508,7 @@ BEGIN
 			IF (supr_compr_state = init) THEN 
 			  	same_value_count <= "1111111111" ;
 			ELSE
-				same_value_count <= same_value_count1 ;
+				same_value_count <= same_value_count1(9 DOWNTO 0) ;
 			END IF;
 		END IF;
  	END PROCESS same_d_counter1;
@@ -1084,7 +1084,7 @@ END PROCESS ;
 
 -----------------------------
 -- write to ring register
-wr_ring_reg: PROCESS(ring_write_en_dly, reset, clk40)
+wr_ring_reg: PROCESS(reset, clk40)
 -- wr_ring_reg: PROCESS(ring_write_clk, supr_compr_state, reset)
 
 			BEGIN
@@ -1325,7 +1325,7 @@ END PROCESS ;
  					fadc_bfr_en <= '0';
 					fadc_address <= "1111111111" ;	 
 			ELSIF 	(fadc_done = '1') OR  						
---					(fadc_address = 41) THEN   --- 40 is for testing only, CHANGE to 511
+--					(fadc_address = 40) THEN   --- 40 is for testing only, CHANGE to 511
 			 		(fadc_address = 511) THEN  -- 511 will generate 128 fadcBfrAddresses
 					fadc_bfr_clk <= '0' ;   
  					fadc_bfr_en <= '0';
@@ -1511,7 +1511,7 @@ atwd_ch_count_en <= atwd_ch_done AND NOT atwd_ch_done_dly;
 
 ------
 
- address_selector: PROCESS (reset, compr_mode,  atwd_address, fadc_address, compr_done_strb, 
+ address_selector: PROCESS (reset, compr_mode,  atwd_address, fadc_address, bfr_rd_done_compr, 
 		AtwdBfrAddrExt, FadcBfrAddrExt, LbmReadDone, RamDav)
 BEGIN
   	IF (reset = '1') THEN

@@ -28,8 +28,8 @@ USE WORK.ctrl_data_types.all;
 
 ENTITY compression IS
 	GENERIC (
-		FADC_WIDTH		: INTEGER := 10
-		);
+			FADC_WIDTH		: INTEGER := 10
+			);
 	PORT(
 -- system signals
 -- reset 
@@ -38,7 +38,7 @@ ENTITY compression IS
 		clk40		 	: IN	STD_LOGIC;		
 -----------------
 -- CPU register signals
-		COMPR_ctrl		: IN Compr_struct;	
+		Compr_ctrl		: IN Compr_struct;	
 ------------------
 -- interface signals with the fadc and atwd buffers 
 -- BfrDav
@@ -86,7 +86,7 @@ ENTITY compression IS
 -- UnCmprFadcData	
   		Fadc_data_out	: OUT	STD_LOGIC_VECTOR (31 DOWNTO 0);  
 -- ComprData,  test connector signals
-		TC 				: OUT STD_LOGIC_VECTOR (7 DOWNTO 0); 
+		TC 				: OUT STD_LOGIC_VECTOR (7 DOWNTO 0) --; 
 
 ------------------       
 
@@ -101,9 +101,9 @@ ENTITY compression IS
 --       RingWriteClk	: OUT   STD_LOGIC;  
 
 
- 		RamWe0 			: OUT STD_LOGIC  ;
- 		RamAddr 		: OUT STD_LOGIC_VECTOR (10 DOWNTO 0);
- 		RamDataIn		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0) 
+-- 		RamWe0 			: OUT STD_LOGIC  ;
+-- 		RamAddr 		: OUT STD_LOGIC_VECTOR (10 DOWNTO 0);
+-- 		RamDataIn		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0) 
 
 
 --		RamDataOut0		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
@@ -377,9 +377,9 @@ compressor_out0 : compressor_out_synch PORT MAP
 		BfrDavOut 		=>  data_avail_out,
 		RamDavOut 		=> 	ram_dav,
 		ComprSize 		=>  compr_size,
-		RamAddr 		=>  RamAddr,
-		RamWe0 			=>  RamWe0,
-		RamDataIn		=>  RamDataIn,
+--		RamAddr 		=>  RamAddr,
+--		RamWe0 			=>  RamWe0,
+--		RamDataIn		=>  RamDataIn,
 
 --		TimestampMsBy	=> 
 --		TrigWordMsb		=> 
@@ -394,7 +394,7 @@ compressor_out0 : compressor_out_synch PORT MAP
 type_analyzer0 : type_analyzer PORT MAP
 	(
 		Header_in		=>  Header_in,
-		ComprVar		=>  COMPR_ctrl,
+		ComprVar		=>  Compr_ctrl,
 
 		Timestamp 		=>  time_stamp,
 		TriggerWord 	=>  trig_word,
