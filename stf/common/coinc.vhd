@@ -33,6 +33,7 @@ ENTITY coinc IS
 		-- enable
 		enable_coinc_down	: IN STD_LOGIC;
 		enable_coinc_up		: IN STD_LOGIC;
+		newFF				: IN STD_LOGIC;
 		-- manual control
 		coinc_up_high		: IN STD_LOGIC;
 		coinc_up_low		: IN STD_LOGIC;
@@ -72,6 +73,16 @@ ARCHITECTURE arch_coinc OF coinc IS
 	SIGNAL coinc_down_high_delay	: STD_LOGIC_VECTOR(7 DOWNTO 0);
 	SIGNAL coinc_down_low_delay	: STD_LOGIC_VECTOR(7 DOWNTO 0);
 	
+	-- FPGA FF for comparators
+	SIGNAL FF_down_a	: STD_LOGIC;
+	SIGNAL FF_down_abar	: STD_LOGIC;
+	SIGNAL FF_down_b	: STD_LOGIC;
+	SIGNAL FF_down_bbar	: STD_LOGIC;
+	SIGNAL FF_up_a	: STD_LOGIC;
+	SIGNAL FF_up_abar	: STD_LOGIC;
+	SIGNAL FF_up_b	: STD_LOGIC;
+	SIGNAL FF_up_bbar	: STD_LOGIC;
+	
 BEGIN
 	
 	COINC_DOWN_ALATCH	<= '0' WHEN coinc_latch(0)='0' ELSE 'Z';
@@ -79,14 +90,14 @@ BEGIN
 	COINC_UP_ALATCH		<= '0' WHEN coinc_latch(2)='0' ELSE 'Z';
 	COINC_UP_BLATCH		<= '0' WHEN coinc_latch(3)='0' ELSE 'Z';
 	
-	coinc_disc(0)	<= COINC_DOWN_A;
-	coinc_disc(1)	<= COINC_DOWN_ABAR;
-	coinc_disc(2)	<= COINC_DOWN_B;
-	coinc_disc(3)	<= COINC_DOWN_BBAR;
-	coinc_disc(4)	<= COINC_UP_A;
-	coinc_disc(5)	<= COINC_UP_ABAR;
-	coinc_disc(6)	<= COINC_UP_B;
-	coinc_disc(7)	<= COINC_UP_BBAR;
+	coinc_disc(0)	<= COINC_DOWN_A WHEN newFF='0' ELSE FF_down_a;
+	coinc_disc(1)	<= COINC_DOWN_ABAR WHEN newFF='0' ELSE FF_down_abar;
+	coinc_disc(2)	<= COINC_DOWN_B WHEN newFF='0' ELSE FF_down_b;
+	coinc_disc(3)	<= COINC_DOWN_BBAR WHEN newFF='0' ELSE FF_down_bbar;
+	coinc_disc(4)	<= COINC_UP_A WHEN newFF='0' ELSE FF_up_a;
+	coinc_disc(5)	<= COINC_UP_ABAR WHEN newFF='0' ELSE FF_up_abar;
+	coinc_disc(6)	<= COINC_UP_B WHEN newFF='0' ELSE FF_up_b;
+	coinc_disc(7)	<= COINC_UP_BBAR WHEN newFF='0' ELSE FF_up_bbar;
 	
 	TC(0)	<= COINC_DOWN_ABAR;
 	TC(1)	<= COINC_DOWN_A;
@@ -173,16 +184,16 @@ BEGIN
 						END IF;
 				END CASE;		
 			ELSE	-- manual control
-				IF coinc_up_high='1' AND coinc_up_high_delay(2)='0' THEN
+				IF coinc_up_high='1' AND coinc_up_high_delay(0)='0' THEN  --(2)
 					COINCIDENCE_OUT_UP	<= '1';
-				ELSIF coinc_up_low='1' AND coinc_up_low_delay(2)='0' THEN
+				ELSIF coinc_up_low='1' AND coinc_up_low_delay(0)='0' THEN  --(2)
 					COINCIDENCE_OUT_UP	<= '0';
 				ELSE
 					COINCIDENCE_OUT_UP	<= 'Z';
 				END IF;
-				IF coinc_down_high='1' AND coinc_down_high_delay(2)='0' THEN
+				IF coinc_down_high='1' AND coinc_down_high_delay(0)='0' THEN  --(2)
 					COINCIDENCE_OUT_DOWN	<= '1';
-				ELSIF coinc_down_low='1' AND coinc_down_low_delay(2)='0' THEN
+				ELSIF coinc_down_low='1' AND coinc_down_low_delay(0)='0' THEN  --(2)
 					COINCIDENCE_OUT_DOWN	<= '0';
 				ELSE
 					COINCIDENCE_OUT_DOWN	<= 'Z';
@@ -196,6 +207,74 @@ BEGIN
 			coinc_down_high_delay(0) <= coinc_down_high;
 			coinc_down_low_delay(7 DOWNTO 1) <= coinc_down_low_delay(6 DOWNTO 0);
 			coinc_down_low_delay(0) <= coinc_down_low;
+		END IF;
+	END PROCESS;
+	
+	
+	-- FPGA FFs for the comparator inputs
+	DOWN_A : PROCESS (COINC_DOWN_A, coinc_latch(0))
+	BEGIN
+		IF coinc_latch(0)='0' THEN
+			FF_down_a	<= '0';
+		ELSIF COINC_DOWN_A'EVENT AND COINC_DOWN_A='1' THEN
+			FF_down_a	<= '1';
+		END IF;
+	END PROCESS;
+	DOWN_ABAR : PROCESS (COINC_DOWN_ABAR, coinc_latch(0))
+	BEGIN
+		IF coinc_latch(0)='0' THEN
+			FF_down_abar	<= '1';
+		ELSIF COINC_DOWN_ABAR'EVENT AND COINC_DOWN_ABAR='0' THEN
+			FF_down_abar	<= '0';
+		END IF;
+	END PROCESS;
+	DOWN_B: PROCESS (COINC_DOWN_B, coinc_latch(1))
+	BEGIN
+		IF coinc_latch(1)='0' THEN
+			FF_down_b	<= '0';
+		ELSIF COINC_DOWN_B'EVENT AND COINC_DOWN_B='1' THEN
+			FF_down_b	<= '1';
+		END IF;
+	END PROCESS;
+	DOWN_BBAR : PROCESS (COINC_DOWN_BBAR, coinc_latch(1))
+	BEGIN
+		IF coinc_latch(1)='0' THEN
+			FF_down_bbar	<= '1';
+		ELSIF COINC_DOWN_BBAR'EVENT AND COINC_DOWN_BBAR='0' THEN
+			FF_down_bbar	<= '0';
+		END IF;
+	END PROCESS;
+	
+	UP_A : PROCESS (COINC_UP_A, coinc_latch(0))
+	BEGIN
+		IF coinc_latch(0)='0' THEN
+			FF_up_a	<= '0';
+		ELSIF COINC_UP_A'EVENT AND COINC_UP_A='1' THEN
+			FF_up_a	<= '1';
+		END IF;
+	END PROCESS;
+	UP_ABAR : PROCESS (COINC_UP_ABAR, coinc_latch(0))
+	BEGIN
+		IF coinc_latch(0)='0' THEN
+			FF_up_abar	<= '1';
+		ELSIF COINC_UP_ABAR'EVENT AND COINC_UP_ABAR='0' THEN
+			FF_up_abar	<= '0';
+		END IF;
+	END PROCESS;
+	UP_B: PROCESS (COINC_UP_B, coinc_latch(1))
+	BEGIN
+		IF coinc_latch(1)='0' THEN
+			FF_up_b	<= '0';
+		ELSIF COINC_UP_B'EVENT AND COINC_UP_B='1' THEN
+			FF_up_b	<= '1';
+		END IF;
+	END PROCESS;
+	UP_BBAR : PROCESS (COINC_UP_BBAR, coinc_latch(1))
+	BEGIN
+		IF coinc_latch(1)='0' THEN
+			FF_up_bbar	<= '1';
+		ELSIF COINC_UP_BBAR'EVENT AND COINC_UP_BBAR='0' THEN
+			FF_up_bbar	<= '0';
 		END IF;
 	END PROCESS;
 	

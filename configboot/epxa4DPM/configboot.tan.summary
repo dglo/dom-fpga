@@ -1,0 +1,48 @@
+--------------------------------------------------------------------------------------
+Timing Analyzer Summary
+--------------------------------------------------------------------------------------
+
+Type           : Worst-case tsu
+Slack          : N/A
+Required Time  : None
+Actual Time    : 19.601 ns
+From           : COM_AD_D[1]
+To             : dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|DCTC_FWR:inst2|tcwf_wrreq~reg
+
+Type           : Worst-case tco
+Slack          : N/A
+Required Time  : None
+Actual Time    : 9.241 ns
+From           : dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|inst23[6]
+To             : COM_DB[8]
+
+Type           : Worst-case th
+Slack          : N/A
+Required Time  : None
+Actual Time    : -9.556 ns
+From           : COM_AD_D[9]
+To             : dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|altdpram:FIFOram|q[9]~reg_in
+
+Type           : Worst-case minimum tco
+Slack          : N/A
+Required Time  : None
+Actual Time    : 9.120 ns
+From           : dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|inst23[0]
+To             : COM_DB[6]
+
+Type           : Clock Setup: 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock1'
+Slack          : 14.252 ns
+Required Time  : 40.00 MHz ( period = 25.000 ns )
+Actual Time    : 93.04 MHz ( period = 10.748 ns )
+From           : timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|sload_path[1]
+To             : timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|sload_path[47]
+
+Type           : Clock Setup: 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock0'
+Slack          : 18.918 ns
+Required Time  : 20.00 MHz ( period = 50.000 ns )
+Actual Time    : N/A
+From           : timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|sload_path[5]
+To             : dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|SV10
+
+--------------------------------------------------------------------------------------
+

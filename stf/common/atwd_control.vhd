@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2003-07-17
+-- Last update: 2004-03-25
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -120,7 +120,7 @@ BEGIN
 					counterclk_low	<= '1';
 					counterclk_high	<= '0';
 					settle_cnt		<= 0;
-					digitize_cnt	<= 0;
+					digitize_cnt	<= 1;
 				WHEN settle =>
 					IF settle_cnt=128 THEN
 						state	<= digitize;

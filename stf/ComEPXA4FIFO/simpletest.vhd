@@ -278,6 +278,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	-- frontend pulser
 	SIGNAL fe_pulser_enable		: STD_LOGIC;
 	SIGNAL fe_divider			: STD_LOGIC_VECTOR(3 downto 0);
+	SIGNAL FE_pulse				: STD_LOGIC;
 	-- single LED
 	SIGNAL single_led_enable	: STD_LOGIC;
 	SIGNAL LEDtrig				: STD_LOGIC;
@@ -290,6 +291,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	-- local coincidence
 	SIGNAL enable_coinc_up		: STD_LOGIC;
 	SIGNAL enable_coinc_down	: STD_LOGIC;
+	SIGNAL enable_coinc_newFF	: STD_LOGIC;
 	SIGNAL coinc_down_high		: STD_LOGIC;
 	SIGNAL coinc_down_low		: STD_LOGIC;
 	SIGNAL coinc_up_high		: STD_LOGIC;
@@ -306,6 +308,8 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL multiSPEcnt_ff	: STD_LOGIC_VECTOR(15 downto 0);
 	SIGNAL hitcounter_o_ff	: STD_LOGIC_VECTOR(31 downto 0);
 	SIGNAL hitcounter_m_ff	: STD_LOGIC_VECTOR(31 downto 0);
+	SIGNAL hit_counter_gate	: STD_LOGIC;
+	SIGNAL hit_counter_dead	: STD_LOGIC_VECTOR(3 DOWNTO 0);
 	
 	-- ATWD0
 	SIGNAL atwd0_enable		: STD_LOGIC;
@@ -729,6 +733,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			-- enable
 			enable_coinc_down	: IN STD_LOGIC;
 			enable_coinc_up		: IN STD_LOGIC;
+			newFF				: IN STD_LOGIC;
 			-- manual control
 			coinc_up_high		: IN STD_LOGIC;
 			coinc_up_low		: IN STD_LOGIC;
@@ -760,6 +765,9 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 		PORT (
 			CLK			: IN STD_LOGIC;
 			RST			: IN STD_LOGIC;
+			-- setup
+			gatetime	: IN STD_LOGIC := '0';
+			deadtime	: IN STD_LOGIC_VECTOR (3 DOWNTO 0);
 			-- discriminator input
 			MultiSPE		: IN STD_LOGIC;
 			OneSPE			: IN STD_LOGIC;
@@ -778,12 +786,17 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 		PORT (
 			CLK			: IN STD_LOGIC;
 			RST			: IN STD_LOGIC;
+			-- setup
+			gatetime	: IN STD_LOGIC := '0';
+			deadtime	: IN STD_LOGIC_VECTOR (3 DOWNTO 0);
 			-- discriminator input
 			MultiSPE		: IN STD_LOGIC;
 			OneSPE			: IN STD_LOGIC;
 			-- output
 			multiSPEcnt		: OUT STD_LOGIC_VECTOR(15 downto 0);
 			oneSPEcnt		: OUT STD_LOGIC_VECTOR(15 downto 0);
+			-- frontend pulser
+			FE_pulse		: IN STD_LOGIC;
 			-- test connector
 			TC					: OUT STD_LOGIC_VECTOR(7 downto 0)
 		);
@@ -1122,6 +1135,7 @@ BEGIN
 	-- local coincidence
 	enable_coinc_up		<= command_2(0);
 	enable_coinc_down	<= command_2(1);
+	enable_coinc_newFF	<= command_2(2);
 	coinc_down_high		<= command_2(8);
 	coinc_down_low		<= command_2(9);
 	coinc_up_high		<= command_2(10);
@@ -1154,6 +1168,8 @@ BEGIN
 	response_4	<= (others=>'0');
 	
 	-- hit counter
+	hit_counter_gate			<= command_4(8);
+	hit_counter_dead			<= command_4(15 DOWNTO 12);
 	hitcounter_o(15 downto 0)	<= oneSPEcnt;
 	hitcounter_o(31 downto 16)	<= (others=>'0');
 	hitcounter_m(15 downto 0)	<= multiSPEcnt;
@@ -1536,8 +1552,10 @@ BEGIN
 			enable		=> fe_pulser_enable,
 			divider		=> fe_divider,
 			-- LED trigger
-			FE_TEST_PULSE	=> FE_TEST_PULSE
+			FE_TEST_PULSE	=> FE_pulse
 		);
+	FE_TEST_PULSE <= FE_pulse;	
+	
 	
 	inst_single_led : single_led
 		PORT MAP (
@@ -1559,6 +1577,7 @@ BEGIN
 			-- enable
 			enable_coinc_down	=> enable_coinc_down,
 			enable_coinc_up		=> enable_coinc_up,
+			newFF				=> enable_coinc_newFF,	-- '1';
 			-- manual control
 			coinc_up_high		=> coinc_up_high,
 			coinc_up_low		=> coinc_up_low,
@@ -1582,13 +1601,16 @@ BEGIN
 			COINC_UP_BBAR		=> COINC_UP_BBAR,
 			COINC_UP_B			=> COINC_UP_B,
 			-- test connector
-			TC					=> open --TC
+			TC					=> open
 		);
 		
 	inst_hit_counter : hit_counter
 		PORT MAP (
 			CLK				=> CLK20,
 			RST				=> RST,
+			-- setup
+			gatetime		=> hit_counter_gate,
+			deadtime		=> hit_counter_dead,
 			-- discriminator input
 			MultiSPE		=> MultiSPE,
 			OneSPE			=> OneSPE,
@@ -1606,12 +1628,17 @@ BEGIN
 		PORT MAP (
 			CLK				=> CLK20,
 			RST				=> RST,
+			-- setup
+			gatetime		=> hit_counter_gate,
+			deadtime		=> hit_counter_dead,
 			-- discriminator input
 			MultiSPE		=> MultiSPE,
 			OneSPE			=> OneSPE,
 			-- output
 			multiSPEcnt		=> multiSPEcnt_ff,
 			oneSPEcnt		=> oneSPEcnt_ff,
+			-- frontend pulser
+			FE_pulse		=> FE_pulse,
 			-- test connector
 			TC				=> open
 		);
@@ -1801,12 +1828,12 @@ BEGIN
 	B_nA	<= NOT A_nB;
 	RST_kalle	<= RST OR com_ctrl(4);
 	-- TC(0)	<= tx_fifo_wr;
-	TC(0)	<= sys_reset;
+	-- TC(0)	<= sys_reset;
 	-- TC(1)	<= fifo_msg;
 	-- TC(1)	<= com_aval;
 	-- TC(2)	<= drbt_gnt;
 	-- TC(3)	<= drbt_req;
-	TC(3)	<= drbt_gnt;
+	-- TC(3)	<= drbt_gnt;
 	dcom_inst : dcom
 		port MAP (
 			CCLK		=> CLK20,
@@ -1826,7 +1853,7 @@ BEGIN
 			id			=> dom_id(47 downto 0),
 			systime		=> systime,
 			tx_fd		=> com_tx_fifo,
-			txd			=> TC(6),
+			txd			=> open, --TC(6),
 			last_byte	=> open,
 			dac_clk		=> open,
 			dac_slp		=> COM_TX_SLEEP,
@@ -1836,7 +1863,7 @@ BEGIN
 			txwraef		=> txwraef,
 			txrdef		=> txrdef,
 			txwraff		=> txwraff,
-			ctrl_sent	=> TC(5),
+			ctrl_sent	=> open, --TC(5),
 			rs4_ren		=> HDV_RxENA,
 			adc_clk		=> open,
 			data_stb	=> open, --TC(3),
@@ -1860,8 +1887,8 @@ BEGIN
 			com_aval	=> com_aval,
 			sys_res     => sys_reset,
 			tcal_rcvd	=> open, --TC(0),
-			pulse_rcvd	=> TC(1),
-			pulse_sent	=> TC(2),
+			pulse_rcvd	=> open, --TC(1),
+			pulse_sent	=> open, --TC(2),
 			idreq_rcvd	=> open,
 			max_ena		=> open, --TC(3),
 			min_ena		=> open,
@@ -1893,6 +1920,8 @@ BEGIN
 	trigLED	<= trigLED_flasher OR trigLED_onboard;
 	
 	
+	TC(0)	<= FE_pulse;
+	
 	-- PGM(15 downto 12) <= (others=>'0');
 	PGM(15) <= '1';
 	PGM(14) <= '0';
@@ -1916,7 +1945,7 @@ BEGIN
 	begin
 		IF CLK20'EVENT and CLK20='1' then
 			CNT := CNT + 1;
-			PGM(9 downto 8) <= CNT(1 downto 0);
+	--		PGM(9 downto 8) <= CNT(1 downto 0);
 		END IF;
 	END PROCESS;
 	
