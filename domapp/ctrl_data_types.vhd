@@ -84,6 +84,7 @@ PACKAGE ctrl_data_types IS
 	-- control data for the data compression module
 	TYPE COMPR_STRUCT IS
 		RECORD
+			COMPR_mode		: STD_LOGIC_VECTOR (1 DOWNTO 0);
 			ATWDa0thres		: STD_LOGIC_VECTOR (9 DOWNTO 0);
 			ATWDa1thres		: STD_LOGIC_VECTOR (9 DOWNTO 0);
 			ATWDa2thres		: STD_LOGIC_VECTOR (9 DOWNTO 0);

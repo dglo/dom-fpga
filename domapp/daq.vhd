@@ -26,6 +26,7 @@ LIBRARY IEEE;
 USE IEEE.std_logic_1164.all;
 
 USE WORK.icecube_data_types.all;
+USE WORK.ctrl_data_types.all;
 
 
 ENTITY daq IS
@@ -47,6 +48,7 @@ ENTITY daq IS
 		DAQ_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		LBM_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		COMPR_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
+		COMPR_ctrl		: IN COMPR_STRUCT;
 		-- monitor signals
 		-- Lookback Memory Pointer
 		LBM_ptr			: OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
@@ -186,6 +188,7 @@ ARCHITECTURE daq_arch OF daq IS
 			FADC_WIDTH		: INTEGER := 10
 			);
 		port (
+			CLK20		: IN STD_LOGIC;
 			CLK40		: IN STD_LOGIC;
 			CLK80		: IN STD_LOGIC;
 			RST			: IN STD_LOGIC;
@@ -197,6 +200,7 @@ ARCHITECTURE daq_arch OF daq IS
 			LC_mode			: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			DAQ_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			ATWD_AB			: IN STD_LOGIC;	-- indicates if ping or pong
+			COMPR_ctrl		: IN COMPR_STRUCT;
 			-- trigger
 			rst_trig		: OUT STD_LOGIC;
 			trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
@@ -438,6 +442,7 @@ BEGIN
 			FADC_WIDTH		=> FADC_WIDTH
 			)
 		port MAP (
+			CLK20		=> CLK20,
 			CLK40		=> CLK40,
 			CLK80		=> CLK80,
 			RST			=> RST,
@@ -449,6 +454,7 @@ BEGIN
 			LC_mode			=> LC_mode,
 			DAQ_mode		=> DAQ_mode,
 			ATWD_AB			=> ATWD_A,
+			COMPR_ctrl		=> COMPR_ctrl,
 			-- trigger
 			rst_trig		=> rst_trig_A,
 			trigger_word	=> trigger_word,
@@ -496,6 +502,7 @@ BEGIN
 			FADC_WIDTH		=> FADC_WIDTH
 			)
 		port MAP (
+			CLK20		=> CLK20,
 			CLK40		=> CLK40,
 			CLK80		=> CLK80,
 			RST			=> RST,
@@ -507,6 +514,7 @@ BEGIN
 			LC_mode			=> LC_mode,
 			DAQ_mode		=> DAQ_mode,
 			ATWD_AB			=> ATWD_B,
+			COMPR_ctrl		=> COMPR_ctrl,
 			-- trigger
 			rst_trig		=> rst_trig_B,
 			trigger_word	=> trigger_word,

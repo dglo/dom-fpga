@@ -25,16 +25,18 @@ USE IEEE.std_logic_arith.all;
 USE IEEE.std_logic_unsigned.all;
 
 USE WORK.icecube_data_types.all;
+USE WORK.ctrl_data_types.all;
 
 ENTITY compression IS
 	GENERIC (
 		FADC_WIDTH		: INTEGER := 10
 		);
 	PORT (
+		CLK20		: IN STD_LOGIC;
 		CLK40		: IN STD_LOGIC;
 		RST			: IN STD_LOGIC;
 		-- enable
-			-- ???? need to know the algorithm for that
+		COMPR_ctrl	: IN COMPR_STRUCT;
 		-- data input from data buffer
 		data_avail_in	: IN STD_LOGIC;
 		read_done_in	: OUT STD_LOGIC;

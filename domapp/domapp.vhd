@@ -303,6 +303,7 @@ ARCHITECTURE arch_domapp OF domapp IS
 			DAQ_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			LBM_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			COMPR_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
+			COMPR_ctrl		: IN COMPR_STRUCT;
 			-- monitor signals
 			-- Lookback Memory Pointer
 			LBM_ptr			: OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
@@ -611,6 +612,9 @@ ARCHITECTURE arch_domapp OF domapp IS
 	SIGNAL cs_wf_data	: STD_LOGIC_VECTOR (7 DOWNTO 0);
 	SIGNAL cs_wf_addr	: STD_LOGIC_VECTOR (7 DOWNTO 0);
 	
+	-- Compression
+	SIGNAL COMPR_ctrl	: COMPR_STRUCT;
+	
 BEGIN
 	-- general
 	low		<= '0';
@@ -763,6 +767,7 @@ BEGIN
 			DAQ_mode		=> DAQ_ctrl.DAQ_mode,
 			LBM_mode		=> DAQ_ctrl.LBM_mode,
 			COMPR_mode		=> DAQ_ctrl.COMPR_mode,
+			COMPR_ctrl		=> COMPR_ctrl,
 			-- monitor signals
 			-- Lookback Memory Pointer
 			LBM_ptr			=> LBM_ptr,
