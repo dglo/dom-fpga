@@ -14,4 +14,5 @@ SOFTWARE_SETTINGS_LIST
 FILES
 {
 	VHDL_FILE = dom.vhd;
+	VHDL_FILE = fADC_input.vhd;
 }

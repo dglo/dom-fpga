@@ -1,5 +1,5 @@
 -------------------------------------------------
--- SimpleTest top level VHDL file
+-- DOM top level VHDL file
 -------------------------------------------------
 
 LIBRARY IEEE;
