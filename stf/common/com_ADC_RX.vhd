@@ -41,6 +41,8 @@ ARCHITECTURE arch_com_ADC_RC OF com_ADC_RC IS
 	SIGNAL wren_sig			: STD_LOGIC;
 	SIGNAL rden_sig			: STD_LOGIC;
 	
+	SIGNAL COM_AD_D_int		: STD_LOGIC_VECTOR (9 downto 0);
+	SIGNAL COM_AD_OTR_int	: STD_LOGIC;
 		
 	COMPONENT com_adc_mem
 		PORT
@@ -98,9 +100,20 @@ BEGIN
 		END IF;
 	END PROCESS;
 	
+	input_latch : PROCESS (CLK,RST)
+	BEGIN
+		IF RST='1' THEN
+			COM_AD_D_int	<= (others=>'0');
+			COM_AD_OTR_int	<= '0';
+		ELSIF CLK'EVENT AND CLK='1' THEN
+			COM_AD_D_int	<= COM_AD_D;
+			COM_AD_OTR_int	<= COM_AD_OTR;
+		END IF;
+	END PROCESS;
 	
-	data_sig(9 downto 0)	<= COM_AD_D WHEN write_en='0' ELSE wdata(9 downto 0);
-	data_sig(10)			<= COM_AD_OTR WHEN write_en='0' ELSE wdata(10);
+	
+	data_sig(9 downto 0)	<= COM_AD_D_int WHEN write_en='0' ELSE wdata(9 downto 0);
+	data_sig(10)			<= COM_AD_OTR_int WHEN write_en='0' ELSE wdata(10);
 	data_sig(15 downto 11)	<= (others=>'0') WHEN write_en='0' ELSE wdata(15 downto 11);
 	wraddress_sig	<= wraddress WHEN write_en='0' ELSE address;
 	wren_sig		<= wren WHEN write_en='0' ELSE write_en;
