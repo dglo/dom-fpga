@@ -96,8 +96,7 @@ ARCHITECTURE arch_atwd_trigger OF atwd_trigger IS
 	
 	SIGNAL enable_LED_force	: STD_LOGIC;
 	
-	SIGNAL blank_disc	: STD_LOGIC;
-	SIGNAL FE_pulse_local	: STD_LOGIC;
+	SIGNAL no_trigger	: STD_LOGIC;
 		
 BEGIN
 	
@@ -145,11 +144,7 @@ BEGIN
 		IF rst_trg='1' THEN
 			discFF	<= '0';
 		ELSIF OneSPE'EVENT AND OneSPE='1' THEN
-			IF blank_disc='1' THEN
-				discFF	<= '0';
-			ELSE
-				discFF	<= '1';
-			END IF;
+			discFF	<= '1';
 		END IF;
 	END PROCESS;
 	
@@ -175,9 +170,18 @@ BEGIN
 		END IF;
 	END PROCESS;
 	
+	launch_window : PROCESS (CLK40, RST)
+		VARIABLE	got_disc	: STD_LOGIC;
+	BEGIN
+		IF CLK40'EVENT AND CLK40='1' THEN
+			no_trigger	<= got_disc;
+			got_disc	:= discFF;
+		END IF;
+	END PROCESS;
+	
 	disc <= discFF;
 	
-	enable_sig	<= NOT busy AND enable_disc_sig;
+	enable_sig	<= NOT busy AND enable_disc_sig AND NOT no_trigger;
 	set_sig		<= triggered
 				OR (force AND NOT busy);
 	force	<= enable_pos_edge OR enable_LED_force;
@@ -243,16 +247,5 @@ BEGIN
 	END PROCESS;
 	
 	enable_LED_force <= LEDtrig AND enable_LED_sig;
-	
-	
-	PROCESS (CLK20,RST)
-	BEGIN
-		IF RST='1' THEN
-			FE_pulse_local	<= '0';
-		ELSIF CLK20'EVENT and CLK20='1' THEN
-			FE_pulse_local	<= FE_pulse;
-		END IF;
-	END PROCESS;
-	blank_disc <= '1' WHEN FE_pulse='0' and FE_pulse_local='1' ELSE '0';
 	
 END;
