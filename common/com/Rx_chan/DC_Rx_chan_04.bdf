@@ -155,7 +155,7 @@ party's intellectual property, are provided herein.
 )
 (pin
 	(input)
-	(rect 8 -88 176 -72)
+	(rect 8 -104 176 -88)
 	(text "INPUT" (rect 133 0 167 13)(font "Arial" (font_size 6)))
 	(text "tcal_prec" (rect 9 0 64 15)(font "Arial" ))
 	(pt 168 8)
@@ -254,6 +254,22 @@ party's intellectual property, are provided herein.
 	(rect 8 -216 176 -200)
 	(text "INPUT" (rect 133 0 167 13)(font "Arial" (font_size 6)))
 	(text "rec_ena" (rect 9 0 58 15)(font "Arial" ))
+	(pt 168 8)
+	(drawing
+		(line (pt 92 12)(pt 117 12)(line_width 1))
+		(line (pt 92 4)(pt 117 4)(line_width 1))
+		(line (pt 121 8)(pt 168 8)(line_width 1))
+		(line (pt 92 12)(pt 92 4)(line_width 1))
+		(line (pt 117 4)(pt 121 8)(line_width 1))
+		(line (pt 117 12)(pt 121 8)(line_width 1))
+	)
+	(text "VCC" (rect 136 7 159 20)(font "Arial" (font_size 6)))
+)
+(pin
+	(input)
+	(rect 8 -88 176 -72)
+	(text "INPUT" (rect 133 0 167 13)(font "Arial" (font_size 6)))
+	(text "tcal_psnd" (rect 5 0 64 15)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 92 12)(pt 117 12)(line_width 1))
@@ -984,7 +1000,7 @@ party's intellectual property, are provided herein.
 	)
 )
 (symbol
-	(rect 488 -472 688 -376)
+	(rect 496 -448 696 -352)
 	(text "mean_val" (rect 5 0 64 16)(font "Arial" (font_size 8)))
 	(text "inst21" (rect 8 77 45 92)(font "Arial" ))
 	(port
@@ -1961,7 +1977,7 @@ party's intellectual property, are provided herein.
 	)
 )
 (symbol
-	(rect 104 -376 216 -328)
+	(rect 8 -440 120 -392)
 	(text "LPM_CONSTANT" (rect 4 0 144 19)(font "Arial" (font_size 10)))
 	(text "LRG_THRESHOLD" (rect 3 37 125 53)(font "Arial" (font_size 8)))
 	(port
@@ -1989,7 +2005,7 @@ party's intellectual property, are provided herein.
 		(line (pt 64 40)(pt 64 24)(line_width 1))
 		(line (pt 16 40)(pt 16 24)(line_width 1))
 	)
-	(annotation_block (parameter)(rect 216 -424 352 -376))
+	(annotation_block (parameter)(rect 120 -488 256 -440))
 )
 (symbol
 	(rect 504 -328 688 -168)
@@ -2182,7 +2198,7 @@ party's intellectual property, are provided herein.
 	)
 )
 (symbol
-	(rect 104 -432 216 -384)
+	(rect 8 -496 120 -448)
 	(text "LPM_CONSTANT" (rect 4 0 144 19)(font "Arial" (font_size 10)))
 	(text "LOW_THRESHOLD" (rect 3 37 129 53)(font "Arial" (font_size 8)))
 	(port
@@ -2210,7 +2226,7 @@ party's intellectual property, are provided herein.
 		(line (pt 64 40)(pt 64 24)(line_width 1))
 		(line (pt 16 40)(pt 16 24)(line_width 1))
 	)
-	(annotation_block (parameter)(rect 216 -480 352 -432))
+	(annotation_block (parameter)(rect 120 -544 256 -496))
 )
 (symbol
 	(rect 392 320 624 512)
@@ -2338,6 +2354,13 @@ party's intellectual property, are provided herein.
 		""
 	)
 	(annotation_block (parameter)(rect 208 160 320 192))
+)
+(block
+	(rect 288 -560 464 -432)
+	(text "mean_val" (rect 5 5 64 20)(font "Arial" ))	(text "inst20" (rect 5 111 42 126)(font "Arial" ))	(block_io "reset" (input))
+	(block_io "clk" (input))
+	(block_io "fc_adc[9..0]" (input))
+	(block_io "mean[9..0]" (output))
 )
 (connector
 	(pt 176 80)
@@ -2854,28 +2877,6 @@ party's intellectual property, are provided herein.
 	(pt 1320 152)
 )
 (connector
-	(text "mean[9..0]" (rect 696 -457 759 -442)(font "Arial" ))
-	(pt 688 -440)
-	(pt 776 -440)
-	(bus)
-)
-(connector
-	(text "GND" (rect 424 -457 453 -442)(font "Arial" ))
-	(pt 488 -440)
-	(pt 416 -440)
-)
-(connector
-	(text "CCLK" (rect 424 -441 460 -426)(font "Arial" ))
-	(pt 416 -424)
-	(pt 488 -424)
-)
-(connector
-	(text "fc_adc[9..0]" (rect 424 -425 492 -410)(font "Arial" ))
-	(pt 416 -408)
-	(pt 488 -408)
-	(bus)
-)
-(connector
 	(text "rxd" (rect 704 -232 721 -217)(font "Arial" ))
 	(pt 688 -216)
 	(pt 784 -216)
@@ -2917,10 +2918,6 @@ party's intellectual property, are provided herein.
 	(bus)
 )
 (connector
-	(pt 504 -280)
-	(pt 360 -280)
-)
-(connector
 	(text "send_ctrl" (rect 216 -289 272 -274)(font "Arial" ))
 	(pt 208 -272)
 	(pt 296 -272)
@@ -2935,18 +2932,6 @@ party's intellectual property, are provided herein.
 	(text "find_dudt" (rect 704 -248 760 -233)(font "Arial" ))
 	(pt 688 -232)
 	(pt 784 -232)
-)
-(connector
-	(text "low_thresh[9..0]" (rect 240 -416 335 -401)(font "Arial" ))
-	(pt 216 -400)
-	(pt 352 -400)
-	(bus)
-)
-(connector
-	(text "lrg_thresh[9..0]" (rect 240 -360 330 -345)(font "Arial" ))
-	(pt 216 -344)
-	(pt 352 -344)
-	(bus)
 )
 (connector
 	(text "data[7..0]" (rect 664 -105 719 -90)(font "Arial" ))
@@ -2988,23 +2973,6 @@ party's intellectual property, are provided herein.
 	(text "uart_done" (rect 664 -41 725 -26)(font "Arial" ))
 	(pt 656 -24)
 	(pt 752 -24)
-)
-(connector
-	(pt 296 -304)
-	(pt 288 -304)
-)
-(connector
-	(pt 288 -304)
-	(pt 288 -288)
-)
-(connector
-	(text "send_data" (rect 216 -305 280 -290)(font "Arial" ))
-	(pt 208 -288)
-	(pt 288 -288)
-)
-(connector
-	(pt 288 -288)
-	(pt 296 -288)
 )
 (connector
 	(pt 272 -256)
@@ -3109,8 +3077,64 @@ party's intellectual property, are provided herein.
 	(pt 392 448)
 	(pt 280 448)
 )
+(connector
+	(text "send_data" (rect 216 -305 280 -290)(font "Arial" ))
+	(pt 208 -288)
+	(pt 296 -288)
+)
+(connector
+	(text "tcal_psnd" (rect 216 -320 275 -305)(font "Arial" ))
+	(pt 208 -304)
+	(pt 296 -304)
+)
+(connector
+	(text "mean[9..0]" (rect 704 -433 767 -418)(font "Arial" ))
+	(pt 696 -416)
+	(pt 784 -416)
+	(bus)
+)
+(connector
+	(text "CCLK" (rect 432 -417 468 -402)(font "Arial" ))
+	(pt 424 -400)
+	(pt 496 -400)
+)
+(connector
+	(text "fc_adc[9..0]" (rect 432 -401 500 -386)(font "Arial" ))
+	(pt 424 -384)
+	(pt 496 -384)
+	(bus)
+)
+(connector
+	(text "low_thresh[9..0]" (rect 144 -480 239 -465)(font "Arial" ))
+	(pt 120 -464)
+	(pt 256 -464)
+	(bus)
+)
+(connector
+	(text "lrg_thresh[9..0]" (rect 144 -424 234 -409)(font "Arial" ))
+	(pt 120 -408)
+	(pt 256 -408)
+	(bus)
+)
+(connector
+	(text "<<__$DEF_ALIAS1340>>" (rect 432 -433 586 -418)(font "Arial" )(invisible))
+	(pt 384 -416)
+	(pt 496 -416)
+)
+(connector
+	(pt 384 -416)
+	(pt 384 -280)
+)
+(connector
+	(pt 504 -280)
+	(pt 384 -280)
+)
+(connector
+	(pt 384 -280)
+	(pt 360 -280)
+)
 (junction (pt 1464 376))
-(junction (pt 288 -288))
+(junction (pt 384 -280))
 (text "prevent downcounting when 0x0" (rect 1832 456 2033 472)(font "Arial" (font_size 8)))
 (text "prevent upcounting when 0xffff" (rect 1840 304 2029 320)(font "Arial" (font_size 8)))
 (text "rs4_en must on GND !!!" (rect 1528 -336 1676 -320)(font "Arial" (font_size 8)))
@@ -3122,7 +3146,7 @@ party's intellectual property, are provided herein.
 	(section (rect 0 48 368 72)(text "DESIGNER" (rect 2 0 71 15)(font "Arial" ))(text "Karl-Heinz Sulanke" (rect 56 2 236 25)(font "Arial" (font_size 12)))(border))
 	(section (rect 0 72 280 96)(text "NUMBER" (rect 2 0 59 15)(font "Arial" ))(text "1.00" (rect 56 1 91 20)(font "Arial" (font_size 10)))(border))
 	(section (rect 280 72 368 96)(text "REV" (rect 2 1 28 16)(font "Arial" ))(text "A" (rect 43 1 55 20)(font "Arial" (font_size 10)))(border))
-	(section (rect 0 96 240 120)(text "DATE" (rect 2 0 36 15)(font "Arial" ))(text "Fri Sep 19 11:39:42 2003" (rect 56 3 261 22)(font "Arial" (font_size 10)))(date)(border))
+	(section (rect 0 96 240 120)(text "DATE" (rect 2 0 36 15)(font "Arial" ))(text "Sun Sep 21 14:14:44 2003" (rect 56 3 271 22)(font "Arial" (font_size 10)))(date)(border))
 	(section (rect 240 96 310 120)(text "SHEET" (rect 2 0 46 15)(font "Arial" ))(text "1" (rect 55 5 64 24)(font "Arial" (font_size 10))))
 	(section (rect 310 96 368 120)(text "OF" (rect 10 0 27 15)(font "Arial" ))(text "1" (rect 34 4 43 23)(font "Arial" (font_size 10))))
 	(drawing

@@ -1,4 +1,4 @@
-TITLE "timer used for DOM-TCAL, K.-H. Sulanke,DESY Zeuthen, 2003/09/11";
+TITLE "timer used for DOM-TCAL, K.-H. Sulanke,DESY Zeuthen, 2003/09/21";
 
 INCLUDE "dc_tcal_ct.inc";	-- modulus 20000 15 bit counter
 
@@ -51,6 +51,6 @@ h_pulse.d		= (timer.q[]==(DELAY_15us+2)) & tcal_psnd	-- 1us pulse (h+l)
 l_pulse.d		= (timer.q[]==(DELAY_15us+12)) & tcal_psnd
 				# l_pulse.q & !(timer.q[]==(DELAY_15us+22));
 				
-pulse_sent.d	= (timer.q[]==(DELAY_15us+42)) & tcal_psnd;	-- 1us later
+pulse_sent.d	= (timer.q[]==(DELAY_15us+22)) & tcal_psnd;
 
 END;
