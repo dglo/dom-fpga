@@ -547,7 +547,7 @@ RESERVED_INPUT               : Y9        :        :                   :         
 RESERVED_INPUT               : Y10       :        :                   :         : 11        :                
 RESERVED_INPUT               : Y11       :        :                   :         : 11        :                
 RESERVED_INPUT               : Y12       :        :                   :         : 11        :                
-CLK3p                        : Y13       : input  : LVTTL             :         : 11        : N              
+RESERVED_INPUT               : Y13       :        :                   :         : 11        :                
 RESERVED_INPUT               : Y14       :        :                   :         : 11        :                
 ATWD0_D[0]                   : Y15       : input  : LVTTL             :         : 10        : Y              
 DigitalSet_0                 : Y16       : output : LVTTL             :         : 10        : Y              
@@ -585,7 +585,7 @@ R2BUS[4]                     : AA21      : output : LVTTL             :         
 RESERVED_INPUT               : AA22      :        :                   :         : 9         :                
 RESERVED_INPUT               : AA23      :        :                   :         : 9         :                
 COMM_RESET                   : AA24      : output : LVTTL             :         : 9         : Y              
-RESERVED_INPUT               : AA25      :        :                   :         : 8         :                
+CLK3p                        : AA25      : input  : LVTTL             :         : 8         : N              
 RESERVED_INPUT               : AA26      :        :                   :         : 8         :                
 COINCIDENCE_OUT_UP           : AB1       : output : LVTTL             :         : 12        : Y              
 COINCIDENCE_OUT_DOWN         : AB2       : output : LVTTL             :         : 12        : Y              
