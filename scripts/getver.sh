@@ -3,7 +3,7 @@
 #
 # get current version number
 #
-set fname=$1
+fname=$1
 
 if [[ ! -f ./${fname} ]] ; then
     if [[ ! -f ../common/${fname} ]] ; then
