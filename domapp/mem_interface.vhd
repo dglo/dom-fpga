@@ -70,6 +70,7 @@ ENTITY mem_interface IS
 		ahb_address		: IN	STD_LOGIC_VECTOR(31 downto 0);
 		wdata			: OUT	STD_LOGIC_VECTOR(31 downto 0);
 		wait_sig		: IN	STD_LOGIC;
+		ready			: IN	STD_LOGIC;
 		trans_length	: OUT	INTEGER;
 		bus_error		: IN	STD_LOGIC;
 		-- test connector
@@ -122,6 +123,7 @@ BEGIN
 			CASE state IS
 				WHEN IDLE =>
 					start_trans		<= '0';
+					abort_trans		<= '0';
 					IF data_avail_A='1' OR data_avail_B='1' THEN
 						state	<= SET_MUX;
 						start_trans		<= '1';
@@ -175,7 +177,9 @@ BEGIN
 					start_trans		<= '0';
 					rdaddr	<= (OTHERS=>'0');
 				WHEN ENG_FADC =>
-					rdaddr	<= rdaddr+1;
+					IF wait_sig='0' THEN
+						rdaddr	<= rdaddr+1;
+					END IF;
 					IF rdaddr(6 DOWNTO 0) = "1111111" THEN
 						IF header.ATWDavail='1' THEN
 							state	<= ENG_ATWD;
@@ -186,7 +190,9 @@ BEGIN
 					END IF;
 					start_trans		<= '0';
 				WHEN ENG_ATWD =>
-					rdaddr	<= rdaddr+1;
+					IF wait_sig='0' THEN
+						rdaddr	<= rdaddr+1;
+					END IF;
 					IF rdaddr(5 DOWNTO 0) = "111111" AND rdaddr(7 DOWNTO 6) = header.ATWDsize THEN
 						state	<= ENG_END;
 					END IF;
@@ -217,11 +223,11 @@ BEGIN
 				WHEN DONE =>
 					IF start_address(SDRAM_SIZE)='1' AND LBM_mode=LBM_STOP THEN
 						NULL;
-					ELSE
+					ELSIF ready='1' THEN
 						state	<= IDLE;
 					END IF;
 					start_trans		<= '0';
-					abort_trans		<= '0';
+					abort_trans		<= '1';
 				WHEN OTHERS =>
 					NULL;
 			END CASE;

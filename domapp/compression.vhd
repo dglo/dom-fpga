@@ -65,12 +65,25 @@ ARCHITECTURE arch_compression OF compression IS
 
 BEGIN
 
-	compr_avail_out <= '0';
-	compr_size		<= (OTHERS=>'0');
+	-- cpmression data
+	--compr_avail_out <= '0';
+	--compr_size		<= (OTHERS=>'0');
+	compr_avail_out <= data_avail_in;
+	compr_size		<= "111111111";
+	PROCESS(compr_addr)
+	BEGIN
+		IF compr_addr=0 THEN
+			compr_data <= x"deadbeef";
+		ELSE
+			compr_data (8 DOWNTO 0) <= compr_addr;
+			compr_data (31 DOWNTO 9) <= (OTHERS=>'0');
+		END IF;
+	END PROCESS;
 	
+	--engineering data
 	data_avail_out	<= data_avail_in;
 	read_done_in	<= read_done_out;
-
+	
 	HEADER_out		<= HEADER_in;
 	ATWD_addr_in	<= ATWD_addr_out;
 	ATWD_data_out	<= ATWD_data_in;

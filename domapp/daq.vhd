@@ -281,6 +281,7 @@ ARCHITECTURE daq_arch OF daq IS
 			ahb_address		: IN	STD_LOGIC_VECTOR(31 downto 0);
 			wdata			: OUT	STD_LOGIC_VECTOR(31 downto 0);
 			wait_sig		: IN	STD_LOGIC;
+			ready			: IN	STD_LOGIC;
 			trans_length	: OUT	INTEGER;
 			bus_error		: IN	STD_LOGIC;
 			-- test connector
@@ -315,6 +316,7 @@ ARCHITECTURE daq_arch OF daq IS
 			ahb_address		: OUT	STD_LOGIC_VECTOR(31 downto 0);
 			wdata			: IN	STD_LOGIC_VECTOR(31 downto 0);
 			wait_sig		: OUT	STD_LOGIC;
+			ready			: OUT	STD_LOGIC;
 			trans_length	: IN	INTEGER;
 			bus_error		: OUT	STD_LOGIC
 		);
@@ -372,6 +374,7 @@ ARCHITECTURE daq_arch OF daq IS
 	SIGNAL ahb_address		: STD_LOGIC_VECTOR(31 downto 0);
 	SIGNAL wdata			: STD_LOGIC_VECTOR(31 downto 0);
 	SIGNAL wait_sig			: STD_LOGIC;
+	SIGNAL ready			: STD_LOGIC;
 	SIGNAL trans_length		: INTEGER;
 	SIGNAL bus_error		: STD_LOGIC;
 
@@ -587,6 +590,7 @@ BEGIN
 			ahb_address		=> ahb_address,
 			wdata			=> wdata,
 			wait_sig		=> wait_sig,
+			ready			=> ready,
 			trans_length	=> trans_length,
 			bus_error		=> bus_error,
 			-- test connector
@@ -621,6 +625,7 @@ BEGIN
 			ahb_address		=> ahb_address,
 			wdata			=> wdata,
 			wait_sig		=> wait_sig,
+			ready			=> ready,
 			trans_length	=> trans_length,
 			bus_error		=> bus_error
 		);

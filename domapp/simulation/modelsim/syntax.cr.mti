@@ -21,15 +21,6 @@ Model Technology ModelSim SE vcom 5.8 Compiler 2003.11 Nov 11 2003
 -- Compiling entity fadc_interface
 -- Compiling architecture fadc_interface_arch of fadc_interface
 
-} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ahb_master.vhd {1 {vcom -work work -93 -explicit C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ahb_master.vhd
-Model Technology ModelSim SE vcom 5.8 Compiler 2003.11 Nov 11 2003
--- Loading package standard
--- Loading package std_logic_1164
--- Loading package std_logic_arith
--- Loading package std_logic_unsigned
--- Compiling entity ahb_master
--- Compiling architecture ahb_ahb_master of ahb_master
-
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ADC_input.vhd {1 {vcom -work work -93 -explicit C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ADC_input.vhd
 Model Technology ModelSim SE vcom 5.8 Compiler 2003.11 Nov 11 2003
 -- Loading package standard
@@ -82,12 +73,6 @@ Model Technology ModelSim SE vcom 5.8 Compiler 2003.11 Nov 11 2003
 -- Loading package std_logic_unsigned
 -- Compiling entity fadc_model
 -- Compiling architecture fadc_arch of fadc_model
-
-} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ctrl_data_types.vhd {1 {vcom -work work -2002 -explicit C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ctrl_data_types.vhd
-Model Technology ModelSim SE vcom 5.8 Compiler 2003.11 Nov 11 2003
--- Loading package standard
--- Loading package std_logic_1164
--- Compiling package ctrl_data_types
 
 } {} {}} C:/FPGAtools/quartus/eda/sim_lib/altera_mf.v {0 {vlog -work work C:/FPGAtools/quartus/eda/sim_lib/altera_mf.v
 Model Technology ModelSim SE vlog 5.8 Compiler 2003.11 Nov 11 2003
@@ -243,14 +228,6 @@ Model Technology ModelSim SE vcom 5.8 Compiler 2003.11 Nov 11 2003
 -- Loading entity atwd_buffer
 -- Loading entity fadc_buffer
 
-} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/comm_wrapper.vhd {1 {vcom -work work -2002 -explicit C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/comm_wrapper.vhd
-Model Technology ModelSim SE vcom 5.8 Compiler 2003.11 Nov 11 2003
--- Loading package standard
--- Loading package std_logic_1164
--- Loading package ctrl_data_types
--- Compiling entity comm_wrapper
--- Compiling architecture arch_comm_wrapper of comm_wrapper
-
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ROC.vhd {1 {vcom -work work -2002 -explicit C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ROC.vhd
 Model Technology ModelSim SE vcom 5.8 Compiler 2003.11 Nov 11 2003
 -- Loading package standard
@@ -289,22 +266,6 @@ Model Technology ModelSim SE vcom 5.8 Compiler 2003.11 Nov 11 2003
 -- Compiling entity fadc_input
 -- Compiling architecture fadc_input_arch of fadc_input
 
-} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/daq.vhd {1 {vcom -work work -93 -explicit C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/daq.vhd
-Model Technology ModelSim SE vcom 5.8 Compiler 2003.11 Nov 11 2003
--- Loading package standard
--- Loading package std_logic_1164
--- Loading package icecube_data_types
--- Compiling entity daq
--- Compiling architecture daq_arch of daq
--- Loading entity trigger
--- Loading entity fadc_input
--- Loading package std_logic_arith
--- Loading package std_logic_unsigned
--- Loading entity pingpong
--- Loading package constants
--- Loading entity mem_interface
--- Loading entity ahb_master
-
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/version_rom.v {1 {vlog -work work C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/version_rom.v
 Model Technology ModelSim SE vlog 5.8 Compiler 2003.11 Nov 11 2003
 -- Compiling module version_rom
@@ -318,17 +279,6 @@ Model Technology ModelSim SE vlog 5.8 Compiler 2003.11 Nov 11 2003
 
 Top level modules:
 	alt_exc_stripe
-
-} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/mem_interface.vhd {1 {vcom -work work -93 -explicit C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/mem_interface.vhd
-Model Technology ModelSim SE vcom 5.8 Compiler 2003.11 Nov 11 2003
--- Loading package standard
--- Loading package std_logic_1164
--- Loading package std_logic_arith
--- Loading package std_logic_unsigned
--- Loading package constants
--- Loading package icecube_data_types
--- Compiling entity mem_interface
--- Compiling architecture mem_interface_arch of mem_interface
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/systimer.vhd {1 {vcom -work work -2002 -explicit C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/systimer.vhd
 Model Technology ModelSim SE vcom 5.8 Compiler 2003.11 Nov 11 2003
@@ -389,16 +339,6 @@ Model Technology ModelSim SE vcom 5.8 Compiler 2003.11 Nov 11 2003
 -- Loading package icecube_data_types
 -- Compiling entity compression
 -- Compiling architecture arch_compression of compression
-
-} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/rate_meters.vhd {1 {vcom -work work -2002 -explicit C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/rate_meters.vhd
-Model Technology ModelSim SE vcom 5.8 Compiler 2003.11 Nov 11 2003
--- Loading package standard
--- Loading package std_logic_1164
--- Loading package std_logic_arith
--- Loading package std_logic_unsigned
--- Loading package ctrl_data_types
--- Compiling entity rate_meters
--- Compiling architecture arch_rate_meters of rate_meters
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/stripe.v {1 {vlog -work work C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/stripe.v
 Model Technology ModelSim SE vlog 5.8 Compiler 2003.11 Nov 11 2003
@@ -497,13 +437,6 @@ Model Technology ModelSim SE vcom 5.8 Compiler 2003.11 Nov 11 2003
 -- Loading package standard
 -- Loading package std_logic_1164
 -- Compiling package icecube_data_types
-
-} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/constants.vhd {1 {vcom -work work -93 -explicit C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/constants.vhd
-Model Technology ModelSim SE vcom 5.8 Compiler 2003.11 Nov 11 2003
--- Loading package standard
--- Loading package std_logic_1164
--- Loading package std_logic_arith
--- Compiling package constants
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ATWD_buffer.v {1 {vlog -work work C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ATWD_buffer.v
 Model Technology ModelSim SE vlog 5.8 Compiler 2003.11 Nov 11 2003
