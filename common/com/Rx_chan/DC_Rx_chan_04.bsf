@@ -46,8 +46,8 @@ party's intellectual property, are provided herein.
 	(port
 		(pt 0 64)
 		(input)
-		(text "fc_adc[9..0]" (rect 0 0 74 16)(font "Arial" (font_size 8)))
-		(text "fc_adc[9..0]" (rect 21 59 95 75)(font "Arial" (font_size 8)))
+		(text "fc_adc[11..0]" (rect 0 0 82 16)(font "Arial" (font_size 8)))
+		(text "fc_adc[11..0]" (rect 21 59 103 75)(font "Arial" (font_size 8)))
 		(line (pt 0 64)(pt 16 64)(line_width 3))
 	)
 	(port

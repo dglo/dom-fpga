@@ -41,7 +41,7 @@ ENTITY dcom IS
 		rs485_not_dac :  IN  STD_LOGIC;
 		id_stb_L :  IN  STD_LOGIC;
 		id_stb_H :  IN  STD_LOGIC;
-		fc_adc :  IN  STD_LOGIC_VECTOR(9 downto 0);
+		fc_adc :  IN  STD_LOGIC_VECTOR(11 downto 0);
 		id :  IN  STD_LOGIC_VECTOR(47 downto 0);
 		systime :  IN  STD_LOGIC_VECTOR(47 downto 0);
 		tx_fd :  IN  STD_LOGIC_VECTOR(7 downto 0);
@@ -155,7 +155,7 @@ component dc_rx_chan_04
 		 tcwf_rd_next : IN STD_LOGIC;
 		 reset : IN STD_LOGIC;
 		 msg_sent : IN STD_LOGIC;
-		 fc_adc : IN STD_LOGIC_VECTOR(9 downto 0);
+		 fc_adc : IN STD_LOGIC_VECTOR(11 downto 0);
 		 hl_edge : OUT STD_LOGIC;
 		 lh_edge : OUT STD_LOGIC;
 		 rxd : OUT STD_LOGIC;
