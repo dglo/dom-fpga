@@ -67,6 +67,10 @@ ENTITY slaveregister IS
 		tx_dpr_radr		: IN	STD_LOGIC_VECTOR(31 downto 0);
 		rx_dpr_radr		: OUT	STD_LOGIC_VECTOR(31 downto 0);
 		rx_addr			: IN	STD_LOGIC_VECTOR(31 downto 0);
+		com_clev		: OUT	STD_LOGIC_VECTOR(31 downto 0);
+		com_clev_wr		: OUT	STD_LOGIC;
+		com_thr_del		: OUT	STD_LOGIC_VECTOR(31 downto 0);
+		com_thr_del_wr	: OUT	STD_LOGIC;
 		-- COM ADC RX interface
 		com_adc_wdata		: OUT STD_LOGIC_VECTOR (15 downto 0);
 		com_adc_rdata		: IN STD_LOGIC_VECTOR (15 downto 0);
@@ -158,6 +162,9 @@ BEGIN
 			tx_pack_rdy	<= '0';
 			rx_dpr_radr_stb	<= '0';
 			reg_rdata <= (others=>'X');
+			
+			com_clev_wr	<= '0';
+			com_thr_del_wr	<= '0';
 			IF reg_enable = '1' THEN
 				IF reg_address(19 downto 18) = "00" THEN	-- map into the domapp addr space for the number
 					IF reg_address(15 downto 12) = "0000" THEN
@@ -230,72 +237,72 @@ BEGIN
 								reg_rdata(31 downto 16) <= (others=>'0');
 							END IF;
 						WHEN "0001" =>	-- register
-							CASE reg_address(6 downto 2) IS
-								WHEN "00000" =>	-- command 0
+							CASE reg_address(7 downto 2) IS
+								WHEN "000000" =>	-- command 0
 									IF reg_write = '1' THEN
 										command_0_local <= reg_wdata;
 									ELSE
 										reg_rdata <= command_0_local;
 									END IF;
-								WHEN "00001" =>	-- response 0
+								WHEN "000001" =>	-- response 0
 									IF reg_write = '1' THEN
 									ELSE
 										reg_rdata <= response_0;
 									END IF;
-								WHEN "00010" =>	-- command 1
+								WHEN "000010" =>	-- command 1
 									IF reg_write = '1' THEN
 										command_1_local <= reg_wdata;
 									ELSE
 										reg_rdata <= command_1_local;
 									END IF;
-								WHEN "00011" =>	-- response 1
+								WHEN "000011" =>	-- response 1
 									IF reg_write = '1' THEN
 									ELSE
 										reg_rdata <= response_1;
 									END IF;
-								WHEN "00100" =>	-- hitcounter SPE
+								WHEN "000100" =>	-- hitcounter SPE
 									IF reg_write = '1' THEN
 									ELSE
 										reg_rdata <= hitcounter_o;
 									END IF;
-								WHEN "00101" =>	-- hitcounter MPE
+								WHEN "000101" =>	-- hitcounter MPE
 									IF reg_write = '1' THEN
 									ELSE
 										reg_rdata <= hitcounter_m;
 									END IF;
-								WHEN "00110" =>	-- command 2
+								WHEN "000110" =>	-- command 2
 									IF reg_write = '1' THEN
 										command_2_local <= reg_wdata;
 									ELSE
 										reg_rdata <= command_2_local;
 									END IF;
-								WHEN "00111" =>	-- response 2
+								WHEN "000111" =>	-- response 2
 									IF reg_write = '1' THEN
 									ELSE
 										reg_rdata <= response_2;
 									END IF;
-								WHEN "01000" =>	-- hitcounter SPE FF
+								WHEN "001000" =>	-- hitcounter SPE FF
 									IF reg_write = '1' THEN
 									ELSE
 										reg_rdata <= hitcounter_o_ff;
 									END IF;
-								WHEN "01001" =>	-- hitcounter MPE FF
+								WHEN "001001" =>	-- hitcounter MPE FF
 									IF reg_write = '1' THEN
 									ELSE
 										reg_rdata <= hitcounter_m_ff;
 									END IF;
-								WHEN "01010" =>	-- command 3
+								WHEN "001010" =>	-- command 3
 									IF reg_write = '1' THEN
 										command_3_local <= reg_wdata;
 									ELSE
 										reg_rdata <= command_3_local;
 									END IF;
-								WHEN "01011" =>	-- response 3
+								WHEN "001011" =>	-- response 3
 									IF reg_write = '1' THEN
 									ELSE
 										reg_rdata <= response_3;
 									END IF;
-								WHEN "01100" =>	-- com control
+								WHEN "001100" =>	-- com control
 									IF reg_write = '1' THEN
 										com_ctrl_local <= reg_wdata;
 										com_ctrl_local(0)	<= reg_wdata(2);	-- to reflect changed API 
@@ -305,112 +312,123 @@ BEGIN
 										reg_rdata(0) <= com_ctrl_local(2);	-- to reflect changed API
 										reg_rdata(2) <= com_ctrl_local(0);	-- main com at 90000500 should be clean
 									END IF;
-								WHEN "01101" => -- com status
+								WHEN "001101" => -- com status
 									IF reg_write = '1' THEN
 									ELSE
 										reg_rdata <= com_status;
 									END IF;
-								WHEN "01110" =>	-- com TX data
+								WHEN "001110" =>	-- com TX data
 									IF reg_write = '1' THEN
 										com_tx_data <= reg_wdata;
 									ELSE
 										reg_rdata <= (OTHERS=>'0');
 									END IF;
-								WHEN "01111" =>	-- com RX data
+								WHEN "001111" =>	-- com RX data
 									IF reg_write = '1' THEN
 									ELSE
 										reg_rdata <= com_rx_data;
 									END IF;
-								WHEN "10000" =>	-- time lower 32 bit
+								WHEN "010000" =>	-- time lower 32 bit
 									IF reg_write = '1' THEN
 									ELSE
 										reg_rdata <= systime (31 DOWNTO 0);
 									END IF;
-								WHEN "10001" =>	-- time upper 16 bit
+								WHEN "010001" =>	-- time upper 16 bit
 									IF reg_write = '1' THEN
 									ELSE
 										reg_rdata (15 DOWNTO 0) <= systime (47 DOWNTO 32);
 										reg_rdata (31 DOWNTO 16) <= (OTHERS=>'0');
 									END IF;
-								WHEN "10010" =>	-- atwd0 timestamp lower 32 bit
+								WHEN "010010" =>	-- atwd0 timestamp lower 32 bit
 									IF reg_write = '1' THEN
 									ELSE
 										reg_rdata <= atwd0_timestamp (31 DOWNTO 0);
 									END IF;
-								WHEN "10011" =>	-- atwd0 timestamp upper 16 bit
+								WHEN "010011" =>	-- atwd0 timestamp upper 16 bit
 									IF reg_write = '1' THEN
 									ELSE
 										reg_rdata (15 DOWNTO 0) <= atwd0_timestamp (47 DOWNTO 32);
 										reg_rdata (31 DOWNTO 16) <= (OTHERS=>'0');
 									END IF;
-								WHEN "10100" =>	-- atwd1 timestamp lower 32 bit
+								WHEN "010100" =>	-- atwd1 timestamp lower 32 bit
 									IF reg_write = '1' THEN
 									ELSE
 										reg_rdata <= atwd1_timestamp (31 DOWNTO 0);
 									END IF;
-								WHEN "10101" =>	-- atwd1 timestamp upper 16 bit
+								WHEN "010101" =>	-- atwd1 timestamp upper 16 bit
 									IF reg_write = '1' THEN
 									ELSE
 										reg_rdata (15 DOWNTO 0) <= atwd1_timestamp (47 DOWNTO 32);
 										reg_rdata (31 DOWNTO 16) <= (OTHERS=>'0');
 									END IF;
-								WHEN "10110" => -- dom_id low 32 bit
+								WHEN "010110" => -- dom_id low 32 bit
 									IF reg_write = '1' THEN
 										dom_id (31 DOWNTO 0) <= reg_wdata;
 									ELSE
 									--	reg_rdata	<= dom_id (31 DOWNTO 0);
 									END IF;
-								WHEN "10111" => -- dom_id high 32 bit
+								WHEN "010111" => -- dom_id high 32 bit
 									IF reg_write = '1' THEN
 										dom_id (63 DOWNTO 32) <= reg_wdata;
 									ELSE
 									--	reg_rdata	<= dom_id (63 DOWNTO 32);
 									END IF;
-								WHEN "11000" => -- command 4
+								WHEN "011000" => -- command 4
 									IF reg_write = '1' THEN
 										command_4_local <= reg_wdata;
 									ELSE
 										reg_rdata <= command_4_local;
 									END IF;
-								WHEN "11001" =>	-- response 4
+								WHEN "011001" =>	-- response 4
 									IF reg_write = '1' THEN
 									ELSE
 										reg_rdata <= response_4;
 									END IF;
-								WHEN "11010" => -- command 5
+								WHEN "011010" => -- command 5
 									IF reg_write = '1' THEN
 										command_5_local <= reg_wdata;
 									ELSE
 										reg_rdata <= command_5_local;
 									END IF;
-								WHEN "11011" =>	-- response 5
+								WHEN "011011" =>	-- response 5
 									IF reg_write = '1' THEN
 									ELSE
 										reg_rdata <= response_5;
 									END IF;
-								WHEN "11100" =>	-- tx_dpr_wadr
+								WHEN "011100" =>	-- tx_dpr_wadr
 									IF reg_write = '1' THEN
 										tx_dpr_wadr_local <= reg_wdata;
 										tx_pack_rdy	<= '1';
 									ELSE
 										reg_rdata <= tx_dpr_wadr_local;
 									END IF;
-								WHEN "11101" =>	-- tx_dpr_radr
+								WHEN "011101" =>	-- tx_dpr_radr
 									IF reg_write = '1' THEN
 									ELSE
 										reg_rdata <= tx_dpr_radr;
 									END IF;
-								WHEN "11110" =>	-- rx_dpr_radr
+								WHEN "011110" =>	-- rx_dpr_radr
 									IF reg_write = '1' THEN
 										rx_dpr_radr_stb	<= '1';
 										rx_dpr_radr_local <= reg_wdata;
 									ELSE
 										reg_rdata <= rx_dpr_radr_local;
 									END IF;
-								WHEN "11111" =>	-- rx_addr
+								WHEN "011111" =>	-- rx_addr
 									IF reg_write = '1' THEN
 									ELSE
 										reg_rdata <= rx_addr;
+									END IF;
+									
+								WHEN "100000" =>	-- com_clev
+									IF reg_write = '1' THEN
+										com_clev	<= reg_wdata;
+										com_clev_wr	<= '1';
+									END IF;
+								WHEN "100001" =>	-- com_clev
+									IF reg_write = '1' THEN
+										com_thr_del	<= reg_wdata;
+										com_thr_del_wr	<= '1';
 									END IF;
 								WHEN OTHERS =>
 									IF reg_write = '1' THEN
