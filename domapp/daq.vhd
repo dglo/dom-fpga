@@ -596,7 +596,7 @@ BEGIN
 	CLK20n	<= CLK20;
 	inst_ahb_master : ahb_master
 		PORT MAP (
-			CLK			=> CLK20n,
+			CLK			=> CLK20,
 			RST			=> RST,
 			-- connections to the stripe
 			slavehclk		=> slavehclk,
