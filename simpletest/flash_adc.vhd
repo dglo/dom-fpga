@@ -20,6 +20,7 @@ ENTITY flash_ADC IS
 		write_en	: IN STD_LOGIC;
 		-- enable for RX
 		enable		: IN STD_LOGIC;
+		enable_disc	: IN STD_LOGIC;
 		done		: OUT STD_LOGIC;
 		-- disc
 		OneSPE		: IN STD_LOGIC;
@@ -64,7 +65,7 @@ BEGIN
 
 	PROCESS(OneSPE,enable)
 	BEGIN
-		IF enable='0' THEN
+		IF enable_disc='0' THEN
 			disc	<= '0';
 		ELSIF OneSPE'EVENT AND OneSPE='1' THEN
 			disc	<= '1';
@@ -94,11 +95,11 @@ BEGIN
 			MEM_write_addr	:= (others=>'0');
 			wraddress	<= (others=>'0');
 		ELSIF CLK'EVENT AND CLK='1' THEN
-			IF enable = '0' THEN		-- do not take date
+			IF enable = '0' AND enable_disc='0' THEN		-- do not take date
 				wren	<= '0';
 				done	<= '0';
 				MEM_write_addr	:= (others=>'0');
-			ELSIF enable='1' AND discFF='1' THEN			-- take data
+			ELSIF enable='1' OR (enable_disc='1' AND discFF='1') THEN			-- take data
 				IF MEM_write_addr(9)='1' THEN	-- memory is full
 					wren	<= '0';
 					done	<= '1';

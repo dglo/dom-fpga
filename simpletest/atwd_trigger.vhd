@@ -84,7 +84,7 @@ BEGIN
 	--		IF reset_trig='1' THEN
 	--			ATWDTrigger	<= '0';
 	--		END IF;
-			IF busy='0' AND (enable='1' OR enable_disc='1') THEN
+			IF busy='0' AND (enable='1' OR (enable_disc='1' AND enable_disc_sig='0')) THEN
 				done	<= '1';
 			ELSE
 				done	<= '0';
