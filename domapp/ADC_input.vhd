@@ -162,7 +162,8 @@ ARCHITECTURE arch_ADC_input OF ADC_input IS
 			lc_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			daq_mode	: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			ATWD_AB		: IN STD_LOGIC;	-- indicates if ping or pong
-			abort		: OUT STD_LOGIC;
+			abort_ATWD	: OUT STD_LOGIC;
+			abort_FADC	: OUT STD_LOGIC;
 			-- trigger
 			ATWDtrigger		: IN STD_LOGIC;
 			rst_trig		: OUT STD_LOGIC;
@@ -194,7 +195,8 @@ ARCHITECTURE arch_ADC_input OF ADC_input IS
 	SIGNAL ATWD_n_chan	: STD_LOGIC_VECTOR (1 DOWNTO 0);
 	SIGNAL FADC_enable	: STD_LOGIC;
 	SIGNAL FADC_busy	: STD_LOGIC;
-	SIGNAL abort		: STD_LOGIC;
+	SIGNAL abort_ATWD	: STD_LOGIC;
+	SIGNAL abort_FADC	: STD_LOGIC;
 	
 BEGIN
 
@@ -212,7 +214,7 @@ BEGIN
 			ATWD_busy		=> ATWD_busy,
 			ATWD_n_chan		=> ATWD_n_chan,
 			ATWD_mode		=> ATWD_mode,
-			abort			=> abort,
+			abort			=> abort_ATWD,
 			-- ATWD
 			ATWDTrigger		=> ATWDTrigger,
 			TriggerComplete	=> TriggerComplete,
@@ -249,7 +251,7 @@ BEGIN
 			-- enable
 			FADC_enable		=> FADC_enable,
 			FADC_busy		=> FADC_busy,
-			abort			=> abort,
+			abort			=> abort_FADC,
 			trigger			=> ATWDTrigger,
 			-- FADC
 			FADC_D			=> FADC_D,
@@ -273,7 +275,8 @@ BEGIN
 			lc_mode		=> LC_mode,
 			daq_mode	=> DAQ_mode,
 			ATWD_AB		=> ATWD_AB,
-			abort		=> abort,
+			abort_ATWD	=> abort_ATWD,
+			abort_FADC	=> abort_FADC,
 			-- trigger
 			ATWDtrigger		=> ATWDTrigger,
 			rst_trig		=> rst_trig,
