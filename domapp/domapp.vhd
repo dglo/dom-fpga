@@ -386,6 +386,7 @@ ARCHITECTURE arch_domapp OF domapp IS
 	COMPONENT slaveregister
 		PORT (
 			CLK			: IN STD_LOGIC;
+			CLK40		: IN STD_LOGIC;
 			RST			: IN STD_LOGIC;
 			systime		: IN STD_LOGIC_VECTOR (47 DOWNTO 0);
 			-- connections to the stripe
@@ -402,9 +403,12 @@ ARCHITECTURE arch_domapp OF domapp IS
 			masterhsize		: IN	STD_LOGIC_VECTOR(1 downto 0);
 			masterhtrans	: IN	STD_LOGIC_VECTOR(1 downto 0);
 			masterhwdata	: IN	STD_LOGIC_VECTOR(31 downto 0);
+			intpld			: OUT	STD_LOGIC_VECTOR (5 DOWNTO 0);
 			-- command register
 			DAQ_ctrl		: OUT DAQ_STRUCT;
 			CS_ctrl			: OUT CS_STRUCT;
+			cs_flash_time	: IN STD_LOGIC_VECTOR (47 DOWNTO 0);
+			cs_flash_now	: IN STD_LOGIC;
 			LC_ctrl			: OUT LC_STRUCT;
 			RM_ctrl			: OUT RM_CTRL_STRUCT;
 			RM_stat			: IN  RM_STAT_STRUCT;
@@ -646,9 +650,11 @@ ARCHITECTURE arch_domapp OF domapp IS
 	
 	-- Calibration Sources
 	SIGNAL CS_ctrl		: CS_STRUCT;
+	SIGNAL cs_flash_time	: STD_LOGIC_VECTOR (47 DOWNTO 0);
 	SIGNAL CS_trigger	: STD_LOGIC_VECTOR (5 DOWNTO 0);
 	SIGNAL cs_wf_data	: STD_LOGIC_VECTOR (7 DOWNTO 0);
 	SIGNAL cs_wf_addr	: STD_LOGIC_VECTOR (7 DOWNTO 0);
+	SIGNAL cs_flash_now	: STD_LOGIC;
 	
 	-- local coincidence
 	SIGNAL LC_ctrl			: LC_STRUCT;
@@ -681,7 +687,7 @@ BEGIN
 	-- dp2_portadataout	<= ;
 	
 	-- interrupts
-	intpld	<= (others=>'0');
+	-- intpld	<= (others=>'0');
 	
 	-- GP stripe IO
 	gpi(7 downto 0)		<= (others=>'0');
@@ -894,6 +900,7 @@ BEGIN
 	inst_slaveregister : slaveregister
 		PORT MAP (
 			CLK			=> CLK20,
+			CLK40		=> CLK40,
 			RST			=> RST,
 			systime		=> systime,
 			-- connections to the stripe
@@ -910,9 +917,12 @@ BEGIN
 			masterhsize		=> masterhsize,
 			masterhtrans	=> masterhtrans,
 			masterhwdata	=> masterhwdata,
+			intpld			=> intpld,
 			-- command register
 			DAQ_ctrl		=> DAQ_ctrl,
 			CS_ctrl			=> CS_ctrl,
+			cs_flash_time	=> cs_flash_time,
+			cs_flash_now	=> cs_flash_now,
 			LC_ctrl			=> LC_ctrl,
 			RM_ctrl			=> RM_ctrl,
 			RM_stat			=> RM_stat,
@@ -992,8 +1002,8 @@ BEGIN
 			cs_ctrl				=> CS_ctrl,
 			cs_wf_data			=> cs_wf_data,
 			cs_wf_addr			=> cs_wf_addr,
-			cs_flash_now		=> open,
-			cs_flash_time		=> open,
+			cs_flash_now		=> cs_flash_now,
+			cs_flash_time		=> cs_flash_time,
 			-- DAQ interface
 			cs_daq_trigger		=> CS_trigger,
 			cs_daq_veto			=> '0',

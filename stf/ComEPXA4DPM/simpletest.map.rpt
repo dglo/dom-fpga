@@ -1,5 +1,5 @@
 Analysis & Synthesis report for simpletest
-Wed Nov 24 16:32:19 2004
+Mon Dec 06 16:00:48 2004
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -68,7 +68,7 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                        ;
 +-----------------------------+---------------------------------------+
-; Analysis & Synthesis Status ; Successful - Wed Nov 24 16:32:19 2004 ;
+; Analysis & Synthesis Status ; Successful - Mon Dec 06 16:00:48 2004 ;
 ; Revision Name               ; simpletest                            ;
 ; Top-level Entity Name       ; simpletest                            ;
 ; Family                      ; EXCALIBUR_ARM                         ;
@@ -1690,7 +1690,7 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/s
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Wed Nov 24 16:30:13 2004
+    Info: Processing started: Mon Dec 06 15:58:43 2004
 Info: Command: quartus_map --import_settings_files=on --export_settings_files=off simpletest -c simpletest
 Info: Found 1 design units and 1 entities in source file ../../common/comDPM/test_and_tresholds.tdf
     Info: Found entity 1: test_and_tresholds
@@ -2573,7 +2573,7 @@ Info: Implemented 5191 device resources after synthesis - the final resource cou
     Info: Implemented 2 dual-port RAM elements in Excalibur device
     Info: Implemented 1 microprocessor core elements in Excalibur device
 Info: Quartus II Analysis & Synthesis was successful. 0 errors, 137 warnings
-    Info: Processing ended: Wed Nov 24 16:32:19 2004
+    Info: Processing ended: Mon Dec 06 16:00:48 2004
     Info: Elapsed time: 00:02:05
 
 

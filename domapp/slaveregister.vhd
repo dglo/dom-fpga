@@ -32,6 +32,7 @@ USE WORK.ctrl_data_types.all;
 ENTITY slaveregister IS
 	PORT (
 		CLK			: IN STD_LOGIC;
+		CLK40		: IN STD_LOGIC;
 		RST			: IN STD_LOGIC;
 		systime		: IN STD_LOGIC_VECTOR (47 DOWNTO 0);
 		-- connections to the stripe
@@ -48,9 +49,12 @@ ENTITY slaveregister IS
 		masterhsize		: IN	STD_LOGIC_VECTOR(1 downto 0);
 		masterhtrans	: IN	STD_LOGIC_VECTOR(1 downto 0);
 		masterhwdata	: IN	STD_LOGIC_VECTOR(31 downto 0);
+		intpld			: OUT	STD_LOGIC_VECTOR (5 DOWNTO 0);
 		-- command register
 		DAQ_ctrl		: OUT DAQ_STRUCT;
 		CS_ctrl			: OUT CS_STRUCT;
+		cs_flash_time	: IN STD_LOGIC_VECTOR (47 DOWNTO 0);
+		cs_flash_now	: IN STD_LOGIC;
 		LC_ctrl			: OUT LC_STRUCT;
 		RM_ctrl			: OUT RM_CTRL_STRUCT;
 		RM_stat			: IN  RM_STAT_STRUCT;
@@ -124,6 +128,28 @@ ARCHITECTURE arch_slaveregister OF slaveregister IS
 	-- rom interface
 	SIGNAL rom_data		: STD_LOGIC_VECTOR (15 downto 0);
 	
+	COMPONENT interrupts
+		PORT (
+			CLK40       : IN  STD_LOGIC;
+			RST         : IN  STD_LOGIC;
+			-- Handshake (ACK)
+			int_enable  : IN  STD_LOGIC_VECTOR (5 DOWNTO 0);
+			int_clr     : IN  STD_LOGIC_VECTOR (5 DOWNTO 0);
+			int_pending : OUT STD_LOGIC_VECTOR (5 DOWNTO 0);
+			-- Interrupt to Stripe
+			intpld      : OUT STD_LOGIC_VECTOR (5 DOWNTO 0);
+			-- Interrupt sources
+			int0        : IN  STD_LOGIC;
+			int1        : IN  STD_LOGIC;
+			int2        : IN  STD_LOGIC;
+			int3        : IN  STD_LOGIC;
+			int4        : IN  STD_LOGIC;
+			int5        : IN  STD_LOGIC;
+			-- Test Connector
+			TC          : OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
+		);
+	END COMPONENT;
+	
 	COMPONENT version_rom
 		PORT (
 			address		: IN STD_LOGIC_VECTOR (6 DOWNTO 0);
@@ -167,6 +193,11 @@ ARCHITECTURE arch_slaveregister OF slaveregister IS
 	-- setting DOM ID
 	SIGNAL id_set		: STD_LOGIC_VECTOR (1 DOWNTO 0) := "00";
 	
+	-- Interrupts
+	SIGNAL int_enable	: STD_LOGIC_VECTOR (5 DOWNTO 0);
+	SIGNAL int_clr		: STD_LOGIC_VECTOR (5 DOWNTO 0);
+	SIGNAL int_pending	: STD_LOGIC_VECTOR (5 DOWNTO 0);
+	
 BEGIN
 	reg_wait_sig <= '1';
 
@@ -186,11 +217,13 @@ BEGIN
 			COMM_ctrl_local	<= ('0', (OTHERS=>'0'), 'X', '0', '0', (OTHERS=>'0'), (OTHERS=>'0'));
 			id_set			<= "00";
 			COMPR_ctrl_local	<= ((OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), '0', '0');
+			int_clr			<= (OTHERS=>'0');
 		ELSIF CLK'EVENT AND CLK='1' THEN
 			DAQ_ctrl_local.LBM_ptr_RST	<= '0';
 			CS_ctrl_local.CS_CPU	<= '0';
 			COMM_ctrl_local.tx_packet_ready		<= '0';
 			COMM_ctrl_local.rx_dpr_raddr_stb	<= '0';
+			int_clr			<= (OTHERS=>'0');
 			reg_rdata <= (others=>'X');	-- to make sur ewe don't create a latch
 			IF reg_enable = '1' THEN
 				IF std_match( reg_address(13 downto 2) , "00000-------" ) THEN	-- version ROM
@@ -281,6 +314,11 @@ BEGIN
 						END IF;
 					END IF;
 					reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"046c") ) THEN	-- Calibration Flash Time LSB
+					reg_rdata(31 downto 0)	<= cs_flash_time (31 DOWNTO 0);
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0470") ) THEN	-- Calibration Flash Time MSB
+					reg_rdata(15 downto 0)	<= cs_flash_time (47 DOWNTO 32);
+					reg_rdata(31 downto 16)	<= (OTHERS=>'0');
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0480") ) THEN	-- Rate Monitor Control
 					IF reg_write = '1' THEN
 						RM_ctrl_local.RM_rate_enable	<= reg_wdata(1 downto 0);
@@ -311,8 +349,24 @@ BEGIN
 					ELSE
 						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
 					END IF;
-				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"04A4") ) THEN	-- Supernove Pointer
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"04A4") ) THEN	-- Supernove Data
 					reg_rdata(31 downto 0)	<= RM_stat.RM_sn_data;
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"04C0") ) THEN	-- Interrupt Enable
+					IF reg_write = '1' THEN
+						int_enable	<= reg_wdata(5 downto 0);
+					END IF;
+					IF READBACK=1 THEN
+						reg_rdata(5 downto 0)	<= int_enable;
+						reg_rdata(31 downto 6)	<= (OTHERS=>'0');
+					ELSE
+						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+					END IF;
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"04C4") ) THEN	-- Interrupt ACK
+					IF reg_write = '1' THEN
+						int_clr	<= reg_wdata(5 downto 0);
+					END IF;
+					reg_rdata(5 downto 0)	<= int_pending;
+					reg_rdata(31 downto 6)	<= (OTHERS=>'0');
 				-- ELSIF communication
 				
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0500") ) THEN	-- Communication Control
@@ -536,6 +590,28 @@ BEGIN
 			reg_rdata		=> reg_rdata,
 			reg_enable		=> reg_enable,
 			reg_wait_sig	=> reg_wait_sig
+		);
+		
+	-- Interrupts
+	inst_interrupts : interrupts
+		PORT MAP (
+			CLK40       => CLK40,
+			RST         => RST,
+			-- Handshake (ACK)
+			int_enable  => int_enable,
+			int_clr     => int_clr,
+			int_pending => int_pending,
+			-- Interrupt to Stripe
+			intpld      => intpld,
+			-- Interrupt sources
+			int0        => cs_flash_now,
+			int1        => RM_stat.RM_rate_update,
+			int2        => RM_stat.SN_rate_update,
+			int3        => '0',
+			int4        => '0',
+			int5        => '0',
+			-- Test Connector
+			TC          => OPEN
 		);
 	
 	-- MEMORYs

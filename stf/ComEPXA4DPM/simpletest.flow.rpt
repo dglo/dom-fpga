@@ -1,5 +1,5 @@
 Flow report for simpletest
-Wed Nov 24 16:40:16 2004
+Mon Dec 06 16:08:35 2004
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -42,7 +42,7 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------+
 ; Flow Summary                                                  ;
 +-----------------------+---------------------------------------+
-; Flow Status           ; Successful - Wed Nov 24 16:40:15 2004 ;
+; Flow Status           ; Successful - Mon Dec 06 16:08:35 2004 ;
 ; Revision Name         ; simpletest                            ;
 ; Top-level Entity Name ; simpletest                            ;
 ; Family                ; EXCALIBUR_ARM                         ;
@@ -59,7 +59,7 @@ party's intellectual property, are provided herein.
 +------------------------------------------
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 11/24/2004 16:30:16 ;
+; Start date & time ; 12/06/2004 15:58:45 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; simpletest          ;
 +-------------------+---------------------+
@@ -71,11 +71,11 @@ party's intellectual property, are provided herein.
 ; Module Name          ; Elapsed Time ;
 +----------------------+--------------+
 ; Analysis & Synthesis ; 00:02:05     ;
-; Fitter               ; 00:07:17     ;
+; Fitter               ; 00:07:10     ;
 ; Assembler            ; 00:00:06     ;
 ; Timing Analyzer      ; 00:00:13     ;
 ; EDA Netlist Writer   ; 00:00:08     ;
-; Total                ; 00:09:49     ;
+; Total                ; 00:09:42     ;
 +----------------------+--------------+
 
 
