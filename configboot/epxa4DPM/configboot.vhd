@@ -261,6 +261,7 @@ ARCHITECTURE configboot_arch OF configboot IS
 			-- kale communication interface
 			tx_pack_rdy			: OUT STD_LOGIC;
 			rx_dpr_radr_stb		: OUT STD_LOGIC;
+			com_reset_rcvd		: IN STD_LOGIC;
 			-- test connector
 			TC				: OUT	STD_LOGIC_VECTOR(7 downto 0)
 		);
@@ -451,6 +452,7 @@ BEGIN
 			-- kale communication interface
 			tx_pack_rdy			=> tx_pack_rdy,
 			rx_dpr_radr_stb		=> rx_dpr_radr_stb,
+			com_reset_rcvd		=> com_reset_rcvd,
 			-- test connector
 			TC				=> TC
 		);

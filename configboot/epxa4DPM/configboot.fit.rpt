@@ -1,5 +1,5 @@
 Fitter report for configboot
-Fri Jun 18 06:58:42 2004
+Thu Jun 24 09:58:15 2004
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -68,12 +68,12 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------+
 ; Fitter Summary                                                ;
 +-----------------------+---------------------------------------+
-; Fitter Status         ; Successful - Fri Jun 18 06:58:42 2004 ;
+; Fitter Status         ; Successful - Thu Jun 24 09:58:15 2004 ;
 ; Revision Name         ; configboot                            ;
 ; Top-level Entity Name ; configboot                            ;
 ; Family                ; EXCALIBUR_ARM                         ;
 ; Device                ; EPXA4F672I2                           ;
-; Total logic elements  ; 1,727 / 16,640 ( 10 % )               ;
+; Total logic elements  ; 1,726 / 16,640 ( 10 % )               ;
 ; Total pins            ; 117 / 463 ( 25 % )                    ;
 ; Total memory bits     ; 640 / 212,992 ( < 1 % )               ;
 ; Total PLLs            ; 1 / 4 ( 25 % )                        ;
@@ -149,7 +149,7 @@ Please use Quartus II to view the floorplan report data.
 ; CLK_REF     ; H24   ; --          ; --           ; --   ; 1       ; no     ; no           ; no                      ; no            ; no              ; no            ; no                   ; LVTTL        ;
 ; nPOR        ; J24   ; --          ; --           ; --   ; 1       ; no     ; no           ; no                      ; no            ; no              ; no            ; no                   ; LVTTL        ;
 ; CLK1p       ; R23   ; --          ; --           ; --   ; 0       ; no     ; no           ; no                      ; no            ; no              ; no            ; no                   ; LVTTL        ;
-; CLK3p       ; M25   ;  H          ; --           ; --   ; 0       ; no     ; no           ; no                      ; no            ; no              ; no            ; no                   ; LVTTL        ;
+; CLK3p       ; AA1   ;  V          ; --           ; --   ; 0       ; no     ; no           ; no                      ; no            ; no              ; no            ; no                   ; LVTTL        ;
 ; CLK4p       ; Y5    ; --          ; --           ; --   ; 0       ; no     ; no           ; no                      ; no            ; no              ; no            ; no                   ; LVTTL        ;
 ; COM_AD_OTR  ; H4    ;  C          ; --           ; --   ; 0       ; no     ; no           ; no                      ; no            ; no              ; no            ; no                   ; 2.5 V        ;
 ; HDV_Rx      ; H3    ;  C          ; --           ; --   ; 0       ; no     ; no           ; no                      ; no            ; no              ; no            ; no                   ; LVTTL        ;
@@ -581,7 +581,7 @@ Please use Quartus II to view the floorplan report data.
 ; M22   ; RESERVED_INPUT     ;              ;
 ; M23   ; RESERVED_INPUT     ;              ;
 ; M24   ; RESERVED_INPUT     ;              ;
-; M25   ; CLK3p              ; LVTTL        ;
+; M25   ; RESERVED_INPUT     ;              ;
 ; M26   ; RESERVED_INPUT     ;              ;
 ; N1    ; GND                ;              ;
 ; N2    ; VCC_INT            ;              ;
@@ -791,7 +791,7 @@ Please use Quartus II to view the floorplan report data.
 ; Y24   ; RESERVED_INPUT     ;              ;
 ; Y25   ; RESERVED_INPUT     ;              ;
 ; Y26   ; RESERVED_INPUT     ;              ;
-; AA1   ; RESERVED_INPUT     ;              ;
+; AA1   ; CLK3p              ; LVTTL        ;
 ; AA2   ; RESERVED_INPUT     ;              ;
 ; AA3   ; RESERVED_INPUT     ;              ;
 ; AA4   ; RESERVED_INPUT     ;              ;
@@ -955,68 +955,66 @@ Please use Quartus II to view the floorplan report data.
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+---------+-----------------------------------------+--------------+
 ; pll2x:inst_pll2x|altclklock:altclklock_component|outclock0                                                                                                                                                                                                         ; PLL_1      ; 860     ; Clock                                   ; Internal     ;
 ; pll2x:inst_pll2x|altclklock:altclklock_component|outclock1                                                                                                                                                                                                         ; PLL_1      ; 48      ; Clock                                   ; Internal     ;
-; dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|rec_ena~reg                                                                                                                                                                                                                 ; LC10_1_Q3  ; 70      ; Async. clear / Clock enable             ; Internal     ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|adc_to_ser_dudt:inst18|GET_DUDT:get_dudt_stm|ct_aclr~reg                                                                                                                                                          ; LC7_12_M2  ; 5       ; Async. clear                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|adc_to_ser_dudt:inst18|GET_DUDT:get_dudt_stm|dudt_ena~reg                                                                                                                                                         ; LC4_10_M2  ; 2       ; Clock enable                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|sreg~53                                                                                                                                                                                            ; LC8_15_S3  ; 76      ; Async. clear / Sync. load / Sync. clear ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|plen_clk_en~reg                                                                                                                                                                                    ; LC10_15_S3 ; 10      ; Clock enable                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|dpr_ren~reg                                                                                                                                                                                        ; LC6_16_S3  ; 21      ; Clock enable                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|buf_res~reg                                                                                                                                                                                                                 ; LC7_1_O2   ; 197     ; Async. clear                            ; Internal     ;
+; dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|rec_ena~reg                                                                                                                                                                                                                 ; LC5_5_Q3   ; 70      ; Async. clear / Clock enable             ; Internal     ;
+; dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|timer_clrn~reg                                                                                                                                                                                                              ; LC9_3_Q3   ; 20      ; Async. clear                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_hdr_dec_ap:inst4|tcal_rcvd~reg                                                                                                                                                                                 ; LC4_16_Q3  ; 17      ; Async. clear                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|sreg~53                                                                                                                                                                                            ; LC9_11_Y3  ; 76      ; Async. clear / Sync. load / Sync. clear ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|shift_ct_en~reg                                                                                                                                                                                    ; LC7_11_Y3  ; 6       ; Clock enable                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|plen_clk_en~reg                                                                                                                                                                                    ; LC5_6_Y3   ; 10      ; Clock enable                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|dpr_ren~reg                                                                                                                                                                                        ; LC9_1_Y3   ; 21      ; Clock enable                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|buf_res~reg                                                                                                                                                                                                                 ; LC3_1_O2   ; 197     ; Async. clear                            ; Internal     ;
 ; ROC:inst_ROC|RST~reg0                                                                                                                                                                                                                                              ; LC3_12_P3  ; 251     ; Clock enable / Async. clear             ; Internal     ;
-; dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|timer_clrn~reg                                                                                                                                                                                                              ; LC9_14_O3  ; 20      ; Async. clear                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_hdr_dec_ap:inst4|tcal_rcvd~reg                                                                                                                                                                                 ; LC6_10_M4  ; 17      ; Async. clear                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|data_error~reg0                                                                                                                                                                                    ; LC9_15_M4  ; 17      ; Sync. load                              ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|ctclr~reg                                                                                                                                                                           ; LC9_13_M4  ; 28      ; Async. clear                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|cmd_ena~reg0                                                                                                                                                                                       ; LC3_7_M4   ; 17      ; Clock enable                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|stf_stb~reg                                                                                                                                                                         ; LC6_12_M4  ; 35      ; Async. clear                            ; Non-global   ;
-; slaveregister:slaveregister_inst|rx_dpr_radr_stb~reg0                                                                                                                                                                                                              ; LC3_12_A1  ; 18      ; Clock enable                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|shift_ct_en~reg                                                                                                                                                                                    ; LC6_5_V3   ; 6       ; Clock enable                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|shen~reg                                                                                                                                                                            ; LC2_10_D4  ; 8       ; Clock enable                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|DCTC_FWR:inst2|tcwf_aclr~reg                                                                                                                                                                  ; LC7_13_W3  ; 33      ; Async. clear                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|DCTC_FWR:inst2|tcwf_af_ct_aclr~reg                                                                                                                                                            ; LC6_13_W3  ; 6       ; Async. clear                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|DCTC_FWR:inst2|sreg~36                                                                                                                                                                        ; LC3_9_W3   ; 8       ; Sync. load                              ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|TX_UART:inst|txshen~reg                                                                                                                                                                          ; LC6_4_U3   ; 10      ; Clock enable                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|TX_UART:inst|txctclr~reg                                                                                                                                                                         ; LC9_5_U3   ; 19      ; Async. clear                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|inst5                                                                                                                                                                                                             ; LC7_14_M4  ; 16      ; Clock enable                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer|dc_tcal_ct:timer|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|lpm_compare:$00023|comptree:comparator|cmpchain:cmp_end|comptree:comp|comptree:sub_comptree|cmpchain:cmp_end|aeb_out        ; LC2_12_U3  ; 15      ; Sync. clear                             ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|inst22                                                                                                                                                                                                            ; LC5_13_R3  ; 16      ; Clock enable                            ; Non-global   ;
-; slaveregister:slaveregister_inst|rx_dpr_radr_local[0]~15                                                                                                                                                                                                           ; LC5_13_A4  ; 16      ; Clock enable                            ; Non-global   ;
-; slaveregister:slaveregister_inst|TC[7]~8                                                                                                                                                                                                                           ; LC8_14_A1  ; 8       ; Clock enable                            ; Non-global   ;
-; slaveregister:slaveregister_inst|com_ctrl_local[0]~11                                                                                                                                                                                                              ; LC7_13_A4  ; 1       ; Clock enable                            ; Non-global   ;
-; slaveregister:slaveregister_inst|tx_dpr_wadr_local[0]~15                                                                                                                                                                                                           ; LC10_13_A4 ; 16      ; Clock enable                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|a_fefifo_vve:fifo_state|valid_wreq                                                                    ; LC7_13_W2  ; 21      ; Write enable                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|a_fefifo_vve:fifo_state|_~14                                                                          ; LC6_13_W2  ; 6       ; Sync. load                              ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|a_fefifo_vve:fifo_state|valid_rreq                                                                    ; LC3_14_W2  ; 11      ; Clock enable                            ; Non-global   ;
+; slaveregister:slaveregister_inst|rx_dpr_radr_stb~reg0                                                                                                                                                                                                              ; LC5_16_F1  ; 18      ; Clock enable                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|cmd_ena~reg0                                                                                                                                                                                       ; LC4_5_A4   ; 17      ; Clock enable                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|data_error~reg0                                                                                                                                                                                    ; LC5_4_A4   ; 17      ; Sync. load                              ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|stf_stb~reg                                                                                                                                                                         ; LC10_14_A4 ; 35      ; Async. clear                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|ctclr~reg                                                                                                                                                                           ; LC7_14_A4  ; 28      ; Async. clear                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|TX_UART:inst|txshen~reg                                                                                                                                                                          ; LC8_11_M3  ; 10      ; Clock enable                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|TX_UART:inst|txctclr~reg                                                                                                                                                                         ; LC3_10_M3  ; 19      ; Async. clear                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|shen~reg                                                                                                                                                                            ; LC2_8_A2   ; 8       ; Clock enable                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|adc_to_ser_dudt:inst18|GET_DUDT:get_dudt_stm|dudt_ena~reg                                                                                                                                                         ; LC6_13_X2  ; 2       ; Clock enable                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|adc_to_ser_dudt:inst18|GET_DUDT:get_dudt_stm|ct_aclr~reg                                                                                                                                                          ; LC7_12_X2  ; 5       ; Async. clear                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|DCTC_FWR:inst2|tcwf_aclr~reg                                                                                                                                                                  ; LC9_13_S3  ; 33      ; Async. clear                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|DCTC_FWR:inst2|tcwf_af_ct_aclr~reg                                                                                                                                                            ; LC4_13_S3  ; 6       ; Async. clear                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|DCTC_FWR:inst2|sreg~36                                                                                                                                                                        ; LC4_4_S3   ; 8       ; Sync. load                              ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|inst5                                                                                                                                                                                                             ; LC8_5_E1   ; 16      ; Clock enable                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer|dc_tcal_ct:timer|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|lpm_compare:$00023|comptree:comparator|cmpchain:cmp_end|comptree:comp|comptree:sub_comptree|cmpchain:cmp_end|aeb_out        ; LC2_12_E3  ; 15      ; Sync. clear                             ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|inst22                                                                                                                                                                                                            ; LC2_5_R4   ; 16      ; Clock enable                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|a_fefifo_vve:fifo_state|valid_wreq                                                                    ; LC2_4_S3   ; 21      ; Write enable                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|a_fefifo_vve:fifo_state|valid_rreq                                                                    ; LC5_2_I2   ; 11      ; Clock enable                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|a_fefifo_vve:fifo_state|_~14                                                                          ; LC1_4_S3   ; 6       ; Sync. load                              ; Non-global   ;
 ; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|mean_val:inst21|ctup4:116|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|cout~0                                                                                                                 ; LC3_7_N2   ; 1       ; Clock                                   ; Internal     ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|mean_val:inst21|inst5                                                                                                                                                                                             ; LC9_2_N2   ; 10      ; Async. clear                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|mean_val:inst21|inst8                                                                                                                                                                                             ; LC6_9_N2   ; 11      ; Async. clear                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|mean_val:inst21|inst6                                                                                                                                                                                             ; LC7_9_N2   ; 11      ; Async. clear                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|mean_val:inst21|inst9                                                                                                                                                                                             ; LC10_13_N2 ; 11      ; Async. clear                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|mean_val:inst21|inst7                                                                                                                                                                                             ; LC5_1_N2   ; 11      ; Async. clear                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|crc_rx:inst20|loopcnt[0]~3                                                                                                                                                                                        ; LC3_2_I4   ; 12      ; Clock enable                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|rxct5:inst3|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|cout~0                                                                                                               ; LC7_3_D4   ; 4       ; Clock enable                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|rxct5:inst3|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|lpm_compare:$00013|comptree:comparator|cmpchain:cmp_end|comptree:comp|comptree:sub_comptree|cmpchain:cmp_end|aeb_out ; LC10_3_D4  ; 6       ; Sync. clear                             ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|srg[3]~4                                                                                                                                                                                             ; LC2_4_T3   ; 8       ; Clock enable                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|inst46                                                                                                                                                                                                            ; LC10_10_A1 ; 32      ; Clock enable                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|inst48                                                                                                                                                                                                            ; LC3_10_L3  ; 16      ; Clock enable                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|inst50                                                                                                                                                                                                            ; LC10_8_O3  ; 16      ; Clock enable                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|txct:inst1|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|cout~0                                                                                                               ; LC7_9_U3   ; 4       ; Clock enable                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|txct:inst1|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|lpm_compare:$00013|comptree:comparator|cmpchain:cmp_end|comptree:comp|comptree:sub_comptree|cmpchain:cmp_end|aeb_out ; LC9_9_U3   ; 6       ; Sync. clear                             ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|txbitct:inst2|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|lpm_compare:$00012|comptree:comparator|cmpchain:cmp_end|aeb_out                                                   ; LC9_6_U3   ; 5       ; Sync. clear                             ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|i424~14                                                                                                                                                                                            ; LC10_8_M4  ; 8       ; Clock enable                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|mean_val:inst21|or10:145|lpm_or:lpm_or_component|last_node[0]~47                                                                                                                                                  ; LC9_13_N2  ; 1       ; Async. clear                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|mean_val:inst21|or10:144|lpm_or:lpm_or_component|last_node[0]~47                                                                                                                                                  ; LC8_2_N2   ; 1       ; Async. clear                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|mean_val:inst21|or10:143|lpm_or:lpm_or_component|last_node[0]~47                                                                                                                                                  ; LC7_12_N2  ; 1       ; Async. clear                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|mean_val:inst21|or10:142|lpm_or:lpm_or_component|last_node[0]~47                                                                                                                                                  ; LC10_1_N2  ; 1       ; Async. clear                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~42                                                                                                                                                                                                 ; LC7_4_T3   ; 6       ; Sync. load                              ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|inst36                                                                                                                                                                                                            ; LC9_1_O2   ; 48      ; Clock enable                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|i406~14                                                                                                                                                                                            ; LC5_14_M4  ; 8       ; Clock enable                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|i412~14                                                                                                                                                                                            ; LC8_8_M4   ; 16      ; Clock enable                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_hdr_dec_ap:inst4|cmd_rec[3]~2                                                                                                                                                                                  ; LC6_7_M4   ; 4       ; Clock enable                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|i430~14                                                                                                                                                                                            ; LC1_7_M4   ; 8       ; Clock enable                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_hdr_dec_ap:inst4|ctrl_msg~47                                                                                                                                                                                   ; LC8_6_M4   ; 1       ; Clock enable                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_hdr_dec_ap:inst4|data_msg~40                                                                                                                                                                                   ; LC7_6_M4   ; 1       ; Clock enable                            ; Non-global   ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|inst38                                                                                                                                                                                                            ; LC3_10_O3  ; 48      ; Clock enable                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|mean_val:inst21|inst5                                                                                                                                                                                             ; LC4_16_N2  ; 10      ; Async. clear                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|mean_val:inst21|or10:145|lpm_or:lpm_or_component|last_node[0]~47                                                                                                                                                  ; LC6_12_N2  ; 1       ; Async. clear                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|mean_val:inst21|inst9                                                                                                                                                                                             ; LC2_4_N2   ; 11      ; Async. clear                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|mean_val:inst21|inst7                                                                                                                                                                                             ; LC7_11_N2  ; 11      ; Async. clear                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|mean_val:inst21|inst6                                                                                                                                                                                             ; LC10_16_N2 ; 11      ; Async. clear                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|mean_val:inst21|inst8                                                                                                                                                                                             ; LC3_2_N2   ; 11      ; Async. clear                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|crc_rx:inst20|loopcnt[0]~3                                                                                                                                                                                        ; LC6_11_D4  ; 12      ; Clock enable                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|rxct5:inst3|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|cout~0                                                                                                               ; LC7_11_A2  ; 4       ; Clock enable                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|rxct5:inst3|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|lpm_compare:$00013|comptree:comparator|cmpchain:cmp_end|comptree:comp|comptree:sub_comptree|cmpchain:cmp_end|aeb_out ; LC9_11_A2  ; 6       ; Sync. clear                             ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|inst46                                                                                                                                                                                                            ; LC6_9_F1   ; 32      ; Clock enable                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|inst48                                                                                                                                                                                                            ; LC10_1_Q3  ; 16      ; Clock enable                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|inst50                                                                                                                                                                                                            ; LC9_1_Q3   ; 16      ; Clock enable                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|srg[3]~4                                                                                                                                                                                             ; LC2_13_I3  ; 8       ; Clock enable                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|txct:inst1|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|cout~0                                                                                                               ; LC7_6_M3   ; 4       ; Clock enable                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|txct:inst1|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|lpm_compare:$00013|comptree:comparator|cmpchain:cmp_end|comptree:comp|comptree:sub_comptree|cmpchain:cmp_end|aeb_out ; LC9_6_M3   ; 6       ; Sync. clear                             ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|txbitct:inst2|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|lpm_compare:$00012|comptree:comparator|cmpchain:cmp_end|aeb_out                                                   ; LC9_3_M3   ; 5       ; Sync. clear                             ; Non-global   ;
+; slaveregister:slaveregister_inst|TC[7]~8                                                                                                                                                                                                                           ; LC6_3_A1   ; 8       ; Clock enable                            ; Non-global   ;
+; slaveregister:slaveregister_inst|com_ctrl_local[0]~13                                                                                                                                                                                                              ; LC3_5_Q1   ; 1       ; Clock enable                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|mean_val:inst21|or10:142|lpm_or:lpm_or_component|last_node[0]~47                                                                                                                                                  ; LC7_1_N2   ; 1       ; Async. clear                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|mean_val:inst21|or10:144|lpm_or:lpm_or_component|last_node[0]~47                                                                                                                                                  ; LC9_16_N2  ; 1       ; Async. clear                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|mean_val:inst21|or10:143|lpm_or:lpm_or_component|last_node[0]~47                                                                                                                                                  ; LC8_2_N2   ; 1       ; Async. clear                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~42                                                                                                                                                                                                 ; LC3_7_I3   ; 6       ; Sync. load                              ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|inst36                                                                                                                                                                                                            ; LC3_5_Z3   ; 48      ; Clock enable                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_hdr_dec_ap:inst4|data_msg~40                                                                                                                                                                                   ; LC3_11_A4  ; 1       ; Clock enable                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_hdr_dec_ap:inst4|ctrl_msg~47                                                                                                                                                                                   ; LC6_11_A4  ; 1       ; Clock enable                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|i412~14                                                                                                                                                                                            ; LC10_11_A4 ; 16      ; Clock enable                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_hdr_dec_ap:inst4|cmd_rec[3]~2                                                                                                                                                                                  ; LC7_6_A4   ; 4       ; Clock enable                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|i430~14                                                                                                                                                                                            ; LC4_12_A4  ; 8       ; Clock enable                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|i406~14                                                                                                                                                                                            ; LC5_13_A4  ; 8       ; Clock enable                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|i424~14                                                                                                                                                                                            ; LC10_12_A4 ; 8       ; Clock enable                            ; Non-global   ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|inst38                                                                                                                                                                                                            ; LC5_4_S3   ; 48      ; Clock enable                            ; Non-global   ;
 ; CLK2p                                                                                                                                                                                                                                                              ; P20        ; 1       ; Clock                                   ; Non-global   ;
 ; stripe:stripe_inst|alt_exc_stripe:lpm_instance|alt_exc_upcore:core|core~EBIDQOE                                                                                                                                                                                    ; UPCORE     ; 16      ; Output enable                           ; Non-global   ;
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+---------+-----------------------------------------+--------------+
@@ -1029,8 +1027,8 @@ Please use Quartus II to view the floorplan report data.
 +----------------------------------------------------------------------------------------------------------------------------------------------------+-----------+---------+--------+
 ; pll2x:inst_pll2x|altclklock:altclklock_component|outclock0                                                                                         ; PLL_1     ; 860     ; yes    ;
 ; pll2x:inst_pll2x|altclklock:altclklock_component|outclock1                                                                                         ; PLL_1     ; 48      ; yes    ;
-; dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|rec_ena~reg                                                                                                 ; LC10_1_Q3 ; 70      ; yes    ;
-; dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|buf_res~reg                                                                                                 ; LC7_1_O2  ; 197     ; yes    ;
+; dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|rec_ena~reg                                                                                                 ; LC5_5_Q3  ; 70      ; yes    ;
+; dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|buf_res~reg                                                                                                 ; LC3_1_O2  ; 197     ; yes    ;
 ; ROC:inst_ROC|RST~reg0                                                                                                                              ; LC3_12_P3 ; 251     ; yes    ;
 ; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|mean_val:inst21|ctup4:116|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|cout~0 ; LC3_7_N2  ; 1       ; yes    ;
 ; CLK2p                                                                                                                                              ; P20       ; 1       ; no     ;
@@ -1070,75 +1068,75 @@ Please use Quartus II to view the floorplan report data.
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Cell #    ; Name                                                                                                                                                                               ; Mode ; Turbo ;
 +-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------+-------+
-; EC12_1_T2 ; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|altdpram:FIFOram|q[8] ; RAM  ; On    ;
-; EC10_1_T2 ; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|altdpram:FIFOram|q[0] ; RAM  ; On    ;
-; EC7_1_T2  ; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|altdpram:FIFOram|q[9] ; RAM  ; On    ;
-; EC14_1_T2 ; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|altdpram:FIFOram|q[1] ; RAM  ; On    ;
-; EC6_1_T2  ; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|altdpram:FIFOram|q[2] ; RAM  ; On    ;
-; EC3_1_T2  ; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|altdpram:FIFOram|q[3] ; RAM  ; On    ;
-; EC13_1_T2 ; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|altdpram:FIFOram|q[4] ; RAM  ; On    ;
-; EC11_1_T2 ; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|altdpram:FIFOram|q[5] ; RAM  ; On    ;
-; EC9_1_T2  ; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|altdpram:FIFOram|q[6] ; RAM  ; On    ;
-; EC5_1_T2  ; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|altdpram:FIFOram|q[7] ; RAM  ; On    ;
+; EC6_1_I2  ; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|altdpram:FIFOram|q[8] ; RAM  ; On    ;
+; EC14_1_I2 ; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|altdpram:FIFOram|q[0] ; RAM  ; On    ;
+; EC3_1_I2  ; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|altdpram:FIFOram|q[9] ; RAM  ; On    ;
+; EC10_1_I2 ; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|altdpram:FIFOram|q[1] ; RAM  ; On    ;
+; EC7_1_I2  ; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|altdpram:FIFOram|q[2] ; RAM  ; On    ;
+; EC11_1_I2 ; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|altdpram:FIFOram|q[3] ; RAM  ; On    ;
+; EC13_1_I2 ; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|altdpram:FIFOram|q[4] ; RAM  ; On    ;
+; EC12_1_I2 ; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|altdpram:FIFOram|q[5] ; RAM  ; On    ;
+; EC5_1_I2  ; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|altdpram:FIFOram|q[6] ; RAM  ; On    ;
+; EC9_1_I2  ; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|altdpram:FIFOram|q[7] ; RAM  ; On    ;
 +-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------+-------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Non-Global High Fan-Out Signals                                                                                                                                                                                                                                       ;
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-; Name                                                                                                                                                                                                                                                        ; Fan-Out ;
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|TX_UART:inst|txshld~reg                                                                                                                                                                   ; 85      ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|sreg~53                                                                                                                                                                                     ; 76      ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|muxsel1~reg                                                                                                                                                                                 ; 75      ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|muxsel0~reg                                                                                                                                                                                 ; 62      ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|DCTC_FWR:inst2|sreg~34                                                                                                                                                                 ; 54      ;
-; ahb_slave:ahb_slave_inst|reg_address[2]~reg0                                                                                                                                                                                                                ; 49      ;
-; dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer|tx_time_lat~reg                                                                                                                                                                                        ; 49      ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|inst38                                                                                                                                                                                                     ; 48      ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|inst36                                                                                                                                                                                                     ; 48      ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|crc_init~reg0                                                                                                                                                                               ; 37      ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|stf_stb~reg                                                                                                                                                                  ; 35      ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|DCTC_FWR:inst2|tcwf_aclr~reg                                                                                                                                                           ; 33      ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|crc32_en                                                                                                                                                                                      ; 32      ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|crc_rx:inst20|crc32_en                                                                                                                                                                                     ; 32      ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|inst46                                                                                                                                                                                                     ; 32      ;
-; ahb_slave:ahb_slave_inst|reg_address[3]~reg0                                                                                                                                                                                                                ; 29      ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|msg_sent~reg                                                                                                                                                                                ; 28      ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|ctclr~reg                                                                                                                                                                    ; 28      ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|mean_val:inst21|ctup4:116|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|sload_path[0]                                                                                                   ; 26      ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|mean_val:inst21|ctup4:116|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|sload_path[1]                                                                                                   ; 25      ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|shift_ct:inst33|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|cout~0                                                                                                                    ; 25      ;
-; slaveregister:slaveregister_inst|i~1028                                                                                                                                                                                                                     ; 23      ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|data_stb~reg                                                                                                                                                                 ; 22      ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|a_fefifo_vve:fifo_state|valid_wreq                                                             ; 21      ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|dpr_ren~reg                                                                                                                                                                                 ; 21      ;
-; dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|timer_clrn~reg                                                                                                                                                                                                       ; 20      ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|muxsel2~reg                                                                                                                                                                                 ; 20      ;
-; stripe:stripe_inst|alt_exc_stripe:lpm_instance|alt_exc_upcore:core|MASTERHTRANS[1]                                                                                                                                                                          ; 20      ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|TX_UART:inst|txctclr~reg                                                                                                                                                                  ; 19      ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|muxsel4~reg                                                                                                                                                                                 ; 19      ;
-; slaveregister:slaveregister_inst|rx_dpr_radr_stb~reg0                                                                                                                                                                                                       ; 18      ;
-; dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|send_data~reg                                                                                                                                                                                                        ; 18      ;
-; slaveregister:slaveregister_inst|i~1064                                                                                                                                                                                                                     ; 18      ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|data_error~reg0                                                                                                                                                                             ; 17      ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_hdr_dec_ap:inst4|tcal_rcvd~reg                                                                                                                                                                          ; 17      ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|shift_ct:inst32|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|cout~0                                                                                                                    ; 17      ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|cmd_ena~reg0                                                                                                                                                                                ; 17      ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|crc32:inst_crc32|SRG[31]                                                                                                                                                                      ; 16      ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|i412~14                                                                                                                                                                                     ; 16      ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|crc_rx:inst20|crc32:inst_crc32|SRG[31]                                                                                                                                                                     ; 16      ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|muxsel3~reg                                                                                                                                                                                 ; 16      ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|inst48                                                                                                                                                                                                     ; 16      ;
-; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|inst50                                                                                                                                                                                                     ; 16      ;
-; slaveregister:slaveregister_inst|tx_dpr_wadr_local[0]~15                                                                                                                                                                                                    ; 16      ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|inst36~29                                                                                                                                                                                                  ; 16      ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|inst22                                                                                                                                                                                                     ; 16      ;
-; slaveregister:slaveregister_inst|rx_dpr_radr_local[0]~15                                                                                                                                                                                                    ; 16      ;
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|inst5                                                                                                                                                                                                      ; 16      ;
-; stripe:stripe_inst|alt_exc_stripe:lpm_instance|alt_exc_upcore:core|core~EBIDQOE                                                                                                                                                                             ; 16      ;
-; dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer|dc_tcal_ct:timer|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|lpm_compare:$00023|comptree:comparator|cmpchain:cmp_end|comptree:comp|comptree:sub_comptree|cmpchain:cmp_end|aeb_out ; 15      ;
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Non-Global High Fan-Out Signals                                                                                                                                                                           ;
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+; Name                                                                                                                                                                                            ; Fan-Out ;
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|TX_UART:inst|txshld~reg                                                                                                       ; 84      ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|sreg~53                                                                                                                         ; 76      ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|muxsel1~reg                                                                                                                     ; 75      ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|muxsel0~reg                                                                                                                     ; 62      ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|DCTC_FWR:inst2|sreg~34                                                                                                     ; 54      ;
+; dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer|tx_time_lat~reg                                                                                                                            ; 49      ;
+; ahb_slave:ahb_slave_inst|reg_address[2]~reg0                                                                                                                                                    ; 49      ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|inst38                                                                                                                                         ; 48      ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|inst36                                                                                                                                         ; 48      ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|crc_init~reg0                                                                                                                   ; 37      ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_hdr_dec_ap:inst4|comres_rcvd~reg                                                                                                            ; 36      ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|stf_stb~reg                                                                                                      ; 35      ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|DCTC_FWR:inst2|tcwf_aclr~reg                                                                                               ; 33      ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|crc_rx:inst20|crc32_en                                                                                                                         ; 32      ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|crc32_en                                                                                                                          ; 32      ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|inst46                                                                                                                                         ; 32      ;
+; ahb_slave:ahb_slave_inst|reg_address[3]~reg0                                                                                                                                                    ; 29      ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|msg_sent~reg                                                                                                                    ; 28      ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|ctclr~reg                                                                                                        ; 28      ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|mean_val:inst21|ctup4:116|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|sload_path[0]                                       ; 26      ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|mean_val:inst21|ctup4:116|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|sload_path[1]                                       ; 25      ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|shift_ct:inst33|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|cout~0                                                        ; 25      ;
+; slaveregister:slaveregister_inst|i~1028                                                                                                                                                         ; 23      ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|data_stb~reg                                                                                                     ; 22      ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|dpr_ren~reg                                                                                                                     ; 21      ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|a_fefifo_vve:fifo_state|valid_wreq ; 21      ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|muxsel4~reg                                                                                                                     ; 21      ;
+; dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|timer_clrn~reg                                                                                                                                           ; 20      ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|muxsel2~reg                                                                                                                     ; 20      ;
+; stripe:stripe_inst|alt_exc_stripe:lpm_instance|alt_exc_upcore:core|MASTERHTRANS[1]                                                                                                              ; 20      ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|TX_UART:inst|txctclr~reg                                                                                                      ; 19      ;
+; dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|send_data~reg                                                                                                                                            ; 18      ;
+; slaveregister:slaveregister_inst|i~1064                                                                                                                                                         ; 18      ;
+; slaveregister:slaveregister_inst|rx_dpr_radr_stb~reg0                                                                                                                                           ; 18      ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_hdr_dec_ap:inst4|tcal_rcvd~reg                                                                                                              ; 17      ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|data_error~reg0                                                                                                                 ; 17      ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|cmd_ena~reg0                                                                                                                    ; 17      ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|shift_ct:inst32|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|cout~0                                                        ; 17      ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|muxsel3~reg                                                                                                                     ; 16      ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|i412~14                                                                                                                         ; 16      ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|crc32:inst_crc32|SRG[31]                                                                                                          ; 16      ;
+; slaveregister:slaveregister_inst|i389~0                                                                                                                                                         ; 16      ;
+; slaveregister:slaveregister_inst|i371~0                                                                                                                                                         ; 16      ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|inst50                                                                                                                                         ; 16      ;
+; dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|inst48                                                                                                                                         ; 16      ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|inst36~29                                                                                                                                      ; 16      ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|inst22                                                                                                                                         ; 16      ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|inst5                                                                                                                                          ; 16      ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|crc_rx:inst20|crc32:inst_crc32|SRG[31]                                                                                                         ; 16      ;
+; stripe:stripe_inst|alt_exc_stripe:lpm_instance|alt_exc_upcore:core|core~EBIDQOE                                                                                                                 ; 16      ;
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
 
 
 +--------------------------------------------------+
@@ -1146,16 +1144,16 @@ Please use Quartus II to view the floorplan report data.
 +-----------------------------+--------------------+
 ; Local Routing Interconnects ; Number of MegaLABs ;
 +-----------------------------+--------------------+
-; 0 - 11                      ; 86                 ;
-; 12 - 23                     ; 4                  ;
-; 24 - 35                     ; 1                  ;
-; 36 - 47                     ; 0                  ;
-; 48 - 59                     ; 4                  ;
-; 60 - 71                     ; 2                  ;
-; 72 - 83                     ; 4                  ;
-; 84 - 95                     ; 0                  ;
-; 96 - 107                    ; 2                  ;
-; 108 - 119                   ; 1                  ;
+; 0 - 12                      ; 84                 ;
+; 13 - 25                     ; 4                  ;
+; 26 - 38                     ; 3                  ;
+; 39 - 51                     ; 3                  ;
+; 52 - 64                     ; 2                  ;
+; 65 - 77                     ; 1                  ;
+; 78 - 90                     ; 4                  ;
+; 91 - 103                    ; 1                  ;
+; 104 - 116                   ; 1                  ;
+; 117 - 129                   ; 1                  ;
 +-----------------------------+--------------------+
 
 
@@ -1164,16 +1162,16 @@ Please use Quartus II to view the floorplan report data.
 +-----------------------+--------------------+
 ; MegaLAB Interconnects ; Number of MegaLABs ;
 +-----------------------+--------------------+
-; 0 - 14                ; 86                 ;
-; 15 - 29               ; 5                  ;
-; 30 - 44               ; 4                  ;
-; 45 - 59               ; 2                  ;
-; 60 - 74               ; 2                  ;
-; 75 - 89               ; 1                  ;
-; 90 - 104              ; 1                  ;
-; 105 - 119             ; 2                  ;
-; 120 - 134             ; 0                  ;
-; 135 - 149             ; 1                  ;
+; 0 - 12                ; 83                 ;
+; 13 - 25               ; 8                  ;
+; 26 - 38               ; 2                  ;
+; 39 - 51               ; 3                  ;
+; 52 - 64               ; 0                  ;
+; 65 - 77               ; 3                  ;
+; 78 - 90               ; 3                  ;
+; 91 - 103              ; 1                  ;
+; 104 - 116             ; 0                  ;
+; 117 - 129             ; 1                  ;
 +-----------------------+--------------------+
 
 
@@ -1182,16 +1180,16 @@ Please use Quartus II to view the floorplan report data.
 +----------------------------+-----------------+
 ; LAB External Interconnects ; Number MegaLABs ;
 +----------------------------+-----------------+
-; 0 - 21                     ; 87              ;
-; 22 - 43                    ; 4               ;
-; 44 - 65                    ; 1               ;
-; 66 - 87                    ; 2               ;
-; 88 - 109                   ; 5               ;
-; 110 - 131                  ; 0               ;
-; 132 - 153                  ; 0               ;
-; 154 - 175                  ; 1               ;
-; 176 - 197                  ; 2               ;
-; 198 - 219                  ; 2               ;
+; 0 - 20                     ; 85              ;
+; 21 - 41                    ; 6               ;
+; 42 - 62                    ; 1               ;
+; 63 - 83                    ; 2               ;
+; 84 - 104                   ; 2               ;
+; 105 - 125                  ; 1               ;
+; 126 - 146                  ; 2               ;
+; 147 - 167                  ; 2               ;
+; 168 - 188                  ; 1               ;
+; 189 - 209                  ; 2               ;
 +----------------------------+-----------------+
 
 
@@ -1200,27 +1198,27 @@ Please use Quartus II to view the floorplan report data.
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; MegaLAB Name ; Total Cells         ; MegaLAB Interconnect ; Column Fast Interconnect Driving In ; Column Fast Interconnect Driving Out ; Row Fast Interconnect Driving In ; Row Fast Interconnect Driving Out ; Fan-In ; Fan-Out ; Local Interconnect ; LAB External Interconnect ; Control Signals ;
 +--------------+---------------------+----------------------+-------------------------------------+--------------------------------------+----------------------------------+-----------------------------------+--------+---------+--------------------+---------------------------+-----------------+
-;  A1          ;  72 / 160 ( 45 % )  ; 66                   ; 26                                  ; 8                                    ; 18                               ; 15                                ; 4      ; 182     ; 50                 ; 99                        ; 3               ;
-;  A2          ;  3 / 160 ( 1 % )    ; 6                    ; 1                                   ; 1                                    ; 5                                ; 0                                 ; 2      ; 4       ; 2                  ; 6                         ; 1               ;
-;  A3          ;  153 / 160 ( 95 % ) ; 113                  ; 6                                   ; 9                                    ; 43                               ; 16                                ; 39     ; 48      ; 98                 ; 190                       ; 8               ;
-;  A4          ;  157 / 160 ( 98 % ) ; 146                  ; 35                                  ; 6                                    ; 28                               ; 21                                ; 27     ; 80      ; 78                 ; 202                       ; 10              ;
+;  A1          ;  144 / 160 ( 90 % ) ; 127                  ; 49                                  ; 21                                   ; 10                               ; 18                                ; 36     ; 61      ; 87                 ; 191                       ; 7               ;
+;  A2          ;  38 / 160 ( 23 % )  ; 20                   ; 3                                   ; 2                                    ; 6                                ; 5                                 ; 6      ; 44      ; 29                 ; 28                        ; 7               ;
+;  A3          ;  28 / 160 ( 17 % )  ; 51                   ; 35                                  ; 7                                    ; 14                               ; 0                                 ; 22     ; 16      ; 16                 ; 65                        ; 3               ;
+;  A4          ;  129 / 160 ( 80 % ) ; 82                   ; 4                                   ; 14                                   ; 19                               ; 1                                 ; 13     ; 165     ; 83                 ; 144                       ; 14              ;
 ;  B1          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  B2          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
-;  B3          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
+;  B3          ;  24 / 160 ( 15 % )  ; 11                   ; 1                                   ; 3                                    ; 1                                ; 0                                 ; 4      ; 15      ; 14                 ; 16                        ; 3               ;
 ;  B4          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 14      ; 0                  ; 0                         ; 0               ;
 ;  C1          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  C2          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
-;  C3          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
+;  C3          ;  6 / 160 ( 3 % )    ; 12                   ; 12                                  ; 1                                    ; 0                                ; 0                                 ; 9      ; 2       ; 2                  ; 12                        ; 0               ;
 ;  C4          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 28      ; 0                  ; 0                         ; 0               ;
 ;  D1          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
-;  D2          ;  3 / 160 ( 1 % )    ; 1                    ; 1                                   ; 1                                    ; 0                                ; 0                                 ; 2      ; 4       ; 2                  ; 1                         ; 1               ;
-;  D3          ;  10 / 160 ( 6 % )   ; 21                   ; 17                                  ; 3                                    ; 4                                ; 0                                 ; 21     ; 3       ; 6                  ; 24                        ; 4               ;
-;  D4          ;  41 / 160 ( 25 % )  ; 13                   ; 2                                   ; 15                                   ; 1                                ; 0                                 ; 5      ; 116     ; 26                 ; 25                        ; 8               ;
-;  E1          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
-;  E2          ;  3 / 160 ( 1 % )    ; 1                    ; 1                                   ; 1                                    ; 0                                ; 0                                 ; 2      ; 4       ; 2                  ; 1                         ; 1               ;
-;  E3          ;  6 / 160 ( 3 % )    ; 15                   ; 9                                   ; 3                                    ; 4                                ; 0                                 ; 15     ; 13      ; 3                  ; 15                        ; 2               ;
+;  D2          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
+;  D3          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
+;  D4          ;  60 / 160 ( 37 % )  ; 18                   ; 3                                   ; 4                                    ; 1                                ; 0                                 ; 5      ; 55      ; 55                 ; 42                        ; 2               ;
+;  E1          ;  33 / 160 ( 20 % )  ; 14                   ; 0                                   ; 16                                   ; 3                                ; 0                                 ; 5      ; 45      ; 29                 ; 18                        ; 4               ;
+;  E2          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
+;  E3          ;  29 / 160 ( 18 % )  ; 15                   ; 2                                   ; 6                                    ; 0                                ; 0                                 ; 3      ; 16      ; 20                 ; 22                        ; 3               ;
 ;  E4          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
-;  F1          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
+;  F1          ;  66 / 160 ( 41 % )  ; 48                   ; 23                                  ; 15                                   ; 2                                ; 0                                 ; 8      ; 185     ; 47                 ; 89                        ; 2               ;
 ;  F2          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  F3          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  F4          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 1      ; 0       ; 0                  ; 0                         ; 0               ;
@@ -1233,12 +1231,12 @@ Please use Quartus II to view the floorplan report data.
 ;  H3          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  H4          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  I1          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
-;  I2          ;  3 / 160 ( 1 % )    ; 1                    ; 1                                   ; 1                                    ; 0                                ; 0                                 ; 2      ; 4       ; 2                  ; 1                         ; 1               ;
-;  I3          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
-;  I4          ;  95 / 160 ( 59 % )  ; 30                   ; 12                                  ; 7                                    ; 1                                ; 0                                 ; 14     ; 15      ; 80                 ; 76                        ; 5               ;
+;  I2          ;  25 / 160 ( 15 % )  ; 27                   ; 1                                   ; 0                                    ; 13                               ; 0                                 ; 15     ; 10      ; 11                 ; 14                        ; 5               ;
+;  I3          ;  99 / 160 ( 61 % )  ; 80                   ; 46                                  ; 5                                    ; 11                               ; 0                                 ; 43     ; 40      ; 69                 ; 145                       ; 6               ;
+;  I4          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  J1          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  J2          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
-;  J3          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
+;  J3          ;  68 / 160 ( 42 % )  ; 35                   ; 16                                  ; 9                                    ; 0                                ; 0                                 ; 14     ; 10      ; 46                 ; 71                        ; 2               ;
 ;  J4          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  K1          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  K2          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
@@ -1246,177 +1244,177 @@ Please use Quartus II to view the floorplan report data.
 ;  K4          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  L1          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  L2          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
-;  L3          ;  25 / 160 ( 15 % )  ; 12                   ; 3                                   ; 3                                    ; 1                                ; 0                                 ; 6      ; 15      ; 14                 ; 16                        ; 3               ;
+;  L3          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  L4          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
-;  M1          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
-;  M2          ;  101 / 160 ( 63 % ) ; 41                   ; 14                                  ; 2                                    ; 1                                ; 1                                 ; 17     ; 11      ; 65                 ; 90                        ; 4               ;
-;  M3          ;  2 / 160 ( 1 % )    ; 6                    ; 6                                   ; 1                                    ; 0                                ; 0                                 ; 3      ; 1       ; 0                  ; 6                         ; 0               ;
-;  M4          ;  87 / 160 ( 54 % )  ; 33                   ; 12                                  ; 32                                   ; 2                                ; 1                                 ; 17     ; 199     ; 57                 ; 68                        ; 11              ;
+;  M1          ;  137 / 160 ( 85 % ) ; 100                  ; 49                                  ; 20                                   ; 3                                ; 0                                 ; 46     ; 33      ; 91                 ; 155                       ; 6               ;
+;  M2          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
+;  M3          ;  43 / 160 ( 26 % )  ; 22                   ; 11                                  ; 9                                    ; 0                                ; 0                                 ; 13     ; 171     ; 34                 ; 29                        ; 8               ;
+;  M4          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  N1          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
-;  N2          ;  140 / 160 ( 87 % ) ; 76                   ; 0                                   ; 10                                   ; 9                                ; 0                                 ; 10     ; 50      ; 80                 ; 157                       ; 13              ;
-;  N3          ;  11 / 160 ( 6 % )   ; 13                   ; 13                                  ; 1                                    ; 0                                ; 0                                 ; 5      ; 5       ; 9                  ; 13                        ; 2               ;
+;  N2          ;  140 / 160 ( 87 % ) ; 76                   ; 0                                   ; 10                                   ; 9                                ; 0                                 ; 10     ; 50      ; 83                 ; 154                       ; 13              ;
+;  N3          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  N4          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
-;  O1          ;  146 / 160 ( 91 % ) ; 66                   ; 0                                   ; 0                                    ; 6                                ; 19                                ; 7      ; 24      ; 119                ; 101                       ; 5               ;
-;  O2          ;  6 / 160 ( 3 % )    ; 14                   ; 0                                   ; 0                                    ; 14                               ; 4                                 ; 15     ; 249     ; 4                  ; 15                        ; 1               ;
-;  O3          ;  128 / 160 ( 80 % ) ; 113                  ; 57                                  ; 24                                   ; 29                               ; 8                                 ; 70     ; 198     ; 75                 ; 177                       ; 3               ;
+;  O1          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
+;  O2          ;  1 / 160 ( < 1 % )  ; 4                    ; 0                                   ; 1                                    ; 4                                ; 0                                 ; 5      ; 197     ; 1                  ; 4                         ; 1               ;
+;  O3          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  O4          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 1      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  P1          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  P2          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
-;  P3          ;  4 / 160 ( 2 % )    ; 2                    ; 0                                   ; 2                                    ; 0                                ; 0                                 ; 1      ; 251     ; 3                  ; 2                         ; 1               ;
+;  P3          ;  4 / 160 ( 2 % )    ; 1                    ; 0                                   ; 1                                    ; 0                                ; 0                                 ; 1      ; 251     ; 3                  ; 1                         ; 1               ;
 ;  P4          ;  0 / 160 ( 0 % )    ; 1                    ; 0                                   ; 0                                    ; 1                                ; 0                                 ; 0      ; 0       ; 0                  ; 1                         ; 0               ;
-;  Q1          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
-;  Q2          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
-;  Q3          ;  86 / 160 ( 53 % )  ; 56                   ; 24                                  ; 15                                   ; 9                                ; 0                                 ; 32     ; 97      ; 55                 ; 104                       ; 3               ;
+;  Q1          ;  8 / 160 ( 5 % )    ; 13                   ; 9                                   ; 2                                    ; 3                                ; 1                                 ; 15     ; 8       ; 5                  ; 16                        ; 5               ;
+;  Q2          ;  23 / 160 ( 14 % )  ; 12                   ; 2                                   ; 2                                    ; 9                                ; 0                                 ; 12     ; 8       ; 11                 ; 22                        ; 1               ;
+;  Q3          ;  132 / 160 ( 82 % ) ; 76                   ; 11                                  ; 20                                   ; 13                               ; 3                                 ; 25     ; 218     ; 84                 ; 170                       ; 5               ;
 ;  Q4          ;  1 / 160 ( < 1 % )  ; 1                    ; 1                                   ; 1                                    ; 0                                ; 1                                 ; 5      ; 4       ; 0                  ; 1                         ; 2               ;
-;  R1          ;  0 / 160 ( 0 % )    ; 2                    ; 0                                   ; 0                                    ; 2                                ; 0                                 ; 0      ; 0       ; 0                  ; 2                         ; 0               ;
+;  R1          ;  0 / 160 ( 0 % )    ; 2                    ; 1                                   ; 0                                    ; 1                                ; 0                                 ; 0      ; 0       ; 0                  ; 2                         ; 0               ;
 ;  R2          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
-;  R3          ;  2 / 160 ( 1 % )    ; 3                    ; 0                                   ; 0                                    ; 3                                ; 1                                 ; 4      ; 16      ; 1                  ; 3                         ; 1               ;
-;  R4          ;  32 / 160 ( 20 % )  ; 15                   ; 1                                   ; 0                                    ; 1                                ; 2                                 ; 5      ; 3       ; 16                 ; 30                        ; 3               ;
+;  R3          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
+;  R4          ;  34 / 160 ( 21 % )  ; 16                   ; 1                                   ; 1                                    ; 1                                ; 0                                 ; 5      ; 1       ; 15                 ; 33                        ; 3               ;
 ;  S1          ;  0 / 160 ( 0 % )    ; 1                    ; 0                                   ; 0                                    ; 1                                ; 0                                 ; 0      ; 0       ; 0                  ; 1                         ; 0               ;
 ;  S2          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
-;  S3          ;  156 / 160 ( 97 % ) ; 95                   ; 25                                  ; 19                                   ; 1                                ; 0                                 ; 23     ; 318     ; 106                ; 217                       ; 2               ;
+;  S3          ;  50 / 160 ( 31 % )  ; 23                   ; 8                                   ; 9                                    ; 2                                ; 0                                 ; 11     ; 187     ; 39                 ; 35                        ; 7               ;
 ;  S4          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 2      ; 0       ; 0                  ; 0                         ; 0               ;
-;  T1          ;  0 / 160 ( 0 % )    ; 2                    ; 0                                   ; 0                                    ; 2                                ; 0                                 ; 0      ; 0       ; 0                  ; 2                         ; 0               ;
-;  T2          ;  21 / 160 ( 13 % )  ; 26                   ; 6                                   ; 0                                    ; 9                                ; 0                                 ; 16     ; 10      ; 3                  ; 17                        ; 4               ;
-;  T3          ;  84 / 160 ( 52 % )  ; 54                   ; 28                                  ; 6                                    ; 11                               ; 0                                 ; 41     ; 47      ; 65                 ; 94                        ; 7               ;
+;  T1          ;  0 / 160 ( 0 % )    ; 2                    ; 1                                   ; 0                                    ; 1                                ; 0                                 ; 0      ; 0       ; 0                  ; 2                         ; 0               ;
+;  T2          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
+;  T3          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  T4          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  U1          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  U2          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
-;  U3          ;  80 / 160 ( 50 % )  ; 37                   ; 7                                   ; 15                                   ; 1                                ; 0                                 ; 9      ; 141     ; 55                 ; 60                        ; 9               ;
+;  U3          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  U4          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  V1          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  V2          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
-;  V3          ;  12 / 160 ( 7 % )   ; 6                    ; 5                                   ; 4                                    ; 0                                ; 0                                 ; 7      ; 39      ; 11                 ; 6                         ; 4               ;
+;  V3          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  V4          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  W1          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
-;  W2          ;  18 / 160 ( 11 % )  ; 11                   ; 0                                   ; 4                                    ; 3                                ; 1                                 ; 4      ; 47      ; 12                 ; 16                        ; 4               ;
-;  W3          ;  28 / 160 ( 17 % )  ; 16                   ; 5                                   ; 4                                    ; 4                                ; 3                                 ; 11     ; 98      ; 20                 ; 24                        ; 4               ;
+;  W2          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
+;  W3          ;  155 / 160 ( 96 % ) ; 69                   ; 6                                   ; 10                                   ; 0                                ; 0                                 ; 8      ; 14      ; 124                ; 112                       ; 5               ;
 ;  W4          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  X1          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
-;  X2          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
+;  X2          ;  100 / 160 ( 62 % ) ; 40                   ; 15                                  ; 3                                    ; 0                                ; 0                                 ; 17     ; 9       ; 63                 ; 91                        ; 4               ;
 ;  X3          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  X4          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  Y1          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
-;  Y2          ;  20 / 160 ( 12 % )  ; 11                   ; 1                                   ; 1                                    ; 9                                ; 0                                 ; 11     ; 4       ; 9                  ; 20                        ; 1               ;
-;  Y3          ;  1 / 160 ( < 1 % )  ; 2                    ; 2                                   ; 1                                    ; 0                                ; 0                                 ; 2      ; 2       ; 0                  ; 2                         ; 0               ;
+;  Y2          ;  3 / 160 ( 1 % )    ; 1                    ; 1                                   ; 1                                    ; 0                                ; 0                                 ; 2      ; 4       ; 2                  ; 1                         ; 1               ;
+;  Y3          ;  155 / 160 ( 96 % ) ; 81                   ; 16                                  ; 21                                   ; 0                                ; 0                                 ; 18     ; 339     ; 107                ; 200                       ; 2               ;
 ;  Y4          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  Z1          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 ;  Z2          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
-;  Z3          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
+;  Z3          ;  1 / 160 ( < 1 % )  ; 2                    ; 2                                   ; 1                                    ; 0                                ; 0                                 ; 2      ; 48      ; 0                  ; 2                         ; 0               ;
 ;  Z4          ;  0 / 160 ( 0 % )    ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
 +--------------+---------------------+----------------------+-------------------------------------+--------------------------------------+----------------------------------+-----------------------------------+--------+---------+--------------------+---------------------------+-----------------+
 
 
-+-------------------------------------------------------------------------------+
-; Row Interconnect                                                              ;
-+--------------------------------------------------------------------------------
-; Row   ; Interconnect Available ; Interconnect Used   ; Half Interconnect Used ;
-+-------+------------------------+---------------------+------------------------+
-;  A    ; 100                    ;  44 / 100 ( 44 % )  ;  31 / 200 ( 15 % )     ;
-;  B    ; 100                    ;  0 / 100 ( 0 % )    ;  0 / 200 ( 0 % )       ;
-;  C    ; 100                    ;  0 / 100 ( 0 % )    ;  0 / 200 ( 0 % )       ;
-;  D    ; 100                    ;  1 / 100 ( 1 % )    ;  4 / 200 ( 2 % )       ;
-;  E    ; 100                    ;  3 / 100 ( 3 % )    ;  1 / 200 ( < 1 % )     ;
-;  F    ; 100                    ;  0 / 100 ( 0 % )    ;  0 / 200 ( 0 % )       ;
-;  G    ; 100                    ;  0 / 100 ( 0 % )    ;  0 / 200 ( 0 % )       ;
-;  H    ; 100                    ;  0 / 100 ( 0 % )    ;  0 / 200 ( 0 % )       ;
-;  I    ; 100                    ;  0 / 100 ( 0 % )    ;  1 / 200 ( < 1 % )     ;
-;  J    ; 100                    ;  0 / 100 ( 0 % )    ;  0 / 200 ( 0 % )       ;
-;  K    ; 100                    ;  0 / 100 ( 0 % )    ;  0 / 200 ( 0 % )       ;
-;  L    ; 100                    ;  1 / 100 ( 1 % )    ;  0 / 200 ( 0 % )       ;
-;  M    ; 100                    ;  3 / 100 ( 3 % )    ;  0 / 200 ( 0 % )       ;
-;  N    ; 100                    ;  1 / 100 ( 1 % )    ;  8 / 200 ( 4 % )       ;
-;  O    ; 100                    ;  34 / 100 ( 34 % )  ;  10 / 200 ( 5 % )      ;
-;  P    ; 100                    ;  1 / 100 ( 1 % )    ;  0 / 200 ( 0 % )       ;
-;  Q    ; 100                    ;  0 / 100 ( 0 % )    ;  9 / 200 ( 4 % )       ;
-;  R    ; 100                    ;  3 / 100 ( 3 % )    ;  3 / 200 ( 1 % )       ;
-;  S    ; 100                    ;  2 / 100 ( 2 % )    ;  0 / 200 ( 0 % )       ;
-;  T    ; 100                    ;  13 / 100 ( 13 % )  ;  9 / 200 ( 4 % )       ;
-;  U    ; 100                    ;  0 / 100 ( 0 % )    ;  1 / 200 ( < 1 % )     ;
-;  V    ; 100                    ;  0 / 100 ( 0 % )    ;  0 / 200 ( 0 % )       ;
-;  W    ; 100                    ;  6 / 100 ( 6 % )    ;  1 / 200 ( < 1 % )     ;
-;  X    ; 100                    ;  0 / 100 ( 0 % )    ;  0 / 200 ( 0 % )       ;
-;  Y    ; 100                    ;  0 / 100 ( 0 % )    ;  9 / 200 ( 4 % )       ;
-;  Z    ; 100                    ;  0 / 100 ( 0 % )    ;  0 / 200 ( 0 % )       ;
-; Total ; 2600                   ;  112 / 2600 ( 4 % ) ;  87 / 5200 ( 1 % )     ;
-+-------+------------------------+---------------------+------------------------+
++------------------------------------------------------------------------------+
+; Row Interconnect                                                             ;
++-------------------------------------------------------------------------------
+; Row   ; Interconnect Available ; Interconnect Used  ; Half Interconnect Used ;
++-------+------------------------+--------------------+------------------------+
+;  A    ; 100                    ;  39 / 100 ( 39 % ) ;  6 / 200 ( 3 % )       ;
+;  B    ; 100                    ;  1 / 100 ( 1 % )   ;  0 / 200 ( 0 % )       ;
+;  C    ; 100                    ;  0 / 100 ( 0 % )   ;  0 / 200 ( 0 % )       ;
+;  D    ; 100                    ;  0 / 100 ( 0 % )   ;  1 / 200 ( < 1 % )     ;
+;  E    ; 100                    ;  3 / 100 ( 3 % )   ;  0 / 200 ( 0 % )       ;
+;  F    ; 100                    ;  2 / 100 ( 2 % )   ;  0 / 200 ( 0 % )       ;
+;  G    ; 100                    ;  0 / 100 ( 0 % )   ;  0 / 200 ( 0 % )       ;
+;  H    ; 100                    ;  0 / 100 ( 0 % )   ;  0 / 200 ( 0 % )       ;
+;  I    ; 100                    ;  15 / 100 ( 15 % ) ;  9 / 200 ( 4 % )       ;
+;  J    ; 100                    ;  0 / 100 ( 0 % )   ;  0 / 200 ( 0 % )       ;
+;  K    ; 100                    ;  0 / 100 ( 0 % )   ;  0 / 200 ( 0 % )       ;
+;  L    ; 100                    ;  0 / 100 ( 0 % )   ;  0 / 200 ( 0 % )       ;
+;  M    ; 100                    ;  3 / 100 ( 3 % )   ;  0 / 200 ( 0 % )       ;
+;  N    ; 100                    ;  1 / 100 ( 1 % )   ;  8 / 200 ( 4 % )       ;
+;  O    ; 100                    ;  4 / 100 ( 4 % )   ;  0 / 200 ( 0 % )       ;
+;  P    ; 100                    ;  1 / 100 ( 1 % )   ;  0 / 200 ( 0 % )       ;
+;  Q    ; 100                    ;  8 / 100 ( 8 % )   ;  17 / 200 ( 8 % )      ;
+;  R    ; 100                    ;  2 / 100 ( 2 % )   ;  0 / 200 ( 0 % )       ;
+;  S    ; 100                    ;  3 / 100 ( 3 % )   ;  0 / 200 ( 0 % )       ;
+;  T    ; 100                    ;  1 / 100 ( 1 % )   ;  0 / 200 ( 0 % )       ;
+;  U    ; 100                    ;  0 / 100 ( 0 % )   ;  0 / 200 ( 0 % )       ;
+;  V    ; 100                    ;  0 / 100 ( 0 % )   ;  0 / 200 ( 0 % )       ;
+;  W    ; 100                    ;  0 / 100 ( 0 % )   ;  0 / 200 ( 0 % )       ;
+;  X    ; 100                    ;  0 / 100 ( 0 % )   ;  0 / 200 ( 0 % )       ;
+;  Y    ; 100                    ;  0 / 100 ( 0 % )   ;  0 / 200 ( 0 % )       ;
+;  Z    ; 100                    ;  0 / 100 ( 0 % )   ;  0 / 200 ( 0 % )       ;
+; Total ; 2600                   ;  83 / 2600 ( 3 % ) ;  41 / 5200 ( < 1 % )   ;
++-------+------------------------+--------------------+------------------------+
 
 
-+--------------------------------------------------------------------------------------------+
-; LAB Column Interconnect                                                                    ;
-+---------------------------------------------------------------------------------------------
-; MegaLAB Col. ; Col. ; Interconnect Available ; Interconnect Used  ; Half Interconnect Used ;
-+--------------+------+------------------------+--------------------+------------------------+
-; 1            ; 1    ; 80                     ;  11 / 80 ( 13 % )  ;  0 / 160 ( 0 % )       ;
-; 1            ; 2    ; 80                     ;  0 / 80 ( 0 % )    ;  6 / 160 ( 3 % )       ;
-; 1            ; 3    ; 80                     ;  0 / 80 ( 0 % )    ;  2 / 160 ( 1 % )       ;
-; 1            ; 4    ; 80                     ;  0 / 80 ( 0 % )    ;  2 / 160 ( 1 % )       ;
-; 1            ; 5    ; 80                     ;  0 / 80 ( 0 % )    ;  6 / 160 ( 3 % )       ;
-; 1            ; 6    ; 80                     ;  0 / 80 ( 0 % )    ;  6 / 160 ( 3 % )       ;
-; 1            ; 7    ; 80                     ;  0 / 80 ( 0 % )    ;  4 / 160 ( 2 % )       ;
-; 1            ; 8    ; 80                     ;  0 / 80 ( 0 % )    ;  5 / 160 ( 3 % )       ;
-; 1            ; 9    ; 80                     ;  0 / 80 ( 0 % )    ;  0 / 160 ( 0 % )       ;
-; 1            ; 10   ; 80                     ;  0 / 80 ( 0 % )    ;  1 / 160 ( < 1 % )     ;
-; 1            ; 11   ; 80                     ;  0 / 80 ( 0 % )    ;  1 / 160 ( < 1 % )     ;
-; 1            ; 12   ; 80                     ;  0 / 80 ( 0 % )    ;  3 / 160 ( 1 % )       ;
-; 1            ; 13   ; 80                     ;  1 / 80 ( 1 % )    ;  2 / 160 ( 1 % )       ;
-; 1            ; 14   ; 80                     ;  0 / 80 ( 0 % )    ;  6 / 160 ( 3 % )       ;
-; 1            ; 15   ; 80                     ;  1 / 80 ( 1 % )    ;  4 / 160 ( 2 % )       ;
-; 1            ; 16   ; 80                     ;  0 / 80 ( 0 % )    ;  0 / 160 ( 0 % )       ;
-; 1            ; 17   ; 80                     ;  0 / 80 ( 0 % )    ;  0 / 160 ( 0 % )       ;
-; 2            ; 1    ; 80                     ;  0 / 80 ( 0 % )    ;  0 / 160 ( 0 % )       ;
-; 2            ; 2    ; 80                     ;  0 / 80 ( 0 % )    ;  1 / 160 ( < 1 % )     ;
-; 2            ; 3    ; 80                     ;  0 / 80 ( 0 % )    ;  3 / 160 ( 1 % )       ;
-; 2            ; 4    ; 80                     ;  2 / 80 ( 2 % )    ;  2 / 160 ( 1 % )       ;
-; 2            ; 5    ; 80                     ;  0 / 80 ( 0 % )    ;  0 / 160 ( 0 % )       ;
-; 2            ; 6    ; 80                     ;  3 / 80 ( 3 % )    ;  0 / 160 ( 0 % )       ;
-; 2            ; 7    ; 80                     ;  3 / 80 ( 3 % )    ;  0 / 160 ( 0 % )       ;
-; 2            ; 8    ; 80                     ;  0 / 80 ( 0 % )    ;  0 / 160 ( 0 % )       ;
-; 2            ; 9    ; 80                     ;  1 / 80 ( 1 % )    ;  0 / 160 ( 0 % )       ;
-; 2            ; 10   ; 80                     ;  1 / 80 ( 1 % )    ;  0 / 160 ( 0 % )       ;
-; 2            ; 11   ; 80                     ;  0 / 80 ( 0 % )    ;  1 / 160 ( < 1 % )     ;
-; 2            ; 12   ; 80                     ;  1 / 80 ( 1 % )    ;  0 / 160 ( 0 % )       ;
-; 2            ; 13   ; 80                     ;  0 / 80 ( 0 % )    ;  1 / 160 ( < 1 % )     ;
-; 2            ; 14   ; 80                     ;  0 / 80 ( 0 % )    ;  3 / 160 ( 1 % )       ;
-; 2            ; 15   ; 80                     ;  0 / 80 ( 0 % )    ;  0 / 160 ( 0 % )       ;
-; 2            ; 16   ; 80                     ;  0 / 80 ( 0 % )    ;  1 / 160 ( < 1 % )     ;
-; 2            ; 17   ; 80                     ;  0 / 80 ( 0 % )    ;  0 / 160 ( 0 % )       ;
-; 3            ; 1    ; 80                     ;  1 / 80 ( 1 % )    ;  0 / 160 ( 0 % )       ;
-; 3            ; 2    ; 80                     ;  6 / 80 ( 7 % )    ;  6 / 160 ( 3 % )       ;
-; 3            ; 3    ; 80                     ;  4 / 80 ( 5 % )    ;  17 / 160 ( 10 % )     ;
-; 3            ; 4    ; 80                     ;  6 / 80 ( 7 % )    ;  11 / 160 ( 6 % )      ;
-; 3            ; 5    ; 80                     ;  6 / 80 ( 7 % )    ;  7 / 160 ( 4 % )       ;
-; 3            ; 6    ; 80                     ;  9 / 80 ( 11 % )   ;  9 / 160 ( 5 % )       ;
-; 3            ; 7    ; 80                     ;  5 / 80 ( 6 % )    ;  8 / 160 ( 5 % )       ;
-; 3            ; 8    ; 80                     ;  0 / 80 ( 0 % )    ;  4 / 160 ( 2 % )       ;
-; 3            ; 9    ; 80                     ;  3 / 80 ( 3 % )    ;  3 / 160 ( 1 % )       ;
-; 3            ; 10   ; 80                     ;  2 / 80 ( 2 % )    ;  4 / 160 ( 2 % )       ;
-; 3            ; 11   ; 80                     ;  0 / 80 ( 0 % )    ;  8 / 160 ( 5 % )       ;
-; 3            ; 12   ; 80                     ;  5 / 80 ( 6 % )    ;  4 / 160 ( 2 % )       ;
-; 3            ; 13   ; 80                     ;  1 / 80 ( 1 % )    ;  5 / 160 ( 3 % )       ;
-; 3            ; 14   ; 80                     ;  0 / 80 ( 0 % )    ;  3 / 160 ( 1 % )       ;
-; 3            ; 15   ; 80                     ;  1 / 80 ( 1 % )    ;  2 / 160 ( 1 % )       ;
-; 3            ; 16   ; 80                     ;  1 / 80 ( 1 % )    ;  5 / 160 ( 3 % )       ;
-; 3            ; 17   ; 80                     ;  0 / 80 ( 0 % )    ;  1 / 160 ( < 1 % )     ;
-; 4            ; 1    ; 80                     ;  0 / 80 ( 0 % )    ;  0 / 160 ( 0 % )       ;
-; 4            ; 2    ; 80                     ;  0 / 80 ( 0 % )    ;  0 / 160 ( 0 % )       ;
-; 4            ; 3    ; 80                     ;  0 / 80 ( 0 % )    ;  0 / 160 ( 0 % )       ;
-; 4            ; 4    ; 80                     ;  0 / 80 ( 0 % )    ;  4 / 160 ( 2 % )       ;
-; 4            ; 5    ; 80                     ;  0 / 80 ( 0 % )    ;  1 / 160 ( < 1 % )     ;
-; 4            ; 6    ; 80                     ;  0 / 80 ( 0 % )    ;  1 / 160 ( < 1 % )     ;
-; 4            ; 7    ; 80                     ;  1 / 80 ( 1 % )    ;  2 / 160 ( 1 % )       ;
-; 4            ; 8    ; 80                     ;  0 / 80 ( 0 % )    ;  3 / 160 ( 1 % )       ;
-; 4            ; 9    ; 80                     ;  0 / 80 ( 0 % )    ;  5 / 160 ( 3 % )       ;
-; 4            ; 10   ; 80                     ;  3 / 80 ( 3 % )    ;  1 / 160 ( < 1 % )     ;
-; 4            ; 11   ; 80                     ;  6 / 80 ( 7 % )    ;  1 / 160 ( < 1 % )     ;
-; 4            ; 12   ; 80                     ;  0 / 80 ( 0 % )    ;  5 / 160 ( 3 % )       ;
-; 4            ; 13   ; 80                     ;  1 / 80 ( 1 % )    ;  0 / 160 ( 0 % )       ;
-; 4            ; 14   ; 80                     ;  0 / 80 ( 0 % )    ;  14 / 160 ( 8 % )      ;
-; 4            ; 15   ; 80                     ;  0 / 80 ( 0 % )    ;  4 / 160 ( 2 % )       ;
-; 4            ; 16   ; 80                     ;  0 / 80 ( 0 % )    ;  9 / 160 ( 5 % )       ;
-; 4            ; 17   ; 80                     ;  1 / 80 ( 1 % )    ;  0 / 160 ( 0 % )       ;
-; Total        ;      ; 5440                   ;  86 / 5440 ( 1 % ) ;  207 / 10880 ( 1 % )   ;
-+--------------+------+------------------------+--------------------+------------------------+
++---------------------------------------------------------------------------------------------+
+; LAB Column Interconnect                                                                     ;
++----------------------------------------------------------------------------------------------
+; MegaLAB Col. ; Col. ; Interconnect Available ; Interconnect Used   ; Half Interconnect Used ;
++--------------+------+------------------------+---------------------+------------------------+
+; 1            ; 1    ; 80                     ;  10 / 80 ( 12 % )   ;  2 / 160 ( 1 % )       ;
+; 1            ; 2    ; 80                     ;  0 / 80 ( 0 % )     ;  10 / 160 ( 6 % )      ;
+; 1            ; 3    ; 80                     ;  1 / 80 ( 1 % )     ;  11 / 160 ( 6 % )      ;
+; 1            ; 4    ; 80                     ;  1 / 80 ( 1 % )     ;  12 / 160 ( 7 % )      ;
+; 1            ; 5    ; 80                     ;  1 / 80 ( 1 % )     ;  14 / 160 ( 8 % )      ;
+; 1            ; 6    ; 80                     ;  2 / 80 ( 2 % )     ;  12 / 160 ( 7 % )      ;
+; 1            ; 7    ; 80                     ;  1 / 80 ( 1 % )     ;  6 / 160 ( 3 % )       ;
+; 1            ; 8    ; 80                     ;  0 / 80 ( 0 % )     ;  6 / 160 ( 3 % )       ;
+; 1            ; 9    ; 80                     ;  2 / 80 ( 2 % )     ;  2 / 160 ( 1 % )       ;
+; 1            ; 10   ; 80                     ;  4 / 80 ( 5 % )     ;  4 / 160 ( 2 % )       ;
+; 1            ; 11   ; 80                     ;  0 / 80 ( 0 % )     ;  3 / 160 ( 1 % )       ;
+; 1            ; 12   ; 80                     ;  1 / 80 ( 1 % )     ;  0 / 160 ( 0 % )       ;
+; 1            ; 13   ; 80                     ;  1 / 80 ( 1 % )     ;  0 / 160 ( 0 % )       ;
+; 1            ; 14   ; 80                     ;  0 / 80 ( 0 % )     ;  7 / 160 ( 4 % )       ;
+; 1            ; 15   ; 80                     ;  0 / 80 ( 0 % )     ;  8 / 160 ( 5 % )       ;
+; 1            ; 16   ; 80                     ;  1 / 80 ( 1 % )     ;  5 / 160 ( 3 % )       ;
+; 1            ; 17   ; 80                     ;  1 / 80 ( 1 % )     ;  0 / 160 ( 0 % )       ;
+; 2            ; 1    ; 80                     ;  0 / 80 ( 0 % )     ;  1 / 160 ( < 1 % )     ;
+; 2            ; 2    ; 80                     ;  0 / 80 ( 0 % )     ;  0 / 160 ( 0 % )       ;
+; 2            ; 3    ; 80                     ;  0 / 80 ( 0 % )     ;  0 / 160 ( 0 % )       ;
+; 2            ; 4    ; 80                     ;  0 / 80 ( 0 % )     ;  0 / 160 ( 0 % )       ;
+; 2            ; 5    ; 80                     ;  0 / 80 ( 0 % )     ;  1 / 160 ( < 1 % )     ;
+; 2            ; 6    ; 80                     ;  0 / 80 ( 0 % )     ;  2 / 160 ( 1 % )       ;
+; 2            ; 7    ; 80                     ;  0 / 80 ( 0 % )     ;  4 / 160 ( 2 % )       ;
+; 2            ; 8    ; 80                     ;  1 / 80 ( 1 % )     ;  2 / 160 ( 1 % )       ;
+; 2            ; 9    ; 80                     ;  2 / 80 ( 2 % )     ;  0 / 160 ( 0 % )       ;
+; 2            ; 10   ; 80                     ;  1 / 80 ( 1 % )     ;  0 / 160 ( 0 % )       ;
+; 2            ; 11   ; 80                     ;  0 / 80 ( 0 % )     ;  1 / 160 ( < 1 % )     ;
+; 2            ; 12   ; 80                     ;  2 / 80 ( 2 % )     ;  2 / 160 ( 1 % )       ;
+; 2            ; 13   ; 80                     ;  0 / 80 ( 0 % )     ;  1 / 160 ( < 1 % )     ;
+; 2            ; 14   ; 80                     ;  0 / 80 ( 0 % )     ;  0 / 160 ( 0 % )       ;
+; 2            ; 15   ; 80                     ;  0 / 80 ( 0 % )     ;  0 / 160 ( 0 % )       ;
+; 2            ; 16   ; 80                     ;  1 / 80 ( 1 % )     ;  0 / 160 ( 0 % )       ;
+; 2            ; 17   ; 80                     ;  0 / 80 ( 0 % )     ;  0 / 160 ( 0 % )       ;
+; 3            ; 1    ; 80                     ;  2 / 80 ( 2 % )     ;  0 / 160 ( 0 % )       ;
+; 3            ; 2    ; 80                     ;  6 / 80 ( 7 % )     ;  9 / 160 ( 5 % )       ;
+; 3            ; 3    ; 80                     ;  9 / 80 ( 11 % )    ;  10 / 160 ( 6 % )      ;
+; 3            ; 4    ; 80                     ;  12 / 80 ( 15 % )   ;  14 / 160 ( 8 % )      ;
+; 3            ; 5    ; 80                     ;  7 / 80 ( 8 % )     ;  10 / 160 ( 6 % )      ;
+; 3            ; 6    ; 80                     ;  4 / 80 ( 5 % )     ;  8 / 160 ( 5 % )       ;
+; 3            ; 7    ; 80                     ;  5 / 80 ( 6 % )     ;  3 / 160 ( 1 % )       ;
+; 3            ; 8    ; 80                     ;  3 / 80 ( 3 % )     ;  1 / 160 ( < 1 % )     ;
+; 3            ; 9    ; 80                     ;  2 / 80 ( 2 % )     ;  4 / 160 ( 2 % )       ;
+; 3            ; 10   ; 80                     ;  1 / 80 ( 1 % )     ;  2 / 160 ( 1 % )       ;
+; 3            ; 11   ; 80                     ;  2 / 80 ( 2 % )     ;  3 / 160 ( 1 % )       ;
+; 3            ; 12   ; 80                     ;  2 / 80 ( 2 % )     ;  3 / 160 ( 1 % )       ;
+; 3            ; 13   ; 80                     ;  3 / 80 ( 3 % )     ;  2 / 160 ( 1 % )       ;
+; 3            ; 14   ; 80                     ;  3 / 80 ( 3 % )     ;  1 / 160 ( < 1 % )     ;
+; 3            ; 15   ; 80                     ;  0 / 80 ( 0 % )     ;  1 / 160 ( < 1 % )     ;
+; 3            ; 16   ; 80                     ;  1 / 80 ( 1 % )     ;  1 / 160 ( < 1 % )     ;
+; 3            ; 17   ; 80                     ;  0 / 80 ( 0 % )     ;  0 / 160 ( 0 % )       ;
+; 4            ; 1    ; 80                     ;  0 / 80 ( 0 % )     ;  0 / 160 ( 0 % )       ;
+; 4            ; 2    ; 80                     ;  0 / 80 ( 0 % )     ;  0 / 160 ( 0 % )       ;
+; 4            ; 3    ; 80                     ;  0 / 80 ( 0 % )     ;  0 / 160 ( 0 % )       ;
+; 4            ; 4    ; 80                     ;  3 / 80 ( 3 % )     ;  0 / 160 ( 0 % )       ;
+; 4            ; 5    ; 80                     ;  0 / 80 ( 0 % )     ;  1 / 160 ( < 1 % )     ;
+; 4            ; 6    ; 80                     ;  0 / 80 ( 0 % )     ;  2 / 160 ( 1 % )       ;
+; 4            ; 7    ; 80                     ;  4 / 80 ( 5 % )     ;  0 / 160 ( 0 % )       ;
+; 4            ; 8    ; 80                     ;  0 / 80 ( 0 % )     ;  1 / 160 ( < 1 % )     ;
+; 4            ; 9    ; 80                     ;  0 / 80 ( 0 % )     ;  0 / 160 ( 0 % )       ;
+; 4            ; 10   ; 80                     ;  0 / 80 ( 0 % )     ;  2 / 160 ( 1 % )       ;
+; 4            ; 11   ; 80                     ;  0 / 80 ( 0 % )     ;  4 / 160 ( 2 % )       ;
+; 4            ; 12   ; 80                     ;  1 / 80 ( 1 % )     ;  0 / 160 ( 0 % )       ;
+; 4            ; 13   ; 80                     ;  0 / 80 ( 0 % )     ;  1 / 160 ( < 1 % )     ;
+; 4            ; 14   ; 80                     ;  0 / 80 ( 0 % )     ;  0 / 160 ( 0 % )       ;
+; 4            ; 15   ; 80                     ;  1 / 80 ( 1 % )     ;  1 / 160 ( < 1 % )     ;
+; 4            ; 16   ; 80                     ;  0 / 80 ( 0 % )     ;  0 / 160 ( 0 % )       ;
+; 4            ; 17   ; 80                     ;  0 / 80 ( 0 % )     ;  0 / 160 ( 0 % )       ;
+; Total        ;      ; 5440                   ;  104 / 5440 ( 1 % ) ;  200 / 10880 ( 1 % )   ;
++--------------+------+------------------------+---------------------+------------------------+
 
 
 +-----------------------------------------------------------------------------+
@@ -1460,7 +1458,7 @@ Please use Quartus II to view the floorplan report data.
 +--------------------------------------------------------------------------------------------
 ; Resource                     ; Usage                                                      ;
 +------------------------------+------------------------------------------------------------+
-; Logic cells                  ; 1,727 / 16,640 ( 10 % )                                    ;
+; Logic cells                  ; 1,726 / 16,640 ( 10 % )                                    ;
 ; Registers                    ; 896 / 16,640 ( 5 % )                                       ;
 ; Logic cells in carry chains  ; 429                                                        ;
 ; User inserted logic cells    ; 0                                                          ;
@@ -1480,8 +1478,8 @@ Please use Quartus II to view the floorplan report data.
 ; LVDS receivers               ; 0 / 16 ( 0 % )                                             ;
 ; Maximum fan-out node         ; pll2x:inst_pll2x|altclklock:altclklock_component|outclock0 ;
 ; Maximum fan-out              ; 908                                                        ;
-; Total fan-out                ; 7261                                                       ;
-; Average fan-out              ; 3.91                                                       ;
+; Total fan-out                ; 7322                                                       ;
+; Average fan-out              ; 3.94                                                       ;
 +------------------------------+------------------------------------------------------------+
 
 
@@ -1490,10 +1488,10 @@ Please use Quartus II to view the floorplan report data.
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Compilation Hierarchy Node                                     ; Logic Cells ; Registers ; Memory Bits ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Full Hierarchy Name                                                                                                                                                                                                                                                    ;
 +----------------------------------------------------------------+-------------+-----------+-------------+------+--------------+--------------+-------------------+------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; |configboot                                                    ; 1727 (1)    ; 896       ; 640         ; 117  ; 0            ; 831 (1)      ; 245 (0)           ; 651 (0)          ; 429 (0)         ; |configboot                                                                                                                                                                                                                                                            ;
+; |configboot                                                    ; 1726 (1)    ; 896       ; 640         ; 117  ; 0            ; 830 (1)      ; 213 (0)           ; 683 (0)          ; 429 (0)         ; |configboot                                                                                                                                                                                                                                                            ;
 ;    |ROC:inst_ROC|                                              ; 4 (4)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 2 (2)             ; 2 (2)            ; 0 (0)           ; |configboot|ROC:inst_ROC                                                                                                                                                                                                                                               ;
 ;    |ahb_slave:ahb_slave_inst|                                  ; 49 (49)     ; 19        ; 0           ; 0    ; 0            ; 30 (30)      ; 0 (0)             ; 19 (19)          ; 0 (0)           ; |configboot|ahb_slave:ahb_slave_inst                                                                                                                                                                                                                                   ;
-;    |dcom_ap:dcom_ap_inst|                                      ; 1504 (0)    ; 766       ; 640         ; 0    ; 0            ; 738 (0)      ; 202 (0)           ; 564 (0)          ; 381 (0)         ; |configboot|dcom_ap:dcom_ap_inst                                                                                                                                                                                                                                       ;
+;    |dcom_ap:dcom_ap_inst|                                      ; 1503 (0)    ; 766       ; 640         ; 0    ; 0            ; 737 (0)      ; 202 (0)           ; 564 (0)          ; 381 (0)         ; |configboot|dcom_ap:dcom_ap_inst                                                                                                                                                                                                                                       ;
 ;       |DCOM_tcal_timer:DCOM_tcal_timer|                        ; 36 (16)     ; 20        ; 0           ; 0    ; 0            ; 16 (11)      ; 1 (1)             ; 19 (4)           ; 15 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer                                                                                                                                                                                                       ;
 ;          |dc_tcal_ct:timer|                                    ; 20 (0)      ; 15        ; 0           ; 0    ; 0            ; 5 (0)        ; 0 (0)             ; 15 (0)           ; 15 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer|dc_tcal_ct:timer                                                                                                                                                                                      ;
 ;             |lpm_counter:lpm_counter_component|                ; 20 (0)      ; 15        ; 0           ; 0    ; 0            ; 5 (0)        ; 0 (0)             ; 15 (0)           ; 15 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer|dc_tcal_ct:timer|lpm_counter:lpm_counter_component                                                                                                                                                    ;
@@ -1631,13 +1629,13 @@ Please use Quartus II to view the floorplan report data.
 ;          |rx_packet_ct:inst23|                                 ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|rx_packet_ct:inst23                                                                                                                                                                                       ;
 ;             |lpm_counter:lpm_counter_component|                ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|rx_packet_ct:inst23|lpm_counter:lpm_counter_component                                                                                                                                                     ;
 ;                |alt_synch_counter:wysi_counter|                ; 16 (16)     ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; 16 (16)         ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|rx_packet_ct:inst23|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter                                                                                                                      ;
-;       |DC_Tx_chan_ap:DC_Tx_chan_ap|                            ; 646 (27)    ; 309       ; 0           ; 0    ; 0            ; 337 (6)      ; 34 (17)           ; 275 (4)          ; 120 (0)         ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap                                                                                                                                                                                                           ;
-;          |DC_SNAP:inst11|                                      ; 165 (165)   ; 46        ; 0           ; 0    ; 0            ; 119 (119)    ; 0 (0)             ; 46 (46)          ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11                                                                                                                                                                                            ;
+;       |DC_Tx_chan_ap:DC_Tx_chan_ap|                            ; 645 (27)    ; 309       ; 0           ; 0    ; 0            ; 336 (6)      ; 34 (17)           ; 275 (4)          ; 120 (0)         ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap                                                                                                                                                                                                           ;
+;          |DC_SNAP:inst11|                                      ; 162 (162)   ; 46        ; 0           ; 0    ; 0            ; 116 (116)    ; 0 (0)             ; 46 (46)          ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11                                                                                                                                                                                            ;
 ;          |Tx_dpr_ctrl_ap:inst6|                                ; 83 (67)     ; 32        ; 0           ; 0    ; 0            ; 51 (51)      ; 16 (16)           ; 16 (0)           ; 57 (41)         ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|Tx_dpr_ctrl_ap:inst6                                                                                                                                                                                      ;
 ;             |tx_dpr_radr_ct:tx_dpr_rad|                        ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|Tx_dpr_ctrl_ap:inst6|tx_dpr_radr_ct:tx_dpr_rad                                                                                                                                                            ;
 ;                |lpm_counter:lpm_counter_component|             ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|Tx_dpr_ctrl_ap:inst6|tx_dpr_radr_ct:tx_dpr_rad|lpm_counter:lpm_counter_component                                                                                                                          ;
 ;                   |alt_synch_counter:wysi_counter|             ; 16 (16)     ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; 16 (16)         ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|Tx_dpr_ctrl_ap:inst6|tx_dpr_radr_ct:tx_dpr_rad|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter                                                                                           ;
-;          |crc_tx:inst3|                                        ; 96 (50)     ; 55        ; 0           ; 0    ; 0            ; 41 (27)      ; 1 (1)             ; 54 (22)          ; 6 (6)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3                                                                                                                                                                                              ;
+;          |crc_tx:inst3|                                        ; 98 (52)     ; 55        ; 0           ; 0    ; 0            ; 43 (29)      ; 1 (1)             ; 54 (22)          ; 6 (6)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3                                                                                                                                                                                              ;
 ;             |crc32:inst_crc32|                                 ; 46 (46)     ; 32        ; 0           ; 0    ; 0            ; 14 (14)      ; 0 (0)             ; 32 (32)          ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|crc32:inst_crc32                                                                                                                                                                             ;
 ;          |dac_rs_tab_rect_01:inst15|                           ; 2 (2)       ; 0         ; 0           ; 0    ; 0            ; 2 (2)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dac_rs_tab_rect_01:inst15                                                                                                                                                                                 ;
 ;          |dc_tx_mux:inst5|                                     ; 84 (0)      ; 0         ; 0           ; 0    ; 0            ; 84 (0)       ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_tx_mux:inst5                                                                                                                                                                                           ;
@@ -1755,7 +1753,7 @@ Please use Quartus II to view the floorplan report data.
 ;                |lpm_shiftreg:lpm_shiftreg_component|           ; 18 (18)     ; 10        ; 0           ; 0    ; 0            ; 8 (8)        ; 0 (0)             ; 10 (10)          ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|txshr10:53|lpm_shiftreg:lpm_shiftreg_component                                                                                                                                           ;
 ;    |pll2x:inst_pll2x|                                          ; 0 (0)       ; 0         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|pll2x:inst_pll2x                                                                                                                                                                                                                                           ;
 ;       |altclklock:altclklock_component|                        ; 0 (0)       ; 0         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|pll2x:inst_pll2x|altclklock:altclklock_component                                                                                                                                                                                                           ;
-;    |slaveregister:slaveregister_inst|                          ; 117 (117)   ; 59        ; 0           ; 0    ; 0            ; 58 (58)      ; 41 (41)           ; 18 (18)          ; 0 (0)           ; |configboot|slaveregister:slaveregister_inst                                                                                                                                                                                                                           ;
+;    |slaveregister:slaveregister_inst|                          ; 117 (117)   ; 59        ; 0           ; 0    ; 0            ; 58 (58)      ; 9 (9)             ; 50 (50)          ; 0 (0)           ; |configboot|slaveregister:slaveregister_inst                                                                                                                                                                                                                           ;
 ;    |stripe:stripe_inst|                                        ; 4 (0)       ; 0         ; 0           ; 55   ; 0            ; 4 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|stripe:stripe_inst                                                                                                                                                                                                                                         ;
 ;       |alt_exc_stripe:lpm_instance|                            ; 4 (4)       ; 0         ; 0           ; 55   ; 0            ; 4 (4)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|stripe:stripe_inst|alt_exc_stripe:lpm_instance                                                                                                                                                                                                             ;
 ;          |alt_exc_dpram:dp0|                                   ; 0 (0)       ; 0         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|stripe:stripe_inst|alt_exc_stripe:lpm_instance|alt_exc_dpram:dp0                                                                                                                                                                                           ;
@@ -1957,11 +1955,11 @@ Please use Quartus II to view the floorplan report data.
 ; 3        ; 6 / 10 ( 60 % )   ;
 ; 6        ; 49 / 49 ( 100 % ) ;
 ; 7        ; 0 / 8 ( 0 % )     ;
-; 8        ; 2 / 54 ( 3 % )    ;
+; 8        ; 1 / 54 ( 1 % )    ;
 ; 9        ; 5 / 47 ( 10 % )   ;
 ; 10       ; 20 / 49 ( 40 % )  ;
 ; 11       ; 2 / 49 ( 4 % )    ;
-; 12       ; 9 / 58 ( 15 % )   ;
+; 12       ; 10 / 58 ( 17 % )  ;
 ; 13       ; 19 / 47 ( 40 % )  ;
 +----------+-------------------+
 
@@ -1971,7 +1969,7 @@ Please use Quartus II to view the floorplan report data.
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Name                                                                                                                                                                                  ; Mode      ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; ESBs ; MIF  ; Location ;
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------------+--------------+--------------+--------------+------+------+------+----------+
-; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|altdpram:FIFOram|content ; Dual Port ; 64           ; 10           ; 64           ; 10           ; 640  ; 1    ; none ; ESB_1_T2 ;
+; dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|altdpram:FIFOram|content ; Dual Port ; 64           ; 10           ; 64           ; 10           ; 640  ; 1    ; none ; ESB_1_I2 ;
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------------+--------------+--------------+--------------+------+------+------+----------+
 
 
@@ -1987,7 +1985,7 @@ The pin-out file can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epx
 Info: *******************************************************************
 Info: Running Quartus II Fitter
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Fri Jun 18 06:57:00 2004
+    Info: Processing started: Thu Jun 24 09:56:22 2004
 Info: Command: quartus_fit --import_settings_files=off --export_settings_files=off configboot -c configboot
 Info: Selected device EPXA4F672I2 for design configboot
 Info: Implementing parameter values for PLL pll2x:inst_pll2x|altclklock:altclklock_component|pll
@@ -2005,72 +2003,72 @@ Critical Warning: Ignored Power-Up Level option on the following nodes -- nodes 
     Critical Warning: I/O cell dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|buf_res~reg will power-up low
 Warning: Following nodes are assigned to locations or regions, but do not exist in design
     Warning: Node SingleLED_TRIGGER is assigned to location or region, but does not exist in design
-Info: Started fitting attempt 1 on Fri Jun 18 2004 at 06:57:07
+Info: Started fitting attempt 1 on Thu Jun 24 2004 at 09:56:29
 Info: Fitter placement preparation operations beginning
 Info: Fitter placement preparation operations ending: elapsed time = 4 seconds
 Info: Fitter placement operations beginning
 Info: Fitter placement was successful
 Info: Design requires the following device routing resources:
-    Info: Overall column FastTrack interconnect = 3%
-    Info: Overall row FastTrack interconnect = 5%
+    Info: Overall column FastTrack interconnect = 4%
+    Info: Overall row FastTrack interconnect = 3%
     Info: Maximum column FastTrack interconnect = 9%
-    Info: Maximum row FastTrack interconnect = 74%
+    Info: Maximum row FastTrack interconnect = 32%
 Info: Estimated most critical path is register to register delay of 10.227 ns
-    Info: 1: + IC(0.000 ns) + CELL(0.165 ns) = 0.165 ns; Loc. = LC2_6_O1; Fanout = 4; REG Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|sload_path[1]'
-    Info: 2: + IC(0.224 ns) + CELL(1.145 ns) = 1.534 ns; Loc. = LC2_6_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[1]~COUT'
-    Info: 3: + IC(0.000 ns) + CELL(0.133 ns) = 1.667 ns; Loc. = LC3_6_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[2]~COUT'
-    Info: 4: + IC(0.000 ns) + CELL(0.133 ns) = 1.800 ns; Loc. = LC4_6_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[3]~COUT'
-    Info: 5: + IC(0.000 ns) + CELL(0.133 ns) = 1.933 ns; Loc. = LC5_6_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[4]~COUT'
-    Info: 6: + IC(0.000 ns) + CELL(0.133 ns) = 2.066 ns; Loc. = LC6_6_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[5]~COUT'
-    Info: 7: + IC(0.000 ns) + CELL(0.133 ns) = 2.199 ns; Loc. = LC7_6_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[6]~COUT'
-    Info: 8: + IC(0.000 ns) + CELL(0.133 ns) = 2.332 ns; Loc. = LC8_6_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[7]~COUT'
-    Info: 9: + IC(0.000 ns) + CELL(0.133 ns) = 2.465 ns; Loc. = LC9_6_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[8]~COUT'
-    Info: 10: + IC(0.000 ns) + CELL(0.133 ns) = 2.598 ns; Loc. = LC10_6_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[9]~COUT'
-    Info: 11: + IC(0.496 ns) + CELL(0.133 ns) = 3.227 ns; Loc. = LC1_8_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[10]~COUT'
-    Info: 12: + IC(0.000 ns) + CELL(0.133 ns) = 3.360 ns; Loc. = LC2_8_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[11]~COUT'
-    Info: 13: + IC(0.000 ns) + CELL(0.133 ns) = 3.493 ns; Loc. = LC3_8_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[12]~COUT'
-    Info: 14: + IC(0.000 ns) + CELL(0.133 ns) = 3.626 ns; Loc. = LC4_8_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[13]~COUT'
-    Info: 15: + IC(0.000 ns) + CELL(0.133 ns) = 3.759 ns; Loc. = LC5_8_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[14]~COUT'
-    Info: 16: + IC(0.000 ns) + CELL(0.133 ns) = 3.892 ns; Loc. = LC6_8_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[15]~COUT'
-    Info: 17: + IC(0.000 ns) + CELL(0.133 ns) = 4.025 ns; Loc. = LC7_8_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[16]~COUT'
-    Info: 18: + IC(0.000 ns) + CELL(0.133 ns) = 4.158 ns; Loc. = LC8_8_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[17]~COUT'
-    Info: 19: + IC(0.000 ns) + CELL(0.133 ns) = 4.291 ns; Loc. = LC9_8_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[18]~COUT'
-    Info: 20: + IC(0.000 ns) + CELL(0.133 ns) = 4.424 ns; Loc. = LC10_8_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[19]~COUT'
-    Info: 21: + IC(0.496 ns) + CELL(0.133 ns) = 5.053 ns; Loc. = LC1_10_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[20]~COUT'
-    Info: 22: + IC(0.000 ns) + CELL(0.133 ns) = 5.186 ns; Loc. = LC2_10_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[21]~COUT'
-    Info: 23: + IC(0.000 ns) + CELL(0.133 ns) = 5.319 ns; Loc. = LC3_10_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[22]~COUT'
-    Info: 24: + IC(0.000 ns) + CELL(0.133 ns) = 5.452 ns; Loc. = LC4_10_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[23]~COUT'
-    Info: 25: + IC(0.000 ns) + CELL(0.133 ns) = 5.585 ns; Loc. = LC5_10_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[24]~COUT'
-    Info: 26: + IC(0.000 ns) + CELL(0.133 ns) = 5.718 ns; Loc. = LC6_10_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[25]~COUT'
-    Info: 27: + IC(0.000 ns) + CELL(0.133 ns) = 5.851 ns; Loc. = LC7_10_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[26]~COUT'
-    Info: 28: + IC(0.000 ns) + CELL(0.133 ns) = 5.984 ns; Loc. = LC8_10_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[27]~COUT'
-    Info: 29: + IC(0.000 ns) + CELL(0.133 ns) = 6.117 ns; Loc. = LC9_10_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[28]~COUT'
-    Info: 30: + IC(0.000 ns) + CELL(0.133 ns) = 6.250 ns; Loc. = LC10_10_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[29]~COUT'
-    Info: 31: + IC(0.496 ns) + CELL(0.133 ns) = 6.879 ns; Loc. = LC1_12_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[30]~COUT'
-    Info: 32: + IC(0.000 ns) + CELL(0.133 ns) = 7.012 ns; Loc. = LC2_12_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[31]~COUT'
-    Info: 33: + IC(0.000 ns) + CELL(0.133 ns) = 7.145 ns; Loc. = LC3_12_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[32]~COUT'
-    Info: 34: + IC(0.000 ns) + CELL(0.133 ns) = 7.278 ns; Loc. = LC4_12_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[33]~COUT'
-    Info: 35: + IC(0.000 ns) + CELL(0.133 ns) = 7.411 ns; Loc. = LC5_12_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[34]~COUT'
-    Info: 36: + IC(0.000 ns) + CELL(0.133 ns) = 7.544 ns; Loc. = LC6_12_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[35]~COUT'
-    Info: 37: + IC(0.000 ns) + CELL(0.133 ns) = 7.677 ns; Loc. = LC7_12_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[36]~COUT'
-    Info: 38: + IC(0.000 ns) + CELL(0.133 ns) = 7.810 ns; Loc. = LC8_12_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[37]~COUT'
-    Info: 39: + IC(0.000 ns) + CELL(0.133 ns) = 7.943 ns; Loc. = LC9_12_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[38]~COUT'
-    Info: 40: + IC(0.000 ns) + CELL(0.133 ns) = 8.076 ns; Loc. = LC10_12_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[39]~COUT'
-    Info: 41: + IC(0.496 ns) + CELL(0.133 ns) = 8.705 ns; Loc. = LC1_14_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[40]~COUT'
-    Info: 42: + IC(0.000 ns) + CELL(0.133 ns) = 8.838 ns; Loc. = LC2_14_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[41]~COUT'
-    Info: 43: + IC(0.000 ns) + CELL(0.133 ns) = 8.971 ns; Loc. = LC3_14_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[42]~COUT'
-    Info: 44: + IC(0.000 ns) + CELL(0.133 ns) = 9.104 ns; Loc. = LC4_14_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[43]~COUT'
-    Info: 45: + IC(0.000 ns) + CELL(0.133 ns) = 9.237 ns; Loc. = LC5_14_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[44]~COUT'
-    Info: 46: + IC(0.000 ns) + CELL(0.133 ns) = 9.370 ns; Loc. = LC6_14_O1; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[45]~COUT'
-    Info: 47: + IC(0.000 ns) + CELL(0.133 ns) = 9.503 ns; Loc. = LC7_14_O1; Fanout = 1; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[46]~COUT'
-    Info: 48: + IC(0.000 ns) + CELL(0.724 ns) = 10.227 ns; Loc. = LC8_14_O1; Fanout = 3; REG Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|sload_path[47]'
+    Info: 1: + IC(0.000 ns) + CELL(0.165 ns) = 0.165 ns; Loc. = LC2_7_W3; Fanout = 4; REG Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|sload_path[1]'
+    Info: 2: + IC(0.224 ns) + CELL(1.145 ns) = 1.534 ns; Loc. = LC2_7_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[1]~COUT'
+    Info: 3: + IC(0.000 ns) + CELL(0.133 ns) = 1.667 ns; Loc. = LC3_7_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[2]~COUT'
+    Info: 4: + IC(0.000 ns) + CELL(0.133 ns) = 1.800 ns; Loc. = LC4_7_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[3]~COUT'
+    Info: 5: + IC(0.000 ns) + CELL(0.133 ns) = 1.933 ns; Loc. = LC5_7_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[4]~COUT'
+    Info: 6: + IC(0.000 ns) + CELL(0.133 ns) = 2.066 ns; Loc. = LC6_7_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[5]~COUT'
+    Info: 7: + IC(0.000 ns) + CELL(0.133 ns) = 2.199 ns; Loc. = LC7_7_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[6]~COUT'
+    Info: 8: + IC(0.000 ns) + CELL(0.133 ns) = 2.332 ns; Loc. = LC8_7_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[7]~COUT'
+    Info: 9: + IC(0.000 ns) + CELL(0.133 ns) = 2.465 ns; Loc. = LC9_7_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[8]~COUT'
+    Info: 10: + IC(0.000 ns) + CELL(0.133 ns) = 2.598 ns; Loc. = LC10_7_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[9]~COUT'
+    Info: 11: + IC(0.496 ns) + CELL(0.133 ns) = 3.227 ns; Loc. = LC1_9_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[10]~COUT'
+    Info: 12: + IC(0.000 ns) + CELL(0.133 ns) = 3.360 ns; Loc. = LC2_9_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[11]~COUT'
+    Info: 13: + IC(0.000 ns) + CELL(0.133 ns) = 3.493 ns; Loc. = LC3_9_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[12]~COUT'
+    Info: 14: + IC(0.000 ns) + CELL(0.133 ns) = 3.626 ns; Loc. = LC4_9_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[13]~COUT'
+    Info: 15: + IC(0.000 ns) + CELL(0.133 ns) = 3.759 ns; Loc. = LC5_9_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[14]~COUT'
+    Info: 16: + IC(0.000 ns) + CELL(0.133 ns) = 3.892 ns; Loc. = LC6_9_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[15]~COUT'
+    Info: 17: + IC(0.000 ns) + CELL(0.133 ns) = 4.025 ns; Loc. = LC7_9_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[16]~COUT'
+    Info: 18: + IC(0.000 ns) + CELL(0.133 ns) = 4.158 ns; Loc. = LC8_9_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[17]~COUT'
+    Info: 19: + IC(0.000 ns) + CELL(0.133 ns) = 4.291 ns; Loc. = LC9_9_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[18]~COUT'
+    Info: 20: + IC(0.000 ns) + CELL(0.133 ns) = 4.424 ns; Loc. = LC10_9_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[19]~COUT'
+    Info: 21: + IC(0.496 ns) + CELL(0.133 ns) = 5.053 ns; Loc. = LC1_11_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[20]~COUT'
+    Info: 22: + IC(0.000 ns) + CELL(0.133 ns) = 5.186 ns; Loc. = LC2_11_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[21]~COUT'
+    Info: 23: + IC(0.000 ns) + CELL(0.133 ns) = 5.319 ns; Loc. = LC3_11_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[22]~COUT'
+    Info: 24: + IC(0.000 ns) + CELL(0.133 ns) = 5.452 ns; Loc. = LC4_11_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[23]~COUT'
+    Info: 25: + IC(0.000 ns) + CELL(0.133 ns) = 5.585 ns; Loc. = LC5_11_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[24]~COUT'
+    Info: 26: + IC(0.000 ns) + CELL(0.133 ns) = 5.718 ns; Loc. = LC6_11_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[25]~COUT'
+    Info: 27: + IC(0.000 ns) + CELL(0.133 ns) = 5.851 ns; Loc. = LC7_11_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[26]~COUT'
+    Info: 28: + IC(0.000 ns) + CELL(0.133 ns) = 5.984 ns; Loc. = LC8_11_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[27]~COUT'
+    Info: 29: + IC(0.000 ns) + CELL(0.133 ns) = 6.117 ns; Loc. = LC9_11_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[28]~COUT'
+    Info: 30: + IC(0.000 ns) + CELL(0.133 ns) = 6.250 ns; Loc. = LC10_11_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[29]~COUT'
+    Info: 31: + IC(0.496 ns) + CELL(0.133 ns) = 6.879 ns; Loc. = LC1_13_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[30]~COUT'
+    Info: 32: + IC(0.000 ns) + CELL(0.133 ns) = 7.012 ns; Loc. = LC2_13_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[31]~COUT'
+    Info: 33: + IC(0.000 ns) + CELL(0.133 ns) = 7.145 ns; Loc. = LC3_13_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[32]~COUT'
+    Info: 34: + IC(0.000 ns) + CELL(0.133 ns) = 7.278 ns; Loc. = LC4_13_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[33]~COUT'
+    Info: 35: + IC(0.000 ns) + CELL(0.133 ns) = 7.411 ns; Loc. = LC5_13_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[34]~COUT'
+    Info: 36: + IC(0.000 ns) + CELL(0.133 ns) = 7.544 ns; Loc. = LC6_13_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[35]~COUT'
+    Info: 37: + IC(0.000 ns) + CELL(0.133 ns) = 7.677 ns; Loc. = LC7_13_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[36]~COUT'
+    Info: 38: + IC(0.000 ns) + CELL(0.133 ns) = 7.810 ns; Loc. = LC8_13_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[37]~COUT'
+    Info: 39: + IC(0.000 ns) + CELL(0.133 ns) = 7.943 ns; Loc. = LC9_13_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[38]~COUT'
+    Info: 40: + IC(0.000 ns) + CELL(0.133 ns) = 8.076 ns; Loc. = LC10_13_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[39]~COUT'
+    Info: 41: + IC(0.496 ns) + CELL(0.133 ns) = 8.705 ns; Loc. = LC1_15_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[40]~COUT'
+    Info: 42: + IC(0.000 ns) + CELL(0.133 ns) = 8.838 ns; Loc. = LC2_15_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[41]~COUT'
+    Info: 43: + IC(0.000 ns) + CELL(0.133 ns) = 8.971 ns; Loc. = LC3_15_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[42]~COUT'
+    Info: 44: + IC(0.000 ns) + CELL(0.133 ns) = 9.104 ns; Loc. = LC4_15_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[43]~COUT'
+    Info: 45: + IC(0.000 ns) + CELL(0.133 ns) = 9.237 ns; Loc. = LC5_15_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[44]~COUT'
+    Info: 46: + IC(0.000 ns) + CELL(0.133 ns) = 9.370 ns; Loc. = LC6_15_W3; Fanout = 2; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[45]~COUT'
+    Info: 47: + IC(0.000 ns) + CELL(0.133 ns) = 9.503 ns; Loc. = LC7_15_W3; Fanout = 1; COMB Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|counter_cell[46]~COUT'
+    Info: 48: + IC(0.000 ns) + CELL(0.724 ns) = 10.227 ns; Loc. = LC8_15_W3; Fanout = 3; REG Node = 'timer:timer_inst|lpm_counter:systime_cnt_rtl_0|alt_synch_counter:wysi_counter|sload_path[47]'
     Info: Total cell delay = 8.019 ns ( 78.41 % )
     Info: Total interconnect delay = 2.208 ns ( 21.59 % )
-Info: Fitter placement operations ending: elapsed time = 71 seconds
+Info: Fitter placement operations ending: elapsed time = 81 seconds
 Info: Fitter routing operations beginning
-Info: Fitter routing operations ending: elapsed time = 12 seconds
+Info: Fitter routing operations ending: elapsed time = 13 seconds
 Info: Quartus II Fitter was successful. 0 errors, 4 warnings
-    Info: Processing ended: Fri Jun 18 06:58:42 2004
-    Info: Elapsed time: 00:01:41
+    Info: Processing ended: Thu Jun 24 09:58:15 2004
+    Info: Elapsed time: 00:01:53
 
 

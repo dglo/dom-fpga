@@ -351,7 +351,7 @@ RESERVED_INPUT               : M21       :        :                   :         
 RESERVED_INPUT               : M22       :        :                   :         : 8         :                
 RESERVED_INPUT               : M23       :        :                   :         : 8         :                
 RESERVED_INPUT               : M24       :        :                   :         : 8         :                
-CLK3p                        : M25       : input  : LVTTL             :         : 8         : N              
+RESERVED_INPUT               : M25       :        :                   :         : 8         :                
 RESERVED_INPUT               : M26       :        :                   :         : 8         :                
 GND                          : N1        : gnd    :                   :         :           :                
 VCC_INT                      : N2        : power  :                   : 1.8V    :           :                
@@ -561,7 +561,7 @@ FPGA_LOADED                  : Y23       : output : LVTTL             :         
 RESERVED_INPUT               : Y24       :        :                   :         : 9         :                
 RESERVED_INPUT               : Y25       :        :                   :         : 8         :                
 RESERVED_INPUT               : Y26       :        :                   :         : 8         :                
-RESERVED_INPUT               : AA1       :        :                   :         : 12        :                
+CLK3p                        : AA1       : input  : LVTTL             :         : 12        : N              
 RESERVED_INPUT               : AA2       :        :                   :         : 12        :                
 RESERVED_INPUT               : AA3       :        :                   :         : 12        :                
 RESERVED_INPUT               : AA4       :        :                   :         : 12        :                

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for configboot
-Fri Jun 18 06:56:58 2004
+Thu Jun 24 09:56:20 2004
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -63,11 +63,11 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                        ;
 +-----------------------------+---------------------------------------+
-; Analysis & Synthesis Status ; Successful - Fri Jun 18 06:56:58 2004 ;
+; Analysis & Synthesis Status ; Successful - Thu Jun 24 09:56:20 2004 ;
 ; Revision Name               ; configboot                            ;
 ; Top-level Entity Name       ; configboot                            ;
 ; Family                      ; EXCALIBUR_ARM                         ;
-; Total logic elements        ; 1,727                                 ;
+; Total logic elements        ; 1,726                                 ;
 ; Total pins                  ; 116                                   ;
 ; Total memory bits           ; 640                                   ;
 ; Total PLLs                  ; 1                                     ;
@@ -851,10 +851,10 @@ configboot
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Compilation Hierarchy Node                                     ; Logic Cells ; Registers ; Memory Bits ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Full Hierarchy Name                                                                                                                                                                                                                                                    ;
 +----------------------------------------------------------------+-------------+-----------+-------------+------+--------------+--------------+-------------------+------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; |configboot                                                    ; 1727 (1)    ; 896       ; 640         ; 116  ; 0            ; 831 (1)      ; 245 (0)           ; 651 (0)          ; 429 (0)         ; |configboot                                                                                                                                                                                                                                                            ;
+; |configboot                                                    ; 1726 (1)    ; 896       ; 640         ; 116  ; 0            ; 830 (1)      ; 213 (0)           ; 683 (0)          ; 429 (0)         ; |configboot                                                                                                                                                                                                                                                            ;
 ;    |ROC:inst_ROC|                                              ; 4 (4)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 2 (2)             ; 2 (2)            ; 0 (0)           ; |configboot|ROC:inst_ROC                                                                                                                                                                                                                                               ;
 ;    |ahb_slave:ahb_slave_inst|                                  ; 49 (49)     ; 19        ; 0           ; 0    ; 0            ; 30 (30)      ; 0 (0)             ; 19 (19)          ; 0 (0)           ; |configboot|ahb_slave:ahb_slave_inst                                                                                                                                                                                                                                   ;
-;    |dcom_ap:dcom_ap_inst|                                      ; 1504 (0)    ; 766       ; 640         ; 0    ; 0            ; 738 (0)      ; 202 (0)           ; 564 (0)          ; 381 (0)         ; |configboot|dcom_ap:dcom_ap_inst                                                                                                                                                                                                                                       ;
+;    |dcom_ap:dcom_ap_inst|                                      ; 1503 (0)    ; 766       ; 640         ; 0    ; 0            ; 737 (0)      ; 202 (0)           ; 564 (0)          ; 381 (0)         ; |configboot|dcom_ap:dcom_ap_inst                                                                                                                                                                                                                                       ;
 ;       |DCOM_tcal_timer:DCOM_tcal_timer|                        ; 36 (16)     ; 20        ; 0           ; 0    ; 0            ; 16 (11)      ; 1 (1)             ; 19 (4)           ; 15 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer                                                                                                                                                                                                       ;
 ;          |dc_tcal_ct:timer|                                    ; 20 (0)      ; 15        ; 0           ; 0    ; 0            ; 5 (0)        ; 0 (0)             ; 15 (0)           ; 15 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer|dc_tcal_ct:timer                                                                                                                                                                                      ;
 ;             |lpm_counter:lpm_counter_component|                ; 20 (0)      ; 15        ; 0           ; 0    ; 0            ; 5 (0)        ; 0 (0)             ; 15 (0)           ; 15 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer|dc_tcal_ct:timer|lpm_counter:lpm_counter_component                                                                                                                                                    ;
@@ -992,13 +992,13 @@ configboot
 ;          |rx_packet_ct:inst23|                                 ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|rx_packet_ct:inst23                                                                                                                                                                                       ;
 ;             |lpm_counter:lpm_counter_component|                ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|rx_packet_ct:inst23|lpm_counter:lpm_counter_component                                                                                                                                                     ;
 ;                |alt_synch_counter:wysi_counter|                ; 16 (16)     ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; 16 (16)         ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|rx_packet_ct:inst23|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter                                                                                                                      ;
-;       |DC_Tx_chan_ap:DC_Tx_chan_ap|                            ; 646 (27)    ; 309       ; 0           ; 0    ; 0            ; 337 (6)      ; 34 (17)           ; 275 (4)          ; 120 (0)         ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap                                                                                                                                                                                                           ;
-;          |DC_SNAP:inst11|                                      ; 165 (165)   ; 46        ; 0           ; 0    ; 0            ; 119 (119)    ; 0 (0)             ; 46 (46)          ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11                                                                                                                                                                                            ;
+;       |DC_Tx_chan_ap:DC_Tx_chan_ap|                            ; 645 (27)    ; 309       ; 0           ; 0    ; 0            ; 336 (6)      ; 34 (17)           ; 275 (4)          ; 120 (0)         ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap                                                                                                                                                                                                           ;
+;          |DC_SNAP:inst11|                                      ; 162 (162)   ; 46        ; 0           ; 0    ; 0            ; 116 (116)    ; 0 (0)             ; 46 (46)          ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11                                                                                                                                                                                            ;
 ;          |Tx_dpr_ctrl_ap:inst6|                                ; 83 (67)     ; 32        ; 0           ; 0    ; 0            ; 51 (51)      ; 16 (16)           ; 16 (0)           ; 57 (41)         ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|Tx_dpr_ctrl_ap:inst6                                                                                                                                                                                      ;
 ;             |tx_dpr_radr_ct:tx_dpr_rad|                        ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|Tx_dpr_ctrl_ap:inst6|tx_dpr_radr_ct:tx_dpr_rad                                                                                                                                                            ;
 ;                |lpm_counter:lpm_counter_component|             ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|Tx_dpr_ctrl_ap:inst6|tx_dpr_radr_ct:tx_dpr_rad|lpm_counter:lpm_counter_component                                                                                                                          ;
 ;                   |alt_synch_counter:wysi_counter|             ; 16 (16)     ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; 16 (16)         ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|Tx_dpr_ctrl_ap:inst6|tx_dpr_radr_ct:tx_dpr_rad|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter                                                                                           ;
-;          |crc_tx:inst3|                                        ; 96 (50)     ; 55        ; 0           ; 0    ; 0            ; 41 (27)      ; 1 (1)             ; 54 (22)          ; 6 (6)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3                                                                                                                                                                                              ;
+;          |crc_tx:inst3|                                        ; 98 (52)     ; 55        ; 0           ; 0    ; 0            ; 43 (29)      ; 1 (1)             ; 54 (22)          ; 6 (6)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3                                                                                                                                                                                              ;
 ;             |crc32:inst_crc32|                                 ; 46 (46)     ; 32        ; 0           ; 0    ; 0            ; 14 (14)      ; 0 (0)             ; 32 (32)          ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|crc32:inst_crc32                                                                                                                                                                             ;
 ;          |dac_rs_tab_rect_01:inst15|                           ; 2 (2)       ; 0         ; 0           ; 0    ; 0            ; 2 (2)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dac_rs_tab_rect_01:inst15                                                                                                                                                                                 ;
 ;          |dc_tx_mux:inst5|                                     ; 84 (0)      ; 0         ; 0           ; 0    ; 0            ; 84 (0)       ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_tx_mux:inst5                                                                                                                                                                                           ;
@@ -1116,7 +1116,7 @@ configboot
 ;                |lpm_shiftreg:lpm_shiftreg_component|           ; 18 (18)     ; 10        ; 0           ; 0    ; 0            ; 8 (8)        ; 0 (0)             ; 10 (10)          ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|txshr10:53|lpm_shiftreg:lpm_shiftreg_component                                                                                                                                           ;
 ;    |pll2x:inst_pll2x|                                          ; 0 (0)       ; 0         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|pll2x:inst_pll2x                                                                                                                                                                                                                                           ;
 ;       |altclklock:altclklock_component|                        ; 0 (0)       ; 0         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|pll2x:inst_pll2x|altclklock:altclklock_component                                                                                                                                                                                                           ;
-;    |slaveregister:slaveregister_inst|                          ; 117 (117)   ; 59        ; 0           ; 0    ; 0            ; 58 (58)      ; 41 (41)           ; 18 (18)          ; 0 (0)           ; |configboot|slaveregister:slaveregister_inst                                                                                                                                                                                                                           ;
+;    |slaveregister:slaveregister_inst|                          ; 117 (117)   ; 59        ; 0           ; 0    ; 0            ; 58 (58)      ; 9 (9)             ; 50 (50)          ; 0 (0)           ; |configboot|slaveregister:slaveregister_inst                                                                                                                                                                                                                           ;
 ;    |stripe:stripe_inst|                                        ; 4 (0)       ; 0         ; 0           ; 55   ; 0            ; 4 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|stripe:stripe_inst                                                                                                                                                                                                                                         ;
 ;       |alt_exc_stripe:lpm_instance|                            ; 4 (4)       ; 0         ; 0           ; 55   ; 0            ; 4 (4)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|stripe:stripe_inst|alt_exc_stripe:lpm_instance                                                                                                                                                                                                             ;
 ;          |alt_exc_dpram:dp0|                                   ; 0 (0)       ; 0         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|stripe:stripe_inst|alt_exc_stripe:lpm_instance|alt_exc_dpram:dp0                                                                                                                                                                                           ;
@@ -1293,16 +1293,16 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4D
 +---------------------------------------------------------------------------------------------
 ; Resource                      ; Usage                                                      ;
 +-------------------------------+------------------------------------------------------------+
-; Logic cells                   ; 1,727                                                      ;
-; Total combinational functions ; 1482                                                       ;
+; Logic cells                   ; 1,726                                                      ;
+; Total combinational functions ; 1513                                                       ;
 ; Total registers               ; 896                                                        ;
 ; I/O pins                      ; 116                                                        ;
 ; Total memory bits             ; 640                                                        ;
 ; Total PLLs                    ; 1                                                          ;
 ; Maximum fan-out node          ; pll2x:inst_pll2x|altclklock:altclklock_component|outclock0 ;
 ; Maximum fan-out               ; 908                                                        ;
-; Total fan-out                 ; 7261                                                       ;
-; Average fan-out               ; 3.91                                                       ;
+; Total fan-out                 ; 7322                                                       ;
+; Average fan-out               ; 3.95                                                       ;
 +-------------------------------+------------------------------------------------------------+
 
 
@@ -1321,14 +1321,14 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4D
 ; Statistic                                              ; Value ;
 +--------------------------------------------------------+-------+
 ; Number of WYSIWYG cells                                ; 386   ;
-; Number of synthesis-generated cells                    ; 1341  ;
+; Number of synthesis-generated cells                    ; 1340  ;
 ; Number of WYSIWYG LUTs                                 ; 386   ;
-; Number of synthesis-generated LUTs                     ; 1096  ;
+; Number of synthesis-generated LUTs                     ; 1127  ;
 ; Number of WYSIWYG registers                            ; 241   ;
 ; Number of synthesis-generated registers                ; 655   ;
-; Number of cells with combinational logic only          ; 831   ;
-; Number of cells with registers only                    ; 245   ;
-; Number of cells with combinational logic and registers ; 651   ;
+; Number of cells with combinational logic only          ; 830   ;
+; Number of cells with registers only                    ; 213   ;
+; Number of cells with combinational logic and registers ; 683   ;
 +--------------------------------------------------------+-------+
 
 
@@ -1341,7 +1341,7 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4D
 ; Number of registers using SLOAD      ; 44    ;
 ; Number of registers using ACLR       ; 554   ;
 ; Number of registers using ALOAD      ; 0     ;
-; Number of registers using CLK_ENABLE ; 453   ;
+; Number of registers using CLK_ENABLE ; 421   ;
 ; Number of registers using OE         ; 0     ;
 ; Number of registers using PRESET     ; 0     ;
 +--------------------------------------+-------+
@@ -1353,7 +1353,7 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4D
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Fri Jun 18 06:56:13 2004
+    Info: Processing started: Thu Jun 24 09:55:32 2004
 Info: Command: quartus_map --import_settings_files=on --export_settings_files=off configboot -c configboot
 Info: Found 2 design units and 1 entities in source file ../comDPM/Rx_chan/DC_MRAP.vhd
     Info: Found design unit 1: DC_MRAP-DC_MRAP_ARCH
@@ -2108,17 +2108,17 @@ Warning: Design contains 5 input pin(s) that do not drive logic
     Warning: No output dependent on input pin CLK4p
     Warning: No output dependent on input pin COM_AD_OTR
     Warning: No output dependent on input pin HDV_Rx
-Info: Implemented 1857 device resources after synthesis - the final resource count might be different
+Info: Implemented 1856 device resources after synthesis - the final resource count might be different
     Info: Implemented 21 input pins
     Info: Implemented 78 output pins
     Info: Implemented 17 bidirectional pins
-    Info: Implemented 1727 logic cells
+    Info: Implemented 1726 logic cells
     Info: Implemented 10 RAM segments
     Info: Implemented 1 ClockLock PLLs
     Info: Implemented 2 dual-port RAM elements in Excalibur device
     Info: Implemented 1 microprocessor core elements in Excalibur device
 Info: Quartus II Analysis & Synthesis was successful. 0 errors, 155 warnings
-    Info: Processing ended: Fri Jun 18 06:56:58 2004
-    Info: Elapsed time: 00:00:44
+    Info: Processing ended: Thu Jun 24 09:56:20 2004
+    Info: Elapsed time: 00:00:48
 
 
