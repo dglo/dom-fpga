@@ -313,6 +313,10 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL fl_board			: STD_LOGIC_VECTOR (7 downto 0);
 	SIGNAL fl_board_read	: STD_LOGIC_VECTOR (1 downto 0);
 	
+	-- kale communication
+	SIGNAL com_ctrl			: STD_LOGIC_VECTOR (31 downto 0);
+	SIGNAL com_status		: STD_LOGIC_VECTOR (31 downto 0);
+	
 	COMPONENT ROC
 		PORT (
 			CLK			: IN STD_LOGIC;
@@ -490,6 +494,8 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			response_2		: IN	STD_LOGIC_VECTOR(31 downto 0);
 			command_3		: OUT	STD_LOGIC_VECTOR(31 downto 0);
 			response_3		: IN	STD_LOGIC_VECTOR(31 downto 0);
+			com_ctrl		: OUT	STD_LOGIC_VECTOR(31 downto 0);
+			com_status		: IN	STD_LOGIC_VECTOR(31 downto 0);
 			hitcounter_o	: IN	STD_LOGIC_VECTOR(31 downto 0);
 			hitcounter_m	: IN	STD_LOGIC_VECTOR(31 downto 0);
 			hitcounter_o_ff	: IN	STD_LOGIC_VECTOR(31 downto 0);
@@ -929,7 +935,8 @@ BEGIN
 	hitcounter_m_ff(15 downto 0)	<= multiSPEcnt_ff;
 	hitcounter_m_ff(31 downto 16)	<= (others=>'0');
 	
-	
+	-- fake kallo communication reset
+	com_status(2)	<= com_ctrl(2);
 	
 	-- AHB master test
 --	master_enable	<= command_2(8);
@@ -1115,6 +1122,8 @@ BEGIN
 			response_2		=> response_2,
 			command_3		=> command_3,
 			response_3		=> response_3,
+			com_ctrl		=> com_ctrl,
+			com_status		=> com_status,
 			hitcounter_o	=> hitcounter_o,
 			hitcounter_m	=> hitcounter_m,
 			hitcounter_o_ff	=> hitcounter_o_ff,

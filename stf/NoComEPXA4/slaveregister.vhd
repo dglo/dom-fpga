@@ -28,6 +28,8 @@ ENTITY slaveregister IS
 		response_2		: IN	STD_LOGIC_VECTOR(31 downto 0);
 		command_3		: OUT	STD_LOGIC_VECTOR(31 downto 0);
 		response_3		: IN	STD_LOGIC_VECTOR(31 downto 0);
+		com_ctrl		: OUT	STD_LOGIC_VECTOR(31 downto 0);
+		com_status		: IN	STD_LOGIC_VECTOR(31 downto 0);
 		hitcounter_o	: IN	STD_LOGIC_VECTOR(31 downto 0);
 		hitcounter_m	: IN	STD_LOGIC_VECTOR(31 downto 0);
 		hitcounter_o_ff	: IN	STD_LOGIC_VECTOR(31 downto 0);
@@ -154,6 +156,7 @@ BEGIN
 				registers(8)(31 downto 0)	<= hitcounter_o_ff;
 				registers(9)(31 downto 0)	<= hitcounter_m_ff;
 				registers(11)(31 downto 0)	<= response_3;
+				registers(13)(31 downto 0)	<= com_status;
 			END IF;	-- reg_enable
 		END IF;
 	END PROCESS;
@@ -162,6 +165,7 @@ BEGIN
 	command_1	<= registers(2)(31 downto 0);
 	command_2	<= registers(6)(31 downto 0);
 	command_3	<= registers(10)(31 downto 0);
+	com_ctrl	<= registers(12)(31 downto 0);
 	TC <= registers(CONV_INTEGER(15))(7 downto 0);
 	
 	com_adc_write_en <= '1' WHEN reg_write='1' AND reg_enable = '1' AND reg_address(15 downto 12)="0010" ELSE '0';
