@@ -22,7 +22,7 @@
 -- PROGRAM "Quartus II"
 -- VERSION "Version 2.2 Build 147 12/02/2002 SJ Full Version"
 
--- DATE "06/10/2003 09:55:48"
+-- DATE "06/16/2003 08:52:24"
 
 --
 -- Device: Altera EPXA4F672I2 Package FBGA672
@@ -4968,26 +4968,26 @@ SIGNAL n2260_rtl_0_awysi_counter_asload_path_a47_a : std_logic;
 SIGNAL CNT_rtl_0_awysi_counter_acounter_cell_a0_a_aCOUT : std_logic;
 SIGNAL CNT_rtl_0_awysi_counter_asload_path_a1_a : std_logic;
 SIGNAL CNT_rtl_0_awysi_counter_asload_path_a0_a : std_logic;
-SIGNAL NOT_inst_pll2x_aaltclklock_component_aoutclock1 : std_logic;
-SIGNAL NOT_inst_hit_counter_aMultiSPE_nl_areg0 : std_logic;
-SIGNAL NOT_inst_hit_counter_aOneSPE_nl_areg0 : std_logic;
-SIGNAL NOT_slaveregister_inst_aregisters_a6_a_a24_a : std_logic;
-SIGNAL NOT_ahb_slave_inst_amasterhready_areg0 : std_logic;
 SIGNAL NOT_stripe_inst_alpm_instance_alcell_hgrant : std_logic;
 SIGNAL NOT_stripe_inst_alpm_instance_alcell_hresp0 : std_logic;
 SIGNAL NOT_stripe_inst_alpm_instance_alcell_hresp1 : std_logic;
 SIGNAL NOT_inst_pll2x_aaltclklock_component_aoutclock0 : std_logic;
+SIGNAL NOT_inst_hit_counter_aMultiSPE_nl_areg0 : std_logic;
+SIGNAL NOT_inst_hit_counter_aOneSPE_nl_areg0 : std_logic;
+SIGNAL NOT_slaveregister_inst_aregisters_a6_a_a24_a : std_logic;
+SIGNAL NOT_ahb_slave_inst_amasterhready_areg0 : std_logic;
+SIGNAL NOT_inst_pll2x_aaltclklock_component_aoutclock1 : std_logic;
+SIGNAL NOT_com_DAC_TX_inst_aCOM_TX_SLEEP_areg0 : std_logic;
 SIGNAL NOT_slaveregister_inst_aregisters_a2_a_a0_a : std_logic;
 SIGNAL NOT_inst_ROC_aRST_areg0 : std_logic;
 SIGNAL NOT_slaveregister_inst_aregisters_a2_a_a11_a : std_logic;
 SIGNAL NOT_inst_fe_testpulse_ai_a21 : std_logic;
 SIGNAL NOT_inst_fe_r2r_ai_a59 : std_logic;
+SIGNAL NOT_slaveregister_inst_aregisters_a0_a_a26_a : std_logic;
 SIGNAL NOT_slaveregister_inst_aregisters_a0_a_a1_a : std_logic;
 SIGNAL NOT_slaveregister_inst_aregisters_a2_a_a4_a : std_logic;
 SIGNAL NOT_slaveregister_inst_aregisters_a0_a_a9_a : std_logic;
-SIGNAL NOT_com_DAC_TX_inst_aCOM_TX_SLEEP_areg0 : std_logic;
 SIGNAL NOT_slaveregister_inst_aregisters_a0_a_a17_a : std_logic;
-SIGNAL NOT_slaveregister_inst_aregisters_a0_a_a26_a : std_logic;
 SIGNAL NOT_inst_hit_counter_ff_aMultiSPE1 : std_logic;
 SIGNAL NOT_inst_hit_counter_ff_aOneSPE1 : std_logic;
 
@@ -5860,26 +5860,26 @@ stripe_inst_alpm_instance_acore_acore_aEBICSN0 <= ww_stripe_inst_alpm_instance_a
 stripe_inst_alpm_instance_acore_acore_aEBICSN1 <= ww_stripe_inst_alpm_instance_acore_acore_ebicsn(1);
 stripe_inst_alpm_instance_acore_acore_aEBICSN2 <= ww_stripe_inst_alpm_instance_acore_acore_ebicsn(2);
 stripe_inst_alpm_instance_acore_acore_aEBICSN3 <= ww_stripe_inst_alpm_instance_acore_acore_ebicsn(3);
-NOT_inst_pll2x_aaltclklock_component_aoutclock1 <= NOT inst_pll2x_aaltclklock_component_aoutclock1;
-NOT_inst_hit_counter_aMultiSPE_nl_areg0 <= NOT inst_hit_counter_aMultiSPE_nl_areg0;
-NOT_inst_hit_counter_aOneSPE_nl_areg0 <= NOT inst_hit_counter_aOneSPE_nl_areg0;
-NOT_slaveregister_inst_aregisters_a6_a_a24_a <= NOT slaveregister_inst_aregisters_a6_a_a24_a;
-NOT_ahb_slave_inst_amasterhready_areg0 <= NOT ahb_slave_inst_amasterhready_areg0;
 NOT_stripe_inst_alpm_instance_alcell_hgrant <= NOT stripe_inst_alpm_instance_alcell_hgrant;
 NOT_stripe_inst_alpm_instance_alcell_hresp0 <= NOT stripe_inst_alpm_instance_alcell_hresp0;
 NOT_stripe_inst_alpm_instance_alcell_hresp1 <= NOT stripe_inst_alpm_instance_alcell_hresp1;
 NOT_inst_pll2x_aaltclklock_component_aoutclock0 <= NOT inst_pll2x_aaltclklock_component_aoutclock0;
+NOT_inst_hit_counter_aMultiSPE_nl_areg0 <= NOT inst_hit_counter_aMultiSPE_nl_areg0;
+NOT_inst_hit_counter_aOneSPE_nl_areg0 <= NOT inst_hit_counter_aOneSPE_nl_areg0;
+NOT_slaveregister_inst_aregisters_a6_a_a24_a <= NOT slaveregister_inst_aregisters_a6_a_a24_a;
+NOT_ahb_slave_inst_amasterhready_areg0 <= NOT ahb_slave_inst_amasterhready_areg0;
+NOT_inst_pll2x_aaltclklock_component_aoutclock1 <= NOT inst_pll2x_aaltclklock_component_aoutclock1;
+NOT_com_DAC_TX_inst_aCOM_TX_SLEEP_areg0 <= NOT com_DAC_TX_inst_aCOM_TX_SLEEP_areg0;
 NOT_slaveregister_inst_aregisters_a2_a_a0_a <= NOT slaveregister_inst_aregisters_a2_a_a0_a;
 NOT_inst_ROC_aRST_areg0 <= NOT inst_ROC_aRST_areg0;
 NOT_slaveregister_inst_aregisters_a2_a_a11_a <= NOT slaveregister_inst_aregisters_a2_a_a11_a;
 NOT_inst_fe_testpulse_ai_a21 <= NOT inst_fe_testpulse_ai_a21;
 NOT_inst_fe_r2r_ai_a59 <= NOT inst_fe_r2r_ai_a59;
+NOT_slaveregister_inst_aregisters_a0_a_a26_a <= NOT slaveregister_inst_aregisters_a0_a_a26_a;
 NOT_slaveregister_inst_aregisters_a0_a_a1_a <= NOT slaveregister_inst_aregisters_a0_a_a1_a;
 NOT_slaveregister_inst_aregisters_a2_a_a4_a <= NOT slaveregister_inst_aregisters_a2_a_a4_a;
 NOT_slaveregister_inst_aregisters_a0_a_a9_a <= NOT slaveregister_inst_aregisters_a0_a_a9_a;
-NOT_com_DAC_TX_inst_aCOM_TX_SLEEP_areg0 <= NOT com_DAC_TX_inst_aCOM_TX_SLEEP_areg0;
 NOT_slaveregister_inst_aregisters_a0_a_a17_a <= NOT slaveregister_inst_aregisters_a0_a_a17_a;
-NOT_slaveregister_inst_aregisters_a0_a_a26_a <= NOT slaveregister_inst_aregisters_a0_a_a26_a;
 NOT_inst_hit_counter_ff_aMultiSPE1 <= NOT inst_hit_counter_ff_aMultiSPE1;
 NOT_inst_hit_counter_ff_aOneSPE1 <= NOT inst_hit_counter_ff_aOneSPE1;
 
