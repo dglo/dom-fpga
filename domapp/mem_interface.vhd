@@ -80,7 +80,7 @@ END mem_interface;
 
 ARCHITECTURE mem_interface_arch OF mem_interface IS
 
-	TYPE STATE_TYPE IS (IDLE, SET_MUX, ENG_HDR0, ENG_HDR1, ENG_HDR2, ENG_HDR3, ENG_FADC, ENG_ATWD, ENG_END, COMP_XFER, COMP_END, DONE);
+	TYPE STATE_TYPE IS (IDLE, SET_MUX, ENG_HDR0, ENG_HDR1, ENG_HDR2, ENG_HDR3, ENG_FADC, ENG_ATWD, ENG_END, WHAT_NEXT, COMP_START, COMP_XFER, COMP_END, DONE);
 	SIGNAL state	: STATE_TYPE;
 	
 	SIGNAL ATWD_data	: STD_LOGIC_VECTOR(31 DOWNTO 0);
@@ -173,6 +173,7 @@ BEGIN
 						state	<= ENG_FADC;
 					ELSIF wait_sig='0' THEN
 						state	<= ENG_END;
+						abort_trans		<= '1';
 					END IF;
 					start_trans		<= '0';
 					rdaddr	<= (OTHERS=>'0');
@@ -186,34 +187,73 @@ BEGIN
 							rdaddr	<= (OTHERS=>'0');
 						ELSE
 							state	<= ENG_END;
+							abort_trans		<= '1';
 						END IF;
 					END IF;
 					start_trans		<= '0';
 				WHEN ENG_ATWD =>
-					IF wait_sig='0' THEN
-						rdaddr	<= rdaddr+1;
-					END IF;
+				--	IF wait_sig='0' THEN
+				--		rdaddr	<= rdaddr+1;
+				--	END IF;
 					IF rdaddr(5 DOWNTO 0) = "111111" AND rdaddr(7 DOWNTO 6) = header.ATWDsize THEN
-						state	<= ENG_END;
+						abort_trans		<= '1';
+						IF ready='1' THEN	-- wait for AHB_master to finish
+							state	<= ENG_END;
+						END IF;
+					ELSE
+						IF wait_sig='0' THEN
+							rdaddr	<= rdaddr+1;
+						END IF;
 					END IF;
 					start_trans		<= '0';
 				WHEN ENG_END =>
-					IF (COMPR_mode=COMPR_ON OR COMPR_mode=COMPR_BOTH) AND compr_avail='1' THEN --AND (LBM_not_full if LBM_mode=LBM_Stop) THEN
-						state	<=COMP_XFER;
-					ELSE
-						state	<= DONE;
-					END IF;
+					--IF (COMPR_mode=COMPR_ON OR COMPR_mode=COMPR_BOTH) AND compr_avail='1' THEN --AND (LBM_not_full if LBM_mode=LBM_Stop) THEN
+					--	IF start_address(SDRAM_SIZE)='1' AND LBM_mode=LBM_STOP THEN
+					--		NULL;
+					--	ELSIF ready='1' THEN	-- wait for AHB_master to finish
+					--		state	<=COMP_START;
+					--	END IF;
+					--ELSE
+					--	state	<= DONE;
+					--END IF;
 					rdaddr	<= (OTHERS=>'0');
 					start_address	<= start_address + 2048;
 					start_trans		<= '0';
 					abort_trans		<= '1';
+					state			<= WHAT_NEXT;
+				WHEN WHAT_NEXT =>
+					IF (COMPR_mode=COMPR_ON OR COMPR_mode=COMPR_BOTH) AND compr_avail='1' THEN --AND (LBM_not_full if LBM_mode=LBM_Stop) THEN
+						IF start_address(SDRAM_SIZE)='1' AND LBM_mode=LBM_STOP THEN
+							NULL;
+						ELSIF ready='1' THEN	-- wait for AHB_master to finish
+							start_trans		<= '1';
+							state	<=COMP_START;
+						END IF;
+					ELSE
+						state	<= DONE;
+					END IF;
+				WHEN COMP_START =>	-- start transfer if eng and compr gets written into LBM
+					start_trans		<= '1';
+					abort_trans		<= '0';
+				--	IF ready='0' THEN
+						state			<=COMP_XFER;
+				--	END IF;
 				WHEN COMP_XFER =>
-					rdaddr	<= rdaddr+1;
+				--	IF wait_sig='0' THEN
+				--		rdaddr	<= rdaddr+1;
+				--	END IF;
 					IF rdaddr=compr_size THEN
-						state	<= COMP_END;
+						abort_trans		<= '1';
+						IF ready='1' THEN	-- wait for AHB_master to finish
+							state	<= COMP_END;
+						END IF;
+					ELSE
+						IF wait_sig='0' THEN
+							rdaddr	<= rdaddr+1;
+						END IF;
 					END IF;
 					start_trans		<= '0';
-					abort_trans		<= '0';
+				--	abort_trans		<= '0';
 				WHEN COMP_END =>
 					state	<= DONE;
 					rdaddr	<= (OTHERS=>'X');
@@ -274,8 +314,9 @@ BEGIN
 			header3 WHEN state=ENG_HDR3 ELSE
 			FADC_data WHEN state=ENG_FADC ELSE
 			ATWD_data WHEN state=ENG_ATWD ELSE
+			compr_data WHEN state=COMP_START ELSE
 			compr_data WHEN state=COMP_XFER ELSE
-			(OTHERS=>'X'); --X"XXXXXXXX";
+			(OTHERS=>'1'); --(OTHERS=>'X'); --X"XXXXXXXX";
 			
 	-- memory addresses
 	compr_addr_A	<= rdaddr (8 DOWNTO 0);

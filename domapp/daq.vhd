@@ -597,7 +597,7 @@ BEGIN
 			TC				=> open
 		);
 	
-	CLK20n	<= CLK20;
+	CLK20n	<= NOT CLK20;
 	inst_ahb_master : ahb_master
 		PORT MAP (
 			CLK			=> CLK20,
