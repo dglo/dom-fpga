@@ -22,7 +22,7 @@
 -- PROGRAM "Quartus II"
 -- VERSION "Version 2.2 Build 147 12/02/2002 SJ Full Version"
 
--- DATE "06/30/2003 10:02:49"
+-- DATE "07/02/2003 17:11:26"
 
 --
 -- Device: Altera EPXA1F672C2 Package FBGA672
