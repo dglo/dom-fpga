@@ -1,6 +1,8 @@
 -- Harolds code
 -- ADD HEADER !!!!!
 
+-- 11/30/2004  thorsten   changed CPU forced to flash on cs_ctrl.CS_CPU
+
 
 LIBRARY IEEE;
 use IEEE.std_logic_1164.all;
@@ -114,11 +116,14 @@ begin
 				CPU_forced_start <= '0';
 			
 			when "011" => --CPU Forced
-				if  CPU_forced_start = '0' then
-					now <='1'; --may need more work to get 1 clk period
-					CPU_forced_start <= '1';
-				else now <= '0';
-				end if;
+				-- We want a flash when CS_CPU is high, NOT when we switch to CPU Forced
+				now	<= CS_ctrl.CS_CPU;
+				--if  CPU_forced_start = '0' then
+				--	now <='1'; --may need more work to get 1 clk period
+				--	CPU_forced_start <= '1';
+				--else
+				--	now <= '0';
+				--end if;
 				cs_time_start <= '0';			
 			
 			when others => 
