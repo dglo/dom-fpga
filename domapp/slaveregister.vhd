@@ -51,6 +51,7 @@ ENTITY slaveregister IS
 		-- command register
 		DAQ_ctrl		: OUT DAQ_STRUCT;
 		CS_ctrl			: OUT CS_STRUCT;
+		cs_flash_time	: IN STD_LOGIC_VECTOR (47 DOWNTO 0);
 		LC_ctrl			: OUT LC_STRUCT;
 		RM_ctrl			: OUT RM_CTRL_STRUCT;
 		RM_stat			: IN  RM_STAT_STRUCT;
@@ -281,6 +282,11 @@ BEGIN
 						END IF;
 					END IF;
 					reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"046c") ) THEN	-- Calibration Flash Time LSB
+					reg_rdata(31 downto 0)	<= cs_flash_time (31 DOWNTO 0);
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0470") ) THEN	-- Calibration Flash Time MSB
+					reg_rdata(15 downto 0)	<= cs_flash_time (47 DOWNTO 32);
+					reg_rdata(31 downto 16)	<= (OTHERS=>'0');
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0480") ) THEN	-- Rate Monitor Control
 					IF reg_write = '1' THEN
 						RM_ctrl_local.RM_rate_enable	<= reg_wdata(1 downto 0);

@@ -405,6 +405,7 @@ ARCHITECTURE arch_domapp OF domapp IS
 			-- command register
 			DAQ_ctrl		: OUT DAQ_STRUCT;
 			CS_ctrl			: OUT CS_STRUCT;
+			cs_flash_time	: IN STD_LOGIC_VECTOR (47 DOWNTO 0);
 			LC_ctrl			: OUT LC_STRUCT;
 			RM_ctrl			: OUT RM_CTRL_STRUCT;
 			RM_stat			: IN  RM_STAT_STRUCT;
@@ -646,6 +647,7 @@ ARCHITECTURE arch_domapp OF domapp IS
 	
 	-- Calibration Sources
 	SIGNAL CS_ctrl		: CS_STRUCT;
+	SIGNAL cs_flash_time	: STD_LOGIC_VECTOR (47 DOWNTO 0);
 	SIGNAL CS_trigger	: STD_LOGIC_VECTOR (5 DOWNTO 0);
 	SIGNAL cs_wf_data	: STD_LOGIC_VECTOR (7 DOWNTO 0);
 	SIGNAL cs_wf_addr	: STD_LOGIC_VECTOR (7 DOWNTO 0);
@@ -913,6 +915,7 @@ BEGIN
 			-- command register
 			DAQ_ctrl		=> DAQ_ctrl,
 			CS_ctrl			=> CS_ctrl,
+			cs_flash_time	=> cs_flash_time,
 			LC_ctrl			=> LC_ctrl,
 			RM_ctrl			=> RM_ctrl,
 			RM_stat			=> RM_stat,
@@ -993,7 +996,7 @@ BEGIN
 			cs_wf_data			=> cs_wf_data,
 			cs_wf_addr			=> cs_wf_addr,
 			cs_flash_now		=> open,
-			cs_flash_time		=> open,
+			cs_flash_time		=> cs_flash_time,
 			-- DAQ interface
 			cs_daq_trigger		=> CS_trigger,
 			cs_daq_veto			=> '0',
