@@ -998,6 +998,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			RST					: IN STD_LOGIC;
 			-- enable flasher board flash
 			enable				: IN STD_LOGIC;
+			divider				: IN STD_LOGIC_VECTOR(3 downto 0);
 			-- control input
 			fl_board			: IN STD_LOGIC_VECTOR(7 downto 0);
 			fl_board_read		: OUT STD_LOGIC_VECTOR(1 downto 0);
@@ -2000,6 +2001,7 @@ BEGIN
 			RST					=> RST,
 			-- enable flasher board flash
 			enable				=> enable_flasher,
+			divider				=> fe_divider,
 			-- control input
 			fl_board			=> fl_board,
 			fl_board_read		=> fl_board_read,

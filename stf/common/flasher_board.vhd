@@ -31,6 +31,7 @@ ENTITY flasher_board IS
 		RST					: IN STD_LOGIC;
 		-- enable flasher board flash
 		enable				: IN STD_LOGIC;
+		divider				: IN STD_LOGIC_VECTOR(3 downto 0);
 		-- control input
 		fl_board			: IN STD_LOGIC_VECTOR(7 downto 0);
 		fl_board_read		: OUT STD_LOGIC_VECTOR(1 downto 0);
@@ -61,8 +62,8 @@ BEGIN
 	
 	
 	PROCESS (RST,CLK)
-		VARIABLE cnt		: STD_LOGIC_VECTOR(15 downto 0);
-		VARIABLE cnt_old	: STD_LOGIC_VECTOR(15 downto 0);
+		VARIABLE cnt		: STD_LOGIC_VECTOR(32 downto 0);
+		VARIABLE cnt_old	: STD_LOGIC_VECTOR(32 downto 0);
 		VARIABLE tick		: STD_LOGIC;
 		VARIABLE tick_old	: STD_LOGIC;
 	BEGIN
@@ -77,7 +78,7 @@ BEGIN
 			LEDdelay	<= (OTHERS=>'0');
 		ELSIF CLK'EVENT AND CLK='1' THEN
 			tick_old	:= tick;
-			tick		:= cnt(15) XOR cnt_old(15);
+			tick		:= cnt(15+CONV_INTEGER(divider)) XOR cnt_old(15+CONV_INTEGER(divider));
 			cnt_old		:= cnt;
 			-- SingleLED_TRIGGER	<= tick OR tick_old;
 			trigLED	<= tick OR tick_old;
