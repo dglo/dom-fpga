@@ -32,7 +32,7 @@ ENTITY hit_counter_ff IS
 		RST			: IN STD_LOGIC;
 		-- setup
 		gatetime	: IN STD_LOGIC := '0';
-		deadtime	: IN STD_LOGIC_VECTOR (3 DOWNTO 0); 
+		deadtime	: IN STD_LOGIC_VECTOR (3 DOWNTO 0) := "0000"; 
 		-- discriminator input
 		MultiSPE		: IN STD_LOGIC;
 		OneSPE			: IN STD_LOGIC;
@@ -40,7 +40,7 @@ ENTITY hit_counter_ff IS
 		multiSPEcnt		: OUT STD_LOGIC_VECTOR(15 downto 0);
 		oneSPEcnt		: OUT STD_LOGIC_VECTOR(15 downto 0);
 		-- frontend pulser
-		FE_pulse		: IN STD_LOGIC;
+		FE_pulse		: IN STD_LOGIC := '0';
 		-- test connector
 		TC					: OUT STD_LOGIC_VECTOR(7 downto 0)
 	);

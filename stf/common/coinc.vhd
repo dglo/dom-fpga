@@ -33,7 +33,7 @@ ENTITY coinc IS
 		-- enable
 		enable_coinc_down	: IN STD_LOGIC;
 		enable_coinc_up		: IN STD_LOGIC;
-		newFF				: IN STD_LOGIC;
+		newFF				: IN STD_LOGIC := '0';
 		-- manual control
 		coinc_up_high		: IN STD_LOGIC;
 		coinc_up_low		: IN STD_LOGIC;

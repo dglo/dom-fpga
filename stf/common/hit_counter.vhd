@@ -32,7 +32,7 @@ ENTITY hit_counter IS
 		RST			: IN STD_LOGIC;
 		-- setup
 		gatetime	: IN STD_LOGIC := '0';
-		deadtime	: IN STD_LOGIC_VECTOR (3 DOWNTO 0);
+		deadtime	: IN STD_LOGIC_VECTOR (3 DOWNTO 0) := "0000";
 		-- discriminator input
 		MultiSPE		: IN STD_LOGIC;
 		OneSPE			: IN STD_LOGIC;
