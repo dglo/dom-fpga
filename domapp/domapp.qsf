@@ -39,6 +39,7 @@ set_global_assignment -name VHDL_FILE ahb_slave.vhd
 set_global_assignment -name VHDL_FILE ROC.vhd
 set_global_assignment -name VHDL_FILE FADC_input.vhd
 set_global_assignment -name VHDL_FILE calibration_sources.vhd
+set_global_assignment -name VHDL_FILE interrupts.vhd
 set_global_assignment -name VHDL_FILE rate_meters.vhd
 set_global_assignment -name VHDL_FILE ahb_master.vhd
 set_global_assignment -name VHDL_FILE ATWD_control.vhd

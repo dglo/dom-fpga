@@ -386,6 +386,7 @@ ARCHITECTURE arch_domapp OF domapp IS
 	COMPONENT slaveregister
 		PORT (
 			CLK			: IN STD_LOGIC;
+			CLK40		: IN STD_LOGIC;
 			RST			: IN STD_LOGIC;
 			systime		: IN STD_LOGIC_VECTOR (47 DOWNTO 0);
 			-- connections to the stripe
@@ -402,6 +403,7 @@ ARCHITECTURE arch_domapp OF domapp IS
 			masterhsize		: IN	STD_LOGIC_VECTOR(1 downto 0);
 			masterhtrans	: IN	STD_LOGIC_VECTOR(1 downto 0);
 			masterhwdata	: IN	STD_LOGIC_VECTOR(31 downto 0);
+			intpld			: OUT	STD_LOGIC_VECTOR (5 DOWNTO 0);
 			-- command register
 			DAQ_ctrl		: OUT DAQ_STRUCT;
 			CS_ctrl			: OUT CS_STRUCT;
@@ -683,7 +685,7 @@ BEGIN
 	-- dp2_portadataout	<= ;
 	
 	-- interrupts
-	intpld	<= (others=>'0');
+	-- intpld	<= (others=>'0');
 	
 	-- GP stripe IO
 	gpi(7 downto 0)		<= (others=>'0');
@@ -896,6 +898,7 @@ BEGIN
 	inst_slaveregister : slaveregister
 		PORT MAP (
 			CLK			=> CLK20,
+			CLK40		=> CLK40,
 			RST			=> RST,
 			systime		=> systime,
 			-- connections to the stripe
@@ -912,6 +915,7 @@ BEGIN
 			masterhsize		=> masterhsize,
 			masterhtrans	=> masterhtrans,
 			masterhwdata	=> masterhwdata,
+			intpld			=> intpld,
 			-- command register
 			DAQ_ctrl		=> DAQ_ctrl,
 			CS_ctrl			=> CS_ctrl,
