@@ -74,7 +74,7 @@ BEGIN
 			ELSIF (tick_old2 OR tick_old3)='1' THEN
 				FE_TEST_PULSE	<= '0';
 			ELSE
-				FE_TEST_PULSE	<= '0';
+				FE_TEST_PULSE	<= 'Z'; -- set to Z for JohnJ's LC test--  FE_TEST_PULSE	<= '0';
 			END IF;
 			tick_old3	:= tick_old2;
 			tick_old2	:= tick_old1;
