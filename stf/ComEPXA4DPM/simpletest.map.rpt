@@ -1,5 +1,5 @@
 Analysis & Synthesis report for simpletest
-Mon Aug 30 16:44:37 2004
+Thu Oct 21 09:59:27 2004
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -25,17 +25,18 @@ Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
  17. State Machine - atwd_ping_pong:inst_atwd_ping_pong|atwd0_state
  18. State Machine - atwd_ping_pong:inst_atwd_ping_pong|atwd1_state
  19. State Machine - coinc:inst_coinc|state
- 20. State Machine - ahb_master:inst_ahb_master|master_state
- 21. State Machine - ahb_slave:ahb_slave_inst|slave_state
- 22. State Machine - ROC:inst_ROC|RST_state
- 23. Analysis & Synthesis Resource Utilization by Entity
- 24. Analysis & Synthesis Equations
- 25. Analysis & Synthesis Files Read
- 26. Analysis & Synthesis Resource Usage Summary
- 27. Analysis & Synthesis RAM Summary
- 28. WYSIWYG Cells
- 29. General Register Statistics
- 30. Analysis & Synthesis Messages
+ 20. State Machine - coinc:inst_coinc|atwd_coinc
+ 21. State Machine - ahb_master:inst_ahb_master|master_state
+ 22. State Machine - ahb_slave:ahb_slave_inst|slave_state
+ 23. State Machine - ROC:inst_ROC|RST_state
+ 24. Analysis & Synthesis Resource Utilization by Entity
+ 25. Analysis & Synthesis Equations
+ 26. Analysis & Synthesis Files Read
+ 27. Analysis & Synthesis Resource Usage Summary
+ 28. Analysis & Synthesis RAM Summary
+ 29. WYSIWYG Cells
+ 30. General Register Statistics
+ 31. Analysis & Synthesis Messages
 
 
 
@@ -67,11 +68,11 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                        ;
 +-----------------------------+---------------------------------------+
-; Analysis & Synthesis Status ; Successful - Mon Aug 30 16:44:37 2004 ;
+; Analysis & Synthesis Status ; Successful - Thu Oct 21 09:59:27 2004 ;
 ; Revision Name               ; simpletest                            ;
 ; Top-level Entity Name       ; simpletest                            ;
 ; Family                      ; EXCALIBUR_ARM                         ;
-; Total logic elements        ; 4,502                                 ;
+; Total logic elements        ; 4,785                                 ;
 ; Total pins                  ; 283                                   ;
 ; Total memory bits           ; 27,264                                ;
 ; Total PLLs                  ; 2                                     ;
@@ -968,6 +969,17 @@ simpletest
 +------------+----------+----------+----------+
 
 
++-----------------------------------------------------------------+
+; State Machine - coinc:inst_coinc|atwd_coinc                     ;
++------------------------------------------------------------------
+; Name            ; atwd_coinc~12 ; atwd_coinc~11 ; atwd_coinc~10 ;
++-----------------+---------------+---------------+---------------+
+; atwd_coinc.idle ; 0             ; 0             ; 0             ;
+; atwd_coinc.pos  ; 0             ; 1             ; 1             ;
+; atwd_coinc.neg  ; 1             ; 0             ; 1             ;
++-----------------+---------------+---------------+---------------+
+
+
 +----------------------------------------------------------------------------------+
 ; State Machine - ahb_master:inst_ahb_master|master_state                          ;
 +-----------------------------------------------------------------------------------
@@ -1008,15 +1020,15 @@ simpletest
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Compilation Hierarchy Node                                     ; Logic Cells ; Registers ; Memory Bits ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Full Hierarchy Name                                                                                                                                                                                                                                                           ;
 +----------------------------------------------------------------+-------------+-----------+-------------+------+--------------+--------------+-------------------+------------------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; |simpletest                                                    ; 4502 (2)    ; 2281      ; 27264       ; 283  ; 0            ; 2221 (2)     ; 759 (0)           ; 1522 (0)         ; 1078 (0)        ; |simpletest                                                                                                                                                                                                                                                                   ;
+; |simpletest                                                    ; 4785 (2)    ; 2391      ; 27264       ; 283  ; 0            ; 2394 (2)     ; 841 (0)           ; 1550 (0)         ; 1174 (0)        ; |simpletest                                                                                                                                                                                                                                                                   ;
 ;    |LED2ATWDdelay:LED2ATWDdelay_inst|                          ; 30 (30)     ; 16        ; 0           ; 0    ; 0            ; 14 (14)      ; 15 (15)           ; 1 (1)            ; 0 (0)           ; |simpletest|LED2ATWDdelay:LED2ATWDdelay_inst                                                                                                                                                                                                                                  ;
 ;    |ROC:inst_ROC|                                              ; 4 (4)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 2 (2)             ; 2 (2)            ; 0 (0)           ; |simpletest|ROC:inst_ROC                                                                                                                                                                                                                                                      ;
 ;    |ahb_master:inst_ahb_master|                                ; 32 (32)     ; 32        ; 0           ; 0    ; 0            ; 0 (0)        ; 32 (32)           ; 0 (0)            ; 0 (0)           ; |simpletest|ahb_master:inst_ahb_master                                                                                                                                                                                                                                        ;
 ;    |ahb_slave:ahb_slave_inst|                                  ; 55 (55)     ; 25        ; 0           ; 0    ; 0            ; 30 (30)      ; 0 (0)             ; 25 (25)          ; 0 (0)           ; |simpletest|ahb_slave:ahb_slave_inst                                                                                                                                                                                                                                          ;
-;    |atwd:atwd0|                                                ; 411 (26)    ; 181       ; 8192        ; 0    ; 0            ; 230 (26)     ; 19 (0)            ; 162 (0)          ; 117 (0)         ; |simpletest|atwd:atwd0                                                                                                                                                                                                                                                        ;
-;       |atwd_control:inst_atwd_control|                         ; 200 (200)   ; 90        ; 0           ; 0    ; 0            ; 110 (110)    ; 1 (1)             ; 89 (89)          ; 64 (64)         ; |simpletest|atwd:atwd0|atwd_control:inst_atwd_control                                                                                                                                                                                                                         ;
+;    |atwd:atwd0|                                                ; 411 (26)    ; 180       ; 8192        ; 0    ; 0            ; 231 (26)     ; 19 (0)            ; 161 (0)          ; 117 (0)         ; |simpletest|atwd:atwd0                                                                                                                                                                                                                                                        ;
+;       |atwd_control:inst_atwd_control|                         ; 199 (199)   ; 89        ; 0           ; 0    ; 0            ; 110 (110)    ; 1 (1)             ; 88 (88)          ; 64 (64)         ; |simpletest|atwd:atwd0|atwd_control:inst_atwd_control                                                                                                                                                                                                                         ;
 ;       |atwd_readout:inst_atwd_readout|                         ; 140 (140)   ; 64        ; 0           ; 0    ; 0            ; 76 (76)      ; 12 (12)           ; 52 (52)          ; 41 (41)         ; |simpletest|atwd:atwd0|atwd_readout:inst_atwd_readout                                                                                                                                                                                                                         ;
-;       |atwd_trigger:inst_atwd_trigger|                         ; 40 (40)     ; 27        ; 0           ; 0    ; 0            ; 13 (13)      ; 6 (6)             ; 21 (21)          ; 12 (12)         ; |simpletest|atwd:atwd0|atwd_trigger:inst_atwd_trigger                                                                                                                                                                                                                         ;
+;       |atwd_trigger:inst_atwd_trigger|                         ; 41 (41)     ; 27        ; 0           ; 0    ; 0            ; 14 (14)      ; 6 (6)             ; 21 (21)          ; 12 (12)         ; |simpletest|atwd:atwd0|atwd_trigger:inst_atwd_trigger                                                                                                                                                                                                                         ;
 ;       |com_adc_mem:inst_com_adc_mem|                           ; 0 (0)       ; 0         ; 8192        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |simpletest|atwd:atwd0|com_adc_mem:inst_com_adc_mem                                                                                                                                                                                                                           ;
 ;          |lpm_ram_dp:lpm_ram_dp_component|                     ; 0 (0)       ; 0         ; 8192        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |simpletest|atwd:atwd0|com_adc_mem:inst_com_adc_mem|lpm_ram_dp:lpm_ram_dp_component                                                                                                                                                                                           ;
 ;             |altdpram:sram|                                    ; 0 (0)       ; 0         ; 8192        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |simpletest|atwd:atwd0|com_adc_mem:inst_com_adc_mem|lpm_ram_dp:lpm_ram_dp_component|altdpram:sram                                                                                                                                                                             ;
@@ -1031,8 +1043,8 @@ simpletest
 ;       |gray2bin:inst_gray2bin|                                 ; 5 (5)       ; 0         ; 0           ; 0    ; 0            ; 5 (5)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |simpletest|atwd:atwd1|gray2bin:inst_gray2bin                                                                                                                                                                                                                                 ;
 ;    |atwd_ping_pong:inst_atwd_ping_pong|                        ; 21 (21)     ; 11        ; 0           ; 0    ; 0            ; 10 (10)      ; 3 (3)             ; 8 (8)            ; 0 (0)           ; |simpletest|atwd_ping_pong:inst_atwd_ping_pong                                                                                                                                                                                                                                ;
 ;    |atwd_timestamp:inst_atwd_timestamp|                        ; 100 (100)   ; 98        ; 0           ; 0    ; 0            ; 2 (2)        ; 98 (98)           ; 0 (0)            ; 0 (0)           ; |simpletest|atwd_timestamp:inst_atwd_timestamp                                                                                                                                                                                                                                ;
-;    |coinc:inst_coinc|                                          ; 193 (193)   ; 86        ; 0           ; 0    ; 0            ; 107 (107)    ; 6 (6)             ; 80 (80)          ; 64 (64)         ; |simpletest|coinc:inst_coinc                                                                                                                                                                                                                                                  ;
-;    |dcom_ap:dcom_ap_inst|                                      ; 1567 (0)    ; 835       ; 640         ; 0    ; 0            ; 732 (0)      ; 208 (0)           ; 627 (0)          ; 466 (0)         ; |simpletest|dcom_ap:dcom_ap_inst                                                                                                                                                                                                                                              ;
+;    |coinc:inst_coinc|                                          ; 425 (425)   ; 165       ; 0           ; 0    ; 0            ; 260 (260)    ; 56 (56)           ; 109 (109)        ; 160 (160)       ; |simpletest|coinc:inst_coinc                                                                                                                                                                                                                                                  ;
+;    |dcom_ap:dcom_ap_inst|                                      ; 1570 (0)    ; 835       ; 640         ; 0    ; 0            ; 735 (0)      ; 208 (0)           ; 627 (0)          ; 466 (0)         ; |simpletest|dcom_ap:dcom_ap_inst                                                                                                                                                                                                                                              ;
 ;       |DCOM_tcal_timer:DCOM_tcal_timer|                        ; 47 (18)     ; 29        ; 0           ; 0    ; 0            ; 18 (12)      ; 1 (1)             ; 28 (5)           ; 24 (0)          ; |simpletest|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer                                                                                                                                                                                                              ;
 ;          |dc_tcal_ct:timer|                                    ; 20 (0)      ; 15        ; 0           ; 0    ; 0            ; 5 (0)        ; 0 (0)             ; 15 (0)           ; 15 (0)          ; |simpletest|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer|dc_tcal_ct:timer                                                                                                                                                                                             ;
 ;             |lpm_counter:lpm_counter_component|                ; 20 (0)      ; 15        ; 0           ; 0    ; 0            ; 5 (0)        ; 0 (0)             ; 15 (0)           ; 15 (0)          ; |simpletest|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer|dc_tcal_ct:timer|lpm_counter:lpm_counter_component                                                                                                                                                           ;
@@ -1051,7 +1063,7 @@ simpletest
 ;             |lpm_counter:lpm_counter_component|                ; 9 (0)       ; 8         ; 0           ; 0    ; 0            ; 1 (0)        ; 0 (0)             ; 8 (0)            ; 9 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer|ponres_ct:ponres|lpm_counter:lpm_counter_component                                                                                                                                                           ;
 ;                |alt_synch_counter:wysi_counter|                ; 9 (9)       ; 8         ; 0           ; 0    ; 0            ; 1 (1)        ; 0 (0)             ; 8 (8)            ; 9 (9)           ; |simpletest|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer|ponres_ct:ponres|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter                                                                                                                            ;
 ;       |DC_CTRAP:DC_CTRAP|                                      ; 52 (52)     ; 21        ; 0           ; 0    ; 0            ; 31 (31)      ; 0 (0)             ; 21 (21)          ; 0 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP                                                                                                                                                                                                                            ;
-;       |DC_Rx_chan_ap:DC_Rx_chan_ap|                            ; 793 (61)    ; 428       ; 640         ; 0    ; 0            ; 365 (4)      ; 163 (57)          ; 265 (0)          ; 314 (1)         ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap                                                                                                                                                                                                                  ;
+;       |DC_Rx_chan_ap:DC_Rx_chan_ap|                            ; 798 (61)    ; 428       ; 640         ; 0    ; 0            ; 370 (4)      ; 163 (57)          ; 265 (0)          ; 314 (1)         ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap                                                                                                                                                                                                                  ;
 ;          |DC_MRAP:inst10|                                      ; 38 (38)     ; 19        ; 0           ; 0    ; 0            ; 19 (19)      ; 1 (1)             ; 18 (18)          ; 0 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10                                                                                                                                                                                                   ;
 ;          |RX_UART_ap:inst|                                     ; 50 (0)      ; 31        ; 0           ; 0    ; 0            ; 19 (0)       ; 8 (0)             ; 23 (0)           ; 11 (0)          ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst                                                                                                                                                                                                  ;
 ;             |UA_RX_AP:inst|                                    ; 28 (28)     ; 14        ; 0           ; 0    ; 0            ; 14 (14)      ; 0 (0)             ; 14 (14)          ; 0 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst                                                                                                                                                                                    ;
@@ -1079,12 +1091,12 @@ simpletest
 ;                |alt_synch_counter:wysi_counter|                ; 17 (17)     ; 16        ; 0           ; 0    ; 0            ; 1 (1)        ; 0 (0)             ; 16 (16)          ; 17 (17)         ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|crc_error_ct:inst8|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter                                                                                                                              ;
 ;          |crc_rx:inst20|                                       ; 87 (41)     ; 49        ; 0           ; 0    ; 0            ; 38 (24)      ; 1 (1)             ; 48 (16)          ; 0 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|crc_rx:inst20                                                                                                                                                                                                    ;
 ;             |crc32:inst_crc32|                                 ; 46 (46)     ; 32        ; 0           ; 0    ; 0            ; 14 (14)      ; 0 (0)             ; 32 (32)          ; 0 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|crc_rx:inst20|crc32:inst_crc32                                                                                                                                                                                   ;
-;          |dc_adc_to_ser:inst6|                                 ; 178 (142)   ; 65        ; 0           ; 0    ; 0            ; 113 (95)     ; 41 (41)           ; 24 (6)           ; 96 (92)         ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_adc_to_ser:inst6                                                                                                                                                                                              ;
-;             |HL_DSCR:hl_dec_stm|                               ; 32 (32)     ; 14        ; 0           ; 0    ; 0            ; 18 (18)      ; 0 (0)             ; 14 (14)          ; 0 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_adc_to_ser:inst6|HL_DSCR:hl_dec_stm                                                                                                                                                                           ;
+;          |dc_adc_to_ser:inst6|                                 ; 182 (142)   ; 65        ; 0           ; 0    ; 0            ; 117 (95)     ; 41 (41)           ; 24 (6)           ; 96 (92)         ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_adc_to_ser:inst6                                                                                                                                                                                              ;
+;             |HL_DSCR:hl_dec_stm|                               ; 36 (36)     ; 14        ; 0           ; 0    ; 0            ; 22 (22)      ; 0 (0)             ; 14 (14)          ; 0 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_adc_to_ser:inst6|HL_DSCR:hl_dec_stm                                                                                                                                                                           ;
 ;             |ctup4b:ct|                                        ; 4 (0)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 4 (0)            ; 4 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_adc_to_ser:inst6|ctup4b:ct                                                                                                                                                                                    ;
 ;                |lpm_counter:lpm_counter_component|             ; 4 (0)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 4 (0)            ; 4 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_adc_to_ser:inst6|ctup4b:ct|lpm_counter:lpm_counter_component                                                                                                                                                  ;
 ;                   |alt_synch_counter:wysi_counter|             ; 4 (4)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 4 (4)            ; 4 (4)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_adc_to_ser:inst6|ctup4b:ct|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter                                                                                                                   ;
-;          |dc_hdr_dec_ap:inst4|                                 ; 23 (23)     ; 16        ; 0           ; 0    ; 0            ; 7 (7)        ; 7 (7)             ; 9 (9)            ; 0 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_hdr_dec_ap:inst4                                                                                                                                                                                              ;
+;          |dc_hdr_dec_ap:inst4|                                 ; 24 (24)     ; 16        ; 0           ; 0    ; 0            ; 8 (8)        ; 7 (7)             ; 9 (9)            ; 0 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_hdr_dec_ap:inst4                                                                                                                                                                                              ;
 ;          |dc_rapcal_lh:inst30|                                 ; 76 (10)     ; 50        ; 640         ; 0    ; 0            ; 26 (0)       ; 12 (10)           ; 38 (0)           ; 34 (0)          ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst30                                                                                                                                                                                              ;
 ;             |DCTC_FWR:inst7|                                   ; 20 (20)     ; 14        ; 0           ; 0    ; 0            ; 6 (6)        ; 1 (1)             ; 13 (13)          ; 0 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst30|DCTC_FWR:inst7                                                                                                                                                                               ;
 ;             |TCWF_64x10:inst11|                                ; 29 (0)      ; 20        ; 640         ; 0    ; 0            ; 9 (0)        ; 1 (0)             ; 19 (0)           ; 17 (0)          ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst30|TCWF_64x10:inst11                                                                                                                                                                            ;
@@ -1176,13 +1188,13 @@ simpletest
 ;          |rx_packet_ct:inst23|                                 ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|rx_packet_ct:inst23                                                                                                                                                                                              ;
 ;             |lpm_counter:lpm_counter_component|                ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|rx_packet_ct:inst23|lpm_counter:lpm_counter_component                                                                                                                                                            ;
 ;                |alt_synch_counter:wysi_counter|                ; 16 (16)     ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; 16 (16)         ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|rx_packet_ct:inst23|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter                                                                                                                             ;
-;       |DC_Tx_chan_ap:DC_Tx_chan_ap|                            ; 675 (25)    ; 357       ; 0           ; 0    ; 0            ; 318 (7)      ; 44 (18)           ; 313 (0)          ; 128 (0)         ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap                                                                                                                                                                                                                  ;
+;       |DC_Tx_chan_ap:DC_Tx_chan_ap|                            ; 673 (25)    ; 357       ; 0           ; 0    ; 0            ; 316 (7)      ; 44 (18)           ; 313 (0)          ; 128 (0)         ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap                                                                                                                                                                                                                  ;
 ;          |DC_SNAP:inst11|                                      ; 113 (113)   ; 43        ; 0           ; 0    ; 0            ; 70 (70)      ; 9 (9)             ; 34 (34)          ; 0 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11                                                                                                                                                                                                   ;
 ;          |Tx_dpr_ctrl_PAR_ap:inst10|                           ; 88 (72)     ; 32        ; 0           ; 0    ; 0            ; 56 (56)      ; 16 (16)           ; 16 (0)           ; 57 (41)         ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|Tx_dpr_ctrl_PAR_ap:inst10                                                                                                                                                                                        ;
 ;             |tx_dpr_radr_ct:tx_dpr_rad|                        ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|Tx_dpr_ctrl_PAR_ap:inst10|tx_dpr_radr_ct:tx_dpr_rad                                                                                                                                                              ;
 ;                |lpm_counter:lpm_counter_component|             ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|Tx_dpr_ctrl_PAR_ap:inst10|tx_dpr_radr_ct:tx_dpr_rad|lpm_counter:lpm_counter_component                                                                                                                            ;
 ;                   |alt_synch_counter:wysi_counter|             ; 16 (16)     ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; 16 (16)         ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|Tx_dpr_ctrl_PAR_ap:inst10|tx_dpr_radr_ct:tx_dpr_rad|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter                                                                                             ;
-;          |crc_tx:inst3|                                        ; 98 (52)     ; 55        ; 0           ; 0    ; 0            ; 43 (29)      ; 1 (1)             ; 54 (22)          ; 6 (6)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3                                                                                                                                                                                                     ;
+;          |crc_tx:inst3|                                        ; 96 (50)     ; 55        ; 0           ; 0    ; 0            ; 41 (27)      ; 1 (1)             ; 54 (22)          ; 6 (6)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3                                                                                                                                                                                                     ;
 ;             |crc32:inst_crc32|                                 ; 46 (46)     ; 32        ; 0           ; 0    ; 0            ; 14 (14)      ; 0 (0)             ; 32 (32)          ; 0 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|crc32:inst_crc32                                                                                                                                                                                    ;
 ;          |dc_com_dac_ctrl:inst6|                               ; 28 (20)     ; 8         ; 0           ; 0    ; 0            ; 20 (20)      ; 0 (0)             ; 8 (0)            ; 8 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6                                                                                                                                                                                            ;
 ;             |dac_levct:daclev|                                 ; 8 (0)       ; 8         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 8 (0)            ; 8 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|dac_levct:daclev                                                                                                                                                                           ;
@@ -1337,7 +1349,7 @@ simpletest
 ;    |single_led:inst_single_led|                                ; 23 (7)      ; 23        ; 0           ; 0    ; 0            ; 0 (0)        ; 5 (5)             ; 18 (2)           ; 16 (0)          ; |simpletest|single_led:inst_single_led                                                                                                                                                                                                                                        ;
 ;       |lpm_counter:cnt_rtl_10|                                 ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |simpletest|single_led:inst_single_led|lpm_counter:cnt_rtl_10                                                                                                                                                                                                                 ;
 ;          |alt_synch_counter:wysi_counter|                      ; 16 (16)     ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; 16 (16)         ; |simpletest|single_led:inst_single_led|lpm_counter:cnt_rtl_10|alt_synch_counter:wysi_counter                                                                                                                                                                                  ;
-;    |slaveregister:slaveregister_inst|                          ; 1007 (1007) ; 339       ; 2048        ; 0    ; 0            ; 668 (668)    ; 241 (241)         ; 98 (98)          ; 0 (0)           ; |simpletest|slaveregister:slaveregister_inst                                                                                                                                                                                                                                  ;
+;    |slaveregister:slaveregister_inst|                          ; 1055 (1055) ; 371       ; 2048        ; 0    ; 0            ; 684 (684)    ; 273 (273)         ; 98 (98)          ; 0 (0)           ; |simpletest|slaveregister:slaveregister_inst                                                                                                                                                                                                                                  ;
 ;       |version_rom:inst_version_rom|                           ; 0 (0)       ; 0         ; 2048        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |simpletest|slaveregister:slaveregister_inst|version_rom:inst_version_rom                                                                                                                                                                                                     ;
 ;          |lpm_rom:lpm_rom_component|                           ; 0 (0)       ; 0         ; 2048        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |simpletest|slaveregister:slaveregister_inst|version_rom:inst_version_rom|lpm_rom:lpm_rom_component                                                                                                                                                                           ;
 ;             |altrom:srom|                                      ; 0 (0)       ; 0         ; 2048        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |simpletest|slaveregister:slaveregister_inst|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|altrom:srom                                                                                                                                                               ;
@@ -1614,16 +1626,16 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/s
 +---------------------------------------------------------------------------------------------
 ; Resource                      ; Usage                                                      ;
 +-------------------------------+------------------------------------------------------------+
-; Logic cells                   ; 4,502                                                      ;
-; Total combinational functions ; 3743                                                       ;
-; Total registers               ; 2281                                                       ;
+; Logic cells                   ; 4,785                                                      ;
+; Total combinational functions ; 3944                                                       ;
+; Total registers               ; 2391                                                       ;
 ; I/O pins                      ; 283                                                        ;
 ; Total memory bits             ; 27264                                                      ;
 ; Total PLLs                    ; 2                                                          ;
 ; Maximum fan-out node          ; pll2x:inst_pll2x|altclklock:altclklock_component|outclock0 ;
-; Maximum fan-out               ; 2324                                                       ;
-; Total fan-out                 ; 19903                                                      ;
-; Average fan-out               ; 4.09                                                       ;
+; Maximum fan-out               ; 2429                                                       ;
+; Total fan-out                 ; 20855                                                      ;
+; Average fan-out               ; 4.05                                                       ;
 +-------------------------------+------------------------------------------------------------+
 
 
@@ -1645,15 +1657,15 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/s
 +-----------------------------------------------------------------
 ; Statistic                                              ; Value ;
 +--------------------------------------------------------+-------+
-; Number of WYSIWYG cells                                ; 1032  ;
-; Number of synthesis-generated cells                    ; 3470  ;
-; Number of WYSIWYG LUTs                                 ; 1032  ;
-; Number of synthesis-generated LUTs                     ; 2711  ;
+; Number of WYSIWYG cells                                ; 1128  ;
+; Number of synthesis-generated cells                    ; 3657  ;
+; Number of WYSIWYG LUTs                                 ; 1128  ;
+; Number of synthesis-generated LUTs                     ; 2816  ;
 ; Number of WYSIWYG registers                            ; 507   ;
-; Number of synthesis-generated registers                ; 1774  ;
-; Number of cells with combinational logic only          ; 2221  ;
-; Number of cells with registers only                    ; 759   ;
-; Number of cells with combinational logic and registers ; 1522  ;
+; Number of synthesis-generated registers                ; 1884  ;
+; Number of cells with combinational logic only          ; 2394  ;
+; Number of cells with registers only                    ; 841   ;
+; Number of cells with combinational logic and registers ; 1550  ;
 +--------------------------------------------------------+-------+
 
 
@@ -1664,9 +1676,9 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/s
 +--------------------------------------+-------+
 ; Number of registers using SCLR       ; 141   ;
 ; Number of registers using SLOAD      ; 156   ;
-; Number of registers using ACLR       ; 1391  ;
+; Number of registers using ACLR       ; 1487  ;
 ; Number of registers using ALOAD      ; 0     ;
-; Number of registers using CLK_ENABLE ; 1429  ;
+; Number of registers using CLK_ENABLE ; 1472  ;
 ; Number of registers using OE         ; 0     ;
 ; Number of registers using PRESET     ; 0     ;
 +--------------------------------------+-------+
@@ -1678,7 +1690,7 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/s
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Mon Aug 30 16:42:57 2004
+    Info: Processing started: Thu Oct 21 09:57:27 2004
 Info: Command: quartus_map --import_settings_files=on --export_settings_files=off simpletest -c simpletest
 Info: Found 1 design units and 1 entities in source file ../../common/comDPM/test_and_tresholds.tdf
     Info: Found entity 1: test_and_tresholds
@@ -1944,40 +1956,41 @@ Warning: VHDL Signal Declaration warning at simpletest.vhd(246): ignored default
 Warning: VHDL Signal Declaration warning at simpletest.vhd(248): ignored default value for signal response_2
 Warning: VHDL Signal Declaration warning at simpletest.vhd(250): used explicit default value for signal response_3 because signal was never assigned a value
 Warning: VHDL Signal Declaration warning at simpletest.vhd(252): ignored default value for signal response_4
-Warning: VHDL Signal Declaration warning at simpletest.vhd(261): used explicit default value for signal com_adc_rdata because signal was never assigned a value
-Warning: VHDL Signal Declaration warning at simpletest.vhd(404): ignored default value for signal tx_dpr_radr
-Warning: Tied undriven net rx_addr[31] at simpletest.vhd(402) to GND or VCC
-Warning: Tied undriven net rx_addr[30] at simpletest.vhd(402) to GND or VCC
-Warning: Tied undriven net rx_addr[29] at simpletest.vhd(402) to GND or VCC
-Warning: Tied undriven net rx_addr[28] at simpletest.vhd(402) to GND or VCC
-Warning: Tied undriven net rx_addr[27] at simpletest.vhd(402) to GND or VCC
-Warning: Tied undriven net rx_addr[26] at simpletest.vhd(402) to GND or VCC
-Warning: Tied undriven net rx_addr[25] at simpletest.vhd(402) to GND or VCC
-Warning: Tied undriven net rx_addr[24] at simpletest.vhd(402) to GND or VCC
-Warning: Tied undriven net rx_addr[23] at simpletest.vhd(402) to GND or VCC
-Warning: Tied undriven net rx_addr[22] at simpletest.vhd(402) to GND or VCC
-Warning: Tied undriven net rx_addr[21] at simpletest.vhd(402) to GND or VCC
-Warning: Tied undriven net rx_addr[20] at simpletest.vhd(402) to GND or VCC
-Warning: Tied undriven net rx_addr[19] at simpletest.vhd(402) to GND or VCC
-Warning: Tied undriven net rx_addr[18] at simpletest.vhd(402) to GND or VCC
-Warning: Tied undriven net rx_addr[17] at simpletest.vhd(402) to GND or VCC
-Warning: Tied undriven net rx_addr[16] at simpletest.vhd(402) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[31] at simpletest.vhd(404) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[30] at simpletest.vhd(404) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[29] at simpletest.vhd(404) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[28] at simpletest.vhd(404) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[27] at simpletest.vhd(404) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[26] at simpletest.vhd(404) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[25] at simpletest.vhd(404) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[24] at simpletest.vhd(404) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[23] at simpletest.vhd(404) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[22] at simpletest.vhd(404) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[21] at simpletest.vhd(404) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[20] at simpletest.vhd(404) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[19] at simpletest.vhd(404) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[18] at simpletest.vhd(404) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[17] at simpletest.vhd(404) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[16] at simpletest.vhd(404) to GND or VCC
+Warning: VHDL Signal Declaration warning at simpletest.vhd(254): used explicit default value for signal response_5 because signal was never assigned a value
+Warning: VHDL Signal Declaration warning at simpletest.vhd(263): used explicit default value for signal com_adc_rdata because signal was never assigned a value
+Warning: VHDL Signal Declaration warning at simpletest.vhd(410): ignored default value for signal tx_dpr_radr
+Warning: Tied undriven net rx_addr[31] at simpletest.vhd(408) to GND or VCC
+Warning: Tied undriven net rx_addr[30] at simpletest.vhd(408) to GND or VCC
+Warning: Tied undriven net rx_addr[29] at simpletest.vhd(408) to GND or VCC
+Warning: Tied undriven net rx_addr[28] at simpletest.vhd(408) to GND or VCC
+Warning: Tied undriven net rx_addr[27] at simpletest.vhd(408) to GND or VCC
+Warning: Tied undriven net rx_addr[26] at simpletest.vhd(408) to GND or VCC
+Warning: Tied undriven net rx_addr[25] at simpletest.vhd(408) to GND or VCC
+Warning: Tied undriven net rx_addr[24] at simpletest.vhd(408) to GND or VCC
+Warning: Tied undriven net rx_addr[23] at simpletest.vhd(408) to GND or VCC
+Warning: Tied undriven net rx_addr[22] at simpletest.vhd(408) to GND or VCC
+Warning: Tied undriven net rx_addr[21] at simpletest.vhd(408) to GND or VCC
+Warning: Tied undriven net rx_addr[20] at simpletest.vhd(408) to GND or VCC
+Warning: Tied undriven net rx_addr[19] at simpletest.vhd(408) to GND or VCC
+Warning: Tied undriven net rx_addr[18] at simpletest.vhd(408) to GND or VCC
+Warning: Tied undriven net rx_addr[17] at simpletest.vhd(408) to GND or VCC
+Warning: Tied undriven net rx_addr[16] at simpletest.vhd(408) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[31] at simpletest.vhd(410) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[30] at simpletest.vhd(410) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[29] at simpletest.vhd(410) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[28] at simpletest.vhd(410) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[27] at simpletest.vhd(410) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[26] at simpletest.vhd(410) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[25] at simpletest.vhd(410) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[24] at simpletest.vhd(410) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[23] at simpletest.vhd(410) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[22] at simpletest.vhd(410) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[21] at simpletest.vhd(410) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[20] at simpletest.vhd(410) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[19] at simpletest.vhd(410) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[18] at simpletest.vhd(410) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[17] at simpletest.vhd(410) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[16] at simpletest.vhd(410) to GND or VCC
 Info: Found 1 design units and 1 entities in source file ../../../../../fpgatools/quartus/libraries/megafunctions/altclklock.tdf
     Info: Found entity 1: altclklock
 Info: Using design file stripe.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
@@ -1999,6 +2012,7 @@ Info: Found 1 design units and 1 entities in source file ../../../../../fpgatool
 Warning: VHDL Process Statement warning at ahb_master.vhd(104): signal address is in statement, but is not in sensitivity list
 Info: VHDL Case Statement information at ahb_master.vhd(209): OTHERS choice is never selected
 Warning: VHDL Process Statement warning at ahb_master.vhd(238): signal start_trans_reg is in statement, but is not in sensitivity list
+Info: VHDL Case Statement information at slaveregister.vhd(415): OTHERS choice is never selected
 Info: Using design file version_rom.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info: Found entity 1: version_rom
 Info: Found 1 design units and 1 entities in source file ../../../../../fpgatools/quartus/libraries/megafunctions/lpm_rom.tdf
@@ -2010,6 +2024,7 @@ Info: Found 1 design units and 1 entities in source file ../../../../../fpgatool
     Info: Found entity 1: lpm_ram_dp
 Info: Found 1 design units and 1 entities in source file ../../../../../fpgatools/quartus/libraries/megafunctions/altdpram.tdf
     Info: Found entity 1: altdpram
+Info: VHDL Case Statement information at coinc.vhd(182): OTHERS choice is never selected
 Warning: VHDL Process Statement warning at hit_counter_ff.vhd(111): signal onesperst is in statement, but is not in sensitivity list
 Warning: VHDL Process Statement warning at hit_counter_ff.vhd(124): signal multisperst is in statement, but is not in sensitivity list
 Warning: Found multiple base names
@@ -2111,6 +2126,7 @@ Info: Duplicate registers merged to single register
     Info: Duplicate register flasher_board:flasher_board_inst|FL_Trigger_bar~reg0 merged to single register flasher_board:flasher_board_inst|FL_Trigger~reg0, power-up level changed
 Warning: Reduced register ahb_slave:ahb_slave_inst|masterhresp[1]~reg0 with stuck data_in port to stuck value GND
 Info: Duplicate registers merged to single register
+    Info: Duplicate register atwd:atwd1|atwd_control:inst_atwd_control|start_readout~reg0 merged to single register atwd:atwd1|atwd_control:inst_atwd_control|OutputEnable~reg0
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|EOF_SENT merged to single register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|msg_sent~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|TCWFM_FRD merged to single register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|tcwf_rd_next~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|shift_ct_aclr~reg merged to single register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|crc_init~reg
@@ -2127,7 +2143,7 @@ Info: Duplicate registers merged to single register
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|id_shr~reg merged to single register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|ID_SHR8
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|DATA_HDR merged to single register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|dom_adr_en~reg
 Info: Duplicate registers merged to single register
-    Info: Duplicate register atwd:atwd1|atwd_control:inst_atwd_control|start_readout~reg0 merged to single register atwd:atwd1|atwd_control:inst_atwd_control|OutputEnable~reg0
+    Info: Duplicate register atwd:atwd0|atwd_control:inst_atwd_control|start_readout~reg0 merged to single register atwd:atwd0|atwd_control:inst_atwd_control|OutputEnable~reg0
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[1] merged to single register ahb_master:inst_ahb_master|haddr[0]
 Info: Inferred 11 megafunctions from design logic
     Info: Inferred lpm_counter megafunction (LPM_WIDTH=48) from the following logic: CNT[0]~0
@@ -2155,6 +2171,7 @@ Info: State machine |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state 
 Info: State machine |simpletest|atwd_ping_pong:inst_atwd_ping_pong|atwd0_state contains 4 states and 0 state bits
 Info: State machine |simpletest|atwd_ping_pong:inst_atwd_ping_pong|atwd1_state contains 4 states and 0 state bits
 Info: State machine |simpletest|coinc:inst_coinc|state contains 3 states and 0 state bits
+Info: State machine |simpletest|coinc:inst_coinc|atwd_coinc contains 3 states and 0 state bits
 Info: State machine |simpletest|ahb_master:inst_ahb_master|master_state contains 3 states and 0 state bits
 Info: State machine |simpletest|ahb_slave:ahb_slave_inst|slave_state contains 5 states and 0 state bits
 Info: State machine |simpletest|ROC:inst_ROC|RST_state contains 3 states and 0 state bits
@@ -2388,6 +2405,15 @@ Info: Encoding result for state machine |simpletest|coinc:inst_coinc|state
     Info: State |simpletest|coinc:inst_coinc|state.idle uses code string 000
     Info: State |simpletest|coinc:inst_coinc|state.pos uses code string 011
     Info: State |simpletest|coinc:inst_coinc|state.neg uses code string 101
+Info: Selected Auto state machine encoding method for state machine |simpletest|coinc:inst_coinc|atwd_coinc
+Info: Encoding result for state machine |simpletest|coinc:inst_coinc|atwd_coinc
+    Info: Completed encoding using 3 state bits
+        Info: Encoded state bit coinc:inst_coinc|atwd_coinc~12
+        Info: Encoded state bit coinc:inst_coinc|atwd_coinc~11
+        Info: Encoded state bit coinc:inst_coinc|atwd_coinc~10
+    Info: State |simpletest|coinc:inst_coinc|atwd_coinc.idle uses code string 000
+    Info: State |simpletest|coinc:inst_coinc|atwd_coinc.pos uses code string 011
+    Info: State |simpletest|coinc:inst_coinc|atwd_coinc.neg uses code string 101
 Info: Selected Auto state machine encoding method for state machine |simpletest|ahb_master:inst_ahb_master|master_state
 Info: Encoding result for state machine |simpletest|ahb_master:inst_ahb_master|master_state
     Info: Completed encoding using 3 state bits
@@ -2443,56 +2469,56 @@ Warning: Reduced register ahb_master:inst_ahb_master|slavehwrite~reg0 with stuck
 Warning: Reduced register ahb_master:inst_ahb_master|slavehtrans[0]~reg0 with stuck data_in port to stuck value GND
 Info: Duplicate registers merged to single register
     Info: Duplicate register atwd:atwd0|atwd_control:inst_atwd_control|state~20 merged to single register atwd:atwd1|atwd_control:inst_atwd_control|state~20
-    Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst30|DCTC_FWR:inst7|sreg~38 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst30|DCTC_FWR:inst7|pulse_rcvd~reg
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[2] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[3] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[4] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[5] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[6] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[7] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[8] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[9] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[10] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[11] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[12] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[13] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[14] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[15] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[16] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[15] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[14] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[13] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[12] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[11] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[10] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[9] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[8] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[7] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[6] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[17] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[18] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[31] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[30] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[29] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[28] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[27] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[26] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[25] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[24] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[23] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[22] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[21] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[20] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[19] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[20] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[21] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[22] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[23] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[24] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[25] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[26] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[27] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[28] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[5] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[4] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[3] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[2] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[29] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[30] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[31] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register atwd:atwd1|atwd_control:inst_atwd_control|state~26 merged to single register atwd:atwd0|atwd_control:inst_atwd_control|state~26
+    Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|sreg~32 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|data_stb~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|sreg~41 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|stf_stb~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|sreg~33 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|eof_stb~reg
-    Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|sreg~32 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|data_stb~reg
+    Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst30|DCTC_FWR:inst7|sreg~38 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst30|DCTC_FWR:inst7|pulse_rcvd~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_adc_to_ser:inst6|HL_DSCR:hl_dec_stm|sreg~32 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_adc_to_ser:inst6|HL_DSCR:hl_dec_stm|one~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|sreg~39 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|shd~reg
     Info: Duplicate register atwd_ping_pong:inst_atwd_ping_pong|atwd1_state~20 merged to single register atwd_ping_pong:inst_atwd_ping_pong|atwd0_state~20
 Info: Registers with preset signals will power-up high
 Info: DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Info: Duplicate registers merged to single register
-    Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst30|DCTC_FWR:inst7|rx_time_lat~reg merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst30|DCTC_FWR:inst7|sreg~34
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|sreg~30 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|ctclr~reg, power-up level changed
+    Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst30|DCTC_FWR:inst7|rx_time_lat~reg merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst30|DCTC_FWR:inst7|sreg~34
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst30|DCTC_FWR:inst7|sreg~30 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst30|DCTC_FWR:inst7|tcwf_aclr~reg, power-up level changed
-    Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_adc_to_ser:inst6|HL_DSCR:hl_dec_stm|ct_aclr~reg merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_adc_to_ser:inst6|HL_DSCR:hl_dec_stm|sreg~30, power-up level changed
+    Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_adc_to_ser:inst6|HL_DSCR:hl_dec_stm|sreg~30 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_adc_to_ser:inst6|HL_DSCR:hl_dec_stm|ct_aclr~reg, power-up level changed
 Warning: Reduced register ahb_master:inst_ahb_master|haddr[0] with stuck data_in port to stuck value GND
 Info: Duplicate registers merged to single register
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|crc_init~reg merged to single register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|STF
 Warning: TRI or OPNDRN buffers permanently disabled
-    Warning: Node i624
+    Warning: Node i657
 Warning: Output pins are stuck at VCC or GND
     Warning: Pin FPGA_LOADED stuck at GND
     Warning: Pin COM_TX_SLEEP stuck at GND
@@ -2515,6 +2541,10 @@ Warning: Output pins are stuck at VCC or GND
     Warning: Pin PGM[12] stuck at VCC
     Warning: Pin PGM[9] stuck at GND
     Warning: Pin PGM[8] stuck at GND
+    Warning: Pin PGM[7] stuck at GND
+    Warning: Pin PGM[6] stuck at GND
+    Warning: Pin PGM[5] stuck at GND
+    Warning: Pin PGM[4] stuck at GND
 Warning: CASCADE primitive dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_tx_mux:inst5|lpm_mux:lpm_mux_component|muxlut:$00010|muxlut:$00012|muxlut:$00016|$00012 is fed by non-combinatorial logic
 Warning: Primitive dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|muxsel1~reg of type DFFE cannot feed CASCADE primitive dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_tx_mux:inst5|lpm_mux:lpm_mux_component|muxlut:$00010|muxlut:$00012|muxlut:$00016|$00012 because the primitive already contains fan-out to one or more CASCADE primitives
 Warning: CASCADE primitive dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_tx_mux:inst5|lpm_mux:lpm_mux_component|muxlut:$00012|muxlut:$00012|muxlut:$00016|$00012 is fed by non-combinatorial logic
@@ -2534,17 +2564,17 @@ Warning: Design contains 5 input pin(s) that do not drive logic
     Warning: No output dependent on input pin COM_AD_OTR
     Warning: No output dependent on input pin HDV_Rx
     Warning: No output dependent on input pin FLASH_NCO
-Info: Implemented 4864 device resources after synthesis - the final resource count might be different
+Info: Implemented 5147 device resources after synthesis - the final resource count might be different
     Info: Implemented 69 input pins
     Info: Implemented 159 output pins
     Info: Implemented 55 bidirectional pins
-    Info: Implemented 4502 logic cells
+    Info: Implemented 4785 logic cells
     Info: Implemented 74 RAM segments
     Info: Implemented 2 ClockLock PLLs
     Info: Implemented 2 dual-port RAM elements in Excalibur device
     Info: Implemented 1 microprocessor core elements in Excalibur device
-Info: Quartus II Analysis & Synthesis was successful. 0 errors, 132 warnings
-    Info: Processing ended: Mon Aug 30 16:44:37 2004
-    Info: Elapsed time: 00:01:39
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 137 warnings
+    Info: Processing ended: Thu Oct 21 09:59:27 2004
+    Info: Elapsed time: 00:01:59
 
 

@@ -61,6 +61,8 @@ ENTITY slaveregister IS
 		dom_id			: OUT	STD_LOGIC_VECTOR(63 DOWNTO 0);
 		command_4		: OUT	STD_LOGIC_VECTOR(31 downto 0);
 		response_4		: IN	STD_LOGIC_VECTOR(31 downto 0);
+		command_5		: OUT	STD_LOGIC_VECTOR(31 downto 0);
+		response_5		: IN	STD_LOGIC_VECTOR(31 downto 0);
 		tx_dpr_wadr		: OUT	STD_LOGIC_VECTOR(31 downto 0);
 		tx_dpr_radr		: IN	STD_LOGIC_VECTOR(31 downto 0);
 		rx_dpr_radr		: OUT	STD_LOGIC_VECTOR(31 downto 0);
@@ -118,6 +120,7 @@ ARCHITECTURE arch_slaveregister OF slaveregister IS
 	SIGNAL command_3_local	: STD_LOGIC_VECTOR (31 DOWNTO 0);
 	SIGNAL com_ctrl_local	: STD_LOGIC_VECTOR (31 DOWNTO 0);
 	SIGNAL command_4_local	: STD_LOGIC_VECTOR (31 DOWNTO 0);
+	SIGNAL command_5_local	: STD_LOGIC_VECTOR (31 DOWNTO 0);
 	SIGNAL tx_dpr_wadr_local	: STD_LOGIC_VECTOR (31 DOWNTO 0);
 	SIGNAL rx_dpr_radr_local	: STD_LOGIC_VECTOR (31 DOWNTO 0);
 	
@@ -140,6 +143,7 @@ BEGIN
 			command_3_local	<= (others=>'0');
 			com_ctrl_local	<= "00000001001000000001011000000000";
 			command_4_local	<= (others=>'0');
+			command_5_local	<= (others=>'0');
 			tx_dpr_wadr_local	<= (others=>'0');
 			rx_dpr_radr_local	<= (others=>'0');
 			
@@ -373,6 +377,17 @@ BEGIN
 									ELSE
 										reg_rdata <= response_4;
 									END IF;
+								WHEN "11010" => -- command 5
+									IF reg_write = '1' THEN
+										command_5_local <= reg_wdata;
+									ELSE
+										reg_rdata <= command_5_local;
+									END IF;
+								WHEN "11011" =>	-- response 5
+									IF reg_write = '1' THEN
+									ELSE
+										reg_rdata <= response_5;
+									END IF;
 								WHEN "11100" =>	-- tx_dpr_wadr
 									IF reg_write = '1' THEN
 										tx_dpr_wadr_local <= reg_wdata;
@@ -475,6 +490,7 @@ BEGIN
 	command_3	<= command_3_local; --registers(10)(31 downto 0);
 	com_ctrl	<= com_ctrl_local; --registers(12)(31 downto 0);
 	command_4	<= command_4_local;
+	command_5	<= command_5_local;
 	tx_dpr_wadr	<= tx_dpr_wadr_local;
 	rx_dpr_radr	<= rx_dpr_radr_local;
 	-- com_tx_data	<= registers(14)(31 downto 0);

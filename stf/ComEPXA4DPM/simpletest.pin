@@ -510,14 +510,14 @@ FE_PULSER_N[1]               : V24       : output : LVTTL             :         
 RESERVED_INPUT               : V25       :        :                   :         : 8         :                
 RESERVED_INPUT               : V26       :        :                   :         : 8         :                
 RESERVED_INPUT               : W1        :        :                   :         : 12        :                
-CLK3p                        : W2        : input  : LVTTL             :         : 12        : N              
+RESERVED_INPUT               : W2        :        :                   :         : 12        :                
 RESERVED_INPUT               : W3        :        :                   :         : 13        :                
 RESERVED_INPUT               : W4        :        :                   :         : 13        :                
 RESERVED_INPUT               : W5        :        :                   :         : 13        :                
 CLK2p                        : W6        : input  : LVTTL             :         : 13        : N              
 DATA0                        : W7        : input  :                   :         :           :                
 GND                          : W8        : gnd    :                   :         :           :                
-RESERVED_INPUT               : W9        :        :                   :         : 11        :                
+CLK3p                        : W9        : input  : LVTTL             :         : 11        : N              
 RESERVED_INPUT               : W10       :        :                   :         : 11        :                
 RESERVED_INPUT               : W11       :        :                   :         : 11        :                
 RESERVED_INPUT               : W12       :        :                   :         : 11        :                
