@@ -1,0 +1,84 @@
+Quartus II Archive log --	c:\icecube\fpgacode\hardwaretest\simpletest\simpletest_PLD_register.qarlog
+
+Archive:	c:\icecube\fpgacode\hardwaretest\simpletest\simpletest_PLD_register.qar
+Date:		Wed Jan 29 14:29:24 2003
+
+	=========== Files Selected: ===========
+c:\icecube\fpgacode\hardwaretest\simpletest\ahb_slave.vhd
+c:\icecube\fpgacode\hardwaretest\simpletest\alt_exc_stripe.esf
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest(0).cnf.cdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest(0).cnf.hdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest(1).cnf.cdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest(1).cnf.hdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest(10).cnf.cdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest(10).cnf.hdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest(11).cnf.cdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest(11).cnf.hdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest(2).cnf.cdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest(2).cnf.hdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest(3).cnf.cdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest(3).cnf.hdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest(4).cnf.cdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest(4).cnf.hdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest(5).cnf.cdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest(5).cnf.hdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest(6).cnf.cdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest(6).cnf.hdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest(7).cnf.cdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest(7).cnf.hdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest(8).cnf.cdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest(8).cnf.hdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest(9).cnf.cdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest(9).cnf.hdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest.csf.msg
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest.db_info
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest.hif
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest.psf.hdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest.simpletest.csf.hdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest.simpletest.csf.rdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest.simpletest.db_entries.csf.cdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest.simpletest.sgate_entries.csf.cdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest.simpletest.sgate_entries.csf.hdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest.simpletest.tdb_netlist.csf.tdb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest.simpletest.tim_manager.csf.ddb
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest_hier_info
+c:\icecube\fpgacode\hardwaretest\simpletest\db\simpletest_syn_hier_info
+c:\icecube\fpgacode\hardwaretest\simpletest\debug.fsf
+c:\icecube\fpgacode\hardwaretest\simpletest\memmap.vhd
+c:\icecube\fpgacode\hardwaretest\simpletest\release.fsf
+c:\icecube\fpgacode\hardwaretest\simpletest\simpletest.csf
+c:\icecube\fpgacode\hardwaretest\simpletest\simpletest.csf.rpt
+c:\icecube\fpgacode\hardwaretest\simpletest\simpletest.eqn
+c:\icecube\fpgacode\hardwaretest\simpletest\simpletest.pin
+c:\icecube\fpgacode\hardwaretest\simpletest\simpletest.pof
+c:\icecube\fpgacode\hardwaretest\simpletest\simpletest.psf
+c:\icecube\fpgacode\hardwaretest\simpletest\simpletest.psof
+c:\icecube\fpgacode\hardwaretest\simpletest\simpletest.quartus
+c:\icecube\fpgacode\hardwaretest\simpletest\simpletest.sbd
+c:\icecube\fpgacode\hardwaretest\simpletest\simpletest.sbi
+c:\icecube\fpgacode\hardwaretest\simpletest\simpletest.sof
+c:\icecube\fpgacode\hardwaretest\simpletest\simpletest.ssf
+c:\icecube\fpgacode\hardwaretest\simpletest\simpletest.vhd
+c:\icecube\fpgacode\hardwaretest\simpletest\slaveregister.vhd
+c:\icecube\fpgacode\hardwaretest\simpletest\stripe.bsf
+c:\icecube\fpgacode\hardwaretest\simpletest\stripe.h
+c:\icecube\fpgacode\hardwaretest\simpletest\stripe.s
+c:\icecube\fpgacode\hardwaretest\simpletest\stripe.vhd
+c:\quartus\libraries\megafunctions\aglobal.inc
+c:\quartus\libraries\megafunctions\alt_exc_dpram.inc
+c:\quartus\libraries\megafunctions\alt_exc_dpram.tdf
+c:\quartus\libraries\megafunctions\alt_exc_stripe.tdf
+c:\quartus\libraries\megafunctions\alt_exc_upcore.inc
+c:\quartus\libraries\megafunctions\alt_exc_upcore.tdf
+c:\quartus\libraries\megafunctions\apex20ke_dpram.inc
+c:\quartus\libraries\megafunctions\apex20ke_io.inc
+c:\quartus\libraries\megafunctions\apex20ke_io_bidir.v
+c:\quartus\libraries\megafunctions\apex20ke_io_bidir_od.v
+c:\quartus\libraries\megafunctions\apex20ke_io_in.v
+c:\quartus\libraries\megafunctions\apex20ke_io_out.v
+c:\quartus\libraries\megafunctions\apex20ke_lcell.inc
+c:\quartus\libraries\megafunctions\apex20ke_upcore.inc
+	======= Total: 74 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.

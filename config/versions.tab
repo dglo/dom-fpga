@@ -1,0 +1,23 @@
+config	comm	1
+config	acquisition	1
+config	flasher	1
+config	pulser	1
+config	local	1
+
+iceboot	comm	1
+iceboot	acquisition	1
+iceboot	flasher	1
+iceboot	pulser	1
+iceboot	local	1
+
+test	comm	1
+test	acquisition	1
+test	flasher	1
+test	pulser	1
+test	local	1
+
+domapp	comm	1
+domapp	acquisition	1
+domapp	flasher	1
+domapp	pulser	1
+domapp	local	1

@@ -1,0 +1,140 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 1991-2002 Altera Corporation
+Any  megafunction  design,  and related netlist (encrypted  or  decrypted),
+support information,  device programming or simulation file,  and any other
+associated  documentation or information  provided by  Altera  or a partner
+under  Altera's   Megafunction   Partnership   Program  may  be  used  only
+to program  PLD  devices (but not masked  PLD  devices) from  Altera.   Any
+other  use  of such  megafunction  design,  netlist,  support  information,
+device programming or simulation file,  or any other  related documentation
+or information  is prohibited  for  any  other purpose,  including, but not
+limited to  modification,  reverse engineering,  de-compiling, or use  with
+any other  silicon devices,  unless such use is  explicitly  licensed under
+a separate agreement with  Altera  or a megafunction partner.  Title to the
+intellectual property,  including patents,  copyrights,  trademarks,  trade
+secrets,  or maskworks,  embodied in any such megafunction design, netlist,
+support  information,  device programming or simulation file,  or any other
+related documentation or information provided by  Altera  or a megafunction
+partner, remains with Altera, the megafunction partner, or their respective
+licensors. No other licenses, including any licenses needed under any third
+party's intellectual property, are provided herein.
+*/
+(header "symbol" (version "1.1"))
+(symbol
+	(rect 16 16 192 240)
+	(text "RX_MREC" (rect 5 0 68 15)(font "Arial" ))
+	(text "inst" (rect 8 205 30 220)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "CLK" (rect 0 0 26 15)(font "Arial" ))
+		(text "CLK" (rect 21 27 47 42)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32)(line_width 1))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "data_stb" (rect 0 0 52 15)(font "Arial" ))
+		(text "data_stb" (rect 21 43 73 58)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48)(line_width 1))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "last_byte" (rect 0 0 53 15)(font "Arial" ))
+		(text "last_byte" (rect 21 59 74 74)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64)(line_width 1))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "rec_data" (rect 0 0 52 15)(font "Arial" ))
+		(text "rec_data" (rect 21 75 73 90)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 1))
+	)
+	(port
+		(pt 0 96)
+		(input)
+		(text "RESET" (rect 0 0 44 15)(font "Arial" ))
+		(text "RESET" (rect 21 91 65 106)(font "Arial" ))
+		(line (pt 0 96)(pt 16 96)(line_width 1))
+	)
+	(port
+		(pt 176 32)
+		(output)
+		(text "byte_clr" (rect 0 0 46 15)(font "Arial" ))
+		(text "byte_clr" (rect 109 27 155 42)(font "Arial" ))
+		(line (pt 176 32)(pt 160 32)(line_width 1))
+	)
+	(port
+		(pt 176 48)
+		(output)
+		(text "byte_ena0" (rect 0 0 62 15)(font "Arial" ))
+		(text "byte_ena0" (rect 93 43 155 58)(font "Arial" ))
+		(line (pt 176 48)(pt 160 48)(line_width 1))
+	)
+	(port
+		(pt 176 64)
+		(output)
+		(text "byte_ena1" (rect 0 0 62 15)(font "Arial" ))
+		(text "byte_ena1" (rect 93 59 155 74)(font "Arial" ))
+		(line (pt 176 64)(pt 160 64)(line_width 1))
+	)
+	(port
+		(pt 176 80)
+		(output)
+		(text "byte_ena2" (rect 0 0 62 15)(font "Arial" ))
+		(text "byte_ena2" (rect 93 75 155 90)(font "Arial" ))
+		(line (pt 176 80)(pt 160 80)(line_width 1))
+	)
+	(port
+		(pt 176 96)
+		(output)
+		(text "byte_ena3" (rect 0 0 62 15)(font "Arial" ))
+		(text "byte_ena3" (rect 93 91 155 106)(font "Arial" ))
+		(line (pt 176 96)(pt 160 96)(line_width 1))
+	)
+	(port
+		(pt 176 112)
+		(output)
+		(text "fifo_wrreq" (rect 0 0 59 15)(font "Arial" ))
+		(text "fifo_wrreq" (rect 96 107 155 122)(font "Arial" ))
+		(line (pt 176 112)(pt 160 112)(line_width 1))
+	)
+	(port
+		(pt 176 128)
+		(output)
+		(text "msg_rcvd" (rect 0 0 59 15)(font "Arial" ))
+		(text "msg_rcvd" (rect 96 123 155 138)(font "Arial" ))
+		(line (pt 176 128)(pt 160 128)(line_width 1))
+	)
+	(port
+		(pt 176 144)
+		(output)
+		(text "plct_aclr" (rect 0 0 50 15)(font "Arial" ))
+		(text "plct_aclr" (rect 105 139 155 154)(font "Arial" ))
+		(line (pt 176 144)(pt 160 144)(line_width 1))
+	)
+	(port
+		(pt 176 160)
+		(output)
+		(text "plct_clk_en" (rect 0 0 68 15)(font "Arial" ))
+		(text "plct_clk_en" (rect 87 155 155 170)(font "Arial" ))
+		(line (pt 176 160)(pt 160 160)(line_width 1))
+	)
+	(port
+		(pt 176 176)
+		(output)
+		(text "plct_sload" (rect 0 0 62 15)(font "Arial" ))
+		(text "plct_sload" (rect 93 171 155 186)(font "Arial" ))
+		(line (pt 176 176)(pt 160 176)(line_width 1))
+	)
+	(drawing
+		(rectangle (rect 16 16 160 208)(line_width 1))
+	)
+)
