@@ -62,6 +62,7 @@ ENTITY slaveregister IS
 		COMM_STAT		: IN  COMM_STAT_STRUCT;
 		DOM_status		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 		COMPR_ctrl		: OUT COMPR_STRUCT;
+		debugging		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 		-- pointers
 		LBM_ptr			: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 		-- kale communication interface
@@ -514,7 +515,7 @@ BEGIN
 					ELSE
 						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
 					END IF;
-				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0550") ) THEN	-- Compression ATWD A 1/0
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0550") ) THEN	-- Compression ATWD B 1/0
 					IF reg_write = '1' THEN
 						COMPR_ctrl_local.ATWDb0thres	<= reg_wdata(9 DOWNTO 0);
 						COMPR_ctrl_local.ATWDb1thres	<= reg_wdata(25 DOWNTO 16);
@@ -527,7 +528,7 @@ BEGIN
 					ELSE
 						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
 					END IF;
-				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0554") ) THEN	-- Compression ATWD A 3/2
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0554") ) THEN	-- Compression ATWD B 3/2
 					IF reg_write = '1' THEN
 						COMPR_ctrl_local.ATWDb2thres	<= reg_wdata(9 DOWNTO 0);
 						COMPR_ctrl_local.ATWDb3thres	<= reg_wdata(25 DOWNTO 16);
@@ -545,7 +546,7 @@ BEGIN
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"07F8") ) THEN	-- PONG (just in case we want to implement a 3D PONG game with IceCubeA) 
 					reg_rdata(31 downto 0) <= X"504F4E47";	-- ASCII PONG
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"07FC") ) THEN	-- Firmware Debugging
-					NULL;
+					reg_rdata(31 downto 0)	<= debugging;
 				ELSIF std_match( reg_address(13 downto 2) , "0010--------" ) THEN	-- Supernova
 				ELSIF std_match( reg_address(13 downto 2) , "0011--------" ) THEN	-- R2R Pattern
 					NULL;
