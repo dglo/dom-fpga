@@ -38,8 +38,13 @@ BEGIN
 			cntn	:= "0000";
 			state	<= pup;
 		ELSIF CLK'EVENT AND CLK='1' THEN
-			FE_PULSER_P	<= cntp;
-			FE_PULSER_N	<= cntn;
+			IF enable='1' THEN
+				FE_PULSER_P	<= cntp;
+				FE_PULSER_N	<= cntn;
+			ELSE
+				FE_PULSER_P	<= "ZZZZ";
+				FE_PULSER_N	<= "ZZZZ";
+			END IF;
 			IF enable='1' THEN
 				CASE state IS
 					WHEN pup =>
