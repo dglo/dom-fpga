@@ -28,6 +28,10 @@ ENTITY slaveregister IS
 		response_2		: IN	STD_LOGIC_VECTOR(31 downto 0);
 		command_3		: OUT	STD_LOGIC_VECTOR(31 downto 0);
 		response_3		: IN	STD_LOGIC_VECTOR(31 downto 0);
+		com_ctrl		: OUT	STD_LOGIC_VECTOR(31 downto 0);
+		com_status		: IN	STD_LOGIC_VECTOR(31 downto 0);
+		com_tx_data		: OUT	STD_LOGIC_VECTOR(31 downto 0);
+		com_rx_data		: IN	STD_LOGIC_VECTOR(31 downto 0);
 		hitcounter_o	: IN	STD_LOGIC_VECTOR(31 downto 0);
 		hitcounter_m	: IN	STD_LOGIC_VECTOR(31 downto 0);
 		hitcounter_o_ff	: IN	STD_LOGIC_VECTOR(31 downto 0);
@@ -52,6 +56,9 @@ ENTITY slaveregister IS
 		atwd1_rdata			: IN STD_LOGIC_VECTOR (15 downto 0);
 		atwd1_address		: OUT STD_LOGIC_VECTOR (8 downto 0);
 		atwd1_write_en		: OUT STD_LOGIC;
+		-- kale communication interface
+		tx_fifo_wr			: OUT STD_LOGIC;
+		rx_fifo_rd			: OUT STD_LOGIC;
 		-- test connector
 		TC					: OUT	STD_LOGIC_VECTOR(7 downto 0)
 	);
@@ -88,6 +95,8 @@ BEGIN
 	--		com_adc_write_en <= '0';
 	--		flash_adc_write_en <= '0';
 	--		atwd0_write_en <= '0';
+			tx_fifo_wr	<= '0';
+			rx_fifo_rd	<= '0';
 			IF reg_enable = '1' THEN
 				IF reg_address(19 downto 18) = "10" THEN	-- map into the simple test addr space
 					CASE reg_address(15 downto 12) IS
@@ -103,6 +112,13 @@ BEGIN
 								registers(CONV_INTEGER(reg_address(5 downto 2))) <= reg_wdata;
 							ELSE
 								reg_rdata <= registers(CONV_INTEGER(reg_address(5 downto 2)));
+							END IF;
+							
+							IF reg_address(5 downto 2)="1110" AND reg_write = '1' THEN
+								tx_fifo_wr	<= '1';
+							END IF;
+							IF reg_address(5 downto 2)="1111" AND reg_write = '0' THEN
+								rx_fifo_rd	<= '1';
 							END IF;
 						WHEN "0010" =>	-- com ADC
 							IF reg_write = '1' THEN
@@ -145,6 +161,8 @@ BEGIN
 				registers(8)(31 downto 0)	<= hitcounter_o_ff;
 				registers(9)(31 downto 0)	<= hitcounter_m_ff;
 				registers(11)(31 downto 0)	<= response_3;
+				registers(13)(31 downto 0)	<= com_status;
+				registers(15)(31 downto 0)	<= com_rx_data;
 			END IF;	-- reg_enable
 		END IF;
 	END PROCESS;
@@ -153,6 +171,8 @@ BEGIN
 	command_1	<= registers(2)(31 downto 0);
 	command_2	<= registers(6)(31 downto 0);
 	command_3	<= registers(10)(31 downto 0);
+	com_ctrl	<= registers(12)(31 downto 0);
+	com_tx_data	<= registers(14)(31 downto 0);
 	TC <= registers(CONV_INTEGER(15))(7 downto 0);
 	
 	com_adc_write_en <= '1' WHEN reg_write='1' AND reg_enable = '1' AND reg_address(15 downto 12)="0010" ELSE '0';

@@ -56,7 +56,7 @@ module version_rom (
 		lpm_rom_component.lpm_widthad = 7,
 		lpm_rom_component.lpm_address_control = "REGISTERED",
 		lpm_rom_component.lpm_outdata = "UNREGISTERED",
-		lpm_rom_component.lpm_file = "C:/IceCube/FPGAcode/HardWareTest/simpletest/version_rom.mif",
+		lpm_rom_component.lpm_file = "version_rom.mif",
 		lpm_rom_component.lpm_type = "LPM_ROM";
 
 
