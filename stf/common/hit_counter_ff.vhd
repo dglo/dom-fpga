@@ -182,5 +182,5 @@ BEGIN
 			FE_pulse_local	<= FE_pulse;
 		END IF;
 	END PROCESS;
-	blank_disc <= '1' WHEN FE_pulse='1' and FE_pulse_local='0' ELSE '0';
+	blank_disc <= '1' WHEN FE_pulse='0' and FE_pulse_local='1' ELSE '0';
 END;
