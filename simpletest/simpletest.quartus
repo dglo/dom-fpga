@@ -36,4 +36,5 @@ FILES
 	VHDL_FILE = r2r.vhd;
 	VHDL_FILE = fe_r2r.vhd;
 	VHDL_FILE = hit_counter_ff.vhd;
+	VHDL_FILE = flasher_board.vhd;
 }

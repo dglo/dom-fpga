@@ -126,7 +126,15 @@ ENTITY simpletest IS
 		COINC_UP_BLATCH		: OUT STD_LOGIC;
 		COINC_UP_BBAR		: IN STD_LOGIC;
 		COINC_UP_B			: IN STD_LOGIC;
-		
+		-- flasher board
+		FL_Trigger			: OUT STD_LOGIC;
+		FL_Trigger_bar		: OUT STD_LOGIC;
+		FL_ATTN				: OUT STD_LOGIC;
+		FL_PRE_TRIG			: OUT STD_LOGIC;
+		FL_TMS				: OUT STD_LOGIC;
+		FL_TCK				: OUT STD_LOGIC;
+		FL_TDI				: OUT STD_LOGIC;
+		FL_TDO				: OUT STD_LOGIC;
 		-- Test connector	THERE IS NO 11   I don't know why
 		PGM				: OUT STD_LOGIC_VECTOR (15 downto 0)
 	);
@@ -300,6 +308,8 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	-- R2R ladder at analog frontend
 	SIGNAL enable_fe_r2r	: STD_LOGIC;
 	
+	-- flasher board
+	SIGNAL fl_board			: STD_LOGIC_VECTOR (7 downto 0);
 	
 	COMPONENT ROC
 		PORT (
@@ -762,6 +772,24 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			TC			: OUT	STD_LOGIC_VECTOR(7 downto 0)
 		);
 	END COMPONENT;
+	
+	COMPONENT flasher_board
+		PORT (
+			-- control input
+			fl_board			: IN STD_LOGIC_VECTOR(7 downto 0);
+			-- flasher board
+			FL_Trigger			: OUT STD_LOGIC;
+			FL_Trigger_bar		: OUT STD_LOGIC;
+			FL_ATTN				: OUT STD_LOGIC;
+			FL_PRE_TRIG			: OUT STD_LOGIC;
+			FL_TMS				: OUT STD_LOGIC;
+			FL_TCK				: OUT STD_LOGIC;
+			FL_TDI				: OUT STD_LOGIC;
+			FL_TDO				: OUT STD_LOGIC;
+			-- Test connector
+			TC					: OUT STD_LOGIC_VECTOR (7 downto 0)
+		);
+	END COMPONENT;
 
 
 	
@@ -895,6 +923,9 @@ BEGIN
 	-- R2R ladder
 	enable_r2r		<= command_2(16);	
 	enable_fe_r2r	<= command_2(20);
+	
+	-- flasher board
+	fl_board		<= command_3(31 downto 24);
 	
 	inst_ROC : ROC
 		PORT MAP (
@@ -1372,6 +1403,23 @@ BEGIN
 			FE_PULSER_N	=> FE_PULSER_N,
 			-- test connector
 			TC			=> open
+		);
+		
+	flasher_board_inst : flasher_board
+		PORT MAP (
+			-- control input
+			fl_board			=> fl_board,
+			-- flasher board
+			FL_Trigger			=> FL_Trigger,
+			FL_Trigger_bar		=> FL_Trigger_bar,
+			FL_ATTN				=> FL_ATTN,
+			FL_PRE_TRIG			=> FL_PRE_TRIG,
+			FL_TMS				=> FL_TMS,
+			FL_TCK				=> FL_TCK,
+			FL_TDI				=> FL_TDI,
+			FL_TDO				=> FL_TDO,
+			-- Test connector
+			TC					=> open
 		);
 	
 	
