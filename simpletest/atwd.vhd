@@ -16,7 +16,10 @@ ENTITY atwd IS
 		RST			: IN STD_LOGIC;
 		-- enable
 		enable		: IN STD_LOGIC;
+		enable_disc	: IN STD_LOGIC;
 		done		: OUT STD_LOGIC;
+		-- disc
+		OneSPE		: IN STD_LOGIC;
 		-- stripe interface
 		wdata		: IN STD_LOGIC_VECTOR (15 downto 0);
 		rdata		: OUT STD_LOGIC_VECTOR (15 downto 0);
@@ -131,10 +134,13 @@ ARCHITECTURE arch_atwd OF atwd IS
 			RST			: IN STD_LOGIC;
 			-- enable
 			enable		: IN STD_LOGIC;
+			enable_disc	: IN STD_LOGIC;
 			done		: OUT STD_LOGIC;
 			-- controller
 			busy		: IN STD_LOGIC;
 			reset_trig	: IN STD_LOGIC;
+			-- disc
+			OneSPE		: IN STD_LOGIC;
 			-- atwd
 			ATWDTrigger			: OUT STD_LOGIC;
 			TriggerComplete_in	: IN STD_LOGIC;
@@ -225,10 +231,13 @@ BEGIN
 			RST			=> RST,
 			-- enable
 			enable		=> enable,
+			enable_disc	=> enable_disc,
 			done		=> done,
 			-- controller
 			busy		=> busy,
 			reset_trig	=> reset_trig,
+			-- disc
+			OneSPE		=> OneSPE,
 			-- atwd
 			ATWDTrigger			=> ATWDTrigger_sig,
 			TriggerComplete_in	=> TriggerComplete,

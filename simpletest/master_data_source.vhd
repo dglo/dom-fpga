@@ -46,7 +46,7 @@ BEGIN
 		IF RST='1' THEN
 			enable_old	:= '0';
 			start_trans_local	<= '0';
-		ELSIF CLK'EVENT AND CLK='1' THEN
+		ELSIF CLK'EVENT AND CLK='0' THEN
 			IF enable_old='0' AND enable='1' THEN
 				start_trans_local	<= '1';
 			ELSE
@@ -75,7 +75,7 @@ BEGIN
 		IF RST='1' THEN
 			data	:= (others=>'0');
 			done	<= '0';
-		ELSIF CLK'EVENT AND CLK='1' THEN
+		ELSIF CLK'EVENT AND CLK='0' THEN
 			IF start_trans_local='1' THEN
 				data	:= (others=>'0');
 				done	<= '0';
@@ -87,11 +87,11 @@ BEGIN
 				done	<= '1';
 				data	:= (others=>'0');
 			END IF;
-			IF data(0)='0' THEN
+	--		IF data(0)='0' THEN
 				wdata	<= data;
-			ELSE
-				wdata	<= data XOR x"ffffffff";
-			END IF;
+	--		ELSE
+	--			wdata	<= data XOR x"ffffffff";
+	--		END IF;
 		END IF;
 	END PROCESS;
 			
