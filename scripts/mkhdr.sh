@@ -32,6 +32,8 @@ done
 
 last_row=`awk 'BEGIN{max=0;} { if ($1>max) max=$1 } END{print max;}' \
     ${sdir}/tdata.txt`
+last_col=`awk 'BEGIN{max=0;} { if ($1>max) max=$1 } END{print max;}' \
+    ${sdir}/sdata.txt`
 
 echo " "
 echo "/* map fpga type to index, (rows of expected_versions) */"
@@ -43,7 +45,8 @@ done
 
 echo " "
 echo "/* expected (compiled in) version numbers */"
-printf "static short expected_versions[%d][] = {\n" `expr ${last_row} + 1`
+printf "static short expected_versions[%d][%d] = {\n" `expr ${last_row} + 1` \
+    `expr ${last_col} + 1`
 
 for (( i=0 ; i<=${last_row}; i++ )) ; do
     #
@@ -75,7 +78,7 @@ for (( i=0 ; i<=${last_row}; i++ )) ; do
     fi
     echo "  },"
 done
-echo "}"
+echo "};"
 echo " "
 echo "#endif"
 
