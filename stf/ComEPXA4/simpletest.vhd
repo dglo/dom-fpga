@@ -284,6 +284,8 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL SingleLED_TRIGGER_sig	: STD_LOGIC;
 	SIGNAL LEDdelay				: STD_LOGIC_VECTOR (3 DOWNTO 0);
 	SIGNAL trigLED				: STD_LOGIC;
+	SIGNAL trigLED_onboard		: STD_LOGIC;
+	SIGNAL trigLED_flasher		: STD_LOGIC;
 	
 	-- local coincidence
 	SIGNAL enable_coinc_up		: STD_LOGIC;
@@ -351,6 +353,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	-- flasher board
 	SIGNAL fl_board			: STD_LOGIC_VECTOR (7 downto 0);
 	SIGNAL fl_board_read	: STD_LOGIC_VECTOR (1 downto 0);
+	SIGNAL enable_flasher	: STD_LOGIC;
 	
 	-- kale communication
 	SIGNAL com_tx_data		: STD_LOGIC_VECTOR (31 downto 0);
@@ -622,6 +625,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			-- kale communication interface
 			tx_fifo_wr			: OUT STD_LOGIC;
 			rx_fifo_rd			: OUT STD_LOGIC;
+			tx_pack_rdy			: OUT STD_LOGIC;
 			rx_dpr_radr_stb		: OUT STD_LOGIC;
 			-- test connector
 			TC				: OUT	STD_LOGIC_VECTOR(7 downto 0)
@@ -930,9 +934,15 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	
 	COMPONENT flasher_board
 		PORT (
+			CLK					: IN STD_LOGIC;
+			RST					: IN STD_LOGIC;
+			-- enable flasher board flash
+			enable				: IN STD_LOGIC;
 			-- control input
 			fl_board			: IN STD_LOGIC_VECTOR(7 downto 0);
 			fl_board_read		: OUT STD_LOGIC_VECTOR(1 downto 0);
+			-- ATWD trigger
+			trigLED		: OUT STD_LOGIC;
 			-- flasher board
 			FL_Trigger			: OUT STD_LOGIC;
 			FL_Trigger_bar		: OUT STD_LOGIC;
@@ -1183,6 +1193,7 @@ BEGIN
 	response_2(15 downto 8)	<= coinc_disc;
 	-- flasher board
 	fl_board		<= command_2(31 downto 24);
+	enable_flasher	<= command_2(24);
 	response_2(24)	<= fl_board_read(0);
 	response_2(28)	<= fl_board_read(1);
 	
@@ -1266,7 +1277,7 @@ BEGIN
 	com_status(6)	<= com_avail;
 	com_status(31 downto 7)	<= 	(OTHERS=>'0');
 	drbt_req		<= com_ctrl(2);
-	tx_pack_rdy		<= com_ctrl(0);
+	-- tx_pack_rdy		<= com_ctrl(0);
 	--dudt			<= com_ctrl(15 downto 8);
 	--cal_thr			<= com_ctrl(25 downto 16);
 	--rs485_not_dac	<= com_ctrl(3);
@@ -1507,6 +1518,7 @@ BEGIN
 			-- kale communication interface
 			tx_fifo_wr			=> tx_fifo_wr,
 			rx_fifo_rd			=> rx_fifo_rd,
+			tx_pack_rdy			=> tx_pack_rdy,
 			rx_dpr_radr_stb		=> rx_dpr_radr_stb,
 			-- test connector
 			TC				=> open --TC
@@ -1613,7 +1625,7 @@ BEGIN
 			-- LED trigger
 			SingleLED_TRIGGER	=> SingleLED_TRIGGER_sig,
 			-- ATWD trigger
-			trigLED		=> trigLED
+			trigLED		=> trigLED_onboard
 		);
 	SingleLED_TRIGGER <= SingleLED_TRIGGER_sig;
 		
@@ -1841,9 +1853,15 @@ BEGIN
 		
 	flasher_board_inst : flasher_board
 		PORT MAP (
+			CLK					=> CLK20,
+			RST					=> RST,
+			-- enable flasher board flash
+			enable				=> enable_flasher,
 			-- control input
 			fl_board			=> fl_board,
 			fl_board_read		=> fl_board_read,
+			-- ATWD trigger
+			trigLED				=> trigLED_flasher,
 			-- flasher board
 			FL_Trigger			=> FL_Trigger,
 			FL_Trigger_bar		=> FL_Trigger_bar,
@@ -1992,6 +2010,7 @@ BEGIN
 			-- test connector
 			TC			=> open
 		);
+	trigLED	<= trigLED_flasher OR trigLED_onboard;
 	
 	
 	-- PGM(15 downto 12) <= (others=>'0');

@@ -541,13 +541,13 @@ PGM[15]                      : Y3        : output : LVTTL             :         
 PGM[14]                      : Y4        : output : LVTTL             :         : 13        : Y              
 CLK4p                        : Y5        : input  : LVTTL             :         : 13        : Y              
 RESERVED_INPUT               : Y6        :        :                   :         : 13        :                
-CLK3p                        : Y7        : input  : LVTTL             :         : 12        : N              
+RESERVED_INPUT               : Y7        :        :                   :         : 12        :                
 RESERVED_INPUT               : Y8        :        :                   :         : 11        :                
 RESERVED_INPUT               : Y9        :        :                   :         : 11        :                
 RESERVED_INPUT               : Y10       :        :                   :         : 11        :                
 RESERVED_INPUT               : Y11       :        :                   :         : 11        :                
 RESERVED_INPUT               : Y12       :        :                   :         : 11        :                
-RESERVED_INPUT               : Y13       :        :                   :         : 11        :                
+CLK3p                        : Y13       : input  : LVTTL             :         : 11        : N              
 RESERVED_INPUT               : Y14       :        :                   :         : 11        :                
 ATWD0_D[0]                   : Y15       : input  : LVTTL             :         : 10        : Y              
 DigitalSet_0                 : Y16       : output : LVTTL             :         : 10        : Y              

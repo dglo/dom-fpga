@@ -13,6 +13,7 @@ SOFTWARE_SETTINGS_LIST
 }
 FILES
 {
+	VHDL_FILE = ..\common\slaveregister.vhd;
 	AHDL_FILE = ..\..\common\com\Rx_chan\and16b.tdf;
 	AHDL_FILE = ..\..\common\com\DCREV_DPR.tdf;
 	AHDL_FILE = ..\..\common\com\Tcal\DCOM_tcal_timer.tdf;
@@ -101,7 +102,6 @@ FILES
 	VHDL_FILE = ..\common\atwd_timestamp.vhd;
 	VHDL_FILE = ..\common\atwd_ping_pong.vhd;
 	VHDL_FILE = ..\common\timer.vhd;
-	VHDL_FILE = ..\common\slaveregister.vhd;
 	VHDL_FILE = ..\common\ahb_slave.vhd;
 	VHDL_FILE = ..\common\atwd.vhd;
 	VHDL_FILE = ..\common\atwd_control.vhd;
