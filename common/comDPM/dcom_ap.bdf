@@ -1563,11 +1563,6 @@ party's intellectual property, are provided herein.
 	(conduit)
 )
 (connector
-	(pt 560 744)
-	(pt 560 760)
-	(conduit)
-)
-(connector
 	(pt 560 640)
 	(pt 560 656)
 	(conduit)
@@ -1580,6 +1575,11 @@ party's intellectual property, are provided herein.
 (connector
 	(pt 560 712)
 	(pt 560 728)
+	(conduit)
+)
+(connector
+	(pt 560 744)
+	(pt 560 760)
 	(conduit)
 )
 (junction (pt 384 64))

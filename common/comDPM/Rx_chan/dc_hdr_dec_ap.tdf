@@ -1,6 +1,7 @@
-TITLE "control message, header-bytes decoder, K.-H. Sulanke,DESY Zeuthen, 2004-07-07";
+TITLE "control message, header-bytes decoder, K.-H. Sulanke,DESY Zeuthen, 2004-08-30";
 -- according Arthur Jones protocol
 -- including comm. DAC level control
+-- comm. DAC level control if ctrl_rcvd only, not in DCFREV	= 023
 
 SUBDESIGN dc_hdr_dec_ap
 (
@@ -46,8 +47,8 @@ VARIABLE
 	idle_rcvd		: DFF;
 	
 	dorlev[7..0]	: DFFE;
-	domlev_up_rq    : DFF;	-- request from DOR to increase the Tx signal
-	domlev_dn_rq	: DFF;
+	domlev_up_rq_   : DFFE;	-- request from DOR to increase the Tx signal
+	domlev_dn_rq_	: DFFE;
 	
 BEGIN
 
@@ -91,12 +92,17 @@ BEGIN
 	tcal_rcvd.d				= ctrl_msg.q & (cmd_rec[3..0].q==B"1110") & ctrl_rcvd;
 	idle_rcvd.d				= ctrl_msg.q & (cmd_rec[3..0].q==B"1111") & ctrl_rcvd;
 	
-	domlev_up_rq.(clk,clrn)	= (clk, !reset);
-	domlev_dn_rq.(clk,clrn)	= (clk, !reset);
+	domlev_up_rq_.(clk,clrn)	= (clk, !reset);
+	domlev_dn_rq_.(clk,clrn)	= (clk, !reset);
 	
-	domlev_up_rq.d			= ctrl_msg.q & seq1_byte & data[7] & data_stb;
-	domlev_dn_rq.d			= ctrl_msg.q & seq1_byte & data[6] & data_stb;
-
+	domlev_up_rq_.d			= data[7];
+	domlev_dn_rq_.d			= data[6];
+	domlev_up_rq_.ena		= ctrl_msg.q & seq1_byte & data_stb;
+	domlev_dn_rq_.ena		= ctrl_msg.q & seq1_byte & data_stb;
+	
+	domlev_up_rq			= domlev_up_rq_.q & ctrl_rcvd;
+	domlev_dn_rq			= domlev_dn_rq_.q & ctrl_rcvd;
+	
 	dorlev[].clk			= clk;
 	dorlev[].clrn			= !reset;
 	dorlev[].ena			= ctrl_msg.q & seq0_byte & data_stb;

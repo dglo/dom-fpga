@@ -1,5 +1,5 @@
 Analysis & Synthesis report for simpletest
-Wed Aug 18 08:01:12 2004
+Mon Aug 30 16:44:37 2004
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -67,11 +67,11 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                        ;
 +-----------------------------+---------------------------------------+
-; Analysis & Synthesis Status ; Successful - Wed Aug 18 08:01:12 2004 ;
+; Analysis & Synthesis Status ; Successful - Mon Aug 30 16:44:37 2004 ;
 ; Revision Name               ; simpletest                            ;
 ; Top-level Entity Name       ; simpletest                            ;
 ; Family                      ; EXCALIBUR_ARM                         ;
-; Total logic elements        ; 4,497                                 ;
+; Total logic elements        ; 4,502                                 ;
 ; Total pins                  ; 283                                   ;
 ; Total memory bits           ; 27,264                                ;
 ; Total PLLs                  ; 2                                     ;
@@ -1008,7 +1008,7 @@ simpletest
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Compilation Hierarchy Node                                     ; Logic Cells ; Registers ; Memory Bits ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Full Hierarchy Name                                                                                                                                                                                                                                                           ;
 +----------------------------------------------------------------+-------------+-----------+-------------+------+--------------+--------------+-------------------+------------------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; |simpletest                                                    ; 4497 (2)    ; 2281      ; 27264       ; 283  ; 0            ; 2216 (2)     ; 757 (0)           ; 1524 (0)         ; 1078 (0)        ; |simpletest                                                                                                                                                                                                                                                                   ;
+; |simpletest                                                    ; 4502 (2)    ; 2281      ; 27264       ; 283  ; 0            ; 2221 (2)     ; 759 (0)           ; 1522 (0)         ; 1078 (0)        ; |simpletest                                                                                                                                                                                                                                                                   ;
 ;    |LED2ATWDdelay:LED2ATWDdelay_inst|                          ; 30 (30)     ; 16        ; 0           ; 0    ; 0            ; 14 (14)      ; 15 (15)           ; 1 (1)            ; 0 (0)           ; |simpletest|LED2ATWDdelay:LED2ATWDdelay_inst                                                                                                                                                                                                                                  ;
 ;    |ROC:inst_ROC|                                              ; 4 (4)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 2 (2)             ; 2 (2)            ; 0 (0)           ; |simpletest|ROC:inst_ROC                                                                                                                                                                                                                                                      ;
 ;    |ahb_master:inst_ahb_master|                                ; 32 (32)     ; 32        ; 0           ; 0    ; 0            ; 0 (0)        ; 32 (32)           ; 0 (0)            ; 0 (0)           ; |simpletest|ahb_master:inst_ahb_master                                                                                                                                                                                                                                        ;
@@ -1031,8 +1031,8 @@ simpletest
 ;       |gray2bin:inst_gray2bin|                                 ; 5 (5)       ; 0         ; 0           ; 0    ; 0            ; 5 (5)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |simpletest|atwd:atwd1|gray2bin:inst_gray2bin                                                                                                                                                                                                                                 ;
 ;    |atwd_ping_pong:inst_atwd_ping_pong|                        ; 21 (21)     ; 11        ; 0           ; 0    ; 0            ; 10 (10)      ; 3 (3)             ; 8 (8)            ; 0 (0)           ; |simpletest|atwd_ping_pong:inst_atwd_ping_pong                                                                                                                                                                                                                                ;
 ;    |atwd_timestamp:inst_atwd_timestamp|                        ; 100 (100)   ; 98        ; 0           ; 0    ; 0            ; 2 (2)        ; 98 (98)           ; 0 (0)            ; 0 (0)           ; |simpletest|atwd_timestamp:inst_atwd_timestamp                                                                                                                                                                                                                                ;
-;    |coinc:inst_coinc|                                          ; 191 (191)   ; 86        ; 0           ; 0    ; 0            ; 105 (105)    ; 6 (6)             ; 80 (80)          ; 64 (64)         ; |simpletest|coinc:inst_coinc                                                                                                                                                                                                                                                  ;
-;    |dcom_ap:dcom_ap_inst|                                      ; 1564 (0)    ; 835       ; 640         ; 0    ; 0            ; 729 (0)      ; 206 (0)           ; 629 (0)          ; 466 (0)         ; |simpletest|dcom_ap:dcom_ap_inst                                                                                                                                                                                                                                              ;
+;    |coinc:inst_coinc|                                          ; 193 (193)   ; 86        ; 0           ; 0    ; 0            ; 107 (107)    ; 6 (6)             ; 80 (80)          ; 64 (64)         ; |simpletest|coinc:inst_coinc                                                                                                                                                                                                                                                  ;
+;    |dcom_ap:dcom_ap_inst|                                      ; 1567 (0)    ; 835       ; 640         ; 0    ; 0            ; 732 (0)      ; 208 (0)           ; 627 (0)          ; 466 (0)         ; |simpletest|dcom_ap:dcom_ap_inst                                                                                                                                                                                                                                              ;
 ;       |DCOM_tcal_timer:DCOM_tcal_timer|                        ; 47 (18)     ; 29        ; 0           ; 0    ; 0            ; 18 (12)      ; 1 (1)             ; 28 (5)           ; 24 (0)          ; |simpletest|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer                                                                                                                                                                                                              ;
 ;          |dc_tcal_ct:timer|                                    ; 20 (0)      ; 15        ; 0           ; 0    ; 0            ; 5 (0)        ; 0 (0)             ; 15 (0)           ; 15 (0)          ; |simpletest|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer|dc_tcal_ct:timer                                                                                                                                                                                             ;
 ;             |lpm_counter:lpm_counter_component|                ; 20 (0)      ; 15        ; 0           ; 0    ; 0            ; 5 (0)        ; 0 (0)             ; 15 (0)           ; 15 (0)          ; |simpletest|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer|dc_tcal_ct:timer|lpm_counter:lpm_counter_component                                                                                                                                                           ;
@@ -1051,7 +1051,7 @@ simpletest
 ;             |lpm_counter:lpm_counter_component|                ; 9 (0)       ; 8         ; 0           ; 0    ; 0            ; 1 (0)        ; 0 (0)             ; 8 (0)            ; 9 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer|ponres_ct:ponres|lpm_counter:lpm_counter_component                                                                                                                                                           ;
 ;                |alt_synch_counter:wysi_counter|                ; 9 (9)       ; 8         ; 0           ; 0    ; 0            ; 1 (1)        ; 0 (0)             ; 8 (8)            ; 9 (9)           ; |simpletest|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer|ponres_ct:ponres|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter                                                                                                                            ;
 ;       |DC_CTRAP:DC_CTRAP|                                      ; 52 (52)     ; 21        ; 0           ; 0    ; 0            ; 31 (31)      ; 0 (0)             ; 21 (21)          ; 0 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP                                                                                                                                                                                                                            ;
-;       |DC_Rx_chan_ap:DC_Rx_chan_ap|                            ; 793 (61)    ; 428       ; 640         ; 0    ; 0            ; 365 (4)      ; 161 (57)          ; 267 (0)          ; 314 (1)         ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap                                                                                                                                                                                                                  ;
+;       |DC_Rx_chan_ap:DC_Rx_chan_ap|                            ; 793 (61)    ; 428       ; 640         ; 0    ; 0            ; 365 (4)      ; 163 (57)          ; 265 (0)          ; 314 (1)         ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap                                                                                                                                                                                                                  ;
 ;          |DC_MRAP:inst10|                                      ; 38 (38)     ; 19        ; 0           ; 0    ; 0            ; 19 (19)      ; 1 (1)             ; 18 (18)          ; 0 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10                                                                                                                                                                                                   ;
 ;          |RX_UART_ap:inst|                                     ; 50 (0)      ; 31        ; 0           ; 0    ; 0            ; 19 (0)       ; 8 (0)             ; 23 (0)           ; 11 (0)          ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst                                                                                                                                                                                                  ;
 ;             |UA_RX_AP:inst|                                    ; 28 (28)     ; 14        ; 0           ; 0    ; 0            ; 14 (14)      ; 0 (0)             ; 14 (14)          ; 0 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst                                                                                                                                                                                    ;
@@ -1084,7 +1084,7 @@ simpletest
 ;             |ctup4b:ct|                                        ; 4 (0)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 4 (0)            ; 4 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_adc_to_ser:inst6|ctup4b:ct                                                                                                                                                                                    ;
 ;                |lpm_counter:lpm_counter_component|             ; 4 (0)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 4 (0)            ; 4 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_adc_to_ser:inst6|ctup4b:ct|lpm_counter:lpm_counter_component                                                                                                                                                  ;
 ;                   |alt_synch_counter:wysi_counter|             ; 4 (4)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 4 (4)            ; 4 (4)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_adc_to_ser:inst6|ctup4b:ct|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter                                                                                                                   ;
-;          |dc_hdr_dec_ap:inst4|                                 ; 23 (23)     ; 16        ; 0           ; 0    ; 0            ; 7 (7)        ; 5 (5)             ; 11 (11)          ; 0 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_hdr_dec_ap:inst4                                                                                                                                                                                              ;
+;          |dc_hdr_dec_ap:inst4|                                 ; 23 (23)     ; 16        ; 0           ; 0    ; 0            ; 7 (7)        ; 7 (7)             ; 9 (9)            ; 0 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_hdr_dec_ap:inst4                                                                                                                                                                                              ;
 ;          |dc_rapcal_lh:inst30|                                 ; 76 (10)     ; 50        ; 640         ; 0    ; 0            ; 26 (0)       ; 12 (10)           ; 38 (0)           ; 34 (0)          ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst30                                                                                                                                                                                              ;
 ;             |DCTC_FWR:inst7|                                   ; 20 (20)     ; 14        ; 0           ; 0    ; 0            ; 6 (6)        ; 1 (1)             ; 13 (13)          ; 0 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst30|DCTC_FWR:inst7                                                                                                                                                                               ;
 ;             |TCWF_64x10:inst11|                                ; 29 (0)      ; 20        ; 640         ; 0    ; 0            ; 9 (0)        ; 1 (0)             ; 19 (0)           ; 17 (0)          ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst30|TCWF_64x10:inst11                                                                                                                                                                            ;
@@ -1176,15 +1176,15 @@ simpletest
 ;          |rx_packet_ct:inst23|                                 ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|rx_packet_ct:inst23                                                                                                                                                                                              ;
 ;             |lpm_counter:lpm_counter_component|                ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|rx_packet_ct:inst23|lpm_counter:lpm_counter_component                                                                                                                                                            ;
 ;                |alt_synch_counter:wysi_counter|                ; 16 (16)     ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; 16 (16)         ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|rx_packet_ct:inst23|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter                                                                                                                             ;
-;       |DC_Tx_chan_ap:DC_Tx_chan_ap|                            ; 672 (25)    ; 357       ; 0           ; 0    ; 0            ; 315 (7)      ; 44 (18)           ; 313 (0)          ; 128 (0)         ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap                                                                                                                                                                                                                  ;
+;       |DC_Tx_chan_ap:DC_Tx_chan_ap|                            ; 675 (25)    ; 357       ; 0           ; 0    ; 0            ; 318 (7)      ; 44 (18)           ; 313 (0)          ; 128 (0)         ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap                                                                                                                                                                                                                  ;
 ;          |DC_SNAP:inst11|                                      ; 113 (113)   ; 43        ; 0           ; 0    ; 0            ; 70 (70)      ; 9 (9)             ; 34 (34)          ; 0 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11                                                                                                                                                                                                   ;
 ;          |Tx_dpr_ctrl_PAR_ap:inst10|                           ; 88 (72)     ; 32        ; 0           ; 0    ; 0            ; 56 (56)      ; 16 (16)           ; 16 (0)           ; 57 (41)         ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|Tx_dpr_ctrl_PAR_ap:inst10                                                                                                                                                                                        ;
 ;             |tx_dpr_radr_ct:tx_dpr_rad|                        ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|Tx_dpr_ctrl_PAR_ap:inst10|tx_dpr_radr_ct:tx_dpr_rad                                                                                                                                                              ;
 ;                |lpm_counter:lpm_counter_component|             ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|Tx_dpr_ctrl_PAR_ap:inst10|tx_dpr_radr_ct:tx_dpr_rad|lpm_counter:lpm_counter_component                                                                                                                            ;
 ;                   |alt_synch_counter:wysi_counter|             ; 16 (16)     ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; 16 (16)         ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|Tx_dpr_ctrl_PAR_ap:inst10|tx_dpr_radr_ct:tx_dpr_rad|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter                                                                                             ;
-;          |crc_tx:inst3|                                        ; 96 (50)     ; 55        ; 0           ; 0    ; 0            ; 41 (27)      ; 1 (1)             ; 54 (22)          ; 6 (6)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3                                                                                                                                                                                                     ;
+;          |crc_tx:inst3|                                        ; 98 (52)     ; 55        ; 0           ; 0    ; 0            ; 43 (29)      ; 1 (1)             ; 54 (22)          ; 6 (6)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3                                                                                                                                                                                                     ;
 ;             |crc32:inst_crc32|                                 ; 46 (46)     ; 32        ; 0           ; 0    ; 0            ; 14 (14)      ; 0 (0)             ; 32 (32)          ; 0 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|crc32:inst_crc32                                                                                                                                                                                    ;
-;          |dc_com_dac_ctrl:inst6|                               ; 27 (19)     ; 8         ; 0           ; 0    ; 0            ; 19 (19)      ; 0 (0)             ; 8 (0)            ; 8 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6                                                                                                                                                                                            ;
+;          |dc_com_dac_ctrl:inst6|                               ; 28 (20)     ; 8         ; 0           ; 0    ; 0            ; 20 (20)      ; 0 (0)             ; 8 (0)            ; 8 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6                                                                                                                                                                                            ;
 ;             |dac_levct:daclev|                                 ; 8 (0)       ; 8         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 8 (0)            ; 8 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|dac_levct:daclev                                                                                                                                                                           ;
 ;                |lpm_counter:lpm_counter_component|             ; 8 (0)       ; 8         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 8 (0)            ; 8 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|dac_levct:daclev|lpm_counter:lpm_counter_component                                                                                                                                         ;
 ;                   |alt_synch_counter:wysi_counter|             ; 8 (8)       ; 8         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 8 (8)            ; 8 (8)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|dac_levct:daclev|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter                                                                                                          ;
@@ -1614,15 +1614,15 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/s
 +---------------------------------------------------------------------------------------------
 ; Resource                      ; Usage                                                      ;
 +-------------------------------+------------------------------------------------------------+
-; Logic cells                   ; 4,497                                                      ;
-; Total combinational functions ; 3740                                                       ;
+; Logic cells                   ; 4,502                                                      ;
+; Total combinational functions ; 3743                                                       ;
 ; Total registers               ; 2281                                                       ;
 ; I/O pins                      ; 283                                                        ;
 ; Total memory bits             ; 27264                                                      ;
 ; Total PLLs                    ; 2                                                          ;
 ; Maximum fan-out node          ; pll2x:inst_pll2x|altclklock:altclklock_component|outclock0 ;
 ; Maximum fan-out               ; 2324                                                       ;
-; Total fan-out                 ; 19888                                                      ;
+; Total fan-out                 ; 19903                                                      ;
 ; Average fan-out               ; 4.09                                                       ;
 +-------------------------------+------------------------------------------------------------+
 
@@ -1646,14 +1646,14 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/s
 ; Statistic                                              ; Value ;
 +--------------------------------------------------------+-------+
 ; Number of WYSIWYG cells                                ; 1032  ;
-; Number of synthesis-generated cells                    ; 3465  ;
+; Number of synthesis-generated cells                    ; 3470  ;
 ; Number of WYSIWYG LUTs                                 ; 1032  ;
-; Number of synthesis-generated LUTs                     ; 2708  ;
+; Number of synthesis-generated LUTs                     ; 2711  ;
 ; Number of WYSIWYG registers                            ; 507   ;
 ; Number of synthesis-generated registers                ; 1774  ;
-; Number of cells with combinational logic only          ; 2216  ;
-; Number of cells with registers only                    ; 757   ;
-; Number of cells with combinational logic and registers ; 1524  ;
+; Number of cells with combinational logic only          ; 2221  ;
+; Number of cells with registers only                    ; 759   ;
+; Number of cells with combinational logic and registers ; 1522  ;
 +--------------------------------------------------------+-------+
 
 
@@ -1666,7 +1666,7 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/s
 ; Number of registers using SLOAD      ; 156   ;
 ; Number of registers using ACLR       ; 1391  ;
 ; Number of registers using ALOAD      ; 0     ;
-; Number of registers using CLK_ENABLE ; 1427  ;
+; Number of registers using CLK_ENABLE ; 1429  ;
 ; Number of registers using OE         ; 0     ;
 ; Number of registers using PRESET     ; 0     ;
 +--------------------------------------+-------+
@@ -1678,7 +1678,7 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/s
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Wed Aug 18 07:59:28 2004
+    Info: Processing started: Mon Aug 30 16:42:57 2004
 Info: Command: quartus_map --import_settings_files=on --export_settings_files=off simpletest -c simpletest
 Info: Found 1 design units and 1 entities in source file ../../common/comDPM/test_and_tresholds.tdf
     Info: Found entity 1: test_and_tresholds
@@ -2534,17 +2534,17 @@ Warning: Design contains 5 input pin(s) that do not drive logic
     Warning: No output dependent on input pin COM_AD_OTR
     Warning: No output dependent on input pin HDV_Rx
     Warning: No output dependent on input pin FLASH_NCO
-Info: Implemented 4859 device resources after synthesis - the final resource count might be different
+Info: Implemented 4864 device resources after synthesis - the final resource count might be different
     Info: Implemented 69 input pins
     Info: Implemented 159 output pins
     Info: Implemented 55 bidirectional pins
-    Info: Implemented 4497 logic cells
+    Info: Implemented 4502 logic cells
     Info: Implemented 74 RAM segments
     Info: Implemented 2 ClockLock PLLs
     Info: Implemented 2 dual-port RAM elements in Excalibur device
     Info: Implemented 1 microprocessor core elements in Excalibur device
 Info: Quartus II Analysis & Synthesis was successful. 0 errors, 132 warnings
-    Info: Processing ended: Wed Aug 18 08:01:12 2004
-    Info: Elapsed time: 00:01:43
+    Info: Processing ended: Mon Aug 30 16:44:37 2004
+    Info: Elapsed time: 00:01:39
 
 

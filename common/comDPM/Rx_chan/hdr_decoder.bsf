@@ -100,6 +100,13 @@ party's intellectual property, are provided herein.
 		(line (pt 0 176)(pt 16 176)(line_width 1))
 	)
 	(port
+		(pt 0 192)
+		(input)
+		(text "ctrl_rcvd" (rect 0 0 43 12)(font "Arial" ))
+		(text "ctrl_rcvd" (rect 21 187 64 199)(font "Arial" ))
+		(line (pt 0 192)(pt 16 192)(line_width 1))
+	)
+	(port
 		(pt 200 32)
 		(output)
 		(text "ctrl_msg" (rect 0 0 42 12)(font "Arial" ))

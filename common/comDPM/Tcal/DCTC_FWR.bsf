@@ -46,15 +46,15 @@ party's intellectual property, are provided herein.
 	(port
 		(pt 0 64)
 		(input)
-		(text "msg_sent" (rect 0 0 48 12)(font "Arial" ))
-		(text "msg_sent" (rect 21 59 69 71)(font "Arial" ))
+		(text "hl_edge" (rect 0 0 37 12)(font "Arial" ))
+		(text "hl_edge" (rect 21 59 58 71)(font "Arial" ))
 		(line (pt 0 64)(pt 16 64)(line_width 1))
 	)
 	(port
 		(pt 0 80)
 		(input)
-		(text "one_lev" (rect 0 0 38 12)(font "Arial" ))
-		(text "one_lev" (rect 21 75 59 87)(font "Arial" ))
+		(text "msg_sent" (rect 0 0 48 12)(font "Arial" ))
+		(text "msg_sent" (rect 21 75 69 87)(font "Arial" ))
 		(line (pt 0 80)(pt 16 80)(line_width 1))
 	)
 	(port

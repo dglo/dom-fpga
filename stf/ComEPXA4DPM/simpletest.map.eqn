@@ -1910,7 +1910,7 @@ JB31_lsb = DFFE(JB31_lsb_lut_out, GLOBAL(LE1_outclock0), !KB1_CLR_BUF, , UD1_dac
 --JB31_the_carries[1] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|dac_levct:daclev|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|the_carries[1]
 --operation mode is qfbk_counter
 
-JB31_the_carries[1] = CARRY(UD1L51 $ JB31_lsb);
+JB31_the_carries[1] = CARRY(UD1L61 $ JB31_lsb);
 
 
 --JB31_pre_out[1] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|dac_levct:daclev|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|pre_out[1]
@@ -1922,7 +1922,7 @@ JB31_pre_out[1] = DFFE(JB31_pre_out[1]_lut_out, GLOBAL(LE1_outclock0), !KB1_CLR_
 --JB31_the_carries[2] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|dac_levct:daclev|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|the_carries[2]
 --operation mode is arithmetic
 
-JB31_the_carries[2] = CARRY(JB31_pre_out[1] $ !UD1L51 # !JB31_the_carries[1]);
+JB31_the_carries[2] = CARRY(JB31_pre_out[1] $ !UD1L61 # !JB31_the_carries[1]);
 
 
 --JB31_pre_out[2] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|dac_levct:daclev|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|pre_out[2]
@@ -1934,7 +1934,7 @@ JB31_pre_out[2] = DFFE(JB31_pre_out[2]_lut_out, GLOBAL(LE1_outclock0), !KB1_CLR_
 --JB31_the_carries[3] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|dac_levct:daclev|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|the_carries[3]
 --operation mode is arithmetic
 
-JB31_the_carries[3] = CARRY(!JB31_the_carries[2] & (JB31_pre_out[2] $ UD1L51));
+JB31_the_carries[3] = CARRY(!JB31_the_carries[2] & (JB31_pre_out[2] $ UD1L61));
 
 
 --JB31_pre_out[3] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|dac_levct:daclev|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|pre_out[3]
@@ -1946,7 +1946,7 @@ JB31_pre_out[3] = DFFE(JB31_pre_out[3]_lut_out, GLOBAL(LE1_outclock0), !KB1_CLR_
 --JB31_the_carries[4] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|dac_levct:daclev|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|the_carries[4]
 --operation mode is arithmetic
 
-JB31_the_carries[4] = CARRY(JB31_pre_out[3] $ !UD1L51 # !JB31_the_carries[3]);
+JB31_the_carries[4] = CARRY(JB31_pre_out[3] $ !UD1L61 # !JB31_the_carries[3]);
 
 
 --JB31_pre_out[4] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|dac_levct:daclev|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|pre_out[4]
@@ -1958,7 +1958,7 @@ JB31_pre_out[4] = DFFE(JB31_pre_out[4]_lut_out, GLOBAL(LE1_outclock0), !KB1_CLR_
 --JB31_the_carries[5] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|dac_levct:daclev|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|the_carries[5]
 --operation mode is arithmetic
 
-JB31_the_carries[5] = CARRY(!JB31_the_carries[4] & (JB31_pre_out[4] $ UD1L51));
+JB31_the_carries[5] = CARRY(!JB31_the_carries[4] & (JB31_pre_out[4] $ UD1L61));
 
 
 --JB31_pre_out[5] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|dac_levct:daclev|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|pre_out[5]
@@ -1970,7 +1970,7 @@ JB31_pre_out[5] = DFFE(JB31_pre_out[5]_lut_out, GLOBAL(LE1_outclock0), !KB1_CLR_
 --JB31_the_carries[6] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|dac_levct:daclev|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|the_carries[6]
 --operation mode is arithmetic
 
-JB31_the_carries[6] = CARRY(JB31_pre_out[5] $ !UD1L51 # !JB31_the_carries[5]);
+JB31_the_carries[6] = CARRY(JB31_pre_out[5] $ !UD1L61 # !JB31_the_carries[5]);
 
 
 --JB31_pre_out[6] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|dac_levct:daclev|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|pre_out[6]
@@ -1982,7 +1982,7 @@ JB31_pre_out[6] = DFFE(JB31_pre_out[6]_lut_out, GLOBAL(LE1_outclock0), !KB1_CLR_
 --JB31_the_carries[7] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|dac_levct:daclev|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|the_carries[7]
 --operation mode is arithmetic
 
-JB31_the_carries[7] = CARRY(!JB31_the_carries[6] & (JB31_pre_out[6] $ UD1L51));
+JB31_the_carries[7] = CARRY(!JB31_the_carries[6] & (JB31_pre_out[6] $ UD1L61));
 
 
 --JB31_pre_out[7] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|dac_levct:daclev|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|pre_out[7]
@@ -4346,72 +4346,72 @@ SD1_loopcnt[0]_sload_eqn = (SD1L01 & ~GND) # (!SD1L01 & SD1_loopcnt[0]_lut_out);
 SD1_loopcnt[0]_reg_input = SD1_loopcnt[0]_sload_eqn & !YD1_STF;
 SD1_loopcnt[0] = DFFE(SD1_loopcnt[0]_reg_input, GLOBAL(LE1_outclock0), , , !KB1_CLR_BUF);
 
---SD1L33 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|loopcnt[0]~COUT
+--SD1L53 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|loopcnt[0]~COUT
 --operation mode is counter
 
-SD1L33 = CARRY(SD1_loopcnt[0]);
+SD1L53 = CARRY(SD1_loopcnt[0]);
 
 
 --SD1_loopcnt[1] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|loopcnt[1]
 --operation mode is counter
 
-SD1_loopcnt[1]_lut_out = SD1_loopcnt[1] $ SD1L33;
+SD1_loopcnt[1]_lut_out = SD1_loopcnt[1] $ SD1L53;
 SD1_loopcnt[1]_sload_eqn = (SD1L01 & ~GND) # (!SD1L01 & SD1_loopcnt[1]_lut_out);
 SD1_loopcnt[1]_reg_input = SD1_loopcnt[1]_sload_eqn & !YD1_STF;
 SD1_loopcnt[1] = DFFE(SD1_loopcnt[1]_reg_input, GLOBAL(LE1_outclock0), , , !KB1_CLR_BUF);
 
---SD1L53 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|loopcnt[1]~COUT
+--SD1L73 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|loopcnt[1]~COUT
 --operation mode is counter
 
-SD1L53 = CARRY(!SD1L33 # !SD1_loopcnt[1]);
+SD1L73 = CARRY(!SD1L53 # !SD1_loopcnt[1]);
 
 
 --SD1_loopcnt[2] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|loopcnt[2]
 --operation mode is counter
 
-SD1_loopcnt[2]_lut_out = SD1_loopcnt[2] $ !SD1L53;
+SD1_loopcnt[2]_lut_out = SD1_loopcnt[2] $ !SD1L73;
 SD1_loopcnt[2]_sload_eqn = (SD1L01 & ~GND) # (!SD1L01 & SD1_loopcnt[2]_lut_out);
 SD1_loopcnt[2]_reg_input = SD1_loopcnt[2]_sload_eqn & !YD1_STF;
 SD1_loopcnt[2] = DFFE(SD1_loopcnt[2]_reg_input, GLOBAL(LE1_outclock0), , , !KB1_CLR_BUF);
 
---SD1L73 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|loopcnt[2]~COUT
+--SD1L93 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|loopcnt[2]~COUT
 --operation mode is counter
 
-SD1L73 = CARRY(SD1_loopcnt[2] & !SD1L53);
+SD1L93 = CARRY(SD1_loopcnt[2] & !SD1L73);
 
 
 --SD1_loopcnt[3] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|loopcnt[3]
 --operation mode is counter
 
-SD1_loopcnt[3]_lut_out = SD1_loopcnt[3] $ SD1L73;
+SD1_loopcnt[3]_lut_out = SD1_loopcnt[3] $ SD1L93;
 SD1_loopcnt[3]_sload_eqn = (SD1L01 & ~GND) # (!SD1L01 & SD1_loopcnt[3]_lut_out);
 SD1_loopcnt[3]_reg_input = SD1_loopcnt[3]_sload_eqn & !YD1_STF;
 SD1_loopcnt[3] = DFFE(SD1_loopcnt[3]_reg_input, GLOBAL(LE1_outclock0), , , !KB1_CLR_BUF);
 
---SD1L93 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|loopcnt[3]~COUT
+--SD1L14 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|loopcnt[3]~COUT
 --operation mode is counter
 
-SD1L93 = CARRY(!SD1L73 # !SD1_loopcnt[3]);
+SD1L14 = CARRY(!SD1L93 # !SD1_loopcnt[3]);
 
 
 --SD1_loopcnt[4] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|loopcnt[4]
 --operation mode is counter
 
-SD1_loopcnt[4]_lut_out = SD1_loopcnt[4] $ !SD1L93;
+SD1_loopcnt[4]_lut_out = SD1_loopcnt[4] $ !SD1L14;
 SD1_loopcnt[4]_sload_eqn = (SD1L01 & ~GND) # (!SD1L01 & SD1_loopcnt[4]_lut_out);
 SD1_loopcnt[4]_reg_input = SD1_loopcnt[4]_sload_eqn & !YD1_STF;
 SD1_loopcnt[4] = DFFE(SD1_loopcnt[4]_reg_input, GLOBAL(LE1_outclock0), , , !KB1_CLR_BUF);
 
---SD1L14 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|loopcnt[4]~COUT
+--SD1L34 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|loopcnt[4]~COUT
 --operation mode is counter
 
-SD1L14 = CARRY(SD1_loopcnt[4] & !SD1L93);
+SD1L34 = CARRY(SD1_loopcnt[4] & !SD1L14);
 
 
 --SD1_loopcnt[5] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|loopcnt[5]
 --operation mode is normal
 
-SD1_loopcnt[5]_lut_out = SD1_loopcnt[5] $ SD1L14;
+SD1_loopcnt[5]_lut_out = SD1_loopcnt[5] $ SD1L34;
 SD1_loopcnt[5]_sload_eqn = (SD1L01 & ~GND) # (!SD1L01 & SD1_loopcnt[5]_lut_out);
 SD1_loopcnt[5]_reg_input = SD1_loopcnt[5]_sload_eqn & !YD1_STF;
 SD1_loopcnt[5] = DFFE(SD1_loopcnt[5]_reg_input, GLOBAL(LE1_outclock0), , , !KB1_CLR_BUF);
@@ -12802,10 +12802,10 @@ KB1_SYS_RESET_lut_out = !NB1L81Q & (KB1_SYS_RESET # TB1L22Q & KB1_CMD_WAIT);
 KB1_SYS_RESET = DFFE(KB1_SYS_RESET_lut_out, GLOBAL(LE1_outclock0), , , );
 
 
---UD1L81 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|op_3~36
+--UD1L91 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|op_3~36
 --operation mode is normal
 
-UD1L81 = !JB41_sload_path[1] & !JB41_sload_path[2] # !JB41_sload_path[3];
+UD1L91 = !JB41_sload_path[1] & !JB41_sload_path[2] # !JB41_sload_path[3];
 
 
 --HC4_dffs[0] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|tx_uart_shr10:inst8|lpm_shiftreg:lpm_shiftreg_component|dffs[0]
@@ -12818,7 +12818,7 @@ HC4_dffs[0] = DFFE(HC4_dffs[0]_lut_out, GLOBAL(LE1_outclock0), DE1L7Q, , DE1L8Q)
 --UD1L21 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|dac_d[7]~2222
 --operation mode is normal
 
-UD1L21 = JB31_pre_out[7] $ (!JB41_sload_path[4] & UD1L81) # !HC4_dffs[0];
+UD1L21 = JB31_pre_out[7] $ (!JB41_sload_path[4] & UD1L91) # !HC4_dffs[0];
 
 
 --NB1L51Q is dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer|l_pulse~reg
@@ -12841,22 +12841,22 @@ NB1L41Q = DFFE(NB1L41Q_lut_out, GLOBAL(LE1_outclock0), !KB1L25, , );
 UD1L31 = NB1L51Q & JB31_pre_out[7] & !NB1L41Q # !NB1L51Q & (NB1L41Q & !JB31_pre_out[7] # !NB1L41Q & UD1L21);
 
 
---UD1L91 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|op_3~37
+--UD1L02 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|op_3~37
 --operation mode is normal
 
-UD1L91 = !JB41_sload_path[4] & (!JB41_sload_path[1] & !JB41_sload_path[2] # !JB41_sload_path[3]);
+UD1L02 = !JB41_sload_path[4] & (!JB41_sload_path[1] & !JB41_sload_path[2] # !JB41_sload_path[3]);
 
 
 --UD1L8 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|dac_d[5]~2224
 --operation mode is normal
 
-UD1L8 = !NB1L41Q & (NB1L51Q # HC4_dffs[0] & !UD1L91);
+UD1L8 = !NB1L41Q & (NB1L51Q # HC4_dffs[0] & !UD1L02);
 
 
 --UD1L9 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|dac_d[5]~2225
 --operation mode is normal
 
-UD1L9 = !NB1L51Q & (NB1L41Q # HC4_dffs[0] & UD1L91);
+UD1L9 = !NB1L51Q & (NB1L41Q # HC4_dffs[0] & UD1L02);
 
 
 --UD1L11 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|dac_d[6]~2226
@@ -13915,42 +13915,30 @@ NB1L81Q_lut_out = (JB12_sload_path[1] & JB12_sload_path[2] & JB12_sload_path[3] 
 NB1L81Q = DFFE(NB1L81Q_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , );
 
 
---TB1L61Q is dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_hdr_dec_ap:inst4|domlev_up_rq~reg
+--WB1_CTRL_OK is dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|CTRL_OK
 --operation mode is normal
 
-TB1L61Q_lut_out = WB1_DCMD_SEQ1 & HC1_dffs[7] & DC1L01Q & TB1L11Q;
-TB1L61Q = DFFE(TB1L61Q_lut_out, GLOBAL(LE1_outclock0), !DC1L92Q, , );
+WB1_CTRL_OK_lut_out = WB1_EOF_WAIT & DC1L11Q & !YB1L7 & !DC1L92Q;
+WB1_CTRL_OK = DFFE(WB1_CTRL_OK_lut_out, GLOBAL(LE1_outclock0), , , );
 
 
---UD1L51 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|daclev_up~0
+--TB1_domlev_up_rq_ is dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_hdr_dec_ap:inst4|domlev_up_rq_
 --operation mode is normal
 
-UD1L51 = TB1L61Q & !UD1L2;
+TB1_domlev_up_rq__lut_out = HC1_dffs[7];
+TB1_domlev_up_rq_ = DFFE(TB1_domlev_up_rq__lut_out, GLOBAL(LE1_outclock0), !DC1L92Q, , WB1L1);
 
 
---TB1L51Q is dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_hdr_dec_ap:inst4|domlev_dn_rq~reg
+--UD1L61 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|daclev_up~0
 --operation mode is normal
 
-TB1L51Q_lut_out = WB1_DCMD_SEQ1 & HC1_dffs[6] & DC1L01Q & TB1L11Q;
-TB1L51Q = DFFE(TB1L51Q_lut_out, GLOBAL(LE1_outclock0), !DC1L92Q, , );
-
-
---UD1L61 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|op_1~76
---operation mode is normal
-
-UD1L61 = !JB31_pre_out[1] # !JB31_pre_out[2] # !JB31_pre_out[3] # !JB31_pre_out[4];
-
-
---UD1L71 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|op_1~77
---operation mode is normal
-
-UD1L71 = !JB31_pre_out[5] & (UD1L61 # !JB31_lsb) # !JB31_pre_out[6];
+UD1L61 = WB1_CTRL_OK & TB1_domlev_up_rq_ & !UD1L2;
 
 
 --UD1_daclev_adj is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|daclev_adj
 --operation mode is normal
 
-UD1_daclev_adj = UD1L51 # TB1L51Q & UD1L71 & !JB31_pre_out[7];
+UD1_daclev_adj = UD1L51 # WB1_CTRL_OK & TB1_domlev_up_rq_ & !UD1L2;
 
 
 --DE1L4Q is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|TX_UART:inst|ct_clk_en~reg
@@ -13976,7 +13964,7 @@ JB41_pre_sclr = NC51_aeb_out # !DE1L7Q;
 --HC4_dffs[1] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|tx_uart_shr10:inst8|lpm_shiftreg:lpm_shiftreg_component|dffs[1]
 --operation mode is normal
 
-HC4_dffs[1]_lut_out = SD1L41 & (HC4_dffs[2] # DE1L9Q) # !SD1L41 & HC4_dffs[2] & !DE1L9Q;
+HC4_dffs[1]_lut_out = SD1L61 & (HC4_dffs[2] # DE1L9Q) # !SD1L61 & HC4_dffs[2] & !DE1L9Q;
 HC4_dffs[1] = DFFE(HC4_dffs[1]_lut_out, GLOBAL(LE1_outclock0), DE1L7Q, , DE1L8Q);
 
 
@@ -14836,13 +14824,6 @@ TB1L11Q_lut_out = VCC;
 TB1L11Q = DFFE(TB1L11Q_lut_out, GLOBAL(LE1_outclock0), !DC1L92Q, , TB1L01);
 
 
---WB1_CTRL_OK is dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|CTRL_OK
---operation mode is normal
-
-WB1_CTRL_OK_lut_out = WB1_EOF_WAIT & DC1L11Q & !YB1L7 & !DC1L92Q;
-WB1_CTRL_OK = DFFE(WB1_CTRL_OK_lut_out, GLOBAL(LE1_outclock0), , , );
-
-
 --TB1L1 is dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_hdr_dec_ap:inst4|bfstat_rcvd~31
 --operation mode is normal
 
@@ -14887,7 +14868,7 @@ KB1_CRES_WAIT = DFFE(KB1_CRES_WAIT_lut_out, GLOBAL(LE1_outclock0), , , );
 --WB1_CTR_MSG is dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|CTR_MSG
 --operation mode is normal
 
-WB1_CTR_MSG_lut_out = WB1L1 & (WB1_CTR_MSG # WB1L2 & !WB1_IDLE) # !WB1L1 & WB1L2 & !WB1_IDLE;
+WB1_CTR_MSG_lut_out = WB1L2 & (WB1_CTR_MSG # WB1L1 & !WB1_IDLE) # !WB1L2 & WB1L1 & !WB1_IDLE;
 WB1_CTR_MSG = DFFE(WB1_CTR_MSG_lut_out, GLOBAL(LE1_outclock0), !NB1L81Q, , );
 
 
@@ -15185,7 +15166,7 @@ YB1L71 = YB1L31 # YB1L41 # YB1L51 # YB1L61;
 --WB1_EOF_WAIT is dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|EOF_WAIT
 --operation mode is normal
 
-WB1_EOF_WAIT_lut_out = !DC1L92Q & (WB1L2 # WB1_EOF_WAIT & !DC1L11Q);
+WB1_EOF_WAIT_lut_out = !DC1L92Q & (WB1L1 # WB1_EOF_WAIT & !DC1L11Q);
 WB1_EOF_WAIT = DFFE(WB1_EOF_WAIT_lut_out, GLOBAL(LE1_outclock0), , , );
 
 
@@ -15397,7 +15378,7 @@ DC1L01Q = DFFE(DC1L01Q_lut_out, GLOBAL(LE1_outclock0), !KB1L72, , );
 --WB1_DAT_MSG is dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|DAT_MSG
 --operation mode is normal
 
-WB1_DAT_MSG_lut_out = WB1L1 & (WB1_DAT_MSG # TB1L6 & WB1L3) # !WB1L1 & TB1L6 & WB1L3;
+WB1_DAT_MSG_lut_out = WB1L2 & (WB1_DAT_MSG # TB1L6 & WB1L3) # !WB1L2 & TB1L6 & WB1L3;
 WB1_DAT_MSG = DFFE(WB1_DAT_MSG_lut_out, GLOBAL(LE1_outclock0), !NB1L81Q, , );
 
 
@@ -23579,6 +23560,18 @@ YD1L2 = !KB1_SND_ID & !KB1_SND_TC_DAT & !KB1_SND_DAT;
 KB1L21 = KB1L11 # YD1L26Q & (!YD1L2 # !KB1L53);
 
 
+--YB1L7 is dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|crc_rx:inst20|i~17
+--operation mode is normal
+
+YB1L7 = YB1L21 # YB1L71;
+
+
+--WB1L1 is dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|_~165
+--operation mode is normal
+
+WB1L1 = WB1_DCMD_SEQ1 & DC1L01Q & TB1L11Q;
+
+
 --DE1_TXCNT is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|TX_UART:inst|TXCNT
 --operation mode is normal
 
@@ -23632,16 +23625,16 @@ YD1L59Q_lut_out = YD1L9 # YD1L01 # YD1L39 # YD1L49;
 YD1L59Q = DFFE(YD1L59Q_lut_out, GLOBAL(LE1_outclock0), !KB1_CLR_BUF, , );
 
 
---SD1L41 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~826
+--SD1L61 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~826
 --operation mode is normal
 
-SD1L41 = BD72L2 & (BD62L2 # YD1L59Q) # !BD72L2 & BD62L2 & !YD1L59Q;
+SD1L61 = BD72L2 & (BD62L2 # YD1L59Q) # !BD72L2 & BD62L2 & !YD1L59Q;
 
 
 --HC4_dffs[2] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|tx_uart_shr10:inst8|lpm_shiftreg:lpm_shiftreg_component|dffs[2]
 --operation mode is normal
 
-HC4_dffs[2]_lut_out = SD1L51 & (HC4_dffs[3] # DE1L9Q) # !SD1L51 & HC4_dffs[3] & !DE1L9Q;
+HC4_dffs[2]_lut_out = SD1L71 & (HC4_dffs[3] # DE1L9Q) # !SD1L71 & HC4_dffs[3] & !DE1L9Q;
 HC4_dffs[2] = DFFE(HC4_dffs[2]_lut_out, GLOBAL(LE1_outclock0), DE1L7Q, , DE1L8Q);
 
 
@@ -25459,31 +25452,31 @@ W1_LEDdelay[2]_lut_out = W1_LEDdelay[1];
 W1_LEDdelay[2] = DFFE(W1_LEDdelay[2]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , );
 
 
---K1L422Q is coinc:inst_coinc|state~22
+--K1L622Q is coinc:inst_coinc|state~22
 --operation mode is normal
 
-K1L422Q_lut_out = K1_i48 & (K1L46 & K1L422Q # !K1L46 & K1L322Q) # !K1_i48 & K1L422Q;
-K1L422Q = DFFE(K1L422Q_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , );
+K1L622Q_lut_out = K1_i48 & (K1L46 & K1L622Q # !K1L46 & K1L522Q) # !K1_i48 & K1L622Q;
+K1L622Q = DFFE(K1L622Q_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , );
 
 
---K1L322Q is coinc:inst_coinc|state~21
+--K1L522Q is coinc:inst_coinc|state~21
 --operation mode is normal
 
-K1L322Q_lut_out = K1L522 # K1_i48 & !K1L36 & !K1L222Q;
-K1L322Q = DFFE(K1L322Q_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , );
+K1L522Q_lut_out = K1L722 # K1_i48 & !K1L36 & !K1L422Q;
+K1L522Q = DFFE(K1L522Q_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , );
 
 
 --K1_last_down_pol is coinc:inst_coinc|last_down_pol
 --operation mode is normal
 
 K1_last_down_pol_lut_out = !K1_last_down_pol;
-K1_last_down_pol = DFFE(K1_last_down_pol_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1L812);
+K1_last_down_pol = DFFE(K1_last_down_pol_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1L022);
 
 
 --K1L45 is coinc:inst_coinc|i489~117
 --operation mode is normal
 
-K1L45 = K1L422Q & (K1L322Q # K1_last_down_pol) # !K1L422Q & K1L322Q & !K1_last_down_pol;
+K1L45 = K1L622Q & (K1L522Q # K1_last_down_pol) # !K1L622Q & K1L522Q & !K1_last_down_pol;
 
 
 --K1_i48 is coinc:inst_coinc|i48
@@ -25515,13 +25508,13 @@ K1L55 = Y1_command_2_local[9] & (Y1_command_2_local[8] & !K1_coinc_down_high_del
 --K1L65 is coinc:inst_coinc|i490~159
 --operation mode is normal
 
-K1L65 = K1L322Q # K1L422Q;
+K1L65 = K1L522Q # K1L622Q;
 
 
 --K1_last_down is coinc:inst_coinc|last_down
 --operation mode is normal
 
-K1_last_down_lut_out = K1L35 $ (!K1L691 & !K1L102 & K1L422Q);
+K1_last_down_lut_out = K1L35 $ (!K1L691 & !K1L102 & K1L622Q);
 K1_last_down = DFFE(K1_last_down_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
@@ -25548,19 +25541,19 @@ K1L75 = Y1_command_2_local[10] & !K1_coinc_up_high_delay[0];
 --operation mode is normal
 
 K1_last_up_pol_lut_out = !K1_last_up_pol;
-K1_last_up_pol = DFFE(K1_last_up_pol_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1L022);
+K1_last_up_pol = DFFE(K1_last_up_pol_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1L222);
 
 
 --K1L85 is coinc:inst_coinc|i491~118
 --operation mode is normal
 
-K1L85 = K1_last_up_pol & K1L422Q;
+K1L85 = K1_last_up_pol & K1L622Q;
 
 
 --K1L95 is coinc:inst_coinc|i491~119
 --operation mode is normal
 
-K1L95 = K1L322Q & !K1_last_up_pol;
+K1L95 = K1L522Q & !K1_last_up_pol;
 
 
 --K1_coinc_up_low_delay[0] is coinc:inst_coinc|coinc_up_low_delay[0]
@@ -25646,12 +25639,6 @@ DC1L1 = HC1_dffs[6] & HC1_dffs[5] & !HC1_dffs[4];
 TB1L01 = TB1L9 & DC1L1 & (A_nB $ !HC1_dffs[7]);
 
 
---YB1L7 is dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|crc_rx:inst20|i~17
---operation mode is normal
-
-YB1L7 = YB1L21 # YB1L71;
-
-
 --DC1L31 is dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|rxcteq5~41
 --operation mode is normal
 
@@ -25712,7 +25699,7 @@ KB1L72 = KB1L82 & !KB1_DRREQ_WT & !KB1_REC_PULSE & !KB1_REC_WT;
 --TB1L02 is dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_hdr_dec_ap:inst4|idreq_rcvd~30
 --operation mode is normal
 
-TB1L02 = TB1L11Q & WB1_CTRL_OK & TB1L3Q;
+TB1L02 = TB1L11Q & TB1L3Q & WB1_CTRL_OK;
 
 
 --KB1L22 is dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|CRES_WAIT~16
@@ -25728,16 +25715,10 @@ KB1_PON_lut_out = NB1L81Q # KB1_PON & !JB23_sload_path[5];
 KB1_PON = DFFE(KB1_PON_lut_out, GLOBAL(LE1_outclock0), , , );
 
 
---WB1L1 is dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|_~164
+--WB1L2 is dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|_~166
 --operation mode is normal
 
-WB1L1 = !DC1L11Q & !DC1L92Q;
-
-
---WB1L2 is dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|_~165
---operation mode is normal
-
-WB1L2 = WB1_DCMD_SEQ1 & DC1L01Q & TB1L11Q;
+WB1L2 = !DC1L11Q & !DC1L92Q;
 
 
 --WB1_IDLE is dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|IDLE
@@ -25874,7 +25855,7 @@ TC1_i6 = TC1_SRG[31] $ TC1_SRG[1];
 --TB1L71 is dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_hdr_dec_ap:inst4|drreq_rcvd~29
 --operation mode is normal
 
-TB1L71 = TB1L11Q & WB1_CTRL_OK & TB1L3Q & !TB1L4Q;
+TB1L71 = TB1L11Q & TB1L3Q & WB1_CTRL_OK & !TB1L4Q;
 
 
 --B1L5 is ahb_slave:ahb_slave_inst|i~161
@@ -26003,7 +25984,7 @@ TB1L31Q_lut_out = VCC;
 TB1L31Q = DFFE(TB1L31Q_lut_out, GLOBAL(LE1_outclock0), !DC1L92Q, , TB1L21);
 
 
---WB1L3 is dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|_~166
+--WB1L3 is dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|_~167
 --operation mode is normal
 
 WB1L3 = TB1L31Q & !WB1_IDLE;
@@ -26037,7 +26018,7 @@ WB1L01 = WB1_LEN0 # WB1_STF_WAIT # WB1_START # WB1_BYTE0;
 --DC1L9Q is dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|ctclr~reg
 --operation mode is normal
 
-DC1L9Q_lut_out = !DC1L8 & WB1L1 & (DC1L9Q # RC1L22Q);
+DC1L9Q_lut_out = !DC1L8 & WB1L2 & (DC1L9Q # RC1L22Q);
 DC1L9Q = DFFE(DC1L9Q_lut_out, GLOBAL(LE1_outclock0), !KB1L72, , );
 
 
@@ -27762,16 +27743,41 @@ KB1L7 = KB1_SND_TC_DAT & !YD1L26Q & !NB1L81Q;
 NB1L71 = JB12_sload_path[4] & JB12_sload_path[5] & JB12_sload_path[6] & JB12_sload_path[7];
 
 
---UD1L1 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|_~207
+--UD1L1 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|_~208
 --operation mode is normal
 
 UD1L1 = !JB31_pre_out[7] & !JB31_pre_out[6] & !JB31_pre_out[5] & !JB31_pre_out[4];
 
 
---UD1L2 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|_~209
+--UD1L2 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|_~210
 --operation mode is normal
 
 UD1L2 = (!JB31_pre_out[3] & !JB31_pre_out[2] & !JB31_pre_out[1] & !JB31_lsb) & CASCADE(UD1L1);
+
+
+--UD1L71 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|op_1~78
+--operation mode is normal
+
+UD1L71 = !JB31_pre_out[1] # !JB31_pre_out[2] # !JB31_pre_out[3] # !JB31_pre_out[4];
+
+
+--UD1L81 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|op_1~79
+--operation mode is normal
+
+UD1L81 = !JB31_pre_out[5] & (UD1L71 # !JB31_lsb) # !JB31_pre_out[6];
+
+
+--TB1_domlev_dn_rq_ is dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_hdr_dec_ap:inst4|domlev_dn_rq_
+--operation mode is normal
+
+TB1_domlev_dn_rq__lut_out = HC1_dffs[6];
+TB1_domlev_dn_rq_ = DFFE(TB1_domlev_dn_rq__lut_out, GLOBAL(LE1_outclock0), !DC1L92Q, , WB1L1);
+
+
+--UD1L51 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|daclev_adj~82
+--operation mode is normal
+
+UD1L51 = (TB1_domlev_dn_rq_ & WB1_CTRL_OK & !JB31_pre_out[7]) & CASCADE(UD1L81);
 
 
 --DE1L2 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|TX_UART:inst|_~178
@@ -28006,7 +28012,7 @@ YD1L7 = KB1L53 & !KB1_SND_DRBT & !KB1_SND_ID & !KB1_SND_TC_DAT;
 --SD1L3Q is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|done~reg0
 --operation mode is normal
 
-SD1L3Q_lut_out = SD1L75Q & !YD1_STF;
+SD1L3Q_lut_out = SD1L95Q & !YD1_STF;
 SD1L3Q = DFFE(SD1L3Q_lut_out, GLOBAL(LE1_outclock0), , , !KB1_CLR_BUF);
 
 
@@ -28094,16 +28100,16 @@ YD1L011Q = DFFE(YD1L011Q_lut_out, GLOBAL(LE1_outclock0), !KB1_CLR_BUF, , );
 YD1L49 = YD1_TCWFM_WT # YD1L011Q # YD1_TCWFM_L # YD1_TCWFM_H;
 
 
---SD1L51 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~827
+--SD1L71 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~827
 --operation mode is normal
 
-SD1L51 = BD63L2 & (BD53L2 # YD1L59Q) # !BD63L2 & BD53L2 & !YD1L59Q;
+SD1L71 = BD63L2 & (BD53L2 # YD1L59Q) # !BD63L2 & BD53L2 & !YD1L59Q;
 
 
 --HC4_dffs[3] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|tx_uart_shr10:inst8|lpm_shiftreg:lpm_shiftreg_component|dffs[3]
 --operation mode is normal
 
-HC4_dffs[3]_lut_out = SD1L61 & (HC4_dffs[4] # DE1L9Q) # !SD1L61 & HC4_dffs[4] & !DE1L9Q;
+HC4_dffs[3]_lut_out = SD1L81 & (HC4_dffs[4] # DE1L9Q) # !SD1L81 & HC4_dffs[4] & !DE1L9Q;
 HC4_dffs[3] = DFFE(HC4_dffs[3]_lut_out, GLOBAL(LE1_outclock0), DE1L7Q, , DE1L8Q);
 
 
@@ -28664,28 +28670,28 @@ W1_LEDdelay[1] = DFFE(W1_LEDdelay[1]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , )
 --operation mode is normal
 
 K1_wait_cnt[27]_lut_out = K1L212 & (K1_wait_cnt[27] # K1L312 & K1L021) # !K1L212 & K1L312 & K1L021;
-K1_wait_cnt[27] = DFFE(K1_wait_cnt[27]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[27] = DFFE(K1_wait_cnt[27]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1_wait_cnt[28] is coinc:inst_coinc|wait_cnt[28]
 --operation mode is normal
 
 K1_wait_cnt[28]_lut_out = K1L212 & (K1_wait_cnt[28] # K1L312 & K1L221) # !K1L212 & K1L312 & K1L221;
-K1_wait_cnt[28] = DFFE(K1_wait_cnt[28]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[28] = DFFE(K1_wait_cnt[28]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1_wait_cnt[29] is coinc:inst_coinc|wait_cnt[29]
 --operation mode is normal
 
 K1_wait_cnt[29]_lut_out = K1L212 & (K1_wait_cnt[29] # K1L312 & K1L421) # !K1L212 & K1L312 & K1L421;
-K1_wait_cnt[29] = DFFE(K1_wait_cnt[29]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[29] = DFFE(K1_wait_cnt[29]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1_wait_cnt[30] is coinc:inst_coinc|wait_cnt[30]
 --operation mode is normal
 
 K1_wait_cnt[30]_lut_out = K1L212 & (K1_wait_cnt[30] # K1L312 & K1L621) # !K1L212 & K1L312 & K1L621;
-K1_wait_cnt[30] = DFFE(K1_wait_cnt[30]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[30] = DFFE(K1_wait_cnt[30]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1L291 is coinc:inst_coinc|i~1851
@@ -28698,28 +28704,28 @@ K1L291 = K1_wait_cnt[27] # K1_wait_cnt[28] # K1_wait_cnt[29] # K1_wait_cnt[30];
 --operation mode is normal
 
 K1_wait_cnt[23]_lut_out = K1L212 & (K1_wait_cnt[23] # K1L312 & K1L211) # !K1L212 & K1L312 & K1L211;
-K1_wait_cnt[23] = DFFE(K1_wait_cnt[23]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[23] = DFFE(K1_wait_cnt[23]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1_wait_cnt[24] is coinc:inst_coinc|wait_cnt[24]
 --operation mode is normal
 
 K1_wait_cnt[24]_lut_out = K1L212 & (K1_wait_cnt[24] # K1L312 & K1L411) # !K1L212 & K1L312 & K1L411;
-K1_wait_cnt[24] = DFFE(K1_wait_cnt[24]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[24] = DFFE(K1_wait_cnt[24]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1_wait_cnt[25] is coinc:inst_coinc|wait_cnt[25]
 --operation mode is normal
 
 K1_wait_cnt[25]_lut_out = K1L212 & (K1_wait_cnt[25] # K1L312 & K1L611) # !K1L212 & K1L312 & K1L611;
-K1_wait_cnt[25] = DFFE(K1_wait_cnt[25]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[25] = DFFE(K1_wait_cnt[25]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1_wait_cnt[26] is coinc:inst_coinc|wait_cnt[26]
 --operation mode is normal
 
 K1_wait_cnt[26]_lut_out = K1L212 & (K1_wait_cnt[26] # K1L312 & K1L811) # !K1L212 & K1L312 & K1L811;
-K1_wait_cnt[26] = DFFE(K1_wait_cnt[26]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[26] = DFFE(K1_wait_cnt[26]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1L391 is coinc:inst_coinc|i~1852
@@ -28732,28 +28738,28 @@ K1L391 = K1_wait_cnt[23] # K1_wait_cnt[24] # K1_wait_cnt[25] # K1_wait_cnt[26];
 --operation mode is normal
 
 K1_wait_cnt[19]_lut_out = K1L212 & (K1_wait_cnt[19] # K1L312 & K1L401) # !K1L212 & K1L312 & K1L401;
-K1_wait_cnt[19] = DFFE(K1_wait_cnt[19]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[19] = DFFE(K1_wait_cnt[19]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1_wait_cnt[20] is coinc:inst_coinc|wait_cnt[20]
 --operation mode is normal
 
 K1_wait_cnt[20]_lut_out = K1L212 & (K1_wait_cnt[20] # K1L312 & K1L601) # !K1L212 & K1L312 & K1L601;
-K1_wait_cnt[20] = DFFE(K1_wait_cnt[20]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[20] = DFFE(K1_wait_cnt[20]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1_wait_cnt[21] is coinc:inst_coinc|wait_cnt[21]
 --operation mode is normal
 
 K1_wait_cnt[21]_lut_out = K1L212 & (K1_wait_cnt[21] # K1L312 & K1L801) # !K1L212 & K1L312 & K1L801;
-K1_wait_cnt[21] = DFFE(K1_wait_cnt[21]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[21] = DFFE(K1_wait_cnt[21]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1_wait_cnt[22] is coinc:inst_coinc|wait_cnt[22]
 --operation mode is normal
 
 K1_wait_cnt[22]_lut_out = K1L212 & (K1_wait_cnt[22] # K1L312 & K1L011) # !K1L212 & K1L312 & K1L011;
-K1_wait_cnt[22] = DFFE(K1_wait_cnt[22]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[22] = DFFE(K1_wait_cnt[22]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1L491 is coinc:inst_coinc|i~1853
@@ -28766,28 +28772,28 @@ K1L491 = K1_wait_cnt[19] # K1_wait_cnt[20] # K1_wait_cnt[21] # K1_wait_cnt[22];
 --operation mode is normal
 
 K1_wait_cnt[15]_lut_out = K1L212 & (K1_wait_cnt[15] # K1L312 & K1L69) # !K1L212 & K1L312 & K1L69;
-K1_wait_cnt[15] = DFFE(K1_wait_cnt[15]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[15] = DFFE(K1_wait_cnt[15]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1_wait_cnt[16] is coinc:inst_coinc|wait_cnt[16]
 --operation mode is normal
 
 K1_wait_cnt[16]_lut_out = K1L212 & (K1_wait_cnt[16] # K1L312 & K1L89) # !K1L212 & K1L312 & K1L89;
-K1_wait_cnt[16] = DFFE(K1_wait_cnt[16]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[16] = DFFE(K1_wait_cnt[16]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1_wait_cnt[17] is coinc:inst_coinc|wait_cnt[17]
 --operation mode is normal
 
 K1_wait_cnt[17]_lut_out = K1L212 & (K1_wait_cnt[17] # K1L312 & K1L001) # !K1L212 & K1L312 & K1L001;
-K1_wait_cnt[17] = DFFE(K1_wait_cnt[17]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[17] = DFFE(K1_wait_cnt[17]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1_wait_cnt[18] is coinc:inst_coinc|wait_cnt[18]
 --operation mode is normal
 
 K1_wait_cnt[18]_lut_out = K1L212 & (K1_wait_cnt[18] # K1L312 & K1L201) # !K1L212 & K1L312 & K1L201;
-K1_wait_cnt[18] = DFFE(K1_wait_cnt[18]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[18] = DFFE(K1_wait_cnt[18]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1L591 is coinc:inst_coinc|i~1854
@@ -28806,28 +28812,28 @@ K1L691 = K1L291 # K1L391 # K1L491 # K1L591;
 --operation mode is normal
 
 K1_wait_cnt[11]_lut_out = K1L212 & (K1_wait_cnt[11] # K1L312 & K1L88) # !K1L212 & K1L312 & K1L88;
-K1_wait_cnt[11] = DFFE(K1_wait_cnt[11]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[11] = DFFE(K1_wait_cnt[11]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1_wait_cnt[12] is coinc:inst_coinc|wait_cnt[12]
 --operation mode is normal
 
 K1_wait_cnt[12]_lut_out = K1L212 & (K1_wait_cnt[12] # K1L312 & K1L09) # !K1L212 & K1L312 & K1L09;
-K1_wait_cnt[12] = DFFE(K1_wait_cnt[12]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[12] = DFFE(K1_wait_cnt[12]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1_wait_cnt[13] is coinc:inst_coinc|wait_cnt[13]
 --operation mode is normal
 
 K1_wait_cnt[13]_lut_out = K1L212 & (K1_wait_cnt[13] # K1L312 & K1L29) # !K1L212 & K1L312 & K1L29;
-K1_wait_cnt[13] = DFFE(K1_wait_cnt[13]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[13] = DFFE(K1_wait_cnt[13]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1_wait_cnt[14] is coinc:inst_coinc|wait_cnt[14]
 --operation mode is normal
 
 K1_wait_cnt[14]_lut_out = K1L212 & (K1_wait_cnt[14] # K1L312 & K1L49) # !K1L212 & K1L312 & K1L49;
-K1_wait_cnt[14] = DFFE(K1_wait_cnt[14]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[14] = DFFE(K1_wait_cnt[14]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1L791 is coinc:inst_coinc|i~1856
@@ -28840,28 +28846,28 @@ K1L791 = K1_wait_cnt[11] # K1_wait_cnt[12] # K1_wait_cnt[13] # K1_wait_cnt[14];
 --operation mode is normal
 
 K1_wait_cnt[7]_lut_out = K1L212 & (K1_wait_cnt[7] # K1L312 & K1L08) # !K1L212 & K1L312 & K1L08;
-K1_wait_cnt[7] = DFFE(K1_wait_cnt[7]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[7] = DFFE(K1_wait_cnt[7]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1_wait_cnt[8] is coinc:inst_coinc|wait_cnt[8]
 --operation mode is normal
 
 K1_wait_cnt[8]_lut_out = K1L212 & (K1_wait_cnt[8] # K1L312 & K1L28) # !K1L212 & K1L312 & K1L28;
-K1_wait_cnt[8] = DFFE(K1_wait_cnt[8]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[8] = DFFE(K1_wait_cnt[8]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1_wait_cnt[9] is coinc:inst_coinc|wait_cnt[9]
 --operation mode is normal
 
 K1_wait_cnt[9]_lut_out = K1L212 & (K1_wait_cnt[9] # K1L312 & K1L48) # !K1L212 & K1L312 & K1L48;
-K1_wait_cnt[9] = DFFE(K1_wait_cnt[9]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[9] = DFFE(K1_wait_cnt[9]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1_wait_cnt[10] is coinc:inst_coinc|wait_cnt[10]
 --operation mode is normal
 
 K1_wait_cnt[10]_lut_out = K1L212 & (K1_wait_cnt[10] # K1L312 & K1L68) # !K1L212 & K1L312 & K1L68;
-K1_wait_cnt[10] = DFFE(K1_wait_cnt[10]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[10] = DFFE(K1_wait_cnt[10]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1L891 is coinc:inst_coinc|i~1857
@@ -28874,28 +28880,28 @@ K1L891 = K1_wait_cnt[7] # K1_wait_cnt[8] # K1_wait_cnt[9] # K1_wait_cnt[10];
 --operation mode is normal
 
 K1_wait_cnt[3]_lut_out = K1L212 & (K1_wait_cnt[3] # K1L312 & K1L27) # !K1L212 & K1L312 & K1L27;
-K1_wait_cnt[3] = DFFE(K1_wait_cnt[3]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[3] = DFFE(K1_wait_cnt[3]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1_wait_cnt[4] is coinc:inst_coinc|wait_cnt[4]
 --operation mode is normal
 
 K1_wait_cnt[4]_lut_out = K1L212 & (K1_wait_cnt[4] # K1L312 & K1L47) # !K1L212 & K1L312 & K1L47;
-K1_wait_cnt[4] = DFFE(K1_wait_cnt[4]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[4] = DFFE(K1_wait_cnt[4]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1_wait_cnt[5] is coinc:inst_coinc|wait_cnt[5]
 --operation mode is normal
 
 K1_wait_cnt[5]_lut_out = K1L212 & (K1_wait_cnt[5] # K1L312 & K1L67) # !K1L212 & K1L312 & K1L67;
-K1_wait_cnt[5] = DFFE(K1_wait_cnt[5]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[5] = DFFE(K1_wait_cnt[5]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1_wait_cnt[6] is coinc:inst_coinc|wait_cnt[6]
 --operation mode is normal
 
-K1_wait_cnt[6]_lut_out = K1L212 & (K1_wait_cnt[6] # K1L312 & K1L87) # !K1L212 & K1L312 & K1L87;
-K1_wait_cnt[6] = DFFE(K1_wait_cnt[6]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[6]_lut_out = K1L412 # K1L36 & K1_wait_cnt[6] & !K1L422Q;
+K1_wait_cnt[6] = DFFE(K1_wait_cnt[6]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1L991 is coinc:inst_coinc|i~1858
@@ -28908,28 +28914,28 @@ K1L991 = K1_wait_cnt[3] # K1_wait_cnt[4] # K1_wait_cnt[5] # K1_wait_cnt[6];
 --operation mode is normal
 
 K1_wait_cnt[31]_lut_out = K1L212 & (K1_wait_cnt[31] # K1L312 & K1L821) # !K1L212 & K1L312 & K1L821;
-K1_wait_cnt[31] = DFFE(K1_wait_cnt[31]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[31] = DFFE(K1_wait_cnt[31]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1_wait_cnt[0] is coinc:inst_coinc|wait_cnt[0]
 --operation mode is normal
 
 K1_wait_cnt[0]_lut_out = K1L212 & (K1_wait_cnt[0] # K1L312 & K1L66) # !K1L212 & K1L312 & K1L66;
-K1_wait_cnt[0] = DFFE(K1_wait_cnt[0]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[0] = DFFE(K1_wait_cnt[0]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1_wait_cnt[1] is coinc:inst_coinc|wait_cnt[1]
 --operation mode is normal
 
-K1_wait_cnt[1]_lut_out = K1L212 & (K1_wait_cnt[1] # K1L312 & K1L86) # !K1L212 & K1L312 & K1L86;
-K1_wait_cnt[1] = DFFE(K1_wait_cnt[1]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[1]_lut_out = K1L512 # K1L36 & K1_wait_cnt[1] & !K1L422Q;
+K1_wait_cnt[1] = DFFE(K1_wait_cnt[1]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1_wait_cnt[2] is coinc:inst_coinc|wait_cnt[2]
 --operation mode is normal
 
-K1_wait_cnt[2]_lut_out = K1L412 # K1L56 # K1L212 & K1_wait_cnt[2];
-K1_wait_cnt[2] = DFFE(K1_wait_cnt[2]_lut_out, GLOBAL(LE1_outclock0), , , K1L852);
+K1_wait_cnt[2]_lut_out = K1L612 # K1L56 # K1L212 & K1_wait_cnt[2];
+K1_wait_cnt[2] = DFFE(K1_wait_cnt[2]_lut_out, GLOBAL(LE1_outclock0), , , K1L062);
 
 
 --K1L002 is coinc:inst_coinc|i~1859
@@ -28950,37 +28956,37 @@ K1L102 = K1L791 # K1L891 # K1L991 # K1L002;
 K1L46 = K1L691 # K1L102;
 
 
---K1L522 is coinc:inst_coinc|state~488
+--K1L722 is coinc:inst_coinc|state~488
 --operation mode is normal
 
-K1L522 = K1L322Q & (K1L691 # K1L102 # !K1_i48);
+K1L722 = K1L522Q & (K1L691 # K1L102 # !K1_i48);
 
 
 --K1_cnt[28] is coinc:inst_coinc|cnt[28]
 --operation mode is normal
 
-K1_cnt[28]_lut_out = K1L512 & (K1_cnt[28] # K1L581 & !K1L222Q) # !K1L512 & K1L581 & !K1L222Q;
+K1_cnt[28]_lut_out = K1L712 & (K1_cnt[28] # K1L581 & !K1L422Q) # !K1L712 & K1L581 & !K1L422Q;
 K1_cnt[28] = DFFE(K1_cnt[28]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
 --K1_cnt[29] is coinc:inst_coinc|cnt[29]
 --operation mode is normal
 
-K1_cnt[29]_lut_out = K1L512 & (K1_cnt[29] # K1L781 & !K1L222Q) # !K1L512 & K1L781 & !K1L222Q;
+K1_cnt[29]_lut_out = K1L712 & (K1_cnt[29] # K1L781 & !K1L422Q) # !K1L712 & K1L781 & !K1L422Q;
 K1_cnt[29] = DFFE(K1_cnt[29]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
 --K1_cnt[30] is coinc:inst_coinc|cnt[30]
 --operation mode is normal
 
-K1_cnt[30]_lut_out = K1L512 & (K1_cnt[30] # K1L981 & !K1L222Q) # !K1L512 & K1L981 & !K1L222Q;
+K1_cnt[30]_lut_out = K1L712 & (K1_cnt[30] # K1L981 & !K1L422Q) # !K1L712 & K1L981 & !K1L422Q;
 K1_cnt[30] = DFFE(K1_cnt[30]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
 --K1_cnt[31] is coinc:inst_coinc|cnt[31]
 --operation mode is normal
 
-K1_cnt[31]_lut_out = K1L512 & (K1_cnt[31] # K1L191 & !K1L222Q) # !K1L512 & K1L191 & !K1L222Q;
+K1_cnt[31]_lut_out = K1L712 & (K1_cnt[31] # K1L191 & !K1L422Q) # !K1L712 & K1L191 & !K1L422Q;
 K1_cnt[31] = DFFE(K1_cnt[31]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
@@ -28993,28 +28999,28 @@ K1L202 = K1_cnt[28] # K1_cnt[29] # K1_cnt[30] # K1_cnt[31];
 --K1_cnt[24] is coinc:inst_coinc|cnt[24]
 --operation mode is normal
 
-K1_cnt[24]_lut_out = K1L512 & (K1_cnt[24] # K1L771 & !K1L222Q) # !K1L512 & K1L771 & !K1L222Q;
+K1_cnt[24]_lut_out = K1L712 & (K1_cnt[24] # K1L771 & !K1L422Q) # !K1L712 & K1L771 & !K1L422Q;
 K1_cnt[24] = DFFE(K1_cnt[24]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
 --K1_cnt[25] is coinc:inst_coinc|cnt[25]
 --operation mode is normal
 
-K1_cnt[25]_lut_out = K1L512 & (K1_cnt[25] # K1L971 & !K1L222Q) # !K1L512 & K1L971 & !K1L222Q;
+K1_cnt[25]_lut_out = K1L712 & (K1_cnt[25] # K1L971 & !K1L422Q) # !K1L712 & K1L971 & !K1L422Q;
 K1_cnt[25] = DFFE(K1_cnt[25]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
 --K1_cnt[26] is coinc:inst_coinc|cnt[26]
 --operation mode is normal
 
-K1_cnt[26]_lut_out = K1L512 & (K1_cnt[26] # K1L181 & !K1L222Q) # !K1L512 & K1L181 & !K1L222Q;
+K1_cnt[26]_lut_out = K1L712 & (K1_cnt[26] # K1L181 & !K1L422Q) # !K1L712 & K1L181 & !K1L422Q;
 K1_cnt[26] = DFFE(K1_cnt[26]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
 --K1_cnt[27] is coinc:inst_coinc|cnt[27]
 --operation mode is normal
 
-K1_cnt[27]_lut_out = K1L512 & (K1_cnt[27] # K1L381 & !K1L222Q) # !K1L512 & K1L381 & !K1L222Q;
+K1_cnt[27]_lut_out = K1L712 & (K1_cnt[27] # K1L381 & !K1L422Q) # !K1L712 & K1L381 & !K1L422Q;
 K1_cnt[27] = DFFE(K1_cnt[27]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
@@ -29027,28 +29033,28 @@ K1L302 = K1_cnt[24] # K1_cnt[25] # K1_cnt[26] # K1_cnt[27];
 --K1_cnt[20] is coinc:inst_coinc|cnt[20]
 --operation mode is normal
 
-K1_cnt[20]_lut_out = K1L512 & (K1_cnt[20] # K1L961 & !K1L222Q) # !K1L512 & K1L961 & !K1L222Q;
+K1_cnt[20]_lut_out = K1L712 & (K1_cnt[20] # K1L961 & !K1L422Q) # !K1L712 & K1L961 & !K1L422Q;
 K1_cnt[20] = DFFE(K1_cnt[20]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
 --K1_cnt[21] is coinc:inst_coinc|cnt[21]
 --operation mode is normal
 
-K1_cnt[21]_lut_out = K1L512 & (K1_cnt[21] # K1L171 & !K1L222Q) # !K1L512 & K1L171 & !K1L222Q;
+K1_cnt[21]_lut_out = K1L712 & (K1_cnt[21] # K1L171 & !K1L422Q) # !K1L712 & K1L171 & !K1L422Q;
 K1_cnt[21] = DFFE(K1_cnt[21]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
 --K1_cnt[22] is coinc:inst_coinc|cnt[22]
 --operation mode is normal
 
-K1_cnt[22]_lut_out = K1L512 & (K1_cnt[22] # K1L371 & !K1L222Q) # !K1L512 & K1L371 & !K1L222Q;
+K1_cnt[22]_lut_out = K1L712 & (K1_cnt[22] # K1L371 & !K1L422Q) # !K1L712 & K1L371 & !K1L422Q;
 K1_cnt[22] = DFFE(K1_cnt[22]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
 --K1_cnt[23] is coinc:inst_coinc|cnt[23]
 --operation mode is normal
 
-K1_cnt[23]_lut_out = K1L512 & (K1_cnt[23] # K1L571 & !K1L222Q) # !K1L512 & K1L571 & !K1L222Q;
+K1_cnt[23]_lut_out = K1L712 & (K1_cnt[23] # K1L571 & !K1L422Q) # !K1L712 & K1L571 & !K1L422Q;
 K1_cnt[23] = DFFE(K1_cnt[23]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
@@ -29061,28 +29067,28 @@ K1L402 = K1_cnt[20] # K1_cnt[21] # K1_cnt[22] # K1_cnt[23];
 --K1_cnt[16] is coinc:inst_coinc|cnt[16]
 --operation mode is normal
 
-K1_cnt[16]_lut_out = K1L512 & (K1_cnt[16] # K1L161 & !K1L222Q) # !K1L512 & K1L161 & !K1L222Q;
+K1_cnt[16]_lut_out = K1L712 & (K1_cnt[16] # K1L161 & !K1L422Q) # !K1L712 & K1L161 & !K1L422Q;
 K1_cnt[16] = DFFE(K1_cnt[16]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
 --K1_cnt[17] is coinc:inst_coinc|cnt[17]
 --operation mode is normal
 
-K1_cnt[17]_lut_out = K1L512 & (K1_cnt[17] # K1L361 & !K1L222Q) # !K1L512 & K1L361 & !K1L222Q;
+K1_cnt[17]_lut_out = K1L712 & (K1_cnt[17] # K1L361 & !K1L422Q) # !K1L712 & K1L361 & !K1L422Q;
 K1_cnt[17] = DFFE(K1_cnt[17]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
 --K1_cnt[18] is coinc:inst_coinc|cnt[18]
 --operation mode is normal
 
-K1_cnt[18]_lut_out = K1L512 & (K1_cnt[18] # K1L561 & !K1L222Q) # !K1L512 & K1L561 & !K1L222Q;
+K1_cnt[18]_lut_out = K1L712 & (K1_cnt[18] # K1L561 & !K1L422Q) # !K1L712 & K1L561 & !K1L422Q;
 K1_cnt[18] = DFFE(K1_cnt[18]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
 --K1_cnt[19] is coinc:inst_coinc|cnt[19]
 --operation mode is normal
 
-K1_cnt[19]_lut_out = K1L512 & (K1_cnt[19] # K1L761 & !K1L222Q) # !K1L512 & K1L761 & !K1L222Q;
+K1_cnt[19]_lut_out = K1L712 & (K1_cnt[19] # K1L761 & !K1L422Q) # !K1L712 & K1L761 & !K1L422Q;
 K1_cnt[19] = DFFE(K1_cnt[19]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
@@ -29101,28 +29107,28 @@ K1L602 = K1L202 # K1L302 # K1L402 # K1L502;
 --K1_cnt[12] is coinc:inst_coinc|cnt[12]
 --operation mode is normal
 
-K1_cnt[12]_lut_out = K1L512 & (K1_cnt[12] # K1L351 & !K1L222Q) # !K1L512 & K1L351 & !K1L222Q;
+K1_cnt[12]_lut_out = K1L712 & (K1_cnt[12] # K1L351 & !K1L422Q) # !K1L712 & K1L351 & !K1L422Q;
 K1_cnt[12] = DFFE(K1_cnt[12]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
 --K1_cnt[13] is coinc:inst_coinc|cnt[13]
 --operation mode is normal
 
-K1_cnt[13]_lut_out = K1L512 & (K1_cnt[13] # K1L551 & !K1L222Q) # !K1L512 & K1L551 & !K1L222Q;
+K1_cnt[13]_lut_out = K1L712 & (K1_cnt[13] # K1L551 & !K1L422Q) # !K1L712 & K1L551 & !K1L422Q;
 K1_cnt[13] = DFFE(K1_cnt[13]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
 --K1_cnt[14] is coinc:inst_coinc|cnt[14]
 --operation mode is normal
 
-K1_cnt[14]_lut_out = K1L512 & (K1_cnt[14] # K1L751 & !K1L222Q) # !K1L512 & K1L751 & !K1L222Q;
+K1_cnt[14]_lut_out = K1L712 & (K1_cnt[14] # K1L751 & !K1L422Q) # !K1L712 & K1L751 & !K1L422Q;
 K1_cnt[14] = DFFE(K1_cnt[14]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
 --K1_cnt[15] is coinc:inst_coinc|cnt[15]
 --operation mode is normal
 
-K1_cnt[15]_lut_out = K1L512 & (K1_cnt[15] # K1L951 & !K1L222Q) # !K1L512 & K1L951 & !K1L222Q;
+K1_cnt[15]_lut_out = K1L712 & (K1_cnt[15] # K1L951 & !K1L422Q) # !K1L712 & K1L951 & !K1L422Q;
 K1_cnt[15] = DFFE(K1_cnt[15]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
@@ -29135,28 +29141,28 @@ K1L702 = K1_cnt[12] # K1_cnt[13] # K1_cnt[14] # K1_cnt[15];
 --K1_cnt[11] is coinc:inst_coinc|cnt[11]
 --operation mode is normal
 
-K1_cnt[11]_lut_out = K1L512 & (K1_cnt[11] # K1L151 & !K1L222Q) # !K1L512 & K1L151 & !K1L222Q;
+K1_cnt[11]_lut_out = K1L712 & (K1_cnt[11] # K1L151 & !K1L422Q) # !K1L712 & K1L151 & !K1L422Q;
 K1_cnt[11] = DFFE(K1_cnt[11]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
 --K1_cnt[8] is coinc:inst_coinc|cnt[8]
 --operation mode is normal
 
-K1_cnt[8]_lut_out = K1L512 & (K1_cnt[8] # K1L541 & !K1L222Q) # !K1L512 & K1L541 & !K1L222Q;
+K1_cnt[8]_lut_out = K1L712 & (K1_cnt[8] # K1L541 & !K1L422Q) # !K1L712 & K1L541 & !K1L422Q;
 K1_cnt[8] = DFFE(K1_cnt[8]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
 --K1_cnt[9] is coinc:inst_coinc|cnt[9]
 --operation mode is normal
 
-K1_cnt[9]_lut_out = K1L512 & (K1_cnt[9] # K1L741 & !K1L222Q) # !K1L512 & K1L741 & !K1L222Q;
+K1_cnt[9]_lut_out = K1L712 & (K1_cnt[9] # K1L741 & !K1L422Q) # !K1L712 & K1L741 & !K1L422Q;
 K1_cnt[9] = DFFE(K1_cnt[9]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
 --K1_cnt[10] is coinc:inst_coinc|cnt[10]
 --operation mode is normal
 
-K1_cnt[10]_lut_out = K1L512 & (K1_cnt[10] # K1L941 & !K1L222Q) # !K1L512 & K1L941 & !K1L222Q;
+K1_cnt[10]_lut_out = K1L712 & (K1_cnt[10] # K1L941 & !K1L422Q) # !K1L712 & K1L941 & !K1L422Q;
 K1_cnt[10] = DFFE(K1_cnt[10]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
@@ -29169,28 +29175,28 @@ K1L802 = K1_cnt[11] # !K1_cnt[10] # !K1_cnt[9] # !K1_cnt[8];
 --K1_cnt[5] is coinc:inst_coinc|cnt[5]
 --operation mode is normal
 
-K1_cnt[5]_lut_out = K1L512 & (K1_cnt[5] # K1L931 & !K1L222Q) # !K1L512 & K1L931 & !K1L222Q;
+K1_cnt[5]_lut_out = K1L712 & (K1_cnt[5] # K1L931 & !K1L422Q) # !K1L712 & K1L931 & !K1L422Q;
 K1_cnt[5] = DFFE(K1_cnt[5]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
 --K1_cnt[4] is coinc:inst_coinc|cnt[4]
 --operation mode is normal
 
-K1_cnt[4]_lut_out = K1L512 & (K1_cnt[4] # K1L731 & !K1L222Q) # !K1L512 & K1L731 & !K1L222Q;
+K1_cnt[4]_lut_out = K1L712 & (K1_cnt[4] # K1L731 & !K1L422Q) # !K1L712 & K1L731 & !K1L422Q;
 K1_cnt[4] = DFFE(K1_cnt[4]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
 --K1_cnt[6] is coinc:inst_coinc|cnt[6]
 --operation mode is normal
 
-K1_cnt[6]_lut_out = K1L512 & (K1_cnt[6] # K1L141 & !K1L222Q) # !K1L512 & K1L141 & !K1L222Q;
+K1_cnt[6]_lut_out = K1L712 & (K1_cnt[6] # K1L141 & !K1L422Q) # !K1L712 & K1L141 & !K1L422Q;
 K1_cnt[6] = DFFE(K1_cnt[6]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
 --K1_cnt[7] is coinc:inst_coinc|cnt[7]
 --operation mode is normal
 
-K1_cnt[7]_lut_out = K1L512 & (K1_cnt[7] # K1L341 & !K1L222Q) # !K1L512 & K1L341 & !K1L222Q;
+K1_cnt[7]_lut_out = K1L712 & (K1_cnt[7] # K1L341 & !K1L422Q) # !K1L712 & K1L341 & !K1L422Q;
 K1_cnt[7] = DFFE(K1_cnt[7]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
@@ -29203,28 +29209,28 @@ K1L902 = K1_cnt[5] # !K1_cnt[7] # !K1_cnt[6] # !K1_cnt[4];
 --K1_cnt[0] is coinc:inst_coinc|cnt[0]
 --operation mode is normal
 
-K1_cnt[0]_lut_out = K1L512 & (K1_cnt[0] # K1L921 & !K1L222Q) # !K1L512 & K1L921 & !K1L222Q;
+K1_cnt[0]_lut_out = K1L712 & (K1_cnt[0] # K1L921 & !K1L422Q) # !K1L712 & K1L921 & !K1L422Q;
 K1_cnt[0] = DFFE(K1_cnt[0]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
 --K1_cnt[1] is coinc:inst_coinc|cnt[1]
 --operation mode is normal
 
-K1_cnt[1]_lut_out = K1L512 & (K1_cnt[1] # K1L131 & !K1L222Q) # !K1L512 & K1L131 & !K1L222Q;
+K1_cnt[1]_lut_out = K1L712 & (K1_cnt[1] # K1L131 & !K1L422Q) # !K1L712 & K1L131 & !K1L422Q;
 K1_cnt[1] = DFFE(K1_cnt[1]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
 --K1_cnt[2] is coinc:inst_coinc|cnt[2]
 --operation mode is normal
 
-K1_cnt[2]_lut_out = K1L512 & (K1_cnt[2] # K1L331 & !K1L222Q) # !K1L512 & K1L331 & !K1L222Q;
+K1_cnt[2]_lut_out = K1L712 & (K1_cnt[2] # K1L331 & !K1L422Q) # !K1L712 & K1L331 & !K1L422Q;
 K1_cnt[2] = DFFE(K1_cnt[2]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
 --K1_cnt[3] is coinc:inst_coinc|cnt[3]
 --operation mode is normal
 
-K1_cnt[3]_lut_out = K1L512 & (K1_cnt[3] # K1L531 & !K1L222Q) # !K1L512 & K1L531 & !K1L222Q;
+K1_cnt[3]_lut_out = K1L712 & (K1_cnt[3] # K1L531 & !K1L422Q) # !K1L712 & K1L531 & !K1L422Q;
 K1_cnt[3] = DFFE(K1_cnt[3]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , K1_i48);
 
 
@@ -29246,29 +29252,23 @@ K1L112 = K1L702 # K1L802 # K1L902 # K1L012;
 K1L36 = K1L602 # K1L112;
 
 
---K1L222Q is coinc:inst_coinc|state~20
+--K1L422Q is coinc:inst_coinc|state~20
 --operation mode is normal
 
-K1L222Q_lut_out = !K1L122 & (K1L222Q # !K1L36 & K1_i48);
-K1L222Q = DFFE(K1L222Q_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , );
+K1L422Q_lut_out = !K1L322 & (K1L422Q # !K1L36 & K1_i48);
+K1L422Q = DFFE(K1L422Q_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , );
 
 
---K1L812 is coinc:inst_coinc|last_down_pol~0
+--K1L022 is coinc:inst_coinc|last_down_pol~0
 --operation mode is normal
 
-K1L812 = K1L422Q & !K1L691 & !K1L102 & !K1L35;
+K1L022 = K1L622Q & !K1L691 & !K1L102 & !K1L35;
 
 
---K1L122 is coinc:inst_coinc|last_up_pol~24
+--K1L222 is coinc:inst_coinc|last_up_pol~0
 --operation mode is normal
 
-K1L122 = K1_i48 & K1L422Q & !K1L691 & !K1L102;
-
-
---K1L022 is coinc:inst_coinc|last_up_pol~0
---operation mode is normal
-
-K1L022 = K1L122 & (K1_last_down & Y1_command_2_local[0] # !Y1_command_2_local[1]);
+K1L222 = K1_i48 & K1L35 & K1L622Q & !K1L46;
 
 
 --F1_LEDdelay[1] is flasher_board:flasher_board_inst|LEDdelay[1]
@@ -30188,11 +30188,11 @@ YD1L99Q_lut_out = YD1L3 # YD1L11 # YD1L45 # YD1L89;
 YD1L99Q = DFFE(YD1L99Q_lut_out, GLOBAL(LE1_outclock0), !KB1_CLR_BUF, , );
 
 
---SD1L75Q is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|state~24
+--SD1L95Q is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|state~24
 --operation mode is normal
 
-SD1L75Q_lut_out = !YD1_STF & (SD1L75Q # SD1L65Q & !SD1L9);
-SD1L75Q = DFFE(SD1L75Q_lut_out, GLOBAL(LE1_outclock0), !KB1_CLR_BUF, , );
+SD1L95Q_lut_out = !YD1_STF & (SD1L95Q # SD1L85Q & !SD1L9);
+SD1L95Q = DFFE(SD1L95Q_lut_out, GLOBAL(LE1_outclock0), !KB1_CLR_BUF, , );
 
 
 --YD1L91 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|_~1885
@@ -30326,16 +30326,16 @@ YD1L22 = JB81L8 & YD1_ID_SHR8 & !JB91L9;
 YD1L32 = YD1_ID_BYTE & DE1L9Q;
 
 
---SD1L61 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~828
+--SD1L81 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~828
 --operation mode is normal
 
-SD1L61 = BD54L2 & (BD44L2 # YD1L59Q) # !BD54L2 & BD44L2 & !YD1L59Q;
+SD1L81 = BD54L2 & (BD44L2 # YD1L59Q) # !BD54L2 & BD44L2 & !YD1L59Q;
 
 
 --HC4_dffs[4] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|tx_uart_shr10:inst8|lpm_shiftreg:lpm_shiftreg_component|dffs[4]
 --operation mode is normal
 
-HC4_dffs[4]_lut_out = SD1L81 & (HC4_dffs[5] # DE1L9Q) # !SD1L81 & HC4_dffs[5] & !DE1L9Q;
+HC4_dffs[4]_lut_out = SD1L02 & (HC4_dffs[5] # DE1L9Q) # !SD1L02 & HC4_dffs[5] & !DE1L9Q;
 HC4_dffs[4] = DFFE(HC4_dffs[4]_lut_out, GLOBAL(LE1_outclock0), DE1L7Q, , DE1L8Q);
 
 
@@ -30446,37 +30446,55 @@ W1_LEDdelay[0] = DFFE(W1_LEDdelay[0]_lut_out, GLOBAL(LE1_outclock0), !V1L4Q, , )
 --K1L212 is coinc:inst_coinc|i~1871
 --operation mode is normal
 
-K1L212 = !K1L222Q & (K1L602 # K1L112);
+K1L212 = !K1L422Q & (K1L602 # K1L112);
 
 
 --K1L312 is coinc:inst_coinc|i~1872
 --operation mode is normal
 
-K1L312 = K1L691 & (K1L322Q # K1L422Q) # !K1L691 & K1L102 & (K1L322Q # K1L422Q);
+K1L312 = K1L691 & (K1L522Q # K1L622Q) # !K1L691 & K1L102 & (K1L522Q # K1L622Q);
 
 
---K1L852 is coinc:inst_coinc|wait_cnt[30]~0
+--K1L062 is coinc:inst_coinc|wait_cnt[30]~0
 --operation mode is normal
 
-K1L852 = !V1L4Q & (Y1_command_2_local[1] # Y1_command_2_local[0]);
+K1L062 = !V1L4Q & (Y1_command_2_local[1] # Y1_command_2_local[0]);
 
 
---K1L412 is coinc:inst_coinc|i~1904
+--K1L412 is coinc:inst_coinc|i~1900
 --operation mode is normal
 
-K1L412 = K1L422Q & (K1L07 # !K1L691 & !K1L102);
+K1L412 = K1L65 & K1L87 & (K1L691 # K1L102);
+
+
+--K1L512 is coinc:inst_coinc|i~1904
+--operation mode is normal
+
+K1L512 = K1L65 & K1L86 & (K1L691 # K1L102);
+
+
+--K1L612 is coinc:inst_coinc|i~1906
+--operation mode is normal
+
+K1L612 = K1L622Q & (K1L07 # !K1L691 & !K1L102);
 
 
 --K1L56 is coinc:inst_coinc|i~354
 --operation mode is normal
 
-K1L56 = K1L07 & K1L322Q & (K1L691 # K1L102);
+K1L56 = K1L07 & K1L522Q & (K1L691 # K1L102);
 
 
---K1L512 is coinc:inst_coinc|i~1906
+--K1L712 is coinc:inst_coinc|i~1908
 --operation mode is normal
 
-K1L512 = K1L322Q # K1L422Q & (K1L691 # K1L102);
+K1L712 = K1L522Q # K1L622Q & (K1L691 # K1L102);
+
+
+--K1L322 is coinc:inst_coinc|last_up_pol~24
+--operation mode is normal
+
+K1L322 = K1_i48 & K1L622Q & !K1L691 & !K1L102;
 
 
 --F1_LEDdelay[0] is flasher_board:flasher_board_inst|LEDdelay[0]
@@ -30919,23 +30937,23 @@ HD1L1 = HD1L7Q & YD1L011Q;
 HD1L81 = HD1L1 # HD1L11Q # HD1L01Q & !JB9L41;
 
 
---SD1L65Q is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|state~23
+--SD1L85Q is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|state~23
 --operation mode is normal
 
-SD1L65Q_lut_out = !YD1_STF & (SD1L7 # SD1L45Q & SD1_last_byte);
-SD1L65Q = DFFE(SD1L65Q_lut_out, GLOBAL(LE1_outclock0), !KB1_CLR_BUF, , );
+SD1L85Q_lut_out = !YD1_STF & (SD1L7 # SD1L65Q & SD1_last_byte);
+SD1L85Q = DFFE(SD1L85Q_lut_out, GLOBAL(LE1_outclock0), !KB1_CLR_BUF, , );
 
 
---SD1L71 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~829
+--SD1L91 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~829
 --operation mode is normal
 
-SD1L71 = SD1_loopcnt[2] & SD1_loopcnt[1] & SD1_loopcnt[0] & !SD1_loopcnt[5];
+SD1L91 = SD1_loopcnt[2] & SD1_loopcnt[1] & SD1_loopcnt[0] & !SD1_loopcnt[5];
 
 
 --SD1L9 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~2
 --operation mode is normal
 
-SD1L9 = !SD1_loopcnt[3] # !SD1_loopcnt[4] # !SD1L71;
+SD1L9 = !SD1_loopcnt[3] # !SD1_loopcnt[4] # !SD1L91;
 
 
 --YD1L77 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|muxsel1~836
@@ -31226,16 +31244,16 @@ BD33_result_node = YD1L87Q & (YD1L27Q & BD33L2 # !YD1L27Q & !JB31_pre_out[1]);
 BD53L2 = (YD1L68Q & BD43L2 # !YD1L68Q & BD33_result_node # !YD1L29Q) & CASCADE(BD53L1);
 
 
---SD1L81 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~830
+--SD1L02 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~830
 --operation mode is normal
 
-SD1L81 = BD45L2 & (BD35L2 # YD1L59Q) # !BD45L2 & BD35L2 & !YD1L59Q;
+SD1L02 = BD45L2 & (BD35L2 # YD1L59Q) # !BD45L2 & BD35L2 & !YD1L59Q;
 
 
 --HC4_dffs[5] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|tx_uart_shr10:inst8|lpm_shiftreg:lpm_shiftreg_component|dffs[5]
 --operation mode is normal
 
-HC4_dffs[5]_lut_out = SD1L91 & (HC4_dffs[6] # DE1L9Q) # !SD1L91 & HC4_dffs[6] & !DE1L9Q;
+HC4_dffs[5]_lut_out = SD1L12 & (HC4_dffs[6] # DE1L9Q) # !SD1L12 & HC4_dffs[6] & !DE1L9Q;
 HC4_dffs[5] = DFFE(HC4_dffs[5]_lut_out, GLOBAL(LE1_outclock0), DE1L7Q, , DE1L8Q);
 
 
@@ -32122,14 +32140,14 @@ HD1L6Q = DFFE(HD1L6Q_lut_out, GLOBAL(LE1_outclock0), !TB1L32Q, , );
 --SD1L7 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i93~93
 --operation mode is normal
 
-SD1L7 = SD1L65Q & (!SD1_loopcnt[3] # !SD1_loopcnt[4] # !SD1L71);
+SD1L7 = SD1L85Q & (!SD1_loopcnt[3] # !SD1_loopcnt[4] # !SD1L91);
 
 
---SD1L45Q is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|state~21
+--SD1L65Q is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|state~21
 --operation mode is normal
 
-SD1L45Q_lut_out = !YD1_STF & (SD1L4 # SD1L5 # !SD1L35Q);
-SD1L45Q = DFFE(SD1L45Q_lut_out, GLOBAL(LE1_outclock0), !KB1_CLR_BUF, , );
+SD1L65Q_lut_out = !YD1_STF & (SD1L4 # SD1L5 # !SD1L55Q);
+SD1L65Q = DFFE(SD1L65Q_lut_out, GLOBAL(LE1_outclock0), !KB1_CLR_BUF, , );
 
 
 --SD1_last_byte is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|last_byte
@@ -32139,17 +32157,17 @@ SD1_last_byte_lut_out = !YD1_STF & (SD1_last_byte # YD1L73Q);
 SD1_last_byte = DFFE(SD1_last_byte_lut_out, GLOBAL(LE1_outclock0), !KB1_CLR_BUF, , );
 
 
---SD1L55Q is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|state~22
+--SD1L75Q is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|state~22
 --operation mode is normal
 
-SD1L55Q_lut_out = !YD1_STF & (SD1L6 # SD1L8 & SD1L55Q);
-SD1L55Q = DFFE(SD1L55Q_lut_out, GLOBAL(LE1_outclock0), !KB1_CLR_BUF, , );
+SD1L75Q_lut_out = !YD1_STF & (SD1L6 # SD1L8 & SD1L75Q);
+SD1L75Q = DFFE(SD1L75Q_lut_out, GLOBAL(LE1_outclock0), !KB1_CLR_BUF, , );
 
 
 --SD1L01 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~42
 --operation mode is normal
 
-SD1L01 = !SD1L55Q & !SD1L65Q;
+SD1L01 = !SD1L75Q & !SD1L85Q;
 
 
 --HD1L51 is dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst30|DCTC_FWR:inst7|tcwf_rdreq~25
@@ -32318,16 +32336,16 @@ BD34_result_node = YD1L87Q & (YD1L27Q & HC2_dffs[2] # !YD1L27Q & HC5_dffs[2]);
 BD44L2 = (YD1L68Q & BD34_result_node # !YD1L68Q & BD24L2 # !YD1L29Q) & CASCADE(BD44L1);
 
 
---SD1L91 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~831
+--SD1L12 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~831
 --operation mode is normal
 
-SD1L91 = BD36L2 & (BD26L2 # YD1L59Q) # !BD36L2 & BD26L2 & !YD1L59Q;
+SD1L12 = BD36L2 & (BD26L2 # YD1L59Q) # !BD36L2 & BD26L2 & !YD1L59Q;
 
 
 --HC4_dffs[6] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|tx_uart_shr10:inst8|lpm_shiftreg:lpm_shiftreg_component|dffs[6]
 --operation mode is normal
 
-HC4_dffs[6]_lut_out = SD1L02 & (HC4_dffs[7] # DE1L9Q) # !SD1L02 & HC4_dffs[7] & !DE1L9Q;
+HC4_dffs[6]_lut_out = SD1L22 & (HC4_dffs[7] # DE1L9Q) # !SD1L22 & HC4_dffs[7] & !DE1L9Q;
 HC4_dffs[6] = DFFE(HC4_dffs[6]_lut_out, GLOBAL(LE1_outclock0), DE1L7Q, , DE1L8Q);
 
 
@@ -32555,32 +32573,32 @@ HD1L21Q = DFFE(HD1L21Q_lut_out, GLOBAL(LE1_outclock0), !TB1L32Q, , );
 --SD1L4 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i91~89
 --operation mode is normal
 
-SD1L4 = SD1L71 & SD1L55Q & !SD1_loopcnt[4] & !SD1_loopcnt[3];
+SD1L4 = SD1L91 & SD1L75Q & !SD1_loopcnt[4] & !SD1_loopcnt[3];
 
 
 --SD1L5 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i91~90
 --operation mode is normal
 
-SD1L5 = SD1L45Q & !SD1_last_byte & (!DE1L9Q # !YD1L94Q);
+SD1L5 = SD1L65Q & !SD1_last_byte & (!DE1L9Q # !YD1L94Q);
 
 
---SD1L35Q is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|state~20
+--SD1L55Q is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|state~20
 --operation mode is normal
 
-SD1L35Q_lut_out = !YD1_STF;
-SD1L35Q = DFFE(SD1L35Q_lut_out, GLOBAL(LE1_outclock0), !KB1_CLR_BUF, , );
+SD1L55Q_lut_out = !YD1_STF;
+SD1L55Q = DFFE(SD1L55Q_lut_out, GLOBAL(LE1_outclock0), !KB1_CLR_BUF, , );
 
 
 --SD1L6 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i92~96
 --operation mode is normal
 
-SD1L6 = SD1L45Q & YD1L94Q & DE1L9Q & !SD1_last_byte;
+SD1L6 = SD1L65Q & YD1L94Q & DE1L9Q & !SD1_last_byte;
 
 
 --SD1L8 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~1
 --operation mode is normal
 
-SD1L8 = SD1_loopcnt[4] # SD1_loopcnt[3] # !SD1L71;
+SD1L8 = SD1_loopcnt[4] # SD1_loopcnt[3] # !SD1L91;
 
 
 --YD1L19 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|muxsel3~305
@@ -32632,14 +32650,14 @@ TC2_i10 = TC2_SRG[7] $ TC2_SRG[31];
 --SD1_crc32_en is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|crc32_en
 --operation mode is normal
 
-SD1_crc32_en_lut_out = !YD1_STF & (SD1L55Q # SD1L65Q);
+SD1_crc32_en_lut_out = !YD1_STF & (SD1L75Q # SD1L85Q);
 SD1_crc32_en = DFFE(SD1_crc32_en_lut_out, GLOBAL(LE1_outclock0), , , !KB1_CLR_BUF);
 
 
 --SD1_crc32_data is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|crc32_data
 --operation mode is normal
 
-SD1_crc32_data_lut_out = SD1_srg[7] & (YD1_STF # !SD1L65Q);
+SD1_crc32_data_lut_out = SD1_srg[7] & (YD1_STF # !SD1L85Q);
 SD1_crc32_data = DFFE(SD1_crc32_data_lut_out, GLOBAL(LE1_outclock0), , , !KB1_CLR_BUF);
 
 
@@ -32816,16 +32834,16 @@ BD35L1 = YD1L29Q # YD1L68Q & BD05L2 # !YD1L68Q & BD94L2;
 BD35L2 = (YD1L68Q & BD25L2 # !YD1L68Q & BD15L2 # !YD1L29Q) & CASCADE(BD35L1);
 
 
---SD1L02 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~832
+--SD1L22 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~832
 --operation mode is normal
 
-SD1L02 = BD27L2 & (BD17L2 # YD1L59Q) # !BD27L2 & BD17L2 & !YD1L59Q;
+SD1L22 = BD27L2 & (BD17L2 # YD1L59Q) # !BD27L2 & BD17L2 & !YD1L59Q;
 
 
 --HC4_dffs[7] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|tx_uart_shr10:inst8|lpm_shiftreg:lpm_shiftreg_component|dffs[7]
 --operation mode is normal
 
-HC4_dffs[7]_lut_out = SD1L12 & (HC4_dffs[8] # DE1L9Q) # !SD1L12 & HC4_dffs[8] & !DE1L9Q;
+HC4_dffs[7]_lut_out = SD1L32 & (HC4_dffs[8] # DE1L9Q) # !SD1L32 & HC4_dffs[8] & !DE1L9Q;
 HC4_dffs[7] = DFFE(HC4_dffs[7]_lut_out, GLOBAL(LE1_outclock0), DE1L7Q, , DE1L8Q);
 
 
@@ -33015,8 +33033,8 @@ TC2_SRG[30] = DFFE(TC2_SRG[30]_lut_out, GLOBAL(LE1_outclock0), , , !KB1_CLR_BUF)
 --SD1_srg[7] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|srg[7]
 --operation mode is normal
 
-SD1_srg[7]_lut_out = SD1L22 # SD1L32 & SD1L45Q;
-SD1_srg[7] = DFFE(SD1_srg[7]_lut_out, GLOBAL(LE1_outclock0), , , SD1L54);
+SD1_srg[7]_lut_out = SD1L42 # SD1L11 # SD1_srg[6] & SD1L75Q;
+SD1_srg[7] = DFFE(SD1_srg[7]_lut_out, GLOBAL(LE1_outclock0), , , SD1L74);
 
 
 --TC2_SRG[22] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|crc32:inst_crc32|SRG[22]
@@ -33153,16 +33171,16 @@ BD26L1 = YD1L29Q # YD1L68Q & BD95L2 # !YD1L68Q & BD85L2;
 BD26L2 = (YD1L68Q & BD16L2 # !YD1L68Q & BD06L2 # !YD1L29Q) & CASCADE(BD26L1);
 
 
---SD1L12 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~833
+--SD1L32 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~833
 --operation mode is normal
 
-SD1L12 = BD18L2 & (BD08L2 # YD1L59Q) # !BD18L2 & BD08L2 & !YD1L59Q;
+SD1L32 = BD18L2 & (BD08L2 # YD1L59Q) # !BD18L2 & BD08L2 & !YD1L59Q;
 
 
 --HC4_dffs[8] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|tx_uart_shr10:inst8|lpm_shiftreg:lpm_shiftreg_component|dffs[8]
 --operation mode is normal
 
-HC4_dffs[8]_lut_out = SD1L32 & (HC4_dffs[9] # DE1L9Q) # !SD1L32 & HC4_dffs[9] & !DE1L9Q;
+HC4_dffs[8]_lut_out = SD1L52 & (HC4_dffs[9] # DE1L9Q) # !SD1L52 & HC4_dffs[9] & !DE1L9Q;
 HC4_dffs[8] = DFFE(HC4_dffs[8]_lut_out, GLOBAL(LE1_outclock0), DE1L7Q, , DE1L8Q);
 
 
@@ -33249,29 +33267,29 @@ TC2_SRG[29]_lut_out = YD1_STF # SD1_crc32_en & TC2_SRG[28] # !SD1_crc32_en & TC2
 TC2_SRG[29] = DFFE(TC2_SRG[29]_lut_out, GLOBAL(LE1_outclock0), , , !KB1_CLR_BUF);
 
 
+--SD1L42 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~834
+--operation mode is normal
+
+SD1L42 = SD1L65Q & (YD1L59Q & BD09L2 # !YD1L59Q & BD98L2);
+
+
+--SD1L11 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~87
+--operation mode is normal
+
+SD1L11 = SD1_srg[7] & !SD1L55Q;
+
+
 --SD1_srg[6] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|srg[6]
 --operation mode is normal
 
-SD1_srg[6]_lut_out = SD1L42 # SD1L11 # SD1_srg[5] & SD1L55Q;
-SD1_srg[6] = DFFE(SD1_srg[6]_lut_out, GLOBAL(LE1_outclock0), , , SD1L54);
+SD1_srg[6]_lut_out = SD1L62 # SD1L32 & SD1L65Q;
+SD1_srg[6] = DFFE(SD1_srg[6]_lut_out, GLOBAL(LE1_outclock0), , , SD1L74);
 
 
---SD1L22 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~834
+--SD1L74 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|srg[0]~7
 --operation mode is normal
 
-SD1L22 = SD1_srg[6] & (SD1L55Q # SD1_srg[7] & !SD1L35Q) # !SD1_srg[6] & SD1_srg[7] & !SD1L35Q;
-
-
---SD1L32 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~835
---operation mode is normal
-
-SD1L32 = BD09L2 & (BD98L2 # YD1L59Q) # !BD09L2 & BD98L2 & !YD1L59Q;
-
-
---SD1L54 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|srg[0]~7
---operation mode is normal
-
-SD1L54 = !YD1_STF & !KB1_CLR_BUF;
+SD1L74 = !YD1_STF & !KB1_CLR_BUF;
 
 
 --TC2_SRG[21] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|crc32:inst_crc32|SRG[21]
@@ -33438,6 +33456,12 @@ BD17L1 = YD1L29Q # YD1L68Q & BD86L2 # !YD1L68Q & BD76L2;
 BD17L2 = (YD1L68Q & BD07L2 # !YD1L68Q & BD96L2 # !YD1L29Q) & CASCADE(BD17L1);
 
 
+--SD1L52 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~836
+--operation mode is normal
+
+SD1L52 = BD09L2 & (BD98L2 # YD1L59Q) # !BD09L2 & BD98L2 & !YD1L59Q;
+
+
 --HC4_dffs[9] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|tx_uart_shr10:inst8|lpm_shiftreg:lpm_shiftreg_component|dffs[9]
 --operation mode is normal
 
@@ -33534,23 +33558,17 @@ TC2_SRG[28]_lut_out = YD1_STF # SD1_crc32_en & TC2_SRG[27] # !SD1_crc32_en & TC2
 TC2_SRG[28] = DFFE(TC2_SRG[28]_lut_out, GLOBAL(LE1_outclock0), , , !KB1_CLR_BUF);
 
 
---SD1L42 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~837
---operation mode is normal
-
-SD1L42 = SD1L45Q & (YD1L59Q & BD18L2 # !YD1L59Q & BD08L2);
-
-
---SD1L11 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~91
---operation mode is normal
-
-SD1L11 = SD1_srg[6] & !SD1L35Q;
-
-
 --SD1_srg[5] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|srg[5]
 --operation mode is normal
 
-SD1_srg[5]_lut_out = SD1L52 # SD1L02 & SD1L45Q;
-SD1_srg[5] = DFFE(SD1_srg[5]_lut_out, GLOBAL(LE1_outclock0), , , SD1L54);
+SD1_srg[5]_lut_out = SD1L72 # SD1L21 # SD1_srg[4] & SD1L75Q;
+SD1_srg[5] = DFFE(SD1_srg[5]_lut_out, GLOBAL(LE1_outclock0), , , SD1L74);
+
+
+--SD1L62 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~837
+--operation mode is normal
+
+SD1L62 = SD1_srg[5] & (SD1L75Q # SD1_srg[6] & !SD1L55Q) # !SD1_srg[5] & SD1_srg[6] & !SD1L55Q;
 
 
 --TC2_SRG[20] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|crc32:inst_crc32|SRG[20]
@@ -33793,19 +33811,6 @@ HC3_dffs[7] = DFFE(HC3_dffs[7]_lut_out, GLOBAL(LE1_outclock0), , , MB1_inst37);
 TC2_i7 = TC2_SRG[3] $ TC2_SRG[31];
 
 
---SD1_srg[4] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|srg[4]
---operation mode is normal
-
-SD1_srg[4]_lut_out = SD1L62 # SD1L21 # SD1_srg[3] & SD1L55Q;
-SD1_srg[4] = DFFE(SD1_srg[4]_lut_out, GLOBAL(LE1_outclock0), , , SD1L54);
-
-
---SD1L52 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~839
---operation mode is normal
-
-SD1L52 = SD1_srg[4] & (SD1L55Q # SD1_srg[5] & !SD1L35Q) # !SD1_srg[4] & SD1_srg[5] & !SD1L35Q;
-
-
 --HB3_q[7] is dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst30|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|altdpram:FIFOram|q[7]
 HB3_q[7]_data_in = COM_AD_D[7];
 HB3_q[7]_write_enable = PD1_valid_wreq;
@@ -33840,6 +33845,25 @@ BD98L1 = YD1L29Q # YD1L68Q & BD68L2 # !YD1L68Q & BD58L3;
 --operation mode is normal
 
 BD98L2 = (YD1L68Q & BD88L1 # !YD1L68Q & BD78L2 # !YD1L29Q) & CASCADE(BD98L1);
+
+
+--SD1L72 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~839
+--operation mode is normal
+
+SD1L72 = SD1L65Q & (YD1L59Q & BD27L2 # !YD1L59Q & BD17L2);
+
+
+--SD1L21 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~95
+--operation mode is normal
+
+SD1L21 = SD1_srg[5] & !SD1L55Q;
+
+
+--SD1_srg[4] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|srg[4]
+--operation mode is normal
+
+SD1_srg[4]_lut_out = SD1L82 # SD1L31 # SD1_srg[3] & SD1L75Q;
+SD1_srg[4] = DFFE(SD1_srg[4]_lut_out, GLOBAL(LE1_outclock0), , , SD1L74);
 
 
 --TC2_i13 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|crc32:inst_crc32|i13
@@ -34077,23 +34101,23 @@ HC3_dffs[8]_lut_out = Y1L622Q & (HC3_dffs[9] # YD1_ID_LOAD) # !Y1L622Q & HC3_dff
 HC3_dffs[8] = DFFE(HC3_dffs[8]_lut_out, GLOBAL(LE1_outclock0), , , MB1_inst37);
 
 
---SD1L62 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~841
+--SD1L82 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~841
 --operation mode is normal
 
-SD1L62 = SD1L45Q & (YD1L59Q & BD36L2 # !YD1L59Q & BD26L2);
+SD1L82 = SD1L65Q & (YD1L59Q & BD36L2 # !YD1L59Q & BD26L2);
 
 
---SD1L21 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~99
+--SD1L31 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~99
 --operation mode is normal
 
-SD1L21 = SD1_srg[4] & !SD1L35Q;
+SD1L31 = SD1_srg[4] & !SD1L55Q;
 
 
 --SD1_srg[3] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|srg[3]
 --operation mode is normal
 
-SD1_srg[3]_lut_out = SD1L72 # SD1L31 # SD1_srg[2] & SD1L55Q;
-SD1_srg[3] = DFFE(SD1_srg[3]_lut_out, GLOBAL(LE1_outclock0), , , SD1L54);
+SD1_srg[3]_lut_out = SD1L92 # SD1L02 & SD1L65Q;
+SD1_srg[3] = DFFE(SD1_srg[3]_lut_out, GLOBAL(LE1_outclock0), , , SD1L74);
 
 
 --HC2_dffs[8] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|shrg48pld:inst|lpm_shiftreg:lpm_shiftreg_component|dffs[8]
@@ -34309,25 +34333,6 @@ HC3_dffs[9]_lut_out = Y1L722Q & (HC3_dffs[10] # YD1_ID_LOAD) # !Y1L722Q & HC3_df
 HC3_dffs[9] = DFFE(HC3_dffs[9]_lut_out, GLOBAL(LE1_outclock0), , , MB1_inst37);
 
 
---SD1L72 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~843
---operation mode is normal
-
-SD1L72 = SD1L45Q & (YD1L59Q & BD45L2 # !YD1L59Q & BD35L2);
-
-
---SD1L31 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~103
---operation mode is normal
-
-SD1L31 = SD1_srg[3] & !SD1L35Q;
-
-
---SD1_srg[2] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|srg[2]
---operation mode is normal
-
-SD1_srg[2]_lut_out = SD1L82 # SD1L61 & SD1L45Q;
-SD1_srg[2] = DFFE(SD1_srg[2]_lut_out, GLOBAL(LE1_outclock0), , , SD1L54);
-
-
 --BD68L1 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_tx_mux:inst5|lpm_mux:lpm_mux_component|muxlut:$00024|muxlut:$00012|muxlut:$00014|$00012~0
 --operation mode is normal
 
@@ -34388,6 +34393,19 @@ UB1L41Q = DFFE(UB1L41Q_lut_out, GLOBAL(LE1_outclock0), , , UB1L21);
 --operation mode is normal
 
 BD78L2 = (YD1L27Q & UB1L41Q # !YD1L27Q & !JB31_pre_out[7] # !YD1L87Q) & CASCADE(BD78L1);
+
+
+--SD1_srg[2] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|srg[2]
+--operation mode is normal
+
+SD1_srg[2]_lut_out = SD1L03 # SD1L41 # SD1_srg[1] & SD1L75Q;
+SD1_srg[2] = DFFE(SD1_srg[2]_lut_out, GLOBAL(LE1_outclock0), , , SD1L74);
+
+
+--SD1L92 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~843
+--operation mode is normal
+
+SD1L92 = SD1_srg[2] & (SD1L75Q # SD1_srg[3] & !SD1L55Q) # !SD1_srg[2] & SD1_srg[3] & !SD1L55Q;
 
 
 --HC2_dffs[9] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|shrg48pld:inst|lpm_shiftreg:lpm_shiftreg_component|dffs[9]
@@ -34571,24 +34589,30 @@ HC3_dffs[10]_lut_out = Y1L822Q & (HC3_dffs[11] # YD1_ID_LOAD) # !Y1L822Q & HC3_d
 HC3_dffs[10] = DFFE(HC3_dffs[10]_lut_out, GLOBAL(LE1_outclock0), , , MB1_inst37);
 
 
---SD1_srg[1] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|srg[1]
---operation mode is normal
-
-SD1_srg[1]_lut_out = SD1L92 # SD1L51 & SD1L45Q;
-SD1_srg[1] = DFFE(SD1_srg[1]_lut_out, GLOBAL(LE1_outclock0), , , SD1L54);
-
-
---SD1L82 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~845
---operation mode is normal
-
-SD1L82 = SD1_srg[1] & (SD1L55Q # SD1_srg[2] & !SD1L35Q) # !SD1_srg[1] & SD1_srg[2] & !SD1L35Q;
-
-
 --YD1_DATA_BODY is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|DATA_BODY
 --operation mode is normal
 
 YD1_DATA_BODY_lut_out = YD1_DATA_BODY & (YD1_BYT2 & !YD1L35Q # !YD1L26Q) # !YD1_DATA_BODY & YD1_BYT2 & !YD1L35Q;
 YD1_DATA_BODY = DFFE(YD1_DATA_BODY_lut_out, GLOBAL(LE1_outclock0), !KB1_CLR_BUF, , );
+
+
+--SD1L03 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~845
+--operation mode is normal
+
+SD1L03 = SD1L65Q & (YD1L59Q & BD54L2 # !YD1L59Q & BD44L2);
+
+
+--SD1L41 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~107
+--operation mode is normal
+
+SD1L41 = SD1_srg[2] & !SD1L55Q;
+
+
+--SD1_srg[1] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|srg[1]
+--operation mode is normal
+
+SD1_srg[1]_lut_out = SD1L13 # SD1L51 # SD1_srg[0] & SD1L75Q;
+SD1_srg[1] = DFFE(SD1_srg[1]_lut_out, GLOBAL(LE1_outclock0), , , SD1L74);
 
 
 --HC2_dffs[10] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|shrg48pld:inst|lpm_shiftreg:lpm_shiftreg_component|dffs[10]
@@ -34667,17 +34691,23 @@ HC3_dffs[11]_lut_out = Y1L922Q & (HC3_dffs[12] # YD1_ID_LOAD) # !Y1L922Q & HC3_d
 HC3_dffs[11] = DFFE(HC3_dffs[11]_lut_out, GLOBAL(LE1_outclock0), , , MB1_inst37);
 
 
+--SD1L13 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~847
+--operation mode is normal
+
+SD1L13 = SD1L65Q & (YD1L59Q & BD63L2 # !YD1L59Q & BD53L2);
+
+
+--SD1L51 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~111
+--operation mode is normal
+
+SD1L51 = SD1_srg[1] & !SD1L55Q;
+
+
 --SD1_srg[0] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|srg[0]
 --operation mode is normal
 
-SD1_srg[0]_lut_out = SD1L41 & (SD1L45Q # SD1_srg[0] & !SD1L35Q) # !SD1L41 & SD1_srg[0] & !SD1L35Q;
-SD1_srg[0] = DFFE(SD1_srg[0]_lut_out, GLOBAL(LE1_outclock0), , , SD1L54);
-
-
---SD1L92 is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|i~847
---operation mode is normal
-
-SD1L92 = SD1_srg[0] & (SD1L55Q # SD1_srg[1] & !SD1L35Q) # !SD1_srg[0] & SD1_srg[1] & !SD1L35Q;
+SD1_srg[0]_lut_out = SD1L61 & (SD1L65Q # SD1_srg[0] & !SD1L55Q) # !SD1L61 & SD1_srg[0] & !SD1L55Q;
+SD1_srg[0] = DFFE(SD1_srg[0]_lut_out, GLOBAL(LE1_outclock0), , , SD1L74);
 
 
 --HC2_dffs[11] is dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|shrg48pld:inst|lpm_shiftreg:lpm_shiftreg_component|dffs[11]

@@ -407,7 +407,7 @@ VCC_INT                      : P25       : power  :                   : 1.8V    
 GND                          : P26       : gnd    :                   :         :           :                
 COM_DB[10]                   : R1        : output : LVTTL             :         : 12        : Y              
 COM_DB[11]                   : R2        : output : LVTTL             :         : 12        : Y              
-CLK3p                        : R3        : input  : LVTTL             :         : 13        : N              
+RESERVED_INPUT               : R3        :        :                   :         : 13        :                
 RESERVED_INPUT               : R4        :        :                   :         : 13        :                
 RESERVED_INPUT               : R5        :        :                   :         : 13        :                
 RESERVED_INPUT               : R6        :        :                   :         : 13        :                
@@ -510,7 +510,7 @@ FE_PULSER_N[1]               : V24       : output : LVTTL             :         
 RESERVED_INPUT               : V25       :        :                   :         : 8         :                
 RESERVED_INPUT               : V26       :        :                   :         : 8         :                
 RESERVED_INPUT               : W1        :        :                   :         : 12        :                
-RESERVED_INPUT               : W2        :        :                   :         : 12        :                
+CLK3p                        : W2        : input  : LVTTL             :         : 12        : N              
 RESERVED_INPUT               : W3        :        :                   :         : 13        :                
 RESERVED_INPUT               : W4        :        :                   :         : 13        :                
 RESERVED_INPUT               : W5        :        :                   :         : 13        :                
