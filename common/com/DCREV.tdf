@@ -45,7 +45,7 @@ SUBDESIGN DCREV
 VARIABLE
 
 	lpm_constant_component : lpm_constant WITH (
-			LPM_CVALUE = 6,
+			LPM_CVALUE = 7,
 			LPM_WIDTH = 16,
 			LPM_TYPE = "LPM_CONSTANT"
 			);
@@ -61,8 +61,8 @@ END;
 -- CNX file retrieval info
 -- ============================================================
 -- Retrieval info: PRIVATE: nBit NUMERIC "16"
--- Retrieval info: PRIVATE: Value NUMERIC "6"
--- Retrieval info: CONSTANT: LPM_CVALUE NUMERIC "6"
+-- Retrieval info: PRIVATE: Value NUMERIC "7"
+-- Retrieval info: CONSTANT: LPM_CVALUE NUMERIC "7"
 -- Retrieval info: CONSTANT: LPM_WIDTH NUMERIC "16"
 -- Retrieval info: CONSTANT: LPM_TYPE STRING "LPM_CONSTANT"
 -- Retrieval info: USED_PORT: result 0 0 16 0 OUTPUT NODEFVAL result[15..0]

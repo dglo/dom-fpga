@@ -10,6 +10,7 @@ SUBDESIGN tcal_timer
 (
 	CCLK			: INPUT;	-- communication clock
 	tcal_psnd		: INPUT;	-- TCAL timer start
+--	pulse_rcvd		: INPUT;	-- TCAL pulse received
 
 	line_quiet		: OUTPUT;	-- TCAL can start now
 	h_pulse			: OUTPUT;	-- TCAL high pulse time
@@ -38,13 +39,13 @@ tx_time_lat.clk	= CCLK;
 
 line_quiet.d	= (time.q[]==QUIET_TIME);		-- 10us delay
 
-tx_time_lat.d	= (time.q[]==QUIET_TIME);
+tx_time_lat.d	= (time.q[]==(QUIET_TIME+2));
 
-h_pulse.d		= (time.q[]==QUIET_TIME)
-				# h_pulse.q & !(time.q[]==(QUIET_TIME+20));
-l_pulse.d		= (time.q[]==(QUIET_TIME+20))
-				# l_pulse.q & !(time.q[]==(QUIET_TIME+40));
+h_pulse.d		= (time.q[]==(QUIET_TIME+2))
+				# h_pulse.q & !(time.q[]==(QUIET_TIME+22));
+l_pulse.d		= (time.q[]==(QUIET_TIME+22))
+				# l_pulse.q & !(time.q[]==(QUIET_TIME+42));
 				
-pulse_sent.d	= (time.q[]==(QUIET_TIME+60));	-- 1us later
+pulse_sent.d	= (time.q[]==(QUIET_TIME+62));	-- 1us later
 
 END;
