@@ -172,7 +172,7 @@ PROC_TMS                     : E24       :        :                   :         
 RESERVED_INPUT               : E25       :        :                   :         : 8         :                
 RESERVED_INPUT               : E26       :        :                   :         : 8         :                
 RESERVED_INPUT               : F1        :        :                   :         : 12        :                
-RESERVED_INPUT               : F2        :        :                   :         : 12        :                
+CLK3p                        : F2        : input  : LVTTL             :         : 12        : N              
 RESERVED_INPUT               : F3        :        :                   :         : 13        :                
 HDV_IN                       : F4        : output : LVTTL             :         : 13        : Y              
 SDRAMADDR[7]                 : F5        : output : LVTTL             :         : 2         : N              
@@ -546,7 +546,7 @@ RESERVED_INPUT               : Y8        :        :                   :         
 RESERVED_INPUT               : Y9        :        :                   :         : 11        :                
 RESERVED_INPUT               : Y10       :        :                   :         : 11        :                
 RESERVED_INPUT               : Y11       :        :                   :         : 11        :                
-CLK3p                        : Y12       : input  : LVTTL             :         : 11        : N              
+RESERVED_INPUT               : Y12       :        :                   :         : 11        :                
 RESERVED_INPUT               : Y13       :        :                   :         : 11        :                
 RESERVED_INPUT               : Y14       :        :                   :         : 11        :                
 ATWD0_D[0]                   : Y15       : input  : LVTTL             :         : 10        : Y              

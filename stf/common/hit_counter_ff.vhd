@@ -133,11 +133,11 @@ BEGIN
 	END PROCESS;
 	
 	OneSPEreset : PROCESS (CLK,RST)
-		VARIABLE cnt	: STD_LOGIC_VECTOR (11 DOWNTO 0);
+		VARIABLE cnt	: STD_LOGIC_VECTOR (17 DOWNTO 0);
 	BEGIN
 		IF RST='1' THEN
 			OneSPErst	<= '1';
-			cnt			:= CONV_STD_LOGIC_VECTOR(1,12);
+			cnt			:= CONV_STD_LOGIC_VECTOR(1,18);
 		ELSIF CLK'EVENT AND CLK='1' THEN
 			IF OneSPE_latch='1' THEN
 				IF cnt(1+CONV_INTEGER(deadtime))='1' THEN
@@ -148,17 +148,17 @@ BEGIN
 				cnt	:= cnt + 1;
 			ELSE
 				OneSPErst	<= '0';
-				cnt			:= CONV_STD_LOGIC_VECTOR(1,12);
+				cnt			:= CONV_STD_LOGIC_VECTOR(1,18);
 			END IF;
 		END IF;
 	END PROCESS;
 	
 	MultiSPEreset : PROCESS (CLK,RST)
-		VARIABLE cnt	: STD_LOGIC_VECTOR (11 DOWNTO 0);
+		VARIABLE cnt	: STD_LOGIC_VECTOR (17 DOWNTO 0);
 	BEGIN
 		IF RST='1' THEN
 			MultiSPErst	<= '1';
-			cnt			:= CONV_STD_LOGIC_VECTOR(1,12);
+			cnt			:= CONV_STD_LOGIC_VECTOR(1,18);
 		ELSIF CLK'EVENT AND CLK='1' THEN
 			IF MultiSPE_latch='1' THEN
 				IF cnt(1+CONV_INTEGER(deadtime))='1' THEN
@@ -169,7 +169,7 @@ BEGIN
 				cnt	:= cnt + 1;
 			ELSE
 				MultiSPErst	<= '0';
-				cnt			:= CONV_STD_LOGIC_VECTOR(1,12);
+				cnt			:= CONV_STD_LOGIC_VECTOR(1,18);
 			END IF;
 		END IF;
 	END PROCESS;
