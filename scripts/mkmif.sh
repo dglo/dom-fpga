@@ -44,7 +44,7 @@ echo "ADDRESS_RADIX=UNS;"
 echo "DATA_RADIX=UNS;"
 echo " "
 echo "CONTENT BEGIN"
-echo '        0 : ' `/bin/bash ${sdir}/getfpga.sh`
+echo "        0 :" `/bin/bash ${sdir}/getfpga.sh`
 
 bn=`${sdir}/getbld.sh`
 
