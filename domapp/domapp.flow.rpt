@@ -1,5 +1,5 @@
 Flow report for domapp
-Wed Nov 03 10:47:10 2004
+Thu Nov 11 09:34:28 2004
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -42,14 +42,14 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------+
 ; Flow Summary                                                  ;
 +-----------------------+---------------------------------------+
-; Flow Status           ; Successful - Wed Nov 03 10:46:50 2004 ;
+; Flow Status           ; Successful - Thu Nov 11 09:34:14 2004 ;
 ; Revision Name         ; domapp                                ;
 ; Top-level Entity Name ; domapp                                ;
 ; Family                ; EXCALIBUR_ARM                         ;
 ; Device                ; EPXA4F672I2                           ;
-; Total logic elements  ; 6,517 / 16,640 ( 39 % )               ;
+; Total logic elements  ; 4,896 / 16,640 ( 29 % )               ;
 ; Total pins            ; 308 / 463 ( 66 % )                    ;
-; Total memory bits     ; 158,336 / 212,992 ( 74 % )            ;
+; Total memory bits     ; 64,128 / 212,992 ( 30 % )             ;
 ; Total PLLs            ; 2 / 4 ( 50 % )                        ;
 +-----------------------+---------------------------------------+
 
@@ -59,7 +59,7 @@ party's intellectual property, are provided herein.
 +------------------------------------------
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 11/03/2004 10:29:43 ;
+; Start date & time ; 11/11/2004 09:20:27 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; domapp              ;
 +-------------------+---------------------+
@@ -70,11 +70,11 @@ party's intellectual property, are provided herein.
 +--------------------------------------
 ; Module Name          ; Elapsed Time ;
 +----------------------+--------------+
-; Analysis & Synthesis ; 00:06:42     ;
-; Fitter               ; 00:10:14     ;
-; Assembler            ; 00:00:07     ;
-; Timing Analyzer      ; 00:00:18     ;
-; Total                ; 00:17:21     ;
+; Analysis & Synthesis ; 00:06:10     ;
+; Fitter               ; 00:07:23     ;
+; Assembler            ; 00:00:06     ;
+; Timing Analyzer      ; 00:00:13     ;
+; Total                ; 00:13:52     ;
 +----------------------+--------------+
 
 

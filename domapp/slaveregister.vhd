@@ -57,6 +57,7 @@ ENTITY slaveregister IS
 		COMM_CTRL		: OUT COMM_CTRL_STRUCT;
 		COMM_STAT		: IN  COMM_STAT_STRUCT;
 		DOM_status		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
+		COMPR_ctrl		: OUT COMPR_STRUCT;
 		-- pointers
 		LBM_ptr			: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 		-- kale communication interface
@@ -156,6 +157,7 @@ ARCHITECTURE arch_slaveregister OF slaveregister IS
 	SIGNAL CS_ctrl_local	: CS_STRUCT;
 	SIGNAL RM_ctrl_local	: RM_CTRL_STRUCT;
 	SIGNAL COMM_ctrl_local	: COMM_CTRL_STRUCT;
+	SIGNAL COMPR_ctrl_local	: COMPR_STRUCT;
 	
 	-- memory write enable signals
 	SIGNAL R2Rwe		: STD_LOGIC;
@@ -183,6 +185,7 @@ BEGIN
 			RM_ctrl_local	<= ((OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'));
 			COMM_ctrl_local	<= ('0', (OTHERS=>'0'), 'X', '0', '0', (OTHERS=>'0'), (OTHERS=>'0'));
 			id_set			<= "00";
+			COMPR_ctrl_local	<= ((OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), '0', '0');
 		ELSIF CLK'EVENT AND CLK='1' THEN
 			DAQ_ctrl_local.LBM_ptr_RST	<= '0';
 			CS_ctrl_local.CS_CPU	<= '0';
@@ -214,6 +217,7 @@ BEGIN
 						DAQ_ctrl_local.LC_mode		<= reg_wdata(17 downto 16);
 						DAQ_ctrl_local.LBM_mode		<= reg_wdata(21 downto 20);
 						DAQ_ctrl_local.COMPR_mode	<= reg_wdata(25 downto 24);
+						COMPR_ctrl_local.COMPR_mode	<= reg_wdata(25 downto 24); -- Joshua needs this
 					END IF;
 					IF READBACK=1 THEN
 						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
@@ -386,8 +390,79 @@ BEGIN
 						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
 					END IF;
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0540") ) THEN	-- Compression Control
-					NULL;	-- not defined yet
-			
+					IF reg_write = '1' THEN
+						COMPR_ctrl_local.threshold0	<= reg_wdata(0);
+						COMPR_ctrl_local.LASTonly	<= reg_wdata(1);
+					END IF;
+					IF READBACK=1 THEN
+						reg_rdata(0)			<= COMPR_ctrl_local.threshold0;
+						reg_rdata(0)			<= COMPR_ctrl_local.LASTonly;
+						reg_rdata(31 downto 2)	<= (OTHERS=>'0');
+					ELSE
+						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+					END IF;
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0540") ) THEN	-- Compression FADC
+					IF reg_write = '1' THEN
+						COMPR_ctrl_local.FADCthres	<= reg_wdata(9 DOWNTO 0);
+					END IF;
+					IF READBACK=1 THEN
+						reg_rdata(9 DOWNTO 0)	<= COMPR_ctrl_local.FADCthres;
+						reg_rdata(31 downto 10)	<= (OTHERS=>'0');
+					ELSE
+						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+					END IF;
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0548") ) THEN	-- Compression ATWD A 1/0
+					IF reg_write = '1' THEN
+						COMPR_ctrl_local.ATWDa0thres	<= reg_wdata(9 DOWNTO 0);
+						COMPR_ctrl_local.ATWDa1thres	<= reg_wdata(25 DOWNTO 16);
+					END IF;
+					IF READBACK=1 THEN
+						reg_rdata(9 DOWNTO 0)	<= COMPR_ctrl_local.ATWDa0thres;
+						reg_rdata(25 DOWNTO 16)	<= COMPR_ctrl_local.ATWDa1thres;
+						reg_rdata(16 downto 10)	<= (OTHERS=>'0');
+						reg_rdata(31 downto 26)	<= (OTHERS=>'0');
+					ELSE
+						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+					END IF;
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"054C") ) THEN	-- Compression ATWD A 3/2
+					IF reg_write = '1' THEN
+						COMPR_ctrl_local.ATWDa2thres	<= reg_wdata(9 DOWNTO 0);
+						COMPR_ctrl_local.ATWDa3thres	<= reg_wdata(25 DOWNTO 16);
+					END IF;
+					IF READBACK=1 THEN
+						reg_rdata(9 DOWNTO 0)	<= COMPR_ctrl_local.ATWDa2thres;
+						reg_rdata(25 DOWNTO 16)	<= COMPR_ctrl_local.ATWDa3thres;
+						reg_rdata(16 downto 10)	<= (OTHERS=>'0');
+						reg_rdata(31 downto 26)	<= (OTHERS=>'0');
+					ELSE
+						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+					END IF;
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0550") ) THEN	-- Compression ATWD A 1/0
+					IF reg_write = '1' THEN
+						COMPR_ctrl_local.ATWDb0thres	<= reg_wdata(9 DOWNTO 0);
+						COMPR_ctrl_local.ATWDb1thres	<= reg_wdata(25 DOWNTO 16);
+					END IF;
+					IF READBACK=1 THEN
+						reg_rdata(9 DOWNTO 0)	<= COMPR_ctrl_local.ATWDb0thres;
+						reg_rdata(25 DOWNTO 16)	<= COMPR_ctrl_local.ATWDb1thres;
+						reg_rdata(16 downto 10)	<= (OTHERS=>'0');
+						reg_rdata(31 downto 26)	<= (OTHERS=>'0');
+					ELSE
+						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+					END IF;
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0554") ) THEN	-- Compression ATWD A 3/2
+					IF reg_write = '1' THEN
+						COMPR_ctrl_local.ATWDb2thres	<= reg_wdata(9 DOWNTO 0);
+						COMPR_ctrl_local.ATWDb3thres	<= reg_wdata(25 DOWNTO 16);
+					END IF;
+					IF READBACK=1 THEN
+						reg_rdata(9 DOWNTO 0)	<= COMPR_ctrl_local.ATWDb2thres;
+						reg_rdata(25 DOWNTO 16)	<= COMPR_ctrl_local.ATWDb3thres;
+						reg_rdata(16 downto 10)	<= (OTHERS=>'0');
+						reg_rdata(31 downto 26)	<= (OTHERS=>'0');
+					ELSE
+						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+					END IF;
 			
 					
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"07F8") ) THEN	-- PONG (just in case we want to implement a 3D PONG game with IceCubeA) 
@@ -425,6 +500,9 @@ BEGIN
 	CS_ctrl		<= CS_ctrl_local;
 	RM_ctrl		<= RM_ctrl_local;
 	COMM_ctrl	<= COMM_ctrl_local;
+	COMPR_ctrl	<= COMPR_ctrl_local;
+	-- COMPR_ctrl.COMPR_mode	<= DAQ_ctrl_local.COMPR_mode; moved to register
+	
 	
 	-- create write enable for the memory blocks (pedestal & R2R)
 	R2Rwe <= '1' WHEN reg_write='1' AND reg_enable = '1' AND std_match( reg_address(13 downto 2) , "0011--------" ) ELSE '0';
