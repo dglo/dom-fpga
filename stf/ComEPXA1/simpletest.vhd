@@ -935,7 +935,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			rs485_not_dac :  IN  STD_LOGIC;
 			id_stb_L :  IN  STD_LOGIC;
 			id_stb_H :  IN  STD_LOGIC;
-			fc_adc :  IN  STD_LOGIC_VECTOR(9 downto 0);
+			fc_adc :  IN  STD_LOGIC_VECTOR(11 downto 0);
 			id :  IN  STD_LOGIC_VECTOR(47 downto 0);
 			systime :  IN  STD_LOGIC_VECTOR(47 downto 0);
 			tx_fd :  IN  STD_LOGIC_VECTOR(7 downto 0);
@@ -1792,7 +1792,8 @@ BEGIN
 			rs485_not_dac 	=> rs485_not_dac,
 			id_stb_L	=> high,
 			id_stb_H	=> dom_id(48),
-			fc_adc		=> COM_AD_D,
+			fc_adc(11 DOWNTO 2)	=> COM_AD_D,
+			fc_adc(1 DOWNTO 0)	=> "00",
 			id			=> dom_id(47 downto 0),
 			systime		=> systime,
 			tx_fd		=> com_tx_fifo,

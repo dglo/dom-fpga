@@ -13,6 +13,10 @@ SOFTWARE_SETTINGS_LIST
 }
 FILES
 {
+	AHDL_FILE = ..\..\common\com\Tcal\TCWF_64x12.tdf;
+	AHDL_FILE = ..\..\common\com\Tcal\TCWF_64x10.tdf;
+	AHDL_FILE = ..\..\common\com\Tcal\TCAL_SAMPLES.tdf;
+	AHDL_FILE = ..\..\common\com\Tcal\tcwf_af_ct.tdf;
 	AHDL_FILE = ..\..\common\com\Tcal\DCTC_FWR.tdf;
 	AHDL_FILE = ..\..\common\com\Tcal\TCWF_FIFO_32x10.tdf;
 	AHDL_FILE = ..\..\common\com\Rx_chan\edges\GET_DUDT.tdf;
