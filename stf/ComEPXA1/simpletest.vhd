@@ -913,7 +913,6 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	COMPONENT dcom
 		port (
 			CCLK :  IN  STD_LOGIC;
-			mono_clk_en :  IN  STD_LOGIC;
 			rs4_out :  IN  STD_LOGIC;
 			msg_rd :  IN  STD_LOGIC;
 			dom_A_sel_L :  IN  STD_LOGIC;
@@ -951,7 +950,6 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			data_stb :  OUT  STD_LOGIC;
 			ctrl_stb :  OUT  STD_LOGIC;
 			ctrl_err :  OUT  STD_LOGIC;
-			rxwrff :  OUT  STD_LOGIC;
 			rxwraff :  OUT  STD_LOGIC;
 			rxrdef :  OUT  STD_LOGIC;
 			stf_rcvd :  OUT  STD_LOGIC;
@@ -1749,7 +1747,6 @@ BEGIN
 	dcom_inst : dcom
 		port MAP (
 			CCLK		=> CLK20,
-			mono_clk_en	=> low,
 			rs4_out		=> HDV_Rx,
 			msg_rd		=> msg_rd,
 			dom_A_sel_L	=> B_nA,
@@ -1787,7 +1784,6 @@ BEGIN
 			data_stb	=> open, --TC(3),
 			ctrl_stb	=> open, --TC(4),
 			ctrl_err	=> ctrl_err,
-			rxwrff		=> rxwrff,
 			rxwraff		=> rxwraff,
 			rxrdef		=> rxrdef,
 			stf_rcvd	=> open, --TC(1),

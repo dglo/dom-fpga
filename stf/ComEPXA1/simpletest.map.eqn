@@ -3,7 +3,7 @@
 
 FB92_sload_path[14]_lut_out = FB92_sload_path[14] $ !FB92L92;
 FB92_sload_path[14]_reg_input = !PC32_aeb_out & FB92_sload_path[14]_lut_out;
-FB92_sload_path[14] = DFFE(FB92_sload_path[14]_reg_input, GLOBAL(JE1_outclock0), JB1L011Q, , );
+FB92_sload_path[14] = DFFE(FB92_sload_path[14]_reg_input, GLOBAL(JE1_outclock0), JB1L311Q, , );
 
 
 --FB92_sload_path[13] is dcom:dcom_inst|tcal_timer:inst1|dc_tcal_ct:time|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|sload_path[13]
@@ -11,7 +11,7 @@ FB92_sload_path[14] = DFFE(FB92_sload_path[14]_reg_input, GLOBAL(JE1_outclock0),
 
 FB92_sload_path[13]_lut_out = FB92_sload_path[13] $ FB92L72;
 FB92_sload_path[13]_reg_input = !PC32_aeb_out & FB92_sload_path[13]_lut_out;
-FB92_sload_path[13] = DFFE(FB92_sload_path[13]_reg_input, GLOBAL(JE1_outclock0), JB1L011Q, , );
+FB92_sload_path[13] = DFFE(FB92_sload_path[13]_reg_input, GLOBAL(JE1_outclock0), JB1L311Q, , );
 
 --FB92L92 is dcom:dcom_inst|tcal_timer:inst1|dc_tcal_ct:time|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|counter_cell[13]~COUT
 --operation mode is counter
@@ -24,7 +24,7 @@ FB92L92 = CARRY(!FB92L72 # !FB92_sload_path[13]);
 
 FB92_sload_path[12]_lut_out = FB92_sload_path[12] $ !FB92L52;
 FB92_sload_path[12]_reg_input = !PC32_aeb_out & FB92_sload_path[12]_lut_out;
-FB92_sload_path[12] = DFFE(FB92_sload_path[12]_reg_input, GLOBAL(JE1_outclock0), JB1L011Q, , );
+FB92_sload_path[12] = DFFE(FB92_sload_path[12]_reg_input, GLOBAL(JE1_outclock0), JB1L311Q, , );
 
 --FB92L72 is dcom:dcom_inst|tcal_timer:inst1|dc_tcal_ct:time|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|counter_cell[12]~COUT
 --operation mode is counter
@@ -37,7 +37,7 @@ FB92L72 = CARRY(FB92_sload_path[12] & !FB92L52);
 
 FB92_sload_path[11]_lut_out = FB92_sload_path[11] $ FB92L32;
 FB92_sload_path[11]_reg_input = !PC32_aeb_out & FB92_sload_path[11]_lut_out;
-FB92_sload_path[11] = DFFE(FB92_sload_path[11]_reg_input, GLOBAL(JE1_outclock0), JB1L011Q, , );
+FB92_sload_path[11] = DFFE(FB92_sload_path[11]_reg_input, GLOBAL(JE1_outclock0), JB1L311Q, , );
 
 --FB92L52 is dcom:dcom_inst|tcal_timer:inst1|dc_tcal_ct:time|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|counter_cell[11]~COUT
 --operation mode is counter
@@ -50,7 +50,7 @@ FB92L52 = CARRY(!FB92L32 # !FB92_sload_path[11]);
 
 FB92_sload_path[10]_lut_out = FB92_sload_path[10] $ !FB92L12;
 FB92_sload_path[10]_reg_input = !PC32_aeb_out & FB92_sload_path[10]_lut_out;
-FB92_sload_path[10] = DFFE(FB92_sload_path[10]_reg_input, GLOBAL(JE1_outclock0), JB1L011Q, , );
+FB92_sload_path[10] = DFFE(FB92_sload_path[10]_reg_input, GLOBAL(JE1_outclock0), JB1L311Q, , );
 
 --FB92L32 is dcom:dcom_inst|tcal_timer:inst1|dc_tcal_ct:time|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|counter_cell[10]~COUT
 --operation mode is counter
@@ -63,7 +63,7 @@ FB92L32 = CARRY(FB92_sload_path[10] & !FB92L12);
 
 FB92_sload_path[9]_lut_out = FB92_sload_path[9] $ FB92L91;
 FB92_sload_path[9]_reg_input = !PC32_aeb_out & FB92_sload_path[9]_lut_out;
-FB92_sload_path[9] = DFFE(FB92_sload_path[9]_reg_input, GLOBAL(JE1_outclock0), JB1L011Q, , );
+FB92_sload_path[9] = DFFE(FB92_sload_path[9]_reg_input, GLOBAL(JE1_outclock0), JB1L311Q, , );
 
 --FB92L12 is dcom:dcom_inst|tcal_timer:inst1|dc_tcal_ct:time|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|counter_cell[9]~COUT
 --operation mode is counter
@@ -76,7 +76,7 @@ FB92L12 = CARRY(!FB92L91 # !FB92_sload_path[9]);
 
 FB92_sload_path[8]_lut_out = FB92_sload_path[8] $ !FB92L71;
 FB92_sload_path[8]_reg_input = !PC32_aeb_out & FB92_sload_path[8]_lut_out;
-FB92_sload_path[8] = DFFE(FB92_sload_path[8]_reg_input, GLOBAL(JE1_outclock0), JB1L011Q, , );
+FB92_sload_path[8] = DFFE(FB92_sload_path[8]_reg_input, GLOBAL(JE1_outclock0), JB1L311Q, , );
 
 --FB92L91 is dcom:dcom_inst|tcal_timer:inst1|dc_tcal_ct:time|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|counter_cell[8]~COUT
 --operation mode is counter
@@ -89,7 +89,7 @@ FB92L91 = CARRY(FB92_sload_path[8] & !FB92L71);
 
 FB92_sload_path[7]_lut_out = FB92_sload_path[7] $ FB92L51;
 FB92_sload_path[7]_reg_input = !PC32_aeb_out & FB92_sload_path[7]_lut_out;
-FB92_sload_path[7] = DFFE(FB92_sload_path[7]_reg_input, GLOBAL(JE1_outclock0), JB1L011Q, , );
+FB92_sload_path[7] = DFFE(FB92_sload_path[7]_reg_input, GLOBAL(JE1_outclock0), JB1L311Q, , );
 
 --FB92L71 is dcom:dcom_inst|tcal_timer:inst1|dc_tcal_ct:time|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|counter_cell[7]~COUT
 --operation mode is counter
@@ -102,7 +102,7 @@ FB92L71 = CARRY(!FB92L51 # !FB92_sload_path[7]);
 
 FB92_sload_path[6]_lut_out = FB92_sload_path[6] $ !FB92L31;
 FB92_sload_path[6]_reg_input = !PC32_aeb_out & FB92_sload_path[6]_lut_out;
-FB92_sload_path[6] = DFFE(FB92_sload_path[6]_reg_input, GLOBAL(JE1_outclock0), JB1L011Q, , );
+FB92_sload_path[6] = DFFE(FB92_sload_path[6]_reg_input, GLOBAL(JE1_outclock0), JB1L311Q, , );
 
 --FB92L51 is dcom:dcom_inst|tcal_timer:inst1|dc_tcal_ct:time|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|counter_cell[6]~COUT
 --operation mode is counter
@@ -115,7 +115,7 @@ FB92L51 = CARRY(FB92_sload_path[6] & !FB92L31);
 
 FB92_sload_path[5]_lut_out = FB92_sload_path[5] $ FB92L11;
 FB92_sload_path[5]_reg_input = !PC32_aeb_out & FB92_sload_path[5]_lut_out;
-FB92_sload_path[5] = DFFE(FB92_sload_path[5]_reg_input, GLOBAL(JE1_outclock0), JB1L011Q, , );
+FB92_sload_path[5] = DFFE(FB92_sload_path[5]_reg_input, GLOBAL(JE1_outclock0), JB1L311Q, , );
 
 --FB92L31 is dcom:dcom_inst|tcal_timer:inst1|dc_tcal_ct:time|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|counter_cell[5]~COUT
 --operation mode is counter
@@ -128,7 +128,7 @@ FB92L31 = CARRY(!FB92L11 # !FB92_sload_path[5]);
 
 FB92_sload_path[4]_lut_out = FB92_sload_path[4] $ !FB92L9;
 FB92_sload_path[4]_reg_input = !PC32_aeb_out & FB92_sload_path[4]_lut_out;
-FB92_sload_path[4] = DFFE(FB92_sload_path[4]_reg_input, GLOBAL(JE1_outclock0), JB1L011Q, , );
+FB92_sload_path[4] = DFFE(FB92_sload_path[4]_reg_input, GLOBAL(JE1_outclock0), JB1L311Q, , );
 
 --FB92L11 is dcom:dcom_inst|tcal_timer:inst1|dc_tcal_ct:time|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|counter_cell[4]~COUT
 --operation mode is counter
@@ -141,7 +141,7 @@ FB92L11 = CARRY(FB92_sload_path[4] & !FB92L9);
 
 FB92_sload_path[3]_lut_out = FB92_sload_path[3] $ FB92L7;
 FB92_sload_path[3]_reg_input = !PC32_aeb_out & FB92_sload_path[3]_lut_out;
-FB92_sload_path[3] = DFFE(FB92_sload_path[3]_reg_input, GLOBAL(JE1_outclock0), JB1L011Q, , );
+FB92_sload_path[3] = DFFE(FB92_sload_path[3]_reg_input, GLOBAL(JE1_outclock0), JB1L311Q, , );
 
 --FB92L9 is dcom:dcom_inst|tcal_timer:inst1|dc_tcal_ct:time|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|counter_cell[3]~COUT
 --operation mode is counter
@@ -154,7 +154,7 @@ FB92L9 = CARRY(!FB92L7 # !FB92_sload_path[3]);
 
 FB92_sload_path[2]_lut_out = FB92_sload_path[2] $ !FB92L5;
 FB92_sload_path[2]_reg_input = !PC32_aeb_out & FB92_sload_path[2]_lut_out;
-FB92_sload_path[2] = DFFE(FB92_sload_path[2]_reg_input, GLOBAL(JE1_outclock0), JB1L011Q, , );
+FB92_sload_path[2] = DFFE(FB92_sload_path[2]_reg_input, GLOBAL(JE1_outclock0), JB1L311Q, , );
 
 --FB92L7 is dcom:dcom_inst|tcal_timer:inst1|dc_tcal_ct:time|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|counter_cell[2]~COUT
 --operation mode is counter
@@ -167,7 +167,7 @@ FB92L7 = CARRY(FB92_sload_path[2] & !FB92L5);
 
 FB92_sload_path[1]_lut_out = FB92_sload_path[1] $ FB92L3;
 FB92_sload_path[1]_reg_input = !PC32_aeb_out & FB92_sload_path[1]_lut_out;
-FB92_sload_path[1] = DFFE(FB92_sload_path[1]_reg_input, GLOBAL(JE1_outclock0), JB1L011Q, , );
+FB92_sload_path[1] = DFFE(FB92_sload_path[1]_reg_input, GLOBAL(JE1_outclock0), JB1L311Q, , );
 
 --FB92L5 is dcom:dcom_inst|tcal_timer:inst1|dc_tcal_ct:time|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|counter_cell[1]~COUT
 --operation mode is counter
@@ -180,7 +180,7 @@ FB92L5 = CARRY(!FB92L3 # !FB92_sload_path[1]);
 
 FB92_sload_path[0]_lut_out = !FB92_sload_path[0];
 FB92_sload_path[0]_reg_input = !PC32_aeb_out & FB92_sload_path[0]_lut_out;
-FB92_sload_path[0] = DFFE(FB92_sload_path[0]_reg_input, GLOBAL(JE1_outclock0), JB1L011Q, , );
+FB92_sload_path[0] = DFFE(FB92_sload_path[0]_reg_input, GLOBAL(JE1_outclock0), JB1L311Q, , );
 
 --FB92L3 is dcom:dcom_inst|tcal_timer:inst1|dc_tcal_ct:time|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|counter_cell[0]~COUT
 --operation mode is qfbk_counter
@@ -7765,578 +7765,7 @@ FB4_sload_path[0] = DFFE(FB4_sload_path[0]_lut_out, GLOBAL(JE1_outclock0), !V1L4
 FB4L3 = CARRY(FB4_sload_path[0]);
 
 
---FB93_sload_path[47] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[47]
---operation mode is normal
-
-FB93_sload_path[47]_lut_out = FB93_sload_path[47] $ FB93L59;
-FB93_sload_path[47] = DFFE(FB93_sload_path[47]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
-
---FB93_sload_path[46] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[46]
---operation mode is arithmetic
-
-FB93_sload_path[46]_lut_out = FB93_sload_path[46] $ !FB93L39;
-FB93_sload_path[46] = DFFE(FB93_sload_path[46]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L59 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[46]~COUT
---operation mode is arithmetic
-
-FB93L59 = CARRY(FB93_sload_path[46] & !FB93L39);
-
-
---FB93_sload_path[45] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[45]
---operation mode is arithmetic
-
-FB93_sload_path[45]_lut_out = FB93_sload_path[45] $ FB93L19;
-FB93_sload_path[45] = DFFE(FB93_sload_path[45]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L39 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[45]~COUT
---operation mode is arithmetic
-
-FB93L39 = CARRY(!FB93L19 # !FB93_sload_path[45]);
-
-
---FB93_sload_path[44] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[44]
---operation mode is arithmetic
-
-FB93_sload_path[44]_lut_out = FB93_sload_path[44] $ !FB93L98;
-FB93_sload_path[44] = DFFE(FB93_sload_path[44]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L19 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[44]~COUT
---operation mode is arithmetic
-
-FB93L19 = CARRY(FB93_sload_path[44] & !FB93L98);
-
-
---FB93_sload_path[43] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[43]
---operation mode is arithmetic
-
-FB93_sload_path[43]_lut_out = FB93_sload_path[43] $ FB93L78;
-FB93_sload_path[43] = DFFE(FB93_sload_path[43]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L98 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[43]~COUT
---operation mode is arithmetic
-
-FB93L98 = CARRY(!FB93L78 # !FB93_sload_path[43]);
-
-
---FB93_sload_path[42] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[42]
---operation mode is arithmetic
-
-FB93_sload_path[42]_lut_out = FB93_sload_path[42] $ !FB93L58;
-FB93_sload_path[42] = DFFE(FB93_sload_path[42]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L78 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[42]~COUT
---operation mode is arithmetic
-
-FB93L78 = CARRY(FB93_sload_path[42] & !FB93L58);
-
-
---FB93_sload_path[41] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[41]
---operation mode is arithmetic
-
-FB93_sload_path[41]_lut_out = FB93_sload_path[41] $ FB93L38;
-FB93_sload_path[41] = DFFE(FB93_sload_path[41]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L58 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[41]~COUT
---operation mode is arithmetic
-
-FB93L58 = CARRY(!FB93L38 # !FB93_sload_path[41]);
-
-
---FB93_sload_path[40] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[40]
---operation mode is arithmetic
-
-FB93_sload_path[40]_lut_out = FB93_sload_path[40] $ !FB93L18;
-FB93_sload_path[40] = DFFE(FB93_sload_path[40]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L38 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[40]~COUT
---operation mode is arithmetic
-
-FB93L38 = CARRY(FB93_sload_path[40] & !FB93L18);
-
-
---FB93_sload_path[39] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[39]
---operation mode is arithmetic
-
-FB93_sload_path[39]_lut_out = FB93_sload_path[39] $ FB93L97;
-FB93_sload_path[39] = DFFE(FB93_sload_path[39]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L18 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[39]~COUT
---operation mode is arithmetic
-
-FB93L18 = CARRY(!FB93L97 # !FB93_sload_path[39]);
-
-
---FB93_sload_path[38] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[38]
---operation mode is arithmetic
-
-FB93_sload_path[38]_lut_out = FB93_sload_path[38] $ !FB93L77;
-FB93_sload_path[38] = DFFE(FB93_sload_path[38]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L97 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[38]~COUT
---operation mode is arithmetic
-
-FB93L97 = CARRY(FB93_sload_path[38] & !FB93L77);
-
-
---FB93_sload_path[37] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[37]
---operation mode is arithmetic
-
-FB93_sload_path[37]_lut_out = FB93_sload_path[37] $ FB93L57;
-FB93_sload_path[37] = DFFE(FB93_sload_path[37]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L77 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[37]~COUT
---operation mode is arithmetic
-
-FB93L77 = CARRY(!FB93L57 # !FB93_sload_path[37]);
-
-
---FB93_sload_path[36] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[36]
---operation mode is arithmetic
-
-FB93_sload_path[36]_lut_out = FB93_sload_path[36] $ !FB93L37;
-FB93_sload_path[36] = DFFE(FB93_sload_path[36]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L57 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[36]~COUT
---operation mode is arithmetic
-
-FB93L57 = CARRY(FB93_sload_path[36] & !FB93L37);
-
-
---FB93_sload_path[35] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[35]
---operation mode is arithmetic
-
-FB93_sload_path[35]_lut_out = FB93_sload_path[35] $ FB93L17;
-FB93_sload_path[35] = DFFE(FB93_sload_path[35]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L37 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[35]~COUT
---operation mode is arithmetic
-
-FB93L37 = CARRY(!FB93L17 # !FB93_sload_path[35]);
-
-
---FB93_sload_path[34] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[34]
---operation mode is arithmetic
-
-FB93_sload_path[34]_lut_out = FB93_sload_path[34] $ !FB93L96;
-FB93_sload_path[34] = DFFE(FB93_sload_path[34]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L17 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[34]~COUT
---operation mode is arithmetic
-
-FB93L17 = CARRY(FB93_sload_path[34] & !FB93L96);
-
-
---FB93_sload_path[33] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[33]
---operation mode is arithmetic
-
-FB93_sload_path[33]_lut_out = FB93_sload_path[33] $ FB93L76;
-FB93_sload_path[33] = DFFE(FB93_sload_path[33]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L96 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[33]~COUT
---operation mode is arithmetic
-
-FB93L96 = CARRY(!FB93L76 # !FB93_sload_path[33]);
-
-
---FB93_sload_path[32] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[32]
---operation mode is arithmetic
-
-FB93_sload_path[32]_lut_out = FB93_sload_path[32] $ !FB93L56;
-FB93_sload_path[32] = DFFE(FB93_sload_path[32]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L76 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[32]~COUT
---operation mode is arithmetic
-
-FB93L76 = CARRY(FB93_sload_path[32] & !FB93L56);
-
-
---FB93_sload_path[31] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[31]
---operation mode is arithmetic
-
-FB93_sload_path[31]_lut_out = FB93_sload_path[31] $ FB93L36;
-FB93_sload_path[31] = DFFE(FB93_sload_path[31]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L56 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[31]~COUT
---operation mode is arithmetic
-
-FB93L56 = CARRY(!FB93L36 # !FB93_sload_path[31]);
-
-
---FB93_sload_path[30] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[30]
---operation mode is arithmetic
-
-FB93_sload_path[30]_lut_out = FB93_sload_path[30] $ !FB93L16;
-FB93_sload_path[30] = DFFE(FB93_sload_path[30]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L36 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[30]~COUT
---operation mode is arithmetic
-
-FB93L36 = CARRY(FB93_sload_path[30] & !FB93L16);
-
-
---FB93_sload_path[29] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[29]
---operation mode is arithmetic
-
-FB93_sload_path[29]_lut_out = FB93_sload_path[29] $ FB93L95;
-FB93_sload_path[29] = DFFE(FB93_sload_path[29]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L16 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[29]~COUT
---operation mode is arithmetic
-
-FB93L16 = CARRY(!FB93L95 # !FB93_sload_path[29]);
-
-
---FB93_sload_path[28] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[28]
---operation mode is arithmetic
-
-FB93_sload_path[28]_lut_out = FB93_sload_path[28] $ !FB93L75;
-FB93_sload_path[28] = DFFE(FB93_sload_path[28]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L95 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[28]~COUT
---operation mode is arithmetic
-
-FB93L95 = CARRY(FB93_sload_path[28] & !FB93L75);
-
-
---FB93_sload_path[27] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[27]
---operation mode is arithmetic
-
-FB93_sload_path[27]_lut_out = FB93_sload_path[27] $ FB93L55;
-FB93_sload_path[27] = DFFE(FB93_sload_path[27]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L75 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[27]~COUT
---operation mode is arithmetic
-
-FB93L75 = CARRY(!FB93L55 # !FB93_sload_path[27]);
-
-
---FB93_sload_path[26] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[26]
---operation mode is arithmetic
-
-FB93_sload_path[26]_lut_out = FB93_sload_path[26] $ !FB93L35;
-FB93_sload_path[26] = DFFE(FB93_sload_path[26]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L55 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[26]~COUT
---operation mode is arithmetic
-
-FB93L55 = CARRY(FB93_sload_path[26] & !FB93L35);
-
-
---FB93_sload_path[25] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[25]
---operation mode is arithmetic
-
-FB93_sload_path[25]_lut_out = FB93_sload_path[25] $ FB93L15;
-FB93_sload_path[25] = DFFE(FB93_sload_path[25]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L35 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[25]~COUT
---operation mode is arithmetic
-
-FB93L35 = CARRY(!FB93L15 # !FB93_sload_path[25]);
-
-
---FB93_sload_path[24] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[24]
---operation mode is arithmetic
-
-FB93_sload_path[24]_lut_out = FB93_sload_path[24] $ !FB93L94;
-FB93_sload_path[24] = DFFE(FB93_sload_path[24]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L15 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[24]~COUT
---operation mode is arithmetic
-
-FB93L15 = CARRY(FB93_sload_path[24] & !FB93L94);
-
-
---FB93_sload_path[23] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[23]
---operation mode is arithmetic
-
-FB93_sload_path[23]_lut_out = FB93_sload_path[23] $ FB93L74;
-FB93_sload_path[23] = DFFE(FB93_sload_path[23]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L94 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[23]~COUT
---operation mode is arithmetic
-
-FB93L94 = CARRY(!FB93L74 # !FB93_sload_path[23]);
-
-
---FB93_sload_path[22] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[22]
---operation mode is arithmetic
-
-FB93_sload_path[22]_lut_out = FB93_sload_path[22] $ !FB93L54;
-FB93_sload_path[22] = DFFE(FB93_sload_path[22]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L74 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[22]~COUT
---operation mode is arithmetic
-
-FB93L74 = CARRY(FB93_sload_path[22] & !FB93L54);
-
-
---FB93_sload_path[21] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[21]
---operation mode is arithmetic
-
-FB93_sload_path[21]_lut_out = FB93_sload_path[21] $ FB93L34;
-FB93_sload_path[21] = DFFE(FB93_sload_path[21]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L54 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[21]~COUT
---operation mode is arithmetic
-
-FB93L54 = CARRY(!FB93L34 # !FB93_sload_path[21]);
-
-
---FB93_sload_path[20] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[20]
---operation mode is arithmetic
-
-FB93_sload_path[20]_lut_out = FB93_sload_path[20] $ !FB93L14;
-FB93_sload_path[20] = DFFE(FB93_sload_path[20]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L34 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[20]~COUT
---operation mode is arithmetic
-
-FB93L34 = CARRY(FB93_sload_path[20] & !FB93L14);
-
-
---FB93_sload_path[19] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[19]
---operation mode is arithmetic
-
-FB93_sload_path[19]_lut_out = FB93_sload_path[19] $ FB93L93;
-FB93_sload_path[19] = DFFE(FB93_sload_path[19]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L14 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[19]~COUT
---operation mode is arithmetic
-
-FB93L14 = CARRY(!FB93L93 # !FB93_sload_path[19]);
-
-
---FB93_sload_path[18] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[18]
---operation mode is arithmetic
-
-FB93_sload_path[18]_lut_out = FB93_sload_path[18] $ !FB93L73;
-FB93_sload_path[18] = DFFE(FB93_sload_path[18]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L93 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[18]~COUT
---operation mode is arithmetic
-
-FB93L93 = CARRY(FB93_sload_path[18] & !FB93L73);
-
-
---FB93_sload_path[17] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[17]
---operation mode is arithmetic
-
-FB93_sload_path[17]_lut_out = FB93_sload_path[17] $ FB93L53;
-FB93_sload_path[17] = DFFE(FB93_sload_path[17]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L73 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[17]~COUT
---operation mode is arithmetic
-
-FB93L73 = CARRY(!FB93L53 # !FB93_sload_path[17]);
-
-
---FB93_sload_path[16] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[16]
---operation mode is arithmetic
-
-FB93_sload_path[16]_lut_out = FB93_sload_path[16] $ !FB93L33;
-FB93_sload_path[16] = DFFE(FB93_sload_path[16]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L53 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[16]~COUT
---operation mode is arithmetic
-
-FB93L53 = CARRY(FB93_sload_path[16] & !FB93L33);
-
-
---FB93_sload_path[15] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[15]
---operation mode is arithmetic
-
-FB93_sload_path[15]_lut_out = FB93_sload_path[15] $ FB93L13;
-FB93_sload_path[15] = DFFE(FB93_sload_path[15]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L33 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[15]~COUT
---operation mode is arithmetic
-
-FB93L33 = CARRY(!FB93L13 # !FB93_sload_path[15]);
-
-
---FB93_sload_path[14] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[14]
---operation mode is arithmetic
-
-FB93_sload_path[14]_lut_out = FB93_sload_path[14] $ !FB93L92;
-FB93_sload_path[14] = DFFE(FB93_sload_path[14]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L13 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[14]~COUT
---operation mode is arithmetic
-
-FB93L13 = CARRY(FB93_sload_path[14] & !FB93L92);
-
-
---FB93_sload_path[13] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[13]
---operation mode is arithmetic
-
-FB93_sload_path[13]_lut_out = FB93_sload_path[13] $ FB93L72;
-FB93_sload_path[13] = DFFE(FB93_sload_path[13]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L92 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[13]~COUT
---operation mode is arithmetic
-
-FB93L92 = CARRY(!FB93L72 # !FB93_sload_path[13]);
-
-
---FB93_sload_path[12] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[12]
---operation mode is arithmetic
-
-FB93_sload_path[12]_lut_out = FB93_sload_path[12] $ !FB93L52;
-FB93_sload_path[12] = DFFE(FB93_sload_path[12]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L72 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[12]~COUT
---operation mode is arithmetic
-
-FB93L72 = CARRY(FB93_sload_path[12] & !FB93L52);
-
-
---FB93_sload_path[11] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[11]
---operation mode is arithmetic
-
-FB93_sload_path[11]_lut_out = FB93_sload_path[11] $ FB93L32;
-FB93_sload_path[11] = DFFE(FB93_sload_path[11]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L52 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[11]~COUT
---operation mode is arithmetic
-
-FB93L52 = CARRY(!FB93L32 # !FB93_sload_path[11]);
-
-
---FB93_sload_path[10] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[10]
---operation mode is arithmetic
-
-FB93_sload_path[10]_lut_out = FB93_sload_path[10] $ !FB93L12;
-FB93_sload_path[10] = DFFE(FB93_sload_path[10]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L32 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[10]~COUT
---operation mode is arithmetic
-
-FB93L32 = CARRY(FB93_sload_path[10] & !FB93L12);
-
-
---FB93_sload_path[9] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[9]
---operation mode is arithmetic
-
-FB93_sload_path[9]_lut_out = FB93_sload_path[9] $ FB93L91;
-FB93_sload_path[9] = DFFE(FB93_sload_path[9]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L12 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[9]~COUT
---operation mode is arithmetic
-
-FB93L12 = CARRY(!FB93L91 # !FB93_sload_path[9]);
-
-
---FB93_sload_path[8] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[8]
---operation mode is arithmetic
-
-FB93_sload_path[8]_lut_out = FB93_sload_path[8] $ !FB93L71;
-FB93_sload_path[8] = DFFE(FB93_sload_path[8]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L91 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[8]~COUT
---operation mode is arithmetic
-
-FB93L91 = CARRY(FB93_sload_path[8] & !FB93L71);
-
-
---FB93_sload_path[7] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[7]
---operation mode is arithmetic
-
-FB93_sload_path[7]_lut_out = FB93_sload_path[7] $ FB93L51;
-FB93_sload_path[7] = DFFE(FB93_sload_path[7]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L71 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[7]~COUT
---operation mode is arithmetic
-
-FB93L71 = CARRY(!FB93L51 # !FB93_sload_path[7]);
-
-
---FB93_sload_path[6] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[6]
---operation mode is arithmetic
-
-FB93_sload_path[6]_lut_out = FB93_sload_path[6] $ !FB93L31;
-FB93_sload_path[6] = DFFE(FB93_sload_path[6]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L51 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[6]~COUT
---operation mode is arithmetic
-
-FB93L51 = CARRY(FB93_sload_path[6] & !FB93L31);
-
-
---FB93_sload_path[5] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[5]
---operation mode is arithmetic
-
-FB93_sload_path[5]_lut_out = FB93_sload_path[5] $ FB93L11;
-FB93_sload_path[5] = DFFE(FB93_sload_path[5]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L31 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[5]~COUT
---operation mode is arithmetic
-
-FB93L31 = CARRY(!FB93L11 # !FB93_sload_path[5]);
-
-
---FB93_sload_path[4] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[4]
---operation mode is arithmetic
-
-FB93_sload_path[4]_lut_out = FB93_sload_path[4] $ !FB93L9;
-FB93_sload_path[4] = DFFE(FB93_sload_path[4]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L11 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[4]~COUT
---operation mode is arithmetic
-
-FB93L11 = CARRY(FB93_sload_path[4] & !FB93L9);
-
-
---FB93_sload_path[3] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[3]
---operation mode is arithmetic
-
-FB93_sload_path[3]_lut_out = FB93_sload_path[3] $ FB93L7;
-FB93_sload_path[3] = DFFE(FB93_sload_path[3]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L9 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[3]~COUT
---operation mode is arithmetic
-
-FB93L9 = CARRY(!FB93L7 # !FB93_sload_path[3]);
-
-
---FB93_sload_path[2] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[2]
---operation mode is arithmetic
-
-FB93_sload_path[2]_lut_out = FB93_sload_path[2] $ !FB93L5;
-FB93_sload_path[2] = DFFE(FB93_sload_path[2]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L7 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[2]~COUT
---operation mode is arithmetic
-
-FB93L7 = CARRY(FB93_sload_path[2] & !FB93L5);
-
-
---FB93_sload_path[1] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[1]
---operation mode is arithmetic
-
-FB93_sload_path[1]_lut_out = FB93_sload_path[1] $ FB93L3;
-FB93_sload_path[1] = DFFE(FB93_sload_path[1]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L5 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[1]~COUT
---operation mode is arithmetic
-
-FB93L5 = CARRY(!FB93L3 # !FB93_sload_path[1]);
-
-
---FB93_sload_path[0] is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[0]
---operation mode is qfbk_counter
-
-FB93_sload_path[0]_lut_out = !FB93_sload_path[0];
-FB93_sload_path[0] = DFFE(FB93_sload_path[0]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
-
---FB93L3 is timer:timer_inst|lpm_counter:systime_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[0]~COUT
---operation mode is qfbk_counter
-
-FB93L3 = CARRY(FB93_sload_path[0]);
-
-
---FB1_sload_path[1] is atwd:atwd0|atwd_readout:inst_atwd_readout|lpm_counter:divide_cnt_rtl_346|alt_synch_counter:wysi_counter|sload_path[1]
+--FB1_sload_path[1] is atwd:atwd0|atwd_readout:inst_atwd_readout|lpm_counter:divide_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[1]
 --operation mode is normal
 
 FB1_sload_path[1]_lut_out = FB1_sload_path[1] $ FB1L3;
@@ -8344,20 +7773,20 @@ FB1_sload_path[1]_reg_input = !BB1_rst_divide & FB1_sload_path[1]_lut_out;
 FB1_sload_path[1] = DFFE(FB1_sload_path[1]_reg_input, GLOBAL(JE1_outclock1), !V1L4Q, , );
 
 
---FB1_sload_path[0] is atwd:atwd0|atwd_readout:inst_atwd_readout|lpm_counter:divide_cnt_rtl_346|alt_synch_counter:wysi_counter|sload_path[0]
+--FB1_sload_path[0] is atwd:atwd0|atwd_readout:inst_atwd_readout|lpm_counter:divide_cnt_rtl_347|alt_synch_counter:wysi_counter|sload_path[0]
 --operation mode is qfbk_counter
 
 FB1_sload_path[0]_lut_out = !FB1_sload_path[0];
 FB1_sload_path[0]_reg_input = !BB1_rst_divide & FB1_sload_path[0]_lut_out;
 FB1_sload_path[0] = DFFE(FB1_sload_path[0]_reg_input, GLOBAL(JE1_outclock1), !V1L4Q, , );
 
---FB1L3 is atwd:atwd0|atwd_readout:inst_atwd_readout|lpm_counter:divide_cnt_rtl_346|alt_synch_counter:wysi_counter|counter_cell[0]~COUT
+--FB1L3 is atwd:atwd0|atwd_readout:inst_atwd_readout|lpm_counter:divide_cnt_rtl_347|alt_synch_counter:wysi_counter|counter_cell[0]~COUT
 --operation mode is qfbk_counter
 
 FB1L3 = CARRY(FB1_sload_path[0]);
 
 
---FB2_sload_path[1] is atwd:atwd1|atwd_readout:inst_atwd_readout|lpm_counter:divide_cnt_rtl_345|alt_synch_counter:wysi_counter|sload_path[1]
+--FB2_sload_path[1] is atwd:atwd1|atwd_readout:inst_atwd_readout|lpm_counter:divide_cnt_rtl_346|alt_synch_counter:wysi_counter|sload_path[1]
 --operation mode is normal
 
 FB2_sload_path[1]_lut_out = FB2_sload_path[1] $ FB2L3;
@@ -8365,20 +7794,20 @@ FB2_sload_path[1]_reg_input = !BB2_rst_divide & FB2_sload_path[1]_lut_out;
 FB2_sload_path[1] = DFFE(FB2_sload_path[1]_reg_input, GLOBAL(JE1_outclock1), !V1L4Q, , );
 
 
---FB2_sload_path[0] is atwd:atwd1|atwd_readout:inst_atwd_readout|lpm_counter:divide_cnt_rtl_345|alt_synch_counter:wysi_counter|sload_path[0]
+--FB2_sload_path[0] is atwd:atwd1|atwd_readout:inst_atwd_readout|lpm_counter:divide_cnt_rtl_346|alt_synch_counter:wysi_counter|sload_path[0]
 --operation mode is qfbk_counter
 
 FB2_sload_path[0]_lut_out = !FB2_sload_path[0];
 FB2_sload_path[0]_reg_input = !BB2_rst_divide & FB2_sload_path[0]_lut_out;
 FB2_sload_path[0] = DFFE(FB2_sload_path[0]_reg_input, GLOBAL(JE1_outclock1), !V1L4Q, , );
 
---FB2L3 is atwd:atwd1|atwd_readout:inst_atwd_readout|lpm_counter:divide_cnt_rtl_345|alt_synch_counter:wysi_counter|counter_cell[0]~COUT
+--FB2L3 is atwd:atwd1|atwd_readout:inst_atwd_readout|lpm_counter:divide_cnt_rtl_346|alt_synch_counter:wysi_counter|counter_cell[0]~COUT
 --operation mode is qfbk_counter
 
 FB2L3 = CARRY(FB2_sload_path[0]);
 
 
---FB73_sload_path[10] is single_led:inst_single_led|lpm_counter:cnt_rtl_344|alt_synch_counter:wysi_counter|sload_path[10]
+--FB73_sload_path[10] is single_led:inst_single_led|lpm_counter:cnt_rtl_345|alt_synch_counter:wysi_counter|sload_path[10]
 --operation mode is normal
 
 FB73_sload_path[10]_lut_out = FB73_sload_path[10] $ !FB73L12;
@@ -8386,134 +7815,705 @@ FB73_sload_path[10]_reg_input = X1_command_0_local[26] & FB73_sload_path[10]_lut
 FB73_sload_path[10] = DFFE(FB73_sload_path[10]_reg_input, GLOBAL(JE1_outclock0), !V1L4Q, , );
 
 
---FB73_sload_path[9] is single_led:inst_single_led|lpm_counter:cnt_rtl_344|alt_synch_counter:wysi_counter|sload_path[9]
+--FB73_sload_path[9] is single_led:inst_single_led|lpm_counter:cnt_rtl_345|alt_synch_counter:wysi_counter|sload_path[9]
 --operation mode is counter
 
 FB73_sload_path[9]_lut_out = FB73_sload_path[9] $ FB73L91;
 FB73_sload_path[9]_reg_input = X1_command_0_local[26] & FB73_sload_path[9]_lut_out;
 FB73_sload_path[9] = DFFE(FB73_sload_path[9]_reg_input, GLOBAL(JE1_outclock0), !V1L4Q, , );
 
---FB73L12 is single_led:inst_single_led|lpm_counter:cnt_rtl_344|alt_synch_counter:wysi_counter|counter_cell[9]~COUT
+--FB73L12 is single_led:inst_single_led|lpm_counter:cnt_rtl_345|alt_synch_counter:wysi_counter|counter_cell[9]~COUT
 --operation mode is counter
 
 FB73L12 = CARRY(!FB73L91 # !FB73_sload_path[9]);
 
 
---FB73_sload_path[8] is single_led:inst_single_led|lpm_counter:cnt_rtl_344|alt_synch_counter:wysi_counter|sload_path[8]
+--FB73_sload_path[8] is single_led:inst_single_led|lpm_counter:cnt_rtl_345|alt_synch_counter:wysi_counter|sload_path[8]
 --operation mode is counter
 
 FB73_sload_path[8]_lut_out = FB73_sload_path[8] $ !FB73L71;
 FB73_sload_path[8]_reg_input = X1_command_0_local[26] & FB73_sload_path[8]_lut_out;
 FB73_sload_path[8] = DFFE(FB73_sload_path[8]_reg_input, GLOBAL(JE1_outclock0), !V1L4Q, , );
 
---FB73L91 is single_led:inst_single_led|lpm_counter:cnt_rtl_344|alt_synch_counter:wysi_counter|counter_cell[8]~COUT
+--FB73L91 is single_led:inst_single_led|lpm_counter:cnt_rtl_345|alt_synch_counter:wysi_counter|counter_cell[8]~COUT
 --operation mode is counter
 
 FB73L91 = CARRY(FB73_sload_path[8] & !FB73L71);
 
 
---FB73_sload_path[7] is single_led:inst_single_led|lpm_counter:cnt_rtl_344|alt_synch_counter:wysi_counter|sload_path[7]
+--FB73_sload_path[7] is single_led:inst_single_led|lpm_counter:cnt_rtl_345|alt_synch_counter:wysi_counter|sload_path[7]
 --operation mode is counter
 
 FB73_sload_path[7]_lut_out = FB73_sload_path[7] $ FB73L51;
 FB73_sload_path[7]_reg_input = X1_command_0_local[26] & FB73_sload_path[7]_lut_out;
 FB73_sload_path[7] = DFFE(FB73_sload_path[7]_reg_input, GLOBAL(JE1_outclock0), !V1L4Q, , );
 
---FB73L71 is single_led:inst_single_led|lpm_counter:cnt_rtl_344|alt_synch_counter:wysi_counter|counter_cell[7]~COUT
+--FB73L71 is single_led:inst_single_led|lpm_counter:cnt_rtl_345|alt_synch_counter:wysi_counter|counter_cell[7]~COUT
 --operation mode is counter
 
 FB73L71 = CARRY(!FB73L51 # !FB73_sload_path[7]);
 
 
---FB73_sload_path[6] is single_led:inst_single_led|lpm_counter:cnt_rtl_344|alt_synch_counter:wysi_counter|sload_path[6]
+--FB73_sload_path[6] is single_led:inst_single_led|lpm_counter:cnt_rtl_345|alt_synch_counter:wysi_counter|sload_path[6]
 --operation mode is counter
 
 FB73_sload_path[6]_lut_out = FB73_sload_path[6] $ !FB73L31;
 FB73_sload_path[6]_reg_input = X1_command_0_local[26] & FB73_sload_path[6]_lut_out;
 FB73_sload_path[6] = DFFE(FB73_sload_path[6]_reg_input, GLOBAL(JE1_outclock0), !V1L4Q, , );
 
---FB73L51 is single_led:inst_single_led|lpm_counter:cnt_rtl_344|alt_synch_counter:wysi_counter|counter_cell[6]~COUT
+--FB73L51 is single_led:inst_single_led|lpm_counter:cnt_rtl_345|alt_synch_counter:wysi_counter|counter_cell[6]~COUT
 --operation mode is counter
 
 FB73L51 = CARRY(FB73_sload_path[6] & !FB73L31);
 
 
---FB73_sload_path[5] is single_led:inst_single_led|lpm_counter:cnt_rtl_344|alt_synch_counter:wysi_counter|sload_path[5]
+--FB73_sload_path[5] is single_led:inst_single_led|lpm_counter:cnt_rtl_345|alt_synch_counter:wysi_counter|sload_path[5]
 --operation mode is counter
 
 FB73_sload_path[5]_lut_out = FB73_sload_path[5] $ FB73L11;
 FB73_sload_path[5]_reg_input = X1_command_0_local[26] & FB73_sload_path[5]_lut_out;
 FB73_sload_path[5] = DFFE(FB73_sload_path[5]_reg_input, GLOBAL(JE1_outclock0), !V1L4Q, , );
 
---FB73L31 is single_led:inst_single_led|lpm_counter:cnt_rtl_344|alt_synch_counter:wysi_counter|counter_cell[5]~COUT
+--FB73L31 is single_led:inst_single_led|lpm_counter:cnt_rtl_345|alt_synch_counter:wysi_counter|counter_cell[5]~COUT
 --operation mode is counter
 
 FB73L31 = CARRY(!FB73L11 # !FB73_sload_path[5]);
 
 
---FB73_sload_path[4] is single_led:inst_single_led|lpm_counter:cnt_rtl_344|alt_synch_counter:wysi_counter|sload_path[4]
+--FB73_sload_path[4] is single_led:inst_single_led|lpm_counter:cnt_rtl_345|alt_synch_counter:wysi_counter|sload_path[4]
 --operation mode is counter
 
 FB73_sload_path[4]_lut_out = FB73_sload_path[4] $ !FB73L9;
 FB73_sload_path[4]_reg_input = X1_command_0_local[26] & FB73_sload_path[4]_lut_out;
 FB73_sload_path[4] = DFFE(FB73_sload_path[4]_reg_input, GLOBAL(JE1_outclock0), !V1L4Q, , );
 
---FB73L11 is single_led:inst_single_led|lpm_counter:cnt_rtl_344|alt_synch_counter:wysi_counter|counter_cell[4]~COUT
+--FB73L11 is single_led:inst_single_led|lpm_counter:cnt_rtl_345|alt_synch_counter:wysi_counter|counter_cell[4]~COUT
 --operation mode is counter
 
 FB73L11 = CARRY(FB73_sload_path[4] & !FB73L9);
 
 
---FB73_sload_path[3] is single_led:inst_single_led|lpm_counter:cnt_rtl_344|alt_synch_counter:wysi_counter|sload_path[3]
+--FB73_sload_path[3] is single_led:inst_single_led|lpm_counter:cnt_rtl_345|alt_synch_counter:wysi_counter|sload_path[3]
 --operation mode is counter
 
 FB73_sload_path[3]_lut_out = FB73_sload_path[3] $ FB73L7;
 FB73_sload_path[3]_reg_input = X1_command_0_local[26] & FB73_sload_path[3]_lut_out;
 FB73_sload_path[3] = DFFE(FB73_sload_path[3]_reg_input, GLOBAL(JE1_outclock0), !V1L4Q, , );
 
---FB73L9 is single_led:inst_single_led|lpm_counter:cnt_rtl_344|alt_synch_counter:wysi_counter|counter_cell[3]~COUT
+--FB73L9 is single_led:inst_single_led|lpm_counter:cnt_rtl_345|alt_synch_counter:wysi_counter|counter_cell[3]~COUT
 --operation mode is counter
 
 FB73L9 = CARRY(!FB73L7 # !FB73_sload_path[3]);
 
 
---FB73_sload_path[2] is single_led:inst_single_led|lpm_counter:cnt_rtl_344|alt_synch_counter:wysi_counter|sload_path[2]
+--FB73_sload_path[2] is single_led:inst_single_led|lpm_counter:cnt_rtl_345|alt_synch_counter:wysi_counter|sload_path[2]
 --operation mode is counter
 
 FB73_sload_path[2]_lut_out = FB73_sload_path[2] $ !FB73L5;
 FB73_sload_path[2]_reg_input = X1_command_0_local[26] & FB73_sload_path[2]_lut_out;
 FB73_sload_path[2] = DFFE(FB73_sload_path[2]_reg_input, GLOBAL(JE1_outclock0), !V1L4Q, , );
 
---FB73L7 is single_led:inst_single_led|lpm_counter:cnt_rtl_344|alt_synch_counter:wysi_counter|counter_cell[2]~COUT
+--FB73L7 is single_led:inst_single_led|lpm_counter:cnt_rtl_345|alt_synch_counter:wysi_counter|counter_cell[2]~COUT
 --operation mode is counter
 
 FB73L7 = CARRY(FB73_sload_path[2] & !FB73L5);
 
 
---FB73_sload_path[1] is single_led:inst_single_led|lpm_counter:cnt_rtl_344|alt_synch_counter:wysi_counter|sload_path[1]
+--FB73_sload_path[1] is single_led:inst_single_led|lpm_counter:cnt_rtl_345|alt_synch_counter:wysi_counter|sload_path[1]
 --operation mode is counter
 
 FB73_sload_path[1]_lut_out = FB73_sload_path[1] $ FB73L3;
 FB73_sload_path[1]_reg_input = X1_command_0_local[26] & FB73_sload_path[1]_lut_out;
 FB73_sload_path[1] = DFFE(FB73_sload_path[1]_reg_input, GLOBAL(JE1_outclock0), !V1L4Q, , );
 
---FB73L5 is single_led:inst_single_led|lpm_counter:cnt_rtl_344|alt_synch_counter:wysi_counter|counter_cell[1]~COUT
+--FB73L5 is single_led:inst_single_led|lpm_counter:cnt_rtl_345|alt_synch_counter:wysi_counter|counter_cell[1]~COUT
 --operation mode is counter
 
 FB73L5 = CARRY(!FB73L3 # !FB73_sload_path[1]);
 
 
---FB73_sload_path[0] is single_led:inst_single_led|lpm_counter:cnt_rtl_344|alt_synch_counter:wysi_counter|sload_path[0]
+--FB73_sload_path[0] is single_led:inst_single_led|lpm_counter:cnt_rtl_345|alt_synch_counter:wysi_counter|sload_path[0]
 --operation mode is qfbk_counter
 
 FB73_sload_path[0]_lut_out = !FB73_sload_path[0];
 FB73_sload_path[0]_reg_input = X1_command_0_local[26] & FB73_sload_path[0]_lut_out;
 FB73_sload_path[0] = DFFE(FB73_sload_path[0]_reg_input, GLOBAL(JE1_outclock0), !V1L4Q, , );
 
---FB73L3 is single_led:inst_single_led|lpm_counter:cnt_rtl_344|alt_synch_counter:wysi_counter|counter_cell[0]~COUT
+--FB73L3 is single_led:inst_single_led|lpm_counter:cnt_rtl_345|alt_synch_counter:wysi_counter|counter_cell[0]~COUT
 --operation mode is qfbk_counter
 
 FB73L3 = CARRY(FB73_sload_path[0]);
+
+
+--FB93_sload_path[47] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[47]
+--operation mode is normal
+
+FB93_sload_path[47]_lut_out = FB93_sload_path[47] $ FB93L59;
+FB93_sload_path[47] = DFFE(FB93_sload_path[47]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+
+--FB93_sload_path[46] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[46]
+--operation mode is arithmetic
+
+FB93_sload_path[46]_lut_out = FB93_sload_path[46] $ !FB93L39;
+FB93_sload_path[46] = DFFE(FB93_sload_path[46]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L59 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[46]~COUT
+--operation mode is arithmetic
+
+FB93L59 = CARRY(FB93_sload_path[46] & !FB93L39);
+
+
+--FB93_sload_path[45] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[45]
+--operation mode is arithmetic
+
+FB93_sload_path[45]_lut_out = FB93_sload_path[45] $ FB93L19;
+FB93_sload_path[45] = DFFE(FB93_sload_path[45]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L39 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[45]~COUT
+--operation mode is arithmetic
+
+FB93L39 = CARRY(!FB93L19 # !FB93_sload_path[45]);
+
+
+--FB93_sload_path[44] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[44]
+--operation mode is arithmetic
+
+FB93_sload_path[44]_lut_out = FB93_sload_path[44] $ !FB93L98;
+FB93_sload_path[44] = DFFE(FB93_sload_path[44]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L19 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[44]~COUT
+--operation mode is arithmetic
+
+FB93L19 = CARRY(FB93_sload_path[44] & !FB93L98);
+
+
+--FB93_sload_path[43] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[43]
+--operation mode is arithmetic
+
+FB93_sload_path[43]_lut_out = FB93_sload_path[43] $ FB93L78;
+FB93_sload_path[43] = DFFE(FB93_sload_path[43]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L98 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[43]~COUT
+--operation mode is arithmetic
+
+FB93L98 = CARRY(!FB93L78 # !FB93_sload_path[43]);
+
+
+--FB93_sload_path[42] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[42]
+--operation mode is arithmetic
+
+FB93_sload_path[42]_lut_out = FB93_sload_path[42] $ !FB93L58;
+FB93_sload_path[42] = DFFE(FB93_sload_path[42]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L78 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[42]~COUT
+--operation mode is arithmetic
+
+FB93L78 = CARRY(FB93_sload_path[42] & !FB93L58);
+
+
+--FB93_sload_path[41] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[41]
+--operation mode is arithmetic
+
+FB93_sload_path[41]_lut_out = FB93_sload_path[41] $ FB93L38;
+FB93_sload_path[41] = DFFE(FB93_sload_path[41]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L58 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[41]~COUT
+--operation mode is arithmetic
+
+FB93L58 = CARRY(!FB93L38 # !FB93_sload_path[41]);
+
+
+--FB93_sload_path[40] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[40]
+--operation mode is arithmetic
+
+FB93_sload_path[40]_lut_out = FB93_sload_path[40] $ !FB93L18;
+FB93_sload_path[40] = DFFE(FB93_sload_path[40]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L38 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[40]~COUT
+--operation mode is arithmetic
+
+FB93L38 = CARRY(FB93_sload_path[40] & !FB93L18);
+
+
+--FB93_sload_path[39] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[39]
+--operation mode is arithmetic
+
+FB93_sload_path[39]_lut_out = FB93_sload_path[39] $ FB93L97;
+FB93_sload_path[39] = DFFE(FB93_sload_path[39]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L18 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[39]~COUT
+--operation mode is arithmetic
+
+FB93L18 = CARRY(!FB93L97 # !FB93_sload_path[39]);
+
+
+--FB93_sload_path[38] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[38]
+--operation mode is arithmetic
+
+FB93_sload_path[38]_lut_out = FB93_sload_path[38] $ !FB93L77;
+FB93_sload_path[38] = DFFE(FB93_sload_path[38]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L97 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[38]~COUT
+--operation mode is arithmetic
+
+FB93L97 = CARRY(FB93_sload_path[38] & !FB93L77);
+
+
+--FB93_sload_path[37] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[37]
+--operation mode is arithmetic
+
+FB93_sload_path[37]_lut_out = FB93_sload_path[37] $ FB93L57;
+FB93_sload_path[37] = DFFE(FB93_sload_path[37]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L77 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[37]~COUT
+--operation mode is arithmetic
+
+FB93L77 = CARRY(!FB93L57 # !FB93_sload_path[37]);
+
+
+--FB93_sload_path[36] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[36]
+--operation mode is arithmetic
+
+FB93_sload_path[36]_lut_out = FB93_sload_path[36] $ !FB93L37;
+FB93_sload_path[36] = DFFE(FB93_sload_path[36]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L57 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[36]~COUT
+--operation mode is arithmetic
+
+FB93L57 = CARRY(FB93_sload_path[36] & !FB93L37);
+
+
+--FB93_sload_path[35] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[35]
+--operation mode is arithmetic
+
+FB93_sload_path[35]_lut_out = FB93_sload_path[35] $ FB93L17;
+FB93_sload_path[35] = DFFE(FB93_sload_path[35]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L37 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[35]~COUT
+--operation mode is arithmetic
+
+FB93L37 = CARRY(!FB93L17 # !FB93_sload_path[35]);
+
+
+--FB93_sload_path[34] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[34]
+--operation mode is arithmetic
+
+FB93_sload_path[34]_lut_out = FB93_sload_path[34] $ !FB93L96;
+FB93_sload_path[34] = DFFE(FB93_sload_path[34]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L17 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[34]~COUT
+--operation mode is arithmetic
+
+FB93L17 = CARRY(FB93_sload_path[34] & !FB93L96);
+
+
+--FB93_sload_path[33] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[33]
+--operation mode is arithmetic
+
+FB93_sload_path[33]_lut_out = FB93_sload_path[33] $ FB93L76;
+FB93_sload_path[33] = DFFE(FB93_sload_path[33]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L96 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[33]~COUT
+--operation mode is arithmetic
+
+FB93L96 = CARRY(!FB93L76 # !FB93_sload_path[33]);
+
+
+--FB93_sload_path[32] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[32]
+--operation mode is arithmetic
+
+FB93_sload_path[32]_lut_out = FB93_sload_path[32] $ !FB93L56;
+FB93_sload_path[32] = DFFE(FB93_sload_path[32]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L76 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[32]~COUT
+--operation mode is arithmetic
+
+FB93L76 = CARRY(FB93_sload_path[32] & !FB93L56);
+
+
+--FB93_sload_path[31] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[31]
+--operation mode is arithmetic
+
+FB93_sload_path[31]_lut_out = FB93_sload_path[31] $ FB93L36;
+FB93_sload_path[31] = DFFE(FB93_sload_path[31]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L56 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[31]~COUT
+--operation mode is arithmetic
+
+FB93L56 = CARRY(!FB93L36 # !FB93_sload_path[31]);
+
+
+--FB93_sload_path[30] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[30]
+--operation mode is arithmetic
+
+FB93_sload_path[30]_lut_out = FB93_sload_path[30] $ !FB93L16;
+FB93_sload_path[30] = DFFE(FB93_sload_path[30]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L36 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[30]~COUT
+--operation mode is arithmetic
+
+FB93L36 = CARRY(FB93_sload_path[30] & !FB93L16);
+
+
+--FB93_sload_path[29] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[29]
+--operation mode is arithmetic
+
+FB93_sload_path[29]_lut_out = FB93_sload_path[29] $ FB93L95;
+FB93_sload_path[29] = DFFE(FB93_sload_path[29]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L16 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[29]~COUT
+--operation mode is arithmetic
+
+FB93L16 = CARRY(!FB93L95 # !FB93_sload_path[29]);
+
+
+--FB93_sload_path[28] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[28]
+--operation mode is arithmetic
+
+FB93_sload_path[28]_lut_out = FB93_sload_path[28] $ !FB93L75;
+FB93_sload_path[28] = DFFE(FB93_sload_path[28]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L95 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[28]~COUT
+--operation mode is arithmetic
+
+FB93L95 = CARRY(FB93_sload_path[28] & !FB93L75);
+
+
+--FB93_sload_path[27] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[27]
+--operation mode is arithmetic
+
+FB93_sload_path[27]_lut_out = FB93_sload_path[27] $ FB93L55;
+FB93_sload_path[27] = DFFE(FB93_sload_path[27]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L75 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[27]~COUT
+--operation mode is arithmetic
+
+FB93L75 = CARRY(!FB93L55 # !FB93_sload_path[27]);
+
+
+--FB93_sload_path[26] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[26]
+--operation mode is arithmetic
+
+FB93_sload_path[26]_lut_out = FB93_sload_path[26] $ !FB93L35;
+FB93_sload_path[26] = DFFE(FB93_sload_path[26]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L55 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[26]~COUT
+--operation mode is arithmetic
+
+FB93L55 = CARRY(FB93_sload_path[26] & !FB93L35);
+
+
+--FB93_sload_path[25] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[25]
+--operation mode is arithmetic
+
+FB93_sload_path[25]_lut_out = FB93_sload_path[25] $ FB93L15;
+FB93_sload_path[25] = DFFE(FB93_sload_path[25]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L35 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[25]~COUT
+--operation mode is arithmetic
+
+FB93L35 = CARRY(!FB93L15 # !FB93_sload_path[25]);
+
+
+--FB93_sload_path[24] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[24]
+--operation mode is arithmetic
+
+FB93_sload_path[24]_lut_out = FB93_sload_path[24] $ !FB93L94;
+FB93_sload_path[24] = DFFE(FB93_sload_path[24]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L15 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[24]~COUT
+--operation mode is arithmetic
+
+FB93L15 = CARRY(FB93_sload_path[24] & !FB93L94);
+
+
+--FB93_sload_path[23] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[23]
+--operation mode is arithmetic
+
+FB93_sload_path[23]_lut_out = FB93_sload_path[23] $ FB93L74;
+FB93_sload_path[23] = DFFE(FB93_sload_path[23]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L94 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[23]~COUT
+--operation mode is arithmetic
+
+FB93L94 = CARRY(!FB93L74 # !FB93_sload_path[23]);
+
+
+--FB93_sload_path[22] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[22]
+--operation mode is arithmetic
+
+FB93_sload_path[22]_lut_out = FB93_sload_path[22] $ !FB93L54;
+FB93_sload_path[22] = DFFE(FB93_sload_path[22]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L74 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[22]~COUT
+--operation mode is arithmetic
+
+FB93L74 = CARRY(FB93_sload_path[22] & !FB93L54);
+
+
+--FB93_sload_path[21] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[21]
+--operation mode is arithmetic
+
+FB93_sload_path[21]_lut_out = FB93_sload_path[21] $ FB93L34;
+FB93_sload_path[21] = DFFE(FB93_sload_path[21]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L54 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[21]~COUT
+--operation mode is arithmetic
+
+FB93L54 = CARRY(!FB93L34 # !FB93_sload_path[21]);
+
+
+--FB93_sload_path[20] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[20]
+--operation mode is arithmetic
+
+FB93_sload_path[20]_lut_out = FB93_sload_path[20] $ !FB93L14;
+FB93_sload_path[20] = DFFE(FB93_sload_path[20]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L34 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[20]~COUT
+--operation mode is arithmetic
+
+FB93L34 = CARRY(FB93_sload_path[20] & !FB93L14);
+
+
+--FB93_sload_path[19] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[19]
+--operation mode is arithmetic
+
+FB93_sload_path[19]_lut_out = FB93_sload_path[19] $ FB93L93;
+FB93_sload_path[19] = DFFE(FB93_sload_path[19]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L14 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[19]~COUT
+--operation mode is arithmetic
+
+FB93L14 = CARRY(!FB93L93 # !FB93_sload_path[19]);
+
+
+--FB93_sload_path[18] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[18]
+--operation mode is arithmetic
+
+FB93_sload_path[18]_lut_out = FB93_sload_path[18] $ !FB93L73;
+FB93_sload_path[18] = DFFE(FB93_sload_path[18]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L93 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[18]~COUT
+--operation mode is arithmetic
+
+FB93L93 = CARRY(FB93_sload_path[18] & !FB93L73);
+
+
+--FB93_sload_path[17] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[17]
+--operation mode is arithmetic
+
+FB93_sload_path[17]_lut_out = FB93_sload_path[17] $ FB93L53;
+FB93_sload_path[17] = DFFE(FB93_sload_path[17]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L73 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[17]~COUT
+--operation mode is arithmetic
+
+FB93L73 = CARRY(!FB93L53 # !FB93_sload_path[17]);
+
+
+--FB93_sload_path[16] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[16]
+--operation mode is arithmetic
+
+FB93_sload_path[16]_lut_out = FB93_sload_path[16] $ !FB93L33;
+FB93_sload_path[16] = DFFE(FB93_sload_path[16]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L53 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[16]~COUT
+--operation mode is arithmetic
+
+FB93L53 = CARRY(FB93_sload_path[16] & !FB93L33);
+
+
+--FB93_sload_path[15] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[15]
+--operation mode is arithmetic
+
+FB93_sload_path[15]_lut_out = FB93_sload_path[15] $ FB93L13;
+FB93_sload_path[15] = DFFE(FB93_sload_path[15]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L33 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[15]~COUT
+--operation mode is arithmetic
+
+FB93L33 = CARRY(!FB93L13 # !FB93_sload_path[15]);
+
+
+--FB93_sload_path[14] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[14]
+--operation mode is arithmetic
+
+FB93_sload_path[14]_lut_out = FB93_sload_path[14] $ !FB93L92;
+FB93_sload_path[14] = DFFE(FB93_sload_path[14]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L13 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[14]~COUT
+--operation mode is arithmetic
+
+FB93L13 = CARRY(FB93_sload_path[14] & !FB93L92);
+
+
+--FB93_sload_path[13] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[13]
+--operation mode is arithmetic
+
+FB93_sload_path[13]_lut_out = FB93_sload_path[13] $ FB93L72;
+FB93_sload_path[13] = DFFE(FB93_sload_path[13]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L92 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[13]~COUT
+--operation mode is arithmetic
+
+FB93L92 = CARRY(!FB93L72 # !FB93_sload_path[13]);
+
+
+--FB93_sload_path[12] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[12]
+--operation mode is arithmetic
+
+FB93_sload_path[12]_lut_out = FB93_sload_path[12] $ !FB93L52;
+FB93_sload_path[12] = DFFE(FB93_sload_path[12]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L72 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[12]~COUT
+--operation mode is arithmetic
+
+FB93L72 = CARRY(FB93_sload_path[12] & !FB93L52);
+
+
+--FB93_sload_path[11] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[11]
+--operation mode is arithmetic
+
+FB93_sload_path[11]_lut_out = FB93_sload_path[11] $ FB93L32;
+FB93_sload_path[11] = DFFE(FB93_sload_path[11]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L52 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[11]~COUT
+--operation mode is arithmetic
+
+FB93L52 = CARRY(!FB93L32 # !FB93_sload_path[11]);
+
+
+--FB93_sload_path[10] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[10]
+--operation mode is arithmetic
+
+FB93_sload_path[10]_lut_out = FB93_sload_path[10] $ !FB93L12;
+FB93_sload_path[10] = DFFE(FB93_sload_path[10]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L32 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[10]~COUT
+--operation mode is arithmetic
+
+FB93L32 = CARRY(FB93_sload_path[10] & !FB93L12);
+
+
+--FB93_sload_path[9] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[9]
+--operation mode is arithmetic
+
+FB93_sload_path[9]_lut_out = FB93_sload_path[9] $ FB93L91;
+FB93_sload_path[9] = DFFE(FB93_sload_path[9]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L12 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[9]~COUT
+--operation mode is arithmetic
+
+FB93L12 = CARRY(!FB93L91 # !FB93_sload_path[9]);
+
+
+--FB93_sload_path[8] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[8]
+--operation mode is arithmetic
+
+FB93_sload_path[8]_lut_out = FB93_sload_path[8] $ !FB93L71;
+FB93_sload_path[8] = DFFE(FB93_sload_path[8]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L91 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[8]~COUT
+--operation mode is arithmetic
+
+FB93L91 = CARRY(FB93_sload_path[8] & !FB93L71);
+
+
+--FB93_sload_path[7] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[7]
+--operation mode is arithmetic
+
+FB93_sload_path[7]_lut_out = FB93_sload_path[7] $ FB93L51;
+FB93_sload_path[7] = DFFE(FB93_sload_path[7]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L71 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[7]~COUT
+--operation mode is arithmetic
+
+FB93L71 = CARRY(!FB93L51 # !FB93_sload_path[7]);
+
+
+--FB93_sload_path[6] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[6]
+--operation mode is arithmetic
+
+FB93_sload_path[6]_lut_out = FB93_sload_path[6] $ !FB93L31;
+FB93_sload_path[6] = DFFE(FB93_sload_path[6]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L51 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[6]~COUT
+--operation mode is arithmetic
+
+FB93L51 = CARRY(FB93_sload_path[6] & !FB93L31);
+
+
+--FB93_sload_path[5] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[5]
+--operation mode is arithmetic
+
+FB93_sload_path[5]_lut_out = FB93_sload_path[5] $ FB93L11;
+FB93_sload_path[5] = DFFE(FB93_sload_path[5]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L31 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[5]~COUT
+--operation mode is arithmetic
+
+FB93L31 = CARRY(!FB93L11 # !FB93_sload_path[5]);
+
+
+--FB93_sload_path[4] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[4]
+--operation mode is arithmetic
+
+FB93_sload_path[4]_lut_out = FB93_sload_path[4] $ !FB93L9;
+FB93_sload_path[4] = DFFE(FB93_sload_path[4]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L11 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[4]~COUT
+--operation mode is arithmetic
+
+FB93L11 = CARRY(FB93_sload_path[4] & !FB93L9);
+
+
+--FB93_sload_path[3] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[3]
+--operation mode is arithmetic
+
+FB93_sload_path[3]_lut_out = FB93_sload_path[3] $ FB93L7;
+FB93_sload_path[3] = DFFE(FB93_sload_path[3]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L9 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[3]~COUT
+--operation mode is arithmetic
+
+FB93L9 = CARRY(!FB93L7 # !FB93_sload_path[3]);
+
+
+--FB93_sload_path[2] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[2]
+--operation mode is arithmetic
+
+FB93_sload_path[2]_lut_out = FB93_sload_path[2] $ !FB93L5;
+FB93_sload_path[2] = DFFE(FB93_sload_path[2]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L7 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[2]~COUT
+--operation mode is arithmetic
+
+FB93L7 = CARRY(FB93_sload_path[2] & !FB93L5);
+
+
+--FB93_sload_path[1] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[1]
+--operation mode is arithmetic
+
+FB93_sload_path[1]_lut_out = FB93_sload_path[1] $ FB93L3;
+FB93_sload_path[1] = DFFE(FB93_sload_path[1]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L5 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[1]~COUT
+--operation mode is arithmetic
+
+FB93L5 = CARRY(!FB93L3 # !FB93_sload_path[1]);
+
+
+--FB93_sload_path[0] is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|sload_path[0]
+--operation mode is qfbk_counter
+
+FB93_sload_path[0]_lut_out = !FB93_sload_path[0];
+FB93_sload_path[0] = DFFE(FB93_sload_path[0]_lut_out, GLOBAL(JE1_outclock1), !V1L4Q, , );
+
+--FB93L3 is timer:timer_inst|lpm_counter:systime_cnt_rtl_343|alt_synch_counter:wysi_counter|counter_cell[0]~COUT
+--operation mode is qfbk_counter
+
+FB93L3 = CARRY(FB93_sload_path[0]);
 
 
 --FB3_sload_path[1] is lpm_counter:CNT_rtl_342|alt_synch_counter:wysi_counter|sload_path[1]
@@ -8535,572 +8535,572 @@ FB3_sload_path[0] = DFFE(FB3_sload_path[0]_lut_out, GLOBAL(JE1_outclock0), , , )
 FB3L3 = CARRY(FB3_sload_path[0]);
 
 
---FB83_sload_path[47] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[47]
+--FB83_sload_path[47] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[47]
 --operation mode is normal
 
 FB83_sload_path[47]_lut_out = FB83_sload_path[47] $ FB83L59;
 FB83_sload_path[47] = DFFE(FB83_sload_path[47]_lut_out, GLOBAL(JE2_outclock1), , , );
 
 
---FB83_sload_path[46] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[46]
+--FB83_sload_path[46] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[46]
 --operation mode is arithmetic
 
 FB83_sload_path[46]_lut_out = FB83_sload_path[46] $ !FB83L39;
 FB83_sload_path[46] = DFFE(FB83_sload_path[46]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L59 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[46]~COUT
+--FB83L59 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[46]~COUT
 --operation mode is arithmetic
 
 FB83L59 = CARRY(FB83_sload_path[46] & !FB83L39);
 
 
---FB83_sload_path[45] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[45]
+--FB83_sload_path[45] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[45]
 --operation mode is arithmetic
 
 FB83_sload_path[45]_lut_out = FB83_sload_path[45] $ FB83L19;
 FB83_sload_path[45] = DFFE(FB83_sload_path[45]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L39 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[45]~COUT
+--FB83L39 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[45]~COUT
 --operation mode is arithmetic
 
 FB83L39 = CARRY(!FB83L19 # !FB83_sload_path[45]);
 
 
---FB83_sload_path[44] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[44]
+--FB83_sload_path[44] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[44]
 --operation mode is arithmetic
 
 FB83_sload_path[44]_lut_out = FB83_sload_path[44] $ !FB83L98;
 FB83_sload_path[44] = DFFE(FB83_sload_path[44]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L19 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[44]~COUT
+--FB83L19 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[44]~COUT
 --operation mode is arithmetic
 
 FB83L19 = CARRY(FB83_sload_path[44] & !FB83L98);
 
 
---FB83_sload_path[43] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[43]
+--FB83_sload_path[43] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[43]
 --operation mode is arithmetic
 
 FB83_sload_path[43]_lut_out = FB83_sload_path[43] $ FB83L78;
 FB83_sload_path[43] = DFFE(FB83_sload_path[43]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L98 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[43]~COUT
+--FB83L98 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[43]~COUT
 --operation mode is arithmetic
 
 FB83L98 = CARRY(!FB83L78 # !FB83_sload_path[43]);
 
 
---FB83_sload_path[42] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[42]
+--FB83_sload_path[42] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[42]
 --operation mode is arithmetic
 
 FB83_sload_path[42]_lut_out = FB83_sload_path[42] $ !FB83L58;
 FB83_sload_path[42] = DFFE(FB83_sload_path[42]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L78 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[42]~COUT
+--FB83L78 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[42]~COUT
 --operation mode is arithmetic
 
 FB83L78 = CARRY(FB83_sload_path[42] & !FB83L58);
 
 
---FB83_sload_path[41] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[41]
+--FB83_sload_path[41] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[41]
 --operation mode is arithmetic
 
 FB83_sload_path[41]_lut_out = FB83_sload_path[41] $ FB83L38;
 FB83_sload_path[41] = DFFE(FB83_sload_path[41]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L58 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[41]~COUT
+--FB83L58 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[41]~COUT
 --operation mode is arithmetic
 
 FB83L58 = CARRY(!FB83L38 # !FB83_sload_path[41]);
 
 
---FB83_sload_path[40] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[40]
+--FB83_sload_path[40] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[40]
 --operation mode is arithmetic
 
 FB83_sload_path[40]_lut_out = FB83_sload_path[40] $ !FB83L18;
 FB83_sload_path[40] = DFFE(FB83_sload_path[40]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L38 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[40]~COUT
+--FB83L38 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[40]~COUT
 --operation mode is arithmetic
 
 FB83L38 = CARRY(FB83_sload_path[40] & !FB83L18);
 
 
---FB83_sload_path[39] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[39]
+--FB83_sload_path[39] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[39]
 --operation mode is arithmetic
 
 FB83_sload_path[39]_lut_out = FB83_sload_path[39] $ FB83L97;
 FB83_sload_path[39] = DFFE(FB83_sload_path[39]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L18 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[39]~COUT
+--FB83L18 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[39]~COUT
 --operation mode is arithmetic
 
 FB83L18 = CARRY(!FB83L97 # !FB83_sload_path[39]);
 
 
---FB83_sload_path[38] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[38]
+--FB83_sload_path[38] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[38]
 --operation mode is arithmetic
 
 FB83_sload_path[38]_lut_out = FB83_sload_path[38] $ !FB83L77;
 FB83_sload_path[38] = DFFE(FB83_sload_path[38]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L97 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[38]~COUT
+--FB83L97 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[38]~COUT
 --operation mode is arithmetic
 
 FB83L97 = CARRY(FB83_sload_path[38] & !FB83L77);
 
 
---FB83_sload_path[37] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[37]
+--FB83_sload_path[37] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[37]
 --operation mode is arithmetic
 
 FB83_sload_path[37]_lut_out = FB83_sload_path[37] $ FB83L57;
 FB83_sload_path[37] = DFFE(FB83_sload_path[37]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L77 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[37]~COUT
+--FB83L77 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[37]~COUT
 --operation mode is arithmetic
 
 FB83L77 = CARRY(!FB83L57 # !FB83_sload_path[37]);
 
 
---FB83_sload_path[36] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[36]
+--FB83_sload_path[36] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[36]
 --operation mode is arithmetic
 
 FB83_sload_path[36]_lut_out = FB83_sload_path[36] $ !FB83L37;
 FB83_sload_path[36] = DFFE(FB83_sload_path[36]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L57 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[36]~COUT
+--FB83L57 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[36]~COUT
 --operation mode is arithmetic
 
 FB83L57 = CARRY(FB83_sload_path[36] & !FB83L37);
 
 
---FB83_sload_path[35] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[35]
+--FB83_sload_path[35] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[35]
 --operation mode is arithmetic
 
 FB83_sload_path[35]_lut_out = FB83_sload_path[35] $ FB83L17;
 FB83_sload_path[35] = DFFE(FB83_sload_path[35]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L37 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[35]~COUT
+--FB83L37 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[35]~COUT
 --operation mode is arithmetic
 
 FB83L37 = CARRY(!FB83L17 # !FB83_sload_path[35]);
 
 
---FB83_sload_path[34] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[34]
+--FB83_sload_path[34] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[34]
 --operation mode is arithmetic
 
 FB83_sload_path[34]_lut_out = FB83_sload_path[34] $ !FB83L96;
 FB83_sload_path[34] = DFFE(FB83_sload_path[34]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L17 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[34]~COUT
+--FB83L17 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[34]~COUT
 --operation mode is arithmetic
 
 FB83L17 = CARRY(FB83_sload_path[34] & !FB83L96);
 
 
---FB83_sload_path[33] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[33]
+--FB83_sload_path[33] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[33]
 --operation mode is arithmetic
 
 FB83_sload_path[33]_lut_out = FB83_sload_path[33] $ FB83L76;
 FB83_sload_path[33] = DFFE(FB83_sload_path[33]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L96 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[33]~COUT
+--FB83L96 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[33]~COUT
 --operation mode is arithmetic
 
 FB83L96 = CARRY(!FB83L76 # !FB83_sload_path[33]);
 
 
---FB83_sload_path[32] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[32]
+--FB83_sload_path[32] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[32]
 --operation mode is arithmetic
 
 FB83_sload_path[32]_lut_out = FB83_sload_path[32] $ !FB83L56;
 FB83_sload_path[32] = DFFE(FB83_sload_path[32]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L76 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[32]~COUT
+--FB83L76 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[32]~COUT
 --operation mode is arithmetic
 
 FB83L76 = CARRY(FB83_sload_path[32] & !FB83L56);
 
 
---FB83_sload_path[31] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[31]
+--FB83_sload_path[31] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[31]
 --operation mode is arithmetic
 
 FB83_sload_path[31]_lut_out = FB83_sload_path[31] $ FB83L36;
 FB83_sload_path[31] = DFFE(FB83_sload_path[31]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L56 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[31]~COUT
+--FB83L56 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[31]~COUT
 --operation mode is arithmetic
 
 FB83L56 = CARRY(!FB83L36 # !FB83_sload_path[31]);
 
 
---FB83_sload_path[30] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[30]
+--FB83_sload_path[30] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[30]
 --operation mode is arithmetic
 
 FB83_sload_path[30]_lut_out = FB83_sload_path[30] $ !FB83L16;
 FB83_sload_path[30] = DFFE(FB83_sload_path[30]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L36 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[30]~COUT
+--FB83L36 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[30]~COUT
 --operation mode is arithmetic
 
 FB83L36 = CARRY(FB83_sload_path[30] & !FB83L16);
 
 
---FB83_sload_path[29] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[29]
+--FB83_sload_path[29] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[29]
 --operation mode is arithmetic
 
 FB83_sload_path[29]_lut_out = FB83_sload_path[29] $ FB83L95;
 FB83_sload_path[29] = DFFE(FB83_sload_path[29]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L16 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[29]~COUT
+--FB83L16 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[29]~COUT
 --operation mode is arithmetic
 
 FB83L16 = CARRY(!FB83L95 # !FB83_sload_path[29]);
 
 
---FB83_sload_path[28] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[28]
+--FB83_sload_path[28] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[28]
 --operation mode is arithmetic
 
 FB83_sload_path[28]_lut_out = FB83_sload_path[28] $ !FB83L75;
 FB83_sload_path[28] = DFFE(FB83_sload_path[28]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L95 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[28]~COUT
+--FB83L95 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[28]~COUT
 --operation mode is arithmetic
 
 FB83L95 = CARRY(FB83_sload_path[28] & !FB83L75);
 
 
---FB83_sload_path[27] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[27]
+--FB83_sload_path[27] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[27]
 --operation mode is arithmetic
 
 FB83_sload_path[27]_lut_out = FB83_sload_path[27] $ FB83L55;
 FB83_sload_path[27] = DFFE(FB83_sload_path[27]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L75 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[27]~COUT
+--FB83L75 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[27]~COUT
 --operation mode is arithmetic
 
 FB83L75 = CARRY(!FB83L55 # !FB83_sload_path[27]);
 
 
---FB83_sload_path[26] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[26]
+--FB83_sload_path[26] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[26]
 --operation mode is arithmetic
 
 FB83_sload_path[26]_lut_out = FB83_sload_path[26] $ !FB83L35;
 FB83_sload_path[26] = DFFE(FB83_sload_path[26]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L55 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[26]~COUT
+--FB83L55 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[26]~COUT
 --operation mode is arithmetic
 
 FB83L55 = CARRY(FB83_sload_path[26] & !FB83L35);
 
 
---FB83_sload_path[25] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[25]
+--FB83_sload_path[25] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[25]
 --operation mode is arithmetic
 
 FB83_sload_path[25]_lut_out = FB83_sload_path[25] $ FB83L15;
 FB83_sload_path[25] = DFFE(FB83_sload_path[25]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L35 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[25]~COUT
+--FB83L35 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[25]~COUT
 --operation mode is arithmetic
 
 FB83L35 = CARRY(!FB83L15 # !FB83_sload_path[25]);
 
 
---FB83_sload_path[24] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[24]
+--FB83_sload_path[24] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[24]
 --operation mode is arithmetic
 
 FB83_sload_path[24]_lut_out = FB83_sload_path[24] $ !FB83L94;
 FB83_sload_path[24] = DFFE(FB83_sload_path[24]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L15 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[24]~COUT
+--FB83L15 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[24]~COUT
 --operation mode is arithmetic
 
 FB83L15 = CARRY(FB83_sload_path[24] & !FB83L94);
 
 
---FB83_sload_path[23] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[23]
+--FB83_sload_path[23] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[23]
 --operation mode is arithmetic
 
 FB83_sload_path[23]_lut_out = FB83_sload_path[23] $ FB83L74;
 FB83_sload_path[23] = DFFE(FB83_sload_path[23]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L94 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[23]~COUT
+--FB83L94 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[23]~COUT
 --operation mode is arithmetic
 
 FB83L94 = CARRY(!FB83L74 # !FB83_sload_path[23]);
 
 
---FB83_sload_path[22] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[22]
+--FB83_sload_path[22] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[22]
 --operation mode is arithmetic
 
 FB83_sload_path[22]_lut_out = FB83_sload_path[22] $ !FB83L54;
 FB83_sload_path[22] = DFFE(FB83_sload_path[22]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L74 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[22]~COUT
+--FB83L74 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[22]~COUT
 --operation mode is arithmetic
 
 FB83L74 = CARRY(FB83_sload_path[22] & !FB83L54);
 
 
---FB83_sload_path[21] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[21]
+--FB83_sload_path[21] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[21]
 --operation mode is arithmetic
 
 FB83_sload_path[21]_lut_out = FB83_sload_path[21] $ FB83L34;
 FB83_sload_path[21] = DFFE(FB83_sload_path[21]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L54 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[21]~COUT
+--FB83L54 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[21]~COUT
 --operation mode is arithmetic
 
 FB83L54 = CARRY(!FB83L34 # !FB83_sload_path[21]);
 
 
---FB83_sload_path[20] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[20]
+--FB83_sload_path[20] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[20]
 --operation mode is arithmetic
 
 FB83_sload_path[20]_lut_out = FB83_sload_path[20] $ !FB83L14;
 FB83_sload_path[20] = DFFE(FB83_sload_path[20]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L34 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[20]~COUT
+--FB83L34 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[20]~COUT
 --operation mode is arithmetic
 
 FB83L34 = CARRY(FB83_sload_path[20] & !FB83L14);
 
 
---FB83_sload_path[19] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[19]
+--FB83_sload_path[19] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[19]
 --operation mode is arithmetic
 
 FB83_sload_path[19]_lut_out = FB83_sload_path[19] $ FB83L93;
 FB83_sload_path[19] = DFFE(FB83_sload_path[19]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L14 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[19]~COUT
+--FB83L14 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[19]~COUT
 --operation mode is arithmetic
 
 FB83L14 = CARRY(!FB83L93 # !FB83_sload_path[19]);
 
 
---FB83_sload_path[18] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[18]
+--FB83_sload_path[18] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[18]
 --operation mode is arithmetic
 
 FB83_sload_path[18]_lut_out = FB83_sload_path[18] $ !FB83L73;
 FB83_sload_path[18] = DFFE(FB83_sload_path[18]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L93 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[18]~COUT
+--FB83L93 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[18]~COUT
 --operation mode is arithmetic
 
 FB83L93 = CARRY(FB83_sload_path[18] & !FB83L73);
 
 
---FB83_sload_path[17] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[17]
+--FB83_sload_path[17] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[17]
 --operation mode is arithmetic
 
 FB83_sload_path[17]_lut_out = FB83_sload_path[17] $ FB83L53;
 FB83_sload_path[17] = DFFE(FB83_sload_path[17]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L73 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[17]~COUT
+--FB83L73 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[17]~COUT
 --operation mode is arithmetic
 
 FB83L73 = CARRY(!FB83L53 # !FB83_sload_path[17]);
 
 
---FB83_sload_path[16] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[16]
+--FB83_sload_path[16] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[16]
 --operation mode is arithmetic
 
 FB83_sload_path[16]_lut_out = FB83_sload_path[16] $ !FB83L33;
 FB83_sload_path[16] = DFFE(FB83_sload_path[16]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L53 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[16]~COUT
+--FB83L53 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[16]~COUT
 --operation mode is arithmetic
 
 FB83L53 = CARRY(FB83_sload_path[16] & !FB83L33);
 
 
---FB83_sload_path[15] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[15]
+--FB83_sload_path[15] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[15]
 --operation mode is arithmetic
 
 FB83_sload_path[15]_lut_out = FB83_sload_path[15] $ FB83L13;
 FB83_sload_path[15] = DFFE(FB83_sload_path[15]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L33 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[15]~COUT
+--FB83L33 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[15]~COUT
 --operation mode is arithmetic
 
 FB83L33 = CARRY(!FB83L13 # !FB83_sload_path[15]);
 
 
---FB83_sload_path[14] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[14]
+--FB83_sload_path[14] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[14]
 --operation mode is arithmetic
 
 FB83_sload_path[14]_lut_out = FB83_sload_path[14] $ !FB83L92;
 FB83_sload_path[14] = DFFE(FB83_sload_path[14]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L13 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[14]~COUT
+--FB83L13 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[14]~COUT
 --operation mode is arithmetic
 
 FB83L13 = CARRY(FB83_sload_path[14] & !FB83L92);
 
 
---FB83_sload_path[13] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[13]
+--FB83_sload_path[13] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[13]
 --operation mode is arithmetic
 
 FB83_sload_path[13]_lut_out = FB83_sload_path[13] $ FB83L72;
 FB83_sload_path[13] = DFFE(FB83_sload_path[13]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L92 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[13]~COUT
+--FB83L92 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[13]~COUT
 --operation mode is arithmetic
 
 FB83L92 = CARRY(!FB83L72 # !FB83_sload_path[13]);
 
 
---FB83_sload_path[12] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[12]
+--FB83_sload_path[12] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[12]
 --operation mode is arithmetic
 
 FB83_sload_path[12]_lut_out = FB83_sload_path[12] $ !FB83L52;
 FB83_sload_path[12] = DFFE(FB83_sload_path[12]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L72 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[12]~COUT
+--FB83L72 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[12]~COUT
 --operation mode is arithmetic
 
 FB83L72 = CARRY(FB83_sload_path[12] & !FB83L52);
 
 
---FB83_sload_path[11] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[11]
+--FB83_sload_path[11] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[11]
 --operation mode is arithmetic
 
 FB83_sload_path[11]_lut_out = FB83_sload_path[11] $ FB83L32;
 FB83_sload_path[11] = DFFE(FB83_sload_path[11]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L52 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[11]~COUT
+--FB83L52 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[11]~COUT
 --operation mode is arithmetic
 
 FB83L52 = CARRY(!FB83L32 # !FB83_sload_path[11]);
 
 
---FB83_sload_path[10] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[10]
+--FB83_sload_path[10] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[10]
 --operation mode is arithmetic
 
 FB83_sload_path[10]_lut_out = FB83_sload_path[10] $ !FB83L12;
 FB83_sload_path[10] = DFFE(FB83_sload_path[10]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L32 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[10]~COUT
+--FB83L32 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[10]~COUT
 --operation mode is arithmetic
 
 FB83L32 = CARRY(FB83_sload_path[10] & !FB83L12);
 
 
---FB83_sload_path[9] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[9]
+--FB83_sload_path[9] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[9]
 --operation mode is arithmetic
 
 FB83_sload_path[9]_lut_out = FB83_sload_path[9] $ FB83L91;
 FB83_sload_path[9] = DFFE(FB83_sload_path[9]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L12 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[9]~COUT
+--FB83L12 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[9]~COUT
 --operation mode is arithmetic
 
 FB83L12 = CARRY(!FB83L91 # !FB83_sload_path[9]);
 
 
---FB83_sload_path[8] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[8]
+--FB83_sload_path[8] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[8]
 --operation mode is arithmetic
 
 FB83_sload_path[8]_lut_out = FB83_sload_path[8] $ !FB83L71;
 FB83_sload_path[8] = DFFE(FB83_sload_path[8]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L91 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[8]~COUT
+--FB83L91 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[8]~COUT
 --operation mode is arithmetic
 
 FB83L91 = CARRY(FB83_sload_path[8] & !FB83L71);
 
 
---FB83_sload_path[7] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[7]
+--FB83_sload_path[7] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[7]
 --operation mode is arithmetic
 
 FB83_sload_path[7]_lut_out = FB83_sload_path[7] $ FB83L51;
 FB83_sload_path[7] = DFFE(FB83_sload_path[7]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L71 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[7]~COUT
+--FB83L71 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[7]~COUT
 --operation mode is arithmetic
 
 FB83L71 = CARRY(!FB83L51 # !FB83_sload_path[7]);
 
 
---FB83_sload_path[6] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[6]
+--FB83_sload_path[6] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[6]
 --operation mode is arithmetic
 
 FB83_sload_path[6]_lut_out = FB83_sload_path[6] $ !FB83L31;
 FB83_sload_path[6] = DFFE(FB83_sload_path[6]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L51 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[6]~COUT
+--FB83L51 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[6]~COUT
 --operation mode is arithmetic
 
 FB83L51 = CARRY(FB83_sload_path[6] & !FB83L31);
 
 
---FB83_sload_path[5] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[5]
+--FB83_sload_path[5] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[5]
 --operation mode is arithmetic
 
 FB83_sload_path[5]_lut_out = FB83_sload_path[5] $ FB83L11;
 FB83_sload_path[5] = DFFE(FB83_sload_path[5]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L31 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[5]~COUT
+--FB83L31 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[5]~COUT
 --operation mode is arithmetic
 
 FB83L31 = CARRY(!FB83L11 # !FB83_sload_path[5]);
 
 
---FB83_sload_path[4] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[4]
+--FB83_sload_path[4] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[4]
 --operation mode is arithmetic
 
 FB83_sload_path[4]_lut_out = FB83_sload_path[4] $ !FB83L9;
 FB83_sload_path[4] = DFFE(FB83_sload_path[4]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L11 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[4]~COUT
+--FB83L11 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[4]~COUT
 --operation mode is arithmetic
 
 FB83L11 = CARRY(FB83_sload_path[4] & !FB83L9);
 
 
---FB83_sload_path[3] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[3]
+--FB83_sload_path[3] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[3]
 --operation mode is arithmetic
 
 FB83_sload_path[3]_lut_out = FB83_sload_path[3] $ FB83L7;
 FB83_sload_path[3] = DFFE(FB83_sload_path[3]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L9 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[3]~COUT
+--FB83L9 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[3]~COUT
 --operation mode is arithmetic
 
 FB83L9 = CARRY(!FB83L7 # !FB83_sload_path[3]);
 
 
---FB83_sload_path[2] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[2]
+--FB83_sload_path[2] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[2]
 --operation mode is arithmetic
 
 FB83_sload_path[2]_lut_out = FB83_sload_path[2] $ !FB83L5;
 FB83_sload_path[2] = DFFE(FB83_sload_path[2]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L7 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[2]~COUT
+--FB83L7 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[2]~COUT
 --operation mode is arithmetic
 
 FB83L7 = CARRY(FB83_sload_path[2] & !FB83L5);
 
 
---FB83_sload_path[1] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[1]
+--FB83_sload_path[1] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[1]
 --operation mode is arithmetic
 
 FB83_sload_path[1]_lut_out = FB83_sload_path[1] $ FB83L3;
 FB83_sload_path[1] = DFFE(FB83_sload_path[1]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L5 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[1]~COUT
+--FB83L5 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[1]~COUT
 --operation mode is arithmetic
 
 FB83L5 = CARRY(!FB83L3 # !FB83_sload_path[1]);
 
 
---FB83_sload_path[0] is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|sload_path[0]
+--FB83_sload_path[0] is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|sload_path[0]
 --operation mode is qfbk_counter
 
 FB83_sload_path[0]_lut_out = !FB83_sload_path[0];
 FB83_sload_path[0] = DFFE(FB83_sload_path[0]_lut_out, GLOBAL(JE2_outclock1), , , );
 
---FB83L3 is lpm_counter:n2862_rtl_341|alt_synch_counter:wysi_counter|counter_cell[0]~COUT
+--FB83L3 is lpm_counter:n2860_rtl_341|alt_synch_counter:wysi_counter|counter_cell[0]~COUT
 --operation mode is qfbk_counter
 
 FB83L3 = CARRY(FB83_sload_path[0]);
@@ -10274,11 +10274,11 @@ X1_command_2_local[26]_lut_out = PE1_MASTERHWDATA[26];
 X1_command_2_local[26] = DFFE(X1_command_2_local[26]_lut_out, GLOBAL(JE1_outclock0), !V1L4Q, , X1L241);
 
 
---JB1L801Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sys_res~reg
+--JB1L111Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sys_res~reg
 --operation mode is normal
 
-JB1L801Q_lut_out = JB1L801Q # JB1L57Q & CD1_dffs[2] & SB1L32;
-JB1L801Q = DFFE(JB1L801Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L111Q_lut_out = JB1L111Q # JB1L47Q & CD1_dffs[2] & SB1L32;
+JB1L111Q = DFFE(JB1L111Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
 --CD1_dffs[7] is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|RX_UART_12:inst25|rxshr8:inst1|lpm_shiftreg:lpm_shiftreg_component|dffs[7]
@@ -10302,11 +10302,11 @@ X1_com_ctrl_local[2]_lut_out = PE1_MASTERHWDATA[2];
 X1_com_ctrl_local[2] = DFFE(X1_com_ctrl_local[2]_lut_out, GLOBAL(JE1_outclock0), !V1L4Q, , X1L6);
 
 
---JB1L33Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|drbt_gnt~reg
+--JB1L43Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|drbt_gnt~reg
 --operation mode is normal
 
-JB1L33Q_lut_out = JB1L33Q # VD1L01Q & JB1L28Q;
-JB1L33Q = DFFE(JB1L33Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L43Q_lut_out = JB1L43Q # VD1L01Q & JB1L18Q;
+JB1L43Q = DFFE(JB1L43Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
 --CD1_dffs[2] is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|RX_UART_12:inst25|rxshr8:inst1|lpm_shiftreg:lpm_shiftreg_component|dffs[2]
@@ -10330,17 +10330,17 @@ CD1_dffs[0]_lut_out = CD1_dffs[1];
 CD1_dffs[0] = DFFE(CD1_dffs[0]_lut_out, GLOBAL(JE1_outclock0), BD1L4Q, , BD1L11Q);
 
 
---JB1L04Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|rec_ctrl~reg
+--JB1L14Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|rec_ctrl~reg
 --operation mode is normal
 
-JB1L04Q_lut_out = !JB1L83 & (!JB1L93 & !JB1L5 # !JB1L57Q);
-JB1L04Q = DFFE(JB1L04Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L14Q_lut_out = !JB1L93 & (!JB1L04 & !JB1L5 # !JB1L47Q);
+JB1L14Q = DFFE(JB1L14Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
---JB1L21 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~2891
+--JB1L31 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~2942
 --operation mode is normal
 
-JB1L21 = BD1L3Q & !JB1L04Q & (CD1_dffs[0] $ A_nB);
+JB1L31 = BD1L3Q & !JB1L14Q & (CD1_dffs[0] $ A_nB);
 
 
 --CD1_dffs[5] is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|RX_UART_12:inst25|rxshr8:inst1|lpm_shiftreg:lpm_shiftreg_component|dffs[5]
@@ -10367,7 +10367,7 @@ CD1_dffs[3] = DFFE(CD1_dffs[3]_lut_out, GLOBAL(JE1_outclock0), BD1L4Q, , BD1L11Q
 --SB1L32 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|DC_MREC:inst12|sysres_rcvd~43
 --operation mode is normal
 
-SB1L32 = JB1L21 & CD1_dffs[5] & CD1_dffs[4] & !CD1_dffs[3];
+SB1L32 = JB1L31 & CD1_dffs[5] & CD1_dffs[4] & !CD1_dffs[3];
 
 
 --SB1L12 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|DC_MREC:inst12|sysres_rcvd~22
@@ -11735,37 +11735,44 @@ X1_command_2_local[30]_lut_out = PE1_MASTERHWDATA[30];
 X1_command_2_local[30] = DFFE(X1_command_2_local[30]_lut_out, GLOBAL(JE1_outclock0), !V1L4Q, , X1L241);
 
 
---JB1L57Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~16
+--JB1L47Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~16
 --operation mode is normal
 
-JB1L57Q_lut_out = JB1L63 # JB1L93 & JB1L57Q & !JB1L5;
-JB1L57Q = DFFE(JB1L57Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L47Q_lut_out = JB1L73 # JB1L04 & JB1L47Q & !JB1L5;
+JB1L47Q = DFFE(JB1L47Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
---JB1L701 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SYS_RESET~0
+--JB1L011 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SYS_RESET~0
 --operation mode is normal
 
-JB1L701 = JB1L801Q # JB1L57Q & CD1_dffs[2] & SB1L32;
-
-
---JB1_SV12 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SV12
---operation mode is normal
-
-JB1_SV12_lut_out = JB1L27Q # JB1L34 # JB1L17Q & !JB1L11;
-JB1_SV12 = DFFE(JB1_SV12_lut_out, GLOBAL(JE1_outclock0), !RST_kalle, , );
+JB1L011 = JB1L111Q # JB1L47Q & CD1_dffs[2] & SB1L32;
 
 
 --JB1_SV11 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SV11
 --operation mode is normal
 
-JB1_SV11_lut_out = JB1L07Q & (SB1L2 # !JB1L37Q);
+JB1_SV11_lut_out = !JB1L07Q & (JB1_SV1 # JB1L61 # !JB1L86Q);
 JB1_SV11 = DFFE(JB1_SV11_lut_out, GLOBAL(JE1_outclock0), !RST_kalle, , );
 
 
---JB1L29 is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~72
+--JB1_SV10 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SV10
 --operation mode is normal
 
-JB1L29 = SB1L2 & (!JB1_SV11 # !JB1_SV12);
+JB1_SV10_lut_out = JB1L411 # SB1L2 & JB1L96Q # !SB1L2 & JB1L17Q;
+JB1_SV10 = DFFE(JB1_SV10_lut_out, GLOBAL(JE1_outclock0), !RST_kalle, , );
+
+
+--JB1_SV12 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SV12
+--operation mode is normal
+
+JB1_SV12_lut_out = !JB1L23 & JB1L76Q & (FB93_sload_path[18] # !JB1L27Q);
+JB1_SV12 = DFFE(JB1_SV12_lut_out, GLOBAL(JE1_outclock0), !RST_kalle, , );
+
+
+--JB1L19 is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~74
+--operation mode is normal
+
+JB1L19 = SB1L2 & (JB1_SV11 # JB1_SV10 # !JB1_SV12);
 
 
 --BD1L01Q is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|RX_UART_12:inst25|UA_RX_12:inst6|shd~reg
@@ -11792,8 +11799,8 @@ BD1L11Q = DFFE(BD1L11Q_lut_out, GLOBAL(JE1_outclock0), !KB1_inst2, , );
 --JB1L55Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|send_id~reg
 --operation mode is normal
 
-JB1L55Q_lut_out = JB1L57Q & (JB1L81 # JB1L55Q & !VD1L01Q) # !JB1L57Q & JB1L55Q & !VD1L01Q;
-JB1L55Q = DFFE(JB1L55Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L55Q_lut_out = JB1L47Q & (JB1L81 # JB1L55Q & !VD1L01Q) # !JB1L47Q & JB1L55Q & !VD1L01Q;
+JB1L55Q = DFFE(JB1L55Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
 --VD1L55Q is dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|DC_SEND:inst6|sreg~13
@@ -11807,7 +11814,7 @@ VD1L55Q = DFFE(VD1L55Q_lut_out, GLOBAL(JE1_outclock0), !SB1L2, , );
 --operation mode is normal
 
 JB1L05Q_lut_out = JB1L94 # JB1L44 # !JB1L74 # !JB1L32;
-JB1L05Q = DFFE(JB1L05Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L05Q = DFFE(JB1L05Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
 --VD1L1 is dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|DC_SEND:inst6|altr_temp~55
@@ -11840,7 +11847,7 @@ VD1L2 = VD1L75Q & !DE1L8Q;
 --operation mode is normal
 
 JB1L35Q_lut_out = JB1L15 # JB1L25 # VD1L01Q & JB1L55Q;
-JB1L35Q = DFFE(JB1L35Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L35Q = DFFE(JB1L35Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
 --VD1L6 is dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|DC_SEND:inst6|altr_temp~3851
@@ -11849,17 +11856,17 @@ JB1L35Q = DFFE(JB1L35Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
 VD1L6 = VD1L55Q & DE1L11Q & JB1L05Q & !JB1L55Q;
 
 
---JB1L28Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~24
+--JB1L18Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~24
 --operation mode is normal
 
-JB1L28Q_lut_out = JB1L2 # JB1L28Q & !VD1L01Q;
-JB1L28Q = DFFE(JB1L28Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L18Q_lut_out = JB1L2 # JB1L18Q & !VD1L01Q;
+JB1L18Q = DFFE(JB1L18Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
---JB1L23 is dcom:dcom_inst|DC_CTRL:DC_CTRL|DOM_REBOOT~0
+--JB1L33 is dcom:dcom_inst|DC_CTRL:DC_CTRL|DOM_REBOOT~0
 --operation mode is normal
 
-JB1L23 = JB1L33Q # VD1L01Q & JB1L28Q;
+JB1L33 = JB1L43Q # VD1L01Q & JB1L18Q;
 
 
 --BD1L61Q is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|RX_UART_12:inst25|UA_RX_12:inst6|sreg~18
@@ -11921,17 +11928,17 @@ KB1_inst2_lut_out = V1L4Q # X1_com_ctrl_local[4];
 KB1_inst2 = DFFE(KB1_inst2_lut_out, GLOBAL(JE1_outclock0), , , );
 
 
---JB1L87Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~20
+--JB1L77Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~20
 --operation mode is normal
 
-JB1L87Q_lut_out = JB1L7 # JB1L57Q & JB1L5;
-JB1L87Q = DFFE(JB1L87Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L77Q_lut_out = JB1L7 # JB1L47Q & JB1L5;
+JB1L77Q = DFFE(JB1L77Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
 --SB1L6 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|DC_MREC:inst12|eof_rcvd~42
 --operation mode is normal
 
-SB1L6 = JB1L21 & !CD1_dffs[5];
+SB1L6 = JB1L31 & !CD1_dffs[5];
 
 
 --SB1L5 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|DC_MREC:inst12|eof_rcvd~22
@@ -11947,90 +11954,90 @@ SB1L01Q_lut_out = SB1L31Q & (BD1L31Q # BD1L3Q & !SB1L5);
 SB1L01Q = DFFE(SB1L01Q_lut_out, GLOBAL(JE1_outclock0), !KB1_inst5, , );
 
 
---JB1L7 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~1968
+--JB1L7 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~1994
 --operation mode is normal
 
-JB1L7 = JB1L87Q & !SB1L5 & !SB1L01Q;
+JB1L7 = JB1L77Q & !SB1L5 & !SB1L01Q;
 
 
---JB1L58Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~28
+--JB1L48Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~28
 --operation mode is normal
 
-JB1L58Q_lut_out = JB1L26 # JB1L58Q & !VD1L01Q;
-JB1L58Q = DFFE(JB1L58Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L48Q_lut_out = JB1L06 # JB1L48Q & !VD1L01Q;
+JB1L48Q = DFFE(JB1L48Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
---JB1L68Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~29
+--JB1L58Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~29
 --operation mode is normal
 
-JB1L68Q_lut_out = JB1L68Q & (JB1L36 & !FB5_pre_out[9] # !VD1L01Q) # !JB1L68Q & JB1L36 & !FB5_pre_out[9];
-JB1L68Q = DFFE(JB1L68Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L58Q_lut_out = JB1L58Q & (JB1L16 & !FB5_pre_out[9] # !VD1L01Q) # !JB1L58Q & JB1L16 & !FB5_pre_out[9];
+JB1L58Q = DFFE(JB1L58Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
---JB1L18Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~23
+--JB1L08Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~23
 --operation mode is normal
 
-JB1L18Q_lut_out = JB1L1 # JB1L18Q & !VD1L01Q;
-JB1L18Q = DFFE(JB1L18Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L08Q_lut_out = JB1L1 # JB1L08Q & !VD1L01Q;
+JB1L08Q = DFFE(JB1L08Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
---JB1L48Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~27
+--JB1L38Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~27
 --operation mode is normal
 
-JB1L48Q_lut_out = JB1L4 # JB1L48Q & !VD1L01Q;
-JB1L48Q = DFFE(JB1L48Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L38Q_lut_out = JB1L4 # JB1L38Q & !VD1L01Q;
+JB1L38Q = DFFE(JB1L38Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
 --JB1L62 is dcom:dcom_inst|DC_CTRL:DC_CTRL|cmd_snd2~46
 --operation mode is normal
 
-JB1L62 = !JB1L18Q & !JB1L48Q;
+JB1L62 = !JB1L08Q & !JB1L38Q;
 
 
---JB1L19Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~34
+--JB1L09Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~34
 --operation mode is normal
 
-JB1L19Q_lut_out = VD1L85Q & (JB1L09Q # JB1L19Q & !VD1L01Q) # !VD1L85Q & JB1L19Q & !VD1L01Q;
-JB1L19Q = DFFE(JB1L19Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L09Q_lut_out = VD1L85Q & (JB1L98Q # JB1L09Q & !VD1L01Q) # !VD1L85Q & JB1L09Q & !VD1L01Q;
+JB1L09Q = DFFE(JB1L09Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
---JB1L38Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~25
+--JB1L28Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~25
 --operation mode is normal
 
-JB1L38Q_lut_out = VD1L85Q & (JB1L08Q # JB1L38Q & !VD1L01Q) # !VD1L85Q & JB1L38Q & !VD1L01Q;
-JB1L38Q = DFFE(JB1L38Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L28Q_lut_out = VD1L85Q & (JB1L97Q # JB1L28Q & !VD1L01Q) # !VD1L85Q & JB1L28Q & !VD1L01Q;
+JB1L28Q = DFFE(JB1L28Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
---JB1L78Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~30
+--JB1L68Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~30
 --operation mode is normal
 
-JB1L78Q_lut_out = JB1L87Q & (SB1L01Q # JB1L78Q & !VD1L01Q) # !JB1L87Q & JB1L78Q & !VD1L01Q;
-JB1L78Q = DFFE(JB1L78Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L68Q_lut_out = JB1L77Q & (SB1L01Q # JB1L68Q & !VD1L01Q) # !JB1L77Q & JB1L68Q & !VD1L01Q;
+JB1L68Q = DFFE(JB1L68Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
---JB1L73 is dcom:dcom_inst|DC_CTRL:DC_CTRL|rec_ctrl~256
+--JB1L83 is dcom:dcom_inst|DC_CTRL:DC_CTRL|rec_ctrl~256
 --operation mode is normal
 
-JB1L73 = JB1L62 & !JB1L19Q & !JB1L38Q & !JB1L78Q;
+JB1L83 = JB1L62 & !JB1L09Q & !JB1L28Q & !JB1L68Q;
 
 
---JB1L63 is dcom:dcom_inst|DC_CTRL:DC_CTRL|rec_ctrl~33
+--JB1L73 is dcom:dcom_inst|DC_CTRL:DC_CTRL|rec_ctrl~33
 --operation mode is normal
 
-JB1L63 = VD1L01Q & (JB1L58Q # JB1L68Q # !JB1L73);
+JB1L73 = VD1L01Q & (JB1L48Q # JB1L58Q # !JB1L83);
 
 
---JB1L47Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~15
+--JB1L37Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~15
 --operation mode is normal
 
-JB1L47Q_lut_out = JB1L47Q # !JB1_SV12 & JB1_SV11;
-JB1L47Q = DFFE(JB1L47Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L37Q_lut_out = JB1L37Q # !JB1_SV10 & JB1_SV11 & JB1_SV12;
+JB1L37Q = DFFE(JB1L37Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
---JB1L01 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~2362
+--JB1L11 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~2389
 --operation mode is normal
 
-JB1L01 = !JB1L47Q & (JB1_SV12 # !JB1_SV11);
+JB1L11 = !JB1L37Q & (JB1_SV10 # !JB1_SV12 # !JB1_SV11);
 
 
 --SB1L4 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|DC_MREC:inst12|drreq_rcvd~22
@@ -12039,11 +12046,11 @@ JB1L01 = !JB1L47Q & (JB1_SV12 # !JB1_SV11);
 SB1L4 = CD1_dffs[2] & SB1L6 & CD1_dffs[4] & !CD1_dffs[3];
 
 
---JB1L67Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~18
+--JB1L57Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~18
 --operation mode is normal
 
-JB1L67Q_lut_out = SB1L4 & MB1L21Q & JB1L88Q # !SB1L4 & (JB1L67Q # MB1L21Q & JB1L88Q);
-JB1L67Q = DFFE(JB1L67Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L57Q_lut_out = SB1L4 & MB1L21Q & JB1L78Q # !SB1L4 & (JB1L57Q # MB1L21Q & JB1L78Q);
+JB1L57Q = DFFE(JB1L57Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
 --MB1L21Q is dcom:dcom_inst|tcal_timer:inst1|pulse_sent~reg
@@ -12053,29 +12060,29 @@ MB1L21Q_lut_out = MB1L6 & MB1L01 & MB1L11 & !FB92_sload_path[4];
 MB1L21Q = DFFE(MB1L21Q_lut_out, GLOBAL(JE1_outclock0), , , );
 
 
---JB1L88Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~31
+--JB1L78Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~31
 --operation mode is normal
 
-JB1L88Q_lut_out = MB1L9Q & (JB1L77Q # JB1L88Q & !MB1L21Q) # !MB1L9Q & JB1L88Q & !MB1L21Q;
-JB1L88Q = DFFE(JB1L88Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L78Q_lut_out = MB1L9Q & (JB1L67Q # JB1L78Q & !MB1L21Q) # !MB1L9Q & JB1L78Q & !MB1L21Q;
+JB1L78Q = DFFE(JB1L78Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
---JB1L43 is dcom:dcom_inst|DC_CTRL:DC_CTRL|DRREQ_WT~46
+--JB1L53 is dcom:dcom_inst|DC_CTRL:DC_CTRL|DRREQ_WT~46
 --operation mode is normal
 
-JB1L43 = SB1L4 & (!JB1L88Q # !MB1L21Q) # !SB1L4 & !JB1L67Q & (!JB1L88Q # !MB1L21Q);
+JB1L53 = SB1L4 & (!JB1L78Q # !MB1L21Q) # !SB1L4 & !JB1L57Q & (!JB1L78Q # !MB1L21Q);
 
 
---JB1L83 is dcom:dcom_inst|DC_CTRL:DC_CTRL|rec_ctrl~327
+--JB1L93 is dcom:dcom_inst|DC_CTRL:DC_CTRL|rec_ctrl~327
 --operation mode is normal
 
-JB1L83 = JB1L7 # JB1L63 # JB1L01 # !JB1L43;
+JB1L93 = JB1L7 # JB1L73 # JB1L11 # !JB1L53;
 
 
 --SB1L22 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|DC_MREC:inst12|sysres_rcvd~42
 --operation mode is normal
 
-SB1L22 = JB1L21 & CD1_dffs[5] & CD1_dffs[4];
+SB1L22 = JB1L31 & CD1_dffs[5] & CD1_dffs[4];
 
 
 --SB1L42 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|DC_MREC:inst12|tcal_rcvd~25
@@ -12084,7 +12091,7 @@ SB1L22 = JB1L21 & CD1_dffs[5] & CD1_dffs[4];
 SB1L42 = SB1L22 & CD1_dffs[3] & !CD1_dffs[2];
 
 
---JB1L5 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~1945
+--JB1L5 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~1971
 --operation mode is normal
 
 JB1L5 = CD1_dffs[2] & SB1L6 & !CD1_dffs[3] & !CD1_dffs[4];
@@ -12931,7 +12938,7 @@ P1L37Q = DFFE(P1L37Q_lut_out, GLOBAL(JE1_outclock0), , , P1L18);
 --X1L154 is slaveregister:slaveregister_inst|Mux_324_rtl_410_rtl_635~4
 --operation mode is normal
 
-X1L154 = JB1L33Q & (P1L37Q # B1L11Q) # !JB1L33Q & P1L37Q & !B1L11Q;
+X1L154 = JB1L43Q & (P1L37Q # B1L11Q) # !JB1L43Q & P1L37Q & !B1L11Q;
 
 
 --Q1L37Q is hit_counter_ff:inst_hit_counter_ff|multiSPEcnt[2]~reg0
@@ -17524,11 +17531,11 @@ B1L5Q_lut_out = B1L94Q # B1_reduce_nor_4 & B1L73 & !B1L64Q;
 B1L5Q = DFFE(B1L5Q_lut_out, GLOBAL(JE1_outclock0), !V1L4Q, , );
 
 
---JB1L011Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|tcal_psnd~reg
+--JB1L311Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|tcal_psnd~reg
 --operation mode is normal
 
-JB1L011Q_lut_out = JB1L77Q # JB1L9 # JB1L88Q & !MB1L21Q;
-JB1L011Q = DFFE(JB1L011Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L311Q_lut_out = JB1L67Q # JB1L01 # JB1L78Q & !MB1L21Q;
+JB1L311Q = DFFE(JB1L311Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
 --V1L3Q is roc:inst_ROC|RST_state~6
@@ -18082,85 +18089,99 @@ K1L402Q = DFFE(K1L402Q_lut_out, GLOBAL(JE1_outclock0), !V1L4Q, , );
 K1L661 = X1_command_2_local[10] # X1_command_2_local[11];
 
 
---JB1L27Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg2~14
+--JB1L07Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg2~15
 --operation mode is normal
 
-JB1L27Q_lut_out = JB1L27Q # JB1L17Q & !JB1_SV1 & !JB1L61;
-JB1L27Q = DFFE(JB1L27Q_lut_out, GLOBAL(JE1_outclock0), !RST_kalle, , );
-
-
---JB1L37Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg2~15
---operation mode is normal
-
-JB1L37Q_lut_out = JB1L37Q & (!JB1L07Q # !SB1L2) # !JB1L37Q & SB1L2 & !JB1L07Q;
-JB1L37Q = DFFE(JB1L37Q_lut_out, GLOBAL(JE1_outclock0), !RST_kalle, , );
-
-
---JB1L07Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg2~12
---operation mode is normal
-
-JB1L07Q_lut_out = SB1L2 # JB1L07Q;
+JB1L07Q_lut_out = JB1L07Q # JB1L86Q & !JB1_SV1 & !JB1L61;
 JB1L07Q = DFFE(JB1L07Q_lut_out, GLOBAL(JE1_outclock0), !RST_kalle, , );
 
 
---JB1L34 is dcom:dcom_inst|DC_CTRL:DC_CTRL|RES_SYNC~0
+--JB1L86Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg2~13
 --operation mode is normal
 
-JB1L34 = JB1L37Q & (!JB1L07Q # !SB1L2) # !JB1L37Q & SB1L2 & !JB1L07Q;
-
-
---JB1L17Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg2~13
---operation mode is normal
-
-JB1L17Q_lut_out = JB1L17Q & (JB1L11 # SB1L2 & JB1L37Q) # !JB1L17Q & SB1L2 & JB1L37Q;
-JB1L17Q = DFFE(JB1L17Q_lut_out, GLOBAL(JE1_outclock0), !RST_kalle, , );
+JB1L86Q_lut_out = JB1L86Q & (JB1L21 # SB1L2 & JB1L17Q) # !JB1L86Q & SB1L2 & JB1L17Q;
+JB1L86Q = DFFE(JB1L86Q_lut_out, GLOBAL(JE1_outclock0), !RST_kalle, , );
 
 
 --JB1_SV1 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SV1
 --operation mode is normal
 
-JB1_SV1_lut_out = JB1L79 # JB1L45 # JB1L95 # !JB1L69;
-JB1_SV1 = DFFE(JB1_SV1_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1_SV1_lut_out = JB1L69 # JB1L45 # JB1L95 # !JB1L79;
+JB1_SV1 = DFFE(JB1_SV1_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
---JB1_SV8 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SV8
+--JB1_SV3 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SV3
 --operation mode is normal
 
-JB1_SV8_lut_out = JB1L46 # JB1L45 # JB1L201 # !JB1L101;
-JB1_SV8 = DFFE(JB1_SV8_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1_SV3_lut_out = JB1L26 # JB1L45 # JB1L201 # !JB1L101;
+JB1_SV3 = DFFE(JB1_SV3_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
 --JB1_SV2 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SV2
 --operation mode is normal
 
-JB1_SV2_lut_out = JB1L14 # JB1L99 # JB1L24 # !JB1L69;
-JB1_SV2 = DFFE(JB1_SV2_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1_SV2_lut_out = JB1L24 # JB1L99 # JB1L34 # !JB1L79;
+JB1_SV2 = DFFE(JB1_SV2_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
 --JB1_SV0 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SV0
 --operation mode is normal
 
-JB1_SV0_lut_out = JB1L76 # JB1L49 # JB1L86;
-JB1_SV0 = DFFE(JB1_SV0_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1_SV0_lut_out = JB1L8 # JB1L39 # JB1L88Q & !VD1L01Q;
+JB1_SV0 = DFFE(JB1_SV0_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
---JB1_SV9 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SV9
+--JB1_SV8 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SV8
 --operation mode is normal
 
-JB1_SV9_lut_out = !JB1L85 & !JB1L16 & !JB1L01 & !JB1L401;
-JB1_SV9 = DFFE(JB1_SV9_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1_SV8_lut_out = JB1L601;
+JB1_SV8 = DFFE(JB1_SV8_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
---JB1L61 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~2931
+--JB1L61 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~2983
 --operation mode is normal
 
-JB1L61 = JB1_SV8 & (JB1_SV2 # JB1_SV0) # !JB1_SV8 & (!JB1_SV0 # !JB1_SV2) # !JB1_SV9;
+JB1L61 = JB1_SV3 & (JB1_SV2 # JB1_SV0) # !JB1_SV3 & (!JB1_SV0 # !JB1_SV2) # !JB1_SV8;
 
 
---JB1L11 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~2421
+--JB1L27Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg2~17
 --operation mode is normal
 
-JB1L11 = JB1_SV1 # JB1L61;
+JB1L27Q_lut_out = JB1L27Q & !FB93_sload_path[18] # !JB1L76Q;
+JB1L27Q = DFFE(JB1L27Q_lut_out, GLOBAL(JE1_outclock0), !RST_kalle, , );
+
+
+--JB1L76Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg2~12
+--operation mode is normal
+
+JB1L76Q_lut_out = VCC;
+JB1L76Q = DFFE(JB1L76Q_lut_out, GLOBAL(JE1_outclock0), !RST_kalle, , );
+
+
+--JB1L411 is dcom:dcom_inst|DC_CTRL:DC_CTRL|WAIT_6ms~0
+--operation mode is normal
+
+JB1L411 = JB1L27Q & !FB93_sload_path[18] # !JB1L76Q;
+
+
+--JB1L96Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg2~14
+--operation mode is normal
+
+JB1L96Q_lut_out = FB93_sload_path[18] & (JB1L27Q # JB1L96Q & !SB1L2) # !FB93_sload_path[18] & JB1L96Q & !SB1L2;
+JB1L96Q = DFFE(JB1L96Q_lut_out, GLOBAL(JE1_outclock0), !RST_kalle, , );
+
+
+--JB1L17Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg2~16
+--operation mode is normal
+
+JB1L17Q_lut_out = JB1L96Q & (JB1L17Q # SB1L2) # !JB1L96Q & JB1L17Q & !SB1L2;
+JB1L17Q = DFFE(JB1L17Q_lut_out, GLOBAL(JE1_outclock0), !RST_kalle, , );
+
+
+--JB1L23 is dcom:dcom_inst|DC_CTRL:DC_CTRL|CRES_WAIT~0
+--operation mode is normal
+
+JB1L23 = FB93_sload_path[18] & (JB1L27Q # JB1L96Q & !SB1L2) # !FB93_sload_path[18] & JB1L96Q & !SB1L2;
 
 
 --BD1L41Q is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|RX_UART_12:inst25|UA_RX_12:inst6|sreg~16
@@ -18193,7 +18214,7 @@ SB1L1 = !BD1L3Q & !BD1L31Q;
 --JB1L45 is dcom:dcom_inst|DC_CTRL:DC_CTRL|send_id~2
 --operation mode is normal
 
-JB1L45 = JB1L57Q & (JB1L81 # JB1L55Q & !VD1L01Q) # !JB1L57Q & JB1L55Q & !VD1L01Q;
+JB1L45 = JB1L47Q & (JB1L81 # JB1L55Q & !VD1L01Q) # !JB1L47Q & JB1L55Q & !VD1L01Q;
 
 
 --VD1L85Q is dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|DC_SEND:inst6|sreg~16
@@ -18212,7 +18233,7 @@ VD1L9 = !VD1L85Q & (DE1L11Q & JB1L05Q # !VD1L55Q);
 --VD1L45Q is dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|DC_SEND:inst6|sreg~12
 --operation mode is normal
 
-VD1L45Q_lut_out = !VD1L65Q & (VD1L45Q # JB1L05Q # JB1L901Q);
+VD1L45Q_lut_out = !VD1L65Q & (VD1L45Q # JB1L05Q # JB1L211Q);
 VD1L45Q = DFFE(VD1L45Q_lut_out, GLOBAL(JE1_outclock0), !SB1L2, , );
 
 
@@ -18225,10 +18246,10 @@ VD1L8 = VD1L9 & (VD1L45Q # !JB1L05Q);
 --JB1L64 is dcom:dcom_inst|DC_CTRL:DC_CTRL|send_ctrl~63
 --operation mode is normal
 
-JB1L64 = JB1L87Q & (SB1L01Q # SB1L5 & !FB5_pre_out[9]);
+JB1L64 = JB1L77Q & (SB1L01Q # SB1L5 & !FB5_pre_out[9]);
 
 
---JB1L6 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~1946
+--JB1L6 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~1973
 --operation mode is normal
 
 JB1L6 = SB1L32 & !CD1_dffs[2];
@@ -18243,44 +18264,44 @@ JB1L54 = SB1L4 & CC2_b_non_empty;
 --JB1L94 is dcom:dcom_inst|DC_CTRL:DC_CTRL|send_ctrl~260
 --operation mode is normal
 
-JB1L94 = JB1L64 # JB1L57Q & (JB1L6 # JB1L54);
+JB1L94 = JB1L64 # JB1L47Q & (JB1L6 # JB1L54);
 
 
---JB1L98Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~32
+--JB1L88Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~32
 --operation mode is normal
 
-JB1L98Q_lut_out = CC2_b_non_empty & (JB1L41 # JB1L98Q & !VD1L01Q) # !CC2_b_non_empty & JB1L98Q & !VD1L01Q;
-JB1L98Q = DFFE(JB1L98Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L88Q_lut_out = JB1L8 # JB1L88Q & !VD1L01Q;
+JB1L88Q = DFFE(JB1L88Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
 --JB1L84 is dcom:dcom_inst|DC_CTRL:DC_CTRL|send_ctrl~212
 --operation mode is normal
 
-JB1L84 = !JB1L28Q & !JB1L58Q & !JB1L55Q & !JB1L98Q;
+JB1L84 = !JB1L18Q & !JB1L48Q & !JB1L55Q & !JB1L88Q;
 
 
 --JB1L44 is dcom:dcom_inst|DC_CTRL:DC_CTRL|send_ctrl~44
 --operation mode is normal
 
-JB1L44 = !VD1L01Q & (JB1L68Q # !JB1L84 # !JB1L73);
+JB1L44 = !VD1L01Q & (JB1L58Q # !JB1L84 # !JB1L83);
 
 
---JB1L1 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~73
+--JB1L1 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~78
 --operation mode is normal
 
-JB1L1 = JB1L57Q & SB1L4 & !X1_com_ctrl_local[2] & !CC2_b_non_empty;
+JB1L1 = JB1L47Q & SB1L4 & !X1_com_ctrl_local[2] & !CC2_b_non_empty;
 
 
---JB1L2 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~79
+--JB1L2 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~84
 --operation mode is normal
 
-JB1L2 = X1_com_ctrl_local[2] & JB1L57Q & SB1L4 & !CC2_b_non_empty;
+JB1L2 = X1_com_ctrl_local[2] & JB1L47Q & SB1L4 & !CC2_b_non_empty;
 
 
---JB1L4 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~1930
+--JB1L4 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~1955
 --operation mode is normal
 
-JB1L4 = JB1_SV11 & !JB1L47Q & !JB1_SV12;
+JB1L4 = JB1_SV11 & JB1_SV12 & !JB1L37Q & !JB1_SV10;
 
 
 --JB1L52 is dcom:dcom_inst|DC_CTRL:DC_CTRL|cmd_snd2~44
@@ -18289,54 +18310,54 @@ JB1L4 = JB1_SV11 & !JB1L47Q & !JB1_SV12;
 JB1L52 = !JB1L1 & !JB1L2 & !JB1L4;
 
 
---JB1L09Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~33
+--JB1L98Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~33
 --operation mode is normal
 
-JB1L09Q_lut_out = SB1L4 & (JB1L67Q # JB1L09Q & !VD1L85Q) # !SB1L4 & JB1L09Q & !VD1L85Q;
-JB1L09Q = DFFE(JB1L09Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L98Q_lut_out = SB1L4 & (JB1L57Q # JB1L98Q & !VD1L85Q) # !SB1L4 & JB1L98Q & !VD1L85Q;
+JB1L98Q = DFFE(JB1L98Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
---JB1L08Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~22
+--JB1L97Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~22
 --operation mode is normal
 
-JB1L08Q_lut_out = JB1L08Q & (VD1L01Q & !JB1L75 # !VD1L85Q) # !JB1L08Q & VD1L01Q & !JB1L75;
-JB1L08Q = DFFE(JB1L08Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L97Q_lut_out = JB1L97Q & (VD1L01Q & !JB1L75 # !VD1L85Q) # !JB1L97Q & VD1L01Q & !JB1L75;
+JB1L97Q = DFFE(JB1L97Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
 --JB1L32 is dcom:dcom_inst|DC_CTRL:DC_CTRL|cmd_snd1~76
 --operation mode is normal
 
-JB1L32 = JB1L52 & (!JB1L09Q & !JB1L08Q # !VD1L85Q);
+JB1L32 = JB1L52 & (!JB1L98Q & !JB1L97Q # !VD1L85Q);
 
 
---JB1L3 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~108
+--JB1L3 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~115
 --operation mode is normal
 
-JB1L3 = FB5_pre_out[9] & SB1L5 & JB1L87Q & !SB1L01Q;
+JB1L3 = FB5_pre_out[9] & SB1L5 & JB1L77Q & !SB1L01Q;
 
 
 --JB1L74 is dcom:dcom_inst|DC_CTRL:DC_CTRL|send_ctrl~199
 --operation mode is normal
 
-JB1L74 = !JB1L3 & (!JB1L81 # !JB1L57Q);
+JB1L74 = !JB1L3 & (!JB1L81 # !JB1L47Q);
 
 
 --JB1L15 is dcom:dcom_inst|DC_CTRL:DC_CTRL|send_data~17
 --operation mode is normal
 
-JB1L15 = SB1L4 & (JB1L67Q # JB1L57Q & CC2_b_non_empty);
+JB1L15 = SB1L4 & (JB1L57Q # JB1L47Q & CC2_b_non_empty);
 
 
 --JB1L25 is dcom:dcom_inst|DC_CTRL:DC_CTRL|send_data~102
 --operation mode is normal
 
-JB1L25 = JB1L98Q # !VD1L85Q & (JB1L09Q # JB1L08Q);
+JB1L25 = JB1L88Q # !VD1L85Q & (JB1L98Q # JB1L97Q);
 
 
 --JB1L85 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SND_DRBT~0
 --operation mode is normal
 
-JB1L85 = JB1L2 # JB1L28Q & !VD1L01Q;
+JB1L85 = JB1L2 # JB1L18Q & !VD1L01Q;
 
 
 --BD1L1 is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|RX_UART_12:inst25|UA_RX_12:inst6|altr_temp~206
@@ -18378,10 +18399,10 @@ ND1L4Q_lut_out = ND1_SV5 & !ND1L1 & (WB1L31Q # ND1L4Q) # !ND1_SV5 & (WB1L31Q # N
 ND1L4Q = DFFE(ND1L4Q_lut_out, GLOBAL(JE1_outclock0), !KB1_inst2, , );
 
 
---JB1L14 is dcom:dcom_inst|DC_CTRL:DC_CTRL|REC_DAT~0
+--JB1L24 is dcom:dcom_inst|DC_CTRL:DC_CTRL|REC_DAT~0
 --operation mode is normal
 
-JB1L14 = JB1L7 # JB1L57Q & JB1L5;
+JB1L24 = JB1L7 # JB1L47Q & JB1L5;
 
 
 --SB1L31Q is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|DC_MREC:inst12|sreg~13
@@ -18398,58 +18419,46 @@ KB1_inst5_lut_out = SB1L3 & CD1_dffs[5] & CD1_dffs[3] & !CD1_dffs[4];
 KB1_inst5 = DFFE(KB1_inst5_lut_out, GLOBAL(JE1_outclock0), , , );
 
 
---JB1L31 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~2897
+--JB1L41 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~2949
 --operation mode is normal
 
-JB1L31 = JB1L57Q & SB1L32 & !CD1_dffs[2];
+JB1L41 = JB1L47Q & SB1L32 & !CD1_dffs[2];
 
 
---JB1L26 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SND_MRNB~57
+--JB1L06 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SND_MRNB~57
 --operation mode is normal
 
-JB1L26 = JB1L3 # FB5_pre_out[9] & JB1L31;
+JB1L06 = JB1L3 # FB5_pre_out[9] & JB1L41;
 
 
---JB1L16 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SND_MRNB~0
+--JB1L16 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SND_MRWB~16
 --operation mode is normal
 
-JB1L16 = JB1L26 # JB1L58Q & !VD1L01Q;
+JB1L16 = JB1L41 # SB1L5 & JB1L77Q & !SB1L01Q;
 
 
---JB1L36 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SND_MRWB~16
+--JB1L26 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SND_MRWB~21
 --operation mode is normal
 
-JB1L36 = JB1L31 # SB1L5 & JB1L87Q & !SB1L01Q;
+JB1L26 = JB1L58Q & (JB1L16 & !FB5_pre_out[9] # !VD1L01Q) # !JB1L58Q & JB1L16 & !FB5_pre_out[9];
 
 
---JB1L46 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SND_MRWB~21
+--JB1L66 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SND_TC_EOF~0
 --operation mode is normal
 
-JB1L46 = JB1L68Q & (JB1L36 & !FB5_pre_out[9] # !VD1L01Q) # !JB1L68Q & JB1L36 & !FB5_pre_out[9];
-
-
---JB1L06 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SND_IDLE~0
---operation mode is normal
-
-JB1L06 = JB1L4 # JB1L48Q & !VD1L01Q;
-
-
---JB1L96 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SND_TC_EOF~0
---operation mode is normal
-
-JB1L96 = VD1L85Q & (JB1L09Q # JB1L19Q & !VD1L01Q) # !VD1L85Q & JB1L19Q & !VD1L01Q;
+JB1L66 = VD1L85Q & (JB1L98Q # JB1L09Q & !VD1L01Q) # !VD1L85Q & JB1L09Q & !VD1L01Q;
 
 
 --JB1L95 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SND_EOF~0
 --operation mode is normal
 
-JB1L95 = VD1L85Q & (JB1L08Q # JB1L38Q & !VD1L01Q) # !VD1L85Q & JB1L38Q & !VD1L01Q;
+JB1L95 = VD1L85Q & (JB1L97Q # JB1L28Q & !VD1L01Q) # !VD1L85Q & JB1L28Q & !VD1L01Q;
 
 
---JB1L56 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SND_MRWE~0
+--JB1L36 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SND_MRWE~0
 --operation mode is normal
 
-JB1L56 = JB1L87Q & (SB1L01Q # JB1L78Q & !VD1L01Q) # !JB1L87Q & JB1L78Q & !VD1L01Q;
+JB1L36 = JB1L77Q & (SB1L01Q # JB1L68Q & !VD1L01Q) # !JB1L77Q & JB1L68Q & !VD1L01Q;
 
 
 --MB1L01 is dcom:dcom_inst|tcal_timer:inst1|pulse_sent~23
@@ -18471,17 +18480,17 @@ MB1L9Q_lut_out = MB1L3 & !FB92_sload_path[4] & !FB92_sload_path[2];
 MB1L9Q = DFFE(MB1L9Q_lut_out, GLOBAL(JE1_outclock0), , , );
 
 
---JB1L77Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~19
+--JB1L67Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~19
 --operation mode is normal
 
-JB1L77Q_lut_out = GD1L3Q & (JB1L97Q # JB1L77Q & !MB1L9Q) # !GD1L3Q & JB1L77Q & !MB1L9Q;
-JB1L77Q = DFFE(JB1L77Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L67Q_lut_out = GD1L3Q & (JB1L87Q # JB1L67Q & !MB1L9Q) # !GD1L3Q & JB1L67Q & !MB1L9Q;
+JB1L67Q = DFFE(JB1L67Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
---JB1L66 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SND_PULSE~0
+--JB1L46 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SND_PULSE~0
 --operation mode is normal
 
-JB1L66 = MB1L9Q & (JB1L77Q # JB1L88Q & !MB1L21Q) # !MB1L9Q & JB1L88Q & !MB1L21Q;
+JB1L46 = MB1L9Q & (JB1L67Q # JB1L78Q & !MB1L21Q) # !MB1L9Q & JB1L78Q & !MB1L21Q;
 
 
 --B1L13 is ahb_slave:ahb_slave_inst|Select_539_rtl_43_rtl_339~153
@@ -19584,10 +19593,10 @@ C2L3 = X1L932 & PE1_MASTERHWDATA[2] # !X1L932 & (BB2L49Q $ EB2_bin_sig[3]);
 N1L3 = PE1_MASTERHWDATA[2] & (FLASH_AD_D[2] # X1L732) # !PE1_MASTERHWDATA[2] & FLASH_AD_D[2] & !X1L732;
 
 
---JB1L71 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~2957
+--JB1L71 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~3009
 --operation mode is normal
 
-JB1L71 = VD1L01Q & JB1_SV9 & !JB1_SV0 & !JB1_SV8;
+JB1L71 = VD1L01Q & JB1_SV8 & !JB1_SV0 & !JB1_SV3;
 
 
 --C1L4 is atwd:atwd0|data_sig[3]~17
@@ -19987,17 +19996,17 @@ GD1L3Q_lut_out = PC01_agb_out & GD1L5Q;
 GD1L3Q = DFFE(GD1L3Q_lut_out, GLOBAL(JE1_outclock0), !SB1L42, , );
 
 
---JB1L97Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~21
+--JB1L87Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|sreg~21
 --operation mode is normal
 
-JB1L97Q_lut_out = JB1L57Q & (SB1L42 # JB1L97Q & !GD1L3Q) # !JB1L57Q & JB1L97Q & !GD1L3Q;
-JB1L97Q = DFFE(JB1L97Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L87Q_lut_out = JB1L47Q & (SB1L42 # JB1L87Q & !GD1L3Q) # !JB1L47Q & JB1L87Q & !GD1L3Q;
+JB1L87Q = DFFE(JB1L87Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
---JB1L9 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~2271
+--JB1L01 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~2297
 --operation mode is normal
 
-JB1L9 = GD1L3Q & JB1L97Q;
+JB1L01 = GD1L3Q & JB1L87Q;
 
 
 --PC32_aeb_out is dcom:dcom_inst|tcal_timer:inst1|dc_tcal_ct:time|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|lpm_compare:$00023|comptree:comparator|cmpchain:cmp_end|comptree:comp|comptree:sub_comptree|cmpchain:cmp_end|aeb_out
@@ -20080,17 +20089,17 @@ VD1L28Q_lut_out = JB1L35Q & VD1L6;
 VD1L28Q = DFFE(VD1L28Q_lut_out, GLOBAL(JE1_outclock0), !SB1L2, , );
 
 
---JB1L901Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|tcal_data~reg
+--JB1L211Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|tcal_data~reg
 --operation mode is normal
 
-JB1L901Q_lut_out = JB1L09Q # JB1L8 # SB1L4 & JB1L67Q;
-JB1L901Q = DFFE(JB1L901Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L211Q_lut_out = JB1L98Q # JB1L9 # SB1L4 & JB1L57Q;
+JB1L211Q = DFFE(JB1L211Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
 --VD1L61 is dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|DC_SEND:inst6|data_val~187
 --operation mode is normal
 
-VD1L61 = VD1L28Q # !VD1L45Q & (JB1L05Q # JB1L901Q);
+VD1L61 = VD1L28Q # !VD1L45Q & (JB1L05Q # JB1L211Q);
 
 
 --VD1L87Q is dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|DC_SEND:inst6|sreg~36
@@ -20666,88 +20675,76 @@ K1L471 = K1L261 & K1L561 & K1L602Q & !K1_reduce_nor_96;
 K1L761 = K1L602Q & (K1_reduce_nor_22 & !K1L402Q # !K1_reduce_nor_96) # !K1L602Q & K1_reduce_nor_22 & !K1L402Q;
 
 
---JB1L79 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SV1~54
+--JB1L21 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~2448
 --operation mode is normal
 
-JB1L79 = JB1L85 # JB1L1 # JB1L18Q & !VD1L01Q;
+JB1L21 = JB1_SV1 # JB1L61;
 
 
---JB1L69 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SV1~25
+--JB1L69 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SV1~54
 --operation mode is normal
 
-JB1L69 = !JB1L16 & !JB1L46 & !JB1L06 & !JB1L56;
+JB1L69 = JB1L85 # JB1L1 # JB1L08Q & !VD1L01Q;
 
 
---JB1L24 is dcom:dcom_inst|DC_CTRL:DC_CTRL|REC_PULSE~0
+--JB1L34 is dcom:dcom_inst|DC_CTRL:DC_CTRL|REC_PULSE~0
 --operation mode is normal
 
-JB1L24 = JB1L57Q & (SB1L42 # JB1L97Q & !GD1L3Q) # !JB1L57Q & JB1L97Q & !GD1L3Q;
+JB1L34 = JB1L47Q & (SB1L42 # JB1L87Q & !GD1L3Q) # !JB1L47Q & JB1L87Q & !GD1L3Q;
 
 
---JB1L86 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SND_TC_DAT~0
+--JB1L56 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SND_TC_DAT~0
 --operation mode is normal
 
-JB1L86 = SB1L4 & (JB1L67Q # JB1L09Q & !VD1L85Q) # !SB1L4 & JB1L09Q & !VD1L85Q;
+JB1L56 = SB1L4 & (JB1L57Q # JB1L98Q & !VD1L85Q) # !SB1L4 & JB1L98Q & !VD1L85Q;
 
 
---JB1L201 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SV8~64
+--JB1L201 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SV3~64
 --operation mode is normal
 
-JB1L201 = JB1L24 # JB1L86 # JB1L23 # JB1L95;
+JB1L201 = JB1L34 # JB1L56 # JB1L33 # JB1L95;
 
 
 --JB1L75 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SND_DAT~34
 --operation mode is normal
 
-JB1L75 = !JB1L55Q & !JB1L98Q;
+JB1L75 = !JB1L55Q & !JB1L88Q;
 
 
 --JB1L65 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SND_DAT~21
 --operation mode is normal
 
-JB1L65 = JB1L08Q & (VD1L01Q & !JB1L75 # !VD1L85Q) # !JB1L08Q & VD1L01Q & !JB1L75;
+JB1L65 = JB1L97Q & (VD1L01Q & !JB1L75 # !VD1L85Q) # !JB1L97Q & VD1L01Q & !JB1L75;
 
 
---JB1L101 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SV8~43
+--JB1L101 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SV3~43
 --operation mode is normal
 
-JB1L101 = JB1L43 & !JB1L65 & !JB1L96 & !JB1L56;
+JB1L101 = JB1L53 & !JB1L65 & !JB1L66 & !JB1L36;
 
 
---JB1L53 is dcom:dcom_inst|DC_CTRL:DC_CTRL|QUIET_WT~0
+--JB1L63 is dcom:dcom_inst|DC_CTRL:DC_CTRL|QUIET_WT~0
 --operation mode is normal
 
-JB1L53 = GD1L3Q & (JB1L97Q # JB1L77Q & !MB1L9Q) # !GD1L3Q & JB1L77Q & !MB1L9Q;
+JB1L63 = GD1L3Q & (JB1L87Q # JB1L67Q & !MB1L9Q) # !GD1L3Q & JB1L67Q & !MB1L9Q;
 
 
 --JB1L99 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SV2~34
 --operation mode is normal
 
-JB1L99 = JB1L701 # JB1L65 # JB1L53;
+JB1L99 = JB1L011 # JB1L65 # JB1L63;
 
 
---JB1L41 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~2901
+--JB1L8 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~2120
 --operation mode is normal
 
-JB1L41 = JB1L57Q & SB1L4;
+JB1L8 = CC2_b_non_empty & JB1L47Q & SB1L4;
 
 
---JB1L76 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SND_STF~0
+--JB1L39 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SV0~101
 --operation mode is normal
 
-JB1L76 = CC2_b_non_empty & (JB1L41 # JB1L98Q & !VD1L01Q) # !CC2_b_non_empty & JB1L98Q & !VD1L01Q;
-
-
---JB1L49 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SV0~88
---operation mode is normal
-
-JB1L49 = JB1L701 # JB1L66 # JB1L96;
-
-
---JB1L401 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SV9~46
---operation mode is normal
-
-JB1L401 = JB1L45 # JB1L14 # JB1L76 # !JB1L101;
+JB1L39 = JB1L011 # JB1L46 # JB1L66 # JB1L56;
 
 
 --VD1L65Q is dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|DC_SEND:inst6|sreg~14
@@ -21000,16 +20997,16 @@ LB1_inst31_lut_out = VCC;
 LB1_inst31 = DFFE(LB1_inst31_lut_out, GLOBAL(JE1_outclock0), !SB1L2, , X1L532Q);
 
 
---JB1L51 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~2919
+--JB1L51 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~2970
 --operation mode is normal
 
 JB1L51 = CD1_dffs[3] & LB1_inst31;
 
 
---JB1L81 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~2976
+--JB1L81 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~3028
 --operation mode is normal
 
-JB1L81 = (CD1_dffs[2] & JB1L21 & !CD1_dffs[4] & !CD1_dffs[5]) & CASCADE(JB1L51);
+JB1L81 = (CD1_dffs[2] & JB1L31 & !CD1_dffs[4] & !CD1_dffs[5]) & CASCADE(JB1L51);
 
 
 --N1L32 is flash_adc:inst_flash_ADC|wraddress[0]~8
@@ -21615,7 +21612,7 @@ LD1L5 = FB51_pre_out[3] # FB51_pre_out[1] # FB51_pre_out[2] # !JD1L3;
 --GD1L01Q is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|dc_rapcal_lh:inst28|RX_TCAL:inst6|tcwf_aclr~reg
 --operation mode is normal
 
-GD1L01Q_lut_out = VD1L85Q & !GD1L7Q & (JB1L97Q # GD1L01Q) # !VD1L85Q & (JB1L97Q # GD1L01Q);
+GD1L01Q_lut_out = VD1L85Q & !GD1L7Q & (JB1L87Q # GD1L01Q) # !VD1L85Q & (JB1L87Q # GD1L01Q);
 GD1L01Q = DFFE(GD1L01Q_lut_out, GLOBAL(JE1_outclock0), !SB1L42, , );
 
 
@@ -21640,10 +21637,10 @@ VD1L35Q_lut_out = VD1L25 # VD1L5 & (VD1L18Q # VD1L88Q);
 VD1L35Q = DFFE(VD1L35Q_lut_out, GLOBAL(JE1_outclock0), !SB1L2, , );
 
 
---JB1L8 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~2130
+--JB1L9 is dcom:dcom_inst|DC_CTRL:DC_CTRL|altr_temp~2156
 --operation mode is normal
 
-JB1L8 = JB1L19Q & !VD1L01Q;
+JB1L9 = JB1L09Q & !VD1L01Q;
 
 
 --VD1L97Q is dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|DC_SEND:inst6|sreg~37
@@ -23260,7 +23257,7 @@ LD1L3 = LD1_b_full # JD1L4 & LD1_b_non_empty & FB51_sload_path[0];
 --GD1L8Q is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|dc_rapcal_lh:inst28|RX_TCAL:inst6|sreg~17
 --operation mode is normal
 
-GD1L8Q_lut_out = JB1L97Q & !GD1L01Q;
+GD1L8Q_lut_out = JB1L87Q & !GD1L01Q;
 GD1L8Q = DFFE(GD1L8Q_lut_out, GLOBAL(JE1_outclock0), !SB1L42, , );
 
 
@@ -23293,7 +23290,7 @@ GD1L7Q = DFFE(GD1L7Q_lut_out, GLOBAL(JE1_outclock0), !SB1L42, , );
 --VD1L98 is dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|DC_SEND:inst6|TC_RX_TIME~8
 --operation mode is normal
 
-VD1L98 = JB1L901Q & (VD1L38Q & !DE1L11Q # !VD1L45Q) # !JB1L901Q & VD1L38Q & !DE1L11Q;
+VD1L98 = JB1L211Q & (VD1L38Q & !DE1L11Q # !VD1L45Q) # !JB1L211Q & VD1L38Q & !DE1L11Q;
 
 
 --VD1L09 is dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|DC_SEND:inst6|TC_TX_TIME~6
@@ -24572,6 +24569,36 @@ K1_cnt[5] = DFFE(K1_cnt[5]_lut_out, GLOBAL(JE1_outclock0), !V1L4Q, , K1L261);
 K1L381 = (K1_cnt[7] & K1_cnt[6] & K1_cnt[4] & !K1_cnt[5]) & CASCADE(K1L971);
 
 
+--JB1L59 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SV1~35
+--operation mode is normal
+
+JB1L59 = !JB1L4 & !JB1L36 & (VD1L01Q # !JB1L38Q);
+
+
+--JB1L79 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SV1~71
+--operation mode is normal
+
+JB1L79 = (!JB1L06 & !JB1L26 & (VD1L01Q # !JB1L48Q)) & CASCADE(JB1L59);
+
+
+--JB1L401 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SV8~57
+--operation mode is normal
+
+JB1L401 = JB1L24 # JB1L8 # JB1L88Q & !VD1L01Q;
+
+
+--JB1L501 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SV8~63
+--operation mode is normal
+
+JB1L501 = JB1L101 & !JB1L11 & !JB1L45 & !JB1L401;
+
+
+--JB1L601 is dcom:dcom_inst|DC_CTRL:DC_CTRL|SV8~68
+--operation mode is normal
+
+JB1L601 = (!JB1L85 & !JB1L06 & (VD1L01Q # !JB1L48Q)) & CASCADE(JB1L501);
+
+
 --BD1L51Q is dcom:dcom_inst|DC_Rx_chan_04:DC_Rx_chan_04|RX_UART_12:inst25|UA_RX_12:inst6|sreg~17
 --operation mode is normal
 
@@ -25645,7 +25672,7 @@ VD1L93 = DE1L11Q & (VD1L17Q # VD1L86Q);
 --VD1L44 is dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|DC_SEND:inst6|muxsel2~267
 --operation mode is normal
 
-VD1L44 = (!VD1L7 & !VD1L93 & (VD1L45Q # !JB1L901Q)) & CASCADE(VD1L24);
+VD1L44 = (!VD1L7 & !VD1L93 & (VD1L45Q # !JB1L211Q)) & CASCADE(VD1L24);
 
 
 --X1L622Q is slaveregister:slaveregister_inst|dom_id[40]~reg0
@@ -26198,29 +26225,29 @@ RC05L2 = (VD1L53Q & FB41_sload_path[4] # !VD1L53Q & HB4_q[6] # !VD1L83Q) & CASCA
 --JB1L03Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|cmd_snd3~reg
 --operation mode is normal
 
-JB1L03Q_lut_out = JB1L3 # JB1L64 # JB1L31 # JB1L92;
-JB1L03Q = DFFE(JB1L03Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L03Q_lut_out = JB1L3 # JB1L64 # JB1L41 # JB1L92;
+JB1L03Q = DFFE(JB1L03Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
 --JB1L12Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|cmd_snd0~reg
 --operation mode is normal
 
 JB1L12Q_lut_out = JB1L2 # JB1L4 # JB1L02 # !JB1L74;
-JB1L12Q = DFFE(JB1L12Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L12Q = DFFE(JB1L12Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
 --JB1L42Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|cmd_snd1~reg
 --operation mode is normal
 
-JB1L42Q_lut_out = JB1L22 # JB1L87Q & SB1L01Q # !JB1L32;
-JB1L42Q = DFFE(JB1L42Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L42Q_lut_out = JB1L22 # JB1L77Q & SB1L01Q # !JB1L32;
+JB1L42Q = DFFE(JB1L42Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
 --JB1L72Q is dcom:dcom_inst|DC_CTRL:DC_CTRL|cmd_snd2~reg
 --operation mode is normal
 
-JB1L72Q_lut_out = !VD1L01Q & (JB1L28Q # !JB1L62) # !JB1L52;
-JB1L72Q = DFFE(JB1L72Q_lut_out, GLOBAL(JE1_outclock0), !JB1L29, , );
+JB1L72Q_lut_out = !VD1L01Q & (JB1L18Q # !JB1L62) # !JB1L52;
+JB1L72Q = DFFE(JB1L72Q_lut_out, GLOBAL(JE1_outclock0), !JB1L19, , );
 
 
 --XC2L2 is dcom:dcom_inst|DC_Tx_chan_04:DC_Tx_chan_04|control_byte:inst2|Par_74180:par|54~21
@@ -26656,7 +26683,7 @@ GD1L11 = GD1L6Q # GD1L8Q # VD1L85Q & GD1L7Q;
 --JB1L82 is dcom:dcom_inst|DC_CTRL:DC_CTRL|cmd_snd3~147
 --operation mode is normal
 
-JB1L82 = JB1L58Q # JB1L68Q # JB1L48Q # JB1L78Q;
+JB1L82 = JB1L48Q # JB1L58Q # JB1L38Q # JB1L68Q;
 
 
 --JB1L92 is dcom:dcom_inst|DC_CTRL:DC_CTRL|cmd_snd3~156
@@ -26668,19 +26695,19 @@ JB1L92 = JB1L4 # JB1L82 & !VD1L01Q;
 --JB1L91 is dcom:dcom_inst|DC_CTRL:DC_CTRL|cmd_snd0~22
 --operation mode is normal
 
-JB1L91 = JB1L57Q & (JB1L54 # JB1L6 & FB5_pre_out[9]);
+JB1L91 = JB1L47Q & (JB1L54 # JB1L6 & FB5_pre_out[9]);
 
 
 --JB1L02 is dcom:dcom_inst|DC_CTRL:DC_CTRL|cmd_snd0~196
 --operation mode is normal
 
-JB1L02 = JB1L91 # !VD1L01Q & (JB1L48Q # !JB1L84);
+JB1L02 = JB1L91 # !VD1L01Q & (JB1L38Q # !JB1L84);
 
 
 --JB1L22 is dcom:dcom_inst|DC_CTRL:DC_CTRL|cmd_snd1~14
 --operation mode is normal
 
-JB1L22 = !VD1L01Q & (JB1L28Q # !JB1L73);
+JB1L22 = !VD1L01Q & (JB1L18Q # !JB1L83);
 
 
 --X1L34Q is slaveregister:slaveregister_inst|com_tx_data[6]~reg0
@@ -28016,10 +28043,10 @@ CD4_dffs[47]_lut_out = FB93_sload_path[47] & GD1L3Q;
 CD4_dffs[47] = DFFE(CD4_dffs[47]_lut_out, GLOBAL(JE1_outclock0), , , LB1_inst38);
 
 
---JB1L93 is dcom:dcom_inst|DC_CTRL:DC_CTRL|rec_ctrl~331
+--JB1L04 is dcom:dcom_inst|DC_CTRL:DC_CTRL|rec_ctrl~331
 --operation mode is normal
 
-JB1L93 = !SB1L4 & !SB1L32 & !JB1L81 & !SB1L42;
+JB1L04 = !SB1L4 & !SB1L32 & !JB1L81 & !SB1L42;
 
 
 --B1L3 is ahb_slave:ahb_slave_inst|i~1063
@@ -28967,7 +28994,7 @@ PDL_FPGA_D[7] = OUTPUT(GND);
 --PDL_FPGA_D[6] is PDL_FPGA_D[6]
 --operation mode is output
 
-PDL_FPGA_D[6] = OUTPUT(!JB1L801Q);
+PDL_FPGA_D[6] = OUTPUT(!JB1L111Q);
 
 
 --PDL_FPGA_D[5] is PDL_FPGA_D[5]
@@ -29088,7 +29115,7 @@ PGM[3] = OUTPUT(X1_com_ctrl_local[2]);
 --PGM[2] is PGM[2]
 --operation mode is output
 
-PGM[2] = OUTPUT(JB1L33Q);
+PGM[2] = OUTPUT(JB1L43Q);
 
 
 --PGM[1] is PGM[1]
