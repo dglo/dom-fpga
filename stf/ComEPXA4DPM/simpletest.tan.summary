@@ -3,9 +3,9 @@ Timing Analyzer Summary
 --------------------------------------------------------------------------------------
 
 Type           : Worst-case tsu
-Slack          : -2.228 ns
+Slack          : -2.296 ns
 Required Time  : 1.000 ns
-Actual Time    : 3.228 ns
+Actual Time    : 3.296 ns
 From           : OneSPE
 To             : hit_counter:inst_hit_counter|OneSPE0
 
@@ -19,9 +19,9 @@ To             : ATWDTrigger_1
 Type           : Worst-case th
 Slack          : N/A
 Required Time  : None
-Actual Time    : -6.733 ns
-From           : COM_AD_D[8]
-To             : dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst30|inst10[8]
+Actual Time    : -6.904 ns
+From           : TriggerComplete_1
+To             : atwd:atwd1|atwd_trigger:inst_atwd_trigger|TriggerComplete_in_0
 
 Type           : Worst-case minimum tco
 Slack          : N/A
@@ -31,11 +31,18 @@ From           : pll2x:inst_pll2x|altclklock:altclklock_component|outclock1
 To             : CLKLK_OUT2p
 
 Type           : Clock Setup: 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock1'
-Slack          : 5.442 ns
+Slack          : 5.488 ns
 Required Time  : 40.00 MHz ( period = 25.000 ns )
-Actual Time    : 70.84 MHz ( period = 14.116 ns )
-From           : atwd:atwd1|atwd_trigger:inst_atwd_trigger|launch_mode[1]
-To             : atwd:atwd1|atwd_trigger:inst_atwd_trigger|ATWDTrigger_sig
+Actual Time    : 71.31 MHz ( period = 14.024 ns )
+From           : atwd:atwd1|atwd_trigger:inst_atwd_trigger|no_trigger
+To             : atwd:atwd1|atwd_trigger:inst_atwd_trigger|launch_mode[1]
+
+Type           : Clock Setup: 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock0'
+Slack          : 9.831 ns
+Required Time  : 20.00 MHz ( period = 50.000 ns )
+Actual Time    : 32.96 MHz ( period = 30.338 ns )
+From           : stripe:stripe_inst|alt_exc_stripe:lpm_instance|alt_exc_upcore:core|core~SLAVEHREADYO0
+To             : master_data_source:inst_master_data_source|data[31]
 
 Type           : Clock Setup: 'pll4x:inst_pll4x|altclklock:altclklock_component|outclock1'
 Slack          : 10.887 ns
@@ -43,13 +50,6 @@ Required Time  : 80.00 MHz ( period = 12.500 ns )
 Actual Time    : Restricted to 349.90 MHz ( period = 2.858 ns )
 From           : lpm_counter:CNT_rtl_0|alt_synch_counter:wysi_counter|sload_path[0]
 To             : lpm_counter:CNT_rtl_0|alt_synch_counter:wysi_counter|sload_path[0]
-
-Type           : Clock Setup: 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock0'
-Slack          : 11.014 ns
-Required Time  : 20.00 MHz ( period = 50.000 ns )
-Actual Time    : 35.75 MHz ( period = 27.972 ns )
-From           : stripe:stripe_inst|alt_exc_stripe:lpm_instance|alt_exc_upcore:core|core~SLAVEHREADYO0
-To             : master_data_source:inst_master_data_source|data[31]
 
 --------------------------------------------------------------------------------------
 
