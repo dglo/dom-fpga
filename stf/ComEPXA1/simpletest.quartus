@@ -13,6 +13,7 @@ SOFTWARE_SETTINGS_LIST
 }
 FILES
 {
+	VHDL_FILE = ..\common\slaveregister.vhd;
 	VHDL_FILE = ..\common\timer.vhd;
 	AHDL_FILE = ..\..\common\com\Rx_chan\edges\ONE_DET.tdf;
 	INCLUDE_FILE = ..\..\common\com\Rx_chan\edges\ONE_DET.inc;
@@ -22,7 +23,6 @@ FILES
 	BDF_FILE = ..\..\common\com\Tx_chan\DC_Tx_chan_04.bdf;
 	AHDL_FILE = ..\..\common\com\rev_004.tdf;
 	BDF_FILE = ..\..\common\com\dcom.bdf;
-	VHDL_FILE = slaveregister.vhd;
 	AHDL_FILE = ..\..\common\com\Rx_chan\DC_MREC.tdf;
 	INCLUDE_FILE = ..\..\common\com\Parity\Par_74180.inc;
 	AHDL_FILE = ..\..\common\com\Rx_chan\du_dt_2_clks.tdf;

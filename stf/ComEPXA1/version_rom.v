@@ -36,11 +36,9 @@
 
 module version_rom (
 	address,
-	inclock,
 	q);
 
 	input	[6:0]  address;
-	input	  inclock;
 	output	[15:0]  q;
 
 	wire [15:0] sub_wire0;
@@ -48,13 +46,12 @@ module version_rom (
 
 	lpm_rom	lpm_rom_component (
 				.address (address),
-				.inclock (inclock),
 				.q (sub_wire0));
 	defparam
 		lpm_rom_component.intended_device_family = "EXCALIBUR_ARM",
 		lpm_rom_component.lpm_width = 16,
 		lpm_rom_component.lpm_widthad = 7,
-		lpm_rom_component.lpm_address_control = "REGISTERED",
+		lpm_rom_component.lpm_address_control = "UNREGISTERED",
 		lpm_rom_component.lpm_outdata = "UNREGISTERED",
 		lpm_rom_component.lpm_file = "version_rom.mif",
 		lpm_rom_component.lpm_type = "LPM_ROM";
@@ -70,7 +67,7 @@ endmodule
 // Retrieval info: PRIVATE: INTENDED_DEVICE_FAMILY STRING "EXCALIBUR_ARM"
 // Retrieval info: PRIVATE: SingleClock NUMERIC "0"
 // Retrieval info: PRIVATE: UseDQRAM NUMERIC "0"
-// Retrieval info: PRIVATE: RegAddr NUMERIC "1"
+// Retrieval info: PRIVATE: RegAddr NUMERIC "0"
 // Retrieval info: PRIVATE: RegOutput NUMERIC "0"
 // Retrieval info: PRIVATE: BYTE_ENABLE NUMERIC "0"
 // Retrieval info: PRIVATE: BYTE_SIZE NUMERIC "1"
@@ -78,20 +75,18 @@ endmodule
 // Retrieval info: PRIVATE: AclrAddr NUMERIC "0"
 // Retrieval info: PRIVATE: AclrOutput NUMERIC "0"
 // Retrieval info: PRIVATE: Clken NUMERIC "0"
-// Retrieval info: PRIVATE: RegAdd NUMERIC "1"
+// Retrieval info: PRIVATE: RegAdd NUMERIC "0"
 // Retrieval info: PRIVATE: OutputRegistered NUMERIC "0"
-// Retrieval info: PRIVATE: MIFfilename STRING "C:/IceCube/FPGAcode/HardWareTest/simpletest/version_rom.mif"
+// Retrieval info: PRIVATE: MIFfilename STRING "version_rom.mif"
 // Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "EXCALIBUR_ARM"
 // Retrieval info: CONSTANT: LPM_WIDTH NUMERIC "16"
 // Retrieval info: CONSTANT: LPM_WIDTHAD NUMERIC "7"
-// Retrieval info: CONSTANT: LPM_ADDRESS_CONTROL STRING "REGISTERED"
+// Retrieval info: CONSTANT: LPM_ADDRESS_CONTROL STRING "UNREGISTERED"
 // Retrieval info: CONSTANT: LPM_OUTDATA STRING "UNREGISTERED"
-// Retrieval info: CONSTANT: LPM_FILE STRING "C:/IceCube/FPGAcode/HardWareTest/simpletest/version_rom.mif"
+// Retrieval info: CONSTANT: LPM_FILE STRING "version_rom.mif"
 // Retrieval info: CONSTANT: LPM_TYPE STRING "LPM_ROM"
 // Retrieval info: USED_PORT: address 0 0 7 0 INPUT NODEFVAL address[6..0]
 // Retrieval info: USED_PORT: q 0 0 16 0 OUTPUT NODEFVAL q[15..0]
-// Retrieval info: USED_PORT: inclock 0 0 0 0 INPUT NODEFVAL inclock
 // Retrieval info: CONNECT: @address 0 0 7 0 address 0 0 7 0
 // Retrieval info: CONNECT: q 0 0 16 0 @q 0 0 16 0
-// Retrieval info: CONNECT: @inclock 0 0 0 0 inclock 0 0 0 0
 // Retrieval info: LIBRARY: lpm lpm.lpm_components.all

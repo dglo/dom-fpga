@@ -135,6 +135,8 @@ ENTITY simpletest IS
 		FL_TCK				: OUT STD_LOGIC;
 		FL_TDI				: OUT STD_LOGIC;
 		FL_TDO				: IN STD_LOGIC;
+		-- CPDL FPGA interface    currently used to show FPGA is confugured
+		PDL_FPGA_D			: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
 		-- Test connector	THERE IS NO 11   I don't know why
 		PGM				: OUT STD_LOGIC_VECTOR (15 downto 0)
 	);
@@ -317,6 +319,8 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL com_ctrl			: STD_LOGIC_VECTOR (31 downto 0);
 	SIGNAL com_status		: STD_LOGIC_VECTOR (31 downto 0);
 	
+	SIGNAL systime			: STD_LOGIC_VECTOR (47 DOWNTO 0);
+	
 	COMPONENT ROC
 		PORT (
 			CLK			: IN STD_LOGIC;
@@ -496,10 +500,13 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			response_3		: IN	STD_LOGIC_VECTOR(31 downto 0);
 			com_ctrl		: OUT	STD_LOGIC_VECTOR(31 downto 0);
 			com_status		: IN	STD_LOGIC_VECTOR(31 downto 0);
+			com_tx_data		: OUT	STD_LOGIC_VECTOR(31 downto 0);
+			com_rx_data		: IN	STD_LOGIC_VECTOR(31 downto 0);
 			hitcounter_o	: IN	STD_LOGIC_VECTOR(31 downto 0);
 			hitcounter_m	: IN	STD_LOGIC_VECTOR(31 downto 0);
 			hitcounter_o_ff	: IN	STD_LOGIC_VECTOR(31 downto 0);
 			hitcounter_m_ff	: IN	STD_LOGIC_VECTOR(31 downto 0);
+			systime			: IN	STD_LOGIC_VECTOR(47 DOWNTO 0);
 			-- COM ADC RX interface
 			com_adc_wdata		: OUT STD_LOGIC_VECTOR (15 downto 0);
 			com_adc_rdata		: IN STD_LOGIC_VECTOR (15 downto 0);
@@ -520,11 +527,14 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			atwd1_rdata			: IN STD_LOGIC_VECTOR (15 downto 0);
 			atwd1_address		: OUT STD_LOGIC_VECTOR (8 downto 0);
 			atwd1_write_en		: OUT STD_LOGIC;
+			-- kale communication interface
+			tx_fifo_wr			: OUT STD_LOGIC;
+			rx_fifo_rd			: OUT STD_LOGIC;
 			-- test connector
 			TC				: OUT	STD_LOGIC_VECTOR(7 downto 0)
 		);
 	END COMPONENT;
-
+	
 	COMPONENT com_DAC_TX
 		PORT (
 			CLK			: IN STD_LOGIC;
@@ -800,7 +810,14 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			TC					: OUT STD_LOGIC_VECTOR (7 downto 0)
 		);
 	END COMPONENT;
-
+	
+	COMPONENT timer
+		PORT (
+			CLK     : IN  STD_LOGIC;
+			RST     : IN  STD_LOGIC;
+			systime : OUT STD_LOGIC_VECTOR (47 DOWNTO 0)
+		);
+	END COMPONENT;
 
 	
 BEGIN
@@ -1124,10 +1141,13 @@ BEGIN
 			response_3		=> response_3,
 			com_ctrl		=> com_ctrl,
 			com_status		=> com_status,
+			com_tx_data		=> open,
+			com_rx_data		=> (others=>'0'),
 			hitcounter_o	=> hitcounter_o,
 			hitcounter_m	=> hitcounter_m,
 			hitcounter_o_ff	=> hitcounter_o_ff,
 			hitcounter_m_ff	=> hitcounter_m_ff,
+			systime			=> systime,
 			-- COM ADC RX interface
 			com_adc_wdata		=> com_adc_wdata,
 			com_adc_rdata		=> com_adc_rdata,
@@ -1148,6 +1168,9 @@ BEGIN
 			atwd1_rdata			=> atwd1_rdata,
 			atwd1_address		=> atwd1_address,
 			atwd1_write_en		=> atwd1_write_en,
+			-- kale communication interface
+			tx_fifo_wr			=> open,
+			rx_fifo_rd			=> open,
 			-- test connector
 			TC				=> open --TC
 		);
@@ -1449,6 +1472,12 @@ BEGIN
 			TC					=> open
 		);
 	
+	timer_inst : timer
+		PORT MAP (
+			CLK		=> CLK40,
+			RST		=> RST,
+			systime	=> systime
+		);
 	
 	
 	-- PGM(15 downto 12) <= (others=>'0');
@@ -1459,6 +1488,10 @@ BEGIN
 	PGM(11) <= 'Z';
 	-- PGM(10 downto 8) <= (others=>'0');
 	PGM(7 downto 0) <= TC;
+	
+	-- indicate FPGA is configured
+	PDL_FPGA_D	<= "01010101";
+	
 	
 	process(CLK20)
 		variable CNT	: STD_LOGIC_VECTOR(2 downto 0);
