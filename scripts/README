@@ -1,0 +1,33 @@
+this directory contains scripts to generate
+versioning and build number information for
+the fpga _and_ for the C code which uses the
+fpga routines.
+
+except for mkhdr.sh, these scripts are to
+be executed from the directory of module that
+is being compiled.
+
+getbld.sh: 
+	retrieve the current build number
+
+getfpga.sh: 
+	retrieve the current fpga type.
+
+getver.sh: 
+	retrieve the version number of the module
+
+mkhdr.sh: 
+	create a C header file
+
+mkmif.sh: 
+	create the .mif file (memory image file)
+
+newbld.sh: 
+	increment the build number
+
+sdata.txt: 
+	the module <-> index file (delimit with a single space)
+
+tdata.txt: 
+	the fpga types index file (delimit with a single space)
+
