@@ -1,0 +1,9 @@
+(
+	AgB_sig
+) = comp_10	(
+	.dataa[] = dataa_sig[],
+	.datab[] = datab_sig[]
+)
+RETURNS (
+	.AgB
+);
