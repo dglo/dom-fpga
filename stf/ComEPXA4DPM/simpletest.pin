@@ -463,7 +463,7 @@ RESERVED_INPUT               : U3        :        :                   :         
 RESERVED_INPUT               : U4        :        :                   :         : 13        :                
 RESERVED_INPUT               : U5        :        :                   :         : 13        :                
 RESERVED_INPUT               : U6        :        :                   :         : 13        :                
-RESERVED_INPUT               : U7        :        :                   :         : 13        :                
+CLK3p                        : U7        : input  : LVTTL             :         : 13        : N              
 VCC_CKOUT2                   : U8        : power  :                   : 3.3V    :           :                
 VCC_INT                      : U9        : power  :                   : 1.8V    :           :                
 GND                          : U10       : gnd    :                   :         :           :                
@@ -517,7 +517,7 @@ RESERVED_INPUT               : W5        :        :                   :         
 CLK2p                        : W6        : input  : LVTTL             :         : 13        : N              
 DATA0                        : W7        : input  :                   :         :           :                
 GND                          : W8        : gnd    :                   :         :           :                
-CLK3p                        : W9        : input  : LVTTL             :         : 11        : N              
+RESERVED_INPUT               : W9        :        :                   :         : 11        :                
 RESERVED_INPUT               : W10       :        :                   :         : 11        :                
 RESERVED_INPUT               : W11       :        :                   :         : 11        :                
 RESERVED_INPUT               : W12       :        :                   :         : 11        :                

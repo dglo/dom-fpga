@@ -19,6 +19,7 @@
 -- Revisions  :
 -- Date        Version     Author    Description
 -- 2003-07-17  V01-01-00   thorsten  
+-- 2004-10-22              thorsten  added LC_abort
 -------------------------------------------------------------------------------
 
 LIBRARY IEEE;
@@ -305,6 +306,8 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL LC_ATWD0				: STD_LOGIC;
 	SIGNAL LC_ATWD1				: STD_LOGIC;
 	SIGNAL enable_coinc_atwd	: STD_LOGIC;
+	SIGNAL atwd0_LC_abort		: STD_LOGIC;
+	SIGNAL atwd1_LC_abort		: STD_LOGIC;
 	
 	-- hit counter
 	SIGNAL oneSPEcnt		: STD_LOGIC_VECTOR(15 downto 0);
@@ -777,6 +780,8 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			LC_down_post_window	: IN STD_LOGIC_VECTOR (5 DOWNTO 0) := "000000";
 			LC_atwd_a			: OUT STD_LOGIC;
 			LC_atwd_b			: OUT STD_LOGIC;
+			atwd0_LC_abort		: OUT STD_LOGIC;
+			atwd1_LC_abort		: OUT STD_LOGIC;
 			atwd_a_enable_disc	: IN STD_LOGIC := '0';
 			atwd_b_enable_disc	: IN STD_LOGIC := '0';
 			atwd0_trigger		: IN STD_LOGIC := '0';
@@ -864,6 +869,9 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			-- disc
 			OneSPE		: IN STD_LOGIC;
 			LEDtrig		: IN STD_LOGIC;
+			-- LC interface
+			LC_abort	: IN STD_LOGIC := '0';
+			LC_enable	: IN STD_LOGIC := '0';
 			-- stripe interface
 			wdata		: IN STD_LOGIC_VECTOR (15 downto 0);
 			rdata		: OUT STD_LOGIC_VECTOR (15 downto 0);
@@ -1707,6 +1715,8 @@ BEGIN
 			LC_down_post_window	=> command_5(29 DOWNTO 24),
 			LC_atwd_a			=> LC_ATWD0,
 			LC_atwd_b			=> LC_ATWD1,
+			atwd0_LC_abort		=> atwd0_LC_abort,
+			atwd1_LC_abort		=> atwd1_LC_abort,
 			atwd_a_enable_disc	=> atwd0_enable_disc,
 			atwd_b_enable_disc	=> atwd1_enable_disc,
 			atwd0_trigger		=> atwd0_trigger,
@@ -1826,6 +1836,9 @@ BEGIN
 			-- disc
 			OneSPE		=> OneSPE,
 			LEDtrig		=> LEDtrig,
+			-- LC interface
+			LC_abort	=> atwd0_LC_abort,
+			LC_enable	=> enable_coinc_atwd,
 			-- stripe interface
 			wdata		=> atwd0_wdata,
 			rdata		=> atwd0_rdata,
@@ -1869,6 +1882,9 @@ BEGIN
 			-- disc
 			OneSPE		=> OneSPE,
 			LEDtrig		=> LEDtrig,
+			-- LC interface
+			LC_abort	=> atwd1_LC_abort,
+			LC_enable	=> enable_coinc_atwd,
 			-- stripe interface
 			wdata		=> atwd1_wdata,
 			rdata		=> atwd1_rdata,

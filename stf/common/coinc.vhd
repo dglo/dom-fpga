@@ -18,7 +18,8 @@
 -- Revisions  :
 -- Date        Version     Author    Description
 -- 2003-07-17  V01-01-00   thorsten
--- 2004-09-29              thorsten  added simplified real LC  
+-- 2004-09-29              thorsten  added simplified real LC
+-- 2004-10-22              thorsten  added LC_abort
 -------------------------------------------------------------------------------
 
 LIBRARY IEEE;
@@ -42,8 +43,10 @@ ENTITY coinc IS
 		LC_up_post_window	: IN STD_LOGIC_VECTOR (5 DOWNTO 0) := "000000";
 		LC_down_pre_window	: IN STD_LOGIC_VECTOR (5 DOWNTO 0) := "000000";
 		LC_down_post_window	: IN STD_LOGIC_VECTOR (5 DOWNTO 0) := "000000";
-		LC_atwd_a			: OUT STD_LOGIC;
-		LC_atwd_b			: OUT STD_LOGIC;
+		LC_atwd_a			: buffer STD_LOGIC;
+		LC_atwd_b			: buffer STD_LOGIC;
+		atwd0_LC_abort		: OUT STD_LOGIC;
+		atwd1_LC_abort		: OUT STD_LOGIC;
 		atwd_a_enable_disc	: IN STD_LOGIC := '0';
 		atwd_b_enable_disc	: IN STD_LOGIC := '0';
 		atwd0_trigger		: IN STD_LOGIC := '0';
@@ -427,6 +430,11 @@ BEGIN
 		CONSTANT MAX_WINDOW_CNT			: INTEGER := 63;
 		VARIABLE atwd_a_enable_disc_old	: STD_LOGIC;
 		VARIABLE atwd_b_enable_disc_old	: STD_LOGIC;
+		
+		VARIABLE edgeA		: STD_LOGIC;
+		VARIABLE edgeAold	: STD_LOGIC;
+		VARIABLE edgeB		: STD_LOGIC;
+		VARIABLE edgeBold	: STD_LOGIC;
 	BEGIN
 		IF RST='1' THEN
 			ATWD_A_up_pre_cnt		:= 63;
@@ -531,6 +539,30 @@ BEGIN
 			IF ATWD_B_down_post_cnt < MAX_WINDOW_CNT THEN
 				ATWD_B_down_post_cnt	:= ATWD_B_down_post_cnt + 1;
 			END IF;
+			
+			-- generate LC abort
+			
+			IF ATWD_A_up_post_cnt = MAX_WINDOW_CNT THEN
+				edgeAold := edgeA;
+				IF LC_atwd_a = '0' THEN -- no LC -> abort
+					 edgeA := '1';
+				END IF;
+			ELSE
+				edgeA		:= '0';
+				edgeAold	:= '0';
+			END IF;
+			atwd0_LC_abort <= edgeA AND NOT edgeAold;
+			
+			IF ATWD_B_up_post_cnt = MAX_WINDOW_CNT THEN
+				edgeBold := edgeB;
+				IF LC_atwd_b = '0' THEN -- no LC -> abort
+					 edgeB := '1';
+				END IF;
+			ELSE
+				edgeB		:= '0';
+				edgeBold	:= '0';
+			END IF;
+			atwd1_LC_abort <= edgeB AND NOT edgeBold;
 			
 		END IF;
 	END PROCESS;

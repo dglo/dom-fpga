@@ -19,6 +19,7 @@
 -- Revisions  :
 -- Date        Version     Author    Description
 -- 2003-07-17  V01-01-00   thorsten  
+-- 2004-10-22              thorsten  added LC_abort
 -------------------------------------------------------------------------------
 
 LIBRARY IEEE;
@@ -42,6 +43,9 @@ ENTITY atwd IS
 		-- disc
 		OneSPE		: IN STD_LOGIC;
 		LEDtrig		: IN STD_LOGIC;
+		-- LC interface
+		LC_abort	: IN STD_LOGIC := '0';
+		LC_enable	: IN STD_LOGIC := '0';
 		-- stripe interface
 		wdata		: IN STD_LOGIC_VECTOR (15 downto 0);
 		rdata		: OUT STD_LOGIC_VECTOR (15 downto 0);
@@ -93,6 +97,10 @@ ARCHITECTURE arch_atwd OF atwd IS
 	SIGNAL ATWD_D_bin		: STD_LOGIC_VECTOR(9 downto 0);
 	SIGNAL ATWD_addr		: STD_LOGIC_VECTOR(8 downto 0);
 	SIGNAL ATWD_write		: STD_LOGIC;
+	
+	-- simple LC
+	SIGNAL enable_disc_local	: STD_LOGIC;
+	SIGNAL reset_LC				: STD_LOGIC;
 
 	COMPONENT atwd_control
 		PORT (
@@ -103,6 +111,8 @@ ARCHITECTURE arch_atwd OF atwd IS
 			-- trigger interface
 			busy		: OUT STD_LOGIC;
 			reset_trig	: OUT STD_LOGIC;
+			-- LC interface
+			LC_abort	: IN STD_LOGIC := '0';
 			-- handshake to readout
 			start_readout	: OUT STD_LOGIC;
 			readout_done	: IN STD_LOGIC;
@@ -208,6 +218,8 @@ BEGIN
 			-- trigger interface
 			busy			=> busy,
 			reset_trig		=> reset_trig,
+			-- LC interface
+			LC_abort		=> LC_abort,
 			-- handshake to readout
 			start_readout	=> start_readout,
 			readout_done	=> readout_done,
@@ -262,7 +274,7 @@ BEGIN
 			RST			=> RST,
 			-- enable
 			enable		=> enable,
-			enable_disc	=> enable_disc,
+			enable_disc	=> enable_disc_local,
 			enable_LED	=> enable_LED,
 			done		=> done,
 			deadtime	=> deadtime,
@@ -304,5 +316,21 @@ BEGIN
 			clock		=> CLK40,
 			q	 		=> rdata
 		);
+		
+		
+	-- auto restart for LC
+	enable_disc_local	<= enable_disc WHEN LC_enable = '0' ELSE enable_disc AND NOT reset_LC;
+	PROCESS (CLK40, RST)
+	BEGIN
+		IF RST='1' THEN
+			reset_LC	<= '0';
+		ELSIF CLK40'EVENT AND CLK40='1' THEN
+			IF LC_abort='1' THEN
+				reset_LC	<= '1';
+			ELSIF busy = '0' THEN
+				reset_LC	<= '0';
+			END IF;
+		END IF;
+	END PROCESS;
 
 END;
