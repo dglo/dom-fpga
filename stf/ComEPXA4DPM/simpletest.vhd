@@ -308,6 +308,8 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL enable_coinc_atwd	: STD_LOGIC;
 	SIGNAL atwd0_LC_abort		: STD_LOGIC;
 	SIGNAL atwd1_LC_abort		: STD_LOGIC;
+	SIGNAL LC_rx_down_en		: STD_LOGIC;
+	SIGNAL LC_rx_up_en			: STD_LOGIC;
 	
 	-- hit counter
 	SIGNAL oneSPEcnt		: STD_LOGIC_VECTOR(15 downto 0);
@@ -774,6 +776,8 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			enable_coinc_atwd	: IN STD_LOGIC := '0';
 			-- simple LC
 			OneSPE				: IN STD_LOGIC;
+			LC_rx_down_en		: IN STD_LOGIC := '1';
+			LC_rx_up_en			: IN STD_LOGIC := '1';
 			LC_up_pre_window	: IN STD_LOGIC_VECTOR (5 DOWNTO 0) := "000000";
 			LC_up_post_window	: IN STD_LOGIC_VECTOR (5 DOWNTO 0) := "000000";
 			LC_down_pre_window	: IN STD_LOGIC_VECTOR (5 DOWNTO 0) := "000000";
@@ -1245,6 +1249,8 @@ BEGIN
 	enable_coinc_down	<= command_2(1);
 	enable_coinc_newFF	<= command_2(2);
 	enable_coinc_atwd	<= command_2(3);
+	LC_rx_down_en		<= command_2(4);
+	LC_rx_up_en			<= command_2(5);
 	coinc_down_high		<= command_2(8);
 	coinc_down_low		<= command_2(9);
 	coinc_up_high		<= command_2(10);
@@ -1709,6 +1715,8 @@ BEGIN
 			enable_coinc_atwd	=> enable_coinc_atwd,
 			-- simple LC
 			OneSPE				=> OneSPE,
+			LC_rx_down_en		=> LC_rx_down_en,
+			LC_rx_up_en			=> LC_rx_up_en,
 			LC_up_pre_window	=> command_5(5 DOWNTO 0),
 			LC_up_post_window	=> command_5(13 DOWNTO 8),
 			LC_down_pre_window	=> command_5(21 DOWNTO 16),

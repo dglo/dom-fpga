@@ -63,7 +63,7 @@ PGM[4]                       : A18       : output : LVTTL             :         
 GND                          : A19       : gnd    :                   :         :           :                
 PGM[3]                       : A20       : output : LVTTL             :         : 3         : Y              
 VCC_IO                       : A21       : power  :                   : 3.3V    :           :                
-CLK3p                        : A22       : input  : LVTTL             :         : 3         : N              
+RESERVED_INPUT               : A22       :        :                   :         : 3         :                
 ~INIT_DONE~                  : A23       : output : LVTTL             :         : 3         : Y              
 VCC_INT                      : A24       : power  :                   : 1.8V    :           :                
 GND                          : A25       : gnd    :                   :         :           :                
@@ -562,7 +562,7 @@ RESERVED_INPUT               : Y24       :        :                   :         
 RESERVED_INPUT               : Y25       :        :                   :         : 8         :                
 RESERVED_INPUT               : Y26       :        :                   :         : 8         :                
 SingleLED_TRIGGER            : AA1       : output : LVTTL             :         : 12        : Y              
-RESERVED_INPUT               : AA2       :        :                   :         : 12        :                
+CLK3p                        : AA2       : input  : LVTTL             :         : 12        : N              
 RESERVED_INPUT               : AA3       :        :                   :         : 12        :                
 RESERVED_INPUT               : AA4       :        :                   :         : 12        :                
 RESERVED_INPUT               : AA5       :        :                   :         : 12        :                

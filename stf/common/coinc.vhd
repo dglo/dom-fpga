@@ -39,6 +39,8 @@ ENTITY coinc IS
 		enable_coinc_atwd	: IN STD_LOGIC := '0';
 		-- simple LC
 		OneSPE				: IN STD_LOGIC;
+		LC_rx_down_en		: IN STD_LOGIC := '1';
+		LC_rx_up_en			: IN STD_LOGIC := '1';
 		LC_up_pre_window	: IN STD_LOGIC_VECTOR (5 DOWNTO 0) := "000000";
 		LC_up_post_window	: IN STD_LOGIC_VECTOR (5 DOWNTO 0) := "000000";
 		LC_down_pre_window	: IN STD_LOGIC_VECTOR (5 DOWNTO 0) := "000000";
@@ -454,25 +456,33 @@ BEGIN
 			IF LC_RX_up='1' THEN
 				ATWD_A_up_pre_cnt := 0;
 				IF ATWD_A_up_post_cnt < CONV_INTEGER(LC_up_post_window) THEN
-					LC_atwd_a	<= '1';	-- we have LC
+					IF LC_rx_up_en = '1' THEN
+						LC_atwd_a	<= '1';	-- we have LC
+					END IF;
 				END IF;
 			END IF;
 			IF LC_RX_down='1' THEN
 				ATWD_A_down_pre_cnt := 0;
 				IF ATWD_A_down_post_cnt < CONV_INTEGER(LC_down_post_window) THEN
-					LC_atwd_a	<= '1';	-- we have LC
+					IF LC_rx_down_en = '1' THEN
+						LC_atwd_a	<= '1';	-- we have LC
+					END IF;
 				END IF;
 			END IF;
 			
 			IF ATWD_A_launch='1' THEN
 				IF ATWD_A_up_pre_cnt < CONV_INTEGER(LC_up_pre_window) THEN
-					LC_atwd_a	<= '1';	-- we have LC
+					IF LC_rx_up_en = '1' THEN
+						LC_atwd_a	<= '1';	-- we have LC
+					END IF;
 				END IF;
 				ATWD_A_down_post_cnt := 0;
 			END IF;
 			IF ATWD_A_launch='1' THEN
 				IF ATWD_A_down_pre_cnt < CONV_INTEGER(LC_down_pre_window) THEN
-					LC_atwd_a	<= '1';	-- we have LC
+					IF LC_rx_down_en = '1' THEN
+						LC_atwd_a	<= '1';	-- we have LC
+					END IF;
 				END IF;
 				ATWD_A_up_post_cnt := 0;
 			END IF;
@@ -499,25 +509,33 @@ BEGIN
 			IF LC_RX_up='1' THEN
 				ATWD_B_up_pre_cnt := 0;
 				IF ATWD_B_up_post_cnt < CONV_INTEGER(LC_up_post_window) THEN
-					LC_ATWD_B	<= '1';	-- we have LC
+					IF LC_rx_up_en = '1' THEN
+						LC_ATWD_B	<= '1';	-- we have LC
+					END IF;
 				END IF;
 			END IF;
 			IF LC_RX_down='1' THEN
 				ATWD_B_down_pre_cnt := 0;
 				IF ATWD_B_down_post_cnt < CONV_INTEGER(LC_down_post_window) THEN
-					LC_ATWD_B	<= '1';	-- we have LC
+					IF LC_rx_down_en = '1' THEN
+						LC_ATWD_B	<= '1';	-- we have LC
+					END IF;
 				END IF;
 			END IF;
 			
 			IF ATWD_B_launch='1' THEN
 				IF ATWD_B_up_pre_cnt < CONV_INTEGER(LC_up_pre_window) THEN
-					LC_ATWD_B	<= '1';	-- we have LC
+					IF LC_rx_up_en = '1' THEN
+						LC_ATWD_B	<= '1';	-- we have LC
+					END IF;
 				END IF;
 				ATWD_B_down_post_cnt := 0;
 			END IF;
 			IF ATWD_B_launch='1' THEN
 				IF ATWD_B_down_pre_cnt < CONV_INTEGER(LC_down_pre_window) THEN
-					LC_ATWD_B	<= '1';	-- we have LC
+					IF LC_rx_down_en = '1' THEN
+						LC_ATWD_B	<= '1';	-- we have LC
+					END IF;
 				END IF;
 				ATWD_B_up_post_cnt := 0;
 			END IF;
