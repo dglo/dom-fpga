@@ -1,0 +1,162 @@
+-------------------------------------------------------------------------------
+-- Title      : DOMAPP
+-- Project    : IceCube DOM main board
+-------------------------------------------------------------------------------
+-- File       : slaveregister.vhd
+-- Author     : thorsten
+-- Company    : LBNL
+-- Created    : 
+-- Last update: 2003-12-03
+-- Platform   : Altera Excalibur
+-- Standard   : VHDL'93
+-------------------------------------------------------------------------------
+-- Description: this module provides the registers for the CPU inside the FPGA
+--              the module is connected to ahb_slave.vhd
+-------------------------------------------------------------------------------
+-- Copyright (c) 2003 
+-------------------------------------------------------------------------------
+-- Revisions  :
+-- Date        Version     Author    Description
+-- 2003-07-17  V01-01-00   thorsten  
+-------------------------------------------------------------------------------
+
+
+LIBRARY IEEE;
+USE IEEE.std_logic_1164.ALL;
+USE IEEE.std_logic_arith.ALL;
+USE IEEE.std_logic_unsigned.ALL;
+USE IEEE.numeric_std.ALL;
+
+
+ENTITY slaveregister IS
+    PORT (
+        CLK             : IN  STD_LOGIC;
+        RST             : IN  STD_LOGIC;
+        -- connections to ahb_slave
+        reg_write       : IN  STD_LOGIC;
+        reg_address     : IN  STD_LOGIC_VECTOR(31 DOWNTO 0);
+        reg_wdata       : IN  STD_LOGIC_VECTOR(31 DOWNTO 0);
+        reg_rdata       : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+        reg_enable      : IN  STD_LOGIC;
+        reg_wait_sig    : OUT STD_LOGIC;
+        -- command register
+        trigger_source  : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+        trigger_setup   : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+        -- kale communication interface
+        tx_fifo_wr      : OUT STD_LOGIC;
+        rx_fifo_rd      : OUT STD_LOGIC;
+        tx_pack_rdy     : OUT STD_LOGIC;
+        rx_dpr_radr_stb : OUT STD_LOGIC;
+        -- test connector
+        TC              : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+        );
+END slaveregister;
+
+ARCHITECTURE arch_slaveregister OF slaveregister IS
+
+    -- rom interface
+    SIGNAL rom_data : STD_LOGIC_VECTOR (15 DOWNTO 0);
+
+    COMPONENT version_rom
+        PORT (
+            address : IN  STD_LOGIC_VECTOR (6 DOWNTO 0);
+            q       : OUT STD_LOGIC_VECTOR (15 DOWNTO 0)
+            );
+    END COMPONENT;
+    
+BEGIN
+    reg_wait_sig <= '1';
+
+    PROCESS(CLK, RST)
+    BEGIN
+        IF RST = '1' THEN
+
+        ELSIF CLK'EVENT AND CLK = '1' THEN
+            reg_rdata <= (OTHERS => 'X');
+            IF reg_enable = '1' THEN
+                IF std_match(reg_address(13 DOWNTO 2) , "00000-------") THEN  -- version ROM
+                    IF reg_write = '1' THEN
+                        NULL;           -- read only
+                    ELSE
+                        reg_rdata(31 DOWNTO 0) <= (OTHERS => '0');
+                    END IF;
+                ELSIF std_match(reg_address(13 DOWNTO 2) , "000100000000") THEN  -- Trigger Source
+                    IF reg_write = '1' THEN
+                        NULL;           -- <= reg_wdata(31 downto 0);
+                    ELSE
+                        reg_rdata(31 DOWNTO 0) <= (OTHERS => '0');
+                    END IF;
+                    
+                ELSIF std_match(reg_address(13 DOWNTO 2) , "000100010110") THEN  -- PONG
+                ELSIF std_match(reg_address(13 DOWNTO 2) , "000111111111") THEN  -- Firmware Debugging
+                ELSIF std_match(reg_address(13 DOWNTO 2) , "0010--------") THEN  -- Supernova
+                ELSIF std_match(reg_address(13 DOWNTO 2) , "0011--------") THEN  -- R2R Pattern
+                ELSIF std_match(reg_address(13 DOWNTO 2) , "010---------") THEN  -- ATWD A pedestal
+                ELSIF std_match(reg_address(13 DOWNTO 2) , "011---------") THEN  -- ATWD B pedestal
+                ELSE
+                    reg_rdata(31 DOWNTO 0) <= (OTHERS => '0');
+                END IF;
+
+                IF reg_address(19 DOWNTO 18) = "00" THEN  -- map into DOMAPP addr space
+                    CASE reg_address(15 DOWNTO 12) IS
+                        WHEN "0000" =>  -- 0x0XXX
+                            CASE reg_address(11 DOWNTO 8) =>
+                                WHEN "00XX" =>  -- 0x0000 - 0x003F version ROM read only
+                            IF reg_write = '1' THEN
+                                NULL;   -- read only
+                            ELSE
+                                reg_rdata(15 DOWNTO 0)  <= rom_data;
+                                reg_rdata(31 DOWNTO 16) <= (OTHERS => '0');
+                            END IF;
+                        WHEN "01XX" =>  -- 0x0400 - 0x07FC register
+                            CASE reg_address(9 DOWNTO 2) IS
+                                WHEN "00000000" =>        -- Trigger Source
+                                WHEN "00000001" =>        -- Trigger Setup
+                                WHEN "00000010" =>        -- DAQ
+                                WHEN "00000011" =>        -- LBM control
+                                WHEN "00000100" =>        -- LBM pointer
+                                WHEN "00000101" =>        -- DOM status
+                                WHEN "00000110" =>        -- Systime LSB
+                                WHEN "00000111" =>        -- Systime MSB
+                                WHEN OTHERS     =>
+                            END CASE;
+                        WHEN "10XX" =>  -- 0x0800 - 0x0BFC supernova buffer
+                        WHEN "11XX" =>  -- 0x0C00 - 0x0FFC R2R ladder
+                        WHEN OTHERS =>
+                    END CASE;
+                    WHEN "0001" =>      -- 0x1XXX               
+                    WHEN OTHERS =>
+                END CASE;
+                ELSE                    -- DOMAPP address space
+                END IF;  -- DOMAPP address space
+            ELSE                        -- reg_enable='0'
+                reg_rdata <= (OTHERS => 'X');
+            END IF;  -- reg_enable
+        END IF;  -- CLK
+    END PROCESS;
+
+
+
+    command_0 <= command_0_local;       --registers(0)(31 downto 0);
+
+    flash_adc_write_en <= '1' WHEN reg_write = '1' AND reg_enable = '1' AND reg_address(15 DOWNTO 12) = "0011" ELSE '0';
+
+    -- FLASH ADC RX interface
+    flash_adc_address <= reg_address(10 DOWNTO 2);
+    flash_adc_wdata   <= reg_wdata(15 DOWNTO 0);
+
+    inst_version_rom : version_rom
+        PORT MAP (
+            address => reg_address(8 DOWNTO 2),
+            q       => rom_data
+            );
+
+END;
+
+
+
+
+
+
+
+

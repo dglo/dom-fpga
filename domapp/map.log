@@ -1,0 +1,525 @@
+Info: *******************************************************************
+Info: Running Quartus II Analysis & Synthesis
+    Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
+    Info: Copyright (C) 1991-2004 Altera Corporation. All rights reserved.
+    Info: Quartus is a registered trademark of Altera Corporation in the 
+    Info: US and other countries.  Portions of the Quartus II software   
+    Info: code, and other portions of the code included in this download 
+    Info: or on this CD, are licensed to Altera Corporation and are the  
+    Info: copyrighted property of third parties who may include, without 
+    Info: limitation, Sun Microsystems, The Regents of the University of 
+    Info: California, Softel vdm., and Verific Design Automation Inc. 
+    Info: Warning:  This computer program is protected by copyright law  
+    Info: and international treaties. Unauthorized reproduction or       
+    Info: distribution of this program, or any portion of it, may result 
+    Info: in severe civil and criminal penalties, and will be prosecuted 
+    Info: to the maximum extent possible under the law.
+    Info: Processing started: Mon Aug 02 10:01:04 2004
+Info: Command: quartus_map --import_settings_files=on --export_settings_files=off dom -c dom
+Info: Found 1 design units and 0 entities in source file icecube_data_types.vhd
+    Info: Found design unit 1: icecube_data_types
+Info: Found 1 design units and 0 entities in source file constants.vhd
+    Info: Found design unit 1: constants
+Info: Found 1 design units and 0 entities in source file ctrl_data_types.vhd
+    Info: Found design unit 1: ctrl_data_types
+Info: Found 2 design units and 1 entities in source file ahb_slave.vhd
+    Info: Found design unit 1: ahb_slave-ahb_slave_arch
+    Info: Found entity 1: ahb_slave
+Info: Found 2 design units and 1 entities in source file ROC.vhd
+    Info: Found design unit 1: ROC-arch_ROC
+    Info: Found entity 1: ROC
+Info: Found 2 design units and 1 entities in source file FADC_input.vhd
+    Info: Found design unit 1: FADC_input-fADC_input_arch
+    Info: Found entity 1: FADC_input
+Info: Found 2 design units and 1 entities in source file calibration_sources.vhd
+    Info: Found design unit 1: calibration_sources-ARCH_calibration_sources
+    Info: Found entity 1: calibration_sources
+Info: Found 2 design units and 1 entities in source file rate_meters.vhd
+    Info: Found design unit 1: rate_meters-ARCH_rate_meters
+    Info: Found entity 1: rate_meters
+Info: Found 2 design units and 1 entities in source file ahb_master.vhd
+    Info: Found design unit 1: ahb_master-ahb_ahb_master
+    Info: Found entity 1: ahb_master
+Info: Found 2 design units and 1 entities in source file ATWD_control.vhd
+    Info: Found design unit 1: ATWD_control-arch_ATWD_control
+    Info: Found entity 1: ATWD_control
+Info: Found 2 design units and 1 entities in source file gray2bin.vhd
+    Info: Found design unit 1: gray2bin-arch_gray2bin
+    Info: Found entity 1: gray2bin
+Info: Found 2 design units and 1 entities in source file trigger.vhd
+    Info: Found design unit 1: trigger-trigger_arch
+    Info: Found entity 1: trigger
+Info: Found 2 design units and 1 entities in source file daq.vhd
+    Info: Found design unit 1: daq-daq_arch
+    Info: Found entity 1: daq
+Info: Found 2 design units and 1 entities in source file ATWD_interface.vhd
+    Info: Found design unit 1: ATWD_interface-ATWD_interface_arch
+    Info: Found entity 1: ATWD_interface
+Info: Found 2 design units and 1 entities in source file mem_interface.vhd
+    Info: Found design unit 1: mem_interface-mem_interface_arch
+    Info: Found entity 1: mem_interface
+Info: Found 2 design units and 1 entities in source file FADC_interface.vhd
+    Info: Found design unit 1: FADC_interface-FADC_interface_arch
+    Info: Found entity 1: FADC_interface
+Info: Found 2 design units and 1 entities in source file data_buffer.vhd
+    Info: Found design unit 1: data_buffer-arch_data_buffer
+    Info: Found entity 1: data_buffer
+Info: Found 2 design units and 1 entities in source file ADC_input.vhd
+    Info: Found design unit 1: ADC_input-arch_ADC_input
+    Info: Found entity 1: ADC_input
+Info: Found 2 design units and 1 entities in source file ADC_control.vhd
+    Info: Found design unit 1: ADC_control-arch_ADC_control
+    Info: Found entity 1: ADC_control
+Info: Found 2 design units and 1 entities in source file pingpong.vhd
+    Info: Found design unit 1: pingpong-arch_pingpong
+    Info: Found entity 1: pingpong
+Info: Found 2 design units and 1 entities in source file pedestal_sub.vhd
+    Info: Found design unit 1: pedestal_sub-arch_pedestal_sub
+    Info: Found entity 1: pedestal_sub
+Info: Found 2 design units and 1 entities in source file domapp.vhd
+    Info: Found design unit 1: domapp-arch_domapp
+    Info: Found entity 1: domapp
+Info: Found 2 design units and 1 entities in source file compression.vhd
+    Info: Found design unit 1: compression-arch_compression
+    Info: Found entity 1: compression
+Info: Found 2 design units and 0 entities in source file functions.vhd
+    Info: Found design unit 1: functions
+    Info: Found design unit 2: functions-body
+Warning: VHDL Use Clause warning at slaveregister.vhd(28): more than one Use Clause imports a declaration of simple name unsigned -- none of the declarations are directly visible
+Info: VHDL information: object unsigned is declared at numeric_std.vhd(65)
+Info: VHDL information at syn_arit.vhd(27): duplicate match
+Warning: VHDL Use Clause warning at slaveregister.vhd(28): more than one Use Clause imports a declaration of simple name signed -- none of the declarations are directly visible
+Info: VHDL information: object signed is declared at numeric_std.vhd(66)
+Info: VHDL information at syn_arit.vhd(28): duplicate match
+Info: Found 2 design units and 1 entities in source file slaveregister.vhd
+    Info: Found design unit 1: slaveregister-arch_slaveregister
+    Info: Found entity 1: slaveregister
+Info: Found 2 design units and 1 entities in source file comm_wrapper.vhd
+    Info: Found design unit 1: comm_wrapper-arch_comm_wrapper
+    Info: Found entity 1: comm_wrapper
+Warning: VHDL Signal Declaration warning at domapp.vhd(605): used implicit default value for signal rm_stat because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Info: Using design file pll2x.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info: Found entity 1: pll2x
+Info: Found 1 design units and 1 entities in source file ../../../../fpgatools/quartus/libraries/megafunctions/altclklock.tdf
+    Info: Found entity 1: altclklock
+Info: Using design file pll4x.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info: Found entity 1: pll4x
+Info: Using design file systimer.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info: Found design unit 1: systimer-systimer_arch
+    Info: Found entity 1: systimer
+Info: Using design file stripe.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info: Found entity 1: stripe
+Info: Found 1 design units and 1 entities in source file ../../../../fpgatools/quartus/libraries/megafunctions/alt_exc_stripe.tdf
+    Info: Found entity 1: alt_exc_stripe
+Info: Found 1 design units and 1 entities in source file ../../../../fpgatools/quartus/libraries/megafunctions/alt_exc_upcore.tdf
+    Info: Found entity 1: alt_exc_upcore
+Info: Found 1 design units and 1 entities in source file ../../../../fpgatools/quartus/libraries/megafunctions/apex20ke_io_in.v
+    Info: Found entity 1: apex20ke_io_in
+Info: Found 1 design units and 1 entities in source file ../../../../fpgatools/quartus/libraries/megafunctions/apex20ke_io_bidir_od.v
+    Info: Found entity 1: apex20ke_io_bidir_od
+Info: Found 1 design units and 1 entities in source file ../../../../fpgatools/quartus/libraries/megafunctions/apex20ke_io_out.v
+    Info: Found entity 1: apex20ke_io_out
+Info: Found 1 design units and 1 entities in source file ../../../../fpgatools/quartus/libraries/megafunctions/apex20ke_io_bidir.v
+    Info: Found entity 1: apex20ke_io_bidir
+Info: Found 1 design units and 1 entities in source file ../../../../fpgatools/quartus/libraries/megafunctions/alt_exc_dpram.tdf
+    Info: Found entity 1: alt_exc_dpram
+Info: VHDL Case Statement information at ADC_control.vhd(139): OTHERS choice is never selected
+Warning: VHDL Signal Declaration warning at data_buffer.vhd(99): ignored default value for signal atwd_wr_data
+Info: Using design file ATWD_buffer.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info: Found entity 1: ATWD_buffer
+Info: Found 1 design units and 1 entities in source file ../../../../fpgatools/quartus/libraries/megafunctions/altdpram.tdf
+    Info: Found entity 1: altdpram
+Info: Using design file FADC_buffer.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info: Found entity 1: FADC_buffer
+Info: VHDL Case Statement information at mem_interface.vhd(225): OTHERS choice is never selected
+Warning: Tied undriven net header2[15] at mem_interface.vhd(94) to GND or VCC
+Warning: Tied undriven net header2[14] at mem_interface.vhd(94) to GND or VCC
+Warning: Tied undriven net header2[13] at mem_interface.vhd(94) to GND or VCC
+Warning: Tied undriven net header2[12] at mem_interface.vhd(94) to GND or VCC
+Warning: Tied undriven net header2[11] at mem_interface.vhd(94) to GND or VCC
+Warning: Tied undriven net header2[10] at mem_interface.vhd(94) to GND or VCC
+Warning: Tied undriven net header2[9] at mem_interface.vhd(94) to GND or VCC
+Warning: Tied undriven net header2[8] at mem_interface.vhd(94) to GND or VCC
+Warning: Tied undriven net header2[7] at mem_interface.vhd(94) to GND or VCC
+Warning: Tied undriven net header2[6] at mem_interface.vhd(94) to GND or VCC
+Warning: Tied undriven net header2[5] at mem_interface.vhd(94) to GND or VCC
+Warning: Tied undriven net header2[4] at mem_interface.vhd(94) to GND or VCC
+Warning: Tied undriven net header2[3] at mem_interface.vhd(94) to GND or VCC
+Warning: Tied undriven net header2[2] at mem_interface.vhd(94) to GND or VCC
+Warning: Tied undriven net header2[1] at mem_interface.vhd(94) to GND or VCC
+Warning: Tied undriven net header2[0] at mem_interface.vhd(94) to GND or VCC
+Info: VHDL Case Statement information at ahb_master.vhd(225): OTHERS choice is never selected
+Info: Using design file version_rom.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info: Found entity 1: version_rom
+Info: Found 1 design units and 1 entities in source file ../../../../fpgatools/quartus/libraries/megafunctions/lpm_rom.tdf
+    Info: Found entity 1: lpm_rom
+Info: Found 1 design units and 1 entities in source file ../../../../fpgatools/quartus/libraries/megafunctions/altrom.tdf
+    Info: Found entity 1: altrom
+Info: Using design file R2Rram.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info: Found entity 1: R2Rram
+Info: Using design file ATWDped.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info: Found entity 1: ATWDped
+Info: Power-up level of register daq:inst_daq|ahb_master:inst_ahb_master|slavehsize[1]~reg0 is not specified -- using unspecified power-up level
+Warning: Reduced register daq:inst_daq|ahb_master:inst_ahb_master|slavehsize[1]~reg0 with stuck data_in port to stuck value VCC
+Warning: Reduced register daq:inst_daq|ahb_master:inst_ahb_master|slavehsize[0]~reg0 with stuck data_in port to stuck value GND
+Info: Power-up level of register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.ATWD_AB is not specified -- using unspecified power-up level
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.ATWD_AB with stuck data_in port to stuck value VCC
+Info: Power-up level of register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.ATWD_AB is not specified -- using unspecified power-up level
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.ATWD_AB with stuck data_in port to stuck value VCC
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.ATWD_AB with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.ATWD_AB with stuck data_in port to stuck value GND
+Info: Duplicate registers merged to single register
+    Info: Duplicate register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface|FADC_busy~reg0 merged to single register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface|FADC_we~reg0
+    Info: Duplicate register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface|triggered merged to single register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface|FADC_we~reg0
+    Info: Duplicate register daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface|FADC_busy~reg0 merged to single register daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface|FADC_we~reg0
+    Info: Duplicate register daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface|triggered merged to single register daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface|FADC_we~reg0
+Warning: Reduced register slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|masterhresp[1]~reg0 with stuck data_in port to stuck value GND
+Info: Duplicate registers merged to single register
+    Info: Duplicate register daq:inst_daq|ahb_master:inst_ahb_master|haddr[1] merged to single register daq:inst_daq|ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register calibration_sources:inst_calibration_sources|i491 merged to single register calibration_sources:inst_calibration_sources|i474
+Info: Inferred 6 megafunctions from design logic
+    Info: Inferred lpm_counter megafunction (LPM_WIDTH=5) from the following logic: calibration_sources:inst_calibration_sources|stretcher[0]~0
+    Info: Inferred lpm_counter megafunction (LPM_WIDTH=48) from the following logic: systimer:inst_systimer|systime_cnt[0]~0
+    Info: Inferred lpm_counter megafunction (LPM_WIDTH=4) from the following logic: calibration_sources:inst_calibration_sources|now_cnt[0]~0
+    Info: Inferred lpm_counter megafunction (LPM_WIDTH=8) from the following logic: calibration_sources:inst_calibration_sources|cs_wf_addr_int[0]~0
+    Info: Inferred lpm_counter megafunction (LPM_WIDTH=8) from the following logic: daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface|wr_addr[0]~0
+    Info: Inferred lpm_counter megafunction (LPM_WIDTH=8) from the following logic: daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface|wr_addr[0]~0
+Info: Found 1 design units and 1 entities in source file ../../../../fpgatools/quartus/libraries/megafunctions/lpm_counter.tdf
+    Info: Found entity 1: lpm_counter
+Info: Found 1 design units and 1 entities in source file ../../../../fpgatools/quartus/libraries/megafunctions/alt_synch_counter.tdf
+    Info: Found entity 1: alt_synch_counter
+Info: State machine |domapp|slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|slave_state contains 5 states and 0 state bits
+Info: State machine |domapp|daq:inst_daq|ahb_master:inst_ahb_master|master_state contains 3 states and 0 state bits
+Info: State machine |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state contains 12 states and 0 state bits
+Info: State machine |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state contains 8 states and 0 state bits
+Info: State machine |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state contains 13 states and 0 state bits
+Info: State machine |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state contains 8 states and 0 state bits
+Info: State machine |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state contains 13 states and 0 state bits
+Info: State machine |domapp|ROC:inst_ROC|RST_state contains 3 states and 0 state bits
+Info: Selected Auto state machine encoding method for state machine |domapp|slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|slave_state
+Info: Encoding result for state machine |domapp|slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|slave_state
+    Info: Completed encoding using 5 state bits
+        Info: Encoded state bit slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|slave_state~24
+        Info: Encoded state bit slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|slave_state~23
+        Info: Encoded state bit slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|slave_state~22
+        Info: Encoded state bit slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|slave_state~21
+        Info: Encoded state bit slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|slave_state~20
+    Info: State |domapp|slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|slave_state.address_phase uses code string 00000
+    Info: State |domapp|slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|slave_state.data_phase uses code string 00011
+    Info: State |domapp|slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|slave_state.burst_phase uses code string 00101
+    Info: State |domapp|slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|slave_state.error_phase uses code string 01001
+    Info: State |domapp|slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|slave_state.read_wait uses code string 10001
+Info: Selected Auto state machine encoding method for state machine |domapp|daq:inst_daq|ahb_master:inst_ahb_master|master_state
+Info: Encoding result for state machine |domapp|daq:inst_daq|ahb_master:inst_ahb_master|master_state
+    Info: Completed encoding using 3 state bits
+        Info: Encoded state bit daq:inst_daq|ahb_master:inst_ahb_master|master_state~22
+        Info: Encoded state bit daq:inst_daq|ahb_master:inst_ahb_master|master_state~21
+        Info: Encoded state bit daq:inst_daq|ahb_master:inst_ahb_master|master_state~20
+    Info: State |domapp|daq:inst_daq|ahb_master:inst_ahb_master|master_state.address_phase uses code string 000
+    Info: State |domapp|daq:inst_daq|ahb_master:inst_ahb_master|master_state.burst_phase uses code string 011
+    Info: State |domapp|daq:inst_daq|ahb_master:inst_ahb_master|master_state.error_phase uses code string 101
+Info: Selected Auto state machine encoding method for state machine |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state
+Info: Encoding result for state machine |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state
+    Info: Completed encoding using 12 state bits
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state~31
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state~30
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state~29
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state~28
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state~27
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state~26
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state~25
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state~24
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state~23
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state~22
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state~21
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state~20
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.idle uses code string 000000000000
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.set_mux uses code string 000000000011
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.eng_hdr0 uses code string 000000000101
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.eng_hdr1 uses code string 000000001001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.eng_hdr2 uses code string 000000010001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.eng_hdr3 uses code string 000000100001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.eng_fadc uses code string 000001000001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.eng_atwd uses code string 000010000001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.eng_end uses code string 000100000001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.comp_xfer uses code string 001000000001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.comp_end uses code string 010000000001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.done uses code string 100000000001
+Info: Selected Auto state machine encoding method for state machine |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state
+Info: Encoding result for state machine |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state
+    Info: Completed encoding using 8 state bits
+        Info: Encoded state bit daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~27
+        Info: Encoded state bit daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~26
+        Info: Encoded state bit daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~25
+        Info: Encoded state bit daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~24
+        Info: Encoded state bit daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~23
+        Info: Encoded state bit daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~22
+        Info: Encoded state bit daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~21
+        Info: Encoded state bit daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~20
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.idle uses code string 00000000
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.wait_done uses code string 00000011
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.wr_header uses code string 00000101
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.reset_trig uses code string 00001001
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.wait_lc_soft uses code string 00010001
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.clear_lc_hard uses code string 00100001
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.got_lc uses code string 01000001
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.wait_buffer uses code string 10000001
+Info: Selected Auto state machine encoding method for state machine |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state
+Info: Encoding result for state machine |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state
+    Info: Completed encoding using 13 state bits
+        Info: Encoded state bit daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~32
+        Info: Encoded state bit daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~31
+        Info: Encoded state bit daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~30
+        Info: Encoded state bit daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~29
+        Info: Encoded state bit daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~28
+        Info: Encoded state bit daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~27
+        Info: Encoded state bit daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~26
+        Info: Encoded state bit daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~25
+        Info: Encoded state bit daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~24
+        Info: Encoded state bit daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~23
+        Info: Encoded state bit daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~22
+        Info: Encoded state bit daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~21
+        Info: Encoded state bit daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~20
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state.power_up_init1 uses code string 0000000000000
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state.idle uses code string 0000000000011
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state.init_digitize uses code string 0000000000101
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state.next_channel uses code string 0000000001001
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state.digitize uses code string 0000000010001
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state.power_up_init2 uses code string 0000000100001
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state.readout_l0 uses code string 0000001000001
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state.readout_l1 uses code string 0000010000001
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state.readout_h0 uses code string 0000100000001
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state.readout_h1 uses code string 0001000000001
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state.readout_end uses code string 0010000000001
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state.settle uses code string 0100000000001
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state.wait_trig_compl uses code string 1000000000001
+Info: Selected Auto state machine encoding method for state machine |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state
+Info: Encoding result for state machine |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state
+    Info: Completed encoding using 8 state bits
+        Info: Encoded state bit daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~27
+        Info: Encoded state bit daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~26
+        Info: Encoded state bit daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~25
+        Info: Encoded state bit daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~24
+        Info: Encoded state bit daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~23
+        Info: Encoded state bit daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~22
+        Info: Encoded state bit daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~21
+        Info: Encoded state bit daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~20
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.idle uses code string 00000000
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.wait_done uses code string 00000011
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.wr_header uses code string 00000101
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.reset_trig uses code string 00001001
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.wait_lc_soft uses code string 00010001
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.clear_lc_hard uses code string 00100001
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.got_lc uses code string 01000001
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.wait_buffer uses code string 10000001
+Info: Selected Auto state machine encoding method for state machine |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state
+Info: Encoding result for state machine |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state
+    Info: Completed encoding using 13 state bits
+        Info: Encoded state bit daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~32
+        Info: Encoded state bit daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~31
+        Info: Encoded state bit daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~30
+        Info: Encoded state bit daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~29
+        Info: Encoded state bit daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~28
+        Info: Encoded state bit daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~27
+        Info: Encoded state bit daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~26
+        Info: Encoded state bit daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~25
+        Info: Encoded state bit daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~24
+        Info: Encoded state bit daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~23
+        Info: Encoded state bit daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~22
+        Info: Encoded state bit daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~21
+        Info: Encoded state bit daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~20
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state.power_up_init1 uses code string 0000000000000
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state.idle uses code string 0000000000011
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state.init_digitize uses code string 0000000000101
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state.next_channel uses code string 0000000001001
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state.digitize uses code string 0000000010001
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state.power_up_init2 uses code string 0000000100001
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state.readout_l0 uses code string 0000001000001
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state.readout_l1 uses code string 0000010000001
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state.readout_h0 uses code string 0000100000001
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state.readout_h1 uses code string 0001000000001
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state.readout_end uses code string 0010000000001
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state.settle uses code string 0100000000001
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state.wait_trig_compl uses code string 1000000000001
+Info: Selected Auto state machine encoding method for state machine |domapp|ROC:inst_ROC|RST_state
+Info: Encoding result for state machine |domapp|ROC:inst_ROC|RST_state
+    Info: Completed encoding using 3 state bits
+        Info: Encoded state bit ROC:inst_ROC|RST_state~12
+        Info: Encoded state bit ROC:inst_ROC|RST_state~11
+        Info: Encoded state bit ROC:inst_ROC|RST_state~10
+    Info: State |domapp|ROC:inst_ROC|RST_state.rst0 uses code string 000
+    Info: State |domapp|ROC:inst_ROC|RST_state.rst1 uses code string 011
+    Info: State |domapp|ROC:inst_ROC|RST_state.run uses code string 101
+Warning: Converted TRI buffer to OR gate or removed OPNDRN
+    Warning: Converting TRI node slaveregister:inst_slaveregister|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|otri[0] that feeds logic to an OR gate
+    Warning: Converting TRI node slaveregister:inst_slaveregister|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|otri[1] that feeds logic to an OR gate
+    Warning: Converting TRI node slaveregister:inst_slaveregister|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|otri[2] that feeds logic to an OR gate
+    Warning: Converting TRI node slaveregister:inst_slaveregister|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|otri[3] that feeds logic to an OR gate
+    Warning: Converting TRI node slaveregister:inst_slaveregister|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|otri[4] that feeds logic to an OR gate
+    Warning: Converting TRI node slaveregister:inst_slaveregister|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|otri[5] that feeds logic to an OR gate
+    Warning: Converting TRI node slaveregister:inst_slaveregister|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|otri[6] that feeds logic to an OR gate
+    Warning: Converting TRI node slaveregister:inst_slaveregister|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|otri[7] that feeds logic to an OR gate
+    Warning: Converting TRI node slaveregister:inst_slaveregister|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|otri[8] that feeds logic to an OR gate
+    Warning: Converting TRI node slaveregister:inst_slaveregister|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|otri[9] that feeds logic to an OR gate
+    Warning: Converting TRI node slaveregister:inst_slaveregister|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|otri[10] that feeds logic to an OR gate
+    Warning: Converting TRI node slaveregister:inst_slaveregister|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|otri[11] that feeds logic to an OR gate
+    Warning: Converting TRI node slaveregister:inst_slaveregister|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|otri[12] that feeds logic to an OR gate
+    Warning: Converting TRI node slaveregister:inst_slaveregister|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|otri[13] that feeds logic to an OR gate
+    Warning: Converting TRI node slaveregister:inst_slaveregister|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|otri[14] that feeds logic to an OR gate
+    Warning: Converting TRI node slaveregister:inst_slaveregister|version_rom:inst_version_rom|lpm_rom:lpm_rom_component|otri[15] that feeds logic to an OR gate
+    Warning: Converting TRI node calibration_sources:inst_calibration_sources|i535~0 that feeds logic to an OR gate
+    Warning: Converting TRI node calibration_sources:inst_calibration_sources|i536~0 that feeds logic to an OR gate
+    Warning: Converting TRI node calibration_sources:inst_calibration_sources|i537~0 that feeds logic to an OR gate
+    Warning: Converting TRI node calibration_sources:inst_calibration_sources|i538~0 that feeds logic to an OR gate
+    Warning: Converting TRI node calibration_sources:inst_calibration_sources|i539~0 that feeds logic to an OR gate
+    Warning: Converting TRI node calibration_sources:inst_calibration_sources|i540~0 that feeds logic to an OR gate
+    Warning: Converting TRI node calibration_sources:inst_calibration_sources|i541~0 that feeds logic to an OR gate
+    Warning: Converting TRI node calibration_sources:inst_calibration_sources|i542~0 that feeds logic to an OR gate
+    Warning: Converting TRI node calibration_sources:inst_calibration_sources|i544~0 that feeds logic to an OR gate
+    Warning: Converting TRI node calibration_sources:inst_calibration_sources|i545~0 that feeds logic to an OR gate
+    Warning: Converting TRI node calibration_sources:inst_calibration_sources|i546~0 that feeds logic to an OR gate
+    Warning: Converting TRI node calibration_sources:inst_calibration_sources|i547~0 that feeds logic to an OR gate
+    Warning: Converting TRI node calibration_sources:inst_calibration_sources|i548~0 that feeds logic to an OR gate
+    Warning: Converting TRI node calibration_sources:inst_calibration_sources|i549~0 that feeds logic to an OR gate
+    Warning: Converting TRI node calibration_sources:inst_calibration_sources|i550~0 that feeds logic to an OR gate
+    Warning: Converting TRI node calibration_sources:inst_calibration_sources|i551~0 that feeds logic to an OR gate
+Warning: Reduced register daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~24 with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~25 with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~24 with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~25 with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|mem_interface:inst_mem_interface|state~29 with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~26 with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~26 with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|mem_interface:inst_mem_interface|state~30 with stuck data_in port to stuck value GND
+Info: Duplicate registers merged to single register
+    Info: Duplicate register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~20 merged to single register daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~20
+    Info: Duplicate register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~25 merged to single register daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~25
+Info: Registers with preset signals will power-up high
+Info: DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Warning: Reduced register daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|eventtype[1] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|eventtype[1] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.eventtype[1] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.eventtype[1] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.eventtype[1] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.eventtype[1] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|ahb_master:inst_ahb_master|haddr[0] with stuck data_in port to stuck value GND
+Warning: TRI or OPNDRN buffers permanently disabled
+    Warning: Node daq:inst_daq|trigger:inst_trigger|i4
+    Warning: Node daq:inst_daq|trigger:inst_trigger|i5
+    Warning: Node i204
+    Warning: Node i205
+    Warning: Node i206
+    Warning: Node i207
+    Warning: Node i208
+    Warning: Node i209
+    Warning: Node i210
+    Warning: Node i211
+    Warning: Node i212
+    Warning: Node i213
+    Warning: Node i214
+    Warning: Node i215
+    Warning: Node i216
+    Warning: Node i217
+    Warning: Node i218
+    Warning: Node i219
+    Warning: Node i220
+    Warning: Node i221
+    Warning: Node i222
+    Warning: Node i223
+    Warning: Node i224
+    Warning: Node i225
+    Warning: Node i226
+    Warning: Node i227
+    Warning: Node i228
+    Warning: Node i229
+    Warning: Node i230
+    Warning: Node i231
+    Warning: Node i196
+    Warning: Node i197
+    Warning: Node i198
+    Warning: Node i199
+    Warning: Node i200
+    Warning: Node i201
+    Warning: Node i202
+    Warning: Node i203
+Warning: Output pins are stuck at VCC or GND
+    Warning: Pin COMM_RESET stuck at GND
+    Warning: Pin FPGA_LOADED stuck at GND
+    Warning: Pin COM_TX_SLEEP stuck at GND
+    Warning: Pin COM_DB[13] stuck at GND
+    Warning: Pin COM_DB[12] stuck at GND
+    Warning: Pin COM_DB[11] stuck at GND
+    Warning: Pin COM_DB[10] stuck at GND
+    Warning: Pin COM_DB[9] stuck at GND
+    Warning: Pin COM_DB[8] stuck at GND
+    Warning: Pin COM_DB[7] stuck at GND
+    Warning: Pin COM_DB[6] stuck at GND
+    Warning: Pin COM_DB[5] stuck at GND
+    Warning: Pin COM_DB[4] stuck at GND
+    Warning: Pin COM_DB[3] stuck at GND
+    Warning: Pin COM_DB[2] stuck at GND
+    Warning: Pin COM_DB[1] stuck at GND
+    Warning: Pin COM_DB[0] stuck at GND
+    Warning: Pin HDV_RxENA stuck at GND
+    Warning: Pin HDV_TxENA stuck at GND
+    Warning: Pin HDV_IN stuck at GND
+    Warning: Pin FLASH_AD_STBY stuck at GND
+    Warning: Pin ATWD0VDD_SUP stuck at VCC
+    Warning: Pin ATWD1VDD_SUP stuck at VCC
+    Warning: Pin FL_AUX_RESET stuck at GND
+    Warning: Pin FL_TMS stuck at GND
+    Warning: Pin FL_TCK stuck at GND
+    Warning: Pin FL_TDI stuck at GND
+    Warning: Pin COINCIDENCE_OUT_DOWN stuck at GND
+    Warning: Pin COINC_DOWN_ALATCH stuck at GND
+    Warning: Pin COINC_DOWN_BLATCH stuck at GND
+    Warning: Pin COINCIDENCE_OUT_UP stuck at GND
+    Warning: Pin COINC_UP_ALATCH stuck at GND
+    Warning: Pin COINC_UP_BLATCH stuck at GND
+Info: Found the following redundant logic cells in design
+    Info: Logic cell stripe:stripe_inst|alt_exc_stripe:lpm_instance|lcell_hresp0
+    Info: Logic cell stripe:stripe_inst|alt_exc_stripe:lpm_instance|lcell_hresp1
+Warning: Design contains 31 input pin(s) that do not drive logic
+    Warning: No output dependent on input pin CLK3p
+    Warning: No output dependent on input pin CLK4p
+    Warning: No output dependent on input pin A_nB
+    Warning: No output dependent on input pin COM_AD_D[11]
+    Warning: No output dependent on input pin COM_AD_D[10]
+    Warning: No output dependent on input pin COM_AD_D[9]
+    Warning: No output dependent on input pin COM_AD_D[8]
+    Warning: No output dependent on input pin COM_AD_D[7]
+    Warning: No output dependent on input pin COM_AD_D[6]
+    Warning: No output dependent on input pin COM_AD_D[5]
+    Warning: No output dependent on input pin COM_AD_D[4]
+    Warning: No output dependent on input pin COM_AD_D[3]
+    Warning: No output dependent on input pin COM_AD_D[2]
+    Warning: No output dependent on input pin COM_AD_D[1]
+    Warning: No output dependent on input pin COM_AD_D[0]
+    Warning: No output dependent on input pin COM_AD_OTR
+    Warning: No output dependent on input pin HDV_Rx
+    Warning: No output dependent on input pin FLASH_AD_D[1]
+    Warning: No output dependent on input pin FLASH_AD_D[0]
+    Warning: No output dependent on input pin FL_ATTN
+    Warning: No output dependent on input pin FL_TDO
+    Warning: No output dependent on input pin COINC_DOWN_ABAR
+    Warning: No output dependent on input pin COINC_DOWN_A
+    Warning: No output dependent on input pin COINC_DOWN_BBAR
+    Warning: No output dependent on input pin COINC_DOWN_B
+    Warning: No output dependent on input pin COINC_UP_ABAR
+    Warning: No output dependent on input pin COINC_UP_A
+    Warning: No output dependent on input pin COINC_UP_BBAR
+    Warning: No output dependent on input pin COINC_UP_B
+    Warning: No output dependent on input pin PLD_FPGA_nOE
+    Warning: No output dependent on input pin PLD_FPGA_nWE
+Info: Implemented 2647 device resources after synthesis - the final resource count might be different
+    Info: Implemented 75 input pins
+    Info: Implemented 170 output pins
+    Info: Implemented 63 bidirectional pins
+    Info: Implemented 2162 logic cells
+    Info: Implemented 172 RAM segments
+    Info: Implemented 2 ClockLock PLLs
+    Info: Implemented 2 dual-port RAM elements in Excalibur device
+    Info: Implemented 1 microprocessor core elements in Excalibur device
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 180 warnings
+    Info: Processing ended: Mon Aug 02 10:02:08 2004
+    Info: Elapsed time: 00:01:04
