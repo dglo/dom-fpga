@@ -3283,13 +3283,13 @@ party's intellectual property, are provided herein.
 	(bus)
 )
 (connector
-	(text "low_thr[9..0]" (rect 368 -248 440 -233)(font "Arial" ))
+	(text "const_low_thr[9..0]" (rect 368 -248 481 -233)(font "Arial" ))
 	(pt 320 -232)
 	(pt 504 -232)
 	(bus)
 )
 (connector
-	(text "lrg_thr[9..0]" (rect 368 -232 435 -217)(font "Arial" ))
+	(text "const_lrg_thr[9..0]" (rect 368 -232 475 -217)(font "Arial" ))
 	(pt 320 -216)
 	(pt 504 -216)
 	(bus)
@@ -3307,7 +3307,7 @@ party's intellectual property, are provided herein.
 	(section (rect 0 48 368 72)(text "DESIGNER" (rect 2 0 71 15)(font "Arial" ))(text "Karl-Heinz Sulanke" (rect 56 2 236 25)(font "Arial" (font_size 12)))(border))
 	(section (rect 0 72 280 96)(text "NUMBER" (rect 2 0 59 15)(font "Arial" ))(text "1.00" (rect 56 1 91 20)(font "Arial" (font_size 10)))(border))
 	(section (rect 280 72 368 96)(text "REV" (rect 2 1 28 16)(font "Arial" ))(text "B" (rect 43 1 55 20)(font "Arial" (font_size 10)))(border))
-	(section (rect 0 96 240 120)(text "DATE" (rect 2 0 36 15)(font "Arial" ))(text "Tue Nov 11 15:37:54 2003" (rect 56 3 267 22)(font "Arial" (font_size 10)))(date)(border))
+	(section (rect 0 96 240 120)(text "DATE" (rect 2 0 36 15)(font "Arial" ))(text "Wed Nov 12 13:32:08 2003" (rect 56 3 276 22)(font "Arial" (font_size 10)))(date)(border))
 	(section (rect 240 96 310 120)(text "SHEET" (rect 2 0 46 15)(font "Arial" ))(text "1" (rect 55 5 64 24)(font "Arial" (font_size 10))))
 	(section (rect 310 96 368 120)(text "OF" (rect 10 0 27 15)(font "Arial" ))(text "1" (rect 34 4 43 23)(font "Arial" (font_size 10))))
 	(drawing
