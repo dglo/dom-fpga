@@ -62,6 +62,8 @@ ENTITY atwd IS
 		ATWD_VDD_SUP	: OUT STD_LOGIC;
         -- for ping-pong
         atwd_trig_doneB	: OUT STD_LOGIC;        
+		-- frontend pulser
+		FE_pulse			: IN STD_LOGIC := '0';
 		-- test connector
 		TC					: OUT STD_LOGIC_VECTOR(7 downto 0)
 	);
@@ -170,6 +172,8 @@ ARCHITECTURE arch_atwd OF atwd IS
 			ATWDTrigger			: OUT STD_LOGIC;
 			TriggerComplete_in	: IN STD_LOGIC;
 			TriggerComplete_out	: OUT STD_LOGIC;
+			-- frontend pulser
+			FE_pulse			: IN STD_LOGIC := '0';
 			-- test connector
 			TC					: OUT STD_LOGIC_VECTOR(7 downto 0)
 		);
@@ -269,6 +273,8 @@ BEGIN
 			ATWDTrigger			=> ATWDTrigger_sig,
 			TriggerComplete_in	=> TriggerComplete,
 			TriggerComplete_out	=> TriggerComplete_out,
+			-- frontend pulser
+			FE_pulse			=> FE_pulse,
 			-- test connector
 			TC					=> open
 		);

@@ -47,6 +47,8 @@ ENTITY atwd_trigger IS
 		ATWDTrigger			: OUT STD_LOGIC;
 		TriggerComplete_in	: IN STD_LOGIC;
 		TriggerComplete_out	: OUT STD_LOGIC;
+		-- frontend pulser
+		FE_pulse			: IN STD_LOGIC := '0';
 		-- test connector
 		TC					: OUT STD_LOGIC_VECTOR(7 downto 0)
 	);
@@ -92,7 +94,10 @@ ARCHITECTURE arch_atwd_trigger OF atwd_trigger IS
 	SIGNAL enable_LED_sig				: STD_LOGIC;
 	
 	SIGNAL enable_LED_force	: STD_LOGIC;
-			
+	
+	SIGNAL blank_disc	: STD_LOGIC;
+	SIGNAL FE_pulse_local	: STD_LOGIC;
+		
 BEGIN
 	
 	PROCESS(CLK40,RST)
@@ -139,7 +144,11 @@ BEGIN
 		IF rst_trg='1' THEN
 			discFF	<= '0';
 		ELSIF OneSPE'EVENT AND OneSPE='1' THEN
-			discFF	<= '1';
+			IF blank_disc='1' THEN
+				discFF	<= '0';
+			ELSE
+				discFF	<= '1';
+			END IF;
 		END IF;
 	END PROCESS;
 	rst_trg <= NOT enable_disc;
@@ -212,5 +221,16 @@ BEGIN
 	END PROCESS;
 	
 	enable_LED_force <= LEDtrig AND enable_LED_sig;
+	
+	
+	PROCESS (CLK20,RST)
+	BEGIN
+		IF RST='1' THEN
+			FE_pulse_local	<= '0';
+		ELSIF CLK20'EVENT and CLK20='1' THEN
+			FE_pulse_local	<= FE_pulse;
+		END IF;
+	END PROCESS;
+	blank_disc <= '1' WHEN FE_pulse='0' and FE_pulse_local='1' ELSE '0';
 	
 END;
