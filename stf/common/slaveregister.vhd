@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2003-07-17
+-- Last update: 2003-08-01
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -56,6 +56,9 @@ ENTITY slaveregister IS
 		hitcounter_o_ff	: IN	STD_LOGIC_VECTOR(31 downto 0);
 		hitcounter_m_ff	: IN	STD_LOGIC_VECTOR(31 downto 0);
 		systime			: IN	STD_LOGIC_VECTOR(47 DOWNTO 0);
+		atwd0_timestamp	: IN	STD_LOGIC_VECTOR(47 DOWNTO 0);
+		atwd1_timestamp : IN	STD_LOGIC_VECTOR(47 DOWNTO 0);
+		dom_id			: OUT	STD_LOGIC_VECTOR(63 DOWNTO 0);
 		-- COM ADC RX interface
 		com_adc_wdata		: OUT STD_LOGIC_VECTOR (15 downto 0);
 		com_adc_rdata		: IN STD_LOGIC_VECTOR (15 downto 0);
@@ -123,8 +126,9 @@ BEGIN
 			command_1_local	<= "00000000000000001111000000000000";
 			command_2_local	<= (others=>'0');
 			command_3_local	<= (others=>'0');
-			com_ctrl_local	<= "00000000000000000001011000000000";
+			com_ctrl_local	<= "00000001010000000001011000000000";
 			
+			dom_id			<= (others=>'0');
 			
 		ELSIF CLK'EVENT AND CLK='1' THEN
 	--		com_adc_write_en <= '0';
@@ -132,6 +136,7 @@ BEGIN
 	--		atwd0_write_en <= '0';
 			tx_fifo_wr	<= '0';
 			rx_fifo_rd	<= '0';
+			reg_rdata <= (others=>'X');
 			IF reg_enable = '1' THEN
 				IF reg_address(19 downto 18) = "00" THEN	-- map into the domapp addr space for the number
 					IF reg_address(15 downto 12) = "0000" THEN
@@ -249,6 +254,40 @@ BEGIN
 									ELSE
 										reg_rdata (15 DOWNTO 0) <= systime (47 DOWNTO 32);
 										reg_rdata (31 DOWNTO 16) <= (OTHERS=>'0');
+									END IF;
+								WHEN "10010" =>	-- atwd0 timestamp lower 32 bit
+									IF reg_write = '1' THEN
+									ELSE
+										reg_rdata <= atwd0_timestamp (31 DOWNTO 0);
+									END IF;
+								WHEN "10011" =>	-- atwd0 timestamp upper 16 bit
+									IF reg_write = '1' THEN
+									ELSE
+										reg_rdata (15 DOWNTO 0) <= atwd0_timestamp (47 DOWNTO 32);
+										reg_rdata (31 DOWNTO 16) <= (OTHERS=>'0');
+									END IF;
+								WHEN "10100" =>	-- atwd1 timestamp lower 32 bit
+									IF reg_write = '1' THEN
+									ELSE
+										reg_rdata <= atwd1_timestamp (31 DOWNTO 0);
+									END IF;
+								WHEN "10101" =>	-- atwd1 timestamp upper 16 bit
+									IF reg_write = '1' THEN
+									ELSE
+										reg_rdata (15 DOWNTO 0) <= atwd1_timestamp (47 DOWNTO 32);
+										reg_rdata (31 DOWNTO 16) <= (OTHERS=>'0');
+									END IF;
+								WHEN "10110" => -- dom_id low 32 bit
+									IF reg_write = '1' THEN
+										dom_id (31 DOWNTO 0) <= reg_wdata;
+									ELSE
+									--	reg_rdata	<= dom_id (31 DOWNTO 0);
+									END IF;
+								WHEN "10111" => -- dom_id high 32 bit
+									IF reg_write = '1' THEN
+										dom_id (63 DOWNTO 32) <= reg_wdata;
+									ELSE
+									--	reg_rdata	<= dom_id (63 DOWNTO 32);
 									END IF;
 								WHEN OTHERS =>
 									IF reg_write = '1' THEN

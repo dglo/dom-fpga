@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2003-07-17
+-- Last update: 2003/08/01
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -58,6 +58,8 @@ ENTITY atwd IS
 		DigitalReset	: OUT STD_LOGIC;
 		DigitalSet		: OUT STD_LOGIC;
 		ATWD_VDD_SUP	: OUT STD_LOGIC;
+        -- for ping-pong
+        atwd_trig_doneB	: OUT STD_LOGIC;        
 		-- test connector
 		TC					: OUT STD_LOGIC_VECTOR(7 downto 0)
 	);
@@ -86,7 +88,7 @@ ARCHITECTURE arch_atwd OF atwd IS
 	SIGNAL ATWD_D_bin		: STD_LOGIC_VECTOR(9 downto 0);
 	SIGNAL ATWD_addr		: STD_LOGIC_VECTOR(8 downto 0);
 	SIGNAL ATWD_write		: STD_LOGIC;
-	
+
 	COMPONENT atwd_control
 		PORT (
 			CLK20		: IN STD_LOGIC;
@@ -274,7 +276,9 @@ BEGIN
 	wren_sig		<= ATWD_write WHEN write_en='0' ELSE write_en;
 	
 	rden_sig		<= '1';
-	
+
+    atwd_trig_doneB <= TriggerComplete_out;
+    
 	inst_com_adc_mem : com_adc_mem
 		PORT MAP (
 			data		=> data_sig,
