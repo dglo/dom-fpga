@@ -82,6 +82,7 @@ ARCHITECTURE mem_interface_arch OF mem_interface IS
 
 	TYPE STATE_TYPE IS (IDLE, SET_MUX, ENG_HDR0, ENG_HDR1, ENG_HDR2, ENG_HDR3, ENG_FADC, ENG_ATWD, ENG_END, WHAT_NEXT, COMP_START, COMP_XFER, COMP_END, DONE);
 	SIGNAL state	: STATE_TYPE;
+	SIGNAL state_old	: STATE_TYPE;
 	
 	SIGNAL ATWD_data	: STD_LOGIC_VECTOR(31 DOWNTO 0);
 	SIGNAL FADC_data	: STD_LOGIC_VECTOR(31 DOWNTO 0);
@@ -114,12 +115,14 @@ BEGIN
 	BEGIN
 		IF RST='1' THEN
 			state	<= IDLE;
+			state_old	<= IDLE;
 			AnB		<= '0';
 			start_address	<= (OTHERS=>'0');
 			start_trans		<= '0';
 			abort_trans		<= '0';
 			rdaddr			<= (OTHERS=>'0');
 		ELSIF CLK20'EVENT AND CLK20='1' THEN
+			state_old	<= state;
 			CASE state IS
 				WHEN IDLE =>
 					start_trans		<= '0';
@@ -169,26 +172,37 @@ BEGIN
 					END IF;
 					start_trans		<= '0';
 				WHEN ENG_HDR3 =>
+					rdaddr	<= (OTHERS=>'0');
 					IF wait_sig='0' AND header.FADCavail='1' AND header.eventtype/=eventTimestamp THEN
 						state	<= ENG_FADC;
+						rdaddr	<= rdaddr+1;
 					ELSIF wait_sig='0' THEN
 						state	<= ENG_END;
 						abort_trans		<= '1';
 					END IF;
 					start_trans		<= '0';
-					rdaddr	<= (OTHERS=>'0');
 				WHEN ENG_FADC =>
-					IF wait_sig='0' THEN
-						rdaddr	<= rdaddr+1;
-					END IF;
+				--	IF wait_sig='0' THEN
+				--		rdaddr	<= rdaddr+1;
+				--	END IF;
 					IF rdaddr(6 DOWNTO 0) = "1111111" THEN
 						IF header.ATWDavail='1' THEN
-							state	<= ENG_ATWD;
-							rdaddr	<= (OTHERS=>'0');
+							IF wait_sig='0' THEN
+								state	<= ENG_ATWD;
+								rdaddr	<= (OTHERS=>'0');
+							END IF;
+							abort_trans		<= '0';
 						ELSE
-							state	<= ENG_END;
+							IF ready='1' THEN	-- wait for AHB_master to finish
+								state	<= ENG_END;
+							END IF;
 							abort_trans		<= '1';
 						END IF;
+					ELSE
+						IF wait_sig='0' THEN
+							rdaddr	<= rdaddr+1;
+						END IF;
+						abort_trans		<= '0';
 					END IF;
 					start_trans		<= '0';
 				WHEN ENG_ATWD =>
@@ -227,7 +241,8 @@ BEGIN
 							NULL;
 						ELSIF ready='1' THEN	-- wait for AHB_master to finish
 							start_trans		<= '1';
-							state	<=COMP_START;
+							-- state	<=COMP_START;
+							state	<=COMP_XFER;
 						END IF;
 					ELSE
 						state	<= DONE;
@@ -248,12 +263,12 @@ BEGIN
 							state	<= COMP_END;
 						END IF;
 					ELSE
+						abort_trans		<= '0';
 						IF wait_sig='0' THEN
 							rdaddr	<= rdaddr+1;
 						END IF;
 					END IF;
 					start_trans		<= '0';
-				--	abort_trans		<= '0';
 				WHEN COMP_END =>
 					state	<= DONE;
 					rdaddr	<= (OTHERS=>'X');
@@ -292,7 +307,7 @@ BEGIN
 	read_done_b <= read_done WHEN AnB='0' ELSE '0';
 	
 	-- engineering header
-	header0(15 DOWNTO 0) <= CONV_STD_LOGIC_VECTOR(16+512*CONV_INTEGER(header.FADCavail)+256*CONV_INTEGER(header.ATWDsize),16);
+	header0(15 DOWNTO 0) <= CONV_STD_LOGIC_VECTOR(16+512*CONV_INTEGER(header.FADCavail)+256*(CONV_INTEGER(header.ATWDsize)+1),16) WHEN header.ATWDavail='1' ELSE CONV_STD_LOGIC_VECTOR(16+512*CONV_INTEGER(header.FADCavail),16);
 	header0(31 DOWNTO 16) <= X"0001" WHEN header.eventtype=eventEngineering ELSE
 						X"0002" WHEN header.eventtype=eventTimestamp ELSE
 						X"0000";
@@ -313,8 +328,9 @@ BEGIN
 			header2 WHEN state=ENG_HDR2 ELSE
 			header3 WHEN state=ENG_HDR3 ELSE
 			FADC_data WHEN state=ENG_FADC ELSE
-			ATWD_data WHEN state=ENG_ATWD ELSE
-			compr_data WHEN state=COMP_START ELSE
+			FADC_data WHEN state_old=ENG_FADC ELSE
+			ATWD_data WHEN state_old=ENG_ATWD ELSE
+		--	compr_data WHEN state=COMP_START ELSE
 			compr_data WHEN state=COMP_XFER ELSE
 			(OTHERS=>'1'); --(OTHERS=>'X'); --X"XXXXXXXX";
 			
