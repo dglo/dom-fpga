@@ -174,7 +174,8 @@ BEGIN
 						slavehwrite		<= AHB_WRITE;
 						slavehsize		<= AHB_WORD;
 						slavehburst		<= INCR;
-						slavehwdata		<= wdata;
+						-- test to get data transfer right
+						--slavehwdata		<= wdata;
 						bus_error		<= '0';
 --						wait_sig		<= '1';
 					ELSIF abort_trans='0' THEN	-- beat_count < trans_length OR abort_trans='1' THEN
