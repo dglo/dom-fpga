@@ -13,6 +13,8 @@ SOFTWARE_SETTINGS_LIST
 }
 FILES
 {
+	VHDL_FILE = gray2bin.vhd;
 	VHDL_FILE = dom.vhd;
 	VHDL_FILE = fADC_input.vhd;
+	VHDL_FILE = trigger.vhd;
 }
