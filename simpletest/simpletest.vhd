@@ -50,6 +50,7 @@ ENTITY simpletest IS
 		CLK2p			: IN STD_LOGIC;
 		CLK3p			: IN STD_LOGIC;
 		CLK4p			: IN STD_LOGIC;
+		CLKLK_OUT2p		: OUT STD_LOGIC;	-- 40MHz outpout for FADC
 		-- Communications DAC
 		COM_DAC_CLK		: OUT STD_LOGIC;
 		COM_TX_SLEEP	: OUT STD_LOGIC;
@@ -915,6 +916,7 @@ BEGIN
 			locked		=> open,
 			clock1		=> CLK80
 		);
+	CLKLK_OUT2p	<= CLK40;	-- 40MHz output for FADC
 	
 	stripe_inst : stripe
 		PORT MAP (

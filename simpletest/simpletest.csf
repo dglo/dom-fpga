@@ -1033,13 +1033,10 @@ CHIP(simpletest)
 	dummy2 : IO_STANDARD = LVTTL;
 	dummy2 : SIGNALPROBE_ENABLE = OFF;
 	~INIT_DONE~ : LOCATION = Pin_A23;
-	"pll4x:inst_pll4x|altclklock:altclklock_component|outclock1" : LOCATION = PLL_1;
-	"pll2x:inst_pll2x|altclklock:altclklock_component|outclock0" : LOCATION = PLL_2;
-	"pll2x:inst_pll2x|altclklock:altclklock_component|outclock1" : LOCATION = PLL_2;
-	"pll2x:inst_pll2x|altclklock:altclklock_component|outclock0" : SIGNALPROBE_ENABLE = OFF;
-	"pll2x:inst_pll2x|altclklock:altclklock_component|outclock1" : SIGNALPROBE_ENABLE = OFF;
-	"pll4x:inst_pll4x|altclklock:altclklock_component|outclock1" : SIGNALPROBE_ENABLE = OFF;
 	~INIT_DONE~ : SIGNALPROBE_ENABLE = OFF;
+	CLKLK_OUT2p : LOCATION = Pin_M4;
+	CLKLK_OUT2p : IO_STANDARD = LVTTL;
+	CLKLK_OUT2p : SIGNALPROBE_ENABLE = OFF;
 }
 SIGNALTAP_LOGIC_ANALYZER_SETTINGS
 {
