@@ -74,8 +74,8 @@ party's intellectual property, are provided herein.
 	(port
 		(pt 0 128)
 		(input)
-		(text "cal_thr[9..0]" (rect 0 0 75 16)(font "Arial" (font_size 8)))
-		(text "cal_thr[9..0]" (rect 21 123 96 139)(font "Arial" (font_size 8)))
+		(text "tcal_thr[9..0]" (rect 0 0 80 16)(font "Arial" (font_size 8)))
+		(text "tcal_thr[9..0]" (rect 21 123 101 139)(font "Arial" (font_size 8)))
 		(line (pt 0 128)(pt 16 128)(line_width 3))
 	)
 	(port

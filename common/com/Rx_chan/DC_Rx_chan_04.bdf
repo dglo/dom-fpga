@@ -187,22 +187,6 @@ party's intellectual property, are provided herein.
 )
 (pin
 	(input)
-	(rect 0 152 168 168)
-	(text "INPUT" (rect 133 0 167 13)(font "Arial" (font_size 6)))
-	(text "cal_thr[9..0]" (rect 5 0 74 15)(font "Arial" ))
-	(pt 168 8)
-	(drawing
-		(line (pt 92 12)(pt 117 12)(line_width 1))
-		(line (pt 92 4)(pt 117 4)(line_width 1))
-		(line (pt 121 8)(pt 168 8)(line_width 1))
-		(line (pt 92 12)(pt 92 4)(line_width 1))
-		(line (pt 117 4)(pt 121 8)(line_width 1))
-		(line (pt 117 12)(pt 121 8)(line_width 1))
-	)
-	(text "VCC" (rect 136 7 159 20)(font "Arial" (font_size 6)))
-)
-(pin
-	(input)
 	(rect 0 128 168 144)
 	(text "INPUT" (rect 133 0 167 13)(font "Arial" (font_size 6)))
 	(text "msg_sent" (rect 5 0 66 15)(font "Arial" ))
@@ -286,6 +270,22 @@ party's intellectual property, are provided herein.
 	(rect 0 176 168 192)
 	(text "INPUT" (rect 133 0 167 13)(font "Arial" (font_size 6)))
 	(text "low_thr[7..0]" (rect 5 0 77 15)(font "Arial" ))
+	(pt 168 8)
+	(drawing
+		(line (pt 92 12)(pt 117 12)(line_width 1))
+		(line (pt 92 4)(pt 117 4)(line_width 1))
+		(line (pt 121 8)(pt 168 8)(line_width 1))
+		(line (pt 92 12)(pt 92 4)(line_width 1))
+		(line (pt 117 4)(pt 121 8)(line_width 1))
+		(line (pt 117 12)(pt 121 8)(line_width 1))
+	)
+	(text "VCC" (rect 136 7 159 20)(font "Arial" (font_size 6)))
+)
+(pin
+	(input)
+	(rect 0 152 168 168)
+	(text "INPUT" (rect 133 0 167 13)(font "Arial" (font_size 6)))
+	(text "tcal_thr[9..0]" (rect 5 0 77 15)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 92 12)(pt 117 12)(line_width 1))
@@ -1628,111 +1628,6 @@ party's intellectual property, are provided herein.
 	(rotate270)
 )
 (symbol
-	(rect 296 328 528 520)
-	(text "dc_rapcal_lh" (rect 5 0 85 16)(font "Arial" (font_size 8)))
-	(text "inst28" (rect 8 173 45 188)(font "Arial" ))
-	(port
-		(pt 0 32)
-		(input)
-		(text "reset" (rect 0 0 31 16)(font "Arial" (font_size 8)))
-		(text "reset" (rect 21 27 52 43)(font "Arial" (font_size 8)))
-		(line (pt 0 32)(pt 16 32)(line_width 1))
-	)
-	(port
-		(pt 0 48)
-		(input)
-		(text "CCLK" (rect 0 0 37 16)(font "Arial" (font_size 8)))
-		(text "CCLK" (rect 21 43 58 59)(font "Arial" (font_size 8)))
-		(line (pt 0 48)(pt 16 48)(line_width 1))
-	)
-	(port
-		(pt 0 64)
-		(input)
-		(text "fc_adc[9..0]" (rect 0 0 74 16)(font "Arial" (font_size 8)))
-		(text "fc_adc[9..0]" (rect 21 59 95 75)(font "Arial" (font_size 8)))
-		(line (pt 0 64)(pt 16 64)(line_width 3))
-	)
-	(port
-		(pt 0 80)
-		(input)
-		(text "mean[9..0]" (rect 0 0 68 16)(font "Arial" (font_size 8)))
-		(text "mean[9..0]" (rect 21 75 89 91)(font "Arial" (font_size 8)))
-		(line (pt 0 80)(pt 16 80)(line_width 3))
-	)
-	(port
-		(pt 0 96)
-		(input)
-		(text "tcal_prec" (rect 0 0 58 16)(font "Arial" (font_size 8)))
-		(text "tcal_prec" (rect 21 91 79 107)(font "Arial" (font_size 8)))
-		(line (pt 0 96)(pt 16 96)(line_width 1))
-	)
-	(port
-		(pt 0 112)
-		(input)
-		(text "tcwf_rd_next" (rect 0 0 80 16)(font "Arial" (font_size 8)))
-		(text "tcwf_rd_next" (rect 21 107 101 123)(font "Arial" (font_size 8)))
-		(line (pt 0 112)(pt 16 112)(line_width 1))
-	)
-	(port
-		(pt 0 128)
-		(input)
-		(text "cal_thr[9..0]" (rect 0 0 75 16)(font "Arial" (font_size 8)))
-		(text "cal_thr[9..0]" (rect 21 123 96 139)(font "Arial" (font_size 8)))
-		(line (pt 0 128)(pt 16 128)(line_width 3))
-	)
-	(port
-		(pt 0 144)
-		(input)
-		(text "msg_sent" (rect 0 0 62 16)(font "Arial" (font_size 8)))
-		(text "msg_sent" (rect 21 139 83 155)(font "Arial" (font_size 8)))
-		(line (pt 0 144)(pt 16 144)(line_width 1))
-	)
-	(port
-		(pt 232 32)
-		(output)
-		(text "rx_time_lat" (rect 0 0 70 16)(font "Arial" (font_size 8)))
-		(text "rx_time_lat" (rect 141 27 211 43)(font "Arial" (font_size 8)))
-		(line (pt 232 32)(pt 216 32)(line_width 1))
-	)
-	(port
-		(pt 232 48)
-		(output)
-		(text "tcwf_data[15..0]" (rect 0 0 101 16)(font "Arial" (font_size 8)))
-		(text "tcwf_data[15..0]" (rect 110 43 211 59)(font "Arial" (font_size 8)))
-		(line (pt 232 48)(pt 216 48)(line_width 3))
-	)
-	(port
-		(pt 232 64)
-		(output)
-		(text "tcwf_data_val" (rect 0 0 84 16)(font "Arial" (font_size 8)))
-		(text "tcwf_data_val" (rect 127 59 211 75)(font "Arial" (font_size 8)))
-		(line (pt 232 64)(pt 216 64)(line_width 1))
-	)
-	(port
-		(pt 232 80)
-		(output)
-		(text "tcwf_ef" (rect 0 0 44 16)(font "Arial" (font_size 8)))
-		(text "tcwf_ef" (rect 167 75 211 91)(font "Arial" (font_size 8)))
-		(line (pt 232 80)(pt 216 80)(line_width 1))
-	)
-	(port
-		(pt 232 96)
-		(output)
-		(text "pulse_rcvd" (rect 0 0 67 16)(font "Arial" (font_size 8)))
-		(text "pulse_rcvd" (rect 144 91 211 107)(font "Arial" (font_size 8)))
-		(line (pt 232 96)(pt 216 96)(line_width 1))
-	)
-	(parameter
-		"CAL_THR"
-		"100"
-		""
-	)
-	(drawing
-		(rectangle (rect 16 16 216 176)(line_width 1))
-	)
-	(annotation_block (parameter)(rect 528 296 640 328))
-)
-(symbol
 	(rect 1016 -319 1176 -175)
 	(text "dc_rx_fifo" (rect 44 2 123 21)(font "Arial" (font_size 10)))
 	(text "inst" (rect 8 125 30 140)(font "Arial" ))
@@ -2349,6 +2244,164 @@ party's intellectual property, are provided herein.
 	)
 	(annotation_block (parameter)(rect 216 -480 352 -432))
 )
+(symbol
+	(rect 296 328 528 520)
+	(text "dc_rapcal_lh" (rect 5 0 85 16)(font "Arial" (font_size 8)))
+	(text "inst28" (rect 8 173 45 188)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "reset" (rect 0 0 31 16)(font "Arial" (font_size 8)))
+		(text "reset" (rect 21 27 52 43)(font "Arial" (font_size 8)))
+		(line (pt 0 32)(pt 16 32)(line_width 1))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "CCLK" (rect 0 0 37 16)(font "Arial" (font_size 8)))
+		(text "CCLK" (rect 21 43 58 59)(font "Arial" (font_size 8)))
+		(line (pt 0 48)(pt 16 48)(line_width 1))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "fc_adc[9..0]" (rect 0 0 74 16)(font "Arial" (font_size 8)))
+		(text "fc_adc[9..0]" (rect 21 59 95 75)(font "Arial" (font_size 8)))
+		(line (pt 0 64)(pt 16 64)(line_width 3))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "mean[9..0]" (rect 0 0 68 16)(font "Arial" (font_size 8)))
+		(text "mean[9..0]" (rect 21 75 89 91)(font "Arial" (font_size 8)))
+		(line (pt 0 80)(pt 16 80)(line_width 3))
+	)
+	(port
+		(pt 0 96)
+		(input)
+		(text "tcal_prec" (rect 0 0 58 16)(font "Arial" (font_size 8)))
+		(text "tcal_prec" (rect 21 91 79 107)(font "Arial" (font_size 8)))
+		(line (pt 0 96)(pt 16 96)(line_width 1))
+	)
+	(port
+		(pt 0 112)
+		(input)
+		(text "tcwf_rd_next" (rect 0 0 80 16)(font "Arial" (font_size 8)))
+		(text "tcwf_rd_next" (rect 21 107 101 123)(font "Arial" (font_size 8)))
+		(line (pt 0 112)(pt 16 112)(line_width 1))
+	)
+	(port
+		(pt 0 128)
+		(input)
+		(text "tcal_thr[9..0]" (rect 0 0 80 16)(font "Arial" (font_size 8)))
+		(text "tcal_thr[9..0]" (rect 21 123 101 139)(font "Arial" (font_size 8)))
+		(line (pt 0 128)(pt 16 128)(line_width 3))
+	)
+	(port
+		(pt 0 144)
+		(input)
+		(text "msg_sent" (rect 0 0 62 16)(font "Arial" (font_size 8)))
+		(text "msg_sent" (rect 21 139 83 155)(font "Arial" (font_size 8)))
+		(line (pt 0 144)(pt 16 144)(line_width 1))
+	)
+	(port
+		(pt 232 32)
+		(output)
+		(text "rx_time_lat" (rect 0 0 70 16)(font "Arial" (font_size 8)))
+		(text "rx_time_lat" (rect 141 27 211 43)(font "Arial" (font_size 8)))
+		(line (pt 232 32)(pt 216 32)(line_width 1))
+	)
+	(port
+		(pt 232 48)
+		(output)
+		(text "tcwf_data[15..0]" (rect 0 0 101 16)(font "Arial" (font_size 8)))
+		(text "tcwf_data[15..0]" (rect 110 43 211 59)(font "Arial" (font_size 8)))
+		(line (pt 232 48)(pt 216 48)(line_width 3))
+	)
+	(port
+		(pt 232 64)
+		(output)
+		(text "tcwf_data_val" (rect 0 0 84 16)(font "Arial" (font_size 8)))
+		(text "tcwf_data_val" (rect 127 59 211 75)(font "Arial" (font_size 8)))
+		(line (pt 232 64)(pt 216 64)(line_width 1))
+	)
+	(port
+		(pt 232 80)
+		(output)
+		(text "tcwf_ef" (rect 0 0 44 16)(font "Arial" (font_size 8)))
+		(text "tcwf_ef" (rect 167 75 211 91)(font "Arial" (font_size 8)))
+		(line (pt 232 80)(pt 216 80)(line_width 1))
+	)
+	(port
+		(pt 232 96)
+		(output)
+		(text "pulse_rcvd" (rect 0 0 67 16)(font "Arial" (font_size 8)))
+		(text "pulse_rcvd" (rect 144 91 211 107)(font "Arial" (font_size 8)))
+		(line (pt 232 96)(pt 216 96)(line_width 1))
+	)
+	(parameter
+		"CAL_THR"
+		"100"
+		""
+	)
+	(drawing
+		(rectangle (rect 16 16 216 176)(line_width 1))
+	)
+	(annotation_block (parameter)(rect 528 296 640 328))
+)
+(symbol
+	(rect 40 272 152 320)
+	(text "LPM_CONSTANT" (rect 4 0 144 19)(font "Arial" (font_size 10)))
+	(text "TCAL_THRESHOLD" (rect 3 37 126 52)(font "Arial" ))
+	(port
+		(pt 112 32)
+		(output)
+		(text "result[LPM_WIDTH-1..0]" (rect 75 19 230 35)(font "Arial" (font_size 8)))
+		(text "result[]" (rect 75 19 119 35)(font "Arial" (font_size 8)))
+		(line (pt 64 32)(pt 112 32)(line_width 3))
+	)
+	(parameter
+		"LPM_CVALUE"
+		"900"
+		"TCAL threshold, stops the digitization of the TCAL pulse"
+	)
+	(parameter
+		"LPM_WIDTH"
+		"10"
+		"Width of output, any integer > 0"
+		" 1" " 2" " 3" " 4" " 5" " 6" " 7" " 8" " 9" "10" "11" "12" "13" "14" "15" "16" "20" "24" "28" "32" 
+	)
+	(drawing
+		(text "(cvalue)" (rect 21 26 69 42)(font "Arial" (font_size 8)))
+		(line (pt 16 24)(pt 64 24)(line_width 1))
+		(line (pt 16 40)(pt 64 40)(line_width 1))
+		(line (pt 64 40)(pt 64 24)(line_width 1))
+		(line (pt 16 40)(pt 16 24)(line_width 1))
+	)
+	(annotation_block (parameter)(rect 152 224 288 272))
+)
+(block
+	(rect 64 512 264 784)
+	(text "dc_rapcal_lh" (rect 5 5 83 20)(font "Arial" ))	(text "inst16" (rect 5 255 42 270)(font "Arial" ))	(block_io "reset" (input))
+	(block_io "CCLK" (input))
+	(block_io "fc_adc[9..0]" (input))
+	(block_io "mean[9..0]" (input))
+	(block_io "tcal_prec" (input))
+	(block_io "tcwf_rd_next" (input))
+	(block_io "cal_thr[9..0]" (input))
+	(block_io "msg_sent" (input))
+	(block_io "rx_time_lat" (output))
+	(block_io "tcwf_data[15..0]" (output))
+	(block_io "tcwf_data_val" (output))
+	(block_io "tcwf_ef" (output))
+	(block_io "pulse_rcvd" (output))
+	(parameter
+		"CAL_THR"
+		"100"
+		""
+	)
+	(annotation_block (parameter)(rect 264 480 376 512))
+)
 (connector
 	(pt 176 80)
 	(pt 192 80)
@@ -2697,12 +2750,6 @@ party's intellectual property, are provided herein.
 	(text "rx_time_lat" (rect 536 344 602 359)(font "Arial" ))
 	(pt 528 360)
 	(pt 648 360)
-)
-(connector
-	(text "cal_thr[9..0]" (rect 192 439 261 454)(font "Arial" ))
-	(pt 296 456)
-	(pt 184 456)
-	(bus)
 )
 (connector
 	(text "msg_sent" (rect 192 455 253 470)(font "Arial" ))
@@ -3121,6 +3168,18 @@ party's intellectual property, are provided herein.
 	(pt 40 -279)
 	(pt 104 -279)
 )
+(connector
+	(text "tcal_thresh[9..0]" (rect 192 439 287 454)(font "Arial" ))
+	(pt 296 456)
+	(pt 184 456)
+	(bus)
+)
+(connector
+	(text "tcal_thresh[9..0]" (rect 176 288 271 303)(font "Arial" ))
+	(pt 152 304)
+	(pt 288 304)
+	(bus)
+)
 (junction (pt 1464 376))
 (junction (pt 288 -288))
 (text "prevent downcounting when 0x0" (rect 1832 456 2033 472)(font "Arial" (font_size 8)))
@@ -3134,7 +3193,7 @@ party's intellectual property, are provided herein.
 	(section (rect 0 48 368 72)(text "DESIGNER" (rect 2 0 71 15)(font "Arial" ))(text "Karl-Heinz Sulanke" (rect 56 2 236 25)(font "Arial" (font_size 12)))(border))
 	(section (rect 0 72 280 96)(text "NUMBER" (rect 2 0 59 15)(font "Arial" ))(text "1.00" (rect 56 1 91 20)(font "Arial" (font_size 10)))(border))
 	(section (rect 280 72 368 96)(text "REV" (rect 2 1 28 16)(font "Arial" ))(text "A" (rect 43 1 55 20)(font "Arial" (font_size 10)))(border))
-	(section (rect 0 96 240 120)(text "DATE" (rect 2 0 36 15)(font "Arial" ))(text "Tue Sep 09 08:37:54 2003" (rect 56 3 269 22)(font "Arial" (font_size 10)))(date)(border))
+	(section (rect 0 96 240 120)(text "DATE" (rect 2 0 36 15)(font "Arial" ))(text "Thu Sep 11 11:07:33 2003" (rect 56 3 269 22)(font "Arial" (font_size 10)))(date)(border))
 	(section (rect 240 96 310 120)(text "SHEET" (rect 2 0 46 15)(font "Arial" ))(text "1" (rect 55 5 64 24)(font "Arial" (font_size 10))))
 	(section (rect 310 96 368 120)(text "OF" (rect 10 0 27 15)(font "Arial" ))(text "1" (rect 34 4 43 23)(font "Arial" (font_size 10))))
 	(drawing

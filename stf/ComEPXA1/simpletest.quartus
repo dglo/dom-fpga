@@ -13,6 +13,7 @@ SOFTWARE_SETTINGS_LIST
 }
 FILES
 {
+	AHDL_FILE = ..\..\common\com\Tcal\TCWF_FIFO_32x10.tdf;
 	AHDL_FILE = ..\..\common\com\Rx_chan\edges\GET_DUDT.tdf;
 	INCLUDE_FILE = ..\..\common\com\Rx_chan\edges\GET_DUDT.inc;
 	AHDL_FILE = ..\..\common\com\Rx_chan\edges\adc_to_ser_dudt.tdf;

@@ -935,10 +935,10 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			rs485_not_dac :  IN  STD_LOGIC;
 			id_stb_L :  IN  STD_LOGIC;
 			id_stb_H :  IN  STD_LOGIC;
-			cal_thr :  IN  STD_LOGIC_VECTOR(9 downto 0);
 			fc_adc :  IN  STD_LOGIC_VECTOR(9 downto 0);
 			id :  IN  STD_LOGIC_VECTOR(47 downto 0);
 			systime :  IN  STD_LOGIC_VECTOR(47 downto 0);
+			tcal_thr :  IN  STD_LOGIC_VECTOR(9 downto 0);
 			tx_fd :  IN  STD_LOGIC_VECTOR(7 downto 0);
 			txd :  OUT  STD_LOGIC;
 			last_byte :  OUT  STD_LOGIC;
@@ -1793,10 +1793,10 @@ BEGIN
 			rs485_not_dac 	=> rs485_not_dac,
 			id_stb_L	=> high,
 			id_stb_H	=> dom_id(48),
-			cal_thr		=> cal_thr,
 			fc_adc		=> COM_AD_D,
 			id			=> dom_id(47 downto 0),
 			systime		=> systime,
+			tcal_thr		=> cal_thr,
 			tx_fd		=> com_tx_fifo,
 			txd			=> TC(6),
 			last_byte	=> open,
@@ -1827,17 +1827,17 @@ BEGIN
 			fifo_msg	=> fifo_msg,
 			hl_edge 	=> open, --TC(2),
 			lh_edge 	=> open,
-			rxd 		=> TC(3),
+			rxd 		=> open,
 			drbt_gnt	=> drbt_gnt,
 			com_aval	=> com_aval,
 			sys_res     => sys_reset,
-			tcal_rcvd	=> open,
-			pulse_rcvd	=> open,
-			pulse_sent	=> open,
+			tcal_rcvd	=> TC(0),
+			pulse_rcvd	=> TC(1),
+			pulse_sent	=> TC(2),
 			idreq_rcvd	=> open,
-			max_ena		=> TC(1),
-			min_ena		=> TC(0),
-			find_dudt	=> TC(2),
+			max_ena		=> TC(3),
+			min_ena		=> open,
+			find_dudt	=> open,
 			dac_db		=> COM_DB,
 			data		=> temp_data,
 			msg_ct_q	=> msg_ct_q,
