@@ -45,7 +45,6 @@ set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/dc_com_dac_ctr
 set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/tx_uart_ct5.tdf
 set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/tx_uart_ct4.tdf
 set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/tx_uart_shr10.tdf
-set_global_assignment -name VHDL_FILE ../../common/comDPM/Rx_chan/DC_MRAP.vhd
 set_global_assignment -name VHDL_FILE ../../common/comDPM/Tx_chan/my_or16b.vhd
 set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/Rx_dpr_ctrl_ap.tdf
 set_global_assignment -name AHDL_FILE ../../common/comDPM/Tcal/dc_tcal_ct.tdf

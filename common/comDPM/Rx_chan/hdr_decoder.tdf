@@ -1,4 +1,4 @@
-TITLE "control message, header-bytes decoder, K.-H. Sulanke,DESY Zeuthen, 2004-07-07";
+TITLE "control message, header-bytes decoder, K.-H. Sulanke,DESY Zeuthen, 2004-08-17";
 -- according Arthur Jones protocol
 -- including comm. DAC level adaption
 
@@ -14,6 +14,7 @@ SUBDESIGN hdr_decoder
 	dom_B_sel	    : INPUT;
 	seq0_byte	    : INPUT;
 	seq1_byte	    : INPUT;
+	ctrl_rcvd		: INPUT;
 	
 	ctrl_msg	    : OUTPUT;	
 	data_msg	    : OUTPUT;
@@ -63,10 +64,10 @@ BEGIN
 	dorlev_up_rqb.(clk,clrn)	= (clk, !reset);
 	dorlev_dn_rqb.(clk,clrn)	= (clk, !reset);
 	
-	dorlev_up_rqa.d		= seq1_byte & data[7] & data_stb & dom_A_sel;
-	dorlev_dn_rqa.d		= seq1_byte & data[6] & data_stb & dom_A_sel;
-	dorlev_up_rqb.d		= seq1_byte & data[7] & data_stb & dom_B_sel;
-	dorlev_dn_rqb.d		= seq1_byte & data[6] & data_stb & dom_B_sel;
+	dorlev_up_rqa.d		= data[7] & ctrl_msg.q & seq1_byte & data_stb & dom_A_sel;
+	dorlev_dn_rqa.d		= data[6] & ctrl_msg.q & seq1_byte & data_stb & dom_A_sel;
+	dorlev_up_rqb.d		= data[7] & ctrl_msg.q & seq1_byte & data_stb & dom_B_sel;
+	dorlev_dn_rqb.d		= data[6] & ctrl_msg.q & seq1_byte & data_stb & dom_B_sel;	
 
 	domleva[].clk		= clk;
 	domleva[].clrn		= !reset;

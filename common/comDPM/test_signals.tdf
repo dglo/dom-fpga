@@ -1,4 +1,6 @@
-TITLE "DCOM test signals, K.-H. Sulanke,DESY Zeuthen, 2004-04-25";
+TITLE "DCOM test signals, K.-H. Sulanke,DESY Zeuthen, 2004-08-30";
+
+CONSTANT DCOM_REV= 24;
 
 SUBDESIGN test_signals
 (
@@ -36,6 +38,7 @@ SUBDESIGN test_signals
 	
 	
 	tc[7..0]		: OUTPUT;	-- DOM test connector
+	rev[15..0]		: OUTPUT;	-- DOM test connector
 )
 
 BEGIN

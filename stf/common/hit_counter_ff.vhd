@@ -32,7 +32,7 @@ ENTITY hit_counter_ff IS
 		RST			: IN STD_LOGIC;
 		-- setup
 		gatetime	: IN STD_LOGIC := '0';
-		deadtime	: IN STD_LOGIC_VECTOR (3 DOWNTO 0); 
+		deadtime	: IN STD_LOGIC_VECTOR (3 DOWNTO 0) := "0000"; 
 		-- discriminator input
 		MultiSPE		: IN STD_LOGIC;
 		OneSPE			: IN STD_LOGIC;
@@ -40,7 +40,7 @@ ENTITY hit_counter_ff IS
 		multiSPEcnt		: OUT STD_LOGIC_VECTOR(15 downto 0);
 		oneSPEcnt		: OUT STD_LOGIC_VECTOR(15 downto 0);
 		-- frontend pulser
-		FE_pulse		: IN STD_LOGIC;
+		FE_pulse		: IN STD_LOGIC := '0';
 		-- test connector
 		TC					: OUT STD_LOGIC_VECTOR(7 downto 0)
 	);
@@ -133,11 +133,11 @@ BEGIN
 	END PROCESS;
 	
 	OneSPEreset : PROCESS (CLK,RST)
-		VARIABLE cnt	: STD_LOGIC_VECTOR (11 DOWNTO 0);
+		VARIABLE cnt	: STD_LOGIC_VECTOR (17 DOWNTO 0);
 	BEGIN
 		IF RST='1' THEN
 			OneSPErst	<= '1';
-			cnt			:= CONV_STD_LOGIC_VECTOR(1,12);
+			cnt			:= CONV_STD_LOGIC_VECTOR(1,18);
 		ELSIF CLK'EVENT AND CLK='1' THEN
 			IF OneSPE_latch='1' THEN
 				IF cnt(1+CONV_INTEGER(deadtime))='1' THEN
@@ -148,17 +148,17 @@ BEGIN
 				cnt	:= cnt + 1;
 			ELSE
 				OneSPErst	<= '0';
-				cnt			:= CONV_STD_LOGIC_VECTOR(1,12);
+				cnt			:= CONV_STD_LOGIC_VECTOR(1,18);
 			END IF;
 		END IF;
 	END PROCESS;
 	
 	MultiSPEreset : PROCESS (CLK,RST)
-		VARIABLE cnt	: STD_LOGIC_VECTOR (11 DOWNTO 0);
+		VARIABLE cnt	: STD_LOGIC_VECTOR (17 DOWNTO 0);
 	BEGIN
 		IF RST='1' THEN
 			MultiSPErst	<= '1';
-			cnt			:= CONV_STD_LOGIC_VECTOR(1,12);
+			cnt			:= CONV_STD_LOGIC_VECTOR(1,18);
 		ELSIF CLK'EVENT AND CLK='1' THEN
 			IF MultiSPE_latch='1' THEN
 				IF cnt(1+CONV_INTEGER(deadtime))='1' THEN
@@ -169,7 +169,7 @@ BEGIN
 				cnt	:= cnt + 1;
 			ELSE
 				MultiSPErst	<= '0';
-				cnt			:= CONV_STD_LOGIC_VECTOR(1,12);
+				cnt			:= CONV_STD_LOGIC_VECTOR(1,18);
 			END IF;
 		END IF;
 	END PROCESS;

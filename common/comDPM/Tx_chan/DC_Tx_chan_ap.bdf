@@ -574,7 +574,7 @@ party's intellectual property, are provided herein.
 )
 (pin
 	(output)
-	(rect 1608 -439 1787 -423)
+	(rect 1608 -408 1787 -392)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "COM_DB[7..0]" (rect 90 0 161 12)(font "Arial" ))
 	(pt 0 8)
@@ -1121,56 +1121,6 @@ party's intellectual property, are provided herein.
 		(line (pt 13 7)(pt 31 16)(line_width 1))
 		(line (pt 13 25)(pt 31 16)(line_width 1))
 		(circle (rect 31 12 39 20)(line_width 1))
-	)
-)
-(symbol
-	(rect 1520 -455 1584 -375)
-	(text "DFF" (rect 1 0 19 10)(font "Arial" (font_size 6)))
-	(text "inst23" (rect 3 68 32 80)(font "Arial" ))
-	(port
-		(pt 32 80)
-		(input)
-		(text "CLRN" (rect 21 59 44 71)(font "Courier New" (bold)))
-		(text "CLRN" (rect 21 58 44 70)(font "Courier New" (bold)))
-		(line (pt 32 80)(pt 32 76)(line_width 1))
-	)
-	(port
-		(pt 0 40)
-		(input)
-		(text "CLK" (rect 3 29 20 41)(font "Courier New" (bold))(invisible))
-		(text "CLK" (rect 3 29 20 41)(font "Courier New" (bold))(invisible))
-		(line (pt 0 40)(pt 12 40)(line_width 1))
-	)
-	(port
-		(pt 0 24)
-		(input)
-		(text "D" (rect 14 20 19 32)(font "Courier New" (bold)))
-		(text "D" (rect 14 20 19 32)(font "Courier New" (bold)))
-		(line (pt 0 24)(pt 12 24)(line_width 1))
-	)
-	(port
-		(pt 32 0)
-		(input)
-		(text "PRN" (rect 24 13 41 25)(font "Courier New" (bold)))
-		(text "PRN" (rect 24 11 41 23)(font "Courier New" (bold)))
-		(line (pt 32 4)(pt 32 0)(line_width 1))
-	)
-	(port
-		(pt 64 24)
-		(output)
-		(text "Q" (rect 45 20 50 32)(font "Courier New" (bold)))
-		(text "Q" (rect 45 20 50 32)(font "Courier New" (bold)))
-		(line (pt 52 24)(pt 64 24)(line_width 1))
-	)
-	(drawing
-		(line (pt 12 12)(pt 52 12)(line_width 1))
-		(line (pt 12 68)(pt 52 68)(line_width 1))
-		(line (pt 52 68)(pt 52 12)(line_width 1))
-		(line (pt 12 68)(pt 12 12)(line_width 1))
-		(line (pt 19 40)(pt 12 47)(line_width 1))
-		(line (pt 12 32)(pt 20 40)(line_width 1))
-		(circle (rect 28 4 36 12)(line_width 1))
-		(circle (rect 28 68 36 76)(line_width 1))
 	)
 )
 (symbol
@@ -2625,6 +2575,30 @@ party's intellectual property, are provided herein.
 	)
 )
 (symbol
+	(rect 1536 -416 1584 -384)
+	(text "WIRE" (rect 1 0 24 10)(font "Arial" (font_size 6)))
+	(text "inst52" (rect 3 21 32 33)(font "Arial" ))
+	(port
+		(pt 0 16)
+		(input)
+		(text "IN" (rect 2 7 13 19)(font "Courier New" (bold))(invisible))
+		(text "IN" (rect 2 7 13 19)(font "Courier New" (bold))(invisible))
+		(line (pt 0 16)(pt 14 16)(line_width 1))
+	)
+	(port
+		(pt 48 16)
+		(output)
+		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
+		(line (pt 32 16)(pt 48 16)(line_width 1))
+	)
+	(drawing
+		(line (pt 14 7)(pt 32 16)(line_width 1))
+		(line (pt 14 25)(pt 14 7)(line_width 1))
+		(line (pt 14 25)(pt 32 16)(line_width 1))
+	)
+)
+(symbol
 	(rect 848 -448 1256 -320)
 	(text "Tx_dpr_ctrl_PAR_ap" (rect 5 0 105 12)(font "Arial" ))
 	(text "inst10" (rect 8 112 37 124)(font "Arial" ))
@@ -2701,7 +2675,7 @@ party's intellectual property, are provided herein.
 	(parameter
 		"MAX_PACKET_SIZE"
 		"257"
-		"DOM->257, 256x32bit words + 32bit header, DCT -> 128"
+		"DOM->257, 256x32bit words + 32bit header, DCT -> 152"
 	)
 	(parameter
 		"DPR_ADR_RANGE"
@@ -2736,22 +2710,6 @@ party's intellectual property, are provided herein.
 (connector
 	(pt 1592 -487)
 	(pt 1608 -487)
-)
-(connector
-	(text "not_CLK20" (rect 1448 -432 1502 -420)(font "Arial" ))
-	(pt 1440 -415)
-	(pt 1520 -415)
-)
-(connector
-	(text "dac_d[7..0]" (rect 1424 -447 1487 -433)(font "Arial" (font_size 8)))
-	(pt 1416 -431)
-	(pt 1520 -431)
-	(bus)
-)
-(connector
-	(pt 1584 -431)
-	(pt 1608 -431)
-	(bus)
 )
 (connector
 	(text "GND" (rect 1440 -152 1464 -140)(font "Arial" ))
@@ -3827,6 +3785,17 @@ party's intellectual property, are provided herein.
 	(pt 928 784)
 	(bus)
 )
+(connector
+	(pt 1584 -400)
+	(pt 1608 -400)
+	(bus)
+)
+(connector
+	(text "dac_d[7..0]" (rect 1456 -416 1519 -402)(font "Arial" (font_size 8)))
+	(pt 1440 -400)
+	(pt 1536 -400)
+	(bus)
+)
 (junction (pt 952 -136))
 (junction (pt 264 24))
 (junction (pt 264 176))
@@ -3840,7 +3809,7 @@ party's intellectual property, are provided herein.
 	(section (rect 0 48 368 72)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Karl-Heinz Sulanke" (rect 56 2 211 20)(font "Arial" (font_size 12)))(border))
 	(section (rect 0 72 280 96)(text "NUMBER" (rect 2 0 49 12)(font "Arial" ))(text "1.00" (rect 56 1 85 17)(font "Arial" (font_size 10)))(border))
 	(section (rect 280 72 368 96)(text "REV" (rect 2 1 24 13)(font "Arial" ))(text "B" (rect 43 1 53 17)(font "Arial" (font_size 10)))(border))
-	(section (rect 0 96 240 120)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Thu Jul 22 13:02:44 2004" (rect 56 3 227 19)(font "Arial" (font_size 10)))(date)(border))
+	(section (rect 0 96 240 120)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Mon Aug 30 19:32:02 2004" (rect 56 3 240 19)(font "Arial" (font_size 10)))(date)(border))
 	(section (rect 240 96 310 120)(text "SHEET" (rect 2 0 37 12)(font "Arial" ))(text "1" (rect 55 5 63 21)(font "Arial" (font_size 10))))
 	(section (rect 310 96 368 120)(text "OF" (rect 10 0 25 12)(font "Arial" ))(text "1" (rect 34 4 42 20)(font "Arial" (font_size 10))))
 	(drawing

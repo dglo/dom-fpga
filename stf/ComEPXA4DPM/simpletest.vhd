@@ -19,6 +19,7 @@
 -- Revisions  :
 -- Date        Version     Author    Description
 -- 2003-07-17  V01-01-00   thorsten  
+-- 2004-10-22              thorsten  added LC_abort
 -------------------------------------------------------------------------------
 
 LIBRARY IEEE;
@@ -250,6 +251,8 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL response_3	: STD_LOGIC_VECTOR(31 downto 0) := (OTHERS=>'0');
 	SIGNAL command_4	: STD_LOGIC_VECTOR(31 downto 0);
 	SIGNAL response_4	: STD_LOGIC_VECTOR(31 downto 0) := (OTHERS=>'0');
+	SIGNAL command_5	: STD_LOGIC_VECTOR(31 downto 0);
+	SIGNAL response_5	: STD_LOGIC_VECTOR(31 downto 0) := (OTHERS=>'0');
 	
 	-- com DAC test
 	SIGNAL enable			: STD_LOGIC;
@@ -299,6 +302,19 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL coinc_up_low			: STD_LOGIC;
 	SIGNAL coinc_latch			: STD_LOGIC_VECTOR(3 downto 0);
 	SIGNAL coinc_disc			: STD_LOGIC_VECTOR(7 downto 0);
+	-- simple LC
+	SIGNAL LC_ATWD0				: STD_LOGIC;
+	SIGNAL LC_ATWD1				: STD_LOGIC;
+	SIGNAL enable_coinc_atwd	: STD_LOGIC;
+	SIGNAL atwd0_LC_abort		: STD_LOGIC;
+	SIGNAL atwd1_LC_abort		: STD_LOGIC;
+	SIGNAL LC_rx_down_en		: STD_LOGIC;
+	SIGNAL LC_rx_up_en		: STD_LOGIC;
+	SIGNAL atwd0_trigger_delay	: STD_LOGIC;
+	SIGNAL atwd0_trigger_latch	: STD_LOGIC;
+	SIGNAL atwd1_trigger_delay	: STD_LOGIC;
+	SIGNAL atwd1_trigger_latch	: STD_LOGIC;
+	SIGNAL flash_adc_enable_lc	: STD_LOGIC;                                  
 	
 	-- hit counter
 	SIGNAL oneSPEcnt		: STD_LOGIC_VECTOR(15 downto 0);
@@ -607,6 +623,8 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			dom_id			: OUT	STD_LOGIC_VECTOR(63 DOWNTO 0);
 			command_4		: OUT	STD_LOGIC_VECTOR(31 downto 0);
 			response_4		: IN	STD_LOGIC_VECTOR(31 downto 0);
+			command_5		: OUT	STD_LOGIC_VECTOR(31 downto 0);
+			response_5		: IN	STD_LOGIC_VECTOR(31 downto 0);
 			tx_dpr_wadr		: OUT	STD_LOGIC_VECTOR(31 downto 0);
 			tx_dpr_radr		: IN	STD_LOGIC_VECTOR(31 downto 0);
 			rx_dpr_radr		: OUT	STD_LOGIC_VECTOR(31 downto 0);
@@ -760,6 +778,23 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			enable_coinc_down	: IN STD_LOGIC;
 			enable_coinc_up		: IN STD_LOGIC;
 			newFF				: IN STD_LOGIC;
+			enable_coinc_atwd	: IN STD_LOGIC := '0';
+			-- simple LC
+			OneSPE				: IN STD_LOGIC;
+			LC_rx_down_en		: IN STD_LOGIC := '1';
+			LC_rx_up_en			: IN STD_LOGIC := '1';
+			LC_up_pre_window	: IN STD_LOGIC_VECTOR (5 DOWNTO 0) := "000000";
+			LC_up_post_window	: IN STD_LOGIC_VECTOR (5 DOWNTO 0) := "000000";
+			LC_down_pre_window	: IN STD_LOGIC_VECTOR (5 DOWNTO 0) := "000000";
+			LC_down_post_window	: IN STD_LOGIC_VECTOR (5 DOWNTO 0) := "000000";
+			LC_atwd_a			: OUT STD_LOGIC;
+			LC_atwd_b			: OUT STD_LOGIC;
+			atwd0_LC_abort		: OUT STD_LOGIC;
+			atwd1_LC_abort		: OUT STD_LOGIC;
+			atwd_a_enable_disc	: IN STD_LOGIC := '0';
+			atwd_b_enable_disc	: IN STD_LOGIC := '0';
+			atwd0_trigger		: IN STD_LOGIC := '0';
+			atwd1_trigger		: IN STD_LOGIC := '0';
 			-- manual control
 			coinc_up_high		: IN STD_LOGIC;
 			coinc_up_low		: IN STD_LOGIC;
@@ -843,6 +878,9 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			-- disc
 			OneSPE		: IN STD_LOGIC;
 			LEDtrig		: IN STD_LOGIC;
+			-- LC interface
+			LC_abort	: IN STD_LOGIC := '0';
+			LC_enable	: IN STD_LOGIC := '0';
 			-- stripe interface
 			wdata		: IN STD_LOGIC_VECTOR (15 downto 0);
 			rdata		: OUT STD_LOGIC_VECTOR (15 downto 0);
@@ -1178,11 +1216,13 @@ BEGIN
 	--atwd0_enable_disc	<= command_0(1);
 	atwd0_enable_LED	<= command_0(3);
 	response_0(0)	<= atwd0_done;
+	response_0(1)	<= LC_ATWD0;
 	-- ATWD1
 	atwd1_enable	<= command_0(8);
 	--atwd1_enable_disc	<= command_0(9);
 	atwd1_enable_LED	<= command_0(11);
 	response_0(8)	<= atwd1_done;
+	response_0(9)	<= LC_ATWD1;
 	-- flash ADC test
 	flash_adc_enable		<= command_0(16);
 	flash_adc_enable_disc	<= command_0(17);
@@ -1213,6 +1253,9 @@ BEGIN
 	enable_coinc_up		<= command_2(0);
 	enable_coinc_down	<= command_2(1);
 	enable_coinc_newFF	<= command_2(2);
+	enable_coinc_atwd	<= command_2(3);
+	LC_rx_down_en		<= command_2(4);
+	LC_rx_up_en			<= command_2(5);
 	coinc_down_high		<= command_2(8);
 	coinc_down_low		<= command_2(9);
 	coinc_up_high		<= command_2(10);
@@ -1230,8 +1273,8 @@ BEGIN
 	
 	
 	response_0(31 downto 17)	<= (others=>'0');
-	response_0(15 downto 9)		<= (others=>'0');
-	response_0(7 downto 1)		<= (others=>'0');
+	response_0(15 downto 10)		<= (others=>'0');
+	response_0(7 downto 2)		<= (others=>'0');
 	
 	response_1(31 downto 9)	<= (others=>'0');
 	response_1(8 downto 4)	<= (others=>'0');
@@ -1523,6 +1566,8 @@ BEGIN
 			dom_id			=> dom_id,
 			command_4		=> command_4,
 			response_4		=> response_4,
+			command_5		=> command_5,
+			response_5		=> response_5,
 			tx_dpr_wadr		=> tx_dpr_wadr,
 			tx_dpr_radr		=> tx_dpr_radr,
 			rx_dpr_radr		=> rx_dpr_radr,
@@ -1624,7 +1669,7 @@ BEGIN
 			address		=> flash_adc_address,
 			write_en	=> flash_adc_write_en,
 			-- enable for RX
-			enable		=> flash_adc_enable,
+			enable		=> flash_adc_enable_lc,
 			enable_disc	=> flash_adc_enable_disc,
 			done		=> flash_adc_done,
 			-- disc
@@ -1672,6 +1717,23 @@ BEGIN
 			enable_coinc_down	=> enable_coinc_down,
 			enable_coinc_up		=> enable_coinc_up,
 			newFF				=> enable_coinc_newFF,	-- '1';
+			enable_coinc_atwd	=> enable_coinc_atwd,
+			-- simple LC
+			OneSPE				=> OneSPE,
+			LC_rx_down_en		=> LC_rx_down_en,
+			LC_rx_up_en			=> LC_rx_up_en,
+			LC_up_pre_window	=> command_5(5 DOWNTO 0),
+			LC_up_post_window	=> command_5(13 DOWNTO 8),
+			LC_down_pre_window	=> command_5(21 DOWNTO 16),
+			LC_down_post_window	=> command_5(29 DOWNTO 24),
+			LC_atwd_a			=> LC_ATWD0,
+			LC_atwd_b			=> LC_ATWD1,
+			atwd0_LC_abort		=> atwd0_LC_abort,
+			atwd1_LC_abort		=> atwd1_LC_abort,
+			atwd_a_enable_disc	=> atwd0_enable_disc,
+			atwd_b_enable_disc	=> atwd1_enable_disc,
+			atwd0_trigger		=> atwd0_trigger,
+			atwd1_trigger		=> atwd1_trigger,
 			-- manual control
 			coinc_up_high		=> coinc_up_high,
 			coinc_up_low		=> coinc_up_low,
@@ -1695,8 +1757,33 @@ BEGIN
 			COINC_UP_BBAR		=> COINC_UP_BBAR,
 			COINC_UP_B			=> COINC_UP_B,
 			-- test connector
-			TC					=> open
+			TC					=> TC
 		);
+	-- for simple local coincidence FADC launch
+	--flash_adc_enable_disc_lc	<= flash_adc_enable_disc WHEN enable_coinc_atwd='0' ELSE flash_adc_enable_disc AND NOT (atwd0_LC_abort OR atwd1_LC_abort);
+	flash_adc_enable_lc	<= flash_adc_enable WHEN enable_coinc_atwd='0' ELSE (((atwd0_trigger AND NOT atwd0_trigger_delay) OR atwd0_trigger_latch) OR ((atwd1_trigger AND NOT atwd1_trigger_delay) OR atwd1_trigger_latch)) AND flash_adc_enable;
+	PROCESS(CLK40,RST)
+	BEGIN
+		IF RST='1' THEN
+		ELSIF CLK40'EVENT AND CLK40='1' THEN
+			-- ATWD 0
+			atwd0_trigger_delay	<= atwd0_trigger;
+			IF atwd0_trigger='1' AND atwd0_trigger_delay='0' THEN
+				atwd0_trigger_latch <= '1';
+			END IF;
+			IF atwd0_LC_abort='1' OR flash_adc_enable='0' THEN
+				atwd0_trigger_latch	<= '0';
+			END IF;
+			-- ATWD 1
+			atwd1_trigger_delay	<= atwd1_trigger;
+			IF atwd1_trigger='1' AND atwd1_trigger_delay='0' THEN
+				atwd1_trigger_latch <= '1';
+			END IF;
+			IF atwd1_LC_abort='1' OR flash_adc_enable='0' THEN
+				atwd1_trigger_latch	<= '0';
+			END IF;
+		END IF;
+	END PROCESS;
 		
 	inst_hit_counter : hit_counter
 		PORT MAP (
@@ -1787,6 +1874,9 @@ BEGIN
 			-- disc
 			OneSPE		=> OneSPE,
 			LEDtrig		=> LEDtrig,
+			-- LC interface
+			LC_abort	=> atwd0_LC_abort,
+			LC_enable	=> enable_coinc_atwd,
 			-- stripe interface
 			wdata		=> atwd0_wdata,
 			rdata		=> atwd0_rdata,
@@ -1830,6 +1920,9 @@ BEGIN
 			-- disc
 			OneSPE		=> OneSPE,
 			LEDtrig		=> LEDtrig,
+			-- LC interface
+			LC_abort	=> atwd1_LC_abort,
+			LC_enable	=> enable_coinc_atwd,
 			-- stripe interface
 			wdata		=> atwd1_wdata,
 			rdata		=> atwd1_rdata,
@@ -2017,7 +2110,7 @@ BEGIN
 			id				=> dom_id(47 DOWNTO 0),
 			rx_dpr_radr		=> rx_dpr_radr(15 DOWNTO 0),
 			systime			=> systime,
-			tc				=> TC,
+			tc				=> open,
 			tx_dataout		=> dp0_portadataout,
 			tx_dpr_wadr		=> tx_dpr_wadr(15 DOWNTO 0),
 			tx_pack_sent	=> tx_pack_sent,

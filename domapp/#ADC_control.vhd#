@@ -73,6 +73,8 @@ ARCHITECTURE arch_ADC_control OF ADC_control IS
 
     SIGNAL enable : STD_LOGIC;
 
+    SIGNAL eventtype : STD_LOGIC_VECTOR (1 DOWNTO 0);
+
     SIGNAL deadtime_cnt : STD_LOGIC_VECTOR (15 DOWNTO 0);
     
 BEGIN
@@ -80,17 +82,19 @@ BEGIN
     PROCESS(CLK40, RST)
     BEGIN
         IF RST = '1' THEN
-            state  <= IDLE;
-            enable <= '0';
-            busy   <= '0';
+            state     <= IDLE;
+            enable    <= '0';
+            busy      <= '0';
+            eventtype <= eventEngineering;
         ELSIF CLK40'EVENT AND CLK40 = '1' THEN
             CASE state IS
                 WHEN IDLE =>
                     IF ATWDtrigger = '1' THEN
                         state <= WAIT_DONE;
                     END IF;
-                    enable <= '1';
-                    busy   <= '0';
+                    enable    <= '1';
+                    busy      <= '0';
+                    eventtype <= "XX";
                 WHEN WAIT_DONE =>
                     IF lc_mode = LC_HARD AND LC_abort = '1' THEN
                         state <= CLEAR_LC_HARD;
@@ -101,16 +105,19 @@ BEGIN
                     ELSIF lc_mode = LC_OFF AND ATWD_busy = '0' AND FADC_busy = '0' THEN
                         state <= WAIT_BUFFER;
                     END IF;
-                    enable <= '0';
-                    busy   <= '1';
+                    enable    <= '0';
+                    busy      <= '1';
+                    eventtype <= eventEngineering;
                 WHEN CLEAR_LC_HARD =>
                     IF ATWD_busy = '0' AND FADC_busy = '0' THEN
                         state <= RESET_TRIG;
                     END IF;
+                    eventtype <= "XX";
                 WHEN WAIT_LC_SOFT =>
                     IF ATWD_busy = '0' AND FADC_busy = '0' THEN
                         state <= WAIT_BUFFER;
                     END IF;
+                    eventtype <= eventTimestamp;
                 WHEN GOT_LC =>
                     IF ATWD_busy = '0' AND FADC_busy = '0' THEN
                         state <= WAIT_BUFFER;
@@ -120,17 +127,20 @@ BEGIN
                         state <= WR_HEADER;
                     END IF;
                 WHEN WR_HEADER =>
-                    state <= RESET_TRIG;
+                    state     <= RESET_TRIG;
+                    eventtype <= "XX";
                 WHEN RESET_TRIG =>  -- reset ATWD & ATWD clear run if necessary : Not need I think
                     IF TriggerComplete = '1' THEN
                         state <= IDLE;
                     END IF;
-                    enable <= '0';
-                    busy   <= '1';
+                    enable    <= '0';
+                    busy      <= '1';
+                    eventtype <= "XX";
                 WHEN OTHERS =>
-                    state  <= IDLE;
-                    enable <= '0';
-                    busy   <= '1';
+                    state     <= IDLE;
+                    enable    <= '0';
+                    busy      <= '1';
+                    eventtype <= "XX";
             END CASE;
         END IF;
     END PROCESS;
@@ -167,8 +177,9 @@ BEGIN
 
     HEADER_we <= '1' WHEN state = WR_HEADER ELSE '0';
 
-
+    HEADER_data.eventtype <= eventtype;
     --!! add ATWD FADC available ----- !!!!!!!!!!!!!
-    -- event type
+    HEADER_data.ATWDavail <= '1' WHEN eventtype = eventEngineering AND daq_mode = ATWD_FADC                           ELSE '0';
+    HEADER_data.FADCavail <= '1' WHEN eventtype = eventEngineering AND (daq_mode = ATWD_FADC OR daq_mode = FADC_ONLY) ELSE '0';
     
 END;

@@ -1,5 +1,5 @@
 EDA Netlist Writer report for dom
-Wed Jul 28 09:36:23 2004
+Tue Aug 24 09:53:48 2004
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -39,7 +39,7 @@ party's intellectual property, are provided herein.
 +----------------------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                                       ;
 +---------------------------+------------------------------------------------------+
-; EDA Netlist Writer Status ; No Output Files Generated - Wed Jul 28 09:36:23 2004 ;
+; EDA Netlist Writer Status ; No Output Files Generated - Tue Aug 24 09:53:48 2004 ;
 ; Revision Name             ; dom                                                  ;
 ; Top-level Entity Name     ; domapp                                               ;
 ; Family                    ; EXCALIBUR_ARM                                        ;

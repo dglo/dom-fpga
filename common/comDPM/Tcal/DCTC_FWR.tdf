@@ -1,6 +1,6 @@
 % C:\PROJECTS\ICECUBE\DOR\FPGA\DCOM_01\TCAL\DCTC_FWR.tdf %
 % AHDL code created by Visual Software Solution's StateCAD 4.11 %
-% Tue Jul 13 18:11:47 2004 %
+% Tue Aug 17 15:50:45 2004 %
 
 % This AHDL code was generated using: %
 %  binary encoded state assignment with structured code format. %
@@ -10,8 +10,8 @@
 SUBDESIGN DCTC_FWR(
 	CLK :	INPUT;
 	edge_end :	INPUT;
+	hl_edge :	INPUT;
 	msg_sent :	INPUT;
-	one_lev :	INPUT;
 	res :	INPUT;
 	tcal_prec :	INPUT;
 	tcwf_rd_next :	INPUT;
@@ -88,15 +88,15 @@ BEGIN
 
 	CASE sreg IS
 		WHEN CHEK_EF =>
-			IF ( !wfm_ct_cout ) THEN 
-				sreg = DAT_VALID;
-				(pulse_rcvd,wfm_data_val,rx_time_lat,wfm_ct_sload,wfm_ct_clk_en,tcwf_aclr
-					,tcwf_rdreq,tcwf_wrreq)=(0,1,0,0,0,0,0,0);
-			END IF;
 			IF ( wfm_ct_cout ) THEN 
 				sreg = SENT_WT;
 				(pulse_rcvd,wfm_data_val,rx_time_lat,wfm_ct_sload,wfm_ct_clk_en,tcwf_aclr
 					,tcwf_rdreq,tcwf_wrreq)=(0,0,0,0,0,0,0,0);
+			END IF;
+			IF ( !wfm_ct_cout ) THEN 
+				sreg = DAT_VALID;
+				(pulse_rcvd,wfm_data_val,rx_time_lat,wfm_ct_sload,wfm_ct_clk_en,tcwf_aclr
+					,tcwf_rdreq,tcwf_wrreq)=(0,1,0,0,0,0,0,0);
 			END IF;
 		WHEN DAT_VALID =>
 			IF ( tcwf_rd_next ) THEN 
@@ -109,7 +109,7 @@ BEGIN
 					,tcwf_rdreq,tcwf_wrreq)=(0,1,0,0,0,0,0,0);
 			END IF;
 		WHEN EXP_EDGE =>
-			IF ( one_lev ) THEN 
+			IF ( hl_edge ) THEN 
 				sreg = EXP_EXTREM;
 				(pulse_rcvd,wfm_data_val,rx_time_lat,wfm_ct_sload,wfm_ct_clk_en,tcwf_aclr
 					,tcwf_rdreq,tcwf_wrreq)=(0,0,1,0,0,0,1,1);

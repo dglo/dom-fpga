@@ -1,5 +1,5 @@
 Analysis & Synthesis report for domapp
-Wed Aug 11 13:46:26 2004
+Fri Nov 12 08:53:52 2004
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -20,19 +20,20 @@ Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
  12. State Machine - slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|slave_state
  13. State Machine - daq:inst_daq|ahb_master:inst_ahb_master|master_state
  14. State Machine - daq:inst_daq|mem_interface:inst_mem_interface|state
- 15. State Machine - daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state
- 16. State Machine - daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state
- 17. State Machine - daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state
- 18. State Machine - daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state
- 19. State Machine - ROC:inst_ROC|RST_state
- 20. Analysis & Synthesis Resource Utilization by Entity
- 21. Analysis & Synthesis Equations
- 22. Analysis & Synthesis Files Read
- 23. Analysis & Synthesis Resource Usage Summary
- 24. Analysis & Synthesis RAM Summary
- 25. WYSIWYG Cells
- 26. General Register Statistics
- 27. Analysis & Synthesis Messages
+ 15. State Machine - daq:inst_daq|mem_interface:inst_mem_interface|state_old
+ 16. State Machine - daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state
+ 17. State Machine - daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state
+ 18. State Machine - daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state
+ 19. State Machine - daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state
+ 20. State Machine - ROC:inst_ROC|RST_state
+ 21. Analysis & Synthesis Resource Utilization by Entity
+ 22. Analysis & Synthesis Equations
+ 23. Analysis & Synthesis Files Read
+ 24. Analysis & Synthesis Resource Usage Summary
+ 25. Analysis & Synthesis RAM Summary
+ 26. WYSIWYG Cells
+ 27. General Register Statistics
+ 28. Analysis & Synthesis Messages
 
 
 
@@ -64,11 +65,11 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                        ;
 +-----------------------------+---------------------------------------+
-; Analysis & Synthesis Status ; Successful - Wed Aug 11 13:46:26 2004 ;
+; Analysis & Synthesis Status ; Successful - Fri Nov 12 08:53:51 2004 ;
 ; Revision Name               ; domapp                                ;
 ; Top-level Entity Name       ; domapp                                ;
 ; Family                      ; EXCALIBUR_ARM                         ;
-; Total logic elements        ; 4,595                                 ;
+; Total logic elements        ; 4,896                                 ;
 ; Total pins                  ; 308                                   ;
 ; Total memory bits           ; 64,128                                ;
 ; Total PLLs                  ; 2                                     ;
@@ -600,16 +601,15 @@ domapp
                      |-- altdpram:altdpram_component
                 |-- FADC_buffer:inst_FADC_buffer_odd
                      |-- altdpram:altdpram_component
+ |-- local_coincidence:inst_local_coincidence
  |-- pll2x:inst_pll2x
       |-- altclklock:altclklock_component
  |-- pll4x:inst_pll4x
       |-- altclklock:altclklock_component
  |-- rate_meters:inst_rate_meters
-      |-- lpm_counter:lockout_MPE_rtl_11
+      |-- lpm_counter:lockout_MPE_rtl_10
            |-- alt_synch_counter:wysi_counter
-      |-- lpm_counter:lockout_sn_rtl_9
-           |-- alt_synch_counter:wysi_counter
-      |-- lpm_counter:lockout_SPE_rtl_10
+      |-- lpm_counter:lockout_SPE_rtl_9
            |-- alt_synch_counter:wysi_counter
       |-- lpm_counter:rate_MPE_int_rtl_7
            |-- alt_synch_counter:wysi_counter
@@ -887,40 +887,67 @@ domapp
 +----------------------------+-----------------+-----------------+-----------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------+
-; State Machine - daq:inst_daq|mem_interface:inst_mem_interface|state                                                                                 ;
-+------------------------------------------------------------------------------------------------------------------------------------------------------
-; Name            ; state~31 ; state~30 ; state~29 ; state~28 ; state~27 ; state~26 ; state~25 ; state~24 ; state~23 ; state~22 ; state~21 ; state~20 ;
-+-----------------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+
-; state.idle      ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ;
-; state.set_mux   ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 1        ;
-; state.eng_hdr0  ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 1        ;
-; state.eng_hdr1  ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 1        ;
-; state.eng_hdr2  ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 1        ;
-; state.eng_hdr3  ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 1        ;
-; state.eng_fadc  ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
-; state.eng_atwd  ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
-; state.eng_end   ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
-; state.comp_xfer ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
-; state.comp_end  ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
-; state.done      ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
-+-----------------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - daq:inst_daq|mem_interface:inst_mem_interface|state                                                                                                                     ;
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+; Name               ; state~34 ; state~33 ; state~32 ; state~31 ; state~30 ; state~29 ; state~28 ; state~27 ; state~26 ; state~25 ; state~24 ; state~23 ; state~22 ; state~21 ; state~20 ;
++--------------------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+
+; state.idle         ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ;
+; state.set_mux      ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 1        ;
+; state.check_format ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 1        ;
+; state.eng_hdr0     ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 1        ;
+; state.eng_hdr1     ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 1        ;
+; state.eng_hdr2     ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.eng_hdr3     ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.eng_fadc     ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.eng_atwd     ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.eng_end      ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.what_next    ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.comp_start   ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.comp_xfer    ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.comp_end     ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.done         ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
++--------------------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+
 
 
-+-------------------------------------------------------------------------------------------------------------+
-; State Machine - daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state      ;
-+--------------------------------------------------------------------------------------------------------------
-; Name                ; state~27 ; state~26 ; state~25 ; state~24 ; state~23 ; state~22 ; state~21 ; state~20 ;
-+---------------------+----------+----------+----------+----------+----------+----------+----------+----------+
-; state.idle          ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ;
-; state.wait_done     ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 1        ;
-; state.wr_header     ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 1        ;
-; state.reset_trig    ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 1        ;
-; state.wait_lc_soft  ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 1        ;
-; state.clear_lc_hard ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 1        ;
-; state.got_lc        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
-; state.wait_buffer   ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
-+---------------------+----------+----------+----------+----------+----------+----------+----------+----------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - daq:inst_daq|mem_interface:inst_mem_interface|state_old                                                                                                                                                                                 ;
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+; Name                   ; state_old~34 ; state_old~33 ; state_old~32 ; state_old~31 ; state_old~30 ; state_old~29 ; state_old~28 ; state_old~27 ; state_old~26 ; state_old~25 ; state_old~24 ; state_old~23 ; state_old~22 ; state_old~21 ; state_old~20 ;
++------------------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+
+; state_old.idle         ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ;
+; state_old.set_mux      ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ; 1            ;
+; state_old.check_format ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ; 0            ; 1            ;
+; state_old.eng_hdr0     ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ; 0            ; 0            ; 1            ;
+; state_old.eng_hdr1     ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ; 0            ; 0            ; 0            ; 1            ;
+; state_old.eng_hdr2     ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ; 0            ; 0            ; 0            ; 0            ; 1            ;
+; state_old.eng_hdr3     ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ;
+; state_old.eng_fadc     ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ;
+; state_old.eng_atwd     ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ;
+; state_old.eng_end      ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ;
+; state_old.what_next    ; 0            ; 0            ; 0            ; 0            ; 1            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ;
+; state_old.comp_start   ; 0            ; 0            ; 0            ; 1            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ;
+; state_old.comp_xfer    ; 0            ; 0            ; 1            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ;
+; state_old.comp_end     ; 0            ; 1            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ;
+; state_old.done         ; 1            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ;
++------------------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; State Machine - daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state                  ;
++--------------------------------------------------------------------------------------------------------------------------
+; Name                 ; state~28 ; state~27 ; state~26 ; state~25 ; state~24 ; state~23 ; state~22 ; state~21 ; state~20 ;
++----------------------+----------+----------+----------+----------+----------+----------+----------+----------+----------+
+; state.idle           ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ;
+; state.wait_done      ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 1        ;
+; state.wr_header      ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 1        ;
+; state.reset_trig     ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 1        ;
+; state.wait_lc_soft   ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 1        ;
+; state.wait_lc_flabby ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.clear_lc_hard  ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.got_lc         ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.wait_buffer    ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
++----------------------+----------+----------+----------+----------+----------+----------+----------+----------+----------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -944,20 +971,21 @@ domapp
 +-----------------------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+
 
 
-+-------------------------------------------------------------------------------------------------------------+
-; State Machine - daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state      ;
-+--------------------------------------------------------------------------------------------------------------
-; Name                ; state~27 ; state~26 ; state~25 ; state~24 ; state~23 ; state~22 ; state~21 ; state~20 ;
-+---------------------+----------+----------+----------+----------+----------+----------+----------+----------+
-; state.idle          ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ;
-; state.wait_done     ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 1        ;
-; state.wr_header     ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 1        ;
-; state.reset_trig    ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 1        ;
-; state.wait_lc_soft  ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 1        ;
-; state.clear_lc_hard ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 1        ;
-; state.got_lc        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
-; state.wait_buffer   ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
-+---------------------+----------+----------+----------+----------+----------+----------+----------+----------+
++-------------------------------------------------------------------------------------------------------------------------+
+; State Machine - daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state                  ;
++--------------------------------------------------------------------------------------------------------------------------
+; Name                 ; state~28 ; state~27 ; state~26 ; state~25 ; state~24 ; state~23 ; state~22 ; state~21 ; state~20 ;
++----------------------+----------+----------+----------+----------+----------+----------+----------+----------+----------+
+; state.idle           ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ;
+; state.wait_done      ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 1        ;
+; state.wr_header      ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 1        ;
+; state.reset_trig     ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 1        ;
+; state.wait_lc_soft   ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 1        ;
+; state.wait_lc_flabby ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.clear_lc_hard  ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.got_lc         ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.wait_buffer    ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
++----------------------+----------+----------+----------+----------+----------+----------+----------+----------+----------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -997,17 +1025,17 @@ domapp
 +-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Compilation Hierarchy Node                                        ; Logic Cells ; Registers ; Memory Bits ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Full Hierarchy Name                                                                                                                                                                                                                                                                                          ;
 +-------------------------------------------------------------------+-------------+-----------+-------------+------+--------------+--------------+-------------------+------------------+-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; |domapp                                                           ; 4595 (2)    ; 2184      ; 64128       ; 308  ; 0            ; 2411 (2)     ; 882 (0)           ; 1302 (0)         ; 908 (0)         ; |domapp                                                                                                                                                                                                                                                                                                      ;
+; |domapp                                                           ; 4896 (2)    ; 2308      ; 64128       ; 308  ; 0            ; 2588 (2)     ; 971 (0)           ; 1337 (0)         ; 909 (0)         ; |domapp                                                                                                                                                                                                                                                                                                      ;
 ;    |ROC:inst_ROC|                                                 ; 4 (4)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 2 (2)             ; 2 (2)            ; 0 (0)           ; |domapp|ROC:inst_ROC                                                                                                                                                                                                                                                                                         ;
-;    |calibration_sources:inst_calibration_sources|                 ; 129 (112)   ; 50        ; 0           ; 0    ; 0            ; 79 (79)      ; 1 (1)             ; 49 (32)          ; 17 (0)          ; |domapp|calibration_sources:inst_calibration_sources                                                                                                                                                                                                                                                         ;
+;    |calibration_sources:inst_calibration_sources|                 ; 127 (110)   ; 50        ; 0           ; 0    ; 0            ; 77 (77)      ; 1 (1)             ; 49 (32)          ; 17 (0)          ; |domapp|calibration_sources:inst_calibration_sources                                                                                                                                                                                                                                                         ;
 ;       |lpm_counter:cs_wf_addr_int_rtl_3|                          ; 8 (0)       ; 8         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 8 (0)            ; 8 (0)           ; |domapp|calibration_sources:inst_calibration_sources|lpm_counter:cs_wf_addr_int_rtl_3                                                                                                                                                                                                                        ;
 ;          |alt_synch_counter:wysi_counter|                         ; 8 (8)       ; 8         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 8 (8)            ; 8 (8)           ; |domapp|calibration_sources:inst_calibration_sources|lpm_counter:cs_wf_addr_int_rtl_3|alt_synch_counter:wysi_counter                                                                                                                                                                                         ;
 ;       |lpm_counter:now_cnt_rtl_2|                                 ; 4 (0)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 4 (0)            ; 4 (0)           ; |domapp|calibration_sources:inst_calibration_sources|lpm_counter:now_cnt_rtl_2                                                                                                                                                                                                                               ;
 ;          |alt_synch_counter:wysi_counter|                         ; 4 (4)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 4 (4)            ; 4 (4)           ; |domapp|calibration_sources:inst_calibration_sources|lpm_counter:now_cnt_rtl_2|alt_synch_counter:wysi_counter                                                                                                                                                                                                ;
 ;       |lpm_counter:stretcher_rtl_0|                               ; 5 (0)       ; 5         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 5 (0)            ; 5 (0)           ; |domapp|calibration_sources:inst_calibration_sources|lpm_counter:stretcher_rtl_0                                                                                                                                                                                                                             ;
 ;          |alt_synch_counter:wysi_counter|                         ; 5 (5)       ; 5         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 5 (5)            ; 5 (5)           ; |domapp|calibration_sources:inst_calibration_sources|lpm_counter:stretcher_rtl_0|alt_synch_counter:wysi_counter                                                                                                                                                                                              ;
-;    |comm_wrapper:inst_comm_wrapper|                               ; 1551 (0)    ; 841       ; 640         ; 0    ; 0            ; 710 (0)      ; 204 (0)           ; 637 (0)          ; 466 (0)         ; |domapp|comm_wrapper:inst_comm_wrapper                                                                                                                                                                                                                                                                       ;
-;       |dcom_ap:inst_dcom_ap|                                      ; 1551 (0)    ; 841       ; 640         ; 0    ; 0            ; 710 (0)      ; 204 (0)           ; 637 (0)          ; 466 (0)         ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap                                                                                                                                                                                                                                                  ;
+;    |comm_wrapper:inst_comm_wrapper|                               ; 1563 (0)    ; 835       ; 640         ; 0    ; 0            ; 728 (0)      ; 207 (0)           ; 628 (0)          ; 466 (0)         ; |domapp|comm_wrapper:inst_comm_wrapper                                                                                                                                                                                                                                                                       ;
+;       |dcom_ap:inst_dcom_ap|                                      ; 1563 (0)    ; 835       ; 640         ; 0    ; 0            ; 728 (0)      ; 207 (0)           ; 628 (0)          ; 466 (0)         ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap                                                                                                                                                                                                                                                  ;
 ;          |DCOM_tcal_timer:b2v_DCOM_tcal_timer|                    ; 47 (18)     ; 29        ; 0           ; 0    ; 0            ; 18 (12)      ; 1 (1)             ; 28 (5)           ; 24 (0)          ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DCOM_tcal_timer:b2v_DCOM_tcal_timer                                                                                                                                                                                                              ;
 ;             |dc_tcal_ct:timer|                                    ; 20 (0)      ; 15        ; 0           ; 0    ; 0            ; 5 (0)        ; 0 (0)             ; 15 (0)           ; 15 (0)          ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DCOM_tcal_timer:b2v_DCOM_tcal_timer|dc_tcal_ct:timer                                                                                                                                                                                             ;
 ;                |lpm_counter:lpm_counter_component|                ; 20 (0)      ; 15        ; 0           ; 0    ; 0            ; 5 (0)        ; 0 (0)             ; 15 (0)           ; 15 (0)          ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DCOM_tcal_timer:b2v_DCOM_tcal_timer|dc_tcal_ct:timer|lpm_counter:lpm_counter_component                                                                                                                                                           ;
@@ -1026,7 +1054,7 @@ domapp
 ;                |lpm_counter:lpm_counter_component|                ; 9 (0)       ; 8         ; 0           ; 0    ; 0            ; 1 (0)        ; 0 (0)             ; 8 (0)            ; 9 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DCOM_tcal_timer:b2v_DCOM_tcal_timer|ponres_ct:ponres|lpm_counter:lpm_counter_component                                                                                                                                                           ;
 ;                   |alt_synch_counter:wysi_counter|                ; 9 (9)       ; 8         ; 0           ; 0    ; 0            ; 1 (1)        ; 0 (0)             ; 8 (8)            ; 9 (9)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DCOM_tcal_timer:b2v_DCOM_tcal_timer|ponres_ct:ponres|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter                                                                                                                            ;
 ;          |DC_CTRAP:b2v_DC_CTRAP|                                  ; 52 (52)     ; 21        ; 0           ; 0    ; 0            ; 31 (31)      ; 0 (0)             ; 21 (21)          ; 0 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:b2v_DC_CTRAP                                                                                                                                                                                                                            ;
-;          |dc_rx_chan_ap:b2v_DC_Rx_chan_ap|                        ; 789 (61)    ; 426       ; 640         ; 0    ; 0            ; 363 (4)      ; 160 (57)          ; 266 (0)          ; 314 (1)         ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap                                                                                                                                                                                                                  ;
+;          |dc_rx_chan_ap:b2v_DC_Rx_chan_ap|                        ; 795 (61)    ; 428       ; 640         ; 0    ; 0            ; 367 (4)      ; 163 (57)          ; 265 (0)          ; 314 (1)         ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap                                                                                                                                                                                                                  ;
 ;             |DC_MRAP:inst10|                                      ; 38 (38)     ; 19        ; 0           ; 0    ; 0            ; 19 (19)      ; 1 (1)             ; 18 (18)          ; 0 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|DC_MRAP:inst10                                                                                                                                                                                                   ;
 ;             |RX_UART_ap:inst|                                     ; 50 (0)      ; 31        ; 0           ; 0    ; 0            ; 19 (0)       ; 8 (0)             ; 23 (0)           ; 11 (0)          ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|RX_UART_ap:inst                                                                                                                                                                                                  ;
 ;                |UA_RX_AP:inst|                                    ; 28 (28)     ; 14        ; 0           ; 0    ; 0            ; 14 (14)      ; 0 (0)             ; 14 (14)          ; 0 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst                                                                                                                                                                                    ;
@@ -1046,7 +1074,7 @@ domapp
 ;                                        |cmpchain:cmp_end|         ; 1 (1)       ; 0         ; 0           ; 0    ; 0            ; 1 (1)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|RX_UART_ap:inst|rxct5:inst3|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|lpm_compare:$00013|comptree:comparator|cmpchain:cmp_end|comptree:comp|comptree:sub_comptree|cmpchain:cmp_end        ;
 ;                |rxshr8:inst1|                                     ; 8 (0)       ; 8         ; 0           ; 0    ; 0            ; 0 (0)        ; 8 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|RX_UART_ap:inst|rxshr8:inst1                                                                                                                                                                                     ;
 ;                   |lpm_shiftreg:lpm_shiftreg_component|           ; 8 (8)       ; 8         ; 0           ; 0    ; 0            ; 0 (0)        ; 8 (8)             ; 0 (0)            ; 0 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|RX_UART_ap:inst|rxshr8:inst1|lpm_shiftreg:lpm_shiftreg_component                                                                                                                                                 ;
-;             |Rx_dpr_ctrl_PAR_ap:inst1|                            ; 86 (86)     ; 32        ; 0           ; 0    ; 0            ; 54 (54)      ; 32 (32)           ; 0 (0)            ; 41 (41)         ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|Rx_dpr_ctrl_PAR_ap:inst1                                                                                                                                                                                         ;
+;             |Rx_dpr_ctrl_PAR_ap:inst1|                            ; 84 (84)     ; 32        ; 0           ; 0    ; 0            ; 52 (52)      ; 32 (32)           ; 0 (0)            ; 41 (41)         ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|Rx_dpr_ctrl_PAR_ap:inst1                                                                                                                                                                                         ;
 ;             |and16b:inst16|                                       ; 7 (0)       ; 0         ; 0           ; 0    ; 0            ; 7 (0)        ; 0 (0)             ; 0 (0)            ; 7 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|and16b:inst16                                                                                                                                                                                                    ;
 ;                |lpm_and:lpm_and_component|                        ; 7 (7)       ; 0         ; 0           ; 0    ; 0            ; 7 (7)        ; 0 (0)             ; 0 (0)            ; 7 (7)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|and16b:inst16|lpm_and:lpm_and_component                                                                                                                                                                          ;
 ;             |crc_error_ct:inst8|                                  ; 17 (0)      ; 16        ; 0           ; 0    ; 0            ; 1 (0)        ; 0 (0)             ; 16 (0)           ; 17 (0)          ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|crc_error_ct:inst8                                                                                                                                                                                               ;
@@ -1054,12 +1082,12 @@ domapp
 ;                   |alt_synch_counter:wysi_counter|                ; 17 (17)     ; 16        ; 0           ; 0    ; 0            ; 1 (1)        ; 0 (0)             ; 16 (16)          ; 17 (17)         ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|crc_error_ct:inst8|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter                                                                                                                              ;
 ;             |crc_rx:inst20|                                       ; 87 (41)     ; 49        ; 0           ; 0    ; 0            ; 38 (24)      ; 1 (1)             ; 48 (16)          ; 0 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|crc_rx:inst20                                                                                                                                                                                                    ;
 ;                |crc32:inst_crc32|                                 ; 46 (46)     ; 32        ; 0           ; 0    ; 0            ; 14 (14)      ; 0 (0)             ; 32 (32)          ; 0 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|crc_rx:inst20|crc32:inst_crc32                                                                                                                                                                                   ;
-;             |dc_adc_to_ser:inst6|                                 ; 174 (141)   ; 63        ; 0           ; 0    ; 0            ; 111 (95)     ; 40 (40)           ; 23 (6)           ; 96 (92)         ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_adc_to_ser:inst6                                                                                                                                                                                              ;
-;                |HL_DSCR:hl_dec_stm|                               ; 29 (29)     ; 13        ; 0           ; 0    ; 0            ; 16 (16)      ; 0 (0)             ; 13 (13)          ; 0 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_adc_to_ser:inst6|HL_DSCR:hl_dec_stm                                                                                                                                                                           ;
+;             |dc_adc_to_ser:inst6|                                 ; 181 (142)   ; 65        ; 0           ; 0    ; 0            ; 116 (95)     ; 41 (41)           ; 24 (6)           ; 96 (92)         ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_adc_to_ser:inst6                                                                                                                                                                                              ;
+;                |HL_DSCR:hl_dec_stm|                               ; 35 (35)     ; 14        ; 0           ; 0    ; 0            ; 21 (21)      ; 0 (0)             ; 14 (14)          ; 0 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_adc_to_ser:inst6|HL_DSCR:hl_dec_stm                                                                                                                                                                           ;
 ;                |ctup4b:ct|                                        ; 4 (0)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 4 (0)            ; 4 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_adc_to_ser:inst6|ctup4b:ct                                                                                                                                                                                    ;
 ;                   |lpm_counter:lpm_counter_component|             ; 4 (0)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 4 (0)            ; 4 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_adc_to_ser:inst6|ctup4b:ct|lpm_counter:lpm_counter_component                                                                                                                                                  ;
 ;                      |alt_synch_counter:wysi_counter|             ; 4 (4)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 4 (4)            ; 4 (4)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_adc_to_ser:inst6|ctup4b:ct|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter                                                                                                                   ;
-;             |dc_hdr_dec_ap:inst4|                                 ; 23 (23)     ; 16        ; 0           ; 0    ; 0            ; 7 (7)        ; 5 (5)             ; 11 (11)          ; 0 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_hdr_dec_ap:inst4                                                                                                                                                                                              ;
+;             |dc_hdr_dec_ap:inst4|                                 ; 24 (24)     ; 16        ; 0           ; 0    ; 0            ; 8 (8)        ; 7 (7)             ; 9 (9)            ; 0 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_hdr_dec_ap:inst4                                                                                                                                                                                              ;
 ;             |dc_rapcal_lh:inst30|                                 ; 76 (10)     ; 50        ; 640         ; 0    ; 0            ; 26 (0)       ; 12 (10)           ; 38 (0)           ; 34 (0)          ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_rapcal_lh:inst30                                                                                                                                                                                              ;
 ;                |DCTC_FWR:inst7|                                   ; 20 (20)     ; 14        ; 0           ; 0    ; 0            ; 6 (6)        ; 1 (1)             ; 13 (13)          ; 0 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_rapcal_lh:inst30|DCTC_FWR:inst7                                                                                                                                                                               ;
 ;                |TCWF_64x10:inst11|                                ; 29 (0)      ; 20        ; 640         ; 0    ; 0            ; 9 (0)        ; 1 (0)             ; 19 (0)           ; 17 (0)          ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_rapcal_lh:inst30|TCWF_64x10:inst11                                                                                                                                                                            ;
@@ -1151,15 +1179,15 @@ domapp
 ;             |rx_packet_ct:inst23|                                 ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|rx_packet_ct:inst23                                                                                                                                                                                              ;
 ;                |lpm_counter:lpm_counter_component|                ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|rx_packet_ct:inst23|lpm_counter:lpm_counter_component                                                                                                                                                            ;
 ;                   |alt_synch_counter:wysi_counter|                ; 16 (16)     ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; 16 (16)         ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|rx_packet_ct:inst23|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter                                                                                                                             ;
-;          |dc_tx_chan_ap:b2v_DC_Tx_chan_ap|                        ; 663 (33)    ; 365       ; 0           ; 0    ; 0            ; 298 (7)      ; 43 (17)           ; 322 (9)          ; 128 (0)         ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap                                                                                                                                                                                                                  ;
-;             |DC_SNAP:inst11|                                      ; 113 (113)   ; 43        ; 0           ; 0    ; 0            ; 70 (70)      ; 9 (9)             ; 34 (34)          ; 0 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|DC_SNAP:inst11                                                                                                                                                                                                   ;
-;             |Tx_dpr_ctrl_PAR_ap:inst10|                           ; 82 (66)     ; 32        ; 0           ; 0    ; 0            ; 50 (50)      ; 16 (16)           ; 16 (0)           ; 57 (41)         ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|Tx_dpr_ctrl_PAR_ap:inst10                                                                                                                                                                                        ;
+;          |dc_tx_chan_ap:b2v_DC_Tx_chan_ap|                        ; 669 (25)    ; 357       ; 0           ; 0    ; 0            ; 312 (7)      ; 43 (17)           ; 314 (1)          ; 128 (0)         ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap                                                                                                                                                                                                                  ;
+;             |DC_SNAP:inst11|                                      ; 114 (114)   ; 43        ; 0           ; 0    ; 0            ; 71 (71)      ; 9 (9)             ; 34 (34)          ; 0 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|DC_SNAP:inst11                                                                                                                                                                                                   ;
+;             |Tx_dpr_ctrl_PAR_ap:inst10|                           ; 83 (67)     ; 32        ; 0           ; 0    ; 0            ; 51 (51)      ; 16 (16)           ; 16 (0)           ; 57 (41)         ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|Tx_dpr_ctrl_PAR_ap:inst10                                                                                                                                                                                        ;
 ;                |tx_dpr_radr_ct:tx_dpr_rad|                        ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|Tx_dpr_ctrl_PAR_ap:inst10|tx_dpr_radr_ct:tx_dpr_rad                                                                                                                                                              ;
 ;                   |lpm_counter:lpm_counter_component|             ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|Tx_dpr_ctrl_PAR_ap:inst10|tx_dpr_radr_ct:tx_dpr_rad|lpm_counter:lpm_counter_component                                                                                                                            ;
 ;                      |alt_synch_counter:wysi_counter|             ; 16 (16)     ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; 16 (16)         ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|Tx_dpr_ctrl_PAR_ap:inst10|tx_dpr_radr_ct:tx_dpr_rad|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter                                                                                             ;
-;             |crc_tx:inst3|                                        ; 94 (48)     ; 55        ; 0           ; 0    ; 0            ; 39 (25)      ; 1 (1)             ; 54 (22)          ; 6 (6)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|crc_tx:inst3                                                                                                                                                                                                     ;
+;             |crc_tx:inst3|                                        ; 96 (50)     ; 55        ; 0           ; 0    ; 0            ; 41 (27)      ; 1 (1)             ; 54 (22)          ; 6 (6)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|crc_tx:inst3                                                                                                                                                                                                     ;
 ;                |crc32:inst_crc32|                                 ; 46 (46)     ; 32        ; 0           ; 0    ; 0            ; 14 (14)      ; 0 (0)             ; 32 (32)          ; 0 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|crc_tx:inst3|crc32:inst_crc32                                                                                                                                                                                    ;
-;             |dc_com_dac_ctrl:inst6|                               ; 18 (10)     ; 8         ; 0           ; 0    ; 0            ; 10 (10)      ; 0 (0)             ; 8 (0)            ; 8 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|dc_com_dac_ctrl:inst6                                                                                                                                                                                            ;
+;             |dc_com_dac_ctrl:inst6|                               ; 28 (20)     ; 8         ; 0           ; 0    ; 0            ; 20 (20)      ; 0 (0)             ; 8 (0)            ; 8 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|dc_com_dac_ctrl:inst6                                                                                                                                                                                            ;
 ;                |dac_levct:daclev|                                 ; 8 (0)       ; 8         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 8 (0)            ; 8 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|dac_levct:daclev                                                                                                                                                                           ;
 ;                   |lpm_counter:lpm_counter_component|             ; 8 (0)       ; 8         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 8 (0)            ; 8 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|dac_levct:daclev|lpm_counter:lpm_counter_component                                                                                                                                         ;
 ;                      |alt_synch_counter:wysi_counter|             ; 8 (8)       ; 8         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 8 (8)            ; 8 (8)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|dc_com_dac_ctrl:inst6|dac_levct:daclev|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter                                                                                                          ;
@@ -1278,15 +1306,15 @@ domapp
 ;                                        |cmpchain:cmp_end|         ; 1 (1)       ; 0         ; 0           ; 0    ; 0            ; 1 (1)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|tx_uart_ap:inst7|tx_uart_ct5:inst4|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|lpm_compare:$00013|comptree:comparator|cmpchain:cmp_end|comptree:comp|comptree:sub_comptree|cmpchain:cmp_end ;
 ;                |tx_uart_shr10:inst8|                              ; 10 (0)      ; 10        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 10 (0)           ; 0 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|tx_uart_ap:inst7|tx_uart_shr10:inst8                                                                                                                                                                             ;
 ;                   |lpm_shiftreg:lpm_shiftreg_component|           ; 10 (10)     ; 10        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 10 (10)          ; 0 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|tx_uart_ap:inst7|tx_uart_shr10:inst8|lpm_shiftreg:lpm_shiftreg_component                                                                                                                                         ;
-;    |daq:inst_daq|                                                 ; 1629 (0)    ; 755       ; 49152       ; 0    ; 0            ; 874 (0)      ; 403 (0)           ; 352 (0)          ; 235 (0)         ; |domapp|daq:inst_daq                                                                                                                                                                                                                                                                                         ;
+;    |daq:inst_daq|                                                 ; 1750 (0)    ; 806       ; 49152       ; 0    ; 0            ; 944 (0)      ; 412 (0)           ; 394 (0)          ; 236 (0)         ; |domapp|daq:inst_daq                                                                                                                                                                                                                                                                                         ;
 ;       |FADC_input:inst_FADC_input|                                ; 11 (11)     ; 11        ; 0           ; 0    ; 0            ; 0 (0)        ; 11 (11)           ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|FADC_input:inst_FADC_input                                                                                                                                                                                                                                                              ;
-;       |ahb_master:inst_ahb_master|                                ; 164 (164)   ; 67        ; 0           ; 0    ; 0            ; 97 (97)      ; 0 (0)             ; 67 (67)          ; 30 (30)         ; |domapp|daq:inst_daq|ahb_master:inst_ahb_master                                                                                                                                                                                                                                                              ;
-;       |mem_interface:inst_mem_interface|                          ; 428 (428)   ; 40        ; 0           ; 0    ; 0            ; 388 (388)    ; 1 (1)             ; 39 (39)          ; 25 (25)         ; |domapp|daq:inst_daq|mem_interface:inst_mem_interface                                                                                                                                                                                                                                                        ;
-;       |pingpong:ping|                                             ; 499 (0)     ; 312       ; 24576       ; 0    ; 0            ; 187 (0)      ; 193 (0)           ; 119 (0)          ; 90 (0)          ; |domapp|daq:inst_daq|pingpong:ping                                                                                                                                                                                                                                                                           ;
-;          |ADC_input:inst_ADC_input|                               ; 364 (0)     ; 186       ; 0           ; 0    ; 0            ; 178 (0)      ; 71 (0)            ; 115 (0)          ; 90 (0)          ; |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input                                                                                                                                                                                                                                                  ;
+;       |ahb_master:inst_ahb_master|                                ; 215 (215)   ; 97        ; 0           ; 0    ; 0            ; 118 (118)    ; 0 (0)             ; 97 (97)          ; 30 (30)         ; |domapp|daq:inst_daq|ahb_master:inst_ahb_master                                                                                                                                                                                                                                                              ;
+;       |mem_interface:inst_mem_interface|                          ; 487 (487)   ; 51        ; 0           ; 0    ; 0            ; 436 (436)    ; 8 (8)             ; 43 (43)          ; 26 (26)         ; |domapp|daq:inst_daq|mem_interface:inst_mem_interface                                                                                                                                                                                                                                                        ;
+;       |pingpong:ping|                                             ; 497 (0)     ; 312       ; 24576       ; 0    ; 0            ; 185 (0)      ; 193 (0)           ; 119 (0)          ; 90 (0)          ; |domapp|daq:inst_daq|pingpong:ping                                                                                                                                                                                                                                                                           ;
+;          |ADC_input:inst_ADC_input|                               ; 362 (0)     ; 186       ; 0           ; 0    ; 0            ; 176 (0)      ; 71 (0)            ; 115 (0)          ; 90 (0)          ; |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input                                                                                                                                                                                                                                                  ;
 ;             |ADC_control:inst_ADC_control|                        ; 68 (68)     ; 64        ; 0           ; 0    ; 0            ; 4 (4)        ; 56 (56)           ; 8 (8)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control                                                                                                                                                                                                                     ;
-;             |ATWD_interface:inst_ATWD_interface|                  ; 273 (0)     ; 113       ; 0           ; 0    ; 0            ; 160 (0)      ; 14 (0)            ; 99 (0)           ; 82 (0)          ; |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface                                                                                                                                                                                                               ;
-;                |ATWD_control:inst_ATWD_control|                   ; 254 (254)   ; 113       ; 0           ; 0    ; 0            ; 141 (141)    ; 14 (14)           ; 99 (99)          ; 72 (72)         ; |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control                                                                                                                                                                                ;
+;             |ATWD_interface:inst_ATWD_interface|                  ; 271 (0)     ; 113       ; 0           ; 0    ; 0            ; 158 (0)      ; 14 (0)            ; 99 (0)           ; 82 (0)          ; |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface                                                                                                                                                                                                               ;
+;                |ATWD_control:inst_ATWD_control|                   ; 252 (252)   ; 113       ; 0           ; 0    ; 0            ; 139 (139)    ; 14 (14)           ; 99 (99)          ; 72 (72)         ; |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control                                                                                                                                                                                ;
 ;                |gray2bin:inst_gray2bin|                           ; 9 (9)       ; 0         ; 0           ; 0    ; 0            ; 9 (9)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|gray2bin:inst_gray2bin                                                                                                                                                                                        ;
 ;                |pedestal_sub:inst_pedestal_sub|                   ; 10 (10)     ; 0         ; 0           ; 0    ; 0            ; 10 (10)      ; 0 (0)             ; 0 (0)            ; 10 (10)         ; |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|pedestal_sub:inst_pedestal_sub                                                                                                                                                                                ;
 ;             |FADC_interface:inst_FADC_interface|                  ; 23 (7)      ; 9         ; 0           ; 0    ; 0            ; 14 (6)       ; 1 (1)             ; 8 (0)            ; 8 (0)           ; |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface                                                                                                                                                                                                               ;
@@ -1301,9 +1329,9 @@ domapp
 ;                |altdpram:altdpram_component|                      ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|FADC_buffer:inst_FADC_buffer_even|altdpram:altdpram_component                                                                                                                                                                                ;
 ;             |FADC_buffer:inst_FADC_buffer_odd|                    ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|FADC_buffer:inst_FADC_buffer_odd                                                                                                                                                                                                             ;
 ;                |altdpram:altdpram_component|                      ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|FADC_buffer:inst_FADC_buffer_odd|altdpram:altdpram_component                                                                                                                                                                                 ;
-;       |pingpong:pong|                                             ; 497 (0)     ; 310       ; 24576       ; 0    ; 0            ; 187 (0)      ; 192 (0)           ; 118 (0)          ; 90 (0)          ; |domapp|daq:inst_daq|pingpong:pong                                                                                                                                                                                                                                                                           ;
-;          |ADC_input:inst_ADC_input|                               ; 362 (0)     ; 184       ; 0           ; 0    ; 0            ; 178 (0)      ; 70 (0)            ; 114 (0)          ; 90 (0)          ; |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input                                                                                                                                                                                                                                                  ;
-;             |ADC_control:inst_ADC_control|                        ; 68 (68)     ; 64        ; 0           ; 0    ; 0            ; 4 (4)        ; 56 (56)           ; 8 (8)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control                                                                                                                                                                                                                     ;
+;       |pingpong:pong|                                             ; 510 (0)     ; 320       ; 24576       ; 0    ; 0            ; 190 (0)      ; 194 (0)           ; 126 (0)          ; 90 (0)          ; |domapp|daq:inst_daq|pingpong:pong                                                                                                                                                                                                                                                                           ;
+;          |ADC_input:inst_ADC_input|                               ; 363 (0)     ; 184       ; 0           ; 0    ; 0            ; 179 (0)      ; 70 (0)            ; 114 (0)          ; 90 (0)          ; |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input                                                                                                                                                                                                                                                  ;
+;             |ADC_control:inst_ADC_control|                        ; 69 (69)     ; 64        ; 0           ; 0    ; 0            ; 5 (5)        ; 56 (56)           ; 8 (8)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control                                                                                                                                                                                                                     ;
 ;             |ATWD_interface:inst_ATWD_interface|                  ; 271 (0)     ; 111       ; 0           ; 0    ; 0            ; 160 (0)      ; 13 (0)            ; 98 (0)           ; 82 (0)          ; |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface                                                                                                                                                                                                               ;
 ;                |ATWD_control:inst_ATWD_control|                   ; 252 (252)   ; 111       ; 0           ; 0    ; 0            ; 141 (141)    ; 13 (13)           ; 98 (98)          ; 72 (72)         ; |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control                                                                                                                                                                                ;
 ;                |gray2bin:inst_gray2bin|                           ; 9 (9)       ; 0         ; 0           ; 0    ; 0            ; 9 (9)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|gray2bin:inst_gray2bin                                                                                                                                                                                        ;
@@ -1311,6 +1339,7 @@ domapp
 ;             |FADC_interface:inst_FADC_interface|                  ; 23 (7)      ; 9         ; 0           ; 0    ; 0            ; 14 (6)       ; 1 (1)             ; 8 (0)            ; 8 (0)           ; |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface                                                                                                                                                                                                               ;
 ;                |lpm_counter:wr_addr_rtl_4|                        ; 16 (0)      ; 8         ; 0           ; 0    ; 0            ; 8 (0)        ; 0 (0)             ; 8 (0)            ; 8 (0)           ; |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface|lpm_counter:wr_addr_rtl_4                                                                                                                                                                                     ;
 ;                   |alt_synch_counter:wysi_counter|                ; 16 (16)     ; 8         ; 0           ; 0    ; 0            ; 8 (8)        ; 0 (0)             ; 8 (8)            ; 8 (8)           ; |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface|lpm_counter:wr_addr_rtl_4|alt_synch_counter:wysi_counter                                                                                                                                                      ;
+;          |compression:inst_compression|                           ; 12 (12)     ; 10        ; 0           ; 0    ; 0            ; 2 (2)        ; 2 (2)             ; 8 (8)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression                                                                                                                                                                                                                                              ;
 ;          |data_buffer:inst_data_buffer|                           ; 135 (135)   ; 126       ; 24576       ; 0    ; 0            ; 9 (9)        ; 122 (122)         ; 4 (4)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer                                                                                                                                                                                                                                              ;
 ;             |ATWD_buffer:inst_ATWD_buffer_even|                   ; 0 (0)       ; 0         ; 8192        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|ATWD_buffer:inst_ATWD_buffer_even                                                                                                                                                                                                            ;
 ;                |altdpram:altdpram_component|                      ; 0 (0)       ; 0         ; 8192        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|ATWD_buffer:inst_ATWD_buffer_even|altdpram:altdpram_component                                                                                                                                                                                ;
@@ -1325,20 +1354,18 @@ domapp
 ;       |altclklock:altclklock_component|                           ; 0 (0)       ; 0         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|pll2x:inst_pll2x|altclklock:altclklock_component                                                                                                                                                                                                                                                     ;
 ;    |pll4x:inst_pll4x|                                             ; 0 (0)       ; 0         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|pll4x:inst_pll4x                                                                                                                                                                                                                                                                                     ;
 ;       |altclklock:altclklock_component|                           ; 0 (0)       ; 0         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|pll4x:inst_pll4x|altclklock:altclklock_component                                                                                                                                                                                                                                                     ;
-;    |rate_meters:inst_rate_meters|                                 ; 406 (309)   ; 251       ; 0           ; 0    ; 0            ; 155 (155)    ; 127 (127)         ; 124 (27)         ; 142 (45)        ; |domapp|rate_meters:inst_rate_meters                                                                                                                                                                                                                                                                         ;
-;       |lpm_counter:lockout_MPE_rtl_11|                            ; 10 (0)      ; 10        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 10 (0)           ; 10 (0)          ; |domapp|rate_meters:inst_rate_meters|lpm_counter:lockout_MPE_rtl_11                                                                                                                                                                                                                                          ;
-;          |alt_synch_counter:wysi_counter|                         ; 10 (10)     ; 10        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 10 (10)          ; 10 (10)         ; |domapp|rate_meters:inst_rate_meters|lpm_counter:lockout_MPE_rtl_11|alt_synch_counter:wysi_counter                                                                                                                                                                                                           ;
-;       |lpm_counter:lockout_SPE_rtl_10|                            ; 10 (0)      ; 10        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 10 (0)           ; 10 (0)          ; |domapp|rate_meters:inst_rate_meters|lpm_counter:lockout_SPE_rtl_10                                                                                                                                                                                                                                          ;
-;          |alt_synch_counter:wysi_counter|                         ; 10 (10)     ; 10        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 10 (10)          ; 10 (10)         ; |domapp|rate_meters:inst_rate_meters|lpm_counter:lockout_SPE_rtl_10|alt_synch_counter:wysi_counter                                                                                                                                                                                                           ;
-;       |lpm_counter:lockout_sn_rtl_9|                              ; 9 (0)       ; 9         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 9 (0)            ; 9 (0)           ; |domapp|rate_meters:inst_rate_meters|lpm_counter:lockout_sn_rtl_9                                                                                                                                                                                                                                            ;
-;          |alt_synch_counter:wysi_counter|                         ; 9 (9)       ; 9         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 9 (9)            ; 9 (9)           ; |domapp|rate_meters:inst_rate_meters|lpm_counter:lockout_sn_rtl_9|alt_synch_counter:wysi_counter                                                                                                                                                                                                             ;
+;    |rate_meters:inst_rate_meters|                                 ; 407 (319)   ; 253       ; 0           ; 0    ; 0            ; 154 (154)    ; 127 (127)         ; 126 (38)         ; 142 (54)        ; |domapp|rate_meters:inst_rate_meters                                                                                                                                                                                                                                                                         ;
+;       |lpm_counter:lockout_MPE_rtl_10|                            ; 10 (0)      ; 10        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 10 (0)           ; 10 (0)          ; |domapp|rate_meters:inst_rate_meters|lpm_counter:lockout_MPE_rtl_10                                                                                                                                                                                                                                          ;
+;          |alt_synch_counter:wysi_counter|                         ; 10 (10)     ; 10        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 10 (10)          ; 10 (10)         ; |domapp|rate_meters:inst_rate_meters|lpm_counter:lockout_MPE_rtl_10|alt_synch_counter:wysi_counter                                                                                                                                                                                                           ;
+;       |lpm_counter:lockout_SPE_rtl_9|                             ; 10 (0)      ; 10        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 10 (0)           ; 10 (0)          ; |domapp|rate_meters:inst_rate_meters|lpm_counter:lockout_SPE_rtl_9                                                                                                                                                                                                                                           ;
+;          |alt_synch_counter:wysi_counter|                         ; 10 (10)     ; 10        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 10 (10)          ; 10 (10)         ; |domapp|rate_meters:inst_rate_meters|lpm_counter:lockout_SPE_rtl_9|alt_synch_counter:wysi_counter                                                                                                                                                                                                            ;
 ;       |lpm_counter:rate_MPE_int_rtl_7|                            ; 32 (0)      ; 32        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 32 (0)           ; 32 (0)          ; |domapp|rate_meters:inst_rate_meters|lpm_counter:rate_MPE_int_rtl_7                                                                                                                                                                                                                                          ;
 ;          |alt_synch_counter:wysi_counter|                         ; 32 (32)     ; 32        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 32 (32)          ; 32 (32)         ; |domapp|rate_meters:inst_rate_meters|lpm_counter:rate_MPE_int_rtl_7|alt_synch_counter:wysi_counter                                                                                                                                                                                                           ;
 ;       |lpm_counter:rate_SPE_int_rtl_6|                            ; 32 (0)      ; 32        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 32 (0)           ; 32 (0)          ; |domapp|rate_meters:inst_rate_meters|lpm_counter:rate_SPE_int_rtl_6                                                                                                                                                                                                                                          ;
 ;          |alt_synch_counter:wysi_counter|                         ; 32 (32)     ; 32        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 32 (32)          ; 32 (32)         ; |domapp|rate_meters:inst_rate_meters|lpm_counter:rate_SPE_int_rtl_6|alt_synch_counter:wysi_counter                                                                                                                                                                                                           ;
 ;       |lpm_counter:sn_rate_rtl_8|                                 ; 4 (0)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 4 (0)            ; 4 (0)           ; |domapp|rate_meters:inst_rate_meters|lpm_counter:sn_rate_rtl_8                                                                                                                                                                                                                                               ;
 ;          |alt_synch_counter:wysi_counter|                         ; 4 (4)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 4 (4)            ; 4 (4)           ; |domapp|rate_meters:inst_rate_meters|lpm_counter:sn_rate_rtl_8|alt_synch_counter:wysi_counter                                                                                                                                                                                                                ;
-;    |slaveregister:inst_slaveregister|                             ; 822 (771)   ; 235       ; 14336       ; 0    ; 0            ; 587 (557)    ; 145 (145)         ; 90 (69)          ; 0 (0)           ; |domapp|slaveregister:inst_slaveregister                                                                                                                                                                                                                                                                     ;
+;    |slaveregister:inst_slaveregister|                             ; 991 (940)   ; 312       ; 14336       ; 0    ; 0            ; 679 (649)    ; 222 (222)         ; 90 (69)          ; 0 (0)           ; |domapp|slaveregister:inst_slaveregister                                                                                                                                                                                                                                                                     ;
 ;       |ATWDped:inst_ATWDAped|                                     ; 0 (0)       ; 0         ; 5120        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|slaveregister:inst_slaveregister|ATWDped:inst_ATWDAped                                                                                                                                                                                                                                               ;
 ;          |altdpram:altdpram_component|                            ; 0 (0)       ; 0         ; 5120        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|slaveregister:inst_slaveregister|ATWDped:inst_ATWDAped|altdpram:altdpram_component                                                                                                                                                                                                                   ;
 ;       |ATWDped:inst_ATWDBped|                                     ; 0 (0)       ; 0         ; 5120        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|slaveregister:inst_slaveregister|ATWDped:inst_ATWDBped                                                                                                                                                                                                                                               ;
@@ -1510,15 +1537,16 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.map
 ; ATWD_interface.vhd                                                             ; Read ;
 ; mem_interface.vhd                                                              ; Read ;
 ; FADC_interface.vhd                                                             ; Read ;
-; data_buffer.vhd                                                                ; Read ;
 ; ADC_input.vhd                                                                  ; Read ;
 ; ADC_control.vhd                                                                ; Read ;
 ; pingpong.vhd                                                                   ; Read ;
 ; pedestal_sub.vhd                                                               ; Read ;
 ; domapp.vhd                                                                     ; Read ;
-; compression.vhd                                                                ; Read ;
 ; slaveregister.vhd                                                              ; Read ;
 ; comm_wrapper.vhd                                                               ; Read ;
+; data_buffer.vhd                                                                ; Read ;
+; local_coincidence.vhd                                                          ; Read ;
+; compression.vhd                                                                ; Read ;
 ; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/pll2x.v                                ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/altclklock.tdf                    ; Read ;
 ; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/pll4x.v                                ; Read ;
@@ -1623,16 +1651,16 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.map
 +---------------------------------------------------------------------------------------------
 ; Resource                      ; Usage                                                      ;
 +-------------------------------+------------------------------------------------------------+
-; Logic cells                   ; 4,595                                                      ;
-; Total combinational functions ; 3713                                                       ;
-; Total registers               ; 2184                                                       ;
+; Logic cells                   ; 4,896                                                      ;
+; Total combinational functions ; 3925                                                       ;
+; Total registers               ; 2308                                                       ;
 ; I/O pins                      ; 308                                                        ;
 ; Total memory bits             ; 64128                                                      ;
 ; Total PLLs                    ; 2                                                          ;
 ; Maximum fan-out node          ; pll2x:inst_pll2x|altclklock:altclklock_component|outclock0 ;
-; Maximum fan-out               ; 2347                                                       ;
-; Total fan-out                 ; 21872                                                      ;
-; Average fan-out               ; 4.30                                                       ;
+; Maximum fan-out               ; 2471                                                       ;
+; Total fan-out                 ; 23068                                                      ;
+; Average fan-out               ; 4.28                                                       ;
 +-------------------------------+------------------------------------------------------------+
 
 
@@ -1662,15 +1690,15 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.map
 +-----------------------------------------------------------------
 ; Statistic                                              ; Value ;
 +--------------------------------------------------------+-------+
-; Number of WYSIWYG cells                                ; 863   ;
-; Number of synthesis-generated cells                    ; 3732  ;
-; Number of WYSIWYG LUTs                                 ; 863   ;
-; Number of synthesis-generated LUTs                     ; 2850  ;
+; Number of WYSIWYG cells                                ; 864   ;
+; Number of synthesis-generated cells                    ; 4032  ;
+; Number of WYSIWYG LUTs                                 ; 864   ;
+; Number of synthesis-generated LUTs                     ; 3061  ;
 ; Number of WYSIWYG registers                            ; 429   ;
-; Number of synthesis-generated registers                ; 1755  ;
-; Number of cells with combinational logic only          ; 2411  ;
-; Number of cells with registers only                    ; 882   ;
-; Number of cells with combinational logic and registers ; 1302  ;
+; Number of synthesis-generated registers                ; 1879  ;
+; Number of cells with combinational logic only          ; 2588  ;
+; Number of cells with registers only                    ; 971   ;
+; Number of cells with combinational logic and registers ; 1337  ;
 +--------------------------------------------------------+-------+
 
 
@@ -1681,9 +1709,9 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.map
 +--------------------------------------+-------+
 ; Number of registers using SCLR       ; 48    ;
 ; Number of registers using SLOAD      ; 192   ;
-; Number of registers using ACLR       ; 1166  ;
+; Number of registers using ACLR       ; 1258  ;
 ; Number of registers using ALOAD      ; 0     ;
-; Number of registers using CLK_ENABLE ; 1451  ;
+; Number of registers using CLK_ENABLE ; 1560  ;
 ; Number of registers using OE         ; 0     ;
 ; Number of registers using PRESET     ; 0     ;
 +--------------------------------------+-------+
@@ -1695,7 +1723,7 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.map
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Wed Aug 11 13:40:48 2004
+    Info: Processing started: Fri Nov 12 08:47:43 2004
 Info: Command: quartus_map --import_settings_files=on --export_settings_files=off domapp -c domapp
 Info: Found 1 design units and 0 entities in source file icecube_data_types.vhd
     Info: Found design unit 1: icecube_data_types
@@ -1742,9 +1770,6 @@ Info: Found 2 design units and 1 entities in source file mem_interface.vhd
 Info: Found 2 design units and 1 entities in source file FADC_interface.vhd
     Info: Found design unit 1: FADC_interface-FADC_interface_arch
     Info: Found entity 1: FADC_interface
-Info: Found 2 design units and 1 entities in source file data_buffer.vhd
-    Info: Found design unit 1: data_buffer-arch_data_buffer
-    Info: Found entity 1: data_buffer
 Info: Found 2 design units and 1 entities in source file ADC_input.vhd
     Info: Found design unit 1: ADC_input-arch_ADC_input
     Info: Found entity 1: ADC_input
@@ -1760,9 +1785,6 @@ Info: Found 2 design units and 1 entities in source file pedestal_sub.vhd
 Info: Found 2 design units and 1 entities in source file domapp.vhd
     Info: Found design unit 1: domapp-arch_domapp
     Info: Found entity 1: domapp
-Info: Found 2 design units and 1 entities in source file compression.vhd
-    Info: Found design unit 1: compression-arch_compression
-    Info: Found entity 1: compression
 Info: Found 2 design units and 0 entities in source file functions.vhd
     Info: Found design unit 1: functions
     Info: Found design unit 2: functions-body
@@ -1778,6 +1800,16 @@ Info: Found 2 design units and 1 entities in source file slaveregister.vhd
 Info: Found 2 design units and 1 entities in source file comm_wrapper.vhd
     Info: Found design unit 1: comm_wrapper-arch_comm_wrapper
     Info: Found entity 1: comm_wrapper
+Info: Found 2 design units and 1 entities in source file data_buffer.vhd
+    Info: Found design unit 1: data_buffer-arch_data_buffer
+    Info: Found entity 1: data_buffer
+Info: Found 2 design units and 1 entities in source file local_coincidence.vhd
+    Info: Found design unit 1: local_coincidence-ARCH_local_coincidence
+    Info: Found entity 1: local_coincidence
+Info: Found 2 design units and 1 entities in source file compression.vhd
+    Info: Found design unit 1: compression-arch_compression
+    Info: Found entity 1: compression
+Warning: VHDL Signal Declaration warning at domapp.vhd(660): used implicit default value for signal compr_ctrl because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
 Info: Using design file pll2x.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info: Found entity 1: pll2x
 Info: Found 1 design units and 1 entities in source file ../../../../fpgatools/quartus/libraries/megafunctions/altclklock.tdf
@@ -1803,7 +1835,7 @@ Info: Found 1 design units and 1 entities in source file ../../../../fpgatools/q
     Info: Found entity 1: apex20ke_io_bidir
 Info: Found 1 design units and 1 entities in source file ../../../../fpgatools/quartus/libraries/megafunctions/alt_exc_dpram.tdf
     Info: Found entity 1: alt_exc_dpram
-Info: VHDL Case Statement information at ADC_control.vhd(139): OTHERS choice is never selected
+Info: VHDL Case Statement information at ADC_control.vhd(156): OTHERS choice is never selected
 Warning: VHDL Signal Declaration warning at data_buffer.vhd(99): ignored default value for signal atwd_wr_data
 Info: Using design file ATWD_buffer.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info: Found entity 1: ATWD_buffer
@@ -1811,9 +1843,14 @@ Info: Found 1 design units and 1 entities in source file ../../../../fpgatools/q
     Info: Found entity 1: altdpram
 Info: Using design file FADC_buffer.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info: Found entity 1: FADC_buffer
-Info: VHDL Case Statement information at mem_interface.vhd(225): OTHERS choice is never selected
-Info: VHDL Case Statement information at ahb_master.vhd(225): OTHERS choice is never selected
-Warning: VHDL Signal Declaration warning at slaveregister.vhd(166): ignored default value for signal id_set
+Warning: Reduced output of register compr_data[29] with stuck data_in to GND at compression.vhd(77)
+Warning: Reduced output of register compr_data[22] with stuck data_in to GND at compression.vhd(77)
+Warning: Reduced output of register compr_data[20] with stuck data_in to GND at compression.vhd(77)
+Warning: Reduced output of register compr_data[17] with stuck data_in to GND at compression.vhd(77)
+Warning: Reduced output of register compr_data[14] with stuck data_in to GND at compression.vhd(77)
+Info: VHDL Case Statement information at mem_interface.vhd(288): OTHERS choice is never selected
+Info: VHDL Case Statement information at ahb_master.vhd(228): OTHERS choice is never selected
+Warning: VHDL Signal Declaration warning at slaveregister.vhd(168): ignored default value for signal id_set
 Info: Using design file version_rom.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info: Found entity 1: version_rom
 Info: Found 1 design units and 1 entities in source file ../../../../fpgatools/quartus/libraries/megafunctions/lpm_rom.tdf
@@ -1961,6 +1998,7 @@ Info: Using design file ../common/comdpm/rx_chan/crc_error_ct.tdf, which is not 
 Info: Using design file ../common/comdpm/tx_chan/dc_tx_chan_ap.bdf, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info: Found entity 1: dc_tx_chan_ap
 Warning: Found multiple base names
+Warning: Primitive NOT of instance inst13 not used
 Info: Using design file ../common/comdpm/tx_chan/tx_uart_ap.bdf, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info: Found entity 1: tx_uart_ap
 Info: Using design file ../common/comdpm/tx_chan/tx_uart_shr10.tdf, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
@@ -2094,20 +2132,63 @@ Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffe
 Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.trigger_word[9] with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.trigger_word[8] with stuck data_in port to stuck value GND
 Info: Duplicate registers merged to single register
+    Info: Duplicate register daq:inst_daq|ahb_master:inst_ahb_master|ahb_address[10]~reg0 merged to single register daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[10]~reg0
+    Info: Duplicate register daq:inst_daq|ahb_master:inst_ahb_master|ahb_address[9]~reg0 merged to single register daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[9]~reg0
+    Info: Duplicate register daq:inst_daq|ahb_master:inst_ahb_master|ahb_address[8]~reg0 merged to single register daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[8]~reg0
+    Info: Duplicate register daq:inst_daq|ahb_master:inst_ahb_master|ahb_address[7]~reg0 merged to single register daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[7]~reg0
+    Info: Duplicate register daq:inst_daq|ahb_master:inst_ahb_master|ahb_address[6]~reg0 merged to single register daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[6]~reg0
+    Info: Duplicate register daq:inst_daq|ahb_master:inst_ahb_master|ahb_address[5]~reg0 merged to single register daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[5]~reg0
+    Info: Duplicate register daq:inst_daq|ahb_master:inst_ahb_master|ahb_address[4]~reg0 merged to single register daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[4]~reg0
+    Info: Duplicate register daq:inst_daq|ahb_master:inst_ahb_master|ahb_address[3]~reg0 merged to single register daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[3]~reg0
+    Info: Duplicate register daq:inst_daq|ahb_master:inst_ahb_master|ahb_address[2]~reg0 merged to single register daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[2]~reg0
+    Info: Duplicate register daq:inst_daq|ahb_master:inst_ahb_master|ahb_address[1]~reg0 merged to single register daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[1]~reg0
+    Info: Duplicate register daq:inst_daq|ahb_master:inst_ahb_master|ahb_address[0]~reg0 merged to single register daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[0]~reg0
+    Info: Duplicate register daq:inst_daq|pingpong:pong|compression:inst_compression|compr_data[31]~reg0 merged to single register daq:inst_daq|pingpong:pong|compression:inst_compression|compr_data[24]~reg0, power-up level changed
     Info: Duplicate register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface|FADC_busy~reg0 merged to single register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface|FADC_we~reg0
     Info: Duplicate register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface|triggered merged to single register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface|FADC_we~reg0
+    Info: Duplicate register daq:inst_daq|pingpong:ping|compression:inst_compression|compr_data[31]~reg0 merged to single register daq:inst_daq|pingpong:ping|compression:inst_compression|compr_data[24]~reg0, power-up level changed
     Info: Duplicate register daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface|FADC_busy~reg0 merged to single register daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface|FADC_we~reg0
     Info: Duplicate register daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface|triggered merged to single register daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface|FADC_we~reg0
+Warning: No clock transition on slaveregister:inst_slaveregister|COMPR_ctrl_local.FADCthres[0] register
+Warning: Reduced register slaveregister:inst_slaveregister|COMPR_ctrl_local.FADCthres[0] with stuck clock port to stuck value GND
+Warning: No clock transition on slaveregister:inst_slaveregister|COMPR_ctrl_local.FADCthres[1] register
+Warning: Reduced register slaveregister:inst_slaveregister|COMPR_ctrl_local.FADCthres[1] with stuck clock port to stuck value GND
+Warning: No clock transition on slaveregister:inst_slaveregister|COMPR_ctrl_local.FADCthres[2] register
+Warning: Reduced register slaveregister:inst_slaveregister|COMPR_ctrl_local.FADCthres[2] with stuck clock port to stuck value GND
+Warning: No clock transition on slaveregister:inst_slaveregister|COMPR_ctrl_local.FADCthres[3] register
+Warning: Reduced register slaveregister:inst_slaveregister|COMPR_ctrl_local.FADCthres[3] with stuck clock port to stuck value GND
+Warning: No clock transition on slaveregister:inst_slaveregister|COMPR_ctrl_local.FADCthres[4] register
+Warning: Reduced register slaveregister:inst_slaveregister|COMPR_ctrl_local.FADCthres[4] with stuck clock port to stuck value GND
+Warning: No clock transition on slaveregister:inst_slaveregister|COMPR_ctrl_local.FADCthres[5] register
+Warning: Reduced register slaveregister:inst_slaveregister|COMPR_ctrl_local.FADCthres[5] with stuck clock port to stuck value GND
+Warning: No clock transition on slaveregister:inst_slaveregister|COMPR_ctrl_local.FADCthres[6] register
+Warning: Reduced register slaveregister:inst_slaveregister|COMPR_ctrl_local.FADCthres[6] with stuck clock port to stuck value GND
+Warning: No clock transition on slaveregister:inst_slaveregister|COMPR_ctrl_local.FADCthres[7] register
+Warning: Reduced register slaveregister:inst_slaveregister|COMPR_ctrl_local.FADCthres[7] with stuck clock port to stuck value GND
+Warning: No clock transition on slaveregister:inst_slaveregister|COMPR_ctrl_local.FADCthres[8] register
+Warning: Reduced register slaveregister:inst_slaveregister|COMPR_ctrl_local.FADCthres[8] with stuck clock port to stuck value GND
+Warning: No clock transition on slaveregister:inst_slaveregister|COMPR_ctrl_local.FADCthres[9] register
+Warning: Reduced register slaveregister:inst_slaveregister|COMPR_ctrl_local.FADCthres[9] with stuck clock port to stuck value GND
 Warning: Reduced register slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|masterhresp[1]~reg0 with stuck data_in port to stuck value GND
 Info: Duplicate registers merged to single register
     Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|DC_SNAP:inst11|shift_ct_aclr~reg merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|DC_SNAP:inst11|crc_init~reg
     Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|DC_SNAP:inst11|plen_sload~reg merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|DC_SNAP:inst11|crc_init~reg
     Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|DC_SNAP:inst11|EOF_SENT merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|DC_SNAP:inst11|msg_sent~reg
     Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|DC_SNAP:inst11|TCWFM_FRD merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|DC_SNAP:inst11|tcwf_rd_next~reg
-    Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|DC_SNAP:inst11|FRD_CHK merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|DC_SNAP:inst11|dpr_ren~reg
     Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|tx_uart_ap:inst7|TX_UART:inst|TXSLD merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|tx_uart_ap:inst7|TX_UART:inst|shr_load~reg
-    Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|tx_uart_ap:inst7|TX_UART:inst|TXIDL merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|tx_uart_ap:inst7|TX_UART:inst|txidle~reg
-    Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|tx_uart_ap:inst7|TX_UART:inst|ct_sclr~reg merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|tx_uart_ap:inst7|TX_UART:inst|txidle~reg
+    Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|tx_uart_ap:inst7|TX_UART:inst|TXIDL merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|tx_uart_ap:inst7|TX_UART:inst|ct_sclr~reg
+    Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|tx_uart_ap:inst7|TX_UART:inst|txidle~reg merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|tx_uart_ap:inst7|TX_UART:inst|ct_sclr~reg
+    Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|DC_SNAP:inst11|FRD_CHK merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|DC_SNAP:inst11|dpr_ren~reg
+    Info: Duplicate register daq:inst_daq|pingpong:ping|compression:inst_compression|compr_data[0]~reg0 merged to single register daq:inst_daq|pingpong:pong|compression:inst_compression|compr_data[0]~reg0
+    Info: Duplicate register daq:inst_daq|pingpong:ping|compression:inst_compression|compr_data[1]~reg0 merged to single register daq:inst_daq|pingpong:pong|compression:inst_compression|compr_data[1]~reg0
+    Info: Duplicate register daq:inst_daq|pingpong:ping|compression:inst_compression|compr_data[2]~reg0 merged to single register daq:inst_daq|pingpong:pong|compression:inst_compression|compr_data[2]~reg0
+    Info: Duplicate register daq:inst_daq|pingpong:ping|compression:inst_compression|compr_data[3]~reg0 merged to single register daq:inst_daq|pingpong:pong|compression:inst_compression|compr_data[3]~reg0
+    Info: Duplicate register daq:inst_daq|pingpong:ping|compression:inst_compression|compr_data[4]~reg0 merged to single register daq:inst_daq|pingpong:pong|compression:inst_compression|compr_data[4]~reg0
+    Info: Duplicate register daq:inst_daq|pingpong:ping|compression:inst_compression|compr_data[5]~reg0 merged to single register daq:inst_daq|pingpong:pong|compression:inst_compression|compr_data[5]~reg0
+    Info: Duplicate register daq:inst_daq|pingpong:ping|compression:inst_compression|compr_data[6]~reg0 merged to single register daq:inst_daq|pingpong:pong|compression:inst_compression|compr_data[6]~reg0
+    Info: Duplicate register daq:inst_daq|pingpong:ping|compression:inst_compression|compr_data[7]~reg0 merged to single register daq:inst_daq|pingpong:pong|compression:inst_compression|compr_data[7]~reg0
+    Info: Duplicate register daq:inst_daq|pingpong:ping|compression:inst_compression|compr_data[8]~reg0 merged to single register daq:inst_daq|pingpong:pong|compression:inst_compression|compr_data[8]~reg0
+    Info: Duplicate register daq:inst_daq|pingpong:ping|compression:inst_compression|compr_data[24]~reg0 merged to single register daq:inst_daq|pingpong:pong|compression:inst_compression|compr_data[24]~reg0
     Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|DC_SNAP:inst11|CRC_WAIT merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|DC_SNAP:inst11|crc_last~reg
     Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|DC_SNAP:inst11|id_shr_ld~reg merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|DC_SNAP:inst11|ID_LOAD
     Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|DC_SNAP:inst11|plen_ct_inc~reg merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|DC_SNAP:inst11|PL_INC
@@ -2116,9 +2197,9 @@ Info: Duplicate registers merged to single register
     Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|DC_SNAP:inst11|id_shr~reg merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|DC_SNAP:inst11|ID_SHR8
     Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|DC_SNAP:inst11|DATA_HDR merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|DC_SNAP:inst11|dom_adr_en~reg
 Info: Duplicate registers merged to single register
-    Info: Duplicate register daq:inst_daq|ahb_master:inst_ahb_master|haddr[1] merged to single register daq:inst_daq|ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register calibration_sources:inst_calibration_sources|i491 merged to single register calibration_sources:inst_calibration_sources|i474
-Info: Inferred 12 megafunctions from design logic
+    Info: Duplicate register daq:inst_daq|ahb_master:inst_ahb_master|haddr[1] merged to single register daq:inst_daq|ahb_master:inst_ahb_master|haddr[0]
+Info: Inferred 11 megafunctions from design logic
     Info: Inferred lpm_counter megafunction (LPM_WIDTH=5) from the following logic: calibration_sources:inst_calibration_sources|stretcher[0]~0
     Info: Inferred lpm_counter megafunction (LPM_WIDTH=48) from the following logic: systimer:inst_systimer|systime_cnt[0]~0
     Info: Inferred lpm_counter megafunction (LPM_WIDTH=4) from the following logic: calibration_sources:inst_calibration_sources|now_cnt[0]~0
@@ -2128,7 +2209,6 @@ Info: Inferred 12 megafunctions from design logic
     Info: Inferred lpm_counter megafunction (LPM_WIDTH=32) from the following logic: rate_meters:inst_rate_meters|rate_SPE_int[0]~0
     Info: Inferred lpm_counter megafunction (LPM_WIDTH=32) from the following logic: rate_meters:inst_rate_meters|rate_MPE_int[0]~0
     Info: Inferred lpm_counter megafunction (LPM_WIDTH=4) from the following logic: rate_meters:inst_rate_meters|sn_rate[0]~0
-    Info: Inferred lpm_counter megafunction (LPM_WIDTH=9) from the following logic: rate_meters:inst_rate_meters|lockout_sn[0]~0
     Info: Inferred lpm_counter megafunction (LPM_WIDTH=10) from the following logic: rate_meters:inst_rate_meters|lockout_SPE[0]~0
     Info: Inferred lpm_counter megafunction (LPM_WIDTH=10) from the following logic: rate_meters:inst_rate_meters|lockout_MPE[0]~0
 Info: State machine |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|crc_tx:inst3|state contains 5 states and 0 state bits
@@ -2139,10 +2219,11 @@ Info: State machine |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|
 Info: State machine |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|sreg contains 13 states and 4 state bits
 Info: State machine |domapp|slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|slave_state contains 5 states and 0 state bits
 Info: State machine |domapp|daq:inst_daq|ahb_master:inst_ahb_master|master_state contains 3 states and 0 state bits
-Info: State machine |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state contains 12 states and 0 state bits
-Info: State machine |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state contains 8 states and 0 state bits
+Info: State machine |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state contains 15 states and 0 state bits
+Info: State machine |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state_old contains 15 states and 0 state bits
+Info: State machine |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state contains 9 states and 0 state bits
 Info: State machine |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state contains 13 states and 0 state bits
-Info: State machine |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state contains 8 states and 0 state bits
+Info: State machine |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state contains 9 states and 0 state bits
 Info: State machine |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state contains 13 states and 0 state bits
 Info: State machine |domapp|ROC:inst_ROC|RST_state contains 3 states and 0 state bits
 Info: Selected Auto state machine encoding method for state machine |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|crc_tx:inst3|state
@@ -2269,7 +2350,10 @@ Info: Encoding result for state machine |domapp|daq:inst_daq|ahb_master:inst_ahb
     Info: State |domapp|daq:inst_daq|ahb_master:inst_ahb_master|master_state.error_phase uses code string 101
 Info: Selected Auto state machine encoding method for state machine |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state
 Info: Encoding result for state machine |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state
-    Info: Completed encoding using 12 state bits
+    Info: Completed encoding using 15 state bits
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state~34
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state~33
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state~32
         Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state~31
         Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state~30
         Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state~29
@@ -2282,21 +2366,58 @@ Info: Encoding result for state machine |domapp|daq:inst_daq|mem_interface:inst_
         Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state~22
         Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state~21
         Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state~20
-    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.idle uses code string 000000000000
-    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.set_mux uses code string 000000000011
-    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.eng_hdr0 uses code string 000000000101
-    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.eng_hdr1 uses code string 000000001001
-    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.eng_hdr2 uses code string 000000010001
-    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.eng_hdr3 uses code string 000000100001
-    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.eng_fadc uses code string 000001000001
-    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.eng_atwd uses code string 000010000001
-    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.eng_end uses code string 000100000001
-    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.comp_xfer uses code string 001000000001
-    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.comp_end uses code string 010000000001
-    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.done uses code string 100000000001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.idle uses code string 000000000000000
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.set_mux uses code string 000000000000011
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.check_format uses code string 000000000000101
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.eng_hdr0 uses code string 000000000001001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.eng_hdr1 uses code string 000000000010001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.eng_hdr2 uses code string 000000000100001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.eng_hdr3 uses code string 000000001000001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.eng_fadc uses code string 000000010000001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.eng_atwd uses code string 000000100000001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.eng_end uses code string 000001000000001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.what_next uses code string 000010000000001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.comp_start uses code string 000100000000001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.comp_xfer uses code string 001000000000001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.comp_end uses code string 010000000000001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state.done uses code string 100000000000001
+Info: Selected Auto state machine encoding method for state machine |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state_old
+Info: Encoding result for state machine |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state_old
+    Info: Completed encoding using 15 state bits
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state_old~34
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state_old~33
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state_old~32
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state_old~31
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state_old~30
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state_old~29
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state_old~28
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state_old~27
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state_old~26
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state_old~25
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state_old~24
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state_old~23
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state_old~22
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state_old~21
+        Info: Encoded state bit daq:inst_daq|mem_interface:inst_mem_interface|state_old~20
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state_old.idle uses code string 000000000000000
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state_old.set_mux uses code string 000000000000011
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state_old.check_format uses code string 000000000000101
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state_old.eng_hdr0 uses code string 000000000001001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state_old.eng_hdr1 uses code string 000000000010001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state_old.eng_hdr2 uses code string 000000000100001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state_old.eng_hdr3 uses code string 000000001000001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state_old.eng_fadc uses code string 000000010000001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state_old.eng_atwd uses code string 000000100000001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state_old.eng_end uses code string 000001000000001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state_old.what_next uses code string 000010000000001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state_old.comp_start uses code string 000100000000001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state_old.comp_xfer uses code string 001000000000001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state_old.comp_end uses code string 010000000000001
+    Info: State |domapp|daq:inst_daq|mem_interface:inst_mem_interface|state_old.done uses code string 100000000000001
 Info: Selected Auto state machine encoding method for state machine |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state
 Info: Encoding result for state machine |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state
-    Info: Completed encoding using 8 state bits
+    Info: Completed encoding using 9 state bits
+        Info: Encoded state bit daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~28
         Info: Encoded state bit daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~27
         Info: Encoded state bit daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~26
         Info: Encoded state bit daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~25
@@ -2305,14 +2426,15 @@ Info: Encoding result for state machine |domapp|daq:inst_daq|pingpong:pong|ADC_i
         Info: Encoded state bit daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~22
         Info: Encoded state bit daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~21
         Info: Encoded state bit daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~20
-    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.idle uses code string 00000000
-    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.wait_done uses code string 00000011
-    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.wr_header uses code string 00000101
-    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.reset_trig uses code string 00001001
-    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.wait_lc_soft uses code string 00010001
-    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.clear_lc_hard uses code string 00100001
-    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.got_lc uses code string 01000001
-    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.wait_buffer uses code string 10000001
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.idle uses code string 000000000
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.wait_done uses code string 000000011
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.wr_header uses code string 000000101
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.reset_trig uses code string 000001001
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.wait_lc_soft uses code string 000010001
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.wait_lc_flabby uses code string 000100001
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.clear_lc_hard uses code string 001000001
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.got_lc uses code string 010000001
+    Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.wait_buffer uses code string 100000001
 Info: Selected Auto state machine encoding method for state machine |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state
 Info: Encoding result for state machine |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state
     Info: Completed encoding using 13 state bits
@@ -2344,7 +2466,8 @@ Info: Encoding result for state machine |domapp|daq:inst_daq|pingpong:pong|ADC_i
     Info: State |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state.wait_trig_compl uses code string 1000000000001
 Info: Selected Auto state machine encoding method for state machine |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state
 Info: Encoding result for state machine |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state
-    Info: Completed encoding using 8 state bits
+    Info: Completed encoding using 9 state bits
+        Info: Encoded state bit daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~28
         Info: Encoded state bit daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~27
         Info: Encoded state bit daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~26
         Info: Encoded state bit daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~25
@@ -2353,14 +2476,15 @@ Info: Encoding result for state machine |domapp|daq:inst_daq|pingpong:ping|ADC_i
         Info: Encoded state bit daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~22
         Info: Encoded state bit daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~21
         Info: Encoded state bit daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~20
-    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.idle uses code string 00000000
-    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.wait_done uses code string 00000011
-    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.wr_header uses code string 00000101
-    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.reset_trig uses code string 00001001
-    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.wait_lc_soft uses code string 00010001
-    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.clear_lc_hard uses code string 00100001
-    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.got_lc uses code string 01000001
-    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.wait_buffer uses code string 10000001
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.idle uses code string 000000000
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.wait_done uses code string 000000011
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.wr_header uses code string 000000101
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.reset_trig uses code string 000001001
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.wait_lc_soft uses code string 000010001
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.wait_lc_flabby uses code string 000100001
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.clear_lc_hard uses code string 001000001
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.got_lc uses code string 010000001
+    Info: State |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state.wait_buffer uses code string 100000001
 Info: Selected Auto state machine encoding method for state machine |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state
 Info: Encoding result for state machine |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state
     Info: Completed encoding using 13 state bits
@@ -2434,31 +2558,32 @@ Warning: Converted TRI buffer to OR gate or removed OPNDRN
     Warning: Converting TRI node calibration_sources:inst_calibration_sources|i549~0 that feeds logic to an OR gate
     Warning: Converting TRI node calibration_sources:inst_calibration_sources|i550~0 that feeds logic to an OR gate
     Warning: Converting TRI node calibration_sources:inst_calibration_sources|i551~0 that feeds logic to an OR gate
-Warning: Reduced register daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~24 with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~25 with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~24 with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~25 with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|mem_interface:inst_mem_interface|state~29 with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~24 with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~26 with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~25 with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~24 with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~26 with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|mem_interface:inst_mem_interface|state~30 with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|mem_interface:inst_mem_interface|state~31 with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~27 with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|state~27 with stuck data_in port to stuck value GND
 Info: Duplicate registers merged to single register
     Info: Duplicate register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~20 merged to single register daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~20
+    Info: Duplicate register daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[1]~reg0 merged to single register daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[0]~reg0
     Info: Duplicate register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~25 merged to single register daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|state~25
     Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|sreg~32 merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|data_stb~reg
     Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|sreg~41 merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|stf_stb~reg
     Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|sreg~33 merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|eof_stb~reg
+    Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_rapcal_lh:inst30|DCTC_FWR:inst7|sreg~38 merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_rapcal_lh:inst30|DCTC_FWR:inst7|pulse_rcvd~reg
     Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_adc_to_ser:inst6|HL_DSCR:hl_dec_stm|sreg~32 merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_adc_to_ser:inst6|HL_DSCR:hl_dec_stm|one~reg
     Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|sreg~39 merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|shd~reg
-    Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_rapcal_lh:inst30|DCTC_FWR:inst7|sreg~38 merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_rapcal_lh:inst30|DCTC_FWR:inst7|pulse_rcvd~reg
-    Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_adc_to_ser:inst6|HL_DSCR:hl_dec_stm|one_lev~reg merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_adc_to_ser:inst6|HL_DSCR:hl_dec_stm|sreg~33
 Info: Registers with preset signals will power-up high
 Info: DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Info: Duplicate registers merged to single register
     Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|sreg~30 merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|ctclr~reg, power-up level changed
     Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_rapcal_lh:inst30|DCTC_FWR:inst7|rx_time_lat~reg merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_rapcal_lh:inst30|DCTC_FWR:inst7|sreg~34
-    Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_adc_to_ser:inst6|HL_DSCR:hl_dec_stm|sreg~30 merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_adc_to_ser:inst6|HL_DSCR:hl_dec_stm|ct_aclr~reg, power-up level changed
     Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_rapcal_lh:inst30|DCTC_FWR:inst7|sreg~30 merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_rapcal_lh:inst30|DCTC_FWR:inst7|tcwf_aclr~reg, power-up level changed
+    Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_adc_to_ser:inst6|HL_DSCR:hl_dec_stm|sreg~30 merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_rx_chan_ap:b2v_DC_Rx_chan_ap|dc_adc_to_ser:inst6|HL_DSCR:hl_dec_stm|ct_aclr~reg, power-up level changed
 Warning: Reduced register daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|eventtype[1] with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|eventtype[1] with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.eventtype[1] with stuck data_in port to stuck value GND
@@ -2466,6 +2591,7 @@ Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffe
 Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.eventtype[1] with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.eventtype[1] with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|ahb_master:inst_ahb_master|haddr[0] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[0]~reg0 with stuck data_in port to stuck value GND
 Info: Duplicate registers merged to single register
     Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|DC_SNAP:inst11|crc_init~reg merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|dc_tx_chan_ap:b2v_DC_Tx_chan_ap|DC_SNAP:inst11|STF
 Warning: TRI or OPNDRN buffers permanently disabled
@@ -2477,42 +2603,42 @@ Warning: TRI or OPNDRN buffers permanently disabled
     Warning: Node comm_wrapper:inst_comm_wrapper|i99
     Warning: Node daq:inst_daq|trigger:inst_trigger|i4
     Warning: Node daq:inst_daq|trigger:inst_trigger|i5
-    Warning: Node i106
-    Warning: Node i107
-    Warning: Node i108
-    Warning: Node i109
-    Warning: Node i110
-    Warning: Node i111
-    Warning: Node i112
-    Warning: Node i113
-    Warning: Node i114
-    Warning: Node i115
-    Warning: Node i116
-    Warning: Node i117
-    Warning: Node i118
-    Warning: Node i119
-    Warning: Node i120
-    Warning: Node i121
-    Warning: Node i122
-    Warning: Node i123
-    Warning: Node i124
-    Warning: Node i125
-    Warning: Node i126
-    Warning: Node i127
-    Warning: Node i128
-    Warning: Node i129
-    Warning: Node i130
-    Warning: Node i131
-    Warning: Node i132
-    Warning: Node i133
-    Warning: Node i98
-    Warning: Node i99
-    Warning: Node i100
-    Warning: Node i101
-    Warning: Node i102
-    Warning: Node i103
-    Warning: Node i104
-    Warning: Node i105
+    Warning: Node i200
+    Warning: Node i201
+    Warning: Node i202
+    Warning: Node i203
+    Warning: Node i204
+    Warning: Node i205
+    Warning: Node i206
+    Warning: Node i207
+    Warning: Node i208
+    Warning: Node i209
+    Warning: Node i210
+    Warning: Node i211
+    Warning: Node i212
+    Warning: Node i213
+    Warning: Node i214
+    Warning: Node i215
+    Warning: Node i216
+    Warning: Node i217
+    Warning: Node i218
+    Warning: Node i219
+    Warning: Node i220
+    Warning: Node i221
+    Warning: Node i222
+    Warning: Node i223
+    Warning: Node i224
+    Warning: Node i225
+    Warning: Node i226
+    Warning: Node i227
+    Warning: Node i192
+    Warning: Node i193
+    Warning: Node i194
+    Warning: Node i195
+    Warning: Node i196
+    Warning: Node i197
+    Warning: Node i198
+    Warning: Node i199
 Warning: Output pins are stuck at VCC or GND
     Warning: Pin FPGA_LOADED stuck at GND
     Warning: Pin COM_TX_SLEEP stuck at GND
@@ -2566,17 +2692,17 @@ Warning: Design contains 20 input pin(s) that do not drive logic
     Warning: No output dependent on input pin COINC_UP_B
     Warning: No output dependent on input pin PLD_FPGA_nOE
     Warning: No output dependent on input pin PLD_FPGA_nWE
-Info: Implemented 5090 device resources after synthesis - the final resource count might be different
+Info: Implemented 5391 device resources after synthesis - the final resource count might be different
     Info: Implemented 75 input pins
     Info: Implemented 170 output pins
     Info: Implemented 63 bidirectional pins
-    Info: Implemented 4595 logic cells
+    Info: Implemented 4896 logic cells
     Info: Implemented 182 RAM segments
     Info: Implemented 2 ClockLock PLLs
     Info: Implemented 2 dual-port RAM elements in Excalibur device
     Info: Implemented 1 microprocessor core elements in Excalibur device
-Info: Quartus II Analysis & Synthesis was successful. 0 errors, 226 warnings
-    Info: Processing ended: Wed Aug 11 13:46:26 2004
-    Info: Elapsed time: 00:05:37
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 255 warnings
+    Info: Processing ended: Fri Nov 12 08:53:51 2004
+    Info: Elapsed time: 00:06:08
 
 

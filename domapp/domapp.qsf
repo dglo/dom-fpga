@@ -48,16 +48,17 @@ set_global_assignment -name VHDL_FILE daq.vhd
 set_global_assignment -name VHDL_FILE ATWD_interface.vhd
 set_global_assignment -name VHDL_FILE mem_interface.vhd
 set_global_assignment -name VHDL_FILE FADC_interface.vhd
-set_global_assignment -name VHDL_FILE data_buffer.vhd
 set_global_assignment -name VHDL_FILE ADC_input.vhd
 set_global_assignment -name VHDL_FILE ADC_control.vhd
 set_global_assignment -name VHDL_FILE pingpong.vhd
 set_global_assignment -name VHDL_FILE pedestal_sub.vhd
 set_global_assignment -name VHDL_FILE domapp.vhd
-set_global_assignment -name VHDL_FILE compression.vhd
 set_global_assignment -name VHDL_FILE functions.vhd
 set_global_assignment -name VHDL_FILE slaveregister.vhd
 set_global_assignment -name VHDL_FILE comm_wrapper.vhd
+set_global_assignment -name VHDL_FILE data_buffer.vhd
+set_global_assignment -name VHDL_FILE local_coincidence.vhd
+set_global_assignment -name VHDL_FILE compression.vhd
 
 # Pin & Location Assignments
 # ==========================
@@ -385,8 +386,8 @@ set_global_assignment -name DEVICE_FILTER_PIN_COUNT 672
 set_global_assignment -name DEVICE_FILTER_PACKAGE FBGA
 set_global_assignment -name TOP_LEVEL_ENTITY domapp
 set_global_assignment -name VHDL_SHOW_LMF_MAPPING_MESSAGES OFF
-set_global_assignment -name AUTO_ENABLE_SMART_COMPILE On
-set_global_assignment -name USER_LIBRARIES "c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\tx_chan;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\tcal;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\uart;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\meanval;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\edges;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\parity;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\mono_flop;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm"
+set_global_assignment -name AUTO_ENABLE_SMART_COMPILE on
+set_global_assignment -name USER_LIBRARIES "c:\\work_lbnl\\icecubecvs\\dom-fpga\\domapp\\compression;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\tx_chan;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\tcal;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\uart;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\meanval;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\edges;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\parity;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\mono_flop;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm"
 
 # Fitter Assignments
 # ==================
@@ -538,7 +539,8 @@ set_global_assignment -name DRC_REPORT_TOP_FANOUT OFF
 
 # SignalTap II Assignments
 # ========================
-set_global_assignment -name ENABLE_SIGNALTAP Off
+set_global_assignment -name ENABLE_SIGNALTAP off
+set_global_assignment -name USE_SIGNALTAP_FILE ahbmaster.stp
 
 # ------------------
 # start CLOCK(CLK1p)

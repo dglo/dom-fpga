@@ -70,6 +70,7 @@ ENTITY mem_interface IS
 		ahb_address		: IN	STD_LOGIC_VECTOR(31 downto 0);
 		wdata			: OUT	STD_LOGIC_VECTOR(31 downto 0);
 		wait_sig		: IN	STD_LOGIC;
+		ready			: IN	STD_LOGIC;
 		trans_length	: OUT	INTEGER;
 		bus_error		: IN	STD_LOGIC;
 		-- test connector
@@ -79,8 +80,9 @@ END mem_interface;
 
 ARCHITECTURE mem_interface_arch OF mem_interface IS
 
-	TYPE STATE_TYPE IS (IDLE, SET_MUX, ENG_HDR0, ENG_HDR1, ENG_HDR2, ENG_HDR3, ENG_FADC, ENG_ATWD, ENG_END, COMP_XFER, COMP_END, DONE);
+	TYPE STATE_TYPE IS (IDLE, SET_MUX, CHECK_FORMAT, ENG_HDR0, ENG_HDR1, ENG_HDR2, ENG_HDR3, ENG_FADC, ENG_ATWD, ENG_END, WHAT_NEXT, COMP_START, COMP_XFER, COMP_END, DONE);
 	SIGNAL state	: STATE_TYPE;
+	SIGNAL state_old	: STATE_TYPE;
 	
 	SIGNAL ATWD_data	: STD_LOGIC_VECTOR(31 DOWNTO 0);
 	SIGNAL FADC_data	: STD_LOGIC_VECTOR(31 DOWNTO 0);
@@ -113,18 +115,21 @@ BEGIN
 	BEGIN
 		IF RST='1' THEN
 			state	<= IDLE;
+			state_old	<= IDLE;
 			AnB		<= '0';
 			start_address	<= (OTHERS=>'0');
 			start_trans		<= '0';
 			abort_trans		<= '0';
 			rdaddr			<= (OTHERS=>'0');
 		ELSIF CLK20'EVENT AND CLK20='1' THEN
+			state_old	<= state;
 			CASE state IS
 				WHEN IDLE =>
 					start_trans		<= '0';
+					abort_trans		<= '0';
 					IF data_avail_A='1' OR data_avail_B='1' THEN
 						state	<= SET_MUX;
-						start_trans		<= '1';
+				--		start_trans		<= '1';
 					END IF;
 				WHEN SET_MUX =>
 					-- at least one (A or B) has data available
@@ -141,7 +146,9 @@ BEGIN
 							AnB	<= '0';
 						END IF;
 					END IF;
+					state	<= CHECK_FORMAT;
 					
+				WHEN CHECK_FORMAT =>
 					-- engineering or compressed data
 					IF COMPR_mode=COMPR_ON AND compr_avail='1' THEN
 						state	<= COMP_XFER;
@@ -167,47 +174,103 @@ BEGIN
 					END IF;
 					start_trans		<= '0';
 				WHEN ENG_HDR3 =>
+					rdaddr	<= (OTHERS=>'0');
 					IF wait_sig='0' AND header.FADCavail='1' AND header.eventtype/=eventTimestamp THEN
 						state	<= ENG_FADC;
+					--	rdaddr	<= rdaddr+1;
 					ELSIF wait_sig='0' THEN
 						state	<= ENG_END;
+						abort_trans		<= '1';
 					END IF;
 					start_trans		<= '0';
-					rdaddr	<= (OTHERS=>'0');
 				WHEN ENG_FADC =>
-					rdaddr	<= rdaddr+1;
+				--	IF wait_sig='0' THEN
+				--		rdaddr	<= rdaddr+1;
+				--	END IF;
 					IF rdaddr(6 DOWNTO 0) = "1111111" THEN
 						IF header.ATWDavail='1' THEN
-							state	<= ENG_ATWD;
-							rdaddr	<= (OTHERS=>'0');
+							IF wait_sig='0' THEN
+								state	<= ENG_ATWD;
+								rdaddr	<= (OTHERS=>'0');
+							END IF;
+							abort_trans		<= '0';
 						ELSE
-							state	<= ENG_END;
+							IF ready='1' THEN	-- wait for AHB_master to finish
+								state	<= ENG_END;
+							END IF;
+							abort_trans		<= '1';
 						END IF;
+					ELSE
+						IF wait_sig='0' THEN
+							rdaddr	<= rdaddr+1;
+						END IF;
+						abort_trans		<= '0';
 					END IF;
 					start_trans		<= '0';
 				WHEN ENG_ATWD =>
-					rdaddr	<= rdaddr+1;
+				--	IF wait_sig='0' THEN
+				--		rdaddr	<= rdaddr+1;
+				--	END IF;
 					IF rdaddr(5 DOWNTO 0) = "111111" AND rdaddr(7 DOWNTO 6) = header.ATWDsize THEN
-						state	<= ENG_END;
+						abort_trans		<= '1';
+						IF ready='1' THEN	-- wait for AHB_master to finish
+							state	<= ENG_END;
+						END IF;
+					ELSE
+						IF wait_sig='0' THEN
+							rdaddr	<= rdaddr+1;
+						END IF;
 					END IF;
 					start_trans		<= '0';
 				WHEN ENG_END =>
-					IF (COMPR_mode=COMPR_ON OR COMPR_mode=COMPR_BOTH) AND compr_avail='1' THEN --AND (LBM_not_full if LBM_mode=LBM_Stop) THEN
-						state	<=COMP_XFER;
-					ELSE
-						state	<= DONE;
-					END IF;
+					--IF (COMPR_mode=COMPR_ON OR COMPR_mode=COMPR_BOTH) AND compr_avail='1' THEN --AND (LBM_not_full if LBM_mode=LBM_Stop) THEN
+					--	IF start_address(SDRAM_SIZE)='1' AND LBM_mode=LBM_STOP THEN
+					--		NULL;
+					--	ELSIF ready='1' THEN	-- wait for AHB_master to finish
+					--		state	<=COMP_START;
+					--	END IF;
+					--ELSE
+					--	state	<= DONE;
+					--END IF;
 					rdaddr	<= (OTHERS=>'0');
 					start_address	<= start_address + 2048;
 					start_trans		<= '0';
 					abort_trans		<= '1';
+					state			<= WHAT_NEXT;
+				WHEN WHAT_NEXT =>
+					IF (COMPR_mode=COMPR_ON OR COMPR_mode=COMPR_BOTH) AND compr_avail='1' THEN --AND (LBM_not_full if LBM_mode=LBM_Stop) THEN
+						IF start_address(SDRAM_SIZE)='1' AND LBM_mode=LBM_STOP THEN
+							NULL;
+						ELSIF ready='1' THEN	-- wait for AHB_master to finish
+							start_trans		<= '1';
+							-- state	<=COMP_START;
+							state	<=COMP_XFER;
+						END IF;
+					ELSE
+						state	<= DONE;
+					END IF;
+				WHEN COMP_START =>	-- start transfer if eng and compr gets written into LBM
+					start_trans		<= '1';
+					abort_trans		<= '0';
+				--	IF ready='0' THEN
+						state			<=COMP_XFER;
+				--	END IF;
 				WHEN COMP_XFER =>
-					rdaddr	<= rdaddr+1;
+				--	IF wait_sig='0' THEN
+				--		rdaddr	<= rdaddr+1;
+				--	END IF;
 					IF rdaddr=compr_size THEN
-						state	<= COMP_END;
+						abort_trans		<= '1';
+						IF ready='1' THEN	-- wait for AHB_master to finish
+							state	<= COMP_END;
+						END IF;
+					ELSE
+						abort_trans		<= '0';
+						IF wait_sig='0' THEN
+							rdaddr	<= rdaddr+1;
+						END IF;
 					END IF;
 					start_trans		<= '0';
-					abort_trans		<= '0';
 				WHEN COMP_END =>
 					state	<= DONE;
 					rdaddr	<= (OTHERS=>'X');
@@ -217,11 +280,11 @@ BEGIN
 				WHEN DONE =>
 					IF start_address(SDRAM_SIZE)='1' AND LBM_mode=LBM_STOP THEN
 						NULL;
-					ELSE
+					ELSIF ready='1' THEN
 						state	<= IDLE;
 					END IF;
 					start_trans		<= '0';
-					abort_trans		<= '0';
+					abort_trans		<= '1';
 				WHEN OTHERS =>
 					NULL;
 			END CASE;
@@ -246,7 +309,7 @@ BEGIN
 	read_done_b <= read_done WHEN AnB='0' ELSE '0';
 	
 	-- engineering header
-	header0(15 DOWNTO 0) <= CONV_STD_LOGIC_VECTOR(16+512*CONV_INTEGER(header.FADCavail)+256*CONV_INTEGER(header.ATWDsize),16);
+	header0(15 DOWNTO 0) <= CONV_STD_LOGIC_VECTOR(16+512*CONV_INTEGER(header.FADCavail)+256*(CONV_INTEGER(header.ATWDsize)+1),16) WHEN header.ATWDavail='1' ELSE CONV_STD_LOGIC_VECTOR(16+512*CONV_INTEGER(header.FADCavail),16);
 	header0(31 DOWNTO 16) <= X"0001" WHEN header.eventtype=eventEngineering ELSE
 						X"0002" WHEN header.eventtype=eventTimestamp ELSE
 						X"0000";
@@ -262,14 +325,16 @@ BEGIN
 	header3 <= header.timestamp(47 DOWNTO 16);
 	
 	-- select data source
-	wdata <= header0 WHEN state=ENG_HDR0 ELSE
-			header1 WHEN state=ENG_HDR1 ELSE
-			header2 WHEN state=ENG_HDR2 ELSE
-			header3 WHEN state=ENG_HDR3 ELSE
-			FADC_data WHEN state=ENG_FADC ELSE
-			ATWD_data WHEN state=ENG_ATWD ELSE
+	wdata <= header0 WHEN state_old=ENG_HDR0 ELSE
+			header1 WHEN state_old=ENG_HDR1 ELSE
+			header2 WHEN state_old=ENG_HDR2 ELSE
+			header3 WHEN state_old=ENG_HDR3 ELSE
+		--	FADC_data WHEN state=ENG_FADC ELSE
+			FADC_data WHEN state_old=ENG_FADC ELSE
+			ATWD_data WHEN state_old=ENG_ATWD ELSE
+		--	compr_data WHEN state=COMP_START ELSE
 			compr_data WHEN state=COMP_XFER ELSE
-			(OTHERS=>'X'); --X"XXXXXXXX";
+			(OTHERS=>'1'); --(OTHERS=>'X'); --X"XXXXXXXX";
 			
 	-- memory addresses
 	compr_addr_A	<= rdaddr (8 DOWNTO 0);

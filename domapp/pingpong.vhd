@@ -27,6 +27,7 @@ USE IEEE.std_logic_arith.all;
 USE IEEE.std_logic_unsigned.all;
 
 USE WORK.icecube_data_types.all;
+USE WORK.ctrl_data_types.all;
 
 
 ENTITY pingpong IS
@@ -34,6 +35,7 @@ ENTITY pingpong IS
 		FADC_WIDTH		: INTEGER := 10
 		);
 	port (
+		CLK20		: IN STD_LOGIC;
 		CLK40		: IN STD_LOGIC;
 		CLK80		: IN STD_LOGIC;
 		RST			: IN STD_LOGIC;
@@ -45,6 +47,7 @@ ENTITY pingpong IS
 		LC_mode			: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		DAQ_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		ATWD_AB			: IN STD_LOGIC;	-- indicates if ping or pong
+		COMPR_ctrl		: IN COMPR_STRUCT;
 		-- trigger
 		rst_trig		: OUT STD_LOGIC;
 		trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
@@ -186,10 +189,11 @@ ARCHITECTURE arch_pingpong OF pingpong IS
 			FADC_WIDTH		: INTEGER := 10
 			);
 		PORT (
+			CLK20		: IN STD_LOGIC;
 			CLK40		: IN STD_LOGIC;
 			RST			: IN STD_LOGIC;
 			-- enable
-				-- ???? need to know the algorithm for that
+			COMPR_ctrl	: IN COMPR_STRUCT;
 			-- data input from data buffer
 			data_avail_in	: IN STD_LOGIC;
 			read_done_in	: OUT STD_LOGIC;
@@ -330,10 +334,11 @@ BEGIN
 			FADC_WIDTH		=> FADC_WIDTH
 			)
 		PORT MAP (
+			CLK20		=> CLK20,
 			CLK40		=> CLK40,
 			RST			=> RST,
 			-- enable
-				-- ???? need to know the algorithm for that
+			COMPR_ctrl	=> COMPR_ctrl,
 			-- data input from data buffer
 			data_avail_in	=> data_available,
 			read_done_in	=> read_done_r,

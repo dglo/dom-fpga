@@ -53,8 +53,8 @@ party's intellectual property, are provided herein.
 	(port
 		(pt 0 80)
 		(input)
-		(text "one_lev" (rect 0 0 44 14)(font "Arial" (font_size 8)))
-		(text "one_lev" (rect 21 75 65 89)(font "Arial" (font_size 8)))
+		(text "hl_edge" (rect 0 0 44 14)(font "Arial" (font_size 8)))
+		(text "hl_edge" (rect 21 75 65 89)(font "Arial" (font_size 8)))
 		(line (pt 0 80)(pt 16 80)(line_width 1))
 	)
 	(port

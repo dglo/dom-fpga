@@ -25,16 +25,18 @@ USE IEEE.std_logic_arith.all;
 USE IEEE.std_logic_unsigned.all;
 
 USE WORK.icecube_data_types.all;
+USE WORK.ctrl_data_types.all;
 
 ENTITY compression IS
 	GENERIC (
 		FADC_WIDTH		: INTEGER := 10
 		);
 	PORT (
+		CLK20		: IN STD_LOGIC;
 		CLK40		: IN STD_LOGIC;
 		RST			: IN STD_LOGIC;
 		-- enable
-			-- ???? need to know the algorithm for that
+		COMPR_ctrl	: IN COMPR_STRUCT;
 		-- data input from data buffer
 		data_avail_in	: IN STD_LOGIC;
 		read_done_in	: OUT STD_LOGIC;
@@ -65,12 +67,28 @@ ARCHITECTURE arch_compression OF compression IS
 
 BEGIN
 
-	compr_avail_out <= '0';
-	compr_size		<= (OTHERS=>'0');
+	-- cpmression data
+	--compr_avail_out <= '0';
+	--compr_size		<= (OTHERS=>'0');
+	compr_avail_out <= data_avail_in;
+	compr_size		<= "111111011";
+	PROCESS(CLK40)
+	BEGIN
+		IF CLK40'EVENT AND CLK40='1' THEN
+			IF compr_addr=0 THEN
+				compr_data <= x"deadbeef";
+			ELSE
+				compr_data (8 DOWNTO 0) <= compr_addr;
+				compr_data (31 DOWNTO 9) <= (OTHERS=>'0');
+				compr_data (24) <= '1';
+			END IF;
+		END IF;
+	END PROCESS;
 	
+	--engineering data
 	data_avail_out	<= data_avail_in;
 	read_done_in	<= read_done_out;
-
+	
 	HEADER_out		<= HEADER_in;
 	ATWD_addr_in	<= ATWD_addr_out;
 	ATWD_data_out	<= ATWD_data_in;
