@@ -30,9 +30,11 @@ ARCHITECTURE arch_hit_counter OF hit_counter IS
 	SIGNAL MultiSPE0	: STD_LOGIC;
 	SIGNAL MultiSPE1	: STD_LOGIC;
 	SIGNAL MultiSPE2	: STD_LOGIC;
+	SIGNAL MultiSPE3	: STD_LOGIC;
 	SIGNAL OneSPE0		: STD_LOGIC;
 	SIGNAL OneSPE1		: STD_LOGIC;
 	SIGNAL OneSPE2		: STD_LOGIC;
+	SIGNAL OneSPE3		: STD_LOGIC;
 	
 BEGIN
 	
@@ -64,20 +66,23 @@ BEGIN
 				
 			END IF;
 			
-			IF MultiSPE1='1' THEN
+			IF MultiSPE3='1' THEN
 				MultiSPE_nl	<= '1';
 			ELSE
 				MultiSPE_nl	<= '0';
 			END IF;
-			IF OneSPE1='1' THEN
+			IF OneSPE3='1' THEN
 				OneSPE_nl	<= '1';
 			ELSE
 				OneSPE_nl	<= '0';
 			END IF;
 			
+			
+			MultiSPE3	<= MultiSPE2;
 			MultiSPE2	<= MultiSPE1;
 			MultiSPE1	<= MultiSPE0;
 			MultiSPE0	<= MultiSPE;
+			OneSPE3		<= OneSPE2;
 			OneSPE2		<= OneSPE1;
 			OneSPE1		<= OneSPE0;
 			OneSPE0		<= OneSPE;

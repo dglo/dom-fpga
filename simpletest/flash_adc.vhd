@@ -47,6 +47,8 @@ ARCHITECTURE arch_flash_ADC OF flash_ADC IS
 	
 	SIGNAL disc			: STD_LOGIC;
 	SIGNAL discFF		: STD_LOGIC;
+	
+	SIGNAL launched_disc	: STD_LOGIC;
 		
 	COMPONENT com_adc_mem
 		PORT
@@ -94,12 +96,15 @@ BEGIN
 			done	<= '0';
 			MEM_write_addr	:= (others=>'0');
 			wraddress	<= (others=>'0');
+			launched_disc	<= '0';
 		ELSIF CLK'EVENT AND CLK='1' THEN
 			IF enable = '0' AND enable_disc='0' THEN		-- do not take date
 				wren	<= '0';
 				done	<= '0';
 				MEM_write_addr	:= (others=>'0');
-			ELSIF enable='1' OR (enable_disc='1' AND discFF='1') THEN			-- take data
+				launched_disc	<= '0';
+			ELSIF enable='1' OR (enable_disc='1' AND discFF='1') OR launched_disc='0' THEN			-- take data
+				launched_disc	<= '1';
 				IF MEM_write_addr(9)='1' THEN	-- memory is full
 					wren	<= '0';
 					done	<= '1';
