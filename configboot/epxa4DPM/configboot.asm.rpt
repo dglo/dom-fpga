@@ -1,5 +1,5 @@
 Assembler report for configboot
-Tue May 25 09:37:28 2004
+Wed Jun 16 10:58:36 2004
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -10,9 +10,9 @@ Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
   2. Assembler Summary
   3. Assembler Settings
   4. Assembler Generated Files
-  5. Assembler Device Options: c:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/configboot.psof
-  6. Assembler Device Options: c:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/configboot.sof
-  7. Assembler Device Options: c:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/configboot.pof
+  5. Assembler Device Options: C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/configboot.psof
+  6. Assembler Device Options: C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/configboot.sof
+  7. Assembler Device Options: C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/configboot.pof
   8. Assembler Messages
 
 
@@ -45,7 +45,7 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Tue May 25 09:37:28 2004 ;
+; Assembler Status      ; Successful - Wed Jun 16 10:58:36 2004 ;
 ; Revision Name         ; configboot                            ;
 ; Top-level Entity Name ; configboot                            ;
 ; Family                ; EXCALIBUR_ARM                         ;
@@ -95,42 +95,42 @@ party's intellectual property, are provided herein.
 +-----------------------------------------------------------------------
 ; File Name                                                            ;
 +----------------------------------------------------------------------+
-; c:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/configboot.psof ;
-; c:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/configboot.sof  ;
-; c:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/configboot.pof  ;
+; C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/configboot.psof ;
+; C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/configboot.sof  ;
+; C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/configboot.pof  ;
 +----------------------------------------------------------------------+
 
 
 +------------------------------------------------------------------------------------------------+
-; Assembler Device Options: c:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/configboot.psof ;
+; Assembler Device Options: C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/configboot.psof ;
 +-------------------------------------------------------------------------------------------------
 ; Option         ; Setting                                                                       ;
 +----------------+-------------------------------------------------------------------------------+
 ; Device         ; EPXA4F672I2                                                                   ;
 ; JTAG usercode  ; 0xFFFFFFFF                                                                    ;
-; Checksum       ; 0x0014B88D                                                                    ;
+; Checksum       ; 0x0014BF59                                                                    ;
 +----------------+-------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------------------------------------------------+
-; Assembler Device Options: c:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/configboot.sof ;
+; Assembler Device Options: C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/configboot.sof ;
 +------------------------------------------------------------------------------------------------
 ; Option         ; Setting                                                                      ;
 +----------------+------------------------------------------------------------------------------+
 ; Device         ; EPXA4F672I2                                                                  ;
 ; JTAG usercode  ; 0xFFFFFFFF                                                                   ;
-; Checksum       ; 0x0014B88D                                                                   ;
+; Checksum       ; 0x0014BF59                                                                   ;
 +----------------+------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------------------------------------------------+
-; Assembler Device Options: c:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/configboot.pof ;
+; Assembler Device Options: C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/configboot.pof ;
 +------------------------------------------------------------------------------------------------
 ; Option         ; Setting                                                                      ;
 +----------------+------------------------------------------------------------------------------+
 ; Device         ; EPC8                                                                         ;
 ; JTAG usercode  ; 0xFFFFFFFF                                                                   ;
-; Checksum       ; 0x08996DD9                                                                   ;
+; Checksum       ; 0x0899558F                                                                   ;
 +----------------+------------------------------------------------------------------------------+
 
 
@@ -140,26 +140,13 @@ party's intellectual property, are provided herein.
 Info: *******************************************************************
 Info: Running Quartus II Assembler
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Copyright (C) 1991-2004 Altera Corporation. All rights reserved.
-    Info: Quartus is a registered trademark of Altera Corporation in the 
-    Info: US and other countries.  Portions of the Quartus II software   
-    Info: code, and other portions of the code included in this download 
-    Info: or on this CD, are licensed to Altera Corporation and are the  
-    Info: copyrighted property of third parties who may include, without 
-    Info: limitation, Sun Microsystems, The Regents of the University of 
-    Info: California, Softel vdm., and Verific Design Automation Inc. 
-    Info: Warning:  This computer program is protected by copyright law  
-    Info: and international treaties. Unauthorized reproduction or       
-    Info: distribution of this program, or any portion of it, may result 
-    Info: in severe civil and criminal penalties, and will be prosecuted 
-    Info: to the maximum extent possible under the law.
-    Info: Processing started: Tue May 25 09:37:24 2004
+    Info: Processing started: Wed Jun 16 10:58:31 2004
 Info: Command: quartus_asm --import_settings_files=off --export_settings_files=off configboot -c configboot
 Warning: Data in Simulator initialization files holds embedded processor core in reset because Hexadecimal (Intel-Format) File(s) do not contain initialization data for entry point 0x0 or entry point is in memory external to Excalibur embedded processor stripe
 Warning: Data in passive programming files holds embedded processor core in reset because Hexadecimal (Intel-Format) Files do not contain initialization data for entry point 0x0
 Warning: Data in passive programming files holds embedded processor core in reset because Hexadecimal (Intel-Format) Files do not contain initialization data for entry point 0x0
 Info: Quartus II Assembler was successful. 0 errors, 3 warnings
-    Info: Processing ended: Tue May 25 09:37:28 2004
-    Info: Elapsed time: 00:00:04
+    Info: Processing ended: Wed Jun 16 10:58:36 2004
+    Info: Elapsed time: 00:00:05
 
 

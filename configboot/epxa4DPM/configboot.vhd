@@ -82,7 +82,8 @@ ENTITY configboot IS
 		DigitalReset_1	: OUT STD_LOGIC;
 		DigitalSet_1	: OUT STD_LOGIC;
 		-- A_nB switch
-		A_nB				: IN STD_LOGIC
+		A_nB			: IN STD_LOGIC;
+		TC				: OUT STD_LOGIC_VECTOR(7 downto 0)
 	);
 END configboot;
 
@@ -451,7 +452,7 @@ BEGIN
 			tx_pack_rdy			=> tx_pack_rdy,
 			rx_dpr_radr_stb		=> rx_dpr_radr_stb,
 			-- test connector
-			TC				=> open --TC
+			TC				=> TC
 		);
 
 		
@@ -472,7 +473,7 @@ BEGIN
 			id				=> (OTHERS=>'0'),
 			rx_dpr_radr		=> rx_dpr_radr,
 			systime			=> systime,
-			tc				=> open,
+			tc				=> open, --TC,
 			tx_dataout		=> dp0_portadataout,
 			tx_dpr_wadr		=> tx_dpr_wadr,
 			tx_pack_sent	=> tx_pack_sent,

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for configboot
-Tue May 25 09:35:25 2004
+Wed Jun 16 10:56:05 2004
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -13,7 +13,7 @@ Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
   5. Hierarchy
   6. State Machine - dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|DCTC_FWR:inst2|sreg
   7. State Machine - dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|crc_rx:inst20|state
-  8. State Machine - dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|sreg
+  8. State Machine - dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state
   9. State Machine - dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|adc_to_ser_dudt:inst18|GET_DUDT:get_dudt_stm|sreg
  10. State Machine - dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|sreg
  11. State Machine - dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|sreg
@@ -63,12 +63,12 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                        ;
 +-----------------------------+---------------------------------------+
-; Analysis & Synthesis Status ; Successful - Tue May 25 09:35:25 2004 ;
+; Analysis & Synthesis Status ; Successful - Wed Jun 16 10:56:05 2004 ;
 ; Revision Name               ; configboot                            ;
 ; Top-level Entity Name       ; configboot                            ;
 ; Family                      ; EXCALIBUR_ARM                         ;
-; Total logic elements        ; 1,698                                 ;
-; Total pins                  ; 108                                   ;
+; Total logic elements        ; 1,727                                 ;
+; Total pins                  ; 116                                   ;
 ; Total memory bits           ; 640                                   ;
 ; Total PLLs                  ; 1                                     ;
 +-----------------------------+---------------------------------------+
@@ -651,27 +651,29 @@ configboot
 +-----------------+----------+----------+----------------------------------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; State Machine - dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|sreg                                                                             ;
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
-; Name       ; sreg~44 ; sreg~43 ; sreg~42 ; sreg~41 ; sreg~40 ; sreg~39 ; sreg~38 ; sreg~37 ; sreg~36 ; sreg~35 ; sreg~34 ; sreg~33 ; sreg~32 ; sreg~31 ; sreg~30 ;
-+------------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+
-; STF_WAIT   ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ;
-; BYTE0      ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 1       ;
-; BYTE1      ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 1       ;
-; BYTE2      ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 1       ;
-; BYTE3      ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 1       ;
-; CTRL_ERR   ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 1       ;
-; CTRL_OK    ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
-; DATA_ERR   ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
-; DATA_OK    ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
-; DCMD_SEQ1  ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
-; DPR_DAT_WR ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
-; EOF_WAIT   ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
-; LEN0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
-; MTYPE_LEN1 ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
-; PTYPE_SEQ0 ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ;
-+------------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state                                                                                                                           ;
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+; Name                 ; state~36 ; state~35 ; state~34 ; state~33 ; state~32 ; state~31 ; state~30 ; state~29 ; state~28 ; state~27 ; state~26 ; state~25 ; state~24 ; state~23 ; state~22 ; state~21 ; state~20 ;
++----------------------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+
+; state.dead_end       ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ;
+; state.len0           ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 1        ;
+; state.mtype_len1     ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 1        ;
+; state.ptype_seq0     ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 1        ;
+; state.dcmd_seq1      ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 1        ;
+; state.eof_wait       ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.ctrl_ok        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.ctrl_err       ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.byte0          ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.dpr_dat_wr     ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.byte1          ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.byte2          ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.byte3          ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.data_ok        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.data_err       ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.stf_wait       ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.protocol_error ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
++----------------------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+
 
 
 +--------------------------------------------------------------------------------------------------------------------+
@@ -849,10 +851,10 @@ configboot
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Compilation Hierarchy Node                                     ; Logic Cells ; Registers ; Memory Bits ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Full Hierarchy Name                                                                                                                                                                                                                                                    ;
 +----------------------------------------------------------------+-------------+-----------+-------------+------+--------------+--------------+-------------------+------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; |configboot                                                    ; 1698 (1)    ; 883       ; 640         ; 108  ; 0            ; 815 (1)      ; 231 (0)           ; 652 (0)          ; 429 (0)         ; |configboot                                                                                                                                                                                                                                                            ;
+; |configboot                                                    ; 1727 (1)    ; 896       ; 640         ; 116  ; 0            ; 831 (1)      ; 245 (0)           ; 651 (0)          ; 429 (0)         ; |configboot                                                                                                                                                                                                                                                            ;
 ;    |ROC:inst_ROC|                                              ; 4 (4)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 2 (2)             ; 2 (2)            ; 0 (0)           ; |configboot|ROC:inst_ROC                                                                                                                                                                                                                                               ;
 ;    |ahb_slave:ahb_slave_inst|                                  ; 49 (49)     ; 19        ; 0           ; 0    ; 0            ; 30 (30)      ; 0 (0)             ; 19 (19)          ; 0 (0)           ; |configboot|ahb_slave:ahb_slave_inst                                                                                                                                                                                                                                   ;
-;    |dcom_ap:dcom_ap_inst|                                      ; 1484 (0)    ; 761       ; 640         ; 0    ; 0            ; 723 (0)      ; 196 (0)           ; 565 (0)          ; 381 (0)         ; |configboot|dcom_ap:dcom_ap_inst                                                                                                                                                                                                                                       ;
+;    |dcom_ap:dcom_ap_inst|                                      ; 1504 (0)    ; 766       ; 640         ; 0    ; 0            ; 738 (0)      ; 202 (0)           ; 564 (0)          ; 381 (0)         ; |configboot|dcom_ap:dcom_ap_inst                                                                                                                                                                                                                                       ;
 ;       |DCOM_tcal_timer:DCOM_tcal_timer|                        ; 36 (16)     ; 20        ; 0           ; 0    ; 0            ; 16 (11)      ; 1 (1)             ; 19 (4)           ; 15 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer                                                                                                                                                                                                       ;
 ;          |dc_tcal_ct:timer|                                    ; 20 (0)      ; 15        ; 0           ; 0    ; 0            ; 5 (0)        ; 0 (0)             ; 15 (0)           ; 15 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer|dc_tcal_ct:timer                                                                                                                                                                                      ;
 ;             |lpm_counter:lpm_counter_component|                ; 20 (0)      ; 15        ; 0           ; 0    ; 0            ; 5 (0)        ; 0 (0)             ; 15 (0)           ; 15 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer|dc_tcal_ct:timer|lpm_counter:lpm_counter_component                                                                                                                                                    ;
@@ -868,8 +870,8 @@ configboot
 ;                               |comptree:sub_comptree|          ; 1 (0)       ; 0         ; 0           ; 0    ; 0            ; 1 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer|dc_tcal_ct:timer|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|lpm_compare:$00023|comptree:comparator|cmpchain:cmp_end|comptree:comp|comptree:sub_comptree                         ;
 ;                                  |cmpchain:cmp_end|            ; 1 (1)       ; 0         ; 0           ; 0    ; 0            ; 1 (1)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_timer|dc_tcal_ct:timer|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|lpm_compare:$00023|comptree:comparator|cmpchain:cmp_end|comptree:comp|comptree:sub_comptree|cmpchain:cmp_end        ;
 ;       |DC_CTRAP:DC_CTRAP|                                      ; 109 (109)   ; 31        ; 0           ; 0    ; 0            ; 78 (78)      ; 0 (0)             ; 31 (31)          ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP                                                                                                                                                                                                                     ;
-;       |DC_Rx_chan_ap:DC_Rx_chan_ap|                            ; 698 (60)    ; 401       ; 640         ; 0    ; 0            ; 297 (3)      ; 161 (57)          ; 240 (0)          ; 246 (1)         ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap                                                                                                                                                                                                           ;
-;          |DC_MRAP:inst10|                                      ; 25 (25)     ; 19        ; 0           ; 0    ; 0            ; 6 (6)        ; 0 (0)             ; 19 (19)          ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10                                                                                                                                                                                            ;
+;       |DC_Rx_chan_ap:DC_Rx_chan_ap|                            ; 713 (60)    ; 406       ; 640         ; 0    ; 0            ; 307 (3)      ; 167 (57)          ; 239 (0)          ; 246 (1)         ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap                                                                                                                                                                                                           ;
+;          |DC_MRAP:inst10|                                      ; 39 (39)     ; 24        ; 0           ; 0    ; 0            ; 15 (15)      ; 6 (6)             ; 18 (18)          ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10                                                                                                                                                                                            ;
 ;          |RX_UART_ap:inst|                                     ; 47 (0)      ; 29        ; 0           ; 0    ; 0            ; 18 (0)       ; 8 (0)             ; 21 (0)           ; 11 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst                                                                                                                                                                                           ;
 ;             |UA_RX_AP:inst|                                    ; 25 (25)     ; 12        ; 0           ; 0    ; 0            ; 13 (13)      ; 0 (0)             ; 12 (12)          ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst                                                                                                                                                                             ;
 ;             |rxct4:inst4|                                      ; 4 (0)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 4 (0)            ; 4 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|rxct4:inst4                                                                                                                                                                               ;
@@ -898,7 +900,7 @@ configboot
 ;             |lpm_and:lpm_and_component|                        ; 7 (7)       ; 0         ; 0           ; 0    ; 0            ; 7 (7)        ; 0 (0)             ; 0 (0)            ; 7 (7)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|and16b:inst16|lpm_and:lpm_and_component                                                                                                                                                                   ;
 ;          |crc_rx:inst20|                                       ; 86 (40)     ; 49        ; 0           ; 0    ; 0            ; 37 (23)      ; 2 (2)             ; 47 (15)          ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|crc_rx:inst20                                                                                                                                                                                             ;
 ;             |crc32:inst_crc32|                                 ; 46 (46)     ; 32        ; 0           ; 0    ; 0            ; 14 (14)      ; 0 (0)             ; 32 (32)          ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|crc_rx:inst20|crc32:inst_crc32                                                                                                                                                                            ;
-;          |dc_hdr_dec_ap:inst4|                                 ; 20 (20)     ; 13        ; 0           ; 0    ; 0            ; 7 (7)        ; 4 (4)             ; 9 (9)            ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_hdr_dec_ap:inst4                                                                                                                                                                                       ;
+;          |dc_hdr_dec_ap:inst4|                                 ; 21 (21)     ; 13        ; 0           ; 0    ; 0            ; 8 (8)        ; 4 (4)             ; 9 (9)            ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_hdr_dec_ap:inst4                                                                                                                                                                                       ;
 ;          |dc_rapcal_lh:inst29|                                 ; 75 (10)     ; 49        ; 640         ; 0    ; 0            ; 26 (0)       ; 12 (10)           ; 37 (0)           ; 34 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29                                                                                                                                                                                       ;
 ;             |DCTC_FWR:inst2|                                   ; 19 (19)     ; 13        ; 0           ; 0    ; 0            ; 6 (6)        ; 1 (1)             ; 12 (12)          ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|DCTC_FWR:inst2                                                                                                                                                                        ;
 ;             |TCWF_64x10:inst11|                                ; 29 (0)      ; 20        ; 640         ; 0    ; 0            ; 9 (0)        ; 1 (0)             ; 19 (0)           ; 17 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|TCWF_64x10:inst11                                                                                                                                                                     ;
@@ -990,13 +992,13 @@ configboot
 ;          |rx_packet_ct:inst23|                                 ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|rx_packet_ct:inst23                                                                                                                                                                                       ;
 ;             |lpm_counter:lpm_counter_component|                ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|rx_packet_ct:inst23|lpm_counter:lpm_counter_component                                                                                                                                                     ;
 ;                |alt_synch_counter:wysi_counter|                ; 16 (16)     ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; 16 (16)         ; |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|rx_packet_ct:inst23|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter                                                                                                                      ;
-;       |DC_Tx_chan_ap:DC_Tx_chan_ap|                            ; 641 (27)    ; 309       ; 0           ; 0    ; 0            ; 332 (6)      ; 34 (17)           ; 275 (4)          ; 120 (0)         ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap                                                                                                                                                                                                           ;
-;          |DC_SNAP:inst11|                                      ; 162 (162)   ; 46        ; 0           ; 0    ; 0            ; 116 (116)    ; 0 (0)             ; 46 (46)          ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11                                                                                                                                                                                            ;
+;       |DC_Tx_chan_ap:DC_Tx_chan_ap|                            ; 646 (27)    ; 309       ; 0           ; 0    ; 0            ; 337 (6)      ; 34 (17)           ; 275 (4)          ; 120 (0)         ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap                                                                                                                                                                                                           ;
+;          |DC_SNAP:inst11|                                      ; 165 (165)   ; 46        ; 0           ; 0    ; 0            ; 119 (119)    ; 0 (0)             ; 46 (46)          ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11                                                                                                                                                                                            ;
 ;          |Tx_dpr_ctrl_ap:inst6|                                ; 83 (67)     ; 32        ; 0           ; 0    ; 0            ; 51 (51)      ; 16 (16)           ; 16 (0)           ; 57 (41)         ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|Tx_dpr_ctrl_ap:inst6                                                                                                                                                                                      ;
 ;             |tx_dpr_radr_ct:tx_dpr_rad|                        ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|Tx_dpr_ctrl_ap:inst6|tx_dpr_radr_ct:tx_dpr_rad                                                                                                                                                            ;
 ;                |lpm_counter:lpm_counter_component|             ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|Tx_dpr_ctrl_ap:inst6|tx_dpr_radr_ct:tx_dpr_rad|lpm_counter:lpm_counter_component                                                                                                                          ;
 ;                   |alt_synch_counter:wysi_counter|             ; 16 (16)     ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; 16 (16)         ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|Tx_dpr_ctrl_ap:inst6|tx_dpr_radr_ct:tx_dpr_rad|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter                                                                                           ;
-;          |crc_tx:inst3|                                        ; 94 (48)     ; 55        ; 0           ; 0    ; 0            ; 39 (25)      ; 1 (1)             ; 54 (22)          ; 6 (6)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3                                                                                                                                                                                              ;
+;          |crc_tx:inst3|                                        ; 96 (50)     ; 55        ; 0           ; 0    ; 0            ; 41 (27)      ; 1 (1)             ; 54 (22)          ; 6 (6)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3                                                                                                                                                                                              ;
 ;             |crc32:inst_crc32|                                 ; 46 (46)     ; 32        ; 0           ; 0    ; 0            ; 14 (14)      ; 0 (0)             ; 32 (32)          ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|crc32:inst_crc32                                                                                                                                                                             ;
 ;          |dac_rs_tab_rect_01:inst15|                           ; 2 (2)       ; 0         ; 0           ; 0    ; 0            ; 2 (2)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dac_rs_tab_rect_01:inst15                                                                                                                                                                                 ;
 ;          |dc_tx_mux:inst5|                                     ; 84 (0)      ; 0         ; 0           ; 0    ; 0            ; 84 (0)       ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|dc_tx_mux:inst5                                                                                                                                                                                           ;
@@ -1114,7 +1116,7 @@ configboot
 ;                |lpm_shiftreg:lpm_shiftreg_component|           ; 18 (18)     ; 10        ; 0           ; 0    ; 0            ; 8 (8)        ; 0 (0)             ; 10 (10)          ; 0 (0)           ; |configboot|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|txshr10:53|lpm_shiftreg:lpm_shiftreg_component                                                                                                                                           ;
 ;    |pll2x:inst_pll2x|                                          ; 0 (0)       ; 0         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|pll2x:inst_pll2x                                                                                                                                                                                                                                           ;
 ;       |altclklock:altclklock_component|                        ; 0 (0)       ; 0         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|pll2x:inst_pll2x|altclklock:altclklock_component                                                                                                                                                                                                           ;
-;    |slaveregister:slaveregister_inst|                          ; 108 (108)   ; 51        ; 0           ; 0    ; 0            ; 57 (57)      ; 33 (33)           ; 18 (18)          ; 0 (0)           ; |configboot|slaveregister:slaveregister_inst                                                                                                                                                                                                                           ;
+;    |slaveregister:slaveregister_inst|                          ; 117 (117)   ; 59        ; 0           ; 0    ; 0            ; 58 (58)      ; 41 (41)           ; 18 (18)          ; 0 (0)           ; |configboot|slaveregister:slaveregister_inst                                                                                                                                                                                                                           ;
 ;    |stripe:stripe_inst|                                        ; 4 (0)       ; 0         ; 0           ; 55   ; 0            ; 4 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|stripe:stripe_inst                                                                                                                                                                                                                                         ;
 ;       |alt_exc_stripe:lpm_instance|                            ; 4 (4)       ; 0         ; 0           ; 55   ; 0            ; 4 (4)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|stripe:stripe_inst|alt_exc_stripe:lpm_instance                                                                                                                                                                                                             ;
 ;          |alt_exc_dpram:dp0|                                   ; 0 (0)       ; 0         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |configboot|stripe:stripe_inst|alt_exc_stripe:lpm_instance|alt_exc_dpram:dp0                                                                                                                                                                                           ;
@@ -1184,7 +1186,7 @@ configboot
 +---------------------------------+
 ; Analysis & Synthesis Equations  ;
 +---------------------------------+
-The equations can be found in c:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/configboot.map.eqn.
+The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/configboot.map.eqn.
 
 
 +---------------------------------------------------------------------------------+
@@ -1192,68 +1194,68 @@ The equations can be found in c:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4D
 +----------------------------------------------------------------------------------
 ; File Name                                                                ; Read ;
 +--------------------------------------------------------------------------+------+
+; ../comDPM/Rx_chan/DC_MRAP.vhd                                            ; Read ;
 ; ahb_slave.vhd                                                            ; Read ;
 ; timer.vhd                                                                ; Read ;
 ; ROC.vhd                                                                  ; Read ;
 ; pll2x.v                                                                  ; Read ;
-; ../../common/comDPM/Tx_chan/my_or16b.vhd                                 ; Read ;
-; ../../common/comDPM/Rx_chan/Rx_dpr_ctrl_ap.tdf                           ; Read ;
-; ../../common/comDPM/Tcal/dc_tcal_ct.tdf                                  ; Read ;
-; ../../common/comDPM/Rx_chan/and16b.tdf                                   ; Read ;
-; ../../common/comDPM/Rx_chan/rx_packet_ct.tdf                             ; Read ;
-; ../../common/comDPM/Rx_chan/rx_dpr_wadr_ct.tdf                           ; Read ;
-; ../../common/comDPM/Tcal/TCWF_64x10.tdf                                  ; Read ;
-; ../../common/comDPM/Tcal/TCAL_SAMPLES.tdf                                ; Read ;
-; ../../common/comDPM/Tcal/tcwf_af_ct.tdf                                  ; Read ;
-; ../../common/comDPM/Tcal/comp_10.tdf                                     ; Read ;
-; ../../common/comDPM/Tcal/DCTC_FWR.tdf                                    ; Read ;
-; ../../common/comDPM/Tcal/dc_rapcal_lh.gdf                                ; Read ;
-; ../../common/comDPM/Rx_chan/DC_MRAP.tdf                                  ; Read ;
-; ../../common/comDPM/Rx_chan/crc_error_ct.tdf                             ; Read ;
-; ../../common/comDPM/Rx_chan/meanval/or10.tdf                             ; Read ;
-; ../../common/comDPM/Rx_chan/meanval/add10.tdf                            ; Read ;
-; ../../common/comDPM/Rx_chan/meanval/mux4x10.tdf                          ; Read ;
-; ../../common/comDPM/Rx_chan/meanval/ctup4.tdf                            ; Read ;
-; ../../common/comDPM/Rx_chan/meanval/dec2.tdf                             ; Read ;
-; ../../common/comDPM/Rx_chan/meanval/mean_val.gdf                         ; Read ;
-; ../../common/comDPM/Rx_chan/edges/GET_DUDT.tdf                           ; Read ;
-; ../../common/comDPM/Rx_chan/edges/ctup5.tdf                              ; Read ;
-; ../../common/comDPM/Rx_chan/edges/adc_to_ser_dudt.tdf                    ; Read ;
-; ../../common/comDPM/Rx_chan/UART/rxshr8.tdf                              ; Read ;
-; ../../common/comDPM/Rx_chan/UART/rxct5.tdf                               ; Read ;
-; ../../common/comDPM/Rx_chan/UART/rxct4.tdf                               ; Read ;
-; ../../common/comDPM/Rx_chan/UART/UA_RX_AP.tdf                            ; Read ;
-; ../../common/comDPM/Rx_chan/UART/RX_UART_ap.bdf                          ; Read ;
-; ../../common/comDPM/Tx_chan/tx_dpr_radr_ct.tdf                           ; Read ;
-; ../../common/comDPM/Rx_chan/DC_Rx_chan_ap.bdf                            ; Read ;
-; ../../common/comDPM/Tx_chan/dac_rs_tab_rect_01.tdf                       ; Read ;
-; ../../common/comDPM/Tx_chan/Tx_dpr_ctrl_ap.tdf                           ; Read ;
-; ../../common/comDPM/Tx_chan/tx_packet_ct.tdf                             ; Read ;
-; ../../common/comDPM/Tx_chan/shift_ct.tdf                                 ; Read ;
-; ../../common/comDPM/Tx_chan/tx_plen_ct_ap.tdf                            ; Read ;
-; ../../common/comDPM/Tx_chan/shrg48pld.tdf                                ; Read ;
-; ../../common/comDPM/Tx_chan/dc_hdr_bytes_ap.tdf                          ; Read ;
-; ../../common/comDPM/Tx_chan/dc_tx_mux.tdf                                ; Read ;
-; ../../common/comDPM/crc_rx.vhd                                           ; Read ;
-; ../../common/comDPM/crc_tx.vhd                                           ; Read ;
-; ../../common/comDPM/crc32.vhd                                            ; Read ;
-; ../../common/comDPM/Tx_chan/DC_SNAP.tdf                                  ; Read ;
-; ../../common/comDPM/Tx_chan/txct.tdf                                     ; Read ;
-; ../../common/comDPM/Tx_chan/txbitct.tdf                                  ; Read ;
-; ../../common/comDPM/Tx_chan/TX_UART.tdf                                  ; Read ;
-; ../../common/comDPM/Tx_chan/txshr10.tdf                                  ; Read ;
-; ../../common/comDPM/Tx_chan/tx_uart_ap.bdf                               ; Read ;
-; ../../common/comDPM/test_signals.tdf                                     ; Read ;
-; ../../common/comDPM/DCREV_DPR.tdf                                        ; Read ;
-; ../../common/comDPM/Tcal/DCOM_tcal_timer.tdf                             ; Read ;
-; ../../common/comDPM/Tx_chan/DC_Tx_chan_ap.bdf                            ; Read ;
-; ../../common/comDPM/DC_CTRAP.tdf                                         ; Read ;
-; ../../common/comDPM/dcom_ap.bdf                                          ; Read ;
+; ../comDPM/Tx_chan/my_or16b.vhd                                           ; Read ;
+; ../comDPM/Rx_chan/Rx_dpr_ctrl_ap.tdf                                     ; Read ;
+; ../comDPM/Tcal/dc_tcal_ct.tdf                                            ; Read ;
+; ../comDPM/Rx_chan/and16b.tdf                                             ; Read ;
+; ../comDPM/Rx_chan/rx_packet_ct.tdf                                       ; Read ;
+; ../comDPM/Rx_chan/rx_dpr_wadr_ct.tdf                                     ; Read ;
+; ../comDPM/Tcal/TCWF_64x10.tdf                                            ; Read ;
+; ../comDPM/Tcal/TCAL_SAMPLES.tdf                                          ; Read ;
+; ../comDPM/Tcal/tcwf_af_ct.tdf                                            ; Read ;
+; ../comDPM/Tcal/comp_10.tdf                                               ; Read ;
+; ../comDPM/Tcal/DCTC_FWR.tdf                                              ; Read ;
+; ../comDPM/Tcal/dc_rapcal_lh.gdf                                          ; Read ;
+; ../comDPM/Rx_chan/crc_error_ct.tdf                                       ; Read ;
+; ../comDPM/Rx_chan/meanval/or10.tdf                                       ; Read ;
+; ../comDPM/Rx_chan/meanval/add10.tdf                                      ; Read ;
+; ../comDPM/Rx_chan/meanval/mux4x10.tdf                                    ; Read ;
+; ../comDPM/Rx_chan/meanval/ctup4.tdf                                      ; Read ;
+; ../comDPM/Rx_chan/meanval/dec2.tdf                                       ; Read ;
+; ../comDPM/Rx_chan/meanval/mean_val.gdf                                   ; Read ;
+; ../comDPM/Rx_chan/edges/GET_DUDT.tdf                                     ; Read ;
+; ../comDPM/Rx_chan/edges/ctup5.tdf                                        ; Read ;
+; ../comDPM/Rx_chan/edges/adc_to_ser_dudt.tdf                              ; Read ;
+; ../comDPM/Rx_chan/UART/rxshr8.tdf                                        ; Read ;
+; ../comDPM/Rx_chan/UART/rxct5.tdf                                         ; Read ;
+; ../comDPM/Rx_chan/UART/rxct4.tdf                                         ; Read ;
+; ../comDPM/Rx_chan/UART/UA_RX_AP.tdf                                      ; Read ;
+; ../comDPM/Rx_chan/UART/RX_UART_ap.bdf                                    ; Read ;
+; ../comDPM/Tx_chan/tx_dpr_radr_ct.tdf                                     ; Read ;
+; ../comDPM/Rx_chan/DC_Rx_chan_ap.bdf                                      ; Read ;
+; ../comDPM/Tx_chan/dac_rs_tab_rect_01.tdf                                 ; Read ;
+; ../comDPM/Tx_chan/Tx_dpr_ctrl_ap.tdf                                     ; Read ;
+; ../comDPM/Tx_chan/tx_packet_ct.tdf                                       ; Read ;
+; ../comDPM/Tx_chan/shift_ct.tdf                                           ; Read ;
+; ../comDPM/Tx_chan/tx_plen_ct_ap.tdf                                      ; Read ;
+; ../comDPM/Tx_chan/shrg48pld.tdf                                          ; Read ;
+; ../comDPM/Tx_chan/dc_hdr_bytes_ap.tdf                                    ; Read ;
+; ../comDPM/Tx_chan/dc_tx_mux.tdf                                          ; Read ;
+; ../comDPM/crc_rx.vhd                                                     ; Read ;
+; ../comDPM/crc_tx.vhd                                                     ; Read ;
+; ../comDPM/crc32.vhd                                                      ; Read ;
+; ../comDPM/Tx_chan/DC_SNAP.tdf                                            ; Read ;
+; ../comDPM/Tx_chan/txct.tdf                                               ; Read ;
+; ../comDPM/Tx_chan/txbitct.tdf                                            ; Read ;
+; ../comDPM/Tx_chan/TX_UART.tdf                                            ; Read ;
+; ../comDPM/Tx_chan/txshr10.tdf                                            ; Read ;
+; ../comDPM/Tx_chan/tx_uart_ap.bdf                                         ; Read ;
+; ../comDPM/test_signals.tdf                                               ; Read ;
+; ../comDPM/DCREV_DPR.tdf                                                  ; Read ;
+; ../comDPM/Tcal/DCOM_tcal_timer.tdf                                       ; Read ;
+; ../comDPM/Tx_chan/DC_Tx_chan_ap.bdf                                      ; Read ;
+; ../comDPM/DC_CTRAP.tdf                                                   ; Read ;
+; ../comDPM/dcom_ap.bdf                                                    ; Read ;
 ; slaveregister.vhd                                                        ; Read ;
 ; configboot.vhd                                                           ; Read ;
-; ../../common/comDPM/Rx_chan/dc_hdr_dec_ap.tdf                            ; Read ;
+; ../comDPM/Rx_chan/dc_hdr_dec_ap.tdf                                      ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/altclklock.tdf              ; Read ;
-; c:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/stripe.v            ; Read ;
+; C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/stripe.v            ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/alt_exc_stripe.tdf          ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/alt_exc_upcore.tdf          ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/apex20ke_io_in.v            ; Read ;
@@ -1278,9 +1280,9 @@ The equations can be found in c:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4D
 ; c:/fpgatools/quartus/libraries/megafunctions/a_csnbuffer.tdf             ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/lpm_decode.tdf              ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/scfifo.tdf                  ; Read ;
-; c:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/db/scfifo_mcj.tdf   ; Read ;
-; c:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/db/a_dpfifo_4dj.tdf ; Read ;
-; c:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/db/a_fefifo_vve.tdf ; Read ;
+; C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/db/scfifo_mcj.tdf   ; Read ;
+; C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/db/a_dpfifo_4dj.tdf ; Read ;
+; C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/db/a_fefifo_vve.tdf ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/altdpram.tdf                ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/lpm_and.tdf                 ; Read ;
 +--------------------------------------------------------------------------+------+
@@ -1291,16 +1293,16 @@ The equations can be found in c:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4D
 +---------------------------------------------------------------------------------------------
 ; Resource                      ; Usage                                                      ;
 +-------------------------------+------------------------------------------------------------+
-; Logic cells                   ; 1,698                                                      ;
-; Total combinational functions ; 1467                                                       ;
-; Total registers               ; 883                                                        ;
-; I/O pins                      ; 108                                                        ;
+; Logic cells                   ; 1,727                                                      ;
+; Total combinational functions ; 1482                                                       ;
+; Total registers               ; 896                                                        ;
+; I/O pins                      ; 116                                                        ;
 ; Total memory bits             ; 640                                                        ;
 ; Total PLLs                    ; 1                                                          ;
 ; Maximum fan-out node          ; pll2x:inst_pll2x|altclklock:altclklock_component|outclock0 ;
-; Maximum fan-out               ; 895                                                        ;
-; Total fan-out                 ; 7162                                                       ;
-; Average fan-out               ; 3.94                                                       ;
+; Maximum fan-out               ; 908                                                        ;
+; Total fan-out                 ; 7261                                                       ;
+; Average fan-out               ; 3.91                                                       ;
 +-------------------------------+------------------------------------------------------------+
 
 
@@ -1319,14 +1321,14 @@ The equations can be found in c:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4D
 ; Statistic                                              ; Value ;
 +--------------------------------------------------------+-------+
 ; Number of WYSIWYG cells                                ; 386   ;
-; Number of synthesis-generated cells                    ; 1312  ;
+; Number of synthesis-generated cells                    ; 1341  ;
 ; Number of WYSIWYG LUTs                                 ; 386   ;
-; Number of synthesis-generated LUTs                     ; 1081  ;
+; Number of synthesis-generated LUTs                     ; 1096  ;
 ; Number of WYSIWYG registers                            ; 241   ;
-; Number of synthesis-generated registers                ; 642   ;
-; Number of cells with combinational logic only          ; 815   ;
-; Number of cells with registers only                    ; 231   ;
-; Number of cells with combinational logic and registers ; 652   ;
+; Number of synthesis-generated registers                ; 655   ;
+; Number of cells with combinational logic only          ; 831   ;
+; Number of cells with registers only                    ; 245   ;
+; Number of cells with combinational logic and registers ; 651   ;
 +--------------------------------------------------------+-------+
 
 
@@ -1337,9 +1339,9 @@ The equations can be found in c:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4D
 +--------------------------------------+-------+
 ; Number of registers using SCLR       ; 35    ;
 ; Number of registers using SLOAD      ; 44    ;
-; Number of registers using ACLR       ; 549   ;
+; Number of registers using ACLR       ; 554   ;
 ; Number of registers using ALOAD      ; 0     ;
-; Number of registers using CLK_ENABLE ; 445   ;
+; Number of registers using CLK_ENABLE ; 453   ;
 ; Number of registers using OE         ; 0     ;
 ; Number of registers using PRESET     ; 0     ;
 +--------------------------------------+-------+
@@ -1351,21 +1353,11 @@ The equations can be found in c:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4D
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Copyright (C) 1991-2004 Altera Corporation. All rights reserved.
-    Info: Quartus is a registered trademark of Altera Corporation in the 
-    Info: US and other countries.  Portions of the Quartus II software   
-    Info: code, and other portions of the code included in this download 
-    Info: or on this CD, are licensed to Altera Corporation and are the  
-    Info: copyrighted property of third parties who may include, without 
-    Info: limitation, Sun Microsystems, The Regents of the University of 
-    Info: California, Softel vdm., and Verific Design Automation Inc. 
-    Info: Warning:  This computer program is protected by copyright law  
-    Info: and international treaties. Unauthorized reproduction or       
-    Info: distribution of this program, or any portion of it, may result 
-    Info: in severe civil and criminal penalties, and will be prosecuted 
-    Info: to the maximum extent possible under the law.
-    Info: Processing started: Tue May 25 09:34:45 2004
+    Info: Processing started: Wed Jun 16 10:55:23 2004
 Info: Command: quartus_map --import_settings_files=on --export_settings_files=off configboot -c configboot
+Info: Found 2 design units and 1 entities in source file ../comDPM/Rx_chan/DC_MRAP.vhd
+    Info: Found design unit 1: DC_MRAP-DC_MRAP_ARCH
+    Info: Found entity 1: DC_MRAP
 Info: Found 2 design units and 1 entities in source file ahb_slave.vhd
     Info: Found design unit 1: ahb_slave-ahb_slave_arch
     Info: Found entity 1: ahb_slave
@@ -1377,148 +1369,146 @@ Info: Found 2 design units and 1 entities in source file ROC.vhd
     Info: Found entity 1: ROC
 Info: Found 1 design units and 1 entities in source file pll2x.v
     Info: Found entity 1: pll2x
-Info: Found 2 design units and 1 entities in source file ../../common/comDPM/Tx_chan/my_or16b.vhd
+Info: Found 2 design units and 1 entities in source file ../comDPM/Tx_chan/my_or16b.vhd
     Info: Found design unit 1: my_or16b-SYN
     Info: Found entity 1: my_or16b
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/Rx_dpr_ctrl_ap.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/Rx_dpr_ctrl_ap.tdf
     Info: Found entity 1: Rx_dpr_ctrl_ap
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tcal/dc_tcal_ct.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tcal/dc_tcal_ct.tdf
     Info: Found entity 1: dc_tcal_ct
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/and16b.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/and16b.tdf
     Info: Found entity 1: and16b
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/rx_packet_ct.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/rx_packet_ct.tdf
     Info: Found entity 1: rx_packet_ct
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/rx_dpr_wadr_ct.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/rx_dpr_wadr_ct.tdf
     Info: Found entity 1: rx_dpr_wadr_ct
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/rx_dpr_adr_ct.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/rx_dpr_adr_ct.tdf
     Info: Found entity 1: rx_dpr_adr_ct
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tcal/TCWF_64x10.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tcal/TCWF_64x10.tdf
     Info: Found entity 1: TCWF_64x10
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tcal/TCAL_SAMPLES.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tcal/TCAL_SAMPLES.tdf
     Info: Found entity 1: TCAL_SAMPLES
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tcal/tcwf_af_ct.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tcal/tcwf_af_ct.tdf
     Info: Found entity 1: tcwf_af_ct
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tcal/comp_10.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tcal/comp_10.tdf
     Info: Found entity 1: comp_10
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tcal/DCTC_FWR.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tcal/DCTC_FWR.tdf
     Info: Found entity 1: DCTC_FWR
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tcal/thr_add.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tcal/thr_add.tdf
     Info: Found entity 1: thr_add
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tcal/dc_rapcal_lh.gdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tcal/dc_rapcal_lh.gdf
     Info: Found entity 1: dc_rapcal_lh
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/DC_MREC.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/DC_MREC.tdf
     Info: Found entity 1: DC_MREC
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tcal/TCWF_FIFO_32x10.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tcal/TCWF_FIFO_32x10.tdf
     Info: Found entity 1: TCWF_FIFO_32x10
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/DC_MRAP.tdf
-    Info: Found entity 1: DC_MRAP
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/crc_error_ct.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/crc_error_ct.tdf
     Info: Found entity 1: crc_error_ct
 Warning: Entity name or12 conflicts with Quartus II primitive name
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/meanval/or12.tdf
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/meanval/or10.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/meanval/or12.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/meanval/or10.tdf
     Info: Found entity 1: or10
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/meanval/add10.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/meanval/add10.tdf
     Info: Found entity 1: add10
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/meanval/add12.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/meanval/add12.tdf
     Info: Found entity 1: add12
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/meanval/mux4x10.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/meanval/mux4x10.tdf
     Info: Found entity 1: mux4x10
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/meanval/ct3.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/meanval/ct3.tdf
     Info: Found entity 1: ct3
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/meanval/ctup4.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/meanval/ctup4.tdf
     Info: Found entity 1: ctup4
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/meanval/dec2.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/meanval/dec2.tdf
     Info: Found entity 1: dec2
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/meanval/dec3.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/meanval/dec3.tdf
     Info: Found entity 1: dec3
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/meanval/mean_val.gdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/meanval/mean_val.gdf
     Info: Found entity 1: mean_val
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/reset_ct4.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/reset_ct4.tdf
     Info: Found entity 1: reset_ct4
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/edges/GET_DUDT.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/edges/GET_DUDT.tdf
     Info: Found entity 1: GET_DUDT
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/edges/ctup4b.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/edges/ctup4b.tdf
     Info: Found entity 1: ctup4b
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/edges/ctup5.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/edges/ctup5.tdf
     Info: Found entity 1: ctup5
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/edges/ctup3b.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/edges/ctup3b.tdf
     Info: Found entity 1: ctup3b
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/edges/adc_to_ser_dudt.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/edges/adc_to_ser_dudt.tdf
     Info: Found entity 1: adc_to_ser_dudt
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/UART/rxshr8.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/UART/rxshr8.tdf
     Info: Found entity 1: rxshr8
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/UART/rxct5.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/UART/rxct5.tdf
     Info: Found entity 1: rxct5
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/UART/rxct8.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/UART/rxct8.tdf
     Info: Found entity 1: rxct8
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/UART/rxct4.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/UART/rxct4.tdf
     Info: Found entity 1: rxct4
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/UART/UA_RX_AP.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/UART/UA_RX_AP.tdf
     Info: Found entity 1: UA_RX_AP
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/UART/RX_UART_ap.bdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/UART/RX_UART_ap.bdf
     Info: Found entity 1: RX_UART_ap
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tx_chan/tx_dpr_radr_ct.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tx_chan/tx_dpr_radr_ct.tdf
     Info: Found entity 1: tx_dpr_radr_ct
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/DC_Rx_chan_ap.bdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/DC_Rx_chan_ap.bdf
     Info: Found entity 1: DC_Rx_chan_ap
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tx_chan/dac_rs_tab_rect_01.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tx_chan/dac_rs_tab_rect_01.tdf
     Info: Found entity 1: dac_rs_tab_rect_01
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tx_chan/ID_HDR_BYTE_0.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tx_chan/ID_HDR_BYTE_0.tdf
     Info: Found entity 1: ID_HDR_BYTE_0
 Warning: Symbolic name cmd_snd is used but not defined as a group -- attempted to use existing nodes
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tx_chan/hdr_bytes_ap.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tx_chan/hdr_bytes_ap.tdf
     Info: Found entity 1: hdr_bytes_ap
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tx_chan/Tx_dpr_ctrl_ap.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tx_chan/Tx_dpr_ctrl_ap.tdf
     Info: Found entity 1: Tx_dpr_ctrl_ap
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tx_chan/ID_HDR_BYTE_2.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tx_chan/ID_HDR_BYTE_2.tdf
     Info: Found entity 1: ID_HDR_BYTE_2
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tx_chan/tx_packet_ct.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tx_chan/tx_packet_ct.tdf
     Info: Found entity 1: tx_packet_ct
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tx_chan/or16b.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tx_chan/or16b.tdf
     Info: Found entity 1: or16b
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tx_chan/shift_ct.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tx_chan/shift_ct.tdf
     Info: Found entity 1: shift_ct
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tx_chan/tx_plen_ct_ap.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tx_chan/tx_plen_ct_ap.tdf
     Info: Found entity 1: tx_plen_ct_ap
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tx_chan/shrg48pld.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tx_chan/shrg48pld.tdf
     Info: Found entity 1: shrg48pld
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tx_chan/dc_hdr_bytes_ap.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tx_chan/dc_hdr_bytes_ap.tdf
     Info: Found entity 1: dc_hdr_bytes_ap
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tx_chan/dc_tx_mux.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tx_chan/dc_tx_mux.tdf
     Info: Found entity 1: dc_tx_mux
-Info: Found 2 design units and 1 entities in source file ../../common/comDPM/crc_rx.vhd
+Info: Found 2 design units and 1 entities in source file ../comDPM/crc_rx.vhd
     Info: Found design unit 1: crc_rx-crc_rx_arch
     Info: Found entity 1: crc_rx
-Info: Found 2 design units and 1 entities in source file ../../common/comDPM/crc_tx.vhd
+Info: Found 2 design units and 1 entities in source file ../comDPM/crc_tx.vhd
     Info: Found design unit 1: crc_tx-crc_tx_arch
     Info: Found entity 1: crc_tx
-Info: Found 2 design units and 1 entities in source file ../../common/comDPM/crc32.vhd
+Info: Found 2 design units and 1 entities in source file ../comDPM/crc32.vhd
     Info: Found design unit 1: crc32-crc32_arch
     Info: Found entity 1: crc32
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tx_chan/DC_SNAP.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tx_chan/DC_SNAP.tdf
     Info: Found entity 1: DC_SNAP
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tx_chan/txct.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tx_chan/txct.tdf
     Info: Found entity 1: txct
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tx_chan/txbitct.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tx_chan/txbitct.tdf
     Info: Found entity 1: txbitct
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tx_chan/TX_UART.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tx_chan/TX_UART.tdf
     Info: Found entity 1: TX_UART
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tx_chan/txshr10.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tx_chan/txshr10.tdf
     Info: Found entity 1: txshr10
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tx_chan/tx_uart_ap.bdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tx_chan/tx_uart_ap.bdf
     Info: Found entity 1: tx_uart_ap
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/test_signals.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/test_signals.tdf
     Info: Found entity 1: test_signals
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/DCREV_DPR.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/DCREV_DPR.tdf
     Info: Found entity 1: DCREV_DPR
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tcal/DCOM_tcal_timer.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tcal/DCOM_tcal_timer.tdf
     Info: Found entity 1: DCOM_tcal_timer
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Tx_chan/DC_Tx_chan_ap.bdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Tx_chan/DC_Tx_chan_ap.bdf
     Info: Found entity 1: DC_Tx_chan_ap
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/DC_CTRAP.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/DC_CTRAP.tdf
     Info: Found entity 1: DC_CTRAP
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/dcom_ap.bdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/dcom_ap.bdf
     Info: Found entity 1: dcom_ap
 Info: Found 2 design units and 1 entities in source file slaveregister.vhd
     Info: Found design unit 1: slaveregister-arch_slaveregister
@@ -1526,10 +1516,10 @@ Info: Found 2 design units and 1 entities in source file slaveregister.vhd
 Info: Found 2 design units and 1 entities in source file configboot.vhd
     Info: Found design unit 1: configboot-configboot_arch
     Info: Found entity 1: configboot
-Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/dc_hdr_dec_ap.tdf
+Info: Found 1 design units and 1 entities in source file ../comDPM/Rx_chan/dc_hdr_dec_ap.tdf
     Info: Found entity 1: dc_hdr_dec_ap
-Warning: VHDL Signal Declaration warning at configboot.vhd(117): ignored default value for signal dp0_portadataout
-Warning: VHDL Signal Declaration warning at configboot.vhd(150): ignored default value for signal tx_dpr_radr
+Warning: VHDL Signal Declaration warning at configboot.vhd(118): ignored default value for signal dp0_portadataout
+Warning: VHDL Signal Declaration warning at configboot.vhd(151): ignored default value for signal tx_dpr_radr
 Info: Found 1 design units and 1 entities in source file ../../../../../fpgatools/quartus/libraries/megafunctions/altclklock.tdf
     Info: Found entity 1: altclklock
 Info: Using design file stripe.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
@@ -1603,7 +1593,6 @@ Warning: Pin send_data not connected
 Warning: Pin send_ctrl not connected
 Warning: Pin tcal_psnd not connected
 Warning: Pin HVD_Rx not connected
-Warning: Pin RST not connected
 Warning: Primitive GND of instance inst15 not used
 Warning: Primitive GND of instance inst27 not used
 Warning: Primitive VCC of instance inst7 not used
@@ -1622,6 +1611,7 @@ Info: Found 1 design units and 1 entities in source file ../../../../../fpgatool
     Info: Found entity 1: a_csnbuffer
 Info: Found 1 design units and 1 entities in source file ../../../../../fpgatools/quartus/libraries/megafunctions/lpm_decode.tdf
     Info: Found entity 1: lpm_decode
+Info: VHDL Case Statement information at DC_MRAP.vhd(399): OTHERS choice is never selected
 Warning: VHDL Signal Declaration warning at crc_rx.vhd(56): ignored default value for signal loopcnt
 Warning: VHDL Signal Declaration warning at crc_rx.vhd(57): ignored default value for signal srg
 Warning: VHDL Signal Declaration warning at crc_rx.vhd(59): ignored default value for signal crc32_en
@@ -1650,6 +1640,14 @@ Info: Instantiated megafunction dcom_ap:dcom_ap_inst|DCOM_tcal_timer:DCOM_tcal_t
     Info: Parameter LPM_DIRECTION = UP
     Info: Parameter LPM_MODULUS = 20000
 Warning: Variable or input pin not_borrow is defined but never used
+Warning: Variable or input pin reboot_req is defined but never used
+Warning: Variable or input pin drreq_rcvd is defined but never used
+Warning: Variable or input pin idle_rcvd is defined but never used
+Warning: Variable or input pin buf_res is defined but never used
+Warning: Variable or input pin ctrl_error is defined but never used
+Warning: Variable or input pin tcal_rcvd is defined but never used
+Warning: Variable or input pin pulse_rcvd is defined but never used
+Warning: Variable or input pin pulse_sent is defined but never used
 Warning: Reduced register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|adc_to_ser_dudt:inst18|dudt[9] with stuck data_in port to stuck value GND
 Warning: Reduced register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|adc_to_ser_dudt:inst18|dudt[7] with stuck data_in port to stuck value GND
 Warning: Reduced register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|adc_to_ser_dudt:inst18|dudt[6] with stuck data_in port to stuck value GND
@@ -1732,15 +1730,13 @@ Info: Duplicate registers merged to single register
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|inst23[1] merged to single register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|inst23[6]
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|shift_ct_aclr~reg merged to single register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|crc_init~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|plen_sload~reg merged to single register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|crc_init~reg
-    Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|byte_ena1~reg merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|byte_ena0b~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|TX_UART:inst|txshclr~reg merged to single register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|TX_UART:inst|txctclr~reg
-    Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|cmd_ena~reg merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|first_wadr_ena~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|cmd_snd2~reg merged to single register dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|cmd_snd1~reg
 Info: Inferred 1 megafunctions from design logic
     Info: Inferred lpm_counter megafunction (LPM_WIDTH=48) from the following logic: timer:timer_inst|systime_cnt[0]~0
 Info: State machine |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|DCTC_FWR:inst2|sreg contains 10 states and 4 state bits
 Info: State machine |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|crc_rx:inst20|state contains 3 states and 0 state bits
-Info: State machine |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|sreg contains 15 states and 4 state bits
+Info: State machine |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state contains 17 states and 0 state bits
 Info: State machine |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|adc_to_ser_dudt:inst18|GET_DUDT:get_dudt_stm|sreg contains 7 states and 3 state bits
 Info: State machine |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|sreg contains 11 states and 4 state bits
 Info: State machine |configboot|dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|sreg contains 19 states and 5 state bits
@@ -1783,39 +1779,43 @@ Info: Encoding result for state machine |configboot|dcom_ap:dcom_ap_inst|DC_Rx_c
     Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|crc_rx:inst20|state.idle uses code string 000
     Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|crc_rx:inst20|state.wait_byte uses code string 011
     Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|crc_rx:inst20|state.uart uses code string 101
-Info: Selected Auto state machine encoding method for state machine |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|sreg
-Info: Encoding result for state machine |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|sreg
-    Info: Completed encoding using 15 state bits
-        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|sreg~44
-        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|sreg~43
-        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|sreg~42
-        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|sreg~41
-        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|sreg~40
-        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|sreg~39
-        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|sreg~38
-        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|sreg~37
-        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|sreg~36
-        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|sreg~35
-        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|sreg~34
-        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|sreg~33
-        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|sreg~32
-        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|sreg~31
-        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|sreg~30
-    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|STF_WAIT uses code string 000000000000000
-    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|BYTE0 uses code string 000000000000011
-    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|BYTE1 uses code string 000000000000101
-    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|BYTE2 uses code string 000000000001001
-    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|BYTE3 uses code string 000000000010001
-    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|CTRL_ERR uses code string 000000000100001
-    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|CTRL_OK uses code string 000000001000001
-    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|DATA_ERR uses code string 000000010000001
-    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|DATA_OK uses code string 000000100000001
-    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|DCMD_SEQ1 uses code string 000001000000001
-    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|DPR_DAT_WR uses code string 000010000000001
-    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|EOF_WAIT uses code string 000100000000001
-    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|LEN0 uses code string 001000000000001
-    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|MTYPE_LEN1 uses code string 010000000000001
-    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|PTYPE_SEQ0 uses code string 100000000000001
+Info: Selected Auto state machine encoding method for state machine |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state
+Info: Encoding result for state machine |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state
+    Info: Completed encoding using 17 state bits
+        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state~36
+        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state~35
+        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state~34
+        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state~33
+        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state~32
+        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state~31
+        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state~30
+        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state~29
+        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state~28
+        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state~27
+        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state~26
+        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state~25
+        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state~24
+        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state~23
+        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state~22
+        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state~21
+        Info: Encoded state bit dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state~20
+    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state.dead_end uses code string 00000000000000000
+    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state.len0 uses code string 00000000000000011
+    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state.mtype_len1 uses code string 00000000000000101
+    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state.ptype_seq0 uses code string 00000000000001001
+    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state.dcmd_seq1 uses code string 00000000000010001
+    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state.eof_wait uses code string 00000000000100001
+    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state.ctrl_ok uses code string 00000000001000001
+    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state.ctrl_err uses code string 00000000010000001
+    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state.byte0 uses code string 00000000100000001
+    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state.dpr_dat_wr uses code string 00000001000000001
+    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state.byte1 uses code string 00000010000000001
+    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state.byte2 uses code string 00000100000000001
+    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state.byte3 uses code string 00001000000000001
+    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state.data_ok uses code string 00010000000000001
+    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state.data_err uses code string 00100000000000001
+    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state.stf_wait uses code string 01000000000000001
+    Info: State |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|state.protocol_error uses code string 10000000000000001
 Info: Selected Auto state machine encoding method for state machine |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|adc_to_ser_dudt:inst18|GET_DUDT:get_dudt_stm|sreg
 Info: Encoding result for state machine |configboot|dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|adc_to_ser_dudt:inst18|GET_DUDT:get_dudt_stm|sreg
     Info: Completed encoding using 7 state bits
@@ -2027,21 +2027,16 @@ Info: Encoding result for state machine |configboot|ROC:inst_ROC|RST_state
 Info: Ignored 254 buffer(s)
     Info: Ignored 254 SOFT buffer(s)
 Info: Duplicate registers merged to single register
-    Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|sreg~40 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|rx_we~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|sreg~31 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|data_stb~reg
-    Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|sreg~39 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|stf_stb~reg
-    Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|sreg~37 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|first_wadr_rld~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|sreg~44 merged to single register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|dpr_ren~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|sreg~42 merged to single register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|msg_sent~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|SV12 merged to single register dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|com_avail~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|TX_UART:inst|sreg1~35 merged to single register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|TX_UART:inst|txshld~reg
-    Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|adc_to_ser_dudt:inst18|GET_DUDT:get_dudt_stm|sreg~35 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|adc_to_ser_dudt:inst18|GET_DUDT:get_dudt_stm|rxd~reg
+    Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|sreg~39 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|stf_stb~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|sreg~32 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|eof_stb~reg
+    Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|adc_to_ser_dudt:inst18|GET_DUDT:get_dudt_stm|sreg~35 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|adc_to_ser_dudt:inst18|GET_DUDT:get_dudt_stm|rxd~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|sreg~38 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|shd~reg
-    Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|sreg~38 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|data_rcvd~reg
-    Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|sreg~36 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|ctrl_rcvd~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|DCTC_FWR:inst2|sreg~38 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|DCTC_FWR:inst2|pulse_rcvd~reg
-    Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|sreg~30 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|crc_init~reg, power-up level changed
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|plen_ct_inc~reg merged to single register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|sreg~50
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|tcwf_rd_next~reg merged to single register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|sreg~56
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|DCTC_FWR:inst2|tcwf_af_ct_sload~reg merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|DCTC_FWR:inst2|sreg~36
@@ -2051,8 +2046,6 @@ Info: Duplicate registers merged to single register
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|sreg~34 merged to single register dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|reboot_gnt~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|sreg~40 merged to single register dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|send_data~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|sreg~47 merged to single register dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|tcal_psnd~reg
-    Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|first_wadr_ena~reg merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|sreg~39
-    Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|msg_type_ena~reg merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|DC_MRAP:inst10|sreg~43
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|sreg~30 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|ctclr~reg, power-up level changed
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|TX_UART:inst|sreg1~30 merged to single register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|TX_UART:inst|txidle~reg, power-up level changed
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|tcal_prec~reg merged to single register dcom_ap:dcom_ap_inst|DC_CTRAP:DC_CTRAP|sreg~37
@@ -2115,17 +2108,17 @@ Warning: Design contains 5 input pin(s) that do not drive logic
     Warning: No output dependent on input pin CLK4p
     Warning: No output dependent on input pin COM_AD_OTR
     Warning: No output dependent on input pin HDV_Rx
-Info: Implemented 1820 device resources after synthesis - the final resource count might be different
+Info: Implemented 1857 device resources after synthesis - the final resource count might be different
     Info: Implemented 21 input pins
-    Info: Implemented 70 output pins
+    Info: Implemented 78 output pins
     Info: Implemented 17 bidirectional pins
-    Info: Implemented 1698 logic cells
+    Info: Implemented 1727 logic cells
     Info: Implemented 10 RAM segments
     Info: Implemented 1 ClockLock PLLs
     Info: Implemented 2 dual-port RAM elements in Excalibur device
     Info: Implemented 1 microprocessor core elements in Excalibur device
-Info: Quartus II Analysis & Synthesis was successful. 0 errors, 148 warnings
-    Info: Processing ended: Tue May 25 09:35:25 2004
-    Info: Elapsed time: 00:00:39
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 155 warnings
+    Info: Processing ended: Wed Jun 16 10:56:05 2004
+    Info: Elapsed time: 00:00:41
 
 

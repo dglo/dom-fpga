@@ -1,5 +1,5 @@
 EDA Netlist Writer report for configboot
-Tue May 25 09:37:33 2004
+Wed Jun 16 10:58:50 2004
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -42,7 +42,7 @@ party's intellectual property, are provided herein.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Tue May 25 09:37:33 2004 ;
+; EDA Netlist Writer Status ; Successful - Wed Jun 16 10:58:50 2004 ;
 ; Revision Name             ; configboot                            ;
 ; Top-level Entity Name     ; configboot                            ;
 ; Family                    ; EXCALIBUR_ARM                         ;
@@ -72,7 +72,7 @@ party's intellectual property, are provided herein.
 +-----------------------------------------------------------------------------------------
 ; Generated Files                                                                        ;
 +----------------------------------------------------------------------------------------+
-; c:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/simulation/modelsim/configboot.vo ;
+; C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/simulation/modelsim/configboot.vo ;
 +----------------------------------------------------------------------------------------+
 
 
@@ -82,24 +82,11 @@ party's intellectual property, are provided herein.
 Info: *******************************************************************
 Info: Running Quartus II EDA Netlist Writer
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Copyright (C) 1991-2004 Altera Corporation. All rights reserved.
-    Info: Quartus is a registered trademark of Altera Corporation in the 
-    Info: US and other countries.  Portions of the Quartus II software   
-    Info: code, and other portions of the code included in this download 
-    Info: or on this CD, are licensed to Altera Corporation and are the  
-    Info: copyrighted property of third parties who may include, without 
-    Info: limitation, Sun Microsystems, The Regents of the University of 
-    Info: California, Softel vdm., and Verific Design Automation Inc. 
-    Info: Warning:  This computer program is protected by copyright law  
-    Info: and international treaties. Unauthorized reproduction or       
-    Info: distribution of this program, or any portion of it, may result 
-    Info: in severe civil and criminal penalties, and will be prosecuted 
-    Info: to the maximum extent possible under the law.
-    Info: Processing started: Tue May 25 09:37:30 2004
+    Info: Processing started: Wed Jun 16 10:58:47 2004
 Info: Command: quartus_eda --import_settings_files=off --export_settings_files=off configboot -c configboot
-Info: Generated file configboot.vo in folder c:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/simulation/modelsim/ for EDA simulation tool
+Info: Generated file configboot.vo in folder C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/simulation/modelsim/ for EDA simulation tool
 Info: Quartus II EDA Netlist Writer was successful. 0 errors, 0 warnings
-    Info: Processing ended: Tue May 25 09:37:33 2004
+    Info: Processing ended: Wed Jun 16 10:58:50 2004
     Info: Elapsed time: 00:00:03
 
 

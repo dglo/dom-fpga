@@ -81,6 +81,8 @@ BEGIN
 					WHEN "0101000000" =>	-- com control
 						IF reg_write = '1' THEN
 							com_ctrl_local <= reg_wdata;
+							-- debugging
+							TC	<= reg_wdata(31 DOWNTO 24);
 						ELSE
 							reg_rdata <= com_ctrl_local;
 							reg_rdata(31 DOWNTO 1)	<= (OTHERS=>'0');

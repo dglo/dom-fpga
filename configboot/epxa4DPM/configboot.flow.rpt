@@ -1,5 +1,5 @@
 Flow report for configboot
-Tue May 25 09:37:33 2004
+Wed Jun 16 10:58:50 2004
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -42,13 +42,13 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------+
 ; Flow Summary                                                  ;
 +-----------------------+---------------------------------------+
-; Flow Status           ; Successful - Tue May 25 09:37:33 2004 ;
+; Flow Status           ; Successful - Wed Jun 16 10:58:50 2004 ;
 ; Revision Name         ; configboot                            ;
 ; Top-level Entity Name ; configboot                            ;
 ; Family                ; EXCALIBUR_ARM                         ;
 ; Device                ; EPXA4F672I2                           ;
-; Total logic elements  ; 1,698 / 16,640 ( 10 % )               ;
-; Total pins            ; 109 / 463 ( 23 % )                    ;
+; Total logic elements  ; 1,727 / 16,640 ( 10 % )               ;
+; Total pins            ; 117 / 463 ( 25 % )                    ;
 ; Total memory bits     ; 640 / 212,992 ( < 1 % )               ;
 ; Total PLLs            ; 1 / 4 ( 25 % )                        ;
 +-----------------------+---------------------------------------+
@@ -59,7 +59,7 @@ party's intellectual property, are provided herein.
 +------------------------------------------
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 05/25/2004 09:34:46 ;
+; Start date & time ; 06/16/2004 10:55:24 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; configboot          ;
 +-------------------+---------------------+
@@ -70,12 +70,12 @@ party's intellectual property, are provided herein.
 +--------------------------------------
 ; Module Name          ; Elapsed Time ;
 +----------------------+--------------+
-; Analysis & Synthesis ; 00:00:40     ;
-; Fitter               ; 00:01:49     ;
-; Timing Analyzer      ; 00:00:05     ;
+; Analysis & Synthesis ; 00:00:42     ;
+; Fitter               ; 00:01:54     ;
 ; Assembler            ; 00:00:05     ;
+; Timing Analyzer      ; 00:00:06     ;
 ; EDA Netlist Writer   ; 00:00:03     ;
-; Total                ; 00:02:42     ;
+; Total                ; 00:02:50     ;
 +----------------------+--------------+
 
 
@@ -84,8 +84,8 @@ party's intellectual property, are provided herein.
 ------------
 quartus_map --import_settings_files=on --export_settings_files=off configboot -c configboot
 quartus_fit --import_settings_files=off --export_settings_files=off configboot -c configboot
-quartus_tan --import_settings_files=off --export_settings_files=off configboot -c configboot
 quartus_asm --import_settings_files=off --export_settings_files=off configboot -c configboot
+quartus_tan --import_settings_files=off --export_settings_files=off configboot -c configboot
 quartus_eda --import_settings_files=off --export_settings_files=off configboot -c configboot
 
 
