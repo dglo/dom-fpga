@@ -1,0 +1,50 @@
+TITLE "timer used for DOM-TCAL, K.-H. Sulanke,DESY Zeuthen, 08/03/2003";
+
+INCLUDE "dc_tcal_ct.inc";
+
+CONSTANT QUIET_TIME = 200;	-- 10us
+
+OPTIONS	BIT0=LSB;
+
+SUBDESIGN tcal_timer
+(
+	CCLK			: INPUT;	-- communication clock
+	tcal_psnd		: INPUT;	-- TCAL timer start
+
+	line_quiet		: OUTPUT;	-- TCAL can start now
+	h_pulse			: OUTPUT;	-- TCAL high pulse time
+	l_pulse			: OUTPUT;	-- TCAL low pulse time
+	pulse_sent		: OUTPUT;	-- whole TCAL pulse sent
+	tx_time_lat		: OUTPUT;	-- to latch the start time time of the TCAL pulse
+)
+VARIABLE
+	line_quiet		: DFF;
+	h_pulse			: DFF;
+	l_pulse			: DFF;
+	pulse_sent		: DFF;
+	tx_time_lat		: DFF;
+	time			: dc_tcal_ct;	-- modulus 20000 15 bit counter
+
+BEGIN
+
+time.clock		= CCLK;
+time.aclr		= !tcal_psnd;
+
+line_quiet.clk	= CCLK;
+h_pulse.clk		= CCLK;
+l_pulse.clk		= CCLK;
+pulse_sent.clk	= CCLK;
+tx_time_lat.clk	= CCLK;
+
+line_quiet.d	= (time.q[]==QUIET_TIME);		-- 10us delay
+
+tx_time_lat.d	= (time.q[]==QUIET_TIME);
+
+h_pulse.d		= (time.q[]==QUIET_TIME)
+				# h_pulse.q & !(time.q[]==(QUIET_TIME+20));
+l_pulse.d		= (time.q[]==(QUIET_TIME+20))
+				# l_pulse.q & !(time.q[]==(QUIET_TIME+40));
+				
+pulse_sent.d	= (time.q[]==(QUIET_TIME+60));	-- 1us later
+
+END;
