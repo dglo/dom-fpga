@@ -80,7 +80,7 @@ END mem_interface;
 
 ARCHITECTURE mem_interface_arch OF mem_interface IS
 
-	TYPE STATE_TYPE IS (IDLE, SET_MUX, ENG_HDR0, ENG_HDR1, ENG_HDR2, ENG_HDR3, ENG_FADC, ENG_ATWD, ENG_END, WHAT_NEXT, COMP_START, COMP_XFER, COMP_END, DONE);
+	TYPE STATE_TYPE IS (IDLE, SET_MUX, CHECK_FORMAT, ENG_HDR0, ENG_HDR1, ENG_HDR2, ENG_HDR3, ENG_FADC, ENG_ATWD, ENG_END, WHAT_NEXT, COMP_START, COMP_XFER, COMP_END, DONE);
 	SIGNAL state	: STATE_TYPE;
 	SIGNAL state_old	: STATE_TYPE;
 	
@@ -146,7 +146,9 @@ BEGIN
 							AnB	<= '0';
 						END IF;
 					END IF;
+					state	<= CHECK_FORMAT;
 					
+				WHEN CHECK_FORMAT =>
 					-- engineering or compressed data
 					IF COMPR_mode=COMPR_ON AND compr_avail='1' THEN
 						state	<= COMP_XFER;
