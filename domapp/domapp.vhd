@@ -315,8 +315,10 @@ ARCHITECTURE arch_domapp OF domapp IS
 			discMPEpulse	: OUT STD_LOGIC;
 			-- interface to local coincidence
 			LC_trigger		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
-			LC_abort		: IN STD_LOGIC;
+			LC_abort		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 	 		LC				: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
+			LC_launch		: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
+			LC_disc			: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
 			-- discriminator
 			MultiSPE		: IN STD_LOGIC;
 			OneSPE			: IN STD_LOGIC;
@@ -504,6 +506,41 @@ ARCHITECTURE arch_domapp OF domapp IS
 			TC					: OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
 		);
 	END COMPONENT;
+	
+	COMPONENT local_coincidence
+		PORT (
+			-- Common Inputs
+			CLK20                : IN  STD_LOGIC;
+			CLK40                : IN  STD_LOGIC;
+			CLK80                : IN  STD_LOGIC;
+			RST                  : IN  STD_LOGIC;
+			systime              : IN  STD_LOGIC_VECTOR (47 DOWNTO 0);
+			-- slaveregister
+			LC_ctrl              : IN  LC_STRUCT;
+			-- DAQ interface
+			lc_daq_trigger       : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
+			lc_daq_abort         : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
+			lc_daq_disc          : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
+			lc_daq_launch        : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
+			-- I/O
+			COINCIDENCE_OUT_DOWN : OUT STD_LOGIC;
+			COINC_DOWN_ALATCH    : OUT STD_LOGIC;
+			COINC_DOWN_ABAR      : IN  STD_LOGIC;
+			COINC_DOWN_A         : IN  STD_LOGIC;
+			COINC_DOWN_BLATCH    : OUT STD_LOGIC;
+			COINC_DOWN_BBAR      : IN  STD_LOGIC;
+			COINC_DOWN_B         : IN  STD_LOGIC;
+			COINCIDENCE_OUT_UP   : OUT STD_LOGIC;
+			COINC_UP_ALATCH      : OUT STD_LOGIC;
+			COINC_UP_ABAR        : IN  STD_LOGIC;
+			COINC_UP_A           : IN  STD_LOGIC;
+			COINC_UP_BLATCH      : OUT STD_LOGIC;
+			COINC_UP_BBAR        : IN  STD_LOGIC;
+			COINC_UP_B           : IN  STD_LOGIC;
+			-- test
+			TC                   : OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
+		);
+	END COMPONENT;
 
 
 
@@ -611,6 +648,13 @@ ARCHITECTURE arch_domapp OF domapp IS
 	SIGNAL CS_trigger	: STD_LOGIC_VECTOR (5 DOWNTO 0);
 	SIGNAL cs_wf_data	: STD_LOGIC_VECTOR (7 DOWNTO 0);
 	SIGNAL cs_wf_addr	: STD_LOGIC_VECTOR (7 DOWNTO 0);
+	
+	-- local coincidence
+	SIGNAL LC_ctrl			: LC_STRUCT;
+	SIGNAL lc_daq_trigger	: STD_LOGIC_VECTOR (1 DOWNTO 0);
+	SIGNAL lc_daq_abort		: STD_LOGIC_VECTOR (1 DOWNTO 0);
+	SIGNAL lc_daq_disc		: STD_LOGIC_VECTOR (1 DOWNTO 0);
+	SIGNAL lc_daq_launch	: STD_LOGIC_VECTOR (1 DOWNTO 0);
 	
 	-- Compression
 	SIGNAL COMPR_ctrl	: COMPR_STRUCT;
@@ -778,9 +822,11 @@ BEGIN
 			discSPEpulse	=> RM_daq_disc(0),
 			discMPEpulse	=> RM_daq_disc(1),
 			-- interface to local coincidence
-			LC_trigger		=> "00",
-			LC_abort		=> '0',
+			LC_trigger		=> lc_daq_trigger,
+			LC_abort		=> lc_daq_abort,
 	 		LC				=> "00",
+			LC_launch		=> lc_daq_launch,
+			LC_disc			=> lc_daq_disc,
 			-- discriminator
 			MultiSPE		=> MultiSPE,
 			OneSPE			=> OneSPE,
@@ -866,7 +912,7 @@ BEGIN
 			-- command register
 			DAQ_ctrl		=> DAQ_ctrl,
 			CS_ctrl			=> CS_ctrl,
-			LC_ctrl			=> open,
+			LC_ctrl			=> LC_ctrl,
 			RM_ctrl			=> RM_ctrl,
 			RM_stat			=> RM_stat,
 			COMM_CTRL		=> COMM_CTRL,
@@ -961,6 +1007,40 @@ BEGIN
 			FL_AUX_RESET		=> FL_AUX_RESET,
 			--test
 			TC					=> open
+		);
+		
+	inst_local_coincidence : local_coincidence
+		PORT MAP (
+			-- Common Inputs
+			CLK20                => CLK20,
+			CLK40                => CLK40,
+			CLK80                => CLK80,
+			RST                  => RST,
+			systime              => systime,
+			-- slaveregister
+			LC_ctrl              => LC_ctrl,
+			-- DAQ interface
+			lc_daq_trigger       => lc_daq_trigger,
+			lc_daq_abort         => lc_daq_abort,
+			lc_daq_disc          => lc_daq_disc,
+			lc_daq_launch        => lc_daq_launch,
+			-- I/O
+			COINCIDENCE_OUT_DOWN => COINCIDENCE_OUT_DOWN,
+			COINC_DOWN_ALATCH    => COINC_DOWN_ALATCH,
+			COINC_DOWN_ABAR      => COINC_DOWN_ABAR,
+			COINC_DOWN_A         => COINC_DOWN_A,
+			COINC_DOWN_BLATCH    => COINC_DOWN_BLATCH,
+			COINC_DOWN_BBAR      => COINC_DOWN_BBAR,
+			COINC_DOWN_B         => COINC_DOWN_B,
+			COINCIDENCE_OUT_UP   => COINCIDENCE_OUT_UP,
+			COINC_UP_ALATCH      => COINC_UP_ALATCH,
+			COINC_UP_ABAR        => COINC_UP_ABAR,
+			COINC_UP_A           => COINC_UP_A,
+			COINC_UP_BLATCH      => COINC_UP_BLATCH,
+			COINC_UP_BBAR        => COINC_UP_BBAR,
+			COINC_UP_B           => COINC_UP_B,
+			-- test
+			TC                   => OPEN
 		);
 	
 	

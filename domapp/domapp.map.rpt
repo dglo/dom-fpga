@@ -1,5 +1,5 @@
 Analysis & Synthesis report for domapp
-Thu Nov 11 09:26:37 2004
+Fri Nov 12 08:53:52 2004
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -65,7 +65,7 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                        ;
 +-----------------------------+---------------------------------------+
-; Analysis & Synthesis Status ; Successful - Thu Nov 11 09:26:37 2004 ;
+; Analysis & Synthesis Status ; Successful - Fri Nov 12 08:53:51 2004 ;
 ; Revision Name               ; domapp                                ;
 ; Top-level Entity Name       ; domapp                                ;
 ; Family                      ; EXCALIBUR_ARM                         ;
@@ -601,6 +601,7 @@ domapp
                      |-- altdpram:altdpram_component
                 |-- FADC_buffer:inst_FADC_buffer_odd
                      |-- altdpram:altdpram_component
+ |-- local_coincidence:inst_local_coincidence
  |-- pll2x:inst_pll2x
       |-- altclklock:altclklock_component
  |-- pll4x:inst_pll4x
@@ -1544,6 +1545,7 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.map
 ; slaveregister.vhd                                                              ; Read ;
 ; comm_wrapper.vhd                                                               ; Read ;
 ; data_buffer.vhd                                                                ; Read ;
+; local_coincidence.vhd                                                          ; Read ;
 ; compression.vhd                                                                ; Read ;
 ; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/pll2x.v                                ; Read ;
 ; c:/fpgatools/quartus/libraries/megafunctions/altclklock.tdf                    ; Read ;
@@ -1721,7 +1723,7 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.map
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Thu Nov 11 09:20:27 2004
+    Info: Processing started: Fri Nov 12 08:47:43 2004
 Info: Command: quartus_map --import_settings_files=on --export_settings_files=off domapp -c domapp
 Info: Found 1 design units and 0 entities in source file icecube_data_types.vhd
     Info: Found design unit 1: icecube_data_types
@@ -1801,10 +1803,13 @@ Info: Found 2 design units and 1 entities in source file comm_wrapper.vhd
 Info: Found 2 design units and 1 entities in source file data_buffer.vhd
     Info: Found design unit 1: data_buffer-arch_data_buffer
     Info: Found entity 1: data_buffer
+Info: Found 2 design units and 1 entities in source file local_coincidence.vhd
+    Info: Found design unit 1: local_coincidence-ARCH_local_coincidence
+    Info: Found entity 1: local_coincidence
 Info: Found 2 design units and 1 entities in source file compression.vhd
     Info: Found design unit 1: compression-arch_compression
     Info: Found entity 1: compression
-Warning: VHDL Signal Declaration warning at domapp.vhd(616): used implicit default value for signal compr_ctrl because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning: VHDL Signal Declaration warning at domapp.vhd(660): used implicit default value for signal compr_ctrl because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
 Info: Using design file pll2x.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info: Found entity 1: pll2x
 Info: Found 1 design units and 1 entities in source file ../../../../fpgatools/quartus/libraries/megafunctions/altclklock.tdf
@@ -2697,7 +2702,7 @@ Info: Implemented 5391 device resources after synthesis - the final resource cou
     Info: Implemented 2 dual-port RAM elements in Excalibur device
     Info: Implemented 1 microprocessor core elements in Excalibur device
 Info: Quartus II Analysis & Synthesis was successful. 0 errors, 255 warnings
-    Info: Processing ended: Thu Nov 11 09:26:37 2004
-    Info: Elapsed time: 00:06:10
+    Info: Processing ended: Fri Nov 12 08:53:51 2004
+    Info: Elapsed time: 00:06:08
 
 

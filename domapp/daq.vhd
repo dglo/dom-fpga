@@ -60,8 +60,10 @@ ENTITY daq IS
 		discMPEpulse	: OUT STD_LOGIC;
 		-- interface to local coincidence
 		LC_trigger		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
-		LC_abort		: IN STD_LOGIC;
+		LC_abort		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
  		LC				: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
+		LC_launch		: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
+		LC_disc			: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
 		-- discriminator
 		MultiSPE		: IN STD_LOGIC;
 		OneSPE			: IN STD_LOGIC;
@@ -381,8 +383,17 @@ ARCHITECTURE daq_arch OF daq IS
 	SIGNAL ready			: STD_LOGIC;
 	SIGNAL trans_length		: INTEGER;
 	SIGNAL bus_error		: STD_LOGIC;
+	
+	-- for rate meters and local coincidence
+	SIGNAL discSPEpulse_local	: STD_LOGIC;
+	SIGNAL discMPEpulse_local	: STD_LOGIC;
 
 BEGIN
+
+	discSPEpulse	<= discSPEpulse_local;
+	discMPEpulse	<= discMPEpulse_local;
+	LC_disc		<= discMPEpulse_local & discSPEpulse_local;
+	LC_launch	<= busy_B & busy_A;
 
 	inst_trigger : trigger
 		PORT MAP (
@@ -413,8 +424,8 @@ BEGIN
 			-- trigger outputs
 			ATWDTrigger_A	=> ATWDTrigger_0,
 			ATWDTrigger_B	=> ATWDTrigger_1,
-			discSPEpulse	=> discSPEpulse,
-			discMPEpulse	=> discMPEpulse,
+			discSPEpulse	=> discSPEpulse_local,
+			discMPEpulse	=> discMPEpulse_local,
 			-- test connector
 			TC				=> open
 		);
@@ -459,7 +470,7 @@ BEGIN
 			rst_trig		=> rst_trig_A,
 			trigger_word	=> trigger_word,
 			-- local coincidence
-			LC_abort		=> LC_abort,
+			LC_abort		=> LC_abort(0),
 			LC				=> LC,
 			-- ATWD
 			ATWDTrigger		=> ATWDTrigger_sig_A,
@@ -519,7 +530,7 @@ BEGIN
 			rst_trig		=> rst_trig_B,
 			trigger_word	=> trigger_word,
 			-- local coincidence
-			LC_abort		=> LC_abort,
+			LC_abort		=> LC_abort(1),
 			LC				=> LC,
 			-- ATWD
 			ATWDTrigger		=> ATWDTrigger_sig_B,
