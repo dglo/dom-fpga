@@ -129,7 +129,7 @@ BEGIN
 					abort_trans		<= '0';
 					IF data_avail_A='1' OR data_avail_B='1' THEN
 						state	<= SET_MUX;
-						start_trans		<= '1';
+				--		start_trans		<= '1';
 					END IF;
 				WHEN SET_MUX =>
 					-- at least one (A or B) has data available
@@ -175,7 +175,7 @@ BEGIN
 					rdaddr	<= (OTHERS=>'0');
 					IF wait_sig='0' AND header.FADCavail='1' AND header.eventtype/=eventTimestamp THEN
 						state	<= ENG_FADC;
-						rdaddr	<= rdaddr+1;
+					--	rdaddr	<= rdaddr+1;
 					ELSIF wait_sig='0' THEN
 						state	<= ENG_END;
 						abort_trans		<= '1';
@@ -323,11 +323,11 @@ BEGIN
 	header3 <= header.timestamp(47 DOWNTO 16);
 	
 	-- select data source
-	wdata <= header0 WHEN state=ENG_HDR0 ELSE
-			header1 WHEN state=ENG_HDR1 ELSE
-			header2 WHEN state=ENG_HDR2 ELSE
-			header3 WHEN state=ENG_HDR3 ELSE
-			FADC_data WHEN state=ENG_FADC ELSE
+	wdata <= header0 WHEN state_old=ENG_HDR0 ELSE
+			header1 WHEN state_old=ENG_HDR1 ELSE
+			header2 WHEN state_old=ENG_HDR2 ELSE
+			header3 WHEN state_old=ENG_HDR3 ELSE
+		--	FADC_data WHEN state=ENG_FADC ELSE
 			FADC_data WHEN state_old=ENG_FADC ELSE
 			ATWD_data WHEN state_old=ENG_ATWD ELSE
 		--	compr_data WHEN state=COMP_START ELSE
