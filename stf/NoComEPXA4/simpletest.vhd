@@ -301,6 +301,8 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL atwd0_rdata		: STD_LOGIC_VECTOR(15 downto 0);
 	SIGNAL atwd0_address	: STD_LOGIC_VECTOR(8 downto 0);
 	SIGNAL atwd0_write_en	: STD_LOGIC;
+	SIGNAL atwd0_trigger    : STD_LOGIC;
+	SIGNAL atwd0_trig_doneB : STD_LOGIC;
 	
 	-- ATWD1
 	SIGNAL atwd1_enable		: STD_LOGIC;
@@ -310,6 +312,8 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL atwd1_rdata		: STD_LOGIC_VECTOR(15 downto 0);
 	SIGNAL atwd1_address	: STD_LOGIC_VECTOR(8 downto 0);
 	SIGNAL atwd1_write_en	: STD_LOGIC;
+	SIGNAL atwd1_trigger    : STD_LOGIC;
+	SIGNAL atwd1_trig_doneB : STD_LOGIC;
 	
 	-- AHB master
 	SIGNAL start_trans		: STD_LOGIC;
@@ -339,6 +343,8 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL com_status		: STD_LOGIC_VECTOR (31 downto 0);
 	
 	SIGNAL systime			: STD_LOGIC_VECTOR (47 DOWNTO 0);
+	SIGNAL atwd0_timestamp  : STD_LOGIC_VECTOR (47 DOWNTO 0);
+	SIGNAL atwd1_timestamp  : STD_LOGIC_VECTOR (47 DOWNTO 0);
 	
 	COMPONENT ROC
 		PORT (
@@ -526,6 +532,8 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			hitcounter_o_ff	: IN	STD_LOGIC_VECTOR(31 downto 0);
 			hitcounter_m_ff	: IN	STD_LOGIC_VECTOR(31 downto 0);
 			systime			: IN	STD_LOGIC_VECTOR(47 DOWNTO 0);
+			atwd0_timestamp : IN	STD_LOGIC_VECTOR(47 DOWNTO 0);
+            atwd1_timestamp	: IN	STD_LOGIC_VECTOR(47 DOWNTO 0);                    
 			-- COM ADC RX interface
 			com_adc_wdata		: OUT STD_LOGIC_VECTOR (15 downto 0);
 			com_adc_rdata		: IN STD_LOGIC_VECTOR (15 downto 0);
@@ -765,6 +773,43 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 		);
 	END COMPONENT;
 	
+	COMPONENT atwd_ping_pong
+        PORT (
+            CLK40		: IN STD_LOGIC;
+            RST			: IN STD_LOGIC;
+            -- single atwd discriminator enables from command register
+            cmd_atwd0_enable_disc : IN STD_LOGIC;
+            cmd_atwd1_enable_disc : IN STD_LOGIC;
+            -- ping-pong mode from command register
+            cmd_ping_pong         : IN STD_LOGIC;        
+            -- CPU atwd read handshake
+            cmd_atwd0_read_done   : IN STD_LOGIC;
+            cmd_atwd1_read_done   : IN STD_LOGIC;
+            -- atwd interface
+            atwd0_trig_doneB      : IN STD_LOGIC;
+            atwd1_trig_doneB      : IN STD_LOGIC;
+            atwd0_enable_disc     : OUT STD_LOGIC;
+            atwd1_enable_disc     : OUT STD_LOGIC;
+			-- test connector
+			TC					  : OUT STD_LOGIC_VECTOR(7 downto 0)
+            );
+    END COMPONENT;
+
+	COMPONENT atwd_timestamp
+        PORT (
+            CLK40		: IN STD_LOGIC;
+            RST			: IN STD_LOGIC;
+            -- ATWD triggers
+            atwd0_trigger   : IN    STD_LOGIC;
+            atwd1_trigger   : IN    STD_LOGIC;        
+            -- system time
+            systime			: IN	STD_LOGIC_VECTOR(47 DOWNTO 0);
+            -- timestamps
+            atwd0_timestamp : OUT	STD_LOGIC_VECTOR(47 DOWNTO 0);
+            atwd1_timestamp : OUT	STD_LOGIC_VECTOR(47 DOWNTO 0)
+            );
+    END COMPONENT;
+	
 	COMPONENT master_data_source
 		PORT (
 			CLK			: IN STD_LOGIC;
@@ -900,11 +945,11 @@ BEGIN
 	
 	-- ATWD0
 	atwd0_enable	<= command_0(0);
-	atwd0_enable_disc	<= command_0(1);
+	--atwd0_enable_disc	<= command_0(1);
 	response_0(0)	<= atwd0_done;
 	-- ATWD1
 	atwd1_enable	<= command_0(8);
-	atwd1_enable_disc	<= command_0(9);
+	--atwd1_enable_disc	<= command_0(9);
 	response_0(8)	<= atwd1_done;
 	-- flash ADC test
 	flash_adc_enable		<= command_0(16);
@@ -1167,6 +1212,8 @@ BEGIN
 			hitcounter_o_ff	=> hitcounter_o_ff,
 			hitcounter_m_ff	=> hitcounter_m_ff,
 			systime			=> systime,
+			atwd0_timestamp => atwd0_timestamp,
+            atwd1_timestamp => atwd1_timestamp,
 			-- COM ADC RX interface
 			com_adc_wdata		=> com_adc_wdata,
 			com_adc_rdata		=> com_adc_rdata,
@@ -1359,6 +1406,41 @@ BEGIN
 			-- test connector
 			TC				=> open
 		);
+		
+	inst_atwd_ping_pong : atwd_ping_pong
+        PORT MAP (
+            CLK40                 => CLK40,
+            RST                   => RST,
+            -- single atwd discriminator enables from command register
+            cmd_atwd0_enable_disc => command_0(1),
+            cmd_atwd1_enable_disc => command_0(9),
+            -- ping-pong mode from command register
+            cmd_ping_pong         => command_0(15), 
+            -- CPU atwd read handshake
+            cmd_atwd0_read_done   => command_0(2),
+            cmd_atwd1_read_done   => command_0(10),
+            -- atwd interface
+            atwd0_trig_doneB      => atwd0_trig_doneB,
+            atwd1_trig_doneB      => atwd1_trig_doneB,
+            atwd0_enable_disc     => atwd0_enable_disc,
+            atwd1_enable_disc     => atwd1_enable_disc,
+			-- test connector
+			TC                    => open       
+        );
+	
+    inst_atwd_timestamp : atwd_timestamp
+        PORT MAP (
+            CLK40                 => CLK40,
+            RST                   => RST,
+            -- ATWD triggers
+            atwd0_trigger         => atwd0_trigger,
+            atwd1_trigger         => atwd1_trigger,
+            -- system time
+            systime               => systime,
+            -- timestamps
+            atwd0_timestamp       => atwd0_timestamp,
+            atwd1_timestamp       => atwd1_timestamp
+        );
 		
 	atwd0 : atwd
 		PORT MAP (
