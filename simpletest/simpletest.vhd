@@ -339,6 +339,8 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL dec_thr			: STD_LOGIC_VECTOR (9 downto 0);
 	SIGNAL temp_data		: STD_LOGIC_VECTOR (7 downto 0);
 	SIGNAL RST_kalle		: STD_LOGIC;
+	SIGNAL ctrl_err			: STD_LOGIC;
+	SIGNAL ctrl_err_cnt		: STD_LOGIC_VECTOR (7 downto 0);
 	
 	COMPONENT ROC
 		PORT (
@@ -1053,16 +1055,27 @@ BEGIN
 	com_status(17)	<= txwraff;
 	com_status(20)	<= txrdef;
 	dec_thr			<= com_ctrl(25 downto 16);
-	PROCESS (RST,CLK20)
+--	PROCESS (RST,CLK20)
+--	BEGIN
+--		IF RST='1' THEN
+--			com_status(31 downto 24)	<= (others=>'0');
+--		ELSIF CLK20'EVENT AND CLK20='1' THEN
+--			IF tx_fifo_wr='1' THEN
+--				com_status(31 downto 24)	<= com_tx_fifo;
+--			END IF;
+--		END IF;
+--	END PROCESS;
+	PROCESS (RST, CLK20)
 	BEGIN
 		IF RST='1' THEN
-			com_status(31 downto 24)	<= (others=>'0');
+			ctrl_err_cnt	<= (others=>'0');
 		ELSIF CLK20'EVENT AND CLK20='1' THEN
-			IF tx_fifo_wr='1' THEN
-				com_status(31 downto 24)	<= com_tx_fifo;
+			IF ctrl_err='1' THEN
+				ctrl_err_cnt <= ctrl_err_cnt + 1;
 			END IF;
 		END IF;
 	END PROCESS;
+	com_status(31 downto 24)	<= 	ctrl_err_cnt;
 	
 	TC(7)			<= temp_data(7);
 	
@@ -1609,7 +1622,7 @@ BEGIN
 			adc_clk		=> open,
 			data_stb	=> TC(3),
 			ctrl_stb	=> TC(4),
-			ctrl_err	=> open,
+			ctrl_err	=> ctrl_err,
 			rxwrff		=> rxwrff,
 			rxwraff		=> rxwraff,
 			rxrdef		=> rxrdef,
