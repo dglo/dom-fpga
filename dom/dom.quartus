@@ -17,4 +17,7 @@ FILES
 	VHDL_FILE = dom.vhd;
 	VHDL_FILE = fADC_input.vhd;
 	VHDL_FILE = trigger.vhd;
+	VHDL_FILE = daq.vhd;
+	VHDL_FILE = ATWD_interface.vhd;
+	VHDL_FILE = mem_interface.vhd;
 }
