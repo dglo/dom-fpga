@@ -1,0 +1,61 @@
+MASTER: trans=[    2]  addr=[90080000]  READ data=[00000000]   expected=[00000000]         WORD  OKAY
+MASTER: trans=[    4]  addr=[90084000] WRITE data=[0000007b]   expected=[0000007b]         WORD  OKAY
+MASTER: trans=[    5]  addr=[90084004] WRITE data=[00000141]   expected=[00000141]         WORD  OKAY
+MASTER: trans=[    7]  addr=[90081008] WRITE data=[0000f003]   expected=[0000f003]         WORD  OKAY
+MASTER: trans=[    9]  addr=[90081008] WRITE data=[00000003]   expected=[00000003]         WORD  OKAY
+MASTER: trans=[   11]  addr=[90081008] WRITE data=[0000f003]   expected=[0000f003]         WORD  OKAY
+MASTER: trans=[   12]  addr=[90081018] WRITE data=[00000100]   expected=[00000100]         WORD  OKAY
+SLAVE:                 addr=[00800000] WRITE data=[00000000]                               WORD
+SLAVE:                 addr=[00800004] WRITE data=[00000001]                               WORD
+SLAVE:                 addr=[00800008] WRITE data=[00000002]                               WORD
+SLAVE:                 addr=[0080000c] WRITE data=[00000003]                               WORD
+SLAVE:                 addr=[00800010] WRITE data=[00000004]                               WORD
+SLAVE:                 addr=[00800014] WRITE data=[00000005]                               WORD
+SLAVE:                 addr=[00800018] WRITE data=[00000006]                               WORD
+SLAVE:                 addr=[0080001c] WRITE data=[00000007]                               WORD
+SLAVE:                 addr=[00800020] WRITE data=[00000008]                               WORD
+SLAVE:                 addr=[00800024] WRITE data=[00000009]                               WORD
+SLAVE:                 addr=[00800028] WRITE data=[0000000a]                               WORD
+SLAVE:                 addr=[0080002c] WRITE data=[0000000b]                               WORD
+SLAVE:                 addr=[00800030] WRITE data=[0000000c]                               WORD
+SLAVE:                 addr=[00800034] WRITE data=[0000000d]                               WORD
+SLAVE:                 addr=[00800038] WRITE data=[0000000e]                               WORD
+SLAVE:                 addr=[0080003c] WRITE data=[0000000f]                               WORD
+SLAVE:                 addr=[00800040] WRITE data=[00000010]                               WORD
+SLAVE:                 addr=[00800044] WRITE data=[00000011]                               WORD
+SLAVE:                 addr=[00800048] WRITE data=[00000012]                               WORD
+SLAVE:                 addr=[0080004c] WRITE data=[00000013]                               WORD
+SLAVE:                 addr=[00800050] WRITE data=[00000014]                               WORD
+SLAVE:                 addr=[00800054] WRITE data=[00000015]                               WORD
+SLAVE:                 addr=[00800058] WRITE data=[00000016]                               WORD
+SLAVE:                 addr=[0080005c] WRITE data=[00000017]                               WORD
+SLAVE:                 addr=[00800060] WRITE data=[00000018]                               WORD
+SLAVE:                 addr=[00800064] WRITE data=[00000019]                               WORD
+SLAVE:                 addr=[00800068] WRITE data=[0000001a]                               WORD
+SLAVE:                 addr=[0080006c] WRITE data=[0000001b]                               WORD
+SLAVE:                 addr=[00800070] WRITE data=[0000001c]                               WORD
+SLAVE:                 addr=[00800074] WRITE data=[0000001d]                               WORD
+SLAVE:                 addr=[00800078] WRITE data=[0000001e]                               WORD
+SLAVE:                 addr=[0080007c] WRITE data=[0000001f]                               WORD
+SLAVE:                 addr=[00800080] WRITE data=[00000020]                               WORD
+SLAVE:                 addr=[00800084] WRITE data=[00000021]                               WORD
+SLAVE:                 addr=[00800088] WRITE data=[00000022]                               WORD
+SLAVE:                 addr=[0080008c] WRITE data=[00000023]                               WORD
+SLAVE:                 addr=[00800090] WRITE data=[00000024]                               WORD
+SLAVE:                 addr=[00800094] WRITE data=[00000025]                               WORD
+SLAVE:                 addr=[00800098] WRITE data=[00000026]                               WORD
+SLAVE:                 addr=[0080009c] WRITE data=[00000027]                               WORD
+SLAVE:                 addr=[008000a0] WRITE data=[00000028]                               WORD
+SLAVE:                 addr=[008000a4] WRITE data=[00000029]                               WORD
+SLAVE:                 addr=[008000a8] WRITE data=[0000002a]                               WORD
+SLAVE:                 addr=[008000ac] WRITE data=[0000002b]                               WORD
+SLAVE:                 addr=[008000b0] WRITE data=[0000002c]                               WORD
+SLAVE:                 addr=[008000b4] WRITE data=[0000002d]                               WORD
+SLAVE:                 addr=[008000b8] WRITE data=[0000002e]                               WORD
+SLAVE:                 addr=[008000bc] WRITE data=[0000002f]                               WORD
+SLAVE:                 addr=[008000c0] WRITE data=[00000030]                               WORD
+SLAVE:                 addr=[008000c4] WRITE data=[00000031]                               WORD
+SLAVE:                 addr=[008000c8] WRITE data=[00000032]                               WORD
+SLAVE:                 addr=[008000cc] WRITE data=[00000033]                               WORD
+SLAVE:                 addr=[008000d0] WRITE data=[00000034]                               WORD
+SLAVE:                 addr=[008000d4] WRITE data=[00000035]                               WORD

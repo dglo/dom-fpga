@@ -1,0 +1,8 @@
+C:/IceCube/FPGAcode/HardWareTest/simpletest/stripe_bb.v {1 {vlog -work work C:/IceCube/FPGAcode/HardWareTest/simpletest/stripe_bb.v
+Model Technology ModelSim SE vlog 5.6a Compiler 2002.04 Apr 24 2002
+-- Compiling module stripe
+
+Top level modules:
+	stripe
+
+} {} {}}
