@@ -129,12 +129,12 @@ ENTITY simpletest IS
 		-- flasher board
 		FL_Trigger			: OUT STD_LOGIC;
 		FL_Trigger_bar		: OUT STD_LOGIC;
-		FL_ATTN				: OUT STD_LOGIC;
+		FL_ATTN				: IN STD_LOGIC;
 		FL_PRE_TRIG			: OUT STD_LOGIC;
 		FL_TMS				: OUT STD_LOGIC;
 		FL_TCK				: OUT STD_LOGIC;
 		FL_TDI				: OUT STD_LOGIC;
-		FL_TDO				: OUT STD_LOGIC;
+		FL_TDO				: IN STD_LOGIC;
 		-- Test connector	THERE IS NO 11   I don't know why
 		PGM				: OUT STD_LOGIC_VECTOR (15 downto 0)
 	);
@@ -219,6 +219,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL command_2	: STD_LOGIC_VECTOR(31 downto 0);
 	SIGNAL response_2	: STD_LOGIC_VECTOR(31 downto 0);
 	SIGNAL command_3	: STD_LOGIC_VECTOR(31 downto 0);
+	SIGNAL response_3	: STD_LOGIC_VECTOR(31 downto 0);
 	
 	-- com DAC test
 	SIGNAL enable			: STD_LOGIC;
@@ -310,6 +311,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	
 	-- flasher board
 	SIGNAL fl_board			: STD_LOGIC_VECTOR (7 downto 0);
+	SIGNAL fl_board_read	: STD_LOGIC_VECTOR (1 downto 0);
 	
 	COMPONENT ROC
 		PORT (
@@ -487,6 +489,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			command_2		: OUT	STD_LOGIC_VECTOR(31 downto 0);
 			response_2		: IN	STD_LOGIC_VECTOR(31 downto 0);
 			command_3		: OUT	STD_LOGIC_VECTOR(31 downto 0);
+			response_3		: IN	STD_LOGIC_VECTOR(31 downto 0);
 			hitcounter_o	: IN	STD_LOGIC_VECTOR(31 downto 0);
 			hitcounter_m	: IN	STD_LOGIC_VECTOR(31 downto 0);
 			hitcounter_o_ff	: IN	STD_LOGIC_VECTOR(31 downto 0);
@@ -777,15 +780,16 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 		PORT (
 			-- control input
 			fl_board			: IN STD_LOGIC_VECTOR(7 downto 0);
+			fl_board_read		: OUT STD_LOGIC_VECTOR(1 downto 0);
 			-- flasher board
 			FL_Trigger			: OUT STD_LOGIC;
 			FL_Trigger_bar		: OUT STD_LOGIC;
-			FL_ATTN				: OUT STD_LOGIC;
+			FL_ATTN				: IN STD_LOGIC;
 			FL_PRE_TRIG			: OUT STD_LOGIC;
 			FL_TMS				: OUT STD_LOGIC;
 			FL_TCK				: OUT STD_LOGIC;
 			FL_TDI				: OUT STD_LOGIC;
-			FL_TDO				: OUT STD_LOGIC;
+			FL_TDO				: IN STD_LOGIC;
 			-- Test connector
 			TC					: OUT STD_LOGIC_VECTOR (7 downto 0)
 		);
@@ -926,6 +930,8 @@ BEGIN
 	
 	-- flasher board
 	fl_board		<= command_3(31 downto 24);
+	response_3(24)	<= fl_board_read(0);
+	response_3(28)	<= fl_board_read(1);
 	
 	inst_ROC : ROC
 		PORT MAP (
@@ -1098,6 +1104,7 @@ BEGIN
 			command_2		=> command_2,
 			response_2		=> response_2,
 			command_3		=> command_3,
+			response_3		=> response_3,
 			hitcounter_o	=> hitcounter_o,
 			hitcounter_m	=> hitcounter_m,
 			hitcounter_o_ff	=> hitcounter_o_ff,
@@ -1409,6 +1416,7 @@ BEGIN
 		PORT MAP (
 			-- control input
 			fl_board			=> fl_board,
+			fl_board_read		=> fl_board_read,
 			-- flasher board
 			FL_Trigger			=> FL_Trigger,
 			FL_Trigger_bar		=> FL_Trigger_bar,

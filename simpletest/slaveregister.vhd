@@ -27,6 +27,7 @@ ENTITY slaveregister IS
 		command_2		: OUT	STD_LOGIC_VECTOR(31 downto 0);
 		response_2		: IN	STD_LOGIC_VECTOR(31 downto 0);
 		command_3		: OUT	STD_LOGIC_VECTOR(31 downto 0);
+		response_3		: IN	STD_LOGIC_VECTOR(31 downto 0);
 		hitcounter_o	: IN	STD_LOGIC_VECTOR(31 downto 0);
 		hitcounter_m	: IN	STD_LOGIC_VECTOR(31 downto 0);
 		hitcounter_o_ff	: IN	STD_LOGIC_VECTOR(31 downto 0);
@@ -143,6 +144,7 @@ BEGIN
 				registers(7)(31 downto 0)	<= response_2;
 				registers(8)(31 downto 0)	<= hitcounter_o_ff;
 				registers(9)(31 downto 0)	<= hitcounter_m_ff;
+				registers(11)(31 downto 0)	<= response_3;
 			END IF;	-- reg_enable
 		END IF;
 	END PROCESS;
