@@ -32,6 +32,19 @@
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 2.2
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "10:24:23  APRIL 07, 2004"
 set_global_assignment -name LAST_QUARTUS_VERSION "4.0 SP1"
+set_global_assignment -name AHDL_FILE ../../common/comDPM/test_and_tresholds.tdf
+set_global_assignment -name VHDL_FILE ../../common/comDPM/ponres_ct.vhd
+set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/Rx_dpr_ctrl_PAR_ap.tdf
+set_global_assignment -name AHDL_FILE ../../common/comDPM/Tcal/wfm_ct.tdf
+set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/DC_MRAP.tdf
+set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/edges/HL_DSCR.tdf
+set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/edges/dc_adc_to_ser.tdf
+set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/Tx_dpr_ctrl_PAR_ap.tdf
+set_global_assignment -name VHDL_FILE ../../common/comDPM/Tx_chan/dac_levct.vhd
+set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/dc_com_dac_ctrl.tdf
+set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/tx_uart_ct5.tdf
+set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/tx_uart_ct4.tdf
+set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/tx_uart_shr10.tdf
 set_global_assignment -name VHDL_FILE ../../common/comDPM/Rx_chan/DC_MRAP.vhd
 set_global_assignment -name VHDL_FILE ../../common/comDPM/Tx_chan/my_or16b.vhd
 set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/Rx_dpr_ctrl_ap.tdf

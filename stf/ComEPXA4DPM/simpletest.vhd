@@ -1069,13 +1069,13 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			rx_dpr_aff :  OUT  STD_LOGIC;
 			rx_pack_rcvd :  OUT  STD_LOGIC;
 			rx_we :  OUT  STD_LOGIC;
-			HDV_Rx_ENA :  OUT  STD_LOGIC;
+			HVD_RxENA :  OUT  STD_LOGIC;
 			reboot_gnt :  OUT  STD_LOGIC;
 			com_avail :  OUT  STD_LOGIC;
 			COMM_RESET :  OUT  STD_LOGIC;
 			COM_TX_SLEEP :  OUT  STD_LOGIC;
-			HDV_IN :  OUT  STD_LOGIC;
-			HDV_TxENA :  OUT  STD_LOGIC;
+			HVD_IN :  OUT  STD_LOGIC;
+			HVD_TxENA :  OUT  STD_LOGIC;
 			tx_alm_empty :  OUT  STD_LOGIC;
 			com_reset_rcvd :  OUT  STD_LOGIC;
 			msg_rd :  OUT  STD_LOGIC;
@@ -2024,13 +2024,13 @@ BEGIN
 			rx_dpr_aff		=> rx_dpr_aff,
 			rx_pack_rcvd	=> rx_pack_rcvd,
 			rx_we			=> dp1_portawe,
-			HDV_Rx_ENA		=> HDV_RxENA,
+			HVD_RxENA		=> HDV_RxENA,
 			reboot_gnt		=> drbt_gnt,
 			com_avail		=> com_avail,
 			COMM_RESET		=> COMM_nRESET,
 			COM_TX_SLEEP	=> COM_TX_SLEEP,
-			HDV_IN			=> HDV_IN,
-			HDV_TxENA		=> HDV_TxENA,
+			HVD_IN			=> HDV_IN,
+			HVD_TxENA		=> HDV_TxENA,
 			tx_alm_empty	=> tx_alm_empty,
 			com_reset_rcvd	=> com_reset_rcvd,
 			msg_rd			=> open,
