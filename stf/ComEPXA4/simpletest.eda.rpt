@@ -1,5 +1,5 @@
 EDA Netlist Writer report for simpletest compilation.
-Wed Nov 19 14:25:58 2003
+Tue Nov 25 17:43:58 2003
 Version 3.0 Build 245 10/09/2003 Service Pack 2 SJ Full Version
 
 Command: quartus_eda --import_settings_files=off --export_settings_files=off simpletest -c simpletest
@@ -47,12 +47,12 @@ party's intellectual property, are provided herein.
 -----------------------------------------------------------------
 ; Flow Summary                                                  ;
 -----------------------------------------------------------------
-; Flow Status           ; Successful - Wed Nov 19 14:25:58 2003 ;
+; Flow Status           ; Successful - Tue Nov 25 17:43:58 2003 ;
 ; Compiler Setting Name ; simpletest                            ;
 ; Top-level Entity Name ; simpletest                            ;
 ; Family                ; EXCALIBUR_ARM                         ;
 ; Device                ; EPXA4F672I2                           ;
-; Total logic elements  ; 3,786 / 16,640 ( 22 % )               ;
+; Total logic elements  ; 3,789 / 16,640 ( 22 % )               ;
 ; Total pins            ; 284 / 463 ( 61 % )                    ;
 ; Total memory bits     ; 27,264 / 212,992 ( 12 % )             ;
 ; Total PLLs            ; 2 / 4 ( 50 % )                        ;
@@ -64,7 +64,7 @@ party's intellectual property, are provided herein.
 -----------------------------------------------
 ; Option                ; Setting             ;
 -----------------------------------------------
-; Start date & time     ; 11/19/2003 14:19:33 ;
+; Start date & time     ; 11/25/2003 17:38:49 ;
 ; Main task             ; Compilation         ;
 ; Compiler Setting Name ; simpletest          ;
 -----------------------------------------------
@@ -75,19 +75,19 @@ party's intellectual property, are provided herein.
 ---------------------------------------
 ; Module Name          ; Elapsed Time ;
 ---------------------------------------
-; Analysis & Synthesis ; 00:02:04     ;
-; Fitter               ; 00:03:45     ;
-; Assembler            ; 00:00:06     ;
-; Timing Analyzer      ; 00:00:08     ;
-; EDA Netlist Writer   ; 00:00:11     ;
-; Total                ; 00:06:14     ;
+; Analysis & Synthesis ; 00:01:10     ;
+; Fitter               ; 00:03:30     ;
+; Assembler            ; 00:00:04     ;
+; Timing Analyzer      ; 00:00:07     ;
+; EDA Netlist Writer   ; 00:00:09     ;
+; Total                ; 00:05:00     ;
 ---------------------------------------
 
 
 ---------------------------------------------------------------------
 ; EDA Netlist Writer Summary                                        ;
 ---------------------------------------------------------------------
-; EDA Netlist Writer Status ; Successful - Wed Nov 19 14:25:58 2003 ;
+; EDA Netlist Writer Status ; Successful - Tue Nov 25 17:43:58 2003 ;
 ; Compiler Setting Name     ; simpletest                            ;
 ; Top-level Entity Name     ; simpletest                            ;
 ; Family                    ; EXCALIBUR_ARM                         ;
@@ -129,12 +129,12 @@ party's intellectual property, are provided herein.
 Info: *******************************************************************
 Info: Running Quartus II EDA Netlist Writer
   Info: Version 3.0 Build 245 10/09/2003 Service Pack 2 SJ Full Version
-  Info: Processing started: Wed Nov 19 14:25:46 2003
+  Info: Processing started: Tue Nov 25 17:43:49 2003
 Info: Command: quartus_eda --import_settings_files=off --export_settings_files=off simpletest -c simpletest
 Info: Generated files simpletest.vho and simpletest_vhd.sdo in directory \work_lbnl\IceCubeCVS\dom-fpga\stf\ComEPXA4\simulation\modelsim\ for EDA simulation tool
 Info: Quartus II EDA Netlist Writer was successful. 0 errors, 0 warnings
-  Info: Processing ended: Wed Nov 19 14:25:58 2003
-  Info: Elapsed time: 00:00:11
+  Info: Processing ended: Tue Nov 25 17:43:58 2003
+  Info: Elapsed time: 00:00:09
 Info: Writing report file simpletest.eda.rpt
 
 

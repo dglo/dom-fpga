@@ -363,7 +363,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL tx_pack_rdy		: STD_LOGIC;
 	SIGNAL tx_pack_sent		: STD_LOGIC;
 	SIGNAL rx_dpr_aff		: STD_LOGIC;
-	SIGNAL rx_busy			: STD_LOGIC;
+	SIGNAL com_reset_rcvd	: STD_LOGIC;
 	SIGNAL rx_pack_rcvd		: STD_LOGIC;
 	SIGNAL tx_alm_empty		: STD_LOGIC;
 	SIGNAL rx_addr			: STD_LOGIC_VECTOR (31 DOWNTO 0);
@@ -1030,7 +1030,6 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			tx_dpr_wadr :  IN  STD_LOGIC_VECTOR(15 downto 0);
 			tx_pack_sent :  OUT  STD_LOGIC;
 			rx_dpr_aff :  OUT  STD_LOGIC;
-			rx_busy :  OUT  STD_LOGIC;
 			rx_pack_rcvd :  OUT  STD_LOGIC;
 			rx_we :  OUT  STD_LOGIC;
 			HDV_Rx_ENA :  OUT  STD_LOGIC;
@@ -1041,6 +1040,9 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			HDV_IN :  OUT  STD_LOGIC;
 			HDV_TxENA :  OUT  STD_LOGIC;
 			tx_alm_empty :  OUT  STD_LOGIC;
+			com_reset_rcvd :  OUT  STD_LOGIC;
+			msg_rd :  OUT  STD_LOGIC;
+			msg_rcvd :  OUT  STD_LOGIC;
 			COM_DB :  OUT  STD_LOGIC_VECTOR(7 downto 0);
 			rev :  OUT  STD_LOGIC_VECTOR(15 downto 0);
 			rx_addr :  OUT  STD_LOGIC_VECTOR(15 downto 0);
@@ -1259,9 +1261,10 @@ BEGIN
 	com_status(0)	<= tx_alm_empty;
 	com_status(1)	<= tx_pack_sent;
 	com_status(3)	<= rx_pack_rcvd;
-	com_status(4)	<= rx_busy;
+	com_status(4)	<= com_reset_rcvd;
 	com_status(5)	<= rx_dpr_aff;
 	com_status(6)	<= com_avail;
+	com_status(31 downto 7)	<= 	(OTHERS=>'0');
 	drbt_req		<= com_ctrl(2);
 	tx_pack_rdy		<= com_ctrl(0);
 	--dudt			<= com_ctrl(15 downto 8);
@@ -1278,17 +1281,17 @@ BEGIN
 --			END IF;
 --		END IF;
 --	END PROCESS;
-	PROCESS (RST, CLK20)
-	BEGIN
-		IF RST='1' THEN
-			ctrl_err_cnt	<= (others=>'0');
-		ELSIF CLK20'EVENT AND CLK20='1' THEN
-			IF ctrl_err='1' THEN
-				ctrl_err_cnt <= ctrl_err_cnt + 1;
-			END IF;
-		END IF;
-	END PROCESS;
-	com_status(31 downto 24)	<= 	ctrl_err_cnt;
+--	PROCESS (RST, CLK20)
+--	BEGIN
+--		IF RST='1' THEN
+--			ctrl_err_cnt	<= (others=>'0');
+--		ELSIF CLK20'EVENT AND CLK20='1' THEN
+--			IF ctrl_err='1' THEN
+--				ctrl_err_cnt <= ctrl_err_cnt + 1;
+--			END IF;
+--		END IF;
+--	END PROCESS;
+--	com_status(31 downto 24)	<= 	ctrl_err_cnt;
 	
 	
 	inst_ROC : ROC
@@ -1379,11 +1382,11 @@ BEGIN
 			dp0_portawe			=> dp0_portawe,
 			dp0_portaaddr		=> dp0_portaaddr (13 DOWNTO 0),
 			dp0_portadatain		=> dp0_portadatain,
-			dp0_portadataout	=> open,
+			dp0_portadataout	=> dp0_portadataout,
 			dp2_portawe			=> dp2_portawe,
 			dp2_portaaddr		=> dp2_portaaddr (13 DOWNTO 0),
 			dp2_portadatain		=> dp2_portadatain,
-			dp2_portadataout	=> open,
+			dp2_portadataout	=> dp2_portadataout,
 			gpi					=> gpi,
 			gpo					=> gpo
 		);
@@ -1857,12 +1860,12 @@ BEGIN
 --	B_nA	<= NOT A_nB;
 --	RST_kalle	<= RST OR com_ctrl(4);
 	-- TC(0)	<= tx_fifo_wr;
-	TC(0)	<= sys_reset;
+	-- TC(0)	<= sys_reset;
 	-- TC(1)	<= fifo_msg;
 	-- TC(1)	<= com_aval;
 	-- TC(2)	<= drbt_gnt;
 	-- TC(3)	<= drbt_req;
-	TC(3)	<= drbt_gnt;
+	-- TC(3)	<= drbt_gnt;
 --	dcom_inst : dcom
 --		port MAP (
 --			CCLK		=> CLK20,
@@ -1929,6 +1932,8 @@ BEGIN
 --			rx_fq		=> com_rx_fifo
 --		);
 
+	TC(2)	<= rx_dpr_aff;
+	TC(3)	<= rx_dpr_radr_stb;
 	rx_addr (15 DOWNTO 0)	<= dp2_portaaddr;
 	inst_dcom_dpr : dcom_dpr 
 		PORT MAP (
@@ -1947,7 +1952,6 @@ BEGIN
 			tx_dpr_wadr		=> tx_dpr_wadr (15 DOWNTO 0),
 			tx_pack_sent	=> tx_pack_sent,
 			rx_dpr_aff		=> rx_dpr_aff,
-			rx_busy			=> rx_busy,
 			rx_pack_rcvd	=> rx_pack_rcvd,
 			rx_we			=> dp2_portawe,
 			HDV_Rx_ENA		=> HDV_RxENA,
@@ -1958,6 +1962,9 @@ BEGIN
 			HDV_IN			=> HDV_IN,
 			HDV_TxENA		=> HDV_TxENA,
 			tx_alm_empty	=> tx_alm_empty,
+			com_reset_rcvd	=> com_reset_rcvd,
+			msg_rd			=> TC(0),
+			msg_rcvd		=> TC(1),
 			COM_DB			=> COM_DB,
 			rev				=> open,
 			rx_addr			=> dp2_portaaddr,

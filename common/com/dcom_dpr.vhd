@@ -44,7 +44,6 @@ ENTITY dcom_dpr IS
 		tx_dpr_wadr :  IN  STD_LOGIC_VECTOR(15 downto 0);
 		tx_pack_sent :  OUT  STD_LOGIC;
 		rx_dpr_aff :  OUT  STD_LOGIC;
-		rx_busy :  OUT  STD_LOGIC;
 		rx_pack_rcvd :  OUT  STD_LOGIC;
 		rx_we :  OUT  STD_LOGIC;
 		HDV_Rx_ENA :  OUT  STD_LOGIC;
@@ -55,6 +54,9 @@ ENTITY dcom_dpr IS
 		HDV_IN :  OUT  STD_LOGIC;
 		HDV_TxENA :  OUT  STD_LOGIC;
 		tx_alm_empty :  OUT  STD_LOGIC;
+		com_reset_rcvd :  OUT  STD_LOGIC;
+		msg_rd :  OUT  STD_LOGIC;
+		msg_rcvd :  OUT  STD_LOGIC;
 		COM_DB :  OUT  STD_LOGIC_VECTOR(7 downto 0);
 		rev :  OUT  STD_LOGIC_VECTOR(15 downto 0);
 		rx_addr :  OUT  STD_LOGIC_VECTOR(15 downto 0);
@@ -87,7 +89,7 @@ component dc_rx_chan_dpr
 		 HDV_RxENA : OUT STD_LOGIC;
 		 rx_we : OUT STD_LOGIC;
 		 rx_pack_rcvd : OUT STD_LOGIC;
-		 rx_busy : OUT STD_LOGIC;
+		 com_reset_rcvd : OUT STD_LOGIC;
 		 rx_dpr_aff : OUT STD_LOGIC;
 		 my_adr : OUT STD_LOGIC;
 		 stf_rcvd : OUT STD_LOGIC;
@@ -108,9 +110,7 @@ component dc_rx_chan_dpr
 		 tcwf_data_val : OUT STD_LOGIC;
 		 tcwf_ef : OUT STD_LOGIC;
 		 rx_time_lat : OUT STD_LOGIC;
-		 hl_edge : OUT STD_LOGIC;
-		 lh_edge : OUT STD_LOGIC;
-		 rxd : OUT STD_LOGIC;
+		 msg_rd : OUT STD_LOGIC;
 		 data : OUT STD_LOGIC_VECTOR(7 downto 0);
 		 rx_addr : OUT STD_LOGIC_VECTOR(15 downto 0);
 		 rx_datain : OUT STD_LOGIC_VECTOR(7 downto 0);
@@ -295,7 +295,7 @@ PORT MAP(CLK20 => CLK20,
 		 rx_dpr_radr => rx_dpr_radr,
 		 rx_we => rx_we,
 		 rx_pack_rcvd => rx_pack_rcvd,
-		 rx_busy => rx_busy,
+		 com_reset_rcvd => com_reset_rcvd,
 		 rx_dpr_aff => rx_dpr_aff_ALTERA_SYNTHESIZED,
 		 my_adr => SYNTHESIZED_WIRE_38,
 		 stf_rcvd => SYNTHESIZED_WIRE_41,
@@ -307,6 +307,7 @@ PORT MAP(CLK20 => CLK20,
 		 tcal_rcvd => SYNTHESIZED_WIRE_43,
 		 idreq_rcvd => SYNTHESIZED_WIRE_35,
 		 idle_rcvd => SYNTHESIZED_WIRE_34,
+		 msg_rcvd => msg_rcvd,
 		 msg_err => SYNTHESIZED_WIRE_36,
 		 ctrl_stb => SYNTHESIZED_WIRE_28,
 		 ctrl_err => SYNTHESIZED_WIRE_26,
@@ -314,6 +315,7 @@ PORT MAP(CLK20 => CLK20,
 		 pulse_rcvd => SYNTHESIZED_WIRE_39,
 		 tcwf_ef => SYNTHESIZED_WIRE_18,
 		 rx_time_lat => SYNTHESIZED_WIRE_21,
+		 msg_rd => msg_rd,
 		 rx_addr => rx_addr,
 		 rx_datain => rx_datain,
 		 rx_error => rx_error,

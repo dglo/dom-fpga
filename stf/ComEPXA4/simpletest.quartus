@@ -13,6 +13,7 @@ SOFTWARE_SETTINGS_LIST
 }
 FILES
 {
+	AHDL_FILE = ..\..\common\com\Rx_chan\and16b.tdf;
 	AHDL_FILE = ..\..\common\com\DCREV_DPR.tdf;
 	AHDL_FILE = ..\..\common\com\Tcal\DCOM_tcal_timer.tdf;
 	AHDL_FILE = ..\..\common\com\DCC_DPR.tdf;
