@@ -137,6 +137,8 @@ ENTITY simpletest IS
 		FL_TDO				: IN STD_LOGIC;
 		-- A_nB switch
 		A_nB				: IN STD_LOGIC;
+		-- CPDL FPGA interface    currently used to show FPGA is confugured
+		PDL_FPGA_D			: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
 		-- Test connector	THERE IS NO 11   I don't know why
 		PGM				: OUT STD_LOGIC_VECTOR (15 downto 0)
 	);
@@ -347,6 +349,8 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL com_aval			: STD_LOGIC;
 	SIGNAL rs485_not_dac	: STD_LOGIC;
 	
+	SIGNAL systime			: STD_LOGIC_VECTOR (47 DOWNTO 0);
+	
 	COMPONENT ROC
 		PORT (
 			CLK			: IN STD_LOGIC;
@@ -532,6 +536,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			hitcounter_m	: IN	STD_LOGIC_VECTOR(31 downto 0);
 			hitcounter_o_ff	: IN	STD_LOGIC_VECTOR(31 downto 0);
 			hitcounter_m_ff	: IN	STD_LOGIC_VECTOR(31 downto 0);
+			systime			: IN	STD_LOGIC_VECTOR(47 DOWNTO 0);
 			-- COM ADC RX interface
 			com_adc_wdata		: OUT STD_LOGIC_VECTOR (15 downto 0);
 			com_adc_rdata		: IN STD_LOGIC_VECTOR (15 downto 0);
@@ -899,6 +904,14 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			msg_ct_q :  OUT  STD_LOGIC_VECTOR(7 downto 0);
 			rev :  OUT  STD_LOGIC_VECTOR(15 downto 0);
 			rx_fq :  OUT  STD_LOGIC_VECTOR(7 downto 0)
+		);
+	END COMPONENT;
+	
+	COMPONENT timer
+		PORT (
+			CLK     : IN  STD_LOGIC;
+			RST     : IN  STD_LOGIC;
+			systime : OUT STD_LOGIC_VECTOR (47 DOWNTO 0)
 		);
 	END COMPONENT;
 
@@ -1283,6 +1296,7 @@ BEGIN
 			hitcounter_m	=> hitcounter_m,
 			hitcounter_o_ff	=> hitcounter_o_ff,
 			hitcounter_m_ff	=> hitcounter_m_ff,
+			systime			=> systime,
 			-- COM ADC RX interface
 			com_adc_wdata		=> com_adc_wdata,
 			com_adc_rdata		=> com_adc_rdata,
@@ -1677,6 +1691,12 @@ BEGIN
 			rx_fq		=> com_rx_fifo
 		);
 	
+	timer_inst : timer
+		PORT MAP (
+			CLK		=> CLK40,
+			RST		=> RST,
+			systime	=> systime
+		);
 	
 	
 	-- PGM(15 downto 12) <= (others=>'0');
@@ -1687,6 +1707,9 @@ BEGIN
 	PGM(11) <= 'Z';
 	-- PGM(10 downto 8) <= (others=>'0');
 	PGM(7 downto 0) <= TC;
+	
+	-- indicate FPGA is configured
+	PDL_FPGA_D	<= "01010101";
 	
 	process(CLK20)
 		variable CNT	: STD_LOGIC_VECTOR(2 downto 0);

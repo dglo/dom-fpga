@@ -13,6 +13,7 @@ SOFTWARE_SETTINGS_LIST
 }
 FILES
 {
+	VHDL_FILE = ..\common\timer.vhd;
 	AHDL_FILE = ..\..\common\com\Rx_chan\edges\ONE_DET.tdf;
 	INCLUDE_FILE = ..\..\common\com\Rx_chan\edges\ONE_DET.inc;
 	AHDL_FILE = ..\..\common\com\Rx_chan\edges\adc_to_digital.tdf;

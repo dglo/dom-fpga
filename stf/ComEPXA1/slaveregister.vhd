@@ -36,6 +36,7 @@ ENTITY slaveregister IS
 		hitcounter_m	: IN	STD_LOGIC_VECTOR(31 downto 0);
 		hitcounter_o_ff	: IN	STD_LOGIC_VECTOR(31 downto 0);
 		hitcounter_m_ff	: IN	STD_LOGIC_VECTOR(31 downto 0);
+		systime			: IN	STD_LOGIC_VECTOR(47 DOWNTO 0);
 		-- COM ADC RX interface
 		com_adc_wdata		: OUT STD_LOGIC_VECTOR (15 downto 0);
 		com_adc_rdata		: IN STD_LOGIC_VECTOR (15 downto 0);
@@ -80,6 +81,13 @@ ARCHITECTURE arch_slaveregister OF slaveregister IS
 		);
 	END COMPONENT;
 	
+	--
+	SIGNAL command_0_local	: STD_LOGIC_VECTOR (31 DOWNTO 0);
+	SIGNAL command_1_local	: STD_LOGIC_VECTOR (31 DOWNTO 0);
+	SIGNAL command_2_local	: STD_LOGIC_VECTOR (31 DOWNTO 0);
+	SIGNAL command_3_local	: STD_LOGIC_VECTOR (31 DOWNTO 0);
+	SIGNAL com_ctrl_local	: STD_LOGIC_VECTOR (31 DOWNTO 0);
+	
 BEGIN
 	reg_wait_sig <= '1';
 
@@ -118,16 +126,122 @@ BEGIN
 								reg_rdata(31 downto 16) <= (others=>'0');
 							END IF;
 						WHEN "0001" =>	-- register
-							IF reg_write = '1' THEN
-								registers(CONV_INTEGER(reg_address(5 downto 2))) <= reg_wdata;
-							ELSE
-								reg_rdata <= registers(CONV_INTEGER(reg_address(5 downto 2)));
-							END IF;
+							CASE reg_address(6 downto 2) IS
+								WHEN "00000" =>	-- command 0
+									IF reg_write = '1' THEN
+										command_0_local <= reg_wdata;
+									ELSE
+										reg_rdata <= command_0_local;
+									END IF;
+								WHEN "00001" =>	-- response 0
+									IF reg_write = '1' THEN
+									ELSE
+										reg_rdata <= response_0;
+									END IF;
+								WHEN "00010" =>	-- command 1
+									IF reg_write = '1' THEN
+										command_1_local <= reg_wdata;
+									ELSE
+										reg_rdata <= command_1_local;
+									END IF;
+								WHEN "00011" =>	-- response 1
+									IF reg_write = '1' THEN
+									ELSE
+										reg_rdata <= response_1;
+									END IF;
+								WHEN "00100" =>	-- hitcounter SPE
+									IF reg_write = '1' THEN
+									ELSE
+										reg_rdata <= hitcounter_o;
+									END IF;
+								WHEN "00101" =>	-- hitcounter MPE
+									IF reg_write = '1' THEN
+									ELSE
+										reg_rdata <= hitcounter_m;
+									END IF;
+								WHEN "00110" =>	-- command 2
+									IF reg_write = '1' THEN
+										command_2_local <= reg_wdata;
+									ELSE
+										reg_rdata <= command_2_local;
+									END IF;
+								WHEN "00111" =>	-- response 2
+									IF reg_write = '1' THEN
+									ELSE
+										reg_rdata <= response_2;
+									END IF;
+								WHEN "01000" =>	-- hitcounter SPE FF
+									IF reg_write = '1' THEN
+									ELSE
+										reg_rdata <= hitcounter_o_ff;
+									END IF;
+								WHEN "01001" =>	-- hitcounter MPE FF
+									IF reg_write = '1' THEN
+									ELSE
+										reg_rdata <= hitcounter_m_ff;
+									END IF;
+								WHEN "01010" =>	-- command 3
+									IF reg_write = '1' THEN
+										command_3_local <= reg_wdata;
+									ELSE
+										reg_rdata <= command_3_local;
+									END IF;
+								WHEN "01011" =>	-- response 3
+									IF reg_write = '1' THEN
+									ELSE
+										reg_rdata <= response_3;
+									END IF;
+								WHEN "01100" =>	-- com control
+									IF reg_write = '1' THEN
+										com_ctrl_local <= reg_wdata;
+									ELSE
+										reg_rdata <= com_ctrl_local;
+									END IF;
+								WHEN "01101" => -- com status
+									IF reg_write = '1' THEN
+									ELSE
+										reg_rdata <= com_status;
+									END IF;
+								WHEN "01110" =>	-- com TX data
+									IF reg_write = '1' THEN
+										com_tx_data <= reg_wdata;
+									ELSE
+										reg_rdata <= (OTHERS=>'0');
+									END IF;
+								WHEN "01111" =>	-- com RX data
+									IF reg_write = '1' THEN
+									ELSE
+										reg_rdata <= com_rx_data;
+									END IF;
+								WHEN "10000" =>	-- time lower 32 bit
+									IF reg_write = '1' THEN
+									ELSE
+										reg_rdata <= systime (31 DOWNTO 0);
+									END IF;
+								WHEN "10001" =>	-- time upper 16 bit
+									IF reg_write = '1' THEN
+									ELSE
+										reg_rdata (15 DOWNTO 0) <= systime (47 DOWNTO 32);
+										reg_rdata (31 DOWNTO 16) <= (OTHERS=>'0');
+									END IF;
+								WHEN OTHERS =>
+									IF reg_write = '1' THEN
+									ELSE
+										reg_rdata <= (OTHERS=>'0');
+									END IF;
+							END CASE;
 							
-							IF reg_address(5 downto 2)="1110" AND reg_write = '1' THEN
+							--IF reg_write = '1' THEN
+							--	registers(CONV_INTEGER(reg_address(5 downto 2))) <= reg_wdata;
+							--ELSE
+							--	reg_rdata <= registers(CONV_INTEGER(reg_address(5 downto 2)));
+							--END IF;
+							
+							-- kalle communications fifo interface
+							IF reg_address(6 downto 2)="01110" AND reg_write = '1' THEN
 								tx_fifo_wr	<= '1';
 							END IF;
-							IF reg_address(5 downto 2)="1111" AND reg_write = '0' THEN
+							IF reg_address(6 downto 2)="01111" AND reg_write = '0' THEN
 								rx_fifo_rd	<= '1';
 							END IF;
 						WHEN "0010" =>	-- com ADC
@@ -163,27 +277,27 @@ BEGIN
 					END CASE;
 				END IF;	-- reg_address(19 downto 18) = "10"
 			ELSE	-- reg_enable='0'
-				registers(1)(31 downto 0)	<= response_0;
-				registers(3)(31 downto 0)	<= response_1;
-				registers(4)(31 downto 0)	<= hitcounter_o;
-				registers(5)(31 downto 0)	<= hitcounter_m;
-				registers(7)(31 downto 0)	<= response_2;
-				registers(8)(31 downto 0)	<= hitcounter_o_ff;
-				registers(9)(31 downto 0)	<= hitcounter_m_ff;
-				registers(11)(31 downto 0)	<= response_3;
-				registers(13)(31 downto 0)	<= com_status;
-				registers(15)(31 downto 0)	<= com_rx_data;
+			--	registers(1)(31 downto 0)	<= response_0;
+			--	registers(3)(31 downto 0)	<= response_1;
+			--	registers(4)(31 downto 0)	<= hitcounter_o;
+			--	registers(5)(31 downto 0)	<= hitcounter_m;
+			--	registers(7)(31 downto 0)	<= response_2;
+			--	registers(8)(31 downto 0)	<= hitcounter_o_ff;
+			--	registers(9)(31 downto 0)	<= hitcounter_m_ff;
+			--	registers(11)(31 downto 0)	<= response_3;
+			--	registers(13)(31 downto 0)	<= com_status;
+			--	registers(15)(31 downto 0)	<= com_rx_data;
 			END IF;	-- reg_enable
 		END IF;
 	END PROCESS;
 	
-	command_0	<= registers(0)(31 downto 0);
-	command_1	<= registers(2)(31 downto 0);
-	command_2	<= registers(6)(31 downto 0);
-	command_3	<= registers(10)(31 downto 0);
-	com_ctrl	<= registers(12)(31 downto 0);
-	com_tx_data	<= registers(14)(31 downto 0);
-	TC <= registers(CONV_INTEGER(15))(7 downto 0);
+	command_0	<= command_0_local; --registers(0)(31 downto 0);
+	command_1	<= command_1_local; --registers(2)(31 downto 0);
+	command_2	<= command_2_local; --registers(6)(31 downto 0);
+	command_3	<= command_3_local; --registers(10)(31 downto 0);
+	com_ctrl	<= com_ctrl_local; --registers(12)(31 downto 0);
+	-- com_tx_data	<= registers(14)(31 downto 0);
+	-- TC <= registers(CONV_INTEGER(15))(7 downto 0);
 	
 	com_adc_write_en <= '1' WHEN reg_write='1' AND reg_enable = '1' AND reg_address(15 downto 12)="0010" ELSE '0';
 	flash_adc_write_en <= '1' WHEN reg_write='1' AND reg_enable = '1' AND reg_address(15 downto 12)="0011" ELSE '0';
