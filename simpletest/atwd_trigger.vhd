@@ -8,6 +8,7 @@ USE IEEE.std_logic_arith.all;
 USE IEEE.std_logic_unsigned.all;
 
 
+
 ENTITY atwd_trigger IS
 	PORT (
 		CLK20		: IN STD_LOGIC;
@@ -63,6 +64,10 @@ ARCHITECTURE arch_atwd_trigger OF atwd_trigger IS
 	
 	SIGNAL rst_trg		: STD_LOGIC;
 	SIGNAL force		: STD_LOGIC;
+	
+	SIGNAL enable_disc_pos_edge			: STD_LOGIC;
+	SIGNAL enable_disc_old				: STD_LOGIC;
+	SIGNAL enable_disc_sig				: STD_LOGIC;
 			
 BEGIN
 	
@@ -89,11 +94,13 @@ BEGIN
 			TriggerComplete_in_sync <= TriggerComplete_in_0;
 			TriggerComplete_in_0	<= TriggerComplete_in;
 			enable_old				<= enable;
+			enable_disc_old				<= enable_disc;
 		END IF;
 	END PROCESS;
 
 	TriggerComplete_out	<= TriggerComplete_in_sync;
 	enable_pos_edge		<= '1' WHEN enable='1' AND enable_old='0' ELSE '0';
+	enable_disc_pos_edge		<= '1' WHEN enable_disc='1' AND enable_disc_old='0' ELSE '0';
 	
 	
 	----------------------
@@ -113,7 +120,7 @@ BEGIN
 	
 	disc <= discFF;
 	
-	enable_sig	<= NOT busy AND enable_disc;
+	enable_sig	<= NOT busy AND enable_disc_sig;
 	set_sig		<= triggered
 				OR (force AND NOT busy);
 	force	<= enable_pos_edge;
@@ -151,5 +158,18 @@ BEGIN
 	END PROCESS;
 	ATWDTrigger	<= ATWDTrigger_sig;
 	triggered	<= ATWDTrigger_sig;
+	
+	oneshot : PROCESS(CLK,RST)
+	BEGIN
+		IF RST='1' THEN
+			enable_disc_sig	<= '0';
+		ELSIF CLK'EVENT AND CLK='1' THEN
+			IF enable_disc_pos_edge='1' THEN
+				enable_disc_sig	<= '1';
+			ELSIF triggered='1' THEN
+				enable_disc_sig	<= '0';
+			END IF;
+		END IF;
+	END PROCESS;
 	
 END;
