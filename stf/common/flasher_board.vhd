@@ -50,9 +50,9 @@ BEGIN
 	fl_board_read(0)	<= FL_ATTN;
 	FL_PRE_TRIG		<= fl_board(2);
 	
-	FL_TMS			<= fl_board(4);
-	FL_TCK			<= fl_board(5);
-	FL_TDI			<= fl_board(6);
+	FL_TMS			<= fl_board(4) WHEN fl_board(7)='1' ELSE 'Z';
+	FL_TCK			<= fl_board(5) WHEN fl_board(7)='1' ELSE 'Z';
+	FL_TDI			<= fl_board(6) WHEN fl_board(7)='1' ELSE 'Z';
 	--FL_TDO			<= fl_board(7);
 	fl_board_read(1)	<= FL_TDO;
 END flasher_board_arch;
