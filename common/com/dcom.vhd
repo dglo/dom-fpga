@@ -128,6 +128,7 @@ component dc_ctrl
 		 drbt_gnt : OUT STD_LOGIC;
 		 rec_ctrl : OUT STD_LOGIC;
 		 rec_data : OUT STD_LOGIC;
+		 rec_ena : OUT STD_LOGIC;
 		 send_ctrl : OUT STD_LOGIC;
 		 send_data : OUT STD_LOGIC;
 		 send_id : OUT STD_LOGIC;
@@ -141,6 +142,7 @@ end component;
 
 component dc_rx_chan_04
 	PORT(CCLK : IN STD_LOGIC;
+		 rec_ena : IN STD_LOGIC;
 		 rec_data : IN STD_LOGIC;
 		 rec_ctrl : IN STD_LOGIC;
 		 send_data : IN STD_LOGIC;
@@ -253,7 +255,7 @@ end component;
 
 signal	GND :  STD_LOGIC;
 signal	SYNTHESIZED_WIRE_0 :  STD_LOGIC;
-signal	altera_synthesized_wire_42 :  STD_LOGIC;
+signal	altera_synthesized_wire_43 :  STD_LOGIC;
 signal	SYNTHESIZED_WIRE_2 :  STD_LOGIC;
 signal	SYNTHESIZED_WIRE_3 :  STD_LOGIC;
 signal	SYNTHESIZED_WIRE_4 :  STD_LOGIC;
@@ -262,7 +264,7 @@ signal	SYNTHESIZED_WIRE_6 :  STD_LOGIC;
 signal	SYNTHESIZED_WIRE_7 :  STD_LOGIC;
 signal	SYNTHESIZED_WIRE_8 :  STD_LOGIC;
 signal	SYNTHESIZED_WIRE_9 :  STD_LOGIC;
-signal	altera_synthesized_wire_43 :  STD_LOGIC;
+signal	altera_synthesized_wire_44 :  STD_LOGIC;
 signal	SYNTHESIZED_WIRE_11 :  STD_LOGIC;
 signal	SYNTHESIZED_WIRE_12 :  STD_LOGIC;
 signal	SYNTHESIZED_WIRE_13 :  STD_LOGIC;
@@ -272,27 +274,28 @@ signal	SYNTHESIZED_WIRE_16 :  STD_LOGIC;
 signal	SYNTHESIZED_WIRE_17 :  STD_LOGIC;
 signal	SYNTHESIZED_WIRE_18 :  STD_LOGIC;
 signal	SYNTHESIZED_WIRE_19 :  STD_LOGIC;
-signal	altera_synthesized_wire_44 :  STD_LOGIC;
+signal	SYNTHESIZED_WIRE_20 :  STD_LOGIC;
 signal	altera_synthesized_wire_45 :  STD_LOGIC;
-signal	SYNTHESIZED_WIRE_22 :  STD_LOGIC;
+signal	altera_synthesized_wire_46 :  STD_LOGIC;
 signal	SYNTHESIZED_WIRE_23 :  STD_LOGIC;
-signal	SYNTHESIZED_WIRE_26 :  STD_LOGIC;
+signal	SYNTHESIZED_WIRE_24 :  STD_LOGIC;
 signal	SYNTHESIZED_WIRE_27 :  STD_LOGIC;
 signal	SYNTHESIZED_WIRE_28 :  STD_LOGIC;
 signal	SYNTHESIZED_WIRE_29 :  STD_LOGIC;
-signal	SYNTHESIZED_WIRE_32 :  STD_LOGIC;
+signal	SYNTHESIZED_WIRE_30 :  STD_LOGIC;
 signal	SYNTHESIZED_WIRE_33 :  STD_LOGIC;
 signal	SYNTHESIZED_WIRE_34 :  STD_LOGIC;
 signal	SYNTHESIZED_WIRE_35 :  STD_LOGIC;
 signal	SYNTHESIZED_WIRE_36 :  STD_LOGIC;
 signal	SYNTHESIZED_WIRE_37 :  STD_LOGIC;
 signal	SYNTHESIZED_WIRE_38 :  STD_LOGIC;
-signal	SYNTHESIZED_WIRE_39 :  STD_LOGIC_VECTOR(15 downto 0);
-signal	SYNTHESIZED_WIRE_40 :  STD_LOGIC;
+signal	SYNTHESIZED_WIRE_39 :  STD_LOGIC;
+signal	SYNTHESIZED_WIRE_40 :  STD_LOGIC_VECTOR(15 downto 0);
+signal	SYNTHESIZED_WIRE_41 :  STD_LOGIC;
 
 
 BEGIN 
-msg_sent <= altera_synthesized_wire_43;
+msg_sent <= altera_synthesized_wire_44;
 txrdef <= SYNTHESIZED_WIRE_17;
 ctrl_sent <= SYNTHESIZED_WIRE_2;
 rxwraff <= SYNTHESIZED_WIRE_13;
@@ -301,7 +304,7 @@ eof_rcvd <= SYNTHESIZED_WIRE_4;
 bfstat_rcvd <= SYNTHESIZED_WIRE_0;
 drreq_rcvd <= SYNTHESIZED_WIRE_3;
 sysres_rcvd <= SYNTHESIZED_WIRE_15;
-comres_rcvd <= altera_synthesized_wire_42;
+comres_rcvd <= altera_synthesized_wire_43;
 msg_err <= SYNTHESIZED_WIRE_9;
 tcal_rcvd <= SYNTHESIZED_WIRE_16;
 pulse_rcvd <= SYNTHESIZED_WIRE_11;
@@ -313,7 +316,7 @@ idreq_rcvd <= SYNTHESIZED_WIRE_7;
 b2v_DC_CTRL : dc_ctrl
 PORT MAP(CLK => CCLK,
 		 bfstat_rcvd => SYNTHESIZED_WIRE_0,
-		 comres_rcvd => altera_synthesized_wire_42,
+		 comres_rcvd => altera_synthesized_wire_43,
 		 ctrl_sent => SYNTHESIZED_WIRE_2,
 		 drbt_req => drbt_req,
 		 drreq_rcvd => SYNTHESIZED_WIRE_3,
@@ -323,7 +326,7 @@ PORT MAP(CLK => CCLK,
 		 idreq_rcvd => SYNTHESIZED_WIRE_7,
 		 line_quiet => SYNTHESIZED_WIRE_8,
 		 msg_err => SYNTHESIZED_WIRE_9,
-		 msg_sent => altera_synthesized_wire_43,
+		 msg_sent => altera_synthesized_wire_44,
 		 pulse_rcvd => SYNTHESIZED_WIRE_11,
 		 pulse_sent => SYNTHESIZED_WIRE_12,
 		 reset => reset,
@@ -333,36 +336,38 @@ PORT MAP(CLK => CCLK,
 		 tcal_rcvd => SYNTHESIZED_WIRE_16,
 		 time_bit_18 => systime(18),
 		 txrdef => SYNTHESIZED_WIRE_17,
-		 cmd_snd0 => SYNTHESIZED_WIRE_26,
-		 cmd_snd1 => SYNTHESIZED_WIRE_27,
-		 cmd_snd2 => SYNTHESIZED_WIRE_28,
-		 cmd_snd3 => SYNTHESIZED_WIRE_29,
+		 cmd_snd0 => SYNTHESIZED_WIRE_27,
+		 cmd_snd1 => SYNTHESIZED_WIRE_28,
+		 cmd_snd2 => SYNTHESIZED_WIRE_29,
+		 cmd_snd3 => SYNTHESIZED_WIRE_30,
 		 com_aval => com_aval,
 		 drbt_gnt => drbt_gnt,
-		 rec_ctrl => SYNTHESIZED_WIRE_19,
-		 rec_data => SYNTHESIZED_WIRE_18,
-		 send_ctrl => altera_synthesized_wire_45,
-		 send_data => altera_synthesized_wire_44,
-		 send_id => SYNTHESIZED_WIRE_32,
+		 rec_ctrl => SYNTHESIZED_WIRE_20,
+		 rec_data => SYNTHESIZED_WIRE_19,
+		 rec_ena => SYNTHESIZED_WIRE_18,
+		 send_ctrl => altera_synthesized_wire_46,
+		 send_data => altera_synthesized_wire_45,
+		 send_id => SYNTHESIZED_WIRE_33,
 		 sys_res => sys_res,
-		 tcal_data => SYNTHESIZED_WIRE_33,
-		 tcal_prec => SYNTHESIZED_WIRE_22,
-		 tcal_psnd => SYNTHESIZED_WIRE_40);
+		 tcal_data => SYNTHESIZED_WIRE_34,
+		 tcal_prec => SYNTHESIZED_WIRE_23,
+		 tcal_psnd => SYNTHESIZED_WIRE_41);
 
 b2v_DC_Rx_chan_04 : dc_rx_chan_04
 PORT MAP(CCLK => CCLK,
-		 rec_data => SYNTHESIZED_WIRE_18,
-		 rec_ctrl => SYNTHESIZED_WIRE_19,
-		 send_data => altera_synthesized_wire_44,
-		 send_ctrl => altera_synthesized_wire_45,
-		 tcal_prec => SYNTHESIZED_WIRE_22,
+		 rec_ena => SYNTHESIZED_WIRE_18,
+		 rec_data => SYNTHESIZED_WIRE_19,
+		 rec_ctrl => SYNTHESIZED_WIRE_20,
+		 send_data => altera_synthesized_wire_45,
+		 send_ctrl => altera_synthesized_wire_46,
+		 tcal_prec => SYNTHESIZED_WIRE_23,
 		 rx_rdreq => rx_rdreq,
 		 msg_rd => msg_rd,
 		 dom_A_sel_L => dom_A_sel_L,
 		 dom_B_sel_L => dom_B_sel_L,
-		 tcwf_rd_next => SYNTHESIZED_WIRE_23,
+		 tcwf_rd_next => SYNTHESIZED_WIRE_24,
 		 reset => reset,
-		 msg_sent => altera_synthesized_wire_43,
+		 msg_sent => altera_synthesized_wire_44,
 		 cal_thr => cal_thr,
 		 fc_adc => fc_adc,
 		 low_thr => low_thr,
@@ -378,7 +383,7 @@ PORT MAP(CCLK => CCLK,
 		 bfstat_rcvd => SYNTHESIZED_WIRE_0,
 		 drreq_rcvd => SYNTHESIZED_WIRE_3,
 		 sysres_rcvd => SYNTHESIZED_WIRE_15,
-		 comres_rcvd => altera_synthesized_wire_42,
+		 comres_rcvd => altera_synthesized_wire_43,
 		 tcal_rcvd => SYNTHESIZED_WIRE_16,
 		 idreq_rcvd => SYNTHESIZED_WIRE_7,
 		 idle_rcvd => SYNTHESIZED_WIRE_6,
@@ -388,42 +393,42 @@ PORT MAP(CCLK => CCLK,
 		 ctrl_err => ctrl_err,
 		 data_stb => data_stb,
 		 fifo_msg => fifo_msg,
-		 rx_time_lat => SYNTHESIZED_WIRE_37,
+		 rx_time_lat => SYNTHESIZED_WIRE_38,
 		 max_ena => max_ena,
 		 min_ena => min_ena,
-		 tcwf_ef => SYNTHESIZED_WIRE_35,
+		 tcwf_ef => SYNTHESIZED_WIRE_36,
 		 find_dudt => find_dudt,
 		 pulse_rcvd => SYNTHESIZED_WIRE_11,
 		 data => data,
 		 msg_ct_q => msg_ct_q,
 		 rx_fq => rx_fq,
-		 tcwf_data => SYNTHESIZED_WIRE_39);
+		 tcwf_data => SYNTHESIZED_WIRE_40);
 
 b2v_DC_Tx_chan_04 : dc_tx_chan_04
 PORT MAP(reset => reset,
-		 comres_rcvd => altera_synthesized_wire_42,
+		 comres_rcvd => altera_synthesized_wire_43,
 		 CCLK => CCLK,
 		 tx_wrreq => tx_wrreq,
-		 cmd_snd0 => SYNTHESIZED_WIRE_26,
-		 cmd_snd1 => SYNTHESIZED_WIRE_27,
-		 cmd_snd2 => SYNTHESIZED_WIRE_28,
-		 cmd_snd3 => SYNTHESIZED_WIRE_29,
+		 cmd_snd0 => SYNTHESIZED_WIRE_27,
+		 cmd_snd1 => SYNTHESIZED_WIRE_28,
+		 cmd_snd2 => SYNTHESIZED_WIRE_29,
+		 cmd_snd3 => SYNTHESIZED_WIRE_30,
 		 dom_B_sel_L => dom_B_sel_L,
-		 send_ctrl => altera_synthesized_wire_45,
-		 send_data => altera_synthesized_wire_44,
-		 send_id => SYNTHESIZED_WIRE_32,
-		 tcal_data => SYNTHESIZED_WIRE_33,
+		 send_ctrl => altera_synthesized_wire_46,
+		 send_data => altera_synthesized_wire_45,
+		 send_id => SYNTHESIZED_WIRE_33,
+		 tcal_data => SYNTHESIZED_WIRE_34,
 		 rs485_not_dac => rs485_not_dac,
-		 h_pulse => SYNTHESIZED_WIRE_34,
-		 tcwf_ef => SYNTHESIZED_WIRE_35,
-		 l_pulse => SYNTHESIZED_WIRE_36,
-		 rx_time_lat => SYNTHESIZED_WIRE_37,
-		 tx_time_lat => SYNTHESIZED_WIRE_38,
+		 h_pulse => SYNTHESIZED_WIRE_35,
+		 tcwf_ef => SYNTHESIZED_WIRE_36,
+		 l_pulse => SYNTHESIZED_WIRE_37,
+		 rx_time_lat => SYNTHESIZED_WIRE_38,
+		 tx_time_lat => SYNTHESIZED_WIRE_39,
 		 id_stb_L => id_stb_L,
 		 id_stb_H => id_stb_H,
 		 id => id,
 		 systime => systime,
-		 tcwf_data => SYNTHESIZED_WIRE_39,
+		 tcwf_data => SYNTHESIZED_WIRE_40,
 		 tx_fd => tx_fd,
 		 dac_clk => dac_clk,
 		 dac_slp => dac_slp,
@@ -434,20 +439,20 @@ PORT MAP(reset => reset,
 		 txwraff => txwraff,
 		 txrdef => SYNTHESIZED_WIRE_17,
 		 last_byte => last_byte,
-		 msg_sent => altera_synthesized_wire_43,
+		 msg_sent => altera_synthesized_wire_44,
 		 ctrl_sent => SYNTHESIZED_WIRE_2,
-		 tcwf_rd_next => SYNTHESIZED_WIRE_23,
+		 tcwf_rd_next => SYNTHESIZED_WIRE_24,
 		 id_data_avail => SYNTHESIZED_WIRE_5,
 		 dac_db => dac_db);
 
 b2v_inst1 : tcal_timer
 PORT MAP(CCLK => CCLK,
-		 tcal_psnd => SYNTHESIZED_WIRE_40,
+		 tcal_psnd => SYNTHESIZED_WIRE_41,
 		 line_quiet => SYNTHESIZED_WIRE_8,
-		 h_pulse => SYNTHESIZED_WIRE_34,
-		 l_pulse => SYNTHESIZED_WIRE_36,
+		 h_pulse => SYNTHESIZED_WIRE_35,
+		 l_pulse => SYNTHESIZED_WIRE_37,
 		 pulse_sent => SYNTHESIZED_WIRE_12,
-		 tx_time_lat => SYNTHESIZED_WIRE_38);
+		 tx_time_lat => SYNTHESIZED_WIRE_39);
 
 b2v_inst5 : dcrev
 PORT MAP(		 result => rev);
