@@ -4,4 +4,4 @@ Product=Quartus II
 Authorization Method=Guard
 Host ID=T000044226
 Part Number=EP20K100EFC324-2
-Logic Cell Usage=1139
+Logic Cell Usage=1167

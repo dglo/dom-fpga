@@ -44,7 +44,6 @@ ENTITY dcom IS
 		fc_adc :  IN  STD_LOGIC_VECTOR(9 downto 0);
 		id :  IN  STD_LOGIC_VECTOR(47 downto 0);
 		systime :  IN  STD_LOGIC_VECTOR(47 downto 0);
-		tcal_thr :  IN  STD_LOGIC_VECTOR(9 downto 0);
 		tx_fd :  IN  STD_LOGIC_VECTOR(7 downto 0);
 		txd :  OUT  STD_LOGIC;
 		last_byte :  OUT  STD_LOGIC;
@@ -156,8 +155,6 @@ component dc_rx_chan_04
 		 reset : IN STD_LOGIC;
 		 msg_sent : IN STD_LOGIC;
 		 fc_adc : IN STD_LOGIC_VECTOR(9 downto 0);
-		 low_thr : IN STD_LOGIC_VECTOR(7 downto 0);
-		 tcal_thr : IN STD_LOGIC_VECTOR(9 downto 0);
 		 hl_edge : OUT STD_LOGIC;
 		 lh_edge : OUT STD_LOGIC;
 		 rxd : OUT STD_LOGIC;
@@ -182,10 +179,10 @@ component dc_rx_chan_04
 		 fifo_msg : OUT STD_LOGIC;
 		 rx_time_lat : OUT STD_LOGIC;
 		 max_ena : OUT STD_LOGIC;
-		 tcwf_data_val : OUT STD_LOGIC;
 		 min_ena : OUT STD_LOGIC;
-		 tcwf_ef : OUT STD_LOGIC;
+		 tcwf_data_val : OUT STD_LOGIC;
 		 find_dudt : OUT STD_LOGIC;
+		 tcwf_ef : OUT STD_LOGIC;
 		 pulse_rcvd : OUT STD_LOGIC;
 		 data : OUT STD_LOGIC_VECTOR(7 downto 0);
 		 msg_ct_q : OUT STD_LOGIC_VECTOR(7 downto 0);
@@ -372,7 +369,6 @@ PORT MAP(CCLK => CCLK,
 		 reset => reset,
 		 msg_sent => altera_synthesized_wire_45,
 		 fc_adc => fc_adc,
-		 tcal_thr => tcal_thr,
 		 hl_edge => hl_edge,
 		 lh_edge => lh_edge,
 		 rxd => rxd,
@@ -398,8 +394,8 @@ PORT MAP(CCLK => CCLK,
 		 rx_time_lat => SYNTHESIZED_WIRE_38,
 		 max_ena => max_ena,
 		 min_ena => min_ena,
-		 tcwf_ef => SYNTHESIZED_WIRE_36,
 		 find_dudt => find_dudt,
+		 tcwf_ef => SYNTHESIZED_WIRE_36,
 		 pulse_rcvd => SYNTHESIZED_WIRE_11,
 		 data => data,
 		 msg_ct_q => msg_ct_q,

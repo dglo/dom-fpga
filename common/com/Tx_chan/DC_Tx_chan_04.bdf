@@ -2244,8 +2244,8 @@ party's intellectual property, are provided herein.
 )
 (symbol
 	(rect 1240 -192 1448 -64)
-	(text "dac_rs_tab_rect_01" (rect 5 0 126 15)(font "Arial" ))
-	(text "inst11" (rect 8 109 45 124)(font "Arial" ))
+	(text "dac_rs_tab_trap_01" (rect 5 0 127 15)(font "Arial" ))
+	(text "inst13" (rect 8 109 45 124)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -2308,8 +2308,8 @@ party's intellectual property, are provided herein.
 )
 (symbol
 	(rect 1240 -336 1448 -208)
-	(text "dac_rs_tab_trap_01" (rect 5 0 127 15)(font "Arial" ))
-	(text "inst13" (rect 8 109 45 124)(font "Arial" ))
+	(text "dac_rs_tab_rect_01" (rect 5 0 126 15)(font "Arial" ))
+	(text "inst15" (rect 8 109 45 124)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -2525,7 +2525,6 @@ party's intellectual property, are provided herein.
 	(pt 16 520)
 )
 (connector
-	(text "<<__$DEF_ALIAS1311>>" (rect 104 719 258 734)(font "Arial" )(invisible))
 	(pt 96 736)
 	(pt 200 736)
 )
@@ -2538,7 +2537,6 @@ party's intellectual property, are provided herein.
 	(pt 32 576)
 )
 (connector
-	(text "<<__$DEF_ALIAS1289>>" (rect 104 567 258 582)(font "Arial" )(invisible))
 	(pt 96 584)
 	(pt 200 584)
 )
@@ -3282,7 +3280,7 @@ party's intellectual property, are provided herein.
 	(section (rect 0 48 368 72)(text "DESIGNER" (rect 2 0 71 15)(font "Arial" ))(text "Karl-Heinz Sulanke" (rect 56 2 236 25)(font "Arial" (font_size 12)))(border))
 	(section (rect 0 72 280 96)(text "NUMBER" (rect 2 0 59 15)(font "Arial" ))(text "1.00" (rect 56 1 91 20)(font "Arial" (font_size 10)))(border))
 	(section (rect 280 72 368 96)(text "REV" (rect 2 1 28 16)(font "Arial" ))(text "A" (rect 43 1 55 20)(font "Arial" (font_size 10)))(border))
-	(section (rect 0 96 240 120)(text "DATE" (rect 2 0 36 15)(font "Arial" ))(text "Tue Sep 09 08:39:00 2003" (rect 56 3 269 22)(font "Arial" (font_size 10)))(date)(border))
+	(section (rect 0 96 240 120)(text "DATE" (rect 2 0 36 15)(font "Arial" ))(text "Fri Sep 19 09:20:53 2003" (rect 56 3 261 22)(font "Arial" (font_size 10)))(date)(border))
 	(section (rect 240 96 310 120)(text "SHEET" (rect 2 0 46 15)(font "Arial" ))(text "1" (rect 55 5 64 24)(font "Arial" (font_size 10))))
 	(section (rect 310 96 368 120)(text "OF" (rect 10 0 27 15)(font "Arial" ))(text "1" (rect 34 4 43 23)(font "Arial" (font_size 10))))
 	(drawing

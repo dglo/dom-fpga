@@ -37,7 +37,7 @@ party's intellectual property, are provided herein.
 		(line (pt 64 24)(pt 48 24)(line_width 3))
 	)
 	(drawing
-		(text "9" (rect 41 18 47 32)(font "Arial" ))
+		(text "10" (rect 34 18 46 32)(font "Arial" ))
 		(text "16" (rect 53 26 65 40)(font "Arial" ))
 		(line (pt 16 16)(pt 48 16)(line_width 1))
 		(line (pt 48 16)(pt 48 32)(line_width 1))

@@ -1,6 +1,6 @@
 % C:\PROJECTS\ICECUBE\DOR\FPGA\DCOM_01\TCAL\RX_TCAL.tdf %
 % AHDL code created by Visual Software Solution's StateCAD 5.0 %
-% Thu Sep 11 08:32:15 2003 %
+% Fri Sep 19 09:45:09 2003 %
 
 % This AHDL code was generated using: %
 %  binary encoded state assignment with structured code format. %
@@ -9,8 +9,9 @@
 
 SUBDESIGN RX_TCAL(
 	CLK :	INPUT;
+	edge_end :	INPUT;
+	edge_start :	INPUT;
 	msg_sent :	INPUT;
-	pulse_det :	INPUT;
 	res :	INPUT;
 	tcal_prec :	INPUT;
 	tcwf_af :	INPUT;
@@ -30,15 +31,16 @@ SUBDESIGN RX_TCAL(
 VARIABLE
 	sreg : MACHINE OF BITS (SV0, SV1, SV2, SV3)
 		WITH STATES (
-			IDLE =	B"0100",
+			IDLE =	B"0101",
 			DAT_VALID =	B"0000",
-			EXP_HL =	B"0001",
-			FRDWR =	B"0010",
-			FWR =	B"0011",
-			LAST_DAT =	B"0101",
-			LAT_MVAL =	B"0110",
-			RD_NEXT =	B"0111",
-			RxTIME =	B"1000"
+			EXP_EDGE =	B"0001",
+			EXP_EXTREM =	B"0010",
+			FRDWR =	B"0011",
+			FWR =	B"0100",
+			LAST_DAT =	B"0110",
+			LAT_MVAL =	B"0111",
+			RD_NEXT =	B"1000",
+			RxTIME =	B"1001"
 		);
 
 	mean_lat :	DFF;
@@ -96,20 +98,30 @@ BEGIN
 				(pulse_rcvd,wfm_data_val,rx_time_lat,mean_lat,tcwf_ct_aclr,tcwf_aclr,
 					tcwf_rdreq,tcwf_wrreq)=(0,1,0,0,0,0,0,0);
 			END IF;
-		WHEN EXP_HL =>
-			IF ( pulse_det ) THEN 
+		WHEN EXP_EDGE =>
+			IF ( edge_start ) THEN 
+				sreg = EXP_EXTREM;
+				(pulse_rcvd,wfm_data_val,rx_time_lat,mean_lat,tcwf_ct_aclr,tcwf_aclr,
+					tcwf_rdreq,tcwf_wrreq)=(0,0,1,0,1,0,1,1);
+			ELSE
+				sreg = EXP_EDGE;
+				(pulse_rcvd,wfm_data_val,rx_time_lat,mean_lat,tcwf_ct_aclr,tcwf_aclr,
+					tcwf_rdreq,tcwf_wrreq)=(0,0,0,0,1,0,1,1);
+			END IF;
+		WHEN EXP_EXTREM =>
+			IF ( edge_end ) THEN 
 				sreg = RxTIME;
 				(pulse_rcvd,wfm_data_val,rx_time_lat,mean_lat,tcwf_ct_aclr,tcwf_aclr,
 					tcwf_rdreq,tcwf_wrreq)=(1,0,0,0,1,0,1,0);
 			ELSE
-				sreg = EXP_HL;
+				sreg = EXP_EXTREM;
 				(pulse_rcvd,wfm_data_val,rx_time_lat,mean_lat,tcwf_ct_aclr,tcwf_aclr,
 					tcwf_rdreq,tcwf_wrreq)=(0,0,1,0,1,0,1,1);
 			END IF;
 		WHEN FRDWR =>
-			sreg = EXP_HL;
+			sreg = EXP_EDGE;
 			(pulse_rcvd,wfm_data_val,rx_time_lat,mean_lat,tcwf_ct_aclr,tcwf_aclr,
-				tcwf_rdreq,tcwf_wrreq)=(0,0,1,0,1,0,1,1);
+				tcwf_rdreq,tcwf_wrreq)=(0,0,0,0,1,0,1,1);
 		WHEN FWR =>
 			IF ( tcwf_af ) THEN 
 				sreg = FRDWR;

@@ -46,11 +46,11 @@ del_15us.d		= (timer.q[]==DELAY_15us);		-- 15us delay
 
 tx_time_lat.d	= (timer.q[]==(DELAY_15us+2)) & tcal_psnd;
 
-h_pulse.d		= (timer.q[]==(DELAY_15us+2)) & tcal_psnd
-				# h_pulse.q & !(timer.q[]==(DELAY_15us+22));
-l_pulse.d		= (timer.q[]==(DELAY_15us+22)) & tcal_psnd
-				# l_pulse.q & !(timer.q[]==(DELAY_15us+42));
+h_pulse.d		= (timer.q[]==(DELAY_15us+2)) & tcal_psnd	-- 1us pulse (h+l)
+				# h_pulse.q & !(timer.q[]==(DELAY_15us+12));
+l_pulse.d		= (timer.q[]==(DELAY_15us+12)) & tcal_psnd
+				# l_pulse.q & !(timer.q[]==(DELAY_15us+22));
 				
-pulse_sent.d	= (timer.q[]==(DELAY_15us+62)) & tcal_psnd;	-- 1us later
+pulse_sent.d	= (timer.q[]==(DELAY_15us+42)) & tcal_psnd;	-- 1us later
 
 END;
