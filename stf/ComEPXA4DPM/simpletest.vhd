@@ -1875,7 +1875,7 @@ BEGIN
 			OneSPE		=> OneSPE,
 			LEDtrig		=> LEDtrig,
 			-- LC interface
-			LC_abort	=> atwd0_LC_abort,
+			LC_abort	=> atwd0_LC_abort AND enable_coinc_atwd,
 			LC_enable	=> enable_coinc_atwd,
 			-- stripe interface
 			wdata		=> atwd0_wdata,
@@ -1921,7 +1921,7 @@ BEGIN
 			OneSPE		=> OneSPE,
 			LEDtrig		=> LEDtrig,
 			-- LC interface
-			LC_abort	=> atwd1_LC_abort,
+			LC_abort	=> atwd1_LC_abort AND enable_coinc_atwd,
 			LC_enable	=> enable_coinc_atwd,
 			-- stripe interface
 			wdata		=> atwd1_wdata,
