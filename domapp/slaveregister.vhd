@@ -311,6 +311,38 @@ BEGIN
 					ELSE
 						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
 					END IF;
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0454") ) THEN	-- LC Cable Length Up
+					IF reg_write = '1' THEN
+						LC_ctrl_local.LC_cable_length_up(0)	<= CONV_INTEGER(reg_wdata(6 downto 0));
+						LC_ctrl_local.LC_cable_length_up(1)	<= CONV_INTEGER(reg_wdata(14 downto 8));
+						LC_ctrl_local.LC_cable_length_up(2)	<= CONV_INTEGER(reg_wdata(22 downto 16));
+						LC_ctrl_local.LC_cable_length_up(3)	<= CONV_INTEGER(reg_wdata(30 downto 24));
+					END IF;
+					IF READBACK=1 THEN
+						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+						reg_rdata(6 downto 0)	<= CONV_STD_LOGIC_VECTOR(LC_ctrl_local.LC_cable_length_up(0),7);
+						reg_rdata(14 downto 8)	<= CONV_STD_LOGIC_VECTOR(LC_ctrl_local.LC_cable_length_up(1),7);
+						reg_rdata(22 downto 16)	<= CONV_STD_LOGIC_VECTOR(LC_ctrl_local.LC_cable_length_up(2),7);
+						reg_rdata(30 downto 24)	<= CONV_STD_LOGIC_VECTOR(LC_ctrl_local.LC_cable_length_up(3),7);
+					ELSE
+						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+					END IF;
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0458") ) THEN	-- LC Cable Length Down
+					IF reg_write = '1' THEN
+						LC_ctrl_local.LC_cable_length_down(0)	<= CONV_INTEGER(reg_wdata(6 downto 0));
+						LC_ctrl_local.LC_cable_length_down(1)	<= CONV_INTEGER(reg_wdata(14 downto 8));
+						LC_ctrl_local.LC_cable_length_down(2)	<= CONV_INTEGER(reg_wdata(22 downto 16));
+						LC_ctrl_local.LC_cable_length_down(3)	<= CONV_INTEGER(reg_wdata(30 downto 24));
+					END IF;
+					IF READBACK=1 THEN
+						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+						reg_rdata(6 downto 0)	<= CONV_STD_LOGIC_VECTOR(LC_ctrl_local.LC_cable_length_down(0),7);
+						reg_rdata(14 downto 8)	<= CONV_STD_LOGIC_VECTOR(LC_ctrl_local.LC_cable_length_down(1),7);
+						reg_rdata(22 downto 16)	<= CONV_STD_LOGIC_VECTOR(LC_ctrl_local.LC_cable_length_down(2),7);
+						reg_rdata(30 downto 24)	<= CONV_STD_LOGIC_VECTOR(LC_ctrl_local.LC_cable_length_down(3),7);
+					ELSE
+						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+					END IF;
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0460") ) THEN	-- Calibration Source Control
 					IF reg_write = '1' THEN
 						CS_ctrl_local.CS_enable	<= reg_wdata(5 downto 0);
