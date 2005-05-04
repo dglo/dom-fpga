@@ -63,6 +63,9 @@ ENTITY slaveregister IS
 		DOM_status		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 		COMPR_ctrl		: OUT COMPR_STRUCT;
 		debugging		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
+		-- Flasher Board
+		CS_FL_aux_reset	: OUT STD_LOGIC;
+		CS_FL_attn		: IN STD_LOGIC;
 		-- pointers
 		LBM_ptr			: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 		-- kale communication interface
@@ -187,6 +190,8 @@ ARCHITECTURE arch_slaveregister OF slaveregister IS
 	SIGNAL COMM_ctrl_local	: COMM_CTRL_STRUCT;
 	SIGNAL COMPR_ctrl_local	: COMPR_STRUCT;
 	
+	SIGNAL CS_FL_aux_reset_local : STD_LOGIC;
+	
 	-- memory write enable signals
 	SIGNAL R2Rwe		: STD_LOGIC;
 	SIGNAL ATWDApedwe	: STD_LOGIC;
@@ -215,7 +220,7 @@ BEGIN
 			CS_ctrl_local.CS_CPU		<= '0';
 			DAQ_ctrl_local	<= ('0', "00", (OTHERS=>'0'), "00", "00", "00", "00", "00", '0');
 			CS_ctrl_local	<= ((OTHERS=>'0'), "000", (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), '0', '0');
-			LC_ctrl_local	<= ('0', (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'));
+			LC_ctrl_local	<= ('0', (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (1,2,3,4), (1,2,3,4));
 			RM_ctrl_local	<= ((OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'));
 			COMM_ctrl_local	<= ('0', (OTHERS=>'0'), 'X', '0', '0', (OTHERS=>'0'), (OTHERS=>'0'));
 			id_set			<= "00";
@@ -393,6 +398,20 @@ BEGIN
 					reg_rdata(31 downto 6)	<= (OTHERS=>'0');
 				-- ELSIF communication
 				
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"04E0") ) THEN	-- Flasher Board Control
+					IF reg_write = '1' THEN
+						CS_FL_aux_reset_local	<= reg_wdata(0);
+					END IF;
+					IF READBACK=1 THEN
+						reg_rdata(0)	<= CS_FL_aux_reset_local;
+						reg_rdata(31 downto 1)	<= (OTHERS=>'0');
+					ELSE
+						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+					END IF;
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"04E4") ) THEN	-- Flasher Board Status
+					reg_rdata(0)			<= CS_FL_attn;
+					reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+					
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0500") ) THEN	-- Communication Control
 					IF reg_write = '1' THEN
 						COMM_ctrl_local.reboot_req	<= reg_wdata(0);
@@ -581,6 +600,8 @@ BEGIN
 	COMM_ctrl	<= COMM_ctrl_local;
 	COMPR_ctrl	<= COMPR_ctrl_local;
 	-- COMPR_ctrl.COMPR_mode	<= DAQ_ctrl_local.COMPR_mode; moved to register
+	
+	CS_FL_aux_reset	<= CS_FL_aux_reset_local;
 	
 	
 	-- create write enable for the memory blocks (pedestal & R2R)

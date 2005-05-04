@@ -418,6 +418,8 @@ ARCHITECTURE arch_domapp OF domapp IS
 			DOM_status		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 			COMPR_ctrl		: OUT COMPR_STRUCT;
 			debugging		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
+			CS_FL_aux_reset	: OUT STD_LOGIC;
+			CS_FL_attn		: IN STD_LOGIC;
 			-- pointers
 			LBM_ptr			: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 			-- kale communication interface
@@ -495,6 +497,8 @@ ARCHITECTURE arch_domapp OF domapp IS
 			cs_wf_addr			: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
 			cs_flash_now		: OUT STD_LOGIC;
 			cs_flash_time		: OUT STD_LOGIC_VECTOR (47 DOWNTO 0);
+			CS_FL_aux_reset		: IN STD_LOGIC;
+			CS_FL_attn			: OUT STD_LOGIC;
 			-- DAQ interface
 			cs_daq_trigger		: OUT STD_LOGIC_VECTOR (5 DOWNTO 0);
 			cs_daq_veto			: IN STD_LOGIC;
@@ -636,7 +640,9 @@ ARCHITECTURE arch_domapp OF domapp IS
 	SIGNAL COMM_CTRL		: COMM_CTRL_STRUCT;
 	SIGNAL COMM_STAT		: COMM_STAT_STRUCT;
 			
-	
+	SIGNAL CS_FL_aux_reset	: STD_LOGIC;
+	SIGNAL CS_FL_attn		: STD_LOGIC;
+		
 	
 	SIGNAL ATWD_ped_data_A	: STD_LOGIC_VECTOR (9 DOWNTO 0);
 	SIGNAL ATWD_ped_addr_A	: STD_LOGIC_VECTOR (8 DOWNTO 0);
@@ -935,6 +941,8 @@ BEGIN
 			DOM_status		=> X"00000000",
 			COMPR_ctrl		=> COMPR_ctrl,
 			debugging		=> debugging,
+			CS_FL_aux_reset	=> CS_FL_aux_reset,
+			CS_FL_attn		=> CS_FL_attn,
 			-- pointers
 			LBM_ptr			=> LBM_ptr,
 			-- kale communication interface
@@ -1009,6 +1017,8 @@ BEGIN
 			cs_wf_addr			=> cs_wf_addr,
 			cs_flash_now		=> cs_flash_now,
 			cs_flash_time		=> cs_flash_time,
+			CS_FL_aux_reset		=> CS_FL_aux_reset,
+			CS_FL_attn			=> CS_FL_attn,
 			-- DAQ interface
 			cs_daq_trigger		=> CS_trigger,
 			cs_daq_veto			=> '0',
@@ -1025,6 +1035,11 @@ BEGIN
 			--test
 			TC					=> open
 		);
+		
+	FL_TMS	<= 'Z';
+	FL_TCK	<= 'Z';
+	FL_TDI	<= 'Z';
+	
 		
 	inst_local_coincidence : local_coincidence
 		PORT MAP (
