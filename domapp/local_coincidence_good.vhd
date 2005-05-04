@@ -149,28 +149,32 @@ type S_local_coincidence_type is (	idle,	--01
 signal S_lc_up:   S_local_coincidence_type;
 signal S_lc_down: S_local_coincidence_type;
 
-TYPE DOM_DELAY IS ARRAY(0 TO 3) OF INTEGER RANGE 0 TO 63;
+TYPE DOM_DELAY IS ARRAY(0 TO 3) OF INTEGER RANGE 0 TO 127;
 TYPE CABLE_LENGTH IS ARRAY(0 TO 1) OF DOM_DELAY;
 TYPE COIN_LENGTH IS ARRAY(0 TO 3) OF CABLE_LENGTH;
 
---SIGNAL TEST_ARRAY_DATA : INTEGER RANGE 0 TO 63;
-
-
+--SIGNAL TEST_ARRAY_DATA : INTEGER RANGE 0 TO 127;
+-- Using 6.5 clocks for Short cable delay rounded down
+-- Using 14.5 clocks for long cable delay rounded down
+-- Note: For locations that are not normaly accessed a value of 127 is entered
 ----------------------------------  Short  -------  Long---- (1DOM away, 2DOM away, 3DOM away, 4 DOM away)
-SIGNAL ARRAY3D : COIN_LENGTH := (((9, 63, 63, 63), (16, 63, 63, 63)), --Push Length = 0
-				  ((10, 25, 63, 63), (17, 25, 63, 63)), --Push Length = 1
-				  ((11, 26, 34, 63), (18, 26, 41, 63)), --Push Length = 2
-				  ((12, 27, 35, 50), (19, 27, 42, 50))); --Push Length = 3
+constant ARRAY3D : COIN_LENGTH := (((15, 127, 127, 127), (23, 127, 127, 127)), --Push Length = 0
+				  ((16, 39, 127, 127), (24, 39, 127, 127)), --Push Length = 1
+				  ((17, 40, 54, 127),  (25, 40, 62, 127)), --Push Length = 2
+				  ((18, 41, 55, 78),   (26, 41, 63, 78))); --Push Length = 3
 
-signal launch_max_time_up   : INTEGER RANGE 0 TO 127;
-signal launch_max_time_down : INTEGER RANGE 0 TO 127;
+signal launch_max_time_up   : INTEGER RANGE 0 TO 141;
+signal launch_max_time_down : INTEGER RANGE 0 TO 141;
 
-signal launch_cnt_up_pre_min : INTEGER RANGE 0 TO 127;
-signal launch_cnt_up_post_max : INTEGER RANGE 0 TO 127;
+
+signal launch_cnt_up_pre_min : INTEGER RANGE -64 TO 127;
+signal pre_window_cnt_up : INTEGER RANGE -64 TO 1;
+signal launch_cnt_up_post_max : INTEGER RANGE 0 TO 141;
 signal launch_cnt_up_limit : INTEGER RANGE 0 TO 127;
 
-signal launch_cnt_down_pre_min : INTEGER RANGE 0 TO 127;
-signal launch_cnt_down_post_max : INTEGER RANGE 0 TO 127;
+signal launch_cnt_down_pre_min : INTEGER RANGE -64 TO 127;
+signal pre_window_cnt_down : INTEGER RANGE -64 TO 1;
+signal launch_cnt_down_post_max : INTEGER RANGE 0 TO 141;
 signal launch_cnt_down_limit : INTEGER RANGE 0 TO 127;
 
 signal launch_cnt_down : STD_LOGIC_VECTOR(7 downto 0); --timer that starts at launch for down coinc
@@ -179,10 +183,10 @@ signal launch_cnt_end_down	: STD_LOGIC;
 signal launch_cnt_up : STD_LOGIC_VECTOR(7 downto 0); --timer that starts at launch for up coinc
 signal launch_cnt_end_up	: STD_LOGIC;
 
-signal cnt_ss_up : STD_LOGIC_VECTOR(3 downto 0);
+signal cnt_ss_up : STD_LOGIC_VECTOR(5 downto 0);
 signal cnt_ss_up_done : STD_LOGIC;
 
-signal cnt_ss_down : STD_LOGIC_VECTOR(3 downto 0);
+signal cnt_ss_down : STD_LOGIC_VECTOR(5 downto 0);
 signal cnt_ss_down_done : STD_LOGIC;
 
 --signals converted from STD_LOGIC_VECTORS;
@@ -243,13 +247,15 @@ cable_down <= CONV_INTEGER (LC_ctrl.LC_cable_comp(1));
 post_window <= CONV_INTEGER (LC_ctrl.LC_post_window);
 pre_window <= CONV_INTEGER (LC_ctrl.LC_pre_window);
 
-coin_ss_up <= 0 when cnt_ss_up > 11
-	else CONV_INTEGER (cnt_ss_up(1 downto 0)); -- using the lower two bits to index array
-coin_ss_down <= 0  when cnt_ss_down > 11
-	else CONV_INTEGER (cnt_ss_down(1 downto 0)); -- usig need the lower two bits to index array
+coin_ss_up <= 0 when cnt_ss_up > 44
+	else CONV_INTEGER (cnt_ss_up(3 downto 2)); -- using the lower two bits to index array
+coin_ss_down <= 0  when cnt_ss_down > 44
+	else CONV_INTEGER (cnt_ss_down(3 downto 2)); -- usig need the lower two bits to index array
+--			Push length		cable length   DOMs away
+launch_max_time_down <= (ARRAY3D (length) (cable_down) (length)) + post_window;
+launch_max_time_up <= (ARRAY3D (length) (cable_up) (length)) + post_window;
 
-launch_max_time_down <= (ARRAY3D (length) (cable_down) (3)) + post_window;
-launch_max_time_up <= (ARRAY3D (length) (cable_up) (3)) + post_window;
+-- was  "launch_max_time_up <= (ARRAY3D (length) (cable_up) (3)) + post_window;"
 	
 launch_cnt_up_limit <= (ARRAY3D (length) (cable_up) (length - coin_ss_up)); -- Time in 40MHz clock counts that DOM is away	
 launch_cnt_up_post_max <= (ARRAY3D (length) (cable_up) (length - coin_ss_up)) + post_window; --Maximum time from launch for post coinc 
@@ -268,15 +274,46 @@ launch_cnt_down_limit <= (ARRAY3D (length) (cable_down) (length - coin_ss_down))
 --got_n_up <= ((lc_wave_up_pos(2) and lc_wave_up_pos(3)) and lc_wave_up_neg(4) and lc_wave_up_neg(5)) or n_up;
 --got_extinguish_up <= (lc_wave_up_neg(5) and lc_wave_up_neg(4) and lc_wave_up_neg(3) and lc_wave_up_neg(2)) or extinguish_up;
 
-got_p_up <= '1' when (((wup_8 + wup_7 + wup_6 + wup_5) > 2) and ((wun_4 + wun_3 + wun_2 + wun_1) > 2)) or p_up = '1' else 
-	    '0';	
-got_n_up <= '1' when (((wun_8 + wun_7 + wun_6 + wun_5) > 2) and ((wup_4 + wup_3 + wup_2 + wup_1) > 2)) or n_up = '1' else 
-	    '0';
-	    
-got_p_down <= '1' when (((wdp_8 + wdp_7 + wdp_6 + wdp_5) > 2) and ((wdn_4 + wdn_3 + wdn_2 + wdn_1) > 2)) or p_down = '1' else 
-	      '0';	
-got_n_down <= '1' when (((wdn_8 + wdn_7 + wdn_6 + wdn_5) > 2) and ((wdp_4 + wdp_3 + wdp_2 + wdp_1) > 2)) or n_down = '1' else 
-	      '0';
+process(clk80,rst)
+	variable nup,nupd,pup,pupd,ndown,ndownd,pdown,pdownd	: STD_LOGIC := '0';
+begin
+    if rst='1' then
+    elsif clk80'event and clk80='1' then
+    	pupd := pup;
+	if (((wup_8 + wup_7 + wup_6 + wup_5) > 3) and ((wun_4 + wun_3 + wun_2 + wun_1) > 3)) or p_up = '1' then
+		pup :='1';
+	else
+		pup:='0';
+	end if;
+	got_p_up <= pup or pupd;
+	
+	nupd := nup;
+	if (((wun_8 + wun_7 + wun_6 + wun_5) > 3) and ((wup_4 + wup_3 + wup_2 + wup_1) > 2)) or n_up = '1' then
+		nup := '1';
+	else
+	    	nup := '0';
+	end if;
+	got_n_up <= nup or nupd;
+	
+	
+	pdownd := pdown;
+	if (((wdp_8 + wdp_7 + wdp_6 + wdp_5) > 3) and ((wdn_4 + wdn_3 + wdn_2 + wdn_1) > 3)) or p_down = '1' then
+		pdown := '1';
+	else
+		pdown := '0';
+	end if;
+	got_p_down <= pdown or pdownd;
+	
+	ndownd := ndown;
+	if (((wdn_8 + wdn_7 + wdn_6 + wdn_5) > 3) and ((wdp_4 + wdp_3 + wdp_2 + wdp_1) > 2)) or n_down = '1' then
+		ndown := '1';
+	else
+		ndown := '0';
+	end if;
+	got_n_down <= ndown or ndownd;
+    end if;
+end process;
+
 
 got_launch <= (lc_daq_launch(0) and not launch_0_shift) or (lc_daq_launch(1) and not launch_1_shift);
 
@@ -354,7 +391,7 @@ push_length <= temp_length; --was "push_length <= temp_length + 1;"
 -- case a stop is force out after a watch_cnt times out.
 
 
-local_coincidence_up: process (CLK40, RST)
+local_coincidence_up: process (CLK20, RST)
 begin	
 	if RST = '1' then
 		COINCIDENCE_OUT_UP <= 'Z';
@@ -369,7 +406,7 @@ begin
 		got_hit_bit_up <= '0';
 		S_lc_up <= idle;
 		
-	elsif CLK40'event and CLK40 = '1' then
+	elsif CLK20'event and CLK20 = '1' then
 	
 		if got_p_up = '1' or p_up_delay > 0 then
 			p_up_delay <= p_up_delay + '1';
@@ -514,7 +551,7 @@ begin
 	end if;	
 end process;
 
-local_coincidence_down: process (CLK40, RST)
+local_coincidence_down: process (CLK20, RST)
 begin
 	if RST = '1' then
 		COINCIDENCE_OUT_DOWN <= 'Z';
@@ -528,7 +565,7 @@ begin
 		got_n_down_delay <= '0';
 		got_hit_bit_down <= '0';
 		S_lc_down <= idle;
-	elsif CLK40'event and CLK40 = '1' then
+	elsif CLK20'event and CLK20 = '1' then
 	
 		if got_p_down = '1' or p_down_delay > 0 then
 			p_down_delay <= p_down_delay + '1';
@@ -684,7 +721,7 @@ end process;
 -- valid. There are two process, one for the up coincidence.and another for the down coincidence.
 
 
-lc_wave_down: process (CLK80, RST)  --use clock 80MHz
+lc_wave_down: process (CLK80, RST,LC_ctrl.LC_rx_enable(1))  --use clock 80MHz
 begin
 	if LC_ctrl.LC_rx_enable(1)= '0' then
 		null;
@@ -694,13 +731,13 @@ begin
 	elsif CLK80'event and CLK80 = '1' then
 	
 	--used to stretch got_p_down and got_n_down signals so they are one 40MHz cycle wide	
-	if  ((wdp_8 + wdp_7 + wdp_6 + wdp_5) > 2) and  ((wdn_4 + wdn_3 + wdn_2 + wdn_1) > 2) then
+	if  ((wdp_8 + wdp_7 + wdp_6 + wdp_5) > 3) and  ((wdn_4 + wdn_3 + wdn_2 + wdn_1) > 3) then --!!!
 		p_down <= '1';
 	else
 		p_down <= '0';
 	end if;	
 	
-	if  ((wdn_8 + wdn_7 + wdn_6 + wdn_5) > 2) and  ((wdp_4 + wdp_3 + wdp_2 + wdp_1) > 2) then
+	if  ((wdn_8 + wdn_7 + wdn_6 + wdn_5) > 3) and  ((wdp_4 + wdp_3 + wdp_2 + wdp_1) > 2) then --!!!
 		n_down <= '1';
 	else
 		n_down <= '0';
@@ -717,7 +754,7 @@ begin
 	end if;
 end process;
 
-lc_wave_up: process (CLK80, RST)  --use clock 80MHz
+lc_wave_up: process (CLK80, RST,LC_ctrl.LC_rx_enable(0))  --use clock 80MHz
 begin
 	if LC_ctrl.LC_rx_enable(0)= '0' then
 		null;
@@ -727,13 +764,13 @@ begin
 	elsif CLK80'event and CLK80 = '1' then
 
 	--used to stretch got_p_up and got_n_up signals so they are one 40MHz cycle wide	
-	if  ((wup_8 + wup_7 + wup_6 + wup_5) > 2) and  ((wun_4 + wun_3 + wun_2 + wun_1) > 2) then
+	if  (wup_8 + wup_7 + wup_6 + wup_5) > 3 and  (wun_4 + wun_3 + wun_2 + wun_1) > 3 then --!!!
 		p_up <= '1';
 	else
 		p_up <= '0';
 	end if;	
 	
-	if  ((wun_8 + wun_7 + wun_6 + wun_5) > 2) and  ((wup_4 + wup_3 + wup_2 + wup_1) > 2) then
+	if  (wun_8 + wun_7 + wun_6 + wun_5) > 3 and  (wup_4 + wup_3 + wup_2 + wup_1) > 2  then --!!!
 		n_up <= '1';
 	else
 		n_up <= '0';
@@ -757,35 +794,35 @@ end process;
 -- DOMs away the coincidense occured. This is used to look up the time it took for the local coincidence
 -- to arrive at the DOM.
 
-cnt_start_stop_up: process (CLK40, RST) --measures length of coin signal in
+cnt_start_stop_up: process (CLK80, RST) --measures length of coin signal in
 begin
 	if RST = '1' then
-		cnt_ss_up <= "1100"; -- need to start at 12 because of 4 count offset
+		cnt_ss_up <= "000000"; -- need to start at 12 because of 4 count offset
 		cnt_ss_up_done <= '0';
-	elsif CLK40'event and CLK40 = '1' then
+	elsif CLK80'event and CLK80 = '1' then
 		if got_n_up = '1' then
 			cnt_ss_up_done <= '1';
 		elsif cnt_ss_up_done = '0' and (got_p_up = '1' or cnt_ss_up /= 12)  then
 			cnt_ss_up <= cnt_ss_up + '1';
 		elsif cnt_ss_up_done = '1' then-- 9/2/04 was "elsif launch_cnt_end_up = '1' then"
-			cnt_ss_up <= "1100"; -- need to start at 12 because of 4 cout offset
+			cnt_ss_up <= "000000"; -- need to start at 12 because of 4 cout offset
 			cnt_ss_up_done <= '0';	
 		end if;
 	end if;
 end process cnt_start_stop_up;
 
-cnt_start_stop_down: process (CLK40, RST) --measures length of coin signal in
+cnt_start_stop_down: process (CLK80, RST) --measures length of coin signal in
 begin
 	if RST = '1' then
-		cnt_ss_down <= "1100"; -- need to start at 12 because of 4 count offset
+		cnt_ss_down <= "000000"; -- need to start at 12 because of 4 count offset
 		cnt_ss_down_done <= '0';
-	elsif CLK40'event and CLK40 = '1' then
+	elsif CLK80'event and CLK80 = '1' then
 		if got_n_down = '1' then
 			cnt_ss_down_done <= '1';
 		elsif cnt_ss_down_done = '0' and (got_p_down = '1' or cnt_ss_down /= 12)  then
 			cnt_ss_down <= cnt_ss_down + '1';
 		elsif cnt_ss_down_done = '1' then-- 9/2/04 was "elsif launch_cnt_end_down = '1' then"
-			cnt_ss_down <= "1100"; -- need to start at 12 because of 4 count offset
+			cnt_ss_down <= "000000"; -- need to start at 12 because of 4 count offset
 			cnt_ss_down_done <= '0';
 		end if;
 	end if;
@@ -823,11 +860,7 @@ begin
 		end if;
 	end if;
 end process launch_timer_down;
---~~launch_timer_down: process (CLK40, RST)
---~~begin
---~~	if RST = '1' then
---~~		launch_cnt_down <= (others => '0');
---~~		launch_cnt_end_down <= '0';
+
 --~~	elsif CLK40'event and CLK40 = '1' then
 --~~		if got_launch = '1'  or (launch_cnt_down > 0  and launch_cnt_down < launch_max_time_down and launch_cnt_end_down = '0') then --9/2/04 "got_launch" was "got_hit"
 --~~			launch_cnt_down <= launch_cnt_down + '1';
@@ -844,6 +877,7 @@ end process launch_timer_down;
 launch_timer_up: process (CLK40, RST)
 begin
 	if RST = '1' then
+		--launch_cnt_up <= CONV_STD_LOGIC_VECTOR(-64, 8);
 		launch_cnt_up <= (others => '0');
 		launch_cnt_end_up <= '0';
 	elsif CLK40'event and CLK40 = '1' then
@@ -858,6 +892,37 @@ begin
 		end if;
 	end if;
 end process launch_timer_up;
+
+-- The pre_window range can exceed the cable delays. In this situation the "launch_cnt_up_pre_min" 
+-- is negative. In other words a Local coincidence that can qualify a launch arrives at the DOM 
+-- before the launch. In order to recover the interval of time before a valid launch occurs a 
+-- "pre_window_cnt_up" is loaded with this negative "launch_cnt_up_pre_min" and if a launch occurs
+-- before this count goes postive the "ok_up" bit is set which validated the launch.
+pre_window_neg_up: process (CLK40, RST)
+begin
+	if RST = '1' then
+		pre_window_cnt_up <= 1;
+	elsif CLK40'event and CLK40 = '1' then
+		if got_n_up = '1' and launch_cnt_up_pre_min <= 0 then
+			pre_window_cnt_up <=launch_cnt_up_pre_min;
+		elsif pre_window_cnt_up < 1 then
+			pre_window_cnt_up <= pre_window_cnt_up + 1;
+		end if;
+	end if;
+end process pre_window_neg_up;
+
+pre_window_neg_down: process (CLK40, RST)
+begin
+	if RST = '1' then
+		pre_window_cnt_down <= 1;
+	elsif CLK40'event and CLK40 = '1' then
+		if got_n_down = '1' and launch_cnt_down_pre_min <= 0 then
+			pre_window_cnt_down <=launch_cnt_down_pre_min;
+		elsif pre_window_cnt_down < 1 then
+			pre_window_cnt_down <= pre_window_cnt_down + 1;
+		end if;
+	end if;
+end process pre_window_neg_down;
 
 -- A launch counter starts with the launch of an ATWD and continues until a maximum count is reached.
 -- The maximum count is a variable that depends on the number of DOMs in a coincidence. The greater 
@@ -876,13 +941,18 @@ begin
 	elsif CLK40'event and CLK40 = '1' then
 		if lc_daq_launch /= "00" and got_n_down = '1' then
 			if (CONV_INTEGER(launch_cnt_down) < launch_cnt_down_post_max and CONV_INTEGER(launch_cnt_down) >= launch_cnt_down_limit)
-			or (CONV_INTEGER(launch_cnt_down) >= launch_cnt_down_pre_min and CONV_INTEGER(launch_cnt_down) <= launch_cnt_down_limit) then
+			or ((launch_cnt_down_pre_min > 0 and CONV_INTEGER(launch_cnt_down) > launch_cnt_down_pre_min) and CONV_INTEGER(launch_cnt_down) <= launch_cnt_down_limit) then
 				ok_down <= '1';	--set here reset at ent of launch_cnt
+			--elsif ((launch_cnt_down_pre_min <= 0 and CONV_INTEGER(launch_cnt_down) > 0) and CONV_INTEGER(launch_cnt_down) <= launch_cnt_down_limit) then
+			elsif ((launch_cnt_down_pre_min <= 0 and (got_launch = '1' or CONV_INTEGER(launch_cnt_down) > 0)) and CONV_INTEGER(launch_cnt_down) <= launch_cnt_down_limit) then	
+				ok_down <= '1';	
 			elsif launch_cnt_end_down = '1' then
 		 		ok_down <= '0';
 		 	end if;
+		elsif pre_window_cnt_down<= 0 and got_launch = '1'  then
+			ok_down <= '1';
 		else
-			ok_down <= '0';	
+			ok_down <= '0';
 		end if;
 	end if;
 end process check_coin_window_down;	
@@ -894,11 +964,16 @@ begin
 	elsif CLK40'event and CLK40 = '1' then
 		if lc_daq_launch /= "00" and got_n_up = '1' then
 			if (CONV_INTEGER(launch_cnt_up) < launch_cnt_up_post_max and CONV_INTEGER(launch_cnt_up) >= launch_cnt_up_limit)
-			or (CONV_INTEGER(launch_cnt_up) >= launch_cnt_up_pre_min and  CONV_INTEGER(launch_cnt_up) <= launch_cnt_up_limit) then
+			or ((launch_cnt_up_pre_min > 0 and CONV_INTEGER(launch_cnt_up) > launch_cnt_up_pre_min) and  CONV_INTEGER(launch_cnt_up) <= launch_cnt_up_limit) then
+				ok_up <= '1';	
+			--elsif ((launch_cnt_up_pre_min <= 0 and CONV_INTEGER(launch_cnt_up) > 0) and CONV_INTEGER(launch_cnt_up) <= launch_cnt_up_limit) then
+			elsif ((launch_cnt_up_pre_min <= 0 and (got_launch = '1' or CONV_INTEGER(launch_cnt_up) > 0)) and CONV_INTEGER(launch_cnt_up) <= launch_cnt_up_limit) then
 				ok_up <= '1';	
 			elsif launch_cnt_end_up = '1' then
 		 		ok_up <= '0';
 		 	end if;	
+		elsif pre_window_cnt_up <= 0 and got_launch = '1'  then
+			ok_up <= '1';	
 		else
 			ok_up <= '0';
 		end if;
