@@ -5,30 +5,23 @@ Timing Analyzer Summary
 Type           : Worst-case tsu
 Slack          : N/A
 Required Time  : None
-Actual Time    : 19.202 ns
-From           : COM_AD_D[2]
-To             : comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst30|DCTC_FWR:inst7|tcwf_wrreq~reg
+Actual Time    : 21.562 ns
+From           : A_nB
+To             : comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_Tx_chan_ap:DC_Tx_chan_ap|crc_tx:inst3|srg[7]
 
 Type           : Worst-case tco
 Slack          : N/A
 Required Time  : None
-Actual Time    : 17.662 ns
+Actual Time    : 16.728 ns
 From           : comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|tx_uart_ct5:inst4|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|sload_path[1]
 To             : COM_DB[12]
-
-Type           : Worst-case tpd
-Slack          : N/A
-Required Time  : None
-Actual Time    : 2.651 ns
-From           : altera_internal_jtag~TDO
-To             : altera_reserved_tdo
 
 Type           : Worst-case th
 Slack          : N/A
 Required Time  : None
-Actual Time    : 3.765 ns
-From           : altera_internal_jtag~SHIFTUSER
-To             : sld_signaltap:auto_signaltap_0|sld_offload_buffer_mgr:stp_non_zero_depth_offload_gen_stp_offload_buff_mgr_inst|lpm_shiftreg:info_data_shift_out|dffs[5]
+Actual Time    : -6.724 ns
+From           : ATWD1_D[2]
+To             : daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|ATWD_D_gray[2]~reg0
 
 Type           : Worst-case minimum tco
 Slack          : N/A
@@ -37,47 +30,26 @@ Actual Time    : 1.189 ns
 From           : pll2x:inst_pll2x|altclklock:altclklock_component|outclock1
 To             : CLKLK_OUT2p
 
-Type           : Worst-case minimum tpd
-Slack          : N/A
-Required Time  : None
-Actual Time    : 2.651 ns
-From           : altera_internal_jtag~TDO
-To             : altera_reserved_tdo
-
-Type           : Clock Setup: 'pll4x:inst_pll4x|altclklock:altclklock_component|outclock1'
-Slack          : 0.880 ns
-Required Time  : 80.00 MHz ( period = 12.500 ns )
-Actual Time    : 86.06 MHz ( period = 11.620 ns )
-From           : sld_signaltap:auto_signaltap_0|sld_acquisition_buffer:sld_acquisition_buffer_inst|lpm_counter:write_address_non_zero_gen_write_pointer_counter|dffs[0]
-To             : sld_signaltap:auto_signaltap_0|altsyncram:stp_non_zero_ram_gen_stp_buffer_ram|altdpram:dpram|segment[1][2]~reg_we
-
 Type           : Clock Setup: 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock1'
-Slack          : 2.910 ns
+Slack          : 4.651 ns
 Required Time  : 40.00 MHz ( period = 25.000 ns )
-Actual Time    : 52.14 MHz ( period = 19.180 ns )
-From           : daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface|FADC_we~reg0
-To             : daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|FADC_buffer:inst_FADC_buffer_even|altdpram:altdpram_component|q[0]~reg_we
+Actual Time    : 63.70 MHz ( period = 15.698 ns )
+From           : local_coincidence:inst_local_coincidence|LC_slice:LC_slice_down2up|LC_RC_decode:LC_RC_decode_inst|update~reg0
+To             : daq:inst_daq|trigger:inst_trigger|launch_mode_A[1]
 
 Type           : Clock Setup: 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock0'
-Slack          : 5.219 ns
+Slack          : 6.153 ns
 Required Time  : 20.00 MHz ( period = 50.000 ns )
 Actual Time    : N/A
-From           : daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_in:compressor_in0|cmp_data_t0_t1
-To             : daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_in:compressor_in0|old_equals_new_data
+From           : daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|compr_size[0]
+To             : daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[2]
 
-Type           : Clock Setup: 'altera_internal_jtag~TCKUTAP'
-Slack          : N/A
-Required Time  : None
-Actual Time    : 118.57 MHz ( period = 8.434 ns )
-From           : sld_hub:sld_hub_inst|sld_dffex:IRF_ENA_0|Q[0]~reg0
-To             : sld_hub:sld_hub_inst|HUB_TDO~reg0
-
-Type           : Clock Setup: 'altera_internal_jtag~CLKDRUSER'
-Slack          : N/A
-Required Time  : None
-Actual Time    : 120.15 MHz ( period = 8.323 ns )
-From           : sld_signaltap:auto_signaltap_0|altsyncram:stp_non_zero_ram_gen_stp_buffer_ram|altdpram:dpram|segment[1][10]~reg_ra10
-To             : sld_signaltap:auto_signaltap_0|sld_offload_buffer_mgr:stp_non_zero_depth_offload_gen_stp_offload_buff_mgr_inst|lpm_shiftreg:ram_data_shift_out|dffs[10]
+Type           : Clock Setup: 'pll4x:inst_pll4x|altclklock:altclklock_component|outclock1'
+Slack          : 6.166 ns
+Required Time  : 80.00 MHz ( period = 12.500 ns )
+Actual Time    : N/A
+From           : ROC:inst_ROC|RST~reg0
+To             : daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|counter_clock_cclk
 
 --------------------------------------------------------------------------------------
 
