@@ -265,6 +265,7 @@ BEGIN
 						reg_rdata(0)			<= DAQ_ctrl_local.enable_DAQ;
 						reg_rdata(2 downto 1)	<= DAQ_ctrl_local.enable_AB;
 						reg_rdata(9 downto 8)	<= DAQ_ctrl_local.DAQ_mode;
+						reg_rdata(13 downto 12)	<= DAQ_ctrl_local.ATWD_mode;
 						reg_rdata(17 downto 16)	<= DAQ_ctrl_local.LC_mode;
 						reg_rdata(21 downto 20)	<= DAQ_ctrl_local.LBM_mode;
 						reg_rdata(25 downto 24)	<= DAQ_ctrl_local.COMPR_mode;
