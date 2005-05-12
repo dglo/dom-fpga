@@ -111,10 +111,12 @@ BEGIN
 				AND X"FFFFF800"	-- align to 2k data blocks
 				AND CONV_STD_LOGIC_VECTOR((2**SDRAM_SIZE)-1,32)) -- high address to SDRAM space (-> will wrap around)
 				+ SDRAM_BASE;	-- SDRAM base address for look back memory
-				
-	LBM_ptr_byte	<= (start_address AND X"0FFFF800") OR (ahb_address AND X"000007FF");
-	LBM_ptr (29 DOWNTO 0)	<= LBM_ptr_byte (31 DOWNTO 2);
-	LBM_ptr (31 DOWNTO 30)	<= "00";
+	
+	-- changed back to byte pointer
+	LBM_ptr	<= (start_address AND X"0FFFF800") OR (ahb_address AND X"000007FF");
+	-- LBM_ptr_byte	<= (start_address AND X"0FFFF800") OR (ahb_address AND X"000007FF");
+	-- LBM_ptr (29 DOWNTO 0)	<= LBM_ptr_byte (31 DOWNTO 2);
+	-- LBM_ptr (31 DOWNTO 30)	<= "00";
 
 	xfer_machine : PROCESS(CLK20,RST)
 	BEGIN
