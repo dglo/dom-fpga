@@ -3,14 +3,11 @@ Timing Analyzer Summary
 --------------------------------------------------------------------------------------
 
 Type           : Worst-case tsu
-Slack          : -2.284 ns
+Slack          : -2.335 ns
 Required Time  : 1.000 ns
-Actual Time    : 3.284 ns
+Actual Time    : 3.335 ns
 From           : OneSPE
 To             : hit_counter:inst_hit_counter|OneSPE0
-From Clock     : 
-To Clock       : CLK2p
-Failed Paths   : 1
 
 Type           : Worst-case tco
 Slack          : -1.738 ns
@@ -18,69 +15,41 @@ Required Time  : 1.000 ns
 Actual Time    : 2.738 ns
 From           : atwd:atwd1|atwd_trigger:inst_atwd_trigger|ATWDTrigger_sig
 To             : ATWDTrigger_1
-From Clock     : CLK2p
-To Clock       : 
-Failed Paths   : 2
 
 Type           : Worst-case th
 Slack          : N/A
 Required Time  : None
-Actual Time    : -2.805 ns
-From           : OneSPE
-To             : hit_counter:inst_hit_counter|OneSPE0
-From Clock     : 
-To Clock       : CLK2p
-Failed Paths   : 0
+Actual Time    : -6.892 ns
+From           : COM_AD_D[0]
+To             : dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst30|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|altdpram:FIFOram|q[0]~reg_in
 
-Type           : Worst-case Minimum tco
+Type           : Worst-case minimum tco
 Slack          : N/A
 Required Time  : None
 Actual Time    : 1.189 ns
 From           : pll2x:inst_pll2x|altclklock:altclklock_component|outclock1
 To             : CLKLK_OUT2p
-From Clock     : CLK2p
-To Clock       : 
-Failed Paths   : 0
 
 Type           : Clock Setup: 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock1'
-Slack          : 3.751 ns
+Slack          : 5.187 ns
 Required Time  : 40.00 MHz ( period = 25.000 ns )
-Actual Time    : 57.15 MHz ( period = 17.498 ns )
-From           : atwd:atwd0|atwd_trigger:inst_atwd_trigger|launch_mode[1]
-To             : atwd:atwd0|atwd_trigger:inst_atwd_trigger|ATWDTrigger_sig
-From Clock     : pll2x:inst_pll2x|altclklock:altclklock_component|outclock1
-To Clock       : pll2x:inst_pll2x|altclklock:altclklock_component|outclock1
-Failed Paths   : 0
-
-Type           : Clock Setup: 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock0'
-Slack          : 10.781 ns
-Required Time  : 20.00 MHz ( period = 50.000 ns )
-Actual Time    : 35.16 MHz ( period = 28.438 ns )
-From           : stripe:stripe_inst|alt_exc_stripe:lpm_instance|alt_exc_upcore:core|core~SLAVEHREADYO0
-To             : master_data_source:inst_master_data_source|data[31]
-From Clock     : pll2x:inst_pll2x|altclklock:altclklock_component|outclock0
-To Clock       : pll2x:inst_pll2x|altclklock:altclklock_component|outclock0
-Failed Paths   : 0
+Actual Time    : 68.37 MHz ( period = 14.626 ns )
+From           : atwd:atwd1|atwd_trigger:inst_atwd_trigger|launch_mode[1]
+To             : atwd:atwd1|atwd_trigger:inst_atwd_trigger|ATWDTrigger_sig
 
 Type           : Clock Setup: 'pll4x:inst_pll4x|altclklock:altclklock_component|outclock1'
 Slack          : 10.887 ns
 Required Time  : 80.00 MHz ( period = 12.500 ns )
 Actual Time    : Restricted to 349.90 MHz ( period = 2.858 ns )
-From           : lpm_counter:\process4:CNT[0]_rtl_0|alt_synch_counter:wysi_counter|sload_path[0]
-To             : lpm_counter:\process4:CNT[0]_rtl_0|alt_synch_counter:wysi_counter|sload_path[0]
-From Clock     : pll4x:inst_pll4x|altclklock:altclklock_component|outclock1
-To Clock       : pll4x:inst_pll4x|altclklock:altclklock_component|outclock1
-Failed Paths   : 0
+From           : lpm_counter:CNT_rtl_0|alt_synch_counter:wysi_counter|sload_path[0]
+To             : lpm_counter:CNT_rtl_0|alt_synch_counter:wysi_counter|sload_path[0]
 
-Type           : Total number of failed paths
-Slack          : 
-Required Time  : 
-Actual Time    : 
-From           : 
-To             : 
-From Clock     : 
-To Clock       : 
-Failed Paths   : 3
+Type           : Clock Setup: 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock0'
+Slack          : 11.119 ns
+Required Time  : 20.00 MHz ( period = 50.000 ns )
+Actual Time    : 36.02 MHz ( period = 27.762 ns )
+From           : stripe:stripe_inst|alt_exc_stripe:lpm_instance|alt_exc_upcore:core|core~SLAVEHREADYO0
+To             : master_data_source:inst_master_data_source|wdata[31]~reg0
 
 --------------------------------------------------------------------------------------
 

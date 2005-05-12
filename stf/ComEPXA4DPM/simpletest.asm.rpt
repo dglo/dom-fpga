@@ -1,6 +1,6 @@
 Assembler report for simpletest
-Sat Jan 15 13:02:14 2005
-Version 4.1 Build 208 09/10/2004 Service Pack 2 SJ Full Version
+Thu Mar 10 14:20:45 2005
+Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
 ---------------------
@@ -45,7 +45,7 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Sat Jan 15 13:02:14 2005 ;
+; Assembler Status      ; Successful - Thu Mar 10 14:20:45 2005 ;
 ; Revision Name         ; simpletest                            ;
 ; Top-level Entity Name ; simpletest                            ;
 ; Family                ; EXCALIBUR_ARM                         ;
@@ -55,44 +55,44 @@ party's intellectual property, are provided herein.
 
 +------------------------------------------------------------------------------------------------------------------+
 ; Assembler Settings                                                                                               ;
-+---------------------------------------------------------------------------------------+----------+---------------+
++-------------------------------------------------------------------------------------------------------------------
 ; Option                                                                                ; Setting  ; Default Value ;
 +---------------------------------------------------------------------------------------+----------+---------------+
 ; Generate a compressed Jam STAPL Byte Code 2.0 File (.jbc) For Configuration Device    ; Off      ; On            ;
-; Divide clock frequency by                                                             ; 1.0      ; 1             ;
-; Configuration device                                                                  ; Epc8     ; Auto          ;
-; Auto-increment JTAG user code for multiple configuration devices                      ; Off      ; On            ;
 ; Disable CONF_DONE and nSTATUS pull-ups on configuration device                        ; On       ; Off           ;
-; Generate Serial Vector Format File (.svf) for Target Device                           ; Off      ; Off           ;
-; Generate In System Configuration File (.isc) for Target Device                        ; Off      ; Off           ;
-; Generate a JEDEC STAPL Format File (.jam) for Target Device                           ; Off      ; Off           ;
-; Generate an uncompressed Jam STAPL Byte Code 2.0 File (.jbc) for Target Device        ; Off      ; Off           ;
-; Generate a compressed Jam STAPL Byte Code 2.0 File (.jbc) for Target Device           ; On       ; On            ;
-; Generate Serial Vector Format File (.svf) For Configuration Device                    ; Off      ; Off           ;
-; Generate In System Configuration File (.isc) For Configuration Device                 ; Off      ; Off           ;
-; Generate a JEDEC STAPL Format File (.jam)For Configuration Device                     ; Off      ; Off           ;
-; Generate an uncompressed Jam STAPL Byte Code 2.0 File (.jbc) For Configuration Device ; Off      ; Off           ;
+; Auto-increment JTAG user code for multiple configuration devices                      ; Off      ; On            ;
+; Configuration device                                                                  ; Epc8     ; Auto          ;
+; Divide clock frequency by                                                             ; 1.0      ; 1             ;
 ; Generate Hexadecimal (Intel-format) Output File (.hexout) For Configuration Device    ; Off      ; Off           ;
-; Compression mode                                                                      ; Off      ; Off           ;
-; Clock source for configuration device                                                 ; Internal ; Internal      ;
-; Clock frequency of the configuration device                                           ; 10 MHz   ; 10 MHz        ;
-; Low-voltage mode                                                                      ; on       ; on            ;
-; JTAG user code for target device                                                      ; Ffffffff ; Ffffffff      ;
-; Auto user code                                                                        ; off      ; off           ;
-; Use configuration device                                                              ; On       ; On            ;
-; JTAG user code for configuration device                                               ; Ffffffff ; Ffffffff      ;
-; Configuration device auto user code                                                   ; off      ; off           ;
-; Generate Tabular Text File (.ttf) For Target Device                                   ; Off      ; Off           ;
-; Generate Raw Binary File (.rbf) For Target Device                                     ; Off      ; Off           ;
-; Generate Hexadecimal (Intel-Format) Output File (.hexout) for Target Device           ; Off      ; Off           ;
-; Hexadecimal Output File start address                                                 ; 0        ; 0             ;
+; Generate an uncompressed Jam STAPL Byte Code 2.0 File (.jbc) For Configuration Device ; Off      ; Off           ;
+; Generate a JEDEC STAPL Format File (.jam) For Configuration Device                    ; Off      ; Off           ;
+; Generate In System Configuration File (.isc) For Configuration Device                 ; Off      ; Off           ;
+; Generate Serial Vector Format File (.svf) For Configuration Device                    ; Off      ; Off           ;
+; Generate a compressed Jam STAPL Byte Code 2.0 File (.jbc) for Target Device           ; On       ; On            ;
+; Generate an uncompressed Jam STAPL Byte Code 2.0 File (.jbc) for Target Device        ; Off      ; Off           ;
+; Generate a JEDEC STAPL Format File (.jam) for Target Device                           ; Off      ; Off           ;
+; Generate In System Configuration File (.isc) for Target Device                        ; Off      ; Off           ;
+; Generate Serial Vector Format File (.svf) for Target Device                           ; Off      ; Off           ;
 ; Hexadecimal Output File count direction                                               ; Up       ; Up            ;
+; Hexadecimal Output File start address                                                 ; 0        ; 0             ;
+; Generate Hexadecimal (Intel-Format) Output File (.hexout) for Target Device           ; Off      ; Off           ;
+; Generate Raw Binary File (.rbf) For Target Device                                     ; Off      ; Off           ;
+; Generate Tabular Text File (.ttf) For Target Device                                   ; Off      ; Off           ;
+; Configuration device auto user code                                                   ; off      ; off           ;
+; JTAG user code for configuration device                                               ; Ffffffff ; Ffffffff      ;
+; Use configuration device                                                              ; On       ; On            ;
+; Auto user code                                                                        ; off      ; off           ;
+; JTAG user code for target device                                                      ; Ffffffff ; Ffffffff      ;
+; Low-voltage mode                                                                      ; on       ; on            ;
+; Clock frequency of the configuration device                                           ; 10 MHz   ; 10 MHz        ;
+; Clock source for configuration device                                                 ; Internal ; Internal      ;
+; Compression mode                                                                      ; Off      ; Off           ;
 +---------------------------------------------------------------------------------------+----------+---------------+
 
 
 +------------------------------------------------------------------+
 ; Assembler Generated Files                                        ;
-+------------------------------------------------------------------+
++-------------------------------------------------------------------
 ; File Name                                                        ;
 +------------------------------------------------------------------+
 ; C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/simpletest.psof ;
@@ -103,50 +103,50 @@ party's intellectual property, are provided herein.
 
 +--------------------------------------------------------------------------------------------+
 ; Assembler Device Options: C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/simpletest.psof ;
-+----------------+---------------------------------------------------------------------------+
++---------------------------------------------------------------------------------------------
 ; Option         ; Setting                                                                   ;
 +----------------+---------------------------------------------------------------------------+
 ; Device         ; EPXA4F672I2                                                               ;
 ; JTAG usercode  ; 0xFFFFFFFF                                                                ;
-; Checksum       ; 0x00393825                                                                ;
+; Checksum       ; 0x0038BBAB                                                                ;
 +----------------+---------------------------------------------------------------------------+
 
 
 +-------------------------------------------------------------------------------------------+
 ; Assembler Device Options: C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/simpletest.sof ;
-+----------------+--------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------
 ; Option         ; Setting                                                                  ;
 +----------------+--------------------------------------------------------------------------+
 ; Device         ; EPXA4F672I2                                                              ;
 ; JTAG usercode  ; 0xFFFFFFFF                                                               ;
-; Checksum       ; 0x00393825                                                               ;
+; Checksum       ; 0x0038BBAB                                                               ;
 +----------------+--------------------------------------------------------------------------+
 
 
 +-------------------------------------------------------------------------------------------+
 ; Assembler Device Options: C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/simpletest.pof ;
-+----------------+--------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------
 ; Option         ; Setting                                                                  ;
 +----------------+--------------------------------------------------------------------------+
 ; Device         ; EPC8                                                                     ;
 ; JTAG usercode  ; 0xFFFFFFFF                                                               ;
-; Checksum       ; 0x08BBDE99                                                               ;
+; Checksum       ; 0x08BA76DC                                                               ;
 +----------------+--------------------------------------------------------------------------+
 
 
-+--------------------+
-; Assembler Messages ;
-+--------------------+
++---------------------+
+; Assembler Messages  ;
++---------------------+
 Info: *******************************************************************
 Info: Running Quartus II Assembler
-    Info: Version 4.1 Build 208 09/10/2004 Service Pack 2 SJ Full Version
-    Info: Processing started: Sat Jan 15 13:02:09 2005
+    Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
+    Info: Processing started: Thu Mar 10 14:20:39 2005
 Info: Command: quartus_asm --import_settings_files=off --export_settings_files=off simpletest -c simpletest
 Warning: Data in Simulator initialization files holds embedded processor core in reset because Hexadecimal (Intel-Format) File(s) do not contain initialization data for entry point 0x0 or entry point is in memory external to Excalibur embedded processor stripe
 Warning: Data in passive programming files holds embedded processor core in reset because Hexadecimal (Intel-Format) Files do not contain initialization data for entry point 0x0
 Warning: Data in passive programming files holds embedded processor core in reset because Hexadecimal (Intel-Format) Files do not contain initialization data for entry point 0x0
 Info: Quartus II Assembler was successful. 0 errors, 3 warnings
-    Info: Processing ended: Sat Jan 15 13:02:14 2005
-    Info: Elapsed time: 00:00:04
+    Info: Processing ended: Thu Mar 10 14:20:45 2005
+    Info: Elapsed time: 00:00:06
 
 
