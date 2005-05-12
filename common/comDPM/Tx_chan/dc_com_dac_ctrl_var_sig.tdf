@@ -1,17 +1,17 @@
-TITLE "DOM Tx DAC control, K.-H. Sulanke,DESY Zeuthen, 2004-07-08";
+TITLE "DOM Tx DAC control, K.-H. Sulanke,DESY Zeuthen, 2004-12-15";
 -- DAC creating a rectangular waveform, period / bit time=1us
 
-INCLUDE	"dac_levct";
+INCLUDE	"dac_levct_sld";
 
-CONSTANT COMDAC_MIN = 128+32;
+CONSTANT COMDAC_MIN = 128+31;
 CONSTANT COMDAC_MAX = 128+127;
 
---FUNCTION dac_levct (clock, updown, clk_en, aset)
---RETURNS (	q[7..0],	cout);
+--FUNCTION dac_levct_sld (clock,	updown,	clk_en,	sload,	data[7..0])
+--RETURNS (	q[7..0]);
 
 OPTIONS	BIT0=LSB;
 
-SUBDESIGN dc_com_dac_ctrl
+SUBDESIGN dc_com_dac_ctrl_var_sig
 (
 	comres_rcvd		: INPUT;
 	clk				: INPUT;
@@ -21,23 +21,23 @@ SUBDESIGN dc_com_dac_ctrl
 	l_pulse			: INPUT;	-- time calibration low pulse
 	domlev_up_rq	: INPUT;	-- request from DOR, 1 clock length pulse
 	domlev_dn_rq	: INPUT;	-- request from DOR, 1 clock length pulse
+	dac_max[7..0]	: INPUT;	-- comm. DAC max. level
+	dac_max_ld		: INPUT;
 	
 	dac_d[7..0]		: OUTPUT;	-- dac value,  0..ff
 	dac_lev[7..0]	: OUTPUT;	-- dac max. value, 196..255
-	dac_max[7..0]	: INPUT;	-- comm. DAC max. level
-	dac_max_ld		: INPUT;
-)
+)	
 
 VARIABLE
 
-	daclev			: dac_levct;
+	daclev			: dac_levct_sld;
 	daclev_up		: NODE;
 	daclev_adj		: NODE;
 	
 BEGIN
 
 
-	IF	(domlev_up_rq & (daclev.q[7..0] != COMDAC_MAX))	-- increase Tx signal if smaller 255
+	IF	(domlev_up_rq & (daclev.q[7..0] < dac_max[]))	-- increase Tx signal if smaller 255
 		THEN	daclev_up	= VCC;
 				daclev_adj	= VCC;
 	END IF;
@@ -47,12 +47,9 @@ BEGIN
 				daclev_adj	= VCC;
 	END IF;
 	
---	IF	(daclev.q[7..0] < COMDAC_MIN))		-- to ensure the start value
---		THEN	daclev.aset	= VCC;
---	END IF;
-
-		daclev.( clock, updown,    clk_en,     aset) =
-		   		( clk,  daclev_up, daclev_adj, comres_rcvd);
+		daclev.(clock, updown,     clk_en,                                data[],    sload) =
+	   		   (clk,   daclev_up, daclev_adj # dac_max_ld # comres_rcvd, dac_max[], dac_max_ld # comres_rcvd);
+	
 	
 	IF (!h_pulse & !l_pulse & !txd) THEN dac_d[] =  H"80"; 			 END IF;
 
