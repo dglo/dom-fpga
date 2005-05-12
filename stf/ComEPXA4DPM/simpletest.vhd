@@ -424,12 +424,6 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL rx_dpr_radr_stb	: STD_LOGIC;
 	SIGNAL rx_error			: STD_LOGIC_VECTOR (15 DOWNTO 0);
 	SIGNAL tx_error			: STD_LOGIC_VECTOR (15 DOWNTO 0);
-	
-	SIGNAL com_clev		: STD_LOGIC_VECTOR(31 downto 0);
-	SIGNAL com_clev_wr		: STD_LOGIC;
-	SIGNAL com_thr_del		: STD_LOGIC_VECTOR(31 downto 0);
-	SIGNAL com_thr_del_wr	: STD_LOGIC;
-			
 
 	
 	SIGNAL systime			: STD_LOGIC_VECTOR (47 DOWNTO 0);
@@ -635,10 +629,6 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			tx_dpr_radr		: IN	STD_LOGIC_VECTOR(31 downto 0);
 			rx_dpr_radr		: OUT	STD_LOGIC_VECTOR(31 downto 0);
 			rx_addr			: IN	STD_LOGIC_VECTOR(31 downto 0);
-			com_clev		: OUT	STD_LOGIC_VECTOR(31 downto 0);
-			com_clev_wr		: OUT	STD_LOGIC;
-			com_thr_del		: OUT	STD_LOGIC_VECTOR(31 downto 0);
-			com_thr_del_wr	: OUT	STD_LOGIC;
 			-- COM ADC RX interface
 			com_adc_wdata		: OUT STD_LOGIC_VECTOR (15 downto 0);
 			com_adc_rdata		: IN STD_LOGIC_VECTOR (15 downto 0);
@@ -1136,15 +1126,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			rx_error :  OUT  STD_LOGIC_VECTOR(15 downto 0);
 			tx_addr :  OUT  STD_LOGIC_VECTOR(15 downto 0);
 			tx_dpr_radr :  OUT  STD_LOGIC_VECTOR(15 downto 0);
-			tx_error :  OUT  STD_LOGIC_VECTOR(15 downto 0);
-			com_thr_d	: IN STD_LOGIC_VECTOR(7 downto 0);
-			dac_max_d	: IN STD_LOGIC_VECTOR(6 downto 5);
-			rec_del_d	: IN STD_LOGIC_VECTOR(7 downto 0);
-			send_del_d	: IN STD_LOGIC_VECTOR(7 downto 0);
-			clev_min_d	: IN STD_LOGIC_VECTOR(9 downto 0);
-			clev_max_d	: IN STD_LOGIC_VECTOR(9 downto 0);
-			thr_del_wr	: IN STD_LOGIC;
-			clev_wr		: IN STD_LOGIC
+			tx_error :  OUT  STD_LOGIC_VECTOR(15 downto 0)
 		);
 	END COMPONENT;
 
@@ -1591,10 +1573,6 @@ BEGIN
 			tx_dpr_radr		=> tx_dpr_radr,
 			rx_dpr_radr		=> rx_dpr_radr,
 			rx_addr			=> rx_addr,
-			com_clev		=> com_clev,
-			com_clev_wr		=> com_clev_wr,
-			com_thr_del		=> com_thr_del,
-			com_thr_del_wr	=> com_thr_del_wr,
 			-- COM ADC RX interface
 			com_adc_wdata		=> com_adc_wdata,
 			com_adc_rdata		=> com_adc_rdata,
@@ -2159,15 +2137,7 @@ BEGIN
 			rx_error		=> rx_error,
 			tx_addr			=> dp0_portaaddr,
 			tx_dpr_radr		=> tx_dpr_radr(15 DOWNTO 0),
-			tx_error		=> tx_error,
-			com_thr_d	=> com_thr_del (7 DOWNTO 0),
-			dac_max_d	=> com_thr_del (9 DOWNTO 8),
-			rec_del_d	=> com_thr_del (23 DOWNTO 16),
-			send_del_d	=> com_thr_del (31 DOWNTO 24),
-			clev_min_d	=> com_clev (9 DOWNTO 0),
-			clev_max_d	=> com_clev (25 DOWNTO 16),
-			thr_del_wr	=> com_thr_del_wr,
-			clev_wr		=> com_clev_wr
+			tx_error		=> tx_error
 		);
 	com_rx_data(15 DOWNTO 0)	<= rx_error;
 	com_rx_data(31 DOWNTO 16)	<= tx_error;

@@ -32,6 +32,8 @@
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION "3.0 SP2"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "10:14:15  FEBRUARY 26, 2004"
 set_global_assignment -name LAST_QUARTUS_VERSION "4.0 SP1"
+set_parameter -name RESERVE_ALL_UNUSED_PINS_NO_OUTPUT_GND "AS OUTPUT DRIVING AN UNSPECIFIED SIGNAL"
+set_global_assignment -name BDF_FILE ../common/comDPM/dcom_ap.bdf
 set_global_assignment -name VHDL_FILE icecube_data_types.vhd
 set_global_assignment -name VHDL_FILE constants.vhd
 set_global_assignment -name VHDL_FILE ctrl_data_types.vhd
@@ -58,8 +60,15 @@ set_global_assignment -name VHDL_FILE functions.vhd
 set_global_assignment -name VHDL_FILE slaveregister.vhd
 set_global_assignment -name VHDL_FILE comm_wrapper.vhd
 set_global_assignment -name VHDL_FILE data_buffer.vhd
-set_global_assignment -name VHDL_FILE local_coincidence.vhd
-set_global_assignment -name VHDL_FILE compression/compression.vhd
+set_global_assignment -name VHDL_FILE local_coincidence/LC_abort.vhd
+set_global_assignment -name VHDL_FILE local_coincidence/LC_RX_decode.vhd
+set_global_assignment -name VHDL_FILE local_coincidence/LC_RX_edge.vhd
+set_global_assignment -name VHDL_FILE local_coincidence/LC_TX.vhd
+set_global_assignment -name VHDL_FILE local_coincidence/LC_relais.vhd
+set_global_assignment -name VHDL_FILE local_coincidence/LC_slice.vhd
+set_global_assignment -name VHDL_FILE local_coincidence/local_coincidence.vhd
+set_global_assignment -name VHDL_FILE compression_roadgrader/compression.vhd
+set_global_assignment -name SIGNALTAP_FILE LC_binary.stp
 
 # Pin & Location Assignments
 # ==========================
@@ -388,7 +397,7 @@ set_global_assignment -name DEVICE_FILTER_PACKAGE FBGA
 set_global_assignment -name TOP_LEVEL_ENTITY domapp
 set_global_assignment -name VHDL_SHOW_LMF_MAPPING_MESSAGES OFF
 set_global_assignment -name AUTO_ENABLE_SMART_COMPILE on
-set_global_assignment -name USER_LIBRARIES "c:\\work_lbnl\\icecubecvs\\dom-fpga\\domapp\\compression;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\tx_chan;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\tcal;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\uart;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\meanval;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\edges;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\parity;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\mono_flop;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm"
+set_global_assignment -name USER_LIBRARIES "c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\tx_chan;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\tcal;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\uart;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\meanval;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\edges;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\parity;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\mono_flop;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm;c:\\work_lbnl\\icecubecvs\\dom-fpga\\domapp\\compression_roadgrader"
 
 # Fitter Assignments
 # ==================
@@ -474,7 +483,6 @@ set_instance_assignment -name IO_STANDARD LVTTL -to CLK4p
 # Timing Analysis Assignments
 # ===========================
 set_global_assignment -name MAX_SCC_SIZE 50
-set_global_assignment -name RUN_ALL_TIMING_ANALYSES ON
 
 # Assembler Assignments
 # =====================
@@ -494,14 +502,12 @@ set_global_assignment -name START_TIME 0NS
 
 # Design Assistant Assignments
 # ============================
-set_global_assignment -name HCPY_ALOAD_SIGNALS OFF
 set_global_assignment -name HCPY_VREF_PINS OFF
 set_global_assignment -name HCPY_CAT OFF
 set_global_assignment -name ACLK_RULE_IMSZER_ADOMAIN OFF
 set_global_assignment -name ACLK_RULE_SZER_BTW_ACLK_DOMAIN OFF
 set_global_assignment -name ACLK_RULE_NO_SZER_ACLK_DOMAIN OFF
 set_global_assignment -name ACLK_CAT OFF
-set_global_assignment -name SIGNALRACE_RULE_ASYNCHPIN_SYNCH_CLKPIN OFF
 set_global_assignment -name SIGNALRACE_CAT OFF
 set_global_assignment -name NONSYNCHSTRUCT_RULE_LATCH_UNIDENTIFIED OFF
 set_global_assignment -name NONSYNCHSTRUCT_RULE_SRLATCH OFF
@@ -541,7 +547,7 @@ set_global_assignment -name DRC_REPORT_TOP_FANOUT OFF
 # SignalTap II Assignments
 # ========================
 set_global_assignment -name ENABLE_SIGNALTAP off
-set_global_assignment -name USE_SIGNALTAP_FILE ahbmaster.stp
+set_global_assignment -name USE_SIGNALTAP_FILE LC_binary.stp
 
 # ------------------
 # start CLOCK(CLK1p)

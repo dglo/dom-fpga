@@ -284,9 +284,22 @@ BEGIN
 	
 
 	trigger_word (15 DOWNTO 10)	<= (OTHERS=>'0');
-	trigger_word (9 DOWNTO 8)	<= LC_trigger;
-	trigger_word (7 DOWNTO 2)	<= CS_trigger;
-	trigger_word (1)			<= discMPE;
-	trigger_word (0)			<= discSPE;
+	-- trigger_word (9 DOWNTO 8)	<= LC_trigger;
+	-- trigger_word (7 DOWNTO 2)	<= CS_trigger;
+	PROCESS (RST, CLK40) -- to adjust the timing for ADC_control
+	BEGIN
+		IF RST='1' THEN
+			trigger_word (1)	<= '0';
+			trigger_word (0)	<= '0';
+			trigger_word (9 DOWNTO 8)	<= (OTHERS=>'0');
+			trigger_word (7 DOWNTO 2)	<= (OTHERS=>'0');
+		ELSIF CLK40'EVENT AND CLK40='1' THEN
+			trigger_word (1)	<= discMPE;
+			trigger_word (0)	<= discSPE;
+			trigger_word (9 DOWNTO 8)	<= LC_trigger;
+			trigger_word (7 DOWNTO 2)	<= CS_trigger;
+
+		END IF;
+	END PROCESS;
 
 END trigger_arch;

@@ -13,16 +13,16 @@ USE WORK.ctrl_data_types.ALL;
 ENTITY calibration_sources IS
     PORT (
         -- Common Inputs
-        CLK20         : IN  STD_LOGIC;
-        CLK40         : IN  STD_LOGIC;
-        RST           : IN  STD_LOGIC;
-        systime       : IN  STD_LOGIC_VECTOR (47 DOWNTO 0);  --&&&
+        CLK20           : IN  STD_LOGIC;
+        CLK40           : IN  STD_LOGIC;
+        RST             : IN  STD_LOGIC;
+        systime         : IN  STD_LOGIC_VECTOR (47 DOWNTO 0);  --&&&
         -- slaveregister
-        cs_ctrl       :     CS_STRUCT;
-        cs_wf_data    : IN  STD_LOGIC_VECTOR (7 DOWNTO 0);
-        cs_wf_addr    : OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
-        cs_flash_now  : OUT STD_LOGIC;
-        cs_flash_time : OUT STD_LOGIC_VECTOR (47 DOWNTO 0);
+        cs_ctrl         :     CS_STRUCT;
+        cs_wf_data      : IN  STD_LOGIC_VECTOR (7 DOWNTO 0);
+        cs_wf_addr      : OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+        cs_flash_now    : OUT STD_LOGIC;
+        cs_flash_time   : OUT STD_LOGIC_VECTOR (47 DOWNTO 0);
         --cs_enable     : IN STD_LOGIC_VECTOR (5 DOWNTO 0);
         --cs_mode               : IN STD_LOGIC_VECTOR (2 DOWNTO 0);
         --cs_time               : IN STD_LOGIC_VECTOR (31 DOWNTO 0);
@@ -30,6 +30,8 @@ ENTITY calibration_sources IS
         --cs_offset     : IN STD_LOGIC_VECTOR (3 DOWNTO 0);
         --cs_cpu                : IN STD_LOGIC;
         --cs_fl_aux_reset       : IN STD_LOGIC;
+        CS_FL_aux_reset : IN  STD_LOGIC;
+        CS_FL_attn      : OUT STD_LOGIC;
 
         -- DAQ interface
         cs_daq_trigger    : OUT STD_LOGIC_VECTOR (5 DOWNTO 0);
@@ -62,17 +64,20 @@ ARCHITECTURE ARCH_calibration_sources OF calibration_sources IS
     SIGNAL stretcher         : STD_LOGIC_VECTOR(4 DOWNTO 0);
     SIGNAL flasher_board_out : STD_LOGIC;
 
-    SIGNAL led_out     : STD_LOGIC;
-    SIGNAL now         : STD_LOGIC;
-    SIGNAL now_action  : STD_LOGIC;
+    SIGNAL led_out    : STD_LOGIC;
+    SIGNAL now        : STD_LOGIC;
+    SIGNAL now_action : STD_LOGIC;
 --    SIGNAL now_cs_trig : STD_LOGIC;
-    SIGNAL now_cnt     : STD_LOGIC_VECTOR(4 DOWNTO 0);
-    SIGNAL rate_bit    : STD_LOGIC;
-    SIGNAL delay_bit   : STD_LOGIC;
+    SIGNAL now_cnt    : STD_LOGIC_VECTOR(4 DOWNTO 0);
+    SIGNAL rate_bit   : STD_LOGIC;
+    SIGNAL delay_bit  : STD_LOGIC;
 
 --signal systime : STD_LOGIC_VECTOR(47 downto 0);  --&&&
 
 BEGIN
+
+    CS_FL_attn   <= FL_ATTN;
+    FL_AUX_RESET <= CS_FL_aux_reset;
 
 -- concurrent signals assignments
     rate_bit          <= systime(25 - conv_integer(CS_ctrl.CS_rate));  -- selects correct bit of systime for rate
@@ -84,12 +89,12 @@ BEGIN
     BEGIN
         IF RST = '1' THEN
             --systime <= (others => '0'); --&&&
-            now_cnt          <= "01000"; --(OTHERS => '0');
+            now_cnt          <= "01000";  --(OTHERS => '0');
             now_action       <= '0';
             cs_flash_now     <= '0';
             cs_time_start    <= '0';
             CPU_forced_start <= '0';
-            
+            cs_flash_time    <= (OTHERS => '0');
         ELSIF CLK40'EVENT AND CLK40 = '1' THEN
             --systime <= systime + '1'; --&&&
             
@@ -114,10 +119,15 @@ BEGIN
                     CPU_forced_start <= '0';
                     
                 WHEN "011" =>           --CPU Forced
-                    IF CPU_forced_start = '0' THEN
-                        now              <= '1';  --may need more work to get 1 clk period
-                        CPU_forced_start <= '1';
-                    ELSE now      <= '0';
+                    --        IF CPU_forced_start = '0' THEN
+                    --            now              <= '1';  --may need more work to get 1 clk period
+                    --            CPU_forced_start <= '1';
+                    --        ELSE now      <= '0';
+                    --        END IF;
+                    IF CS_ctrl.CS_CPU = '1' THEN
+                        now <= '1';
+                    ELSE
+                        now <= '0';
                     END IF;
                     cs_time_start <= '0';
                     
