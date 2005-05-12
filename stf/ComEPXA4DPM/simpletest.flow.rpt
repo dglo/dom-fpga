@@ -1,5 +1,5 @@
 Flow report for simpletest
-Mon Dec 13 10:35:34 2004
+Thu Mar 10 14:21:12 2005
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -42,12 +42,12 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------+
 ; Flow Summary                                                  ;
 +-----------------------+---------------------------------------+
-; Flow Status           ; Successful - Mon Dec 13 10:35:34 2004 ;
+; Flow Status           ; Successful - Thu Mar 10 14:21:12 2005 ;
 ; Revision Name         ; simpletest                            ;
 ; Top-level Entity Name ; simpletest                            ;
 ; Family                ; EXCALIBUR_ARM                         ;
 ; Device                ; EPXA4F672I2                           ;
-; Total logic elements  ; 4,881 / 16,640 ( 29 % )               ;
+; Total logic elements  ; 4,974 / 16,640 ( 29 % )               ;
 ; Total pins            ; 284 / 463 ( 61 % )                    ;
 ; Total memory bits     ; 27,264 / 212,992 ( 12 % )             ;
 ; Total PLLs            ; 2 / 4 ( 50 % )                        ;
@@ -59,7 +59,7 @@ party's intellectual property, are provided herein.
 +------------------------------------------
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 12/13/2004 10:25:50 ;
+; Start date & time ; 03/10/2005 14:11:07 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; simpletest          ;
 +-------------------+---------------------+
@@ -70,12 +70,12 @@ party's intellectual property, are provided herein.
 +--------------------------------------
 ; Module Name          ; Elapsed Time ;
 +----------------------+--------------+
-; Analysis & Synthesis ; 00:02:10     ;
-; Fitter               ; 00:06:57     ;
+; Analysis & Synthesis ; 00:02:06     ;
+; Fitter               ; 00:07:22     ;
 ; Assembler            ; 00:00:06     ;
-; Timing Analyzer      ; 00:00:12     ;
+; Timing Analyzer      ; 00:00:13     ;
 ; EDA Netlist Writer   ; 00:00:08     ;
-; Total                ; 00:09:33     ;
+; Total                ; 00:09:55     ;
 +----------------------+--------------+
 
 

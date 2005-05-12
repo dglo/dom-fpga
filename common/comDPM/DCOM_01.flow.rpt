@@ -1,6 +1,6 @@
 Flow report for DCOM_01
-Mon Aug 30 19:33:35 2004
-Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
+Wed Dec 15 16:19:48 2004
+Version 4.1 Build 181 06/29/2004 SJ Full Version
 
 
 ---------------------
@@ -39,27 +39,27 @@ party's intellectual property, are provided herein.
 
 
 
-+---------------------------------------------------------------+
-; Flow Summary                                                  ;
-+-----------------------+---------------------------------------+
-; Flow Status           ; Successful - Mon Aug 30 19:33:35 2004 ;
-; Revision Name         ; DCOM_01                               ;
-; Top-level Entity Name ; dcom_ap                               ;
-; Family                ; APEX20KE                              ;
-; Device                ; EP20K200EFC484-2X                     ;
-; Total logic elements  ; 1,525                                 ;
-; Total pins            ; 357                                   ;
-; Total memory bits     ; 640                                   ;
-; Total PLLs            ; 0                                     ;
-+-----------------------+---------------------------------------+
++------------------------------------------------------------------+
+; Flow Summary                                                     ;
++-----------------------+------------------------------------------+
+; Flow Status           ; Flow Failed - Wed Dec 15 16:19:48 2004   ;
+; Quartus II Version    ; 4.1 Build 181 06/29/2004 SJ Full Version ;
+; Revision Name         ; DCOM_01                                  ;
+; Top-level Entity Name ; dcom_ap                                  ;
+; Family                ; Cyclone                                  ;
+; Total logic elements  ; 1,568                                    ;
+; Total pins            ; 405                                      ;
+; Total memory bits     ; 640                                      ;
+; Total PLLs            ; 0                                        ;
++-----------------------+------------------------------------------+
 
 
 +-----------------------------------------+
 ; Flow Settings                           ;
-+------------------------------------------
++-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 08/30/2004 19:32:51 ;
+; Start date & time ; 12/15/2004 16:19:15 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; DCOM_01             ;
 +-------------------+---------------------+
@@ -67,18 +67,20 @@ party's intellectual property, are provided herein.
 
 +-------------------------------------+
 ; Flow Elapsed Time                   ;
-+--------------------------------------
++----------------------+--------------+
 ; Module Name          ; Elapsed Time ;
 +----------------------+--------------+
-; Analysis & Synthesis ; 00:00:44     ;
-; Total                ; 00:00:44     ;
+; Analysis & Synthesis ; 00:00:32     ;
+; Fitter               ; 00:00:00     ;
+; Total                ; 00:00:32     ;
 +----------------------+--------------+
 
 
 ------------
 ; Flow Log ;
 ------------
-quartus_map --lower_priority --import_settings_files=on --export_settings_files=off DCOM_01 -c DCOM_01
+quartus_map --import_settings_files=on --export_settings_files=off DCOM_01 -c DCOM_01
+quartus_fit --import_settings_files=off --export_settings_files=off DCOM_01 -c DCOM_01
 
 
 

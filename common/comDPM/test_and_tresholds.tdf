@@ -1,14 +1,17 @@
-TITLE "DCOM test signals, K.-H. Sulanke,DESY Zeuthen, 2004-08-30";
+TITLE "DCOM test signals and comm. thresholds, K.-H. Sulanke,DESY Zeuthen, 2004-12-15";
 -- plus comm. and DAC level control tresholds
 
-CONSTANT DCFREV		= 024;			-- DOM Communication module revision (dec.)
+CONSTANT DCFREV		= 025;			-- DOM Communication module revision (dec.)
 
-CONSTANT LOW_THRESH	=  66;	--77;	-- HL-edge length after 6 clocks, weak signal (long cable)
-CONSTANT LRG_THRESH	= 255;	-- HL-edge length after 3 clocks, strong signal (short cable)
-CONSTANT LOW_STEP	=   6;	--7;	-- difference after consecutive ADC samples, weak signal (long cable)
-CONSTANT LRG_STEP	=  55;	-- difference after consecutive ADC samples, strong signal (short cable)
-CONSTANT MIN_CLEV	= 960;	-- needed for comm. DAC level adaption
-CONSTANT MAX_CLEV	= 970;	-- needed for comm. DAC level adaption
+CONSTANT COM_THRESH		=  64;	-- HL-edge length after 4 clocks
+CONSTANT REC_DELAY		=  10;	-- x 50ns, receiver start up delay to deal with signal reflections from last send
+							-- = 30; recommended for 100m... cable
+CONSTANT SEND_DELAY		= 255;	-- x 50ns, send delay to deal with signal reflections
+
+CONSTANT DAC_MAX_LEVEL	= 255;	-- comm. DAC max. level
+
+CONSTANT MIN_CLEV		= 960;	-- needed for comm. DAC level adaption
+CONSTANT MAX_CLEV		= 970;	-- needed for comm. DAC level adaption
 
 SUBDESIGN test_and_tresholds
 (
@@ -31,7 +34,8 @@ SUBDESIGN test_and_tresholds
 --	tx_dpr_ren		: INPUT;
 --	send_data		: INPUT;
 --	tx_pack_rdy		: INPUT;
-	
+
+	CLK20			: INPUT;	
 	reboot_req		: INPUT;
 	drreq_rcvd		: INPUT;
 	idle_rcvd		: INPUT;	
@@ -44,20 +48,43 @@ SUBDESIGN test_and_tresholds
 	pulse_rcvd		: INPUT;
 	pulse_sent		: INPUT;
 	
+	com_thr_d[7..0]	: INPUT;	-- HL-edge length after 6 clocks
+	dac_max_d[6..5]	: INPUT;
+	rec_del_d[7..0]	: INPUT;
+	send_del_d[7..0]: INPUT;
+			
+	clev_min_d[9..0]: INPUT;	-- needed for comm. DAC level adaption
+	clev_max_d[9..0]: INPUT;	-- needed for comm. DAC level adaption
 	
-	tc[7..0]		: OUTPUT;	-- DOM test connector
+	thr_del_wr		: INPUT;	-- write strobe, at least one clock length
+	clev_wr			: INPUT;	-- write strobe, at least one clock length
 	
-	low_thr[7..0]	: OUTPUT;	-- HL-edge length after 6 clocks
-	lrg_thr[9..0]	: OUTPUT;	-- HL-edge length after 3 clocks
-	low_stp[3..0]	: OUTPUT;	-- difference between consecutice comm. ADC samples	
-	lrg_stp[7..0]	: OUTPUT;	-- difference between consecutice comm. ADC samples	
-
+	com_thr[7..0]	: OUTPUT;	-- HL-edge length after 6 clocks
+	dac_max[7..0]	: OUTPUT;	
+	rec_del[7..0]	: OUTPUT;
+	send_del[7..0]	: OUTPUT;
+		
 	clev_min[9..0]	: OUTPUT;	-- needed for comm. DAC level adaption
 	clev_max[9..0]	: OUTPUT;	-- needed for comm. DAC level adaption
+		
 	rev[15..0]		: OUTPUT;	-- DOM comm. module revision
+	tc[7..0]		: OUTPUT;	-- DOM test connector
 )
 
+VARIABLE
+
+com_thr[7..0]		: DFFE;
+dac_max[7..0]		: DFFE;
+rec_del[7..0]		: DFFE;
+send_del[7..0]		: DFFE;
+
+clev_min[9..0]		: DFFE;
+clev_max[9..0]		: DFFE;
+
+
 BEGIN
+
+	rev[]	= DCFREV;
 
 	tc[0]	= reboot_req;
 	tc[1]	= drreq_rcvd;
@@ -76,14 +103,61 @@ BEGIN
 --	tc[6]	= ctrl_error;
 --	tc[7]	= data_error;
 
-	low_thr[7..0]	= LOW_THRESH;	-- HL-edge length after 6 clocks
-	lrg_thr[9..0]	= LRG_THRESH;	-- HL-edge length after 3 clocks
-	low_stp[3..0]	= LOW_STEP;	-- difference between consecutice comm. ADC samples	
-	lrg_stp[7..0]	= LRG_STEP;	-- difference between consecutice comm. ADC samples	
+-- CTHR, write only, temporarily ???
+-- use thr_del_wr
 
-	clev_min[9..0]	= MIN_CLEV;	-- needed for comm. DAC level adaption
-	clev_max[9..0]	= MAX_CLEV;
-	
-	rev[15..0]		= DCFREV;
+com_thr[].clk		= CLK20;
+com_thr[].ena		= thr_del_wr;
+com_thr[].d			= com_thr_d[];
+
+if(buf_res)	THEN	com_thr[].prn = !COM_THRESH;
+ELSE				com_thr[].prn = vcc;			END IF;
+
+dac_max[4..0].clk	= CLK20;
+dac_max[4..0].ena	= vcc;
+dac_max[4..0].d		= vcc;
+dac_max[7].clk		= CLK20;
+dac_max[7].ena		= vcc;
+dac_max[7].d		= vcc;
+
+dac_max[6..5].clk	= CLK20;
+dac_max[6..5].ena	= thr_del_wr;
+dac_max[6..5].d		= dac_max_d[6..5];
+
+if(buf_res)	THEN	dac_max[].prn = !DAC_MAX_LEVEL;
+ELSE				dac_max[].prn = vcc;			END IF;
+
+rec_del[].clk		= CLK20;
+rec_del[].ena		= thr_del_wr;
+rec_del[].d			= rec_del_d[];
+
+if(buf_res)	THEN	rec_del[].prn = !REC_DELAY;
+ELSE				rec_del[].prn = vcc;			END IF;
+
+send_del[].clk		= CLK20;
+send_del[].ena		= thr_del_wr;
+send_del[].d		= send_del_d[];
+
+if(buf_res)	THEN	send_del[].prn = !SEND_DELAY;
+ELSE				send_del[].prn = vcc;			END IF;
+
+
+-- CLEV_MIN, CLEV_MAX, write only (temporarily ?)
+-- use clev_wr
+
+clev_min[].clk		= CLK20;
+clev_min[].ena		= clev_wr;
+clev_min[].d		= clev_min_d[];
+
+if(buf_res)	THEN	clev_min[].prn = !MIN_CLEV;
+ELSE				clev_min[].prn = vcc;			END IF;
+
+clev_max[].clk		= CLK20;
+clev_max[].ena		= clev_wr;
+clev_max[].d		= clev_max_d[];
+
+if(buf_res)	THEN	clev_max[].prn = !MAX_CLEV;
+ELSE				clev_max[].prn = vcc;			END IF;
+
 
 END;

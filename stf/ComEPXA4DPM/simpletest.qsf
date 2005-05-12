@@ -32,6 +32,14 @@
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 2.2
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "10:24:23  APRIL 07, 2004"
 set_global_assignment -name LAST_QUARTUS_VERSION "4.0 SP1"
+set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/meanval/mean_over_4_clks.tdf
+set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/rec_delay.tdf
+set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/edges/dc_adc_to_ser_2thr.tdf
+set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/rec_delay_ctdn.tdf
+set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/dac_levct_sld.tdf
+set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/dc_com_dac_ctrl_var_sig.tdf
+set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/send_del_ctdn.tdf
+set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/send_delay.tdf
 set_global_assignment -name AHDL_FILE ../../common/comDPM/test_and_tresholds.tdf
 set_global_assignment -name VHDL_FILE ../../common/comDPM/ponres_ct.vhd
 set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/Rx_dpr_ctrl_PAR_ap.tdf
@@ -181,20 +189,20 @@ set_location_assignment PIN_R23 -to CLK1p
 set_location_assignment PIN_Y5 -to CLK4p
 set_location_assignment PIN_M4 -to CLKLK_OUT2p
 set_location_assignment PIN_H24 -to CLK_REF
-set_location_assignment PIN_AB2 -to COINCIDENCE_OUT_DOWN
-set_location_assignment PIN_AB1 -to COINCIDENCE_OUT_UP
-set_location_assignment PIN_AA10 -to COINC_DOWN_A
-set_location_assignment PIN_AE9 -to COINC_DOWN_ABAR
-set_location_assignment PIN_AC9 -to COINC_DOWN_ALATCH
-set_location_assignment PIN_AC10 -to COINC_DOWN_B
-set_location_assignment PIN_AB9 -to COINC_DOWN_BBAR
-set_location_assignment PIN_AD9 -to COINC_DOWN_BLATCH
-set_location_assignment PIN_AB10 -to COINC_UP_A
-set_location_assignment PIN_AE10 -to COINC_UP_ABAR
-set_location_assignment PIN_AF9 -to COINC_UP_ALATCH
-set_location_assignment PIN_AD10 -to COINC_UP_B
-set_location_assignment PIN_AF10 -to COINC_UP_BBAR
-set_location_assignment PIN_AA11 -to COINC_UP_BLATCH
+set_location_assignment PIN_AB1 -to COINCIDENCE_OUT_DOWN
+set_location_assignment PIN_AB2 -to COINCIDENCE_OUT_UP
+set_location_assignment PIN_AB10 -to COINC_DOWN_A
+set_location_assignment PIN_AE10 -to COINC_DOWN_ABAR
+set_location_assignment PIN_AF9 -to COINC_DOWN_ALATCH
+set_location_assignment PIN_AD10 -to COINC_DOWN_B
+set_location_assignment PIN_AF10 -to COINC_DOWN_BBAR
+set_location_assignment PIN_AA11 -to COINC_DOWN_BLATCH
+set_location_assignment PIN_AA10 -to COINC_UP_A
+set_location_assignment PIN_AE9 -to COINC_UP_ABAR
+set_location_assignment PIN_AC9 -to COINC_UP_ALATCH
+set_location_assignment PIN_AC10 -to COINC_UP_B
+set_location_assignment PIN_AB9 -to COINC_UP_BBAR
+set_location_assignment PIN_AD9 -to COINC_UP_BLATCH
 set_location_assignment PIN_AA24 -to COMM_RESET
 set_location_assignment PIN_L5 -to COM_AD_D\[0\]
 set_location_assignment PIN_L4 -to COM_AD_D\[1\]
@@ -748,7 +756,6 @@ set_instance_assignment -name IO_STANDARD LVTTL -to nRESET
 # Timing Analysis Assignments
 # ===========================
 set_global_assignment -name MAX_SCC_SIZE 50
-set_global_assignment -name RUN_ALL_TIMING_ANALYSES ON
 
 # EDA Netlist Writer Assignments
 # ==============================
@@ -773,14 +780,12 @@ set_global_assignment -name CONFIGURATION_CLOCK_DIVISOR 1.0
 
 # Design Assistant Assignments
 # ============================
-set_global_assignment -name HCPY_ALOAD_SIGNALS OFF
 set_global_assignment -name HCPY_VREF_PINS OFF
 set_global_assignment -name HCPY_CAT OFF
 set_global_assignment -name ACLK_RULE_IMSZER_ADOMAIN OFF
 set_global_assignment -name ACLK_RULE_SZER_BTW_ACLK_DOMAIN OFF
 set_global_assignment -name ACLK_RULE_NO_SZER_ACLK_DOMAIN OFF
 set_global_assignment -name ACLK_CAT OFF
-set_global_assignment -name SIGNALRACE_RULE_ASYNCHPIN_SYNCH_CLKPIN OFF
 set_global_assignment -name SIGNALRACE_CAT OFF
 set_global_assignment -name NONSYNCHSTRUCT_RULE_LATCH_UNIDENTIFIED OFF
 set_global_assignment -name NONSYNCHSTRUCT_RULE_SRLATCH OFF
