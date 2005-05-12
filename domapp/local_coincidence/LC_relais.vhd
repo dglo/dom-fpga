@@ -19,6 +19,7 @@ ENTITY LC_relais IS
         -- to TX
         n_tx      : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
         tx        : OUT STD_LOGIC;
+        next_lc   : IN  STD_LOGIC;
         -- test
         TC        : OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
         );
@@ -29,26 +30,81 @@ ARCHITECTURE LC_relais_arch OF LC_relais IS
 
 BEGIN  -- LC_relais_arch
 
-    -- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    -- PROBLEM if disc while transmit is going on bacause n_tx will change
+--    -- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+--    -- PROBLEM if disc while transmit is going on bacause n_tx will change
+--    PROCESS (CLK40, RST)
+--    BEGIN  -- PROCESS
+--        IF RST = '1' THEN               -- asynchronous reset (active high)
+--
+--        ELSIF CLK40'EVENT AND CLK40 = '1' THEN  -- rising clock edge
+--            IF disc = '1' THEN
+--                n_tx <= lc_length;
+--                tx   <= '1';
+--            ELSIF rx = '1' THEN
+--                IF n_rx = "00" THEN
+--                    -- last one; we are done
+--                    NULL;
+--                ELSE
+--                    n_tx <= n_rx - 1;
+--                    tx   <= '1';
+--                END IF;
+--            ELSE
+--                tx <= '0';
+--            END IF;
+--        END IF;
+--    END PROCESS;
+
+
     PROCESS (CLK40, RST)
+        VARIABLE got_disc : STD_LOGIC := '0';
+        VARIABLE got_rx   : STD_LOGIC := '0';
+        VARIABLE got_rx_n : STD_LOGIC_VECTOR (1 DOWNTO 0);
+        VARIABLE wait1clk : STD_LOGIC;
     BEGIN  -- PROCESS
         IF RST = '1' THEN               -- asynchronous reset (active high)
-
+            n_tx     <= "00";
+            tx       <= '0';
+            got_disc := '0';
+            got_rx   := '0';
+            got_rx_n := "00";
+            wait1clk := '0';
         ELSIF CLK40'EVENT AND CLK40 = '1' THEN  -- rising clock edge
             IF disc = '1' THEN
-                n_tx <= lc_length;
-                tx   <= '1';
-            ELSIF rx = '1' THEN
+                -- put into disc BUFFER
+                got_disc := '1';
+            END IF;
+            IF rx = '1' THEN
+                -- put into relais BUFFER
                 IF n_rx = "00" THEN
-                    -- last one; we are done
+                    -- skip it, we are done
                     NULL;
                 ELSE
-                    n_tx <= n_rx - 1;
-                    tx   <= '1';
+                    got_rx   := '1';
+                    got_rx_n := n_rx - 1;
+                END IF;
+            END IF;
+
+            -- ready to send the next LC
+            IF next_lc = '1' AND wait1clk = '0' THEN
+                IF got_rx = '1' THEN
+                    -- send relais BUFFER
+                    n_tx     <= got_rx_n;
+                    tx       <= '1';
+                    got_rx   := '0';
+                    wait1clk := '1';
+                ELSIF got_disc = '1' THEN
+                    -- send disc BUFFER
+                    n_tx     <= lc_length;
+                    tx       <= '1';
+                    got_disc := '0';
+                    wait1clk := '1';
+                ELSE
+                    tx       <= '0';
+                    wait1clk := '0';
                 END IF;
             ELSE
-                tx <= '0';
+                tx       <= '0';
+                wait1clk := '0';
             END IF;
         END IF;
     END PROCESS;
