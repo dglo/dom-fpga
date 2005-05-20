@@ -67,8 +67,8 @@ set_global_assignment -name VHDL_FILE local_coincidence/LC_TX.vhd
 set_global_assignment -name VHDL_FILE local_coincidence/LC_relais.vhd
 set_global_assignment -name VHDL_FILE local_coincidence/LC_slice.vhd
 set_global_assignment -name VHDL_FILE local_coincidence/local_coincidence.vhd
-set_global_assignment -name VHDL_FILE compression_roadgrader/compression.vhd
 set_global_assignment -name SIGNALTAP_FILE LC_binary.stp
+set_global_assignment -name SIGNALTAP_FILE slavereg_log.stp
 
 # Pin & Location Assignments
 # ==========================
@@ -397,7 +397,7 @@ set_global_assignment -name DEVICE_FILTER_PACKAGE FBGA
 set_global_assignment -name TOP_LEVEL_ENTITY domapp
 set_global_assignment -name VHDL_SHOW_LMF_MAPPING_MESSAGES OFF
 set_global_assignment -name AUTO_ENABLE_SMART_COMPILE on
-set_global_assignment -name USER_LIBRARIES "c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\tx_chan;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\tcal;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\uart;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\meanval;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\edges;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\parity;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\mono_flop;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm;c:\\work_lbnl\\icecubecvs\\dom-fpga\\domapp\\compression_roadgrader"
+set_global_assignment -name USER_LIBRARIES "c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\tx_chan;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\tcal;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\uart;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\meanval;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\edges;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\parity;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\mono_flop;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm;c:\\work_lbnl\\icecubecvs\\dom-fpga\\domapp\\compression_roadgrader_charge"
 
 # Fitter Assignments
 # ==================

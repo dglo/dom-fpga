@@ -1,5 +1,5 @@
 Analysis & Synthesis report for domapp
-Thu May 12 09:15:07 2005
+Thu May 19 15:00:57 2005
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -76,11 +76,11 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                        ;
 +-----------------------------+---------------------------------------+
-; Analysis & Synthesis Status ; Successful - Thu May 12 09:15:07 2005 ;
+; Analysis & Synthesis Status ; Successful - Thu May 19 15:00:57 2005 ;
 ; Revision Name               ; domapp                                ;
 ; Top-level Entity Name       ; domapp                                ;
 ; Family                      ; EXCALIBUR_ARM                         ;
-; Total logic elements        ; 9,455                                 ;
+; Total logic elements        ; 9,463                                 ;
 ; Total pins                  ; 308                                   ;
 ; Total memory bits           ; 96,896                                ;
 ; Total PLLs                  ; 2                                     ;
@@ -441,13 +441,17 @@ domapp
                           |-- alt_synch_counter:wysi_counter
                 |-- compressor_out_synch:compressor_out0
                      |-- compr_ram:compr_ram0
-                          |-- altdpram:altdpram_component
+                          |-- lpm_ram_dp:lpm_ram_dp_component
+                               |-- altdpram:sram
                      |-- compr_ram:compr_ram1
-                          |-- altdpram:altdpram_component
+                          |-- lpm_ram_dp:lpm_ram_dp_component
+                               |-- altdpram:sram
                      |-- compr_ram:compr_ram2
-                          |-- altdpram:altdpram_component
+                          |-- lpm_ram_dp:lpm_ram_dp_component
+                               |-- altdpram:sram
                      |-- compr_ram:compr_ram3
-                          |-- altdpram:altdpram_component
+                          |-- lpm_ram_dp:lpm_ram_dp_component
+                               |-- altdpram:sram
                 |-- type_analyzer:type_analyzer0
            |-- data_buffer:inst_data_buffer
                 |-- ATWD_buffer:inst_ATWD_buffer_even
@@ -482,13 +486,17 @@ domapp
                           |-- alt_synch_counter:wysi_counter
                 |-- compressor_out_synch:compressor_out0
                      |-- compr_ram:compr_ram0
-                          |-- altdpram:altdpram_component
+                          |-- lpm_ram_dp:lpm_ram_dp_component
+                               |-- altdpram:sram
                      |-- compr_ram:compr_ram1
-                          |-- altdpram:altdpram_component
+                          |-- lpm_ram_dp:lpm_ram_dp_component
+                               |-- altdpram:sram
                      |-- compr_ram:compr_ram2
-                          |-- altdpram:altdpram_component
+                          |-- lpm_ram_dp:lpm_ram_dp_component
+                               |-- altdpram:sram
                      |-- compr_ram:compr_ram3
-                          |-- altdpram:altdpram_component
+                          |-- lpm_ram_dp:lpm_ram_dp_component
+                               |-- altdpram:sram
                 |-- type_analyzer:type_analyzer0
            |-- data_buffer:inst_data_buffer
                 |-- ATWD_buffer:inst_ATWD_buffer_even
@@ -1131,7 +1139,7 @@ domapp
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Compilation Hierarchy Node                                        ; Logic Cells ; Registers ; Memory Bits ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Full Hierarchy Name                                                                                                                                                                                                                                                                                      ;
 +-------------------------------------------------------------------+-------------+-----------+-------------+------+--------------+--------------+-------------------+------------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; |domapp                                                           ; 9455 (3)    ; 3652      ; 96896       ; 308  ; 0            ; 5803 (3)     ; 1365 (0)          ; 2287 (0)         ; 1596 (0)        ; |domapp                                                                                                                                                                                                                                                                                                  ;
+; |domapp                                                           ; 9463 (3)    ; 3652      ; 96896       ; 308  ; 0            ; 5811 (3)     ; 1365 (0)          ; 2287 (0)         ; 1596 (0)        ; |domapp                                                                                                                                                                                                                                                                                                  ;
 ;    |ROC:inst_ROC|                                                 ; 4 (4)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 2 (2)             ; 2 (2)            ; 0 (0)           ; |domapp|ROC:inst_ROC                                                                                                                                                                                                                                                                                     ;
 ;    |calibration_sources:inst_calibration_sources|                 ; 178 (165)   ; 98        ; 0           ; 0    ; 0            ; 80 (80)      ; 49 (49)           ; 49 (36)          ; 18 (5)          ; |domapp|calibration_sources:inst_calibration_sources                                                                                                                                                                                                                                                     ;
 ;       |lpm_counter:cs_wf_addr_int_rtl_5|                          ; 8 (0)       ; 8         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 8 (0)            ; 8 (0)           ; |domapp|calibration_sources:inst_calibration_sources|lpm_counter:cs_wf_addr_int_rtl_5                                                                                                                                                                                                                    ;
@@ -1357,11 +1365,11 @@ domapp
 ;                                        |cmpchain:cmp_end|         ; 1 (1)       ; 0         ; 0           ; 0    ; 0            ; 1 (1)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|tx_uart_ct5:inst4|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|lpm_compare:$00013|comptree:comparator|cmpchain:cmp_end|comptree:comp|comptree:sub_comptree|cmpchain:cmp_end ;
 ;                |tx_uart_shr10:inst8|                              ; 10 (0)      ; 10        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 10 (0)           ; 0 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|tx_uart_shr10:inst8                                                                                                                                                                             ;
 ;                   |lpm_shiftreg:lpm_shiftreg_component|           ; 10 (10)     ; 10        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 10 (10)          ; 0 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|tx_uart_shr10:inst8|lpm_shiftreg:lpm_shiftreg_component                                                                                                                                         ;
-;    |daq:inst_daq|                                                 ; 4841 (0)    ; 1720      ; 81920       ; 0    ; 0            ; 3121 (0)     ; 566 (0)           ; 1154 (0)         ; 622 (0)         ; |domapp|daq:inst_daq                                                                                                                                                                                                                                                                                     ;
+;    |daq:inst_daq|                                                 ; 4858 (0)    ; 1720      ; 81920       ; 0    ; 0            ; 3138 (0)     ; 566 (0)           ; 1154 (0)         ; 622 (0)         ; |domapp|daq:inst_daq                                                                                                                                                                                                                                                                                     ;
 ;       |FADC_input:inst_FADC_input|                                ; 11 (11)     ; 11        ; 0           ; 0    ; 0            ; 0 (0)        ; 11 (11)           ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|FADC_input:inst_FADC_input                                                                                                                                                                                                                                                          ;
 ;       |ahb_master:inst_ahb_master|                                ; 248 (248)   ; 97        ; 0           ; 0    ; 0            ; 151 (151)    ; 0 (0)             ; 97 (97)          ; 30 (30)         ; |domapp|daq:inst_daq|ahb_master:inst_ahb_master                                                                                                                                                                                                                                                          ;
 ;       |mem_interface:inst_mem_interface|                          ; 413 (413)   ; 51        ; 0           ; 0    ; 0            ; 362 (362)    ; 8 (8)             ; 43 (43)          ; 26 (26)         ; |domapp|daq:inst_daq|mem_interface:inst_mem_interface                                                                                                                                                                                                                                                    ;
-;       |pingpong:ping|                                             ; 2066 (0)    ; 769       ; 40960       ; 0    ; 0            ; 1297 (0)     ; 266 (0)           ; 503 (0)          ; 283 (0)         ; |domapp|daq:inst_daq|pingpong:ping                                                                                                                                                                                                                                                                       ;
+;       |pingpong:ping|                                             ; 2072 (0)    ; 769       ; 40960       ; 0    ; 0            ; 1303 (0)     ; 266 (0)           ; 503 (0)          ; 283 (0)         ; |domapp|daq:inst_daq|pingpong:ping                                                                                                                                                                                                                                                                       ;
 ;          |ADC_input:inst_ADC_input|                               ; 398 (0)     ; 209       ; 0           ; 0    ; 0            ; 189 (0)      ; 72 (0)            ; 137 (0)          ; 106 (0)         ; |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input                                                                                                                                                                                                                                              ;
 ;             |ADC_control:inst_ADC_control|                        ; 104 (88)    ; 87        ; 0           ; 0    ; 0            ; 17 (17)      ; 58 (58)           ; 29 (13)          ; 16 (0)          ; |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control                                                                                                                                                                                                                 ;
 ;                |lpm_counter:deadtime_cnt_rtl_11|                  ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|lpm_counter:deadtime_cnt_rtl_11                                                                                                                                                                                 ;
@@ -1373,25 +1381,29 @@ domapp
 ;             |FADC_interface:inst_FADC_interface|                  ; 25 (9)      ; 9         ; 0           ; 0    ; 0            ; 16 (8)       ; 0 (0)             ; 9 (1)            ; 8 (0)           ; |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface                                                                                                                                                                                                           ;
 ;                |lpm_counter:wr_addr_rtl_9|                        ; 16 (0)      ; 8         ; 0           ; 0    ; 0            ; 8 (0)        ; 0 (0)             ; 8 (0)            ; 8 (0)           ; |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface|lpm_counter:wr_addr_rtl_9                                                                                                                                                                                 ;
 ;                   |alt_synch_counter:wysi_counter|                ; 16 (16)     ; 8         ; 0           ; 0    ; 0            ; 8 (8)        ; 0 (0)             ; 8 (8)            ; 8 (8)           ; |domapp|daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface|lpm_counter:wr_addr_rtl_9|alt_synch_counter:wysi_counter                                                                                                                                                  ;
-;          |compression:inst_compression|                           ; 1432 (0)    ; 396       ; 16384       ; 0    ; 0            ; 1036 (0)     ; 34 (0)            ; 362 (0)          ; 177 (0)         ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression                                                                                                                                                                                                                                          ;
-;             |compressor_in:compressor_in0|                        ; 1089 (1027) ; 232       ; 0           ; 0    ; 0            ; 857 (834)    ; 22 (22)           ; 210 (171)        ; 135 (96)        ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_in:compressor_in0                                                                                                                                                                                                             ;
+;          |compression:inst_compression|                           ; 1438 (0)    ; 396       ; 16384       ; 0    ; 0            ; 1042 (0)     ; 34 (0)            ; 362 (0)          ; 177 (0)         ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression                                                                                                                                                                                                                                          ;
+;             |compressor_in:compressor_in0|                        ; 1092 (1028) ; 232       ; 0           ; 0    ; 0            ; 860 (835)    ; 22 (22)           ; 210 (171)        ; 135 (96)        ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_in:compressor_in0                                                                                                                                                                                                             ;
 ;                |lpm_counter:atwd_address_rtl_7|                   ; 20 (0)      ; 10        ; 0           ; 0    ; 0            ; 10 (0)       ; 0 (0)             ; 10 (0)           ; 10 (0)          ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_in:compressor_in0|lpm_counter:atwd_address_rtl_7                                                                                                                                                                              ;
 ;                   |alt_synch_counter:wysi_counter|                ; 20 (20)     ; 10        ; 0           ; 0    ; 0            ; 10 (10)      ; 0 (0)             ; 10 (10)          ; 10 (10)         ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_in:compressor_in0|lpm_counter:atwd_address_rtl_7|alt_synch_counter:wysi_counter                                                                                                                                               ;
 ;                |lpm_counter:atwd_word_count_rtl_16|               ; 12 (0)      ; 9         ; 0           ; 0    ; 0            ; 3 (0)        ; 0 (0)             ; 9 (0)            ; 9 (0)           ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_in:compressor_in0|lpm_counter:atwd_word_count_rtl_16                                                                                                                                                                          ;
 ;                   |alt_synch_counter:wysi_counter|                ; 12 (12)     ; 9         ; 0           ; 0    ; 0            ; 3 (3)        ; 0 (0)             ; 9 (9)            ; 9 (9)           ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_in:compressor_in0|lpm_counter:atwd_word_count_rtl_16|alt_synch_counter:wysi_counter                                                                                                                                           ;
-;                |lpm_counter:fadc_address_rtl_4|                   ; 20 (0)      ; 10        ; 0           ; 0    ; 0            ; 10 (0)       ; 0 (0)             ; 10 (0)           ; 10 (0)          ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_in:compressor_in0|lpm_counter:fadc_address_rtl_4                                                                                                                                                                              ;
-;                   |alt_synch_counter:wysi_counter|                ; 20 (20)     ; 10        ; 0           ; 0    ; 0            ; 10 (10)      ; 0 (0)             ; 10 (10)          ; 10 (10)         ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_in:compressor_in0|lpm_counter:fadc_address_rtl_4|alt_synch_counter:wysi_counter                                                                                                                                               ;
+;                |lpm_counter:fadc_address_rtl_4|                   ; 22 (0)      ; 10        ; 0           ; 0    ; 0            ; 12 (0)       ; 0 (0)             ; 10 (0)           ; 10 (0)          ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_in:compressor_in0|lpm_counter:fadc_address_rtl_4                                                                                                                                                                              ;
+;                   |alt_synch_counter:wysi_counter|                ; 22 (22)     ; 10        ; 0           ; 0    ; 0            ; 12 (12)      ; 0 (0)             ; 10 (10)          ; 10 (10)         ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_in:compressor_in0|lpm_counter:fadc_address_rtl_4|alt_synch_counter:wysi_counter                                                                                                                                               ;
 ;                |lpm_counter:same_value_count1_rtl_20|             ; 10 (0)      ; 10        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 10 (0)           ; 10 (0)          ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_in:compressor_in0|lpm_counter:same_value_count1_rtl_20                                                                                                                                                                        ;
 ;                   |alt_synch_counter:wysi_counter|                ; 10 (10)     ; 10        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 10 (10)          ; 10 (10)         ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_in:compressor_in0|lpm_counter:same_value_count1_rtl_20|alt_synch_counter:wysi_counter                                                                                                                                         ;
-;             |compressor_out_synch:compressor_out0|                ; 343 (343)   ; 164       ; 16384       ; 0    ; 0            ; 179 (179)    ; 12 (12)           ; 152 (152)        ; 42 (42)         ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0                                                                                                                                                                                                     ;
+;             |compressor_out_synch:compressor_out0|                ; 346 (346)   ; 164       ; 16384       ; 0    ; 0            ; 182 (182)    ; 12 (12)           ; 152 (152)        ; 42 (42)         ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0                                                                                                                                                                                                     ;
 ;                |compr_ram:compr_ram0|                             ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram0                                                                                                                                                                                ;
-;                   |altdpram:altdpram_component|                   ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram0|altdpram:altdpram_component                                                                                                                                                    ;
+;                   |lpm_ram_dp:lpm_ram_dp_component|               ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram0|lpm_ram_dp:lpm_ram_dp_component                                                                                                                                                ;
+;                      |altdpram:sram|                              ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram0|lpm_ram_dp:lpm_ram_dp_component|altdpram:sram                                                                                                                                  ;
 ;                |compr_ram:compr_ram1|                             ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram1                                                                                                                                                                                ;
-;                   |altdpram:altdpram_component|                   ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram1|altdpram:altdpram_component                                                                                                                                                    ;
+;                   |lpm_ram_dp:lpm_ram_dp_component|               ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram1|lpm_ram_dp:lpm_ram_dp_component                                                                                                                                                ;
+;                      |altdpram:sram|                              ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram1|lpm_ram_dp:lpm_ram_dp_component|altdpram:sram                                                                                                                                  ;
 ;                |compr_ram:compr_ram2|                             ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram2                                                                                                                                                                                ;
-;                   |altdpram:altdpram_component|                   ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram2|altdpram:altdpram_component                                                                                                                                                    ;
+;                   |lpm_ram_dp:lpm_ram_dp_component|               ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram2|lpm_ram_dp:lpm_ram_dp_component                                                                                                                                                ;
+;                      |altdpram:sram|                              ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram2|lpm_ram_dp:lpm_ram_dp_component|altdpram:sram                                                                                                                                  ;
 ;                |compr_ram:compr_ram3|                             ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram3                                                                                                                                                                                ;
-;                   |altdpram:altdpram_component|                   ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram3|altdpram:altdpram_component                                                                                                                                                    ;
+;                   |lpm_ram_dp:lpm_ram_dp_component|               ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram3|lpm_ram_dp:lpm_ram_dp_component                                                                                                                                                ;
+;                      |altdpram:sram|                              ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram3|lpm_ram_dp:lpm_ram_dp_component|altdpram:sram                                                                                                                                  ;
 ;          |data_buffer:inst_data_buffer|                           ; 236 (236)   ; 164       ; 24576       ; 0    ; 0            ; 72 (72)      ; 160 (160)         ; 4 (4)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer                                                                                                                                                                                                                                          ;
 ;             |ATWD_buffer:inst_ATWD_buffer_even|                   ; 0 (0)       ; 0         ; 8192        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|ATWD_buffer:inst_ATWD_buffer_even                                                                                                                                                                                                        ;
 ;                |altdpram:altdpram_component|                      ; 0 (0)       ; 0         ; 8192        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|ATWD_buffer:inst_ATWD_buffer_even|altdpram:altdpram_component                                                                                                                                                                            ;
@@ -1401,7 +1413,7 @@ domapp
 ;                |altdpram:altdpram_component|                      ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|FADC_buffer:inst_FADC_buffer_even|altdpram:altdpram_component                                                                                                                                                                            ;
 ;             |FADC_buffer:inst_FADC_buffer_odd|                    ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|FADC_buffer:inst_FADC_buffer_odd                                                                                                                                                                                                         ;
 ;                |altdpram:altdpram_component|                      ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|FADC_buffer:inst_FADC_buffer_odd|altdpram:altdpram_component                                                                                                                                                                             ;
-;       |pingpong:pong|                                             ; 2060 (0)    ; 767       ; 40960       ; 0    ; 0            ; 1293 (0)     ; 265 (0)           ; 502 (0)          ; 283 (0)         ; |domapp|daq:inst_daq|pingpong:pong                                                                                                                                                                                                                                                                       ;
+;       |pingpong:pong|                                             ; 2071 (0)    ; 767       ; 40960       ; 0    ; 0            ; 1304 (0)     ; 265 (0)           ; 502 (0)          ; 283 (0)         ; |domapp|daq:inst_daq|pingpong:pong                                                                                                                                                                                                                                                                       ;
 ;          |ADC_input:inst_ADC_input|                               ; 397 (0)     ; 207       ; 0           ; 0    ; 0            ; 190 (0)      ; 71 (0)            ; 136 (0)          ; 106 (0)         ; |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input                                                                                                                                                                                                                                              ;
 ;             |ADC_control:inst_ADC_control|                        ; 103 (87)    ; 87        ; 0           ; 0    ; 0            ; 16 (16)      ; 58 (58)           ; 29 (13)          ; 16 (0)          ; |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control                                                                                                                                                                                                                 ;
 ;                |lpm_counter:deadtime_cnt_rtl_10|                  ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|lpm_counter:deadtime_cnt_rtl_10                                                                                                                                                                                 ;
@@ -1413,25 +1425,29 @@ domapp
 ;             |FADC_interface:inst_FADC_interface|                  ; 25 (9)      ; 9         ; 0           ; 0    ; 0            ; 16 (8)       ; 0 (0)             ; 9 (1)            ; 8 (0)           ; |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface                                                                                                                                                                                                           ;
 ;                |lpm_counter:wr_addr_rtl_8|                        ; 16 (0)      ; 8         ; 0           ; 0    ; 0            ; 8 (0)        ; 0 (0)             ; 8 (0)            ; 8 (0)           ; |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface|lpm_counter:wr_addr_rtl_8                                                                                                                                                                                 ;
 ;                   |alt_synch_counter:wysi_counter|                ; 16 (16)     ; 8         ; 0           ; 0    ; 0            ; 8 (8)        ; 0 (0)             ; 8 (8)            ; 8 (8)           ; |domapp|daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface|lpm_counter:wr_addr_rtl_8|alt_synch_counter:wysi_counter                                                                                                                                                  ;
-;          |compression:inst_compression|                           ; 1428 (0)    ; 396       ; 16384       ; 0    ; 0            ; 1032 (0)     ; 34 (0)            ; 362 (0)          ; 177 (0)         ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression                                                                                                                                                                                                                                          ;
-;             |compressor_in:compressor_in0|                        ; 1087 (1025) ; 232       ; 0           ; 0    ; 0            ; 855 (832)    ; 22 (22)           ; 210 (171)        ; 135 (96)        ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_in:compressor_in0                                                                                                                                                                                                             ;
+;          |compression:inst_compression|                           ; 1439 (0)    ; 396       ; 16384       ; 0    ; 0            ; 1043 (0)     ; 34 (0)            ; 362 (0)          ; 177 (0)         ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression                                                                                                                                                                                                                                          ;
+;             |compressor_in:compressor_in0|                        ; 1092 (1028) ; 232       ; 0           ; 0    ; 0            ; 860 (835)    ; 22 (22)           ; 210 (171)        ; 135 (96)        ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_in:compressor_in0                                                                                                                                                                                                             ;
 ;                |lpm_counter:atwd_address_rtl_6|                   ; 20 (0)      ; 10        ; 0           ; 0    ; 0            ; 10 (0)       ; 0 (0)             ; 10 (0)           ; 10 (0)          ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_in:compressor_in0|lpm_counter:atwd_address_rtl_6                                                                                                                                                                              ;
 ;                   |alt_synch_counter:wysi_counter|                ; 20 (20)     ; 10        ; 0           ; 0    ; 0            ; 10 (10)      ; 0 (0)             ; 10 (10)          ; 10 (10)         ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_in:compressor_in0|lpm_counter:atwd_address_rtl_6|alt_synch_counter:wysi_counter                                                                                                                                               ;
 ;                |lpm_counter:atwd_word_count_rtl_15|               ; 12 (0)      ; 9         ; 0           ; 0    ; 0            ; 3 (0)        ; 0 (0)             ; 9 (0)            ; 9 (0)           ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_in:compressor_in0|lpm_counter:atwd_word_count_rtl_15                                                                                                                                                                          ;
 ;                   |alt_synch_counter:wysi_counter|                ; 12 (12)     ; 9         ; 0           ; 0    ; 0            ; 3 (3)        ; 0 (0)             ; 9 (9)            ; 9 (9)           ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_in:compressor_in0|lpm_counter:atwd_word_count_rtl_15|alt_synch_counter:wysi_counter                                                                                                                                           ;
-;                |lpm_counter:fadc_address_rtl_3|                   ; 20 (0)      ; 10        ; 0           ; 0    ; 0            ; 10 (0)       ; 0 (0)             ; 10 (0)           ; 10 (0)          ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_in:compressor_in0|lpm_counter:fadc_address_rtl_3                                                                                                                                                                              ;
-;                   |alt_synch_counter:wysi_counter|                ; 20 (20)     ; 10        ; 0           ; 0    ; 0            ; 10 (10)      ; 0 (0)             ; 10 (10)          ; 10 (10)         ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_in:compressor_in0|lpm_counter:fadc_address_rtl_3|alt_synch_counter:wysi_counter                                                                                                                                               ;
+;                |lpm_counter:fadc_address_rtl_3|                   ; 22 (0)      ; 10        ; 0           ; 0    ; 0            ; 12 (0)       ; 0 (0)             ; 10 (0)           ; 10 (0)          ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_in:compressor_in0|lpm_counter:fadc_address_rtl_3                                                                                                                                                                              ;
+;                   |alt_synch_counter:wysi_counter|                ; 22 (22)     ; 10        ; 0           ; 0    ; 0            ; 12 (12)      ; 0 (0)             ; 10 (10)          ; 10 (10)         ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_in:compressor_in0|lpm_counter:fadc_address_rtl_3|alt_synch_counter:wysi_counter                                                                                                                                               ;
 ;                |lpm_counter:same_value_count1_rtl_19|             ; 10 (0)      ; 10        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 10 (0)           ; 10 (0)          ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_in:compressor_in0|lpm_counter:same_value_count1_rtl_19                                                                                                                                                                        ;
 ;                   |alt_synch_counter:wysi_counter|                ; 10 (10)     ; 10        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 10 (10)          ; 10 (10)         ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_in:compressor_in0|lpm_counter:same_value_count1_rtl_19|alt_synch_counter:wysi_counter                                                                                                                                         ;
-;             |compressor_out_synch:compressor_out0|                ; 341 (341)   ; 164       ; 16384       ; 0    ; 0            ; 177 (177)    ; 12 (12)           ; 152 (152)        ; 42 (42)         ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0                                                                                                                                                                                                     ;
+;             |compressor_out_synch:compressor_out0|                ; 347 (347)   ; 164       ; 16384       ; 0    ; 0            ; 183 (183)    ; 12 (12)           ; 152 (152)        ; 42 (42)         ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0                                                                                                                                                                                                     ;
 ;                |compr_ram:compr_ram0|                             ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram0                                                                                                                                                                                ;
-;                   |altdpram:altdpram_component|                   ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram0|altdpram:altdpram_component                                                                                                                                                    ;
+;                   |lpm_ram_dp:lpm_ram_dp_component|               ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram0|lpm_ram_dp:lpm_ram_dp_component                                                                                                                                                ;
+;                      |altdpram:sram|                              ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram0|lpm_ram_dp:lpm_ram_dp_component|altdpram:sram                                                                                                                                  ;
 ;                |compr_ram:compr_ram1|                             ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram1                                                                                                                                                                                ;
-;                   |altdpram:altdpram_component|                   ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram1|altdpram:altdpram_component                                                                                                                                                    ;
+;                   |lpm_ram_dp:lpm_ram_dp_component|               ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram1|lpm_ram_dp:lpm_ram_dp_component                                                                                                                                                ;
+;                      |altdpram:sram|                              ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram1|lpm_ram_dp:lpm_ram_dp_component|altdpram:sram                                                                                                                                  ;
 ;                |compr_ram:compr_ram2|                             ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram2                                                                                                                                                                                ;
-;                   |altdpram:altdpram_component|                   ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram2|altdpram:altdpram_component                                                                                                                                                    ;
+;                   |lpm_ram_dp:lpm_ram_dp_component|               ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram2|lpm_ram_dp:lpm_ram_dp_component                                                                                                                                                ;
+;                      |altdpram:sram|                              ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram2|lpm_ram_dp:lpm_ram_dp_component|altdpram:sram                                                                                                                                  ;
 ;                |compr_ram:compr_ram3|                             ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram3                                                                                                                                                                                ;
-;                   |altdpram:altdpram_component|                   ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram3|altdpram:altdpram_component                                                                                                                                                    ;
+;                   |lpm_ram_dp:lpm_ram_dp_component|               ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram3|lpm_ram_dp:lpm_ram_dp_component                                                                                                                                                ;
+;                      |altdpram:sram|                              ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram3|lpm_ram_dp:lpm_ram_dp_component|altdpram:sram                                                                                                                                  ;
 ;          |data_buffer:inst_data_buffer|                           ; 235 (235)   ; 164       ; 24576       ; 0    ; 0            ; 71 (71)      ; 160 (160)         ; 4 (4)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer                                                                                                                                                                                                                                          ;
 ;             |ATWD_buffer:inst_ATWD_buffer_even|                   ; 0 (0)       ; 0         ; 8192        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|ATWD_buffer:inst_ATWD_buffer_even                                                                                                                                                                                                        ;
 ;                |altdpram:altdpram_component|                      ; 0 (0)       ; 0         ; 8192        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|ATWD_buffer:inst_ATWD_buffer_even|altdpram:altdpram_component                                                                                                                                                                            ;
@@ -1472,7 +1488,7 @@ domapp
 ;          |alt_synch_counter:wysi_counter|                         ; 32 (32)     ; 32        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 32 (32)          ; 32 (32)         ; |domapp|rate_meters:inst_rate_meters|lpm_counter:rate_SPE_int_rtl_12|alt_synch_counter:wysi_counter                                                                                                                                                                                                      ;
 ;       |lpm_counter:sn_rate_rtl_14|                                ; 4 (0)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 4 (0)            ; 4 (0)           ; |domapp|rate_meters:inst_rate_meters|lpm_counter:sn_rate_rtl_14                                                                                                                                                                                                                                          ;
 ;          |alt_synch_counter:wysi_counter|                         ; 4 (4)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 4 (4)            ; 4 (4)           ; |domapp|rate_meters:inst_rate_meters|lpm_counter:sn_rate_rtl_14|alt_synch_counter:wysi_counter                                                                                                                                                                                                           ;
-;    |slaveregister:inst_slaveregister|                             ; 1440 (1386) ; 417       ; 14336       ; 0    ; 0            ; 1023 (993)   ; 320 (320)         ; 97 (73)          ; 0 (0)           ; |domapp|slaveregister:inst_slaveregister                                                                                                                                                                                                                                                                 ;
+;    |slaveregister:inst_slaveregister|                             ; 1431 (1377) ; 417       ; 14336       ; 0    ; 0            ; 1014 (984)   ; 320 (320)         ; 97 (73)          ; 0 (0)           ; |domapp|slaveregister:inst_slaveregister                                                                                                                                                                                                                                                                 ;
 ;       |ATWDped:inst_ATWDAped|                                     ; 0 (0)       ; 0         ; 5120        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|slaveregister:inst_slaveregister|ATWDped:inst_ATWDAped                                                                                                                                                                                                                                           ;
 ;          |altdpram:altdpram_component|                            ; 0 (0)       ; 0         ; 5120        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|slaveregister:inst_slaveregister|ATWDped:inst_ATWDAped|altdpram:altdpram_component                                                                                                                                                                                                               ;
 ;       |ATWDped:inst_ATWDBped|                                     ; 0 (0)       ; 0         ; 5120        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|slaveregister:inst_slaveregister|ATWDped:inst_ATWDBped                                                                                                                                                                                                                                           ;
@@ -1627,137 +1643,138 @@ domapp
 The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.map.eqn.
 
 
-+------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Files Read                                                                ;
-+-------------------------------------------------------------------------------------------------
-; File Name                                                                               ; Read ;
-+-----------------------------------------------------------------------------------------+------+
-; ../common/comDPM/dcom_ap.bdf                                                            ; Read ;
-; ahb_slave.vhd                                                                           ; Read ;
-; ROC.vhd                                                                                 ; Read ;
-; FADC_input.vhd                                                                          ; Read ;
-; calibration_sources.vhd                                                                 ; Read ;
-; interrupts.vhd                                                                          ; Read ;
-; rate_meters.vhd                                                                         ; Read ;
-; ahb_master.vhd                                                                          ; Read ;
-; ATWD_control.vhd                                                                        ; Read ;
-; gray2bin.vhd                                                                            ; Read ;
-; trigger.vhd                                                                             ; Read ;
-; daq.vhd                                                                                 ; Read ;
-; ATWD_interface.vhd                                                                      ; Read ;
-; mem_interface.vhd                                                                       ; Read ;
-; FADC_interface.vhd                                                                      ; Read ;
-; ADC_input.vhd                                                                           ; Read ;
-; ADC_control.vhd                                                                         ; Read ;
-; pingpong.vhd                                                                            ; Read ;
-; pedestal_sub.vhd                                                                        ; Read ;
-; domapp.vhd                                                                              ; Read ;
-; slaveregister.vhd                                                                       ; Read ;
-; comm_wrapper.vhd                                                                        ; Read ;
-; data_buffer.vhd                                                                         ; Read ;
-; local_coincidence/LC_abort.vhd                                                          ; Read ;
-; local_coincidence/LC_RX_decode.vhd                                                      ; Read ;
-; local_coincidence/LC_RX_edge.vhd                                                        ; Read ;
-; local_coincidence/LC_TX.vhd                                                             ; Read ;
-; local_coincidence/LC_relais.vhd                                                         ; Read ;
-; local_coincidence/LC_slice.vhd                                                          ; Read ;
-; local_coincidence/local_coincidence.vhd                                                 ; Read ;
-; compression_roadgrader/compression.vhd                                                  ; Read ;
-; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/pll2x.v                                         ; Read ;
-; c:/fpgatools/quartus/libraries/megafunctions/altclklock.tdf                             ; Read ;
-; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/pll4x.v                                         ; Read ;
-; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/systimer.vhd                                    ; Read ;
-; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/stripe.v                                        ; Read ;
-; c:/fpgatools/quartus/libraries/megafunctions/alt_exc_stripe.tdf                         ; Read ;
-; c:/fpgatools/quartus/libraries/megafunctions/alt_exc_upcore.tdf                         ; Read ;
-; c:/fpgatools/quartus/libraries/megafunctions/apex20ke_io_in.v                           ; Read ;
-; c:/fpgatools/quartus/libraries/megafunctions/apex20ke_io_bidir_od.v                     ; Read ;
-; c:/fpgatools/quartus/libraries/megafunctions/apex20ke_io_out.v                          ; Read ;
-; c:/fpgatools/quartus/libraries/megafunctions/apex20ke_io_bidir.v                        ; Read ;
-; c:/fpgatools/quartus/libraries/megafunctions/alt_exc_dpram.tdf                          ; Read ;
-; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ATWD_buffer.v                                   ; Read ;
-; c:/fpgatools/quartus/libraries/megafunctions/altdpram.tdf                               ; Read ;
-; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/FADC_buffer.v                                   ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/domapp/compression_roadgrader/compressor_in.vhd        ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/domapp/compression_roadgrader/compressor_out_synch.vhd ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/domapp/compression_roadgrader/compr_ram.v              ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/domapp/compression_roadgrader/type_analyzer.vhd        ; Read ;
-; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/version_rom.v                                   ; Read ;
-; c:/fpgatools/quartus/libraries/megafunctions/lpm_rom.tdf                                ; Read ;
-; c:/fpgatools/quartus/libraries/megafunctions/altrom.tdf                                 ; Read ;
-; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/R2Rram.v                                        ; Read ;
-; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ATWDped.v                                       ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/DC_Tx_chan_ap.bdf                ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/tx_uart_ap.bdf                   ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/tx_uart_shr10.tdf                ; Read ;
-; c:/fpgatools/quartus/libraries/megafunctions/lpm_shiftreg.tdf                           ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/TX_UART.tdf                      ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/tx_uart_ct4.tdf                  ; Read ;
-; c:/fpgatools/quartus/libraries/megafunctions/lpm_counter.tdf                            ; Read ;
-; c:/fpgatools/quartus/libraries/megafunctions/alt_synch_counter.tdf                      ; Read ;
-; c:/fpgatools/quartus/libraries/megafunctions/lpm_constant.tdf                           ; Read ;
-; c:/fpgatools/quartus/libraries/megafunctions/lpm_compare.tdf                            ; Read ;
-; c:/fpgatools/quartus/libraries/megafunctions/comptree.tdf                               ; Read ;
-; c:/fpgatools/quartus/libraries/megafunctions/cmpchain.tdf                               ; Read ;
-; c:/fpgatools/quartus/libraries/megafunctions/altshift.tdf                               ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/tx_uart_ct5.tdf                  ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/DC_SNAP.tdf                      ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/crc_tx.vhd                               ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/crc32.vhd                                ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/dc_tx_mux.tdf                    ; Read ;
-; c:/fpgatools/quartus/libraries/megafunctions/lpm_mux.tdf                                ; Read ;
-; c:/fpgatools/quartus/libraries/megafunctions/bypassff.tdf                               ; Read ;
-; c:/fpgatools/quartus/libraries/megafunctions/muxlut.tdf                                 ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/dc_hdr_bytes_ap.tdf              ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/send_delay.tdf                   ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/send_del_ctdn.tdf                ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/dc_com_dac_ctrl_var_sig.tdf      ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/dac_levct_sld.tdf                ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/shrg48pld.tdf                    ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/tx_plen_ct_ap.tdf                ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/shift_ct.tdf                     ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/my_or16b.vhd                     ; Read ;
-; c:/fpgatools/quartus/libraries/megafunctions/lpm_or.tdf                                 ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/tx_packet_ct.tdf                 ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/Tx_dpr_ctrl_PAR_ap.tdf           ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/tx_dpr_radr_ct.tdf               ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/DC_CTRAP.tdf                             ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/DC_Rx_chan_ap.bdf                ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/uart/RX_UART_ap.bdf              ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/uart/UA_RX_AP.tdf                ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/uart/rxct4.tdf                   ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/uart/rxct5.tdf                   ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/uart/rxshr8.tdf                  ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/edges/dc_adc_to_ser_2thr.tdf     ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/edges/ctup5.tdf                  ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/edges/GET_DUDT.tdf               ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/rec_delay.tdf                    ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/rec_delay_ctdn.tdf               ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/DC_MRAP.tdf                      ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/crc_rx.vhd                               ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/dc_hdr_dec_ap.tdf                ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/meanval/mean_over_4_clks.tdf     ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tcal/dc_rapcal_lh.gdf                    ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tcal/DCTC_FWR.tdf                        ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tcal/comp_10.tdf                         ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tcal/wfm_ct.tdf                          ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tcal/TCAL_SAMPLES.tdf                    ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tcal/TCWF_64x10.tdf                      ; Read ;
-; c:/fpgatools/quartus/libraries/megafunctions/scfifo.tdf                                 ; Read ;
-; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/db/scfifo_mcj.tdf                               ; Read ;
-; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/db/a_dpfifo_4dj.tdf                             ; Read ;
-; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/db/a_fefifo_vve.tdf                             ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/Rx_dpr_ctrl_PAR_ap.tdf           ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/rx_dpr_wadr_ct.tdf               ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/rx_packet_ct.tdf                 ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/and16b.tdf                       ; Read ;
-; c:/fpgatools/quartus/libraries/megafunctions/lpm_and.tdf                                ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/crc_error_ct.tdf                 ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tcal/DCOM_tcal_timer.tdf                 ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tcal/dc_tcal_ct.tdf                      ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/ponres_ct.vhd                            ; Read ;
-; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/test_and_tresholds.tdf                   ; Read ;
-+-----------------------------------------------------------------------------------------+------+
++-------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Files Read                                                                       ;
++--------------------------------------------------------------------------------------------------------
+; File Name                                                                                      ; Read ;
++------------------------------------------------------------------------------------------------+------+
+; ../common/comDPM/dcom_ap.bdf                                                                   ; Read ;
+; ahb_slave.vhd                                                                                  ; Read ;
+; ROC.vhd                                                                                        ; Read ;
+; FADC_input.vhd                                                                                 ; Read ;
+; calibration_sources.vhd                                                                        ; Read ;
+; interrupts.vhd                                                                                 ; Read ;
+; rate_meters.vhd                                                                                ; Read ;
+; ahb_master.vhd                                                                                 ; Read ;
+; ATWD_control.vhd                                                                               ; Read ;
+; gray2bin.vhd                                                                                   ; Read ;
+; trigger.vhd                                                                                    ; Read ;
+; daq.vhd                                                                                        ; Read ;
+; ATWD_interface.vhd                                                                             ; Read ;
+; mem_interface.vhd                                                                              ; Read ;
+; FADC_interface.vhd                                                                             ; Read ;
+; ADC_input.vhd                                                                                  ; Read ;
+; ADC_control.vhd                                                                                ; Read ;
+; pingpong.vhd                                                                                   ; Read ;
+; pedestal_sub.vhd                                                                               ; Read ;
+; domapp.vhd                                                                                     ; Read ;
+; slaveregister.vhd                                                                              ; Read ;
+; comm_wrapper.vhd                                                                               ; Read ;
+; data_buffer.vhd                                                                                ; Read ;
+; local_coincidence/LC_abort.vhd                                                                 ; Read ;
+; local_coincidence/LC_RX_decode.vhd                                                             ; Read ;
+; local_coincidence/LC_RX_edge.vhd                                                               ; Read ;
+; local_coincidence/LC_TX.vhd                                                                    ; Read ;
+; local_coincidence/LC_relais.vhd                                                                ; Read ;
+; local_coincidence/LC_slice.vhd                                                                 ; Read ;
+; local_coincidence/local_coincidence.vhd                                                        ; Read ;
+; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/pll2x.v                                                ; Read ;
+; c:/fpgatools/quartus/libraries/megafunctions/altclklock.tdf                                    ; Read ;
+; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/pll4x.v                                                ; Read ;
+; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/systimer.vhd                                           ; Read ;
+; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/stripe.v                                               ; Read ;
+; c:/fpgatools/quartus/libraries/megafunctions/alt_exc_stripe.tdf                                ; Read ;
+; c:/fpgatools/quartus/libraries/megafunctions/alt_exc_upcore.tdf                                ; Read ;
+; c:/fpgatools/quartus/libraries/megafunctions/apex20ke_io_in.v                                  ; Read ;
+; c:/fpgatools/quartus/libraries/megafunctions/apex20ke_io_bidir_od.v                            ; Read ;
+; c:/fpgatools/quartus/libraries/megafunctions/apex20ke_io_out.v                                 ; Read ;
+; c:/fpgatools/quartus/libraries/megafunctions/apex20ke_io_bidir.v                               ; Read ;
+; c:/fpgatools/quartus/libraries/megafunctions/alt_exc_dpram.tdf                                 ; Read ;
+; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ATWD_buffer.v                                          ; Read ;
+; c:/fpgatools/quartus/libraries/megafunctions/altdpram.tdf                                      ; Read ;
+; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/FADC_buffer.v                                          ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/domapp/compression_roadgrader_charge/compression.vhd          ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/domapp/compression_roadgrader_charge/compressor_in.vhd        ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/domapp/compression_roadgrader_charge/compressor_out_synch.vhd ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/domapp/compression_roadgrader_charge/compr_ram.vhd            ; Read ;
+; c:/fpgatools/quartus/libraries/megafunctions/lpm_ram_dp.tdf                                    ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/domapp/compression_roadgrader_charge/type_analyzer.vhd        ; Read ;
+; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/version_rom.v                                          ; Read ;
+; c:/fpgatools/quartus/libraries/megafunctions/lpm_rom.tdf                                       ; Read ;
+; c:/fpgatools/quartus/libraries/megafunctions/altrom.tdf                                        ; Read ;
+; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/R2Rram.v                                               ; Read ;
+; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ATWDped.v                                              ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/DC_Tx_chan_ap.bdf                       ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/tx_uart_ap.bdf                          ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/tx_uart_shr10.tdf                       ; Read ;
+; c:/fpgatools/quartus/libraries/megafunctions/lpm_shiftreg.tdf                                  ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/TX_UART.tdf                             ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/tx_uart_ct4.tdf                         ; Read ;
+; c:/fpgatools/quartus/libraries/megafunctions/lpm_counter.tdf                                   ; Read ;
+; c:/fpgatools/quartus/libraries/megafunctions/alt_synch_counter.tdf                             ; Read ;
+; c:/fpgatools/quartus/libraries/megafunctions/lpm_constant.tdf                                  ; Read ;
+; c:/fpgatools/quartus/libraries/megafunctions/lpm_compare.tdf                                   ; Read ;
+; c:/fpgatools/quartus/libraries/megafunctions/comptree.tdf                                      ; Read ;
+; c:/fpgatools/quartus/libraries/megafunctions/cmpchain.tdf                                      ; Read ;
+; c:/fpgatools/quartus/libraries/megafunctions/altshift.tdf                                      ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/tx_uart_ct5.tdf                         ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/DC_SNAP.tdf                             ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/crc_tx.vhd                                      ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/crc32.vhd                                       ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/dc_tx_mux.tdf                           ; Read ;
+; c:/fpgatools/quartus/libraries/megafunctions/lpm_mux.tdf                                       ; Read ;
+; c:/fpgatools/quartus/libraries/megafunctions/bypassff.tdf                                      ; Read ;
+; c:/fpgatools/quartus/libraries/megafunctions/muxlut.tdf                                        ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/dc_hdr_bytes_ap.tdf                     ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/send_delay.tdf                          ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/send_del_ctdn.tdf                       ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/dc_com_dac_ctrl_var_sig.tdf             ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/dac_levct_sld.tdf                       ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/shrg48pld.tdf                           ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/tx_plen_ct_ap.tdf                       ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/shift_ct.tdf                            ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/my_or16b.vhd                            ; Read ;
+; c:/fpgatools/quartus/libraries/megafunctions/lpm_or.tdf                                        ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/tx_packet_ct.tdf                        ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/Tx_dpr_ctrl_PAR_ap.tdf                  ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/tx_dpr_radr_ct.tdf                      ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/DC_CTRAP.tdf                                    ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/DC_Rx_chan_ap.bdf                       ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/uart/RX_UART_ap.bdf                     ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/uart/UA_RX_AP.tdf                       ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/uart/rxct4.tdf                          ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/uart/rxct5.tdf                          ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/uart/rxshr8.tdf                         ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/edges/dc_adc_to_ser_2thr.tdf            ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/edges/ctup5.tdf                         ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/edges/GET_DUDT.tdf                      ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/rec_delay.tdf                           ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tx_chan/rec_delay_ctdn.tdf                      ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/DC_MRAP.tdf                             ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/crc_rx.vhd                                      ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/dc_hdr_dec_ap.tdf                       ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/meanval/mean_over_4_clks.tdf            ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tcal/dc_rapcal_lh.gdf                           ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tcal/DCTC_FWR.tdf                               ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tcal/comp_10.tdf                                ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tcal/wfm_ct.tdf                                 ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tcal/TCAL_SAMPLES.tdf                           ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tcal/TCWF_64x10.tdf                             ; Read ;
+; c:/fpgatools/quartus/libraries/megafunctions/scfifo.tdf                                        ; Read ;
+; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/db/scfifo_mcj.tdf                                      ; Read ;
+; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/db/a_dpfifo_4dj.tdf                                    ; Read ;
+; C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/db/a_fefifo_vve.tdf                                    ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/Rx_dpr_ctrl_PAR_ap.tdf                  ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/rx_dpr_wadr_ct.tdf                      ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/rx_packet_ct.tdf                        ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/and16b.tdf                              ; Read ;
+; c:/fpgatools/quartus/libraries/megafunctions/lpm_and.tdf                                       ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/rx_chan/crc_error_ct.tdf                        ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tcal/DCOM_tcal_timer.tdf                        ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/tcal/dc_tcal_ct.tdf                             ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/ponres_ct.vhd                                   ; Read ;
+; c:/work_lbnl/icecubecvs/dom-fpga/common/comdpm/test_and_tresholds.tdf                          ; Read ;
++------------------------------------------------------------------------------------------------+------+
 
 
 +--------------------------------------------------------------------------------------------+
@@ -1765,15 +1782,15 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.map
 +---------------------------------------------------------------------------------------------
 ; Resource                      ; Usage                                                      ;
 +-------------------------------+------------------------------------------------------------+
-; Logic cells                   ; 9,455                                                      ;
-; Total combinational functions ; 8090                                                       ;
+; Logic cells                   ; 9,463                                                      ;
+; Total combinational functions ; 8098                                                       ;
 ; Total registers               ; 3652                                                       ;
 ; I/O pins                      ; 308                                                        ;
 ; Total memory bits             ; 96896                                                      ;
 ; Total PLLs                    ; 2                                                          ;
 ; Maximum fan-out node          ; pll2x:inst_pll2x|altclklock:altclklock_component|outclock0 ;
 ; Maximum fan-out               ; 3880                                                       ;
-; Total fan-out                 ; 42652                                                      ;
+; Total fan-out                 ; 42663                                                      ;
 ; Average fan-out               ; 4.26                                                       ;
 +-------------------------------+------------------------------------------------------------+
 
@@ -1784,18 +1801,18 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.map
 ; Name                                                                                                                                                                                                                 ; Mode      ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF             ;
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------------+--------------+--------------+--------------+------+-----------------+
 ; comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst30|TCWF_64x10:inst11|scfifo:scfifo_component|scfifo_mcj:auto_generated|a_dpfifo_4dj:dpfifo|altdpram:FIFOram|content ; Dual Port ; 64           ; 10           ; 64           ; 10           ; 640  ; none            ;
-; daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram0|altdpram:altdpram_component|content                                                                ; Dual Port ; 512          ; 8            ; 512          ; 8            ; 4096 ; none            ;
-; daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram1|altdpram:altdpram_component|content                                                                ; Dual Port ; 512          ; 8            ; 512          ; 8            ; 4096 ; none            ;
-; daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram2|altdpram:altdpram_component|content                                                                ; Dual Port ; 512          ; 8            ; 512          ; 8            ; 4096 ; none            ;
-; daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram3|altdpram:altdpram_component|content                                                                ; Dual Port ; 512          ; 8            ; 512          ; 8            ; 4096 ; none            ;
+; daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram0|lpm_ram_dp:lpm_ram_dp_component|altdpram:sram|content                                              ; Dual Port ; 512          ; 8            ; 512          ; 8            ; 4096 ; none            ;
+; daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram1|lpm_ram_dp:lpm_ram_dp_component|altdpram:sram|content                                              ; Dual Port ; 512          ; 8            ; 512          ; 8            ; 4096 ; none            ;
+; daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram2|lpm_ram_dp:lpm_ram_dp_component|altdpram:sram|content                                              ; Dual Port ; 512          ; 8            ; 512          ; 8            ; 4096 ; none            ;
+; daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram3|lpm_ram_dp:lpm_ram_dp_component|altdpram:sram|content                                              ; Dual Port ; 512          ; 8            ; 512          ; 8            ; 4096 ; none            ;
 ; daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|ATWD_buffer:inst_ATWD_buffer_even|altdpram:altdpram_component|content                                                                                        ; Dual Port ; 512          ; 16           ; 512          ; 16           ; 8192 ; none            ;
 ; daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|ATWD_buffer:inst_ATWD_buffer_odd|altdpram:altdpram_component|content                                                                                         ; Dual Port ; 512          ; 16           ; 512          ; 16           ; 8192 ; none            ;
 ; daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|FADC_buffer:inst_FADC_buffer_even|altdpram:altdpram_component|content                                                                                        ; Dual Port ; 256          ; 16           ; 256          ; 16           ; 4096 ; none            ;
 ; daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|FADC_buffer:inst_FADC_buffer_odd|altdpram:altdpram_component|content                                                                                         ; Dual Port ; 256          ; 16           ; 256          ; 16           ; 4096 ; none            ;
-; daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram0|altdpram:altdpram_component|content                                                                ; Dual Port ; 512          ; 8            ; 512          ; 8            ; 4096 ; none            ;
-; daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram1|altdpram:altdpram_component|content                                                                ; Dual Port ; 512          ; 8            ; 512          ; 8            ; 4096 ; none            ;
-; daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram2|altdpram:altdpram_component|content                                                                ; Dual Port ; 512          ; 8            ; 512          ; 8            ; 4096 ; none            ;
-; daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram3|altdpram:altdpram_component|content                                                                ; Dual Port ; 512          ; 8            ; 512          ; 8            ; 4096 ; none            ;
+; daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram0|lpm_ram_dp:lpm_ram_dp_component|altdpram:sram|content                                              ; Dual Port ; 512          ; 8            ; 512          ; 8            ; 4096 ; none            ;
+; daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram1|lpm_ram_dp:lpm_ram_dp_component|altdpram:sram|content                                              ; Dual Port ; 512          ; 8            ; 512          ; 8            ; 4096 ; none            ;
+; daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram2|lpm_ram_dp:lpm_ram_dp_component|altdpram:sram|content                                              ; Dual Port ; 512          ; 8            ; 512          ; 8            ; 4096 ; none            ;
+; daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|compr_ram:compr_ram3|lpm_ram_dp:lpm_ram_dp_component|altdpram:sram|content                                              ; Dual Port ; 512          ; 8            ; 512          ; 8            ; 4096 ; none            ;
 ; daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|ATWD_buffer:inst_ATWD_buffer_even|altdpram:altdpram_component|content                                                                                        ; Dual Port ; 512          ; 16           ; 512          ; 16           ; 8192 ; none            ;
 ; daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|ATWD_buffer:inst_ATWD_buffer_odd|altdpram:altdpram_component|content                                                                                         ; Dual Port ; 512          ; 16           ; 512          ; 16           ; 8192 ; none            ;
 ; daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|FADC_buffer:inst_FADC_buffer_even|altdpram:altdpram_component|content                                                                                        ; Dual Port ; 256          ; 16           ; 256          ; 16           ; 4096 ; none            ;
@@ -1813,12 +1830,12 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.map
 ; Statistic                                              ; Value ;
 +--------------------------------------------------------+-------+
 ; Number of WYSIWYG cells                                ; 1567  ;
-; Number of synthesis-generated cells                    ; 7888  ;
+; Number of synthesis-generated cells                    ; 7896  ;
 ; Number of WYSIWYG LUTs                                 ; 1567  ;
-; Number of synthesis-generated LUTs                     ; 6523  ;
+; Number of synthesis-generated LUTs                     ; 6531  ;
 ; Number of WYSIWYG registers                            ; 553   ;
 ; Number of synthesis-generated registers                ; 3099  ;
-; Number of cells with combinational logic only          ; 5803  ;
+; Number of cells with combinational logic only          ; 5811  ;
 ; Number of cells with registers only                    ; 1365  ;
 ; Number of cells with combinational logic and registers ; 2287  ;
 +--------------------------------------------------------+-------+
@@ -1845,7 +1862,7 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.map
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Thu May 12 08:59:02 2005
+    Info: Processing started: Thu May 19 14:46:39 2005
 Info: Command: quartus_map --import_settings_files=on --export_settings_files=off domapp -c domapp
 Info: Found 1 design units and 1 entities in source file ../common/comDPM/dcom_ap.bdf
     Info: Found entity 1: dcom_ap
@@ -1951,9 +1968,6 @@ Info: Found 2 design units and 1 entities in source file local_coincidence/LC_sl
 Info: Found 2 design units and 1 entities in source file local_coincidence/local_coincidence.vhd
     Info: Found design unit 1: local_coincidence-ARCH_local_coincidence
     Info: Found entity 1: local_coincidence
-Info: Found 2 design units and 1 entities in source file compression_roadgrader/compression.vhd
-    Info: Found design unit 1: compression-rtl
-    Info: Found entity 1: compression
 Info: Using design file pll2x.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info: Found entity 1: pll2x
 Info: Found 1 design units and 1 entities in source file ../../../../fpgatools/quartus/libraries/megafunctions/altclklock.tdf
@@ -1987,17 +2001,21 @@ Info: Found 1 design units and 1 entities in source file ../../../../fpgatools/q
     Info: Found entity 1: altdpram
 Info: Using design file FADC_buffer.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info: Found entity 1: FADC_buffer
-Info: Using design file compression_roadgrader/compressor_in.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+Info: Using design file compression_roadgrader_charge/compression.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info: Found design unit 1: compression-rtl
+    Info: Found entity 1: compression
+Info: Using design file compression_roadgrader_charge/compressor_in.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
     Info: Found design unit 1: compressor_in-rtl
     Info: Found entity 1: compressor_in
-Info: Using design file compression_roadgrader/compressor_out_synch.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+Info: Using design file compression_roadgrader_charge/compressor_out_synch.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
     Info: Found design unit 1: compressor_out_synch-SYN
     Info: Found entity 1: compressor_out_synch
-Info: Using design file compression_roadgrader/compr_ram.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+Info: Using design file compression_roadgrader_charge/compr_ram.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info: Found design unit 1: compr_ram-SYN
     Info: Found entity 1: compr_ram
-Warning: Found the following files while searching for definition of entity compr_ram, but did not use these files because already using a different file containing the entity definition
-    Warning: File: compression_roadgrader/compr_ram.vhd
-Info: Using design file compression_roadgrader/type_analyzer.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+Info: Found 1 design units and 1 entities in source file ../../../../fpgatools/quartus/libraries/megafunctions/lpm_ram_dp.tdf
+    Info: Found entity 1: lpm_ram_dp
+Info: Using design file compression_roadgrader_charge/type_analyzer.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
     Info: Found design unit 1: type_analyzer-SYN
     Info: Found entity 1: type_analyzer
 Info: VHDL Case Statement information at mem_interface.vhd(295): OTHERS choice is never selected
@@ -2351,25 +2369,89 @@ Warning: Reduced register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC
 Info: Power-up level of register daq:inst_daq|ahb_master:inst_ahb_master|slavehsize[1]~reg0 is not specified -- using unspecified power-up level
 Warning: Reduced register daq:inst_daq|ahb_master:inst_ahb_master|slavehsize[1]~reg0 with stuck data_in port to stuck value VCC
 Warning: Reduced register daq:inst_daq|ahb_master:inst_ahb_master|slavehsize[0]~reg0 with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[94] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[93] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[92] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[91] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[90] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[89] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[88] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[87] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[86] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[85] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[84] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[83] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[82] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[81] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[80] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[126] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[125] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[124] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[123] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[122] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[121] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[120] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[119] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[118] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[117] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[116] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[115] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[114] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[113] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[112] with stuck data_in port to stuck value GND
 Info: Power-up level of register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.ATWD_AB is not specified -- using unspecified power-up level
 Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.ATWD_AB with stuck data_in port to stuck value VCC
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[31] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[30] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[29] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[28] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[27] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[26] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[25] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[24] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[23] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[22] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[21] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[20] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[19] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[18] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[17] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[16] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[15] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[14] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[13] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[12] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[11] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[10] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[9] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[8] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[7] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[6] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[5] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[4] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[3] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[2] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[1] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.chargestamp[0] with stuck data_in port to stuck value GND
 Info: Power-up level of register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.ATWD_AB is not specified -- using unspecified power-up level
 Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.ATWD_AB with stuck data_in port to stuck value VCC
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[31] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[30] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[29] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[28] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[27] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[26] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[25] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[24] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[23] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[22] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[21] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[20] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[19] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[18] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[17] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[16] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[15] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[14] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[13] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[12] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[11] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[10] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[9] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[8] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[7] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[6] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[5] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[4] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[3] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[2] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[1] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.chargestamp[0] with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|HEADER_data.trigger_word[15]~reg0 with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|HEADER_data.trigger_word[14]~reg0 with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|HEADER_data.trigger_word[13]~reg0 with stuck data_in port to stuck value GND
@@ -2378,23 +2460,87 @@ Warning: Reduced register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|AD
 Warning: Reduced register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|HEADER_data.trigger_word[10]~reg0 with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|HEADER_data.LC[1]~reg0 with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|HEADER_data.LC[0]~reg0 with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[94] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[93] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[92] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[91] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[90] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[89] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[88] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[87] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[86] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[85] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[84] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[83] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[82] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[81] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[80] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[126] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[125] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[124] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[123] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[122] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[121] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[120] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[119] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[118] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[117] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[116] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[115] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[114] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[113] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[112] with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.ATWD_AB with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[31] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[30] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[29] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[28] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[27] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[26] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[25] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[24] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[23] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[22] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[21] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[20] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[19] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[18] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[17] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[16] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[15] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[14] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[13] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[12] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[11] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[10] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[9] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[8] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[7] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[6] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[5] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[4] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[3] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[2] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[1] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.chargestamp[0] with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.ATWD_AB with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[31] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[30] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[29] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[28] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[27] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[26] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[25] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[24] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[23] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[22] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[21] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[20] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[19] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[18] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[17] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[16] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[15] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[14] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[13] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[12] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[11] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[10] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[9] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[8] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[7] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[6] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[5] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[4] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[3] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[2] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[1] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.chargestamp[0] with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|HEADER_data.trigger_word[15]~reg0 with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|HEADER_data.trigger_word[14]~reg0 with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|HEADER_data.trigger_word[13]~reg0 with stuck data_in port to stuck value GND
@@ -2403,6 +2549,38 @@ Warning: Reduced register daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|AD
 Warning: Reduced register daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|HEADER_data.trigger_word[10]~reg0 with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|HEADER_data.LC[1]~reg0 with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|ADC_control:inst_ADC_control|HEADER_data.LC[0]~reg0 with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[31] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[30] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[29] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[28] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[27] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[26] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[25] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[24] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[23] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[22] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[21] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[20] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[19] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[18] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[17] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[16] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[15] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[14] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[13] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[12] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[11] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[10] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[9] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[8] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[7] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[6] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[5] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[4] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[3] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[2] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[1] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[0] with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.trigger_word[15] with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.trigger_word[14] with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_0.trigger_word[13] with stuck data_in port to stuck value GND
@@ -2419,7 +2597,39 @@ Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffe
 Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.trigger_word[10] with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.LC[1] with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|header_1.LC[0] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[43] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[75] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[31] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[30] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[29] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[28] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[27] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[26] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[25] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[24] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[23] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[22] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[21] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[20] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[19] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[18] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[17] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[16] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[15] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[14] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[13] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[12] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[11] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[10] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[9] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[8] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[7] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[6] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[5] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[4] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[3] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[2] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[1] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[0] with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.trigger_word[15] with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.trigger_word[14] with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_0.trigger_word[13] with stuck data_in port to stuck value GND
@@ -2436,16 +2646,16 @@ Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffe
 Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.trigger_word[10] with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.LC[1] with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:ping|data_buffer:inst_data_buffer|header_1.LC[0] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[62] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[61] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[60] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[49] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[48] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[62] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[61] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[60] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[49] with stuck data_in port to stuck value GND
-Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[48] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[94] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[93] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[92] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[81] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[80] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[94] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[93] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[92] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[81] with stuck data_in port to stuck value GND
+Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[80] with stuck data_in port to stuck value GND
 Info: Duplicate registers merged to single register
     Info: Duplicate register calibration_sources:inst_calibration_sources|cs_flash_now~reg0 merged to single register calibration_sources:inst_calibration_sources|now_action
     Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_Rx_chan_ap:DC_Rx_chan_ap|mean_over_4_clks:inst12|fc_adc_irg[9] merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst30|inst10[9]
@@ -2488,7 +2698,7 @@ Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compressio
 Warning: Reduced register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_in:compressor_in0|i_dly[0] with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|pingpong:ping|compression:inst_compression|compressor_in:compressor_in0|i_dly[0] with stuck data_in port to stuck value GND
 Info: Duplicate registers merged to single register
-    Info: Duplicate register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[63] merged to single register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[43]
+    Info: Duplicate register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[95] merged to single register daq:inst_daq|pingpong:pong|compression:inst_compression|compressor_out_synch:compressor_out0|header_compr[75]
     Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|EOF_SENT merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|msg_sent~reg
     Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|TCWFM_FRD merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|tcwf_rd_next~reg
     Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|shift_ct_aclr~reg merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|crc_init~reg
@@ -3256,17 +3466,17 @@ Warning: Design contains 16 input pin(s) that do not drive logic
     Warning: No output dependent on input pin COINC_UP_BBAR
     Warning: No output dependent on input pin PLD_FPGA_nOE
     Warning: No output dependent on input pin PLD_FPGA_nWE
-Info: Implemented 10014 device resources after synthesis - the final resource count might be different
+Info: Implemented 10022 device resources after synthesis - the final resource count might be different
     Info: Implemented 75 input pins
     Info: Implemented 170 output pins
     Info: Implemented 63 bidirectional pins
-    Info: Implemented 9455 logic cells
+    Info: Implemented 9463 logic cells
     Info: Implemented 246 RAM segments
     Info: Implemented 2 ClockLock PLLs
     Info: Implemented 2 dual-port RAM elements in Excalibur device
     Info: Implemented 1 microprocessor core elements in Excalibur device
-Info: Quartus II Analysis & Synthesis was successful. 0 errors, 367 warnings
-    Info: Processing ended: Thu May 12 09:15:06 2005
-    Info: Elapsed time: 00:16:04
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 557 warnings
+    Info: Processing ended: Thu May 19 15:00:57 2005
+    Info: Elapsed time: 00:14:18
 
 
