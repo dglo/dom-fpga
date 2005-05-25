@@ -443,7 +443,7 @@ BEGIN
 					END IF;
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"04E4") ) THEN	-- Flasher Board Status
 					reg_rdata(0)			<= CS_FL_attn;
-					reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+					reg_rdata(31 downto 1)	<= (OTHERS=>'0');
 					
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0500") ) THEN	-- Communication Control
 					IF reg_write = '1' THEN
