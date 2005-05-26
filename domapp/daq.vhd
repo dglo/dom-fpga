@@ -613,7 +613,7 @@ BEGIN
 			trans_length	=> trans_length,
 			bus_error		=> bus_error,
 			-- test connector
-			TC				=> open
+			TC				=> TC --open
 		);
 	
 	CLK20n	<= NOT CLK20;
