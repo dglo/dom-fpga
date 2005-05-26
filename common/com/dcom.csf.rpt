@@ -50,7 +50,7 @@ party's intellectual property, are provided herein.
 +-----------------+-------------------+
 |Option           |Setting            |
 +-----------------+-------------------+
-|Start date & time|11/12/2003 13:34:18|
+|Start date & time|11/15/2003 17:21:03|
 |Main task        |Compilation        |
 |Settings name    |dcom               |
 +-----------------+-------------------+
@@ -104,11 +104,7 @@ party's intellectual property, are provided herein.
 +-----------------------------------------------------------------------------+
 |Messages                                                                     |
 +-----------------------------------------------------------------------------+
-Info: Found 1 design units and 1 entities in source file c:\projects\icecube\dor\fpga\dcom_01\dcom.bdf
-  Info: Found entity 1: dcom
-Warning: Pin rs4_out not connected
-Warning: Primitive GND of instance inst not used
-Info: Design dcom: BDF to VHDL file generation was successful. 0 errors, 2 warnings
+Info: Design dcom: Symbol file generation was successful. 0 errors, 0 warnings
 
 +-----------------------------------------------------------------------------+
 |Processing Time                                                              |
