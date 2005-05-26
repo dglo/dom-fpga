@@ -675,6 +675,7 @@ ARCHITECTURE arch_domapp OF domapp IS
 	
 	-- debugging
 	SIGNAL debugging		: STD_LOGIC_VECTOR (31 DOWNTO 0);
+	SIGNAL TCdaq			: STD_LOGIC_VECTOR (7 DOWNTO 0);
 	
 BEGIN
 	-- general
@@ -904,7 +905,7 @@ BEGIN
 			slavehresp		=> slavehresp,
 			slavehrdata		=> slavehrdata,
 			-- test connector
-			TC				=> open
+			TC				=> TCdaq --open
 		);
 		
 	inst_slaveregister : slaveregister
@@ -1100,13 +1101,45 @@ BEGIN
 	process (CLK20, RST)
 	begin
 		if RST='1' THEN
-			debugging <= (others=>'0');
+--			debugging <= (others=>'0');
 		elsif CLK20'EVENT and CLK20='1' THEN
 			if lc_daq_trigger(0)='1' OR lc_daq_trigger(1)='1' THEN
-				debugging <= debugging + 1;
+--				debugging <= debugging + 1;
 			end if;
 		end if;
 	end process;
-	
-	
+
+
+	------------------------------
+	-- John J pedestal debugging	
+	------------------------------
+	process (CLK40,RST)
+		variable this : std_logic_vector (3 downto 0);
+		variable old  : std_logic_vector (3 downto 0);
+		type cnts_type is array (0 to 3) of integer range 0 to 127;
+		variable cnts : cnts_type;
+	begin
+		if RST='1' THEN
+			this := (others=>'0');
+			old  := (others=>'0');
+			for i in 0 to 3 loop
+				cnts(i) := 0;
+			end loop;
+		elsif CLK40'EVENT AND CLK40='1' THEN
+			old := this;
+			this(0) := TCdaq(0);
+			this(1) := TCdaq(1);
+			this(2) := TCdaq(2);
+			this(3) := CS_trigger(0);
+			for i in 0 to 3 loop
+				if this(i)='1' and old(i)='0' then
+					cnts(i) := cnts(i) + 1;
+				end if;
+			end loop;
+			debugging (7 downto 0)   <= conv_std_logic_vector(cnts(0),8);
+			debugging (15 downto 8)  <= conv_std_logic_vector(cnts(1),8);
+			debugging (23 downto 16) <= conv_std_logic_vector(cnts(2),8);
+			debugging (31 downto 24) <= conv_std_logic_vector(cnts(3),8);
+		end if;
+	end process;
 END arch_domapp;
