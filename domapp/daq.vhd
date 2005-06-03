@@ -389,6 +389,15 @@ ARCHITECTURE daq_arch OF daq IS
 	SIGNAL discMPEpulse_local	: STD_LOGIC;
 
 BEGIN
+	
+	-- debugging ------
+--	TC(2 downto 0)	<= ahb_address(4 downto 2);
+--	TC(4 downto 3)	<= ahb_address(12 downto 11);
+--	TC(5)			<= bus_error;
+--	TC(6)			<= wait_sig;
+--	TC(7)			<= start_trans;
+	
+	
 
 	discSPEpulse	<= discSPEpulse_local;
 	discMPEpulse	<= discMPEpulse_local;
@@ -613,8 +622,10 @@ BEGIN
 			trans_length	=> trans_length,
 			bus_error		=> bus_error,
 			-- test connector
-			TC				=> TC --open
+			TC(2 downto 0)			=> TC(2 downto 0) --open
 		);
+	TC(7 downto 6) <= busy_B & busy_A;
+		
 	
 	CLK20n	<= NOT CLK20;
 	inst_ahb_master : ahb_master

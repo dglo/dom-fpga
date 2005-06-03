@@ -433,7 +433,7 @@ ARCHITECTURE arch_domapp OF domapp IS
 			ATWD_ped_data_B	: OUT STD_LOGIC_VECTOR (9 DOWNTO 0);
 			ATWD_ped_addr_B	: IN STD_LOGIC_VECTOR (8 DOWNTO 0);
 			-- test connector
-			TC				: OUT STD_LOGIC_VECTOR(7 downto 0)
+			TC				: OUT STD_LOGIC_VECTOR(15 downto 0)
 		);
 	END COMPONENT;
 	
@@ -642,7 +642,8 @@ ARCHITECTURE arch_domapp OF domapp IS
 			
 	SIGNAL CS_FL_aux_reset	: STD_LOGIC;
 	SIGNAL CS_FL_attn		: STD_LOGIC;
-		
+	
+	SIGNAL DOM_status		: STD_LOGIC_VECTOR (31 DOWNTO 0);	
 	
 	SIGNAL ATWD_ped_data_A	: STD_LOGIC_VECTOR (9 DOWNTO 0);
 	SIGNAL ATWD_ped_addr_A	: STD_LOGIC_VECTOR (8 DOWNTO 0);
@@ -676,6 +677,7 @@ ARCHITECTURE arch_domapp OF domapp IS
 	-- debugging
 	SIGNAL debugging		: STD_LOGIC_VECTOR (31 DOWNTO 0);
 	SIGNAL TCdaq			: STD_LOGIC_VECTOR (7 DOWNTO 0);
+	SIGNAL TCslave			: STD_LOGIC_VECTOR (15 DOWNTO 0);
 	
 BEGIN
 	-- general
@@ -939,7 +941,7 @@ BEGIN
 			RM_stat			=> RM_stat,
 			COMM_CTRL		=> COMM_CTRL,
 			COMM_STAT		=> COMM_STAT,
-			DOM_status		=> X"00000000",
+			DOM_status		=> DOM_status,
 			COMPR_ctrl		=> COMPR_ctrl,
 			debugging		=> debugging,
 			CS_FL_aux_reset	=> CS_FL_aux_reset,
@@ -957,7 +959,7 @@ BEGIN
 			ATWD_ped_data_B	=> ATWD_ped_data_B,
 			ATWD_ped_addr_B	=> ATWD_ped_addr_B,
 			-- test connector
-			TC				=> open
+			TC				=> TCslave --open
 		);
 		
 	inst_comm_wrapper : comm_wrapper
@@ -1017,7 +1019,7 @@ BEGIN
 			cs_wf_data			=> cs_wf_data,
 			cs_wf_addr			=> cs_wf_addr,
 			cs_flash_now		=> cs_flash_now,
-			cs_flash_time		=> cs_flash_time,
+			cs_flash_time		=> open, --cs_flash_time,
 			CS_FL_aux_reset		=> CS_FL_aux_reset,
 			CS_FL_attn			=> CS_FL_attn,
 			-- DAQ interface
@@ -1087,13 +1089,17 @@ BEGIN
 	PLD_FPGA		<= (OTHERS=>'Z');
 	PLD_FPGA_BUSY	<= 'Z';
 	-- Test connector (JP13) No defined use for it yet!
-	FPGA_D		<= (OTHERS=>'Z');
-	FPGA_DA		<= 'Z';
-	FPGA_CE		<= 'Z';
+	--FPGA_D		<= (OTHERS=>'Z');
+	--FPGA_DA		<= 'Z';
+	--FPGA_CE		<= 'Z';
 	FPGA_RW		<= 'Z';
 	-- Test connector (JP19)
-	PGM			<= (OTHERS=>'Z');
-		
+	PGM			<= TCslave; --(OTHERS=>'Z');
+	FPGA_D(7 downto 2)		<= TCdaq(5 downto 0);	
+	FPGA_D(1 downto 0)		<= (OTHERS=>'Z');
+	FPGA_CE		<= TCdaq(6);
+	FPGA_DA		<= TCdaq(7);
+	
 	
 	--------------------------
 	-- LC debugging
@@ -1114,32 +1120,53 @@ BEGIN
 	-- John J pedestal debugging	
 	------------------------------
 	process (CLK40,RST)
-		variable this : std_logic_vector (3 downto 0);
-		variable old  : std_logic_vector (3 downto 0);
-		type cnts_type is array (0 to 3) of integer range 0 to 127;
+		variable this : std_logic_vector (5 downto 0);
+		variable old  : std_logic_vector (5 downto 0);
+		type cnts_type is array (0 to 5) of integer range 0 to 65535;
 		variable cnts : cnts_type;
+		variable delaycnt : integer;
 	begin
 		if RST='1' THEN
 			this := (others=>'0');
 			old  := (others=>'0');
-			for i in 0 to 3 loop
+			for i in 0 to 5 loop
 				cnts(i) := 0;
 			end loop;
+			delaycnt := 0;
 		elsif CLK40'EVENT AND CLK40='1' THEN
 			old := this;
-			this(0) := TCdaq(0);
-			this(1) := TCdaq(1);
-			this(2) := TCdaq(2);
-			this(3) := CS_trigger(0);
-			for i in 0 to 3 loop
+			this(0) := CS_ctrl.CS_CPU;
+			this(1) := CS_trigger(0);
+			this(2) := TCdaq(0);
+			this(3) := '0';
+			this(4) := TCdaq(6);
+			this(5) := TCdaq(7);
+			for i in 0 to 2 loop
 				if this(i)='1' and old(i)='0' then
 					cnts(i) := cnts(i) + 1;
 				end if;
 			end loop;
-			debugging (7 downto 0)   <= conv_std_logic_vector(cnts(0),8);
-			debugging (15 downto 8)  <= conv_std_logic_vector(cnts(1),8);
-			debugging (23 downto 16) <= conv_std_logic_vector(cnts(2),8);
-			debugging (31 downto 24) <= conv_std_logic_vector(cnts(3),8);
+			if this(0)='1' and old(0)='0' then
+				if delaycnt <= 7500 then
+					cnts(3) := cnts(3) + 1;
+				end if;
+				delaycnt := 0;
+			else
+				delaycnt := delaycnt + 1;
+			end if;
+			if this(0)='1' and old(0)='0' and TCdaq(6)='1' then -- busy A
+				cnts(4) := cnts(4) + 1;
+			end if;
+			if this(0)='1' and old(0)='0' and TCdaq(7)='1' then -- busy B
+				cnts(5) := cnts(5) + 1;
+			end if;
+			
+			debugging (15 downto 0)   <= conv_std_logic_vector(cnts(0),16);
+			debugging (31 downto 16)  <= conv_std_logic_vector(cnts(1),16);
+			cs_flash_time (15 downto 0) <= conv_std_logic_vector(cnts(2),16);
+			cs_flash_time (31 downto 16) <= conv_std_logic_vector(cnts(3),16);
+			DOM_status (15 downto 0) <= conv_std_logic_vector(cnts(4),16);
+			DOM_status (31 downto 16) <= conv_std_logic_vector(cnts(5),16);
 		end if;
 	end process;
 END arch_domapp;
