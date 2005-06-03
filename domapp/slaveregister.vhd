@@ -79,7 +79,7 @@ ENTITY slaveregister IS
 		ATWD_ped_data_B	: OUT STD_LOGIC_VECTOR (9 DOWNTO 0);
 		ATWD_ped_addr_B	: IN STD_LOGIC_VECTOR (8 DOWNTO 0);
 		-- test connector
-		TC				: OUT STD_LOGIC_VECTOR(15 downto 0)
+		TC				: OUT STD_LOGIC_VECTOR (15 downto 0)
 	);
 END slaveregister;
 
@@ -208,12 +208,6 @@ ARCHITECTURE arch_slaveregister OF slaveregister IS
 BEGIN
 	reg_wait_sig <= '1';
 	
-	--debugging ------
-	TC(11 downto 0) <= reg_address(13 downto 2);
-	TC(12)			<= reg_write;
-	TC(13)			<= reg_enable;
-	TC(15)			<= '1' WHEN reg_enable = '1' AND reg_write = '1' AND std_match( reg_address(13 downto 2) , hex2addr(x"07F8") ) ELSE '0';
-
 
 	-- Implementation comments:
 	-- For read only registers it is not necessary to check the RW signal

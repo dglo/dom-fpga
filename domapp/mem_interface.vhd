@@ -388,9 +388,4 @@ BEGIN
 	END PROCESS;
 	
 	
-	-- debugging
-	TC(0) <= '1' WHEN state=ENG_END ELSE '0';
-	TC(1) <= data_avail_A;
-	TC(2) <= data_avail_B;
-	
 END mem_interface_arch;
