@@ -198,10 +198,28 @@ ARCHITECTURE arch_ADC_input OF ADC_input IS
 	SIGNAL abort_ATWD	: STD_LOGIC;
 	SIGNAL abort_FADC	: STD_LOGIC;
 	
+	SIGNAL TriggerComplete_sync	: STD_LOGIC;
+	
 BEGIN
+
+-- debugging
+	TC(0)	<= ATWD_busy;
+	TC(1)	<= FADC_busy;
+
 
 	busy_FADC	<= FADC_busy;
 
+	PROCESS (CLK40, RST)
+		VARIABLE	TrigC	: STD_LOGIC;
+	BEGIN
+		IF RST='1' THEN
+			TriggerComplete_sync <= '1';
+			TrigC := '1';
+		ELSIF CLK40'EVENT AND CLK40='1' THEN
+			TriggerComplete_sync <= TrigC;
+			TrigC	:= TriggerComplete;
+		END IF;
+	END PROCESS;
 
 	-- ATWD_interface
 	inst_ATWD_interface : ATWD_interface
@@ -217,7 +235,7 @@ BEGIN
 			abort			=> abort_ATWD,
 			-- ATWD
 			ATWDTrigger		=> ATWDTrigger,
-			TriggerComplete	=> TriggerComplete,
+			TriggerComplete	=> TriggerComplete_sync,
 			OutputEnable	=> OutputEnable,
 			CounterClock	=> CounterClock,
 			RampSet			=> RampSet,
@@ -280,7 +298,7 @@ BEGIN
 			-- trigger
 			ATWDtrigger		=> ATWDTrigger,
 			rst_trig		=> rst_trig,
-			TriggerComplete	=> TriggerComplete,
+			TriggerComplete	=> TriggerComplete_sync,
 			trigger_word	=> trigger_word,
 			-- local coincidence
 			LC_abort		=> LC_abort,

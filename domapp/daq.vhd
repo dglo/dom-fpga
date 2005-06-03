@@ -387,6 +387,10 @@ ARCHITECTURE daq_arch OF daq IS
 	-- for rate meters and local coincidence
 	SIGNAL discSPEpulse_local	: STD_LOGIC;
 	SIGNAL discMPEpulse_local	: STD_LOGIC;
+	
+	--debugging
+	SIGNAL TCping	: STD_LOGIC_VECTOR (7 DOWNTO 0);
+	SIGNAL TCpong	: STD_LOGIC_VECTOR (7 DOWNTO 0);
 
 BEGIN
 	
@@ -396,6 +400,13 @@ BEGIN
 --	TC(5)			<= bus_error;
 --	TC(6)			<= wait_sig;
 --	TC(7)			<= start_trans;
+
+	TC(1 DOWNTO 0)	<= TCping(1 DOWNTO 0);
+	TC(2)			<= busy_A;
+	TC(3)			<= enable_AB(0);
+	TC(5 DOWNTO 4)	<= TCping(1 DOWNTO 0);
+	TC(6)			<= busy_B;
+	TC(7)			<= enable_AB(1);
 	
 	
 
@@ -514,7 +525,7 @@ BEGIN
 			FADC_addr		=> FADC_addr_A,
 			FADC_data		=> FADC_data_A,
 			-- test connector
-			TC			=> open
+			TC			=> TCping --open
 		);
 	
 	pong : pingpong		-- B
@@ -574,7 +585,7 @@ BEGIN
 			FADC_addr		=> FADC_addr_B,
 			FADC_data		=> FADC_data_B,
 			-- test connector
-			TC			=> open
+			TC			=> TCpong --open
 		);
 		
 	inst_mem_interface : mem_interface
@@ -622,9 +633,9 @@ BEGIN
 			trans_length	=> trans_length,
 			bus_error		=> bus_error,
 			-- test connector
-			TC(2 downto 0)			=> TC(2 downto 0) --open
+			TC			=> open
 		);
-	TC(7 downto 6) <= busy_B & busy_A;
+	--TC(7 downto 6) <= busy_B & busy_A;
 		
 	
 	CLK20n	<= NOT CLK20;
