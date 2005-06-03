@@ -395,12 +395,6 @@ ARCHITECTURE daq_arch OF daq IS
 BEGIN
 	
 	-- debugging ------
---	TC(2 downto 0)	<= ahb_address(4 downto 2);
---	TC(4 downto 3)	<= ahb_address(12 downto 11);
---	TC(5)			<= bus_error;
---	TC(6)			<= wait_sig;
---	TC(7)			<= start_trans;
-
 	TC(1 DOWNTO 0)	<= TCping(1 DOWNTO 0);
 	TC(2)			<= busy_A;
 	TC(3)			<= enable_AB(0);

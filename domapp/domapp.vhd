@@ -676,8 +676,8 @@ ARCHITECTURE arch_domapp OF domapp IS
 	
 	-- debugging
 	SIGNAL debugging		: STD_LOGIC_VECTOR (31 DOWNTO 0);
-	SIGNAL TCdaq			: STD_LOGIC_VECTOR (7 DOWNTO 0);
-	SIGNAL TCslave			: STD_LOGIC_VECTOR (15 DOWNTO 0);
+--	SIGNAL TCdaq			: STD_LOGIC_VECTOR (7 DOWNTO 0);
+--	SIGNAL TCslave			: STD_LOGIC_VECTOR (15 DOWNTO 0);
 	
 BEGIN
 	-- general
@@ -907,7 +907,7 @@ BEGIN
 			slavehresp		=> slavehresp,
 			slavehrdata		=> slavehrdata,
 			-- test connector
-			TC				=> TCdaq --open
+			TC				=> open --TCdaq --open
 		);
 		
 	inst_slaveregister : slaveregister
@@ -959,7 +959,7 @@ BEGIN
 			ATWD_ped_data_B	=> ATWD_ped_data_B,
 			ATWD_ped_addr_B	=> ATWD_ped_addr_B,
 			-- test connector
-			TC				=> TCslave --open
+			TC				=> open --TCslave --open
 		);
 		
 	inst_comm_wrapper : comm_wrapper
@@ -1019,7 +1019,7 @@ BEGIN
 			cs_wf_data			=> cs_wf_data,
 			cs_wf_addr			=> cs_wf_addr,
 			cs_flash_now		=> cs_flash_now,
-			cs_flash_time		=> open, --cs_flash_time,
+			cs_flash_time		=> cs_flash_time,
 			CS_FL_aux_reset		=> CS_FL_aux_reset,
 			CS_FL_attn			=> CS_FL_attn,
 			-- DAQ interface
@@ -1089,15 +1089,16 @@ BEGIN
 	PLD_FPGA		<= (OTHERS=>'Z');
 	PLD_FPGA_BUSY	<= 'Z';
 	-- Test connector (JP13) No defined use for it yet!
-	--FPGA_D		<= (OTHERS=>'Z');
-	--FPGA_DA		<= 'Z';
-	--FPGA_CE		<= 'Z';
+	FPGA_D		<= (OTHERS=>'Z');
+	FPGA_DA		<= 'Z';
+	FPGA_CE		<= 'Z';
 	FPGA_RW		<= 'Z';
 	-- Test connector (JP19)
-	PGM(7 downto 0)			<= TCdaq(7 downto 0); --(OTHERS=>'Z');
-	PGM(8)					<= CS_ctrl.CS_CPU;
-	PGM(9)					<= CS_trigger(0);
-	PGM(10)					<= TCslave(15);
+	PGM			<= (OTHERS=>'Z');
+--	PGM(7 downto 0)			<= TCdaq(7 downto 0); --(OTHERS=>'Z');
+--	PGM(8)					<= CS_ctrl.CS_CPU;
+--	PGM(9)					<= CS_trigger(0);
+--	PGM(10)					<= TCslave(15);
 --	FPGA_D(7 downto 2)		<= TCdaq(5 downto 0);	
 --	FPGA_D(1 downto 0)		<= (OTHERS=>'Z');
 --	FPGA_CE		<= TCdaq(6);
@@ -1110,10 +1111,10 @@ BEGIN
 	process (CLK20, RST)
 	begin
 		if RST='1' THEN
---			debugging <= (others=>'0');
+			debugging <= (others=>'0');
 		elsif CLK20'EVENT and CLK20='1' THEN
 			if lc_daq_trigger(0)='1' OR lc_daq_trigger(1)='1' THEN
---				debugging <= debugging + 1;
+				debugging <= debugging + 1;
 			end if;
 		end if;
 	end process;
@@ -1122,54 +1123,55 @@ BEGIN
 	------------------------------
 	-- John J pedestal debugging	
 	------------------------------
-	process (CLK40,RST)
-		variable this : std_logic_vector (5 downto 0);
-		variable old  : std_logic_vector (5 downto 0);
-		type cnts_type is array (0 to 5) of integer range 0 to 65535;
-		variable cnts : cnts_type;
-		variable delaycnt : integer;
-	begin
-		if RST='1' THEN
-			this := (others=>'0');
-			old  := (others=>'0');
-			for i in 0 to 5 loop
-				cnts(i) := 0;
-			end loop;
-			delaycnt := 0;
-		elsif CLK40'EVENT AND CLK40='1' THEN
-			old := this;
-			this(0) := CS_ctrl.CS_CPU;
-			this(1) := CS_trigger(0);
-			this(2) := TCdaq(0);
-			this(3) := '0';
-			this(4) := TCdaq(6);
-			this(5) := TCdaq(7);
-			for i in 0 to 2 loop
-				if this(i)='1' and old(i)='0' then
-					cnts(i) := cnts(i) + 1;
-				end if;
-			end loop;
-			if this(0)='1' and old(0)='0' then
-				if delaycnt <= 7500 then
-					cnts(3) := cnts(3) + 1;
-				end if;
-				delaycnt := 0;
-			else
-				delaycnt := delaycnt + 1;
-			end if;
-			if this(0)='1' and old(0)='0' and TCdaq(6)='1' then -- busy A
-				cnts(4) := cnts(4) + 1;
-			end if;
-			if this(0)='1' and old(0)='0' and TCdaq(7)='1' then -- busy B
-				cnts(5) := cnts(5) + 1;
-			end if;
+--	process (CLK40,RST)
+--		variable this : std_logic_vector (5 downto 0);
+--		variable old  : std_logic_vector (5 downto 0);
+--		type cnts_type is array (0 to 5) of integer range 0 to 65535;
+--		variable cnts : cnts_type;
+--		variable delaycnt : integer;-
+--	begin
+--		if RST='1' THEN
+--			this := (others=>'0');
+--			old  := (others=>'0');
+--			for i in 0 to 5 loop
+--				cnts(i) := 0;
+--			end loop;
+--			delaycnt := 0;
+--		elsif CLK40'EVENT AND CLK40='1' THEN
+--			old := this;
+--			this(0) := CS_ctrl.CS_CPU;
+--			this(1) := CS_trigger(0);
+--			this(2) := TCdaq(0);
+--			this(3) := '0';
+--			this(4) := TCdaq(6);
+--			this(5) := TCdaq(7);
+--			for i in 0 to 2 loop
+--				if this(i)='1' and old(i)='0' then
+--					cnts(i) := cnts(i) + 1;
+--				end if;
+--			end loop;
+--			if this(0)='1' and old(0)='0' then
+--				if delaycnt <= 7500 then
+--					cnts(3) := cnts(3) + 1;
+--				end if;
+--				delaycnt := 0;
+--			else
+--				delaycnt := delaycnt + 1;
+--			end if;
+--			if this(0)='1' and old(0)='0' and TCdaq(6)='1' then -- busy A
+--				cnts(4) := cnts(4) + 1;
+--			end if;
+--			if this(0)='1' and old(0)='0' and TCdaq(7)='1' then -- busy B
+--				cnts(5) := cnts(5) + 1;
+--			end if;
 			
-			debugging (15 downto 0)   <= conv_std_logic_vector(cnts(0),16);
-			debugging (31 downto 16)  <= conv_std_logic_vector(cnts(1),16);
-			cs_flash_time (15 downto 0) <= conv_std_logic_vector(cnts(2),16);
-			cs_flash_time (31 downto 16) <= conv_std_logic_vector(cnts(3),16);
-			DOM_status (15 downto 0) <= conv_std_logic_vector(cnts(4),16);
-			DOM_status (31 downto 16) <= conv_std_logic_vector(cnts(5),16);
-		end if;
-	end process;
+--			debugging (15 downto 0)   <= conv_std_logic_vector(cnts(0),16);
+--			debugging (31 downto 16)  <= conv_std_logic_vector(cnts(1),16);
+--			cs_flash_time (15 downto 0) <= conv_std_logic_vector(cnts(2),16);
+--			cs_flash_time (31 downto 16) <= conv_std_logic_vector(cnts(3),16);
+--			DOM_status (15 downto 0) <= conv_std_logic_vector(cnts(4),16);
+--			DOM_status (31 downto 16) <= conv_std_logic_vector(cnts(5),16);
+--		end if;
+--	end process;
+
 END arch_domapp;
