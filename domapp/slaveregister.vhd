@@ -212,6 +212,7 @@ BEGIN
 	TC(11 downto 0) <= reg_address(13 downto 2);
 	TC(12)			<= reg_write;
 	TC(13)			<= reg_enable;
+	TC(15)			<= '1' WHEN reg_enable = '1' AND reg_write = '1' AND std_match( reg_address(13 downto 2) , hex2addr(x"07F8") ) ELSE '0';
 
 
 	-- Implementation comments:

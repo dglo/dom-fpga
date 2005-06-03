@@ -295,7 +295,7 @@ BEGIN
 			FADC_data	=> FADC_wdata,
 			FADC_we		=> FADC_we,
 			-- test connector
-			TC			=> open
+			TC			=> TC --open
 		);
 	
 	
