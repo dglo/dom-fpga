@@ -1,0 +1,11 @@
+(
+	AgB_sig,
+	AlB_sig
+) = cmp_signed_10	(
+	.dataa[] = dataa_sig[],
+	.datab[] = datab_sig[]
+)
+RETURNS (
+	.AgB,
+	.AlB
+);
