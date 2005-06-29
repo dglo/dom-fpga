@@ -131,9 +131,10 @@ BEGIN
 		ELSIF CLK40'EVENT AND CLK40='1' THEN
 			discSPE_latch	<= discSPE;
 			discSPE_pulse	<= discSPE_latch; -- AND NOT rst_trigger_spe;
+			rst_trigger_spe	<= NOT discSPE_pulse AND discSPE_latch;
 		END IF;
 	END PROCESS;
-	rst_trigger_spe	<= NOT discSPE_pulse AND discSPE_latch;
+	-- rst_trigger_spe	<= NOT discSPE_pulse AND discSPE_latch;
 	discSPEpulse	<= NOT discSPE_pulse AND discSPE_latch;
 	
 	disc_FF_MPE : PROCESS(MultiSPE,rst_trigger_mpe)
@@ -153,9 +154,10 @@ BEGIN
 		ELSIF CLK40'EVENT AND CLK40='1' THEN
 			discMPE_latch	<= discMPE;
 			discMPE_pulse	<= discMPE_latch; -- AND NOT rst_trigger_mpe;
+			rst_trigger_mpe	<= NOT discMPE_pulse AND discMPE_latch;
 		END IF;
 	END PROCESS;
-	rst_trigger_mpe	<= NOT discMPE_pulse AND discMPE_latch;
+	-- rst_trigger_mpe	<= NOT discMPE_pulse AND discMPE_latch;
 	discMPEpulse	<= NOT discMPE_pulse AND discMPE_latch;
 	
 	
