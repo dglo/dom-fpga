@@ -730,6 +730,27 @@ BEGIN
 			q			=> ATWD_ped_data_B
 		);
 	
+	--debugging
+	TC(0)	<= int_enable(2);
+	TC(1)	<= int_clr(2);
+	TC(2)	<= int_pending(2);
+	TC(3)	<= RM_stat.SN_rate_update;
+	TC(4)	<= reg_enable;
+	TC(5)	<= reg_write;
+	TC(6)	<= '1' WHEN std_match( reg_address(13 downto 2) , hex2addr(x"07F8") ) ELSE '0'; -- PONG
+	TC(7)	<= '1' WHEN std_match( reg_address(13 downto 2) , hex2addr(x"0514") ) ELSE '0'; -- rx_addr
+	--TC(15 downto 8) <= reg_wdata(7 downto 0);
+	PROCESS(CLK,RST)
+	BEGIN
+		IF RST='1' THEN
+			TC(15 downto 8) <= (others=>'0');
+		ELSIF CLK'EVENT AND CLK='1' THEN
+			IF reg_enable='1' AND reg_write='1' AND std_match( reg_address(13 downto 2) , hex2addr(x"07F8") ) THEN
+				TC(15 downto 8) <= reg_wdata(7 downto 0);
+			END IF;
+		END IF;
+	END PROCESS;
+	
 END;
 
 
