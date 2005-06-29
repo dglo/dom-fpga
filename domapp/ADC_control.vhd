@@ -102,13 +102,13 @@ BEGIN
 					eventtype	<= "XX";
 					flabby_LC_flag	<= '0';
 				WHEN WAIT_DONE =>
-					IF lc_mode=LC_HARD AND LC_abort='1' THEN
+					IF lc_mode=LC_HARD AND LC_abort='1' AND trigger_word(15 DOWNTO 2)="00000000000000" THEN
 						state <= CLEAR_LC_HARD;
-					ELSIF lc_mode=LC_SOFT AND LC_abort='1' THEN
+					ELSIF lc_mode=LC_SOFT AND LC_abort='1' AND trigger_word(15 DOWNTO 2)="00000000000000" THEN
 						state <= WAIT_LC_SOFT;
-					ELSIF lc_mode=LC_FLABBY AND LC_abort='1' THEN
+					ELSIF lc_mode=LC_FLABBY AND LC_abort='1' AND trigger_word(15 DOWNTO 2)="00000000000000" THEN
 						state <= WAIT_LC_FLABBY;
-					ELSIF lc_mode=LC_OFF AND LC_abort='1' THEN
+					ELSIF LC_abort='1' THEN
 						state <= GOT_LC;
 					ELSIF ATWD_busy='0' AND FADC_busy='0' THEN
 						state <= WAIT_BUFFER;

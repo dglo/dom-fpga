@@ -676,8 +676,8 @@ ARCHITECTURE arch_domapp OF domapp IS
 	
 	-- debugging
 	SIGNAL debugging		: STD_LOGIC_VECTOR (31 DOWNTO 0);
---	SIGNAL TCdaq			: STD_LOGIC_VECTOR (7 DOWNTO 0);
---	SIGNAL TCslave			: STD_LOGIC_VECTOR (15 DOWNTO 0);
+	SIGNAL TCdaq			: STD_LOGIC_VECTOR (7 DOWNTO 0);
+	SIGNAL TCslave			: STD_LOGIC_VECTOR (15 DOWNTO 0);
 	
 BEGIN
 	-- general
@@ -907,7 +907,7 @@ BEGIN
 			slavehresp		=> slavehresp,
 			slavehrdata		=> slavehrdata,
 			-- test connector
-			TC				=> open --TCdaq --open
+			TC				=> TCdaq --open
 		);
 		
 	inst_slaveregister : slaveregister
@@ -959,7 +959,7 @@ BEGIN
 			ATWD_ped_data_B	=> ATWD_ped_data_B,
 			ATWD_ped_addr_B	=> ATWD_ped_addr_B,
 			-- test connector
-			TC				=> open --TCslave --open
+			TC				=> TCslave --open
 		);
 		
 	inst_comm_wrapper : comm_wrapper
@@ -1094,7 +1094,10 @@ BEGIN
 	FPGA_CE		<= 'Z';
 	FPGA_RW		<= 'Z';
 	-- Test connector (JP19)
-	PGM			<= (OTHERS=>'Z');
+	--PGM			<= (OTHERS=>'Z');
+	PGM(7 downto 0)		<= TCslave(7 downto 0);
+	PGM(9 downto 8)		<= TCdaq(1 downto 0);
+	PGM(15 downto 10)	<= TCslave(13 downto 8);
 --	PGM(7 downto 0)			<= TCdaq(7 downto 0); --(OTHERS=>'Z');
 --	PGM(8)					<= CS_ctrl.CS_CPU;
 --	PGM(9)					<= CS_trigger(0);

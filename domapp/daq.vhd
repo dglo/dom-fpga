@@ -395,12 +395,12 @@ ARCHITECTURE daq_arch OF daq IS
 BEGIN
 	
 	-- debugging ------
-	TC(1 DOWNTO 0)	<= TCping(1 DOWNTO 0);
-	TC(2)			<= busy_A;
-	TC(3)			<= enable_AB(0);
-	TC(5 DOWNTO 4)	<= TCping(1 DOWNTO 0);
-	TC(6)			<= busy_B;
-	TC(7)			<= enable_AB(1);
+--	TC(1 DOWNTO 0)	<= TCping(1 DOWNTO 0);
+--	TC(2)			<= busy_A;
+--	TC(3)			<= enable_AB(0);
+--	TC(5 DOWNTO 4)	<= TCping(1 DOWNTO 0);
+--	TC(6)			<= busy_B;
+--	TC(7)			<= enable_AB(1);
 	
 	
 
@@ -664,5 +664,9 @@ BEGIN
 			trans_length	=> trans_length,
 			bus_error		=> bus_error
 		);
+		
+	-- gebugging
+	TC(0)	<= bus_error;
+	TC(1)	<= slavebuserrint;
 
 END daq_arch;
