@@ -376,7 +376,7 @@ set_location_assignment PIN_H24 -to CLK_REF
 set_location_assignment PIN_W21 -to FPGA_RW
 set_location_assignment PIN_F3 -to FPGA_CE
 set_location_assignment PIN_E3 -to FPGA_DA
-set_location_assignment PIN_M25 -to FL_AUX_RESET
+set_location_assignment PIN_N25 -to FL_AUX_RESET
 set_location_assignment PIN_P20 -to CLK1p
 set_location_assignment PIN_W6 -to CLK2p
 set_location_assignment PIN_R23 -to CLK3p
@@ -398,10 +398,11 @@ set_global_assignment -name DEVICE_FILTER_PACKAGE FBGA
 set_global_assignment -name TOP_LEVEL_ENTITY domapp
 set_global_assignment -name VHDL_SHOW_LMF_MAPPING_MESSAGES OFF
 set_global_assignment -name AUTO_ENABLE_SMART_COMPILE on
-set_global_assignment -name USER_LIBRARIES "c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\tx_chan;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\tcal;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\uart;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\meanval;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\edges;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\parity;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\mono_flop;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm;c:\\work_lbnl\\icecubecvs\\dom-fpga\\domapp\\compression_roadgrader_charge"
+set_global_assignment -name USER_LIBRARIES "c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\tx_chan;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\tcal;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\uart;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\meanval;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\edges;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\parity;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\mono_flop;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm;c:\\work_lbnl\\icecubecvs\\dom-fpga\\domapp\\compression_delta"
 
 # Fitter Assignments
 # ==================
+set_global_assignment -name RUN_DRC_DURING_COMPILATION ON
 set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED"
 set_global_assignment -name ENABLE_INIT_DONE_OUTPUT ON
 set_global_assignment -name AUTO_RESTART_CONFIGURATION OFF
@@ -503,47 +504,49 @@ set_global_assignment -name START_TIME 0NS
 
 # Design Assistant Assignments
 # ============================
+set_global_assignment -name HCPY_ALOAD_SIGNALS OFF
 set_global_assignment -name HCPY_VREF_PINS OFF
 set_global_assignment -name HCPY_CAT OFF
-set_global_assignment -name ACLK_RULE_IMSZER_ADOMAIN OFF
-set_global_assignment -name ACLK_RULE_SZER_BTW_ACLK_DOMAIN OFF
-set_global_assignment -name ACLK_RULE_NO_SZER_ACLK_DOMAIN OFF
-set_global_assignment -name ACLK_CAT OFF
-set_global_assignment -name SIGNALRACE_CAT OFF
-set_global_assignment -name NONSYNCHSTRUCT_RULE_LATCH_UNIDENTIFIED OFF
-set_global_assignment -name NONSYNCHSTRUCT_RULE_SRLATCH OFF
-set_global_assignment -name NONSYNCHSTRUCT_RULE_MULTI_VIBRATOR OFF
-set_global_assignment -name NONSYNCHSTRUCT_RULE_ILLEGAL_PULSE_GEN OFF
-set_global_assignment -name NONSYNCHSTRUCT_RULE_RIPPLE_CLK OFF
-set_global_assignment -name NONSYNCHSTRUCT_RULE_DELAY_CHAIN OFF
-set_global_assignment -name NONSYNCHSTRUCT_RULE_REG_LOOP OFF
-set_global_assignment -name NONSYNCHSTRUCT_RULE_COMBLOOP OFF
-set_global_assignment -name NONSYNCHSTRUCT_CAT OFF
-set_global_assignment -name NONSYNCHSTRUCT_RULE_COMB_DRIVES_RAM_WE OFF
-set_global_assignment -name TIMING_RULE_COIN_CLKEDGE OFF
-set_global_assignment -name TIMING_RULE_SHIFT_REG OFF
-set_global_assignment -name TIMING_CAT OFF
-set_global_assignment -name RESET_RULE_IMSYNCH_ASYNCH_DOMAIN OFF
-set_global_assignment -name RESET_RULE_UNSYNCH_ASYNCH_DOMAIN OFF
-set_global_assignment -name RESET_RULE_COMB_ASYNCH_RESET OFF
-set_global_assignment -name RESET_RULE_IMSYNCH_EXRESET OFF
-set_global_assignment -name RESET_RULE_UNSYNCH_EXRESET OFF
-set_global_assignment -name RESET_RULE_INPINS_RESETNET OFF
-set_global_assignment -name RESET_CAT OFF
-set_global_assignment -name CLK_RULE_MIX_EDGES OFF
-set_global_assignment -name CLK_RULE_CLKNET_CLKSPINES OFF
-set_global_assignment -name CLK_RULE_INPINS_CLKNET OFF
-set_global_assignment -name CLK_RULE_GATING_SCHEME OFF
-set_global_assignment -name CLK_RULE_INV_CLOCK OFF
-set_global_assignment -name CLK_RULE_COMB_CLOCK OFF
-set_global_assignment -name CLK_CAT OFF
+set_global_assignment -name ACLK_RULE_IMSZER_ADOMAIN ON
+set_global_assignment -name ACLK_RULE_SZER_BTW_ACLK_DOMAIN ON
+set_global_assignment -name ACLK_RULE_NO_SZER_ACLK_DOMAIN ON
+set_global_assignment -name ACLK_CAT ON
+set_global_assignment -name SIGNALRACE_CAT ON
+set_global_assignment -name NONSYNCHSTRUCT_RULE_LATCH_UNIDENTIFIED ON
+set_global_assignment -name NONSYNCHSTRUCT_RULE_SRLATCH ON
+set_global_assignment -name NONSYNCHSTRUCT_RULE_MULTI_VIBRATOR ON
+set_global_assignment -name NONSYNCHSTRUCT_RULE_ILLEGAL_PULSE_GEN ON
+set_global_assignment -name NONSYNCHSTRUCT_RULE_RIPPLE_CLK ON
+set_global_assignment -name NONSYNCHSTRUCT_RULE_DELAY_CHAIN ON
+set_global_assignment -name NONSYNCHSTRUCT_RULE_REG_LOOP ON
+set_global_assignment -name NONSYNCHSTRUCT_RULE_COMBLOOP ON
+set_global_assignment -name NONSYNCHSTRUCT_CAT ON
+set_global_assignment -name NONSYNCHSTRUCT_RULE_COMB_DRIVES_RAM_WE ON
+set_global_assignment -name TIMING_RULE_COIN_CLKEDGE ON
+set_global_assignment -name TIMING_RULE_SHIFT_REG ON
+set_global_assignment -name TIMING_CAT ON
+set_global_assignment -name RESET_RULE_IMSYNCH_ASYNCH_DOMAIN ON
+set_global_assignment -name RESET_RULE_UNSYNCH_ASYNCH_DOMAIN ON
+set_global_assignment -name RESET_RULE_COMB_ASYNCH_RESET ON
+set_global_assignment -name RESET_RULE_IMSYNCH_EXRESET ON
+set_global_assignment -name RESET_RULE_UNSYNCH_EXRESET ON
+set_global_assignment -name RESET_RULE_INPINS_RESETNET ON
+set_global_assignment -name RESET_CAT ON
+set_global_assignment -name CLK_RULE_MIX_EDGES ON
+set_global_assignment -name CLK_RULE_CLKNET_CLKSPINES ON
+set_global_assignment -name CLK_RULE_INPINS_CLKNET ON
+set_global_assignment -name CLK_RULE_GATING_SCHEME ON
+set_global_assignment -name CLK_RULE_INV_CLOCK ON
+set_global_assignment -name CLK_RULE_COMB_CLOCK ON
+set_global_assignment -name CLK_CAT ON
 set_global_assignment -name HARDCOPY_EXTERNAL_CLOCK_JITTER "0.0 NS"
-set_global_assignment -name NONSYNCHSTRUCT_RULE_ASYN_RAM OFF
-set_global_assignment -name ASSG_RULE_MISSING_TIMING OFF
-set_global_assignment -name ASSG_RULE_MISSING_FMAX OFF
-set_global_assignment -name ASSG_CAT OFF
-set_global_assignment -name DRC_REPORT_FANOUT_EXCEEDING OFF
-set_global_assignment -name DRC_REPORT_TOP_FANOUT OFF
+set_global_assignment -name NONSYNCHSTRUCT_RULE_ASYN_RAM ON
+set_global_assignment -name HCPY_PLL_MULTIPLE_CLK_NETWORK_TYPES OFF
+set_global_assignment -name ASSG_RULE_MISSING_TIMING ON
+set_global_assignment -name ASSG_RULE_MISSING_FMAX ON
+set_global_assignment -name ASSG_CAT ON
+set_global_assignment -name DRC_REPORT_FANOUT_EXCEEDING ON
+set_global_assignment -name DRC_REPORT_TOP_FANOUT ON
 
 # SignalTap II Assignments
 # ========================

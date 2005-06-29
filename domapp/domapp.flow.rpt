@@ -1,5 +1,5 @@
 Flow report for domapp
-Fri Jun 03 14:40:39 2005
+Wed Jun 29 09:03:14 2005
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -42,12 +42,12 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------+
 ; Flow Summary                                                  ;
 +-----------------------+---------------------------------------+
-; Flow Status           ; Successful - Fri Jun 03 14:40:16 2005 ;
+; Flow Status           ; Successful - Wed Jun 29 09:02:51 2005 ;
 ; Revision Name         ; domapp                                ;
 ; Top-level Entity Name ; domapp                                ;
 ; Family                ; EXCALIBUR_ARM                         ;
 ; Device                ; EPXA4F672I2                           ;
-; Total logic elements  ; 9,542 / 16,640 ( 57 % )               ;
+; Total logic elements  ; 8,264 / 16,640 ( 49 % )               ;
 ; Total pins            ; 308 / 463 ( 66 % )                    ;
 ; Total memory bits     ; 96,896 / 212,992 ( 45 % )             ;
 ; Total PLLs            ; 2 / 4 ( 50 % )                        ;
@@ -59,7 +59,7 @@ party's intellectual property, are provided herein.
 +------------------------------------------
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 06/03/2005 14:12:33 ;
+; Start date & time ; 06/29/2005 08:40:06 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; domapp              ;
 +-------------------+---------------------+
@@ -70,11 +70,11 @@ party's intellectual property, are provided herein.
 +--------------------------------------
 ; Module Name          ; Elapsed Time ;
 +----------------------+--------------+
-; Analysis & Synthesis ; 00:13:21     ;
-; Fitter               ; 00:14:11     ;
-; Assembler            ; 00:00:06     ;
-; Timing Analyzer      ; 00:00:21     ;
-; Total                ; 00:27:59     ;
+; Analysis & Synthesis ; 00:08:46     ;
+; Fitter               ; 00:13:46     ;
+; Assembler            ; 00:00:07     ;
+; Timing Analyzer      ; 00:00:20     ;
+; Total                ; 00:22:59     ;
 +----------------------+--------------+
 
 

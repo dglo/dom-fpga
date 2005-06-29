@@ -351,7 +351,7 @@ FL_TCK                       : M21       : output : LVTTL             :         
 RESERVED_INPUT               : M22       :        :                   :         : 8         :                
 FL_Trigger                   : M23       : output : LVTTL             :         : 8         : Y              
 FL_ATTN                      : M24       : input  : LVTTL             :         : 8         : Y              
-FL_AUX_RESET                 : M25       : output : LVTTL             :         : 8         : Y              
+RESERVED_INPUT               : M25       :        :                   :         : 8         :                
 RESERVED_INPUT               : M26       :        :                   :         : 8         :                
 GND                          : N1        : gnd    :                   :         :           :                
 VCC_INT                      : N2        : power  :                   : 1.8V    :           :                
@@ -377,7 +377,7 @@ MSEL1                        : N21       : input  :                   :         
 MSEL0                        : N22       : input  :                   :         :           :                
 FL_Trigger_bar               : N23       : output : LVTTL             :         : 8         : Y              
 VCC_IO                       : N24       : power  :                   : 3.3V    :           :                
-RESERVED_INPUT               : N25       :        :                   :         : 8         :                
+FL_AUX_RESET                 : N25       : output : LVTTL             :         : 8         : Y              
 GND                          : N26       : gnd    :                   :         :           :                
 GND                          : P1        : gnd    :                   :         :           :                
 GND                          : P2        : gnd    :                   :         :           :                
