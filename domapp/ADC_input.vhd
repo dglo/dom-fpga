@@ -189,6 +189,27 @@ ARCHITECTURE arch_ADC_input OF ADC_input IS
 		);
 	END COMPONENT;
 	
+	-- chargestamp
+	COMPONENT chargestamp IS
+	    GENERIC (
+	        FADC_WIDTH : INTEGER := 10
+	    );
+	    PORT (
+	        CLK40       : IN  STD_LOGIC;
+	        RST         : IN  STD_LOGIC;
+	        systime     : IN  STD_LOGIC_VECTOR (47 DOWNTO 0);
+	        -- FADC
+	        busy_FADC   : IN  STD_LOGIC;
+	        FADC_D      : IN  STD_LOGIC_VECTOR (FADC_WIDTH-1 DOWNTO 0);
+	        FADC_NCO    : IN  STD_LOGIC;
+	        FADC_addr   : IN  STD_LOGIC_VECTOR (7 DOWNTO 0);
+	        -- charege
+	        chargestamp : OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
+	        -- test connector
+	        TC          : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+        );
+	END COMPONENT;
+	
 	
 	SIGNAL ATWD_enable	: STD_LOGIC;
 	SIGNAL ATWD_busy	: STD_LOGIC;
@@ -199,6 +220,11 @@ ARCHITECTURE arch_ADC_input OF ADC_input IS
 	SIGNAL abort_FADC	: STD_LOGIC;
 	
 	SIGNAL TriggerComplete_sync	: STD_LOGIC;
+	
+	-- chargestamp
+	SIGNAL HEADER_data_int	: HEADER_VECTOR;
+	SIGNAL charge_stamp		: STD_LOGIC_VECTOR (31 DOWNTO 0);
+	SIGNAL FADC_addr_int	: STD_LOGIC_VECTOR (7 DOWNTO 0);
 	
 BEGIN
 
@@ -276,7 +302,7 @@ BEGIN
 			FADC_NCO		=> FADC_NCO,
 			-- buffer interface
 			FADC_data		=> FADC_data,
-			FADC_addr		=> FADC_addr,
+			FADC_addr		=> FADC_addr_int,
 			FADC_we			=> FADC_we,
 			-- test connector
 			TC				=> open
@@ -313,10 +339,37 @@ BEGIN
 			FADC_busy	=> FADC_busy,
 			-- data output
 			buffer_full	=> buffer_full,
-			HEADER_data	=> HEADER_data,
+			HEADER_data	=> HEADER_data_int,
 			HEADER_we	=> HEADER_we,
 			-- test connector
 			TC			=> open
 		);
+		
+	-- chargestamp
+	inst_chargestamp : chargestamp
+	    GENERIC MAP (
+	        FADC_WIDTH => FADC_WIDTH
+	    )
+	    PORT MAP (
+	        CLK40       => CLK40,
+	        RST         => RST,
+	        systime     => systime,
+	        -- FADC
+	        busy_FADC   => FADC_busy,
+	        FADC_D      => FADC_D,
+	        FADC_NCO    => FADC_NCO,
+	        FADC_addr   => FADC_addr_int,
+	        -- charege
+	        chargestamp => charge_stamp,
+	        -- test connector
+	        TC          => open
+        );
+	FADC_addr <= FADC_addr_int;
+	
+	PROCESS(HEADER_data_int,charge_stamp)
+	BEGIN
+		HEADER_data				<= HEADER_data_int;
+		HEADER_data.chargestamp	<= charge_stamp;
+	END PROCESS;
 		
 END;

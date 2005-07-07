@@ -67,6 +67,8 @@ set_global_assignment -name VHDL_FILE local_coincidence/LC_TX.vhd
 set_global_assignment -name VHDL_FILE local_coincidence/LC_relais.vhd
 set_global_assignment -name VHDL_FILE local_coincidence/LC_slice.vhd
 set_global_assignment -name VHDL_FILE local_coincidence/local_coincidence.vhd
+set_global_assignment -name VHDL_FILE chargestamp/charge_stamp_generator.vhd
+set_global_assignment -name VHDL_FILE chargestamp/chargestamp.vhd
 set_global_assignment -name SIGNALTAP_FILE LC_binary.stp
 set_global_assignment -name SIGNALTAP_FILE slavereg_log.stp
 set_global_assignment -name SIGNALTAP_FILE ping_compr_ram.stp
