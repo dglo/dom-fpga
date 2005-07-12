@@ -220,7 +220,8 @@ BEGIN
 			CS_ctrl_local.CS_CPU		<= '0';
 			DAQ_ctrl_local	<= ('0', "00", (OTHERS=>'0'), "00", "00", "00", "00", "00", '0');
 			CS_ctrl_local	<= ((OTHERS=>'0'), "000", (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), '0', '0');
-			LC_ctrl_local	<= ('0', (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (1,2,3,4), (1,2,3,4));
+			-- LC_ctrl_local	<= ('0', (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (1,2,3,4), (1,2,3,4));
+			LC_ctrl_local	<= ('0', (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (1,2,3,4), (1,2,3,4), (OTHERS=>'0'), (OTHERS=>'0'), '0');
 			RM_ctrl_local	<= ((OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'));
 			COMM_ctrl_local	<= ('0', (OTHERS=>'0'), 'X', '0', '0', (OTHERS=>'0'), (OTHERS=>'0'));
 			id_set			<= "00";
@@ -296,9 +297,12 @@ BEGIN
 						LC_ctrl_local.LC_rx_enable		<= reg_wdata(3 downto 2);
 						LC_ctrl_local.LC_length			<= reg_wdata(5 downto 4);
 						LC_ctrl_local.LC_disc_source	<= reg_wdata(7);
-						LC_ctrl_local.LC_cable_comp		<= reg_wdata(9 downto 8);
+						-- LC_ctrl_local.LC_cable_comp		<= reg_wdata(9 downto 8);
 						LC_ctrl_local.LC_pre_window		<= reg_wdata(21 downto 16);
 						LC_ctrl_local.LC_post_window	<= reg_wdata(29 downto 24);
+						LC_ctrl_local.lc_self_mode		<= reg_wdata(9 downto 8);
+						LC_ctrl_local.lc_self_window	<= reg_wdata(15 downto 10);
+						LC_ctrl_local.LC_up_and_down	<= reg_wdata(6);
 					END IF;
 					IF READBACK=1 THEN
 						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
@@ -306,9 +310,12 @@ BEGIN
 						reg_rdata(3 downto 2)	<= LC_ctrl_local.LC_rx_enable;
 						reg_rdata(5 downto 4)	<= LC_ctrl_local.LC_length;
 						reg_rdata(7)			<= LC_ctrl_local.LC_disc_source;
-						reg_rdata(9 downto 8)	<= LC_ctrl_local.LC_cable_comp;
+						-- reg_rdata(9 downto 8)	<= LC_ctrl_local.LC_cable_comp;
 						reg_rdata(21 downto 16)	<= LC_ctrl_local.LC_pre_window;
 						reg_rdata(29 downto 24)	<= LC_ctrl_local.LC_post_window;
+						reg_rdata(9 downto 8)	<= LC_ctrl_local.lc_self_mode;
+						reg_rdata(15 downto 10)	<= LC_ctrl_local.lc_self_window;
+						reg_rdata(6)			<= LC_ctrl_local.LC_up_and_down;
 					ELSE
 						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
 					END IF;

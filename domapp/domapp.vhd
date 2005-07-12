@@ -1094,10 +1094,10 @@ BEGIN
 	FPGA_CE		<= 'Z';
 	FPGA_RW		<= 'Z';
 	-- Test connector (JP19)
-	--PGM			<= (OTHERS=>'Z');
-	PGM(7 downto 0)		<= TCslave(7 downto 0);
-	PGM(9 downto 8)		<= TCdaq(1 downto 0);
-	PGM(15 downto 10)	<= TCslave(13 downto 8);
+	PGM			<= (OTHERS=>'Z');
+--	PGM(7 downto 0)		<= TCslave(7 downto 0);
+--	PGM(9 downto 8)		<= TCdaq(1 downto 0);
+--	PGM(15 downto 10)	<= TCslave(13 downto 8);
 --	PGM(7 downto 0)			<= TCdaq(7 downto 0); --(OTHERS=>'Z');
 --	PGM(8)					<= CS_ctrl.CS_CPU;
 --	PGM(9)					<= CS_trigger(0);
