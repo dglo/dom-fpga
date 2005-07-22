@@ -27,6 +27,7 @@ USE IEEE.std_logic_arith.all;
 USE IEEE.std_logic_unsigned.all;
 
 USE WORK.ctrl_data_types.all;
+USE WORK.monitor_data_type.all;
 
 
 ENTITY domapp IS
@@ -378,6 +379,8 @@ ARCHITECTURE arch_domapp OF domapp IS
 			slavebuserrint	: IN	STD_LOGIC;
 			slavehresp		: IN	STD_LOGIC_VECTOR(1 downto 0);
 			slavehrdata		: IN	STD_LOGIC_VECTOR(31 downto 0);
+			-- monitoring
+			DAQ_status		: OUT	DAQ_STATUS_STRUCT;
 			-- test connector
 			TC				: OUT STD_LOGIC_VECTOR (7 downto 0)
 		);
@@ -552,6 +555,20 @@ ARCHITECTURE arch_domapp OF domapp IS
 		);
 	END COMPONENT;
 
+	COMPONENT DOMstatus
+    	PORT (
+	        CLK20      : IN  STD_LOGIC;
+	        CLK40      : IN  STD_LOGIC;
+	        CLK80      : IN  STD_LOGIC;
+	        RST        : IN  STD_LOGIC;
+	        -- monitor inputs
+	        DAQ_status : IN  DAQ_STATUS_STRUCT;
+	        MultiSPE   : IN  STD_LOGIC;
+	        OneSPE     : IN  STD_LOGIC;
+	        -- to the slaveregister
+	        DOM_status : OUT STD_LOGIC_VECTOR (31 DOWNTO 0)
+        );
+	END COMPONENT;
 
 
 	-- gerneal siganls
@@ -673,6 +690,9 @@ ARCHITECTURE arch_domapp OF domapp IS
 	
 	-- Compression
 	SIGNAL COMPR_ctrl	: COMPR_STRUCT;
+	
+	-- monitoring
+	SIGNAL DAQ_status	:DAQ_STATUS_STRUCT;
 	
 	-- debugging
 	SIGNAL debugging		: STD_LOGIC_VECTOR (31 DOWNTO 0);
@@ -906,6 +926,8 @@ BEGIN
 			slavebuserrint	=> slavebuserrint,
 			slavehresp		=> slavehresp,
 			slavehrdata		=> slavehrdata,
+			-- monitoring
+			DAQ_status		=> DAQ_status,
 			-- test connector
 			TC				=> TCdaq --open
 		);
@@ -1078,6 +1100,20 @@ BEGIN
 			TC                   => OPEN
 		);
 	
+	
+	inst_DOMstatus : DOMstatus
+		PORT MAP (
+			CLK20      => CLK20,
+			CLK40      => CLK40,
+			CLK80      => CLK80,
+			RST        => RST,
+			-- monitor inputs
+			DAQ_status => DAQ_status,
+			MultiSPE   => MultiSPE,
+			OneSPE     => OneSPE,
+			-- to the slaveregister
+			DOM_status => DOM_status
+		);
 	
 	
 	

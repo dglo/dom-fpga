@@ -38,6 +38,7 @@ set_global_assignment -name VHDL_FILE icecube_data_types.vhd
 set_global_assignment -name VHDL_FILE constants.vhd
 set_global_assignment -name VHDL_FILE ctrl_data_types.vhd
 set_global_assignment -name VHDL_FILE ahb_slave.vhd
+set_global_assignment -name VHDL_FILE monitor_data_type.vhd
 set_global_assignment -name VHDL_FILE ROC.vhd
 set_global_assignment -name VHDL_FILE FADC_input.vhd
 set_global_assignment -name VHDL_FILE calibration_sources.vhd
@@ -67,6 +68,7 @@ set_global_assignment -name VHDL_FILE local_coincidence/LC_TX.vhd
 set_global_assignment -name VHDL_FILE local_coincidence/LC_relais.vhd
 set_global_assignment -name VHDL_FILE local_coincidence/LC_slice.vhd
 set_global_assignment -name VHDL_FILE local_coincidence/local_coincidence.vhd
+set_global_assignment -name VHDL_FILE DOMstatus.vhd
 set_global_assignment -name VHDL_FILE chargestamp/charge_stamp_generator.vhd
 set_global_assignment -name VHDL_FILE chargestamp/chargestamp.vhd
 set_global_assignment -name SIGNALTAP_FILE LC_binary.stp
