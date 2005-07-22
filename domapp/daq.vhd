@@ -27,6 +27,7 @@ USE IEEE.std_logic_1164.all;
 
 USE WORK.icecube_data_types.all;
 USE WORK.ctrl_data_types.all;
+USE WORK.monitor_data_type.all;
 
 
 ENTITY daq IS
@@ -123,6 +124,8 @@ ENTITY daq IS
 		slavebuserrint	: IN	STD_LOGIC;
 		slavehresp		: IN	STD_LOGIC_VECTOR(1 downto 0);
 		slavehrdata		: IN	STD_LOGIC_VECTOR(31 downto 0);
+		-- monitoring
+		DAQ_status		: OUT	DAQ_STATUS_STRUCT;
 		-- test connector
 		TC				: OUT STD_LOGIC_VECTOR (7 downto 0)
 	);
@@ -241,6 +244,8 @@ ARCHITECTURE daq_arch OF daq IS
 			ATWD_data		: OUT STD_LOGIC_VECTOR (31 downto 0);
 			FADC_addr		: IN STD_LOGIC_VECTOR (6 downto 0);
 			FADC_data		: OUT STD_LOGIC_VECTOR (31 downto 0);
+			-- monitoring
+			PP_status	: OUT PP_STRUCT;
 			-- test connector
 			TC			: OUT STD_LOGIC_VECTOR(7 downto 0)
 		);
@@ -290,6 +295,9 @@ ARCHITECTURE daq_arch OF daq IS
 			ready			: IN	STD_LOGIC;
 			trans_length	: OUT	INTEGER;
 			bus_error		: IN	STD_LOGIC;
+			-- monitoring
+			xfer_eng		: OUT	STD_LOGIC;
+			xfer_compr		: OUT	STD_LOGIC;
 			-- test connector
 			TC				: OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
 		);
@@ -387,6 +395,14 @@ ARCHITECTURE daq_arch OF daq IS
 	-- for rate meters and local coincidence
 	SIGNAL discSPEpulse_local	: STD_LOGIC;
 	SIGNAL discMPEpulse_local	: STD_LOGIC;
+	
+	-- monitoring
+	SIGNAL xfer_eng		: STD_LOGIC;
+	SIGNAL xfer_compr	: STD_LOGIC;
+	
+	-- monitoring
+	SIGNAL PING_status	: PP_STRUCT;
+	SIGNAL PONG_status	: PP_STRUCT;
 	
 	--debugging
 	SIGNAL TCping	: STD_LOGIC_VECTOR (7 DOWNTO 0);
@@ -518,6 +534,8 @@ BEGIN
 			ATWD_data		=> ATWD_data_A,
 			FADC_addr		=> FADC_addr_A,
 			FADC_data		=> FADC_data_A,
+			-- monitoring
+			PP_status	=> PING_status,
 			-- test connector
 			TC			=> TCping --open
 		);
@@ -578,6 +596,8 @@ BEGIN
 			ATWD_data		=> ATWD_data_B,
 			FADC_addr		=> FADC_addr_B,
 			FADC_data		=> FADC_data_B,
+			-- monitoring
+			PP_status	=> PONG_status,
 			-- test connector
 			TC			=> TCpong --open
 		);
@@ -626,6 +646,9 @@ BEGIN
 			ready			=> ready,
 			trans_length	=> trans_length,
 			bus_error		=> bus_error,
+			-- monitoring
+			xfer_eng		=> xfer_eng,
+			xfer_compr		=> xfer_compr,
 			-- test connector
 			TC			=> open
 		);
@@ -664,6 +687,14 @@ BEGIN
 			trans_length	=> trans_length,
 			bus_error		=> bus_error
 		);
+		
+	--monitoring
+	DAQ_status.AHB_status.AHB_ERROR			<= bus_error;
+	DAQ_status.AHB_status.slavebuserrint	<= slavebuserrint;
+	DAQ_status.AHB_status.xfer_eng			<= xfer_eng;
+	DAQ_status.AHB_status.xfer_compr		<= xfer_compr;
+	DAQ_status.PING_status					<= PING_status;
+	DAQ_status.PONG_status					<= PONG_status;
 		
 	-- gebugging
 	TC(0)	<= bus_error;

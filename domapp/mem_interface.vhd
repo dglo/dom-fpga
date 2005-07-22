@@ -74,6 +74,9 @@ ENTITY mem_interface IS
 		ready			: IN	STD_LOGIC;
 		trans_length	: OUT	INTEGER;
 		bus_error		: IN	STD_LOGIC;
+		-- monitoring
+		xfer_eng		: OUT	STD_LOGIC;
+		xfer_compr		: OUT	STD_LOGIC;
 		-- test connector
 		TC				: OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
 	);
@@ -387,5 +390,8 @@ BEGIN
 		END IF;
 	END PROCESS;
 	
+	-- generate monitoring signals
+	xfer_eng <= '1' WHEN state=ENG_HDR0 OR state=ENG_HDR1 OR state=ENG_HDR2 OR state=ENG_HDR3 OR state=ENG_FADC OR state=ENG_ATWD ELSE '0';
+	xfer_compr <= '1' WHEN state=COMP_XFER ELSE '0';
 	
 END mem_interface_arch;
