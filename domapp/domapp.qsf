@@ -69,6 +69,7 @@ set_global_assignment -name VHDL_FILE local_coincidence/LC_relais.vhd
 set_global_assignment -name VHDL_FILE local_coincidence/LC_slice.vhd
 set_global_assignment -name VHDL_FILE local_coincidence/local_coincidence.vhd
 set_global_assignment -name VHDL_FILE DOMstatus.vhd
+set_global_assignment -name VHDL_FILE xfer_time.vhd
 set_global_assignment -name VHDL_FILE chargestamp/charge_stamp_generator.vhd
 set_global_assignment -name VHDL_FILE chargestamp/chargestamp.vhd
 set_global_assignment -name SIGNALTAP_FILE LC_binary.stp
