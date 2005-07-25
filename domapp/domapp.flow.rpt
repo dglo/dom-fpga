@@ -1,5 +1,5 @@
 Flow report for domapp
-Mon Jul 25 10:12:48 2005
+Mon Jul 25 11:23:28 2005
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -42,12 +42,12 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------+
 ; Flow Summary                                                  ;
 +-----------------------+---------------------------------------+
-; Flow Status           ; Successful - Mon Jul 25 10:12:20 2005 ;
+; Flow Status           ; Successful - Mon Jul 25 11:23:01 2005 ;
 ; Revision Name         ; domapp                                ;
 ; Top-level Entity Name ; domapp                                ;
 ; Family                ; EXCALIBUR_ARM                         ;
 ; Device                ; EPXA4F672I2                           ;
-; Total logic elements  ; 10,200 / 16,640 ( 61 % )              ;
+; Total logic elements  ; 10,227 / 16,640 ( 61 % )              ;
 ; Total pins            ; 308 / 463 ( 66 % )                    ;
 ; Total memory bits     ; 96,896 / 212,992 ( 45 % )             ;
 ; Total PLLs            ; 2 / 4 ( 50 % )                        ;
@@ -59,7 +59,7 @@ party's intellectual property, are provided herein.
 +------------------------------------------
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 07/25/2005 09:37:34 ;
+; Start date & time ; 07/25/2005 10:47:47 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; domapp              ;
 +-------------------+---------------------+
@@ -70,11 +70,11 @@ party's intellectual property, are provided herein.
 +--------------------------------------
 ; Module Name          ; Elapsed Time ;
 +----------------------+--------------+
-; Analysis & Synthesis ; 00:15:33     ;
-; Fitter               ; 00:18:59     ;
+; Analysis & Synthesis ; 00:15:32     ;
+; Fitter               ; 00:19:28     ;
 ; Assembler            ; 00:00:07     ;
 ; Timing Analyzer      ; 00:00:25     ;
-; Total                ; 00:35:04     ;
+; Total                ; 00:35:32     ;
 +----------------------+--------------+
 
 
