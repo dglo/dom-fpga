@@ -569,6 +569,21 @@ ARCHITECTURE arch_domapp OF domapp IS
 	        DOM_status : OUT STD_LOGIC_VECTOR (31 DOWNTO 0)
         );
 	END COMPONENT;
+	
+	COMPONENT xfer_time
+		PORT (
+			CLK20      : IN  STD_LOGIC;
+			RST        : IN  STD_LOGIC;
+			-- the info
+			enable_DAQ : IN  STD_LOGIC;
+			xfer_eng   : IN  STD_LOGIC;
+			xfer_compr : IN  STD_LOGIC;
+			-- the xfer time
+			AHB_load   : OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
+			-- test comnnector
+			TC         : OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
+		);
+	END COMPONENT;
 
 
 	-- gerneal siganls
@@ -1115,6 +1130,19 @@ BEGIN
 			DOM_status => DOM_status
 		);
 	
+	Inst_xfer_time : xfer_time
+		PORT MAP (
+			CLK20      => CLK20,
+			RST        => RST,
+			-- the info
+			enable_DAQ => DAQ_ctrl.enable_DAQ,
+			xfer_eng   => DAQ_status.AHB_status.xfer_eng,
+			xfer_compr => DAQ_status.AHB_status.xfer_compr,
+			-- the xfer time
+			AHB_load   => debugging,
+			-- test comnnector
+			TC         => OPEN
+		);
 	
 	
 	-- FPGA loaded output to be read by the CPU through the CPLD
@@ -1147,16 +1175,16 @@ BEGIN
 	--------------------------
 	-- LC debugging
 	--------------------------
-	process (CLK20, RST)
-	begin
-		if RST='1' THEN
-			debugging <= (others=>'0');
-		elsif CLK20'EVENT and CLK20='1' THEN
-			if lc_daq_trigger(0)='1' OR lc_daq_trigger(1)='1' THEN
-				debugging <= debugging + 1;
-			end if;
-		end if;
-	end process;
+--	process (CLK20, RST)
+--	begin
+--		if RST='1' THEN
+--			debugging <= (others=>'0');
+--		elsif CLK20'EVENT and CLK20='1' THEN
+--			if lc_daq_trigger(0)='1' OR lc_daq_trigger(1)='1' THEN
+--				debugging <= debugging + 1;
+--			end if;
+--		end if;
+--	end process;
 
 
 	------------------------------
