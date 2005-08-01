@@ -1172,6 +1172,29 @@ BEGIN
 --	FPGA_CE		<= TCdaq(6);
 --	FPGA_DA		<= TCdaq(7);
 	
+
+	--------------------------
+	-- check for long AHB_master wait_tig times
+	--------------------------
+--	process (CLK20, RST)
+--		variable cnt : std_logic_vector (7 downto 0);
+--	begin
+--		if RST='1' THEN
+--			cnt := (others=>'0');
+--		elsif CLK20'event and CLK20='1' then
+--			FPGA_CE		<= '0';
+--			if slavehreadyo='1' then -- everything id fine, we can xfer data
+--				cnt := (others=>'0');
+--			else
+--				if cnt(7)='0' then
+--					cnt := cnt + 1;
+--				else
+--					FPGA_CE		<= '1';
+--					null; -- we reched the timeout
+--				end if;
+--			end if;
+--		end if;
+--	end process;
 	
 	--------------------------
 	-- LC debugging
