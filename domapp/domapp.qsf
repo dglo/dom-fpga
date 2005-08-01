@@ -75,6 +75,7 @@ set_global_assignment -name VHDL_FILE chargestamp/chargestamp.vhd
 set_global_assignment -name SIGNALTAP_FILE LC_binary.stp
 set_global_assignment -name SIGNALTAP_FILE slavereg_log.stp
 set_global_assignment -name SIGNALTAP_FILE ping_compr_ram.stp
+set_global_assignment -name SIGNALTAP_FILE "fast-ahb-master.stp"
 
 # Pin & Location Assignments
 # ==========================
@@ -556,7 +557,7 @@ set_global_assignment -name DRC_REPORT_TOP_FANOUT ON
 # SignalTap II Assignments
 # ========================
 set_global_assignment -name ENABLE_SIGNALTAP off
-set_global_assignment -name USE_SIGNALTAP_FILE slavereg_log.stp
+set_global_assignment -name USE_SIGNALTAP_FILE "fast-ahb-master.stp"
 
 # ------------------
 # start CLOCK(CLK1p)

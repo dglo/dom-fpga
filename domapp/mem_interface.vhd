@@ -205,7 +205,7 @@ BEGIN
 							END IF;
 							abort_trans		<= '0';
 						ELSE
-							IF ready='1' THEN	-- wait for AHB_master to finish
+							IF ready='1' AND wait_sig='0' THEN	-- wait for AHB_master to finish
 								state	<= ENG_END;
 							END IF;
 							abort_trans		<= '1';
@@ -223,7 +223,7 @@ BEGIN
 				--	END IF;
 					IF rdaddr(5 DOWNTO 0) = "111111" AND rdaddr(7 DOWNTO 6) = header.ATWDsize THEN
 						abort_trans		<= '1';
-						IF ready='1' THEN	-- wait for AHB_master to finish
+						IF ready='1' AND wait_sig='0' THEN	-- wait for AHB_master to finish
 							state	<= ENG_END;
 						END IF;
 					ELSE
@@ -251,7 +251,7 @@ BEGIN
 					IF (COMPR_mode=COMPR_ON OR COMPR_mode=COMPR_BOTH) AND compr_avail='1' THEN --AND (LBM_not_full if LBM_mode=LBM_Stop) THEN
 						IF start_address(SDRAM_SIZE)='1' AND LBM_mode=LBM_STOP THEN
 							NULL;
-						ELSIF ready='1' THEN	-- wait for AHB_master to finish
+						ELSIF ready='1' AND wait_sig='0' THEN	-- wait for AHB_master to finish
 							start_trans		<= '1';
 							-- state	<=COMP_START;
 							state	<=COMP_XFER;
@@ -271,7 +271,7 @@ BEGIN
 				--	END IF;
 					IF rdaddr=compr_size THEN
 						abort_trans		<= '1';
-						IF ready='1' THEN	-- wait for AHB_master to finish
+						IF ready='1' AND wait_sig='0' THEN	-- wait for AHB_master to finish
 							state	<= COMP_END;
 						END IF;
 					ELSE
@@ -290,7 +290,7 @@ BEGIN
 				WHEN DONE =>
 					IF start_address(SDRAM_SIZE)='1' AND LBM_mode=LBM_STOP THEN
 						NULL;
-					ELSIF ready='1' THEN
+					ELSIF ready='1' AND wait_sig='0' THEN
 						state	<= IDLE;
 					END IF;
 					start_trans		<= '0';
