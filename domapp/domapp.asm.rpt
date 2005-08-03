@@ -1,5 +1,5 @@
 Assembler report for domapp
-Mon Aug 01 09:49:45 2005
+Tue Aug 02 16:19:44 2005
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -47,7 +47,7 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Mon Aug 01 09:49:45 2005 ;
+; Assembler Status      ; Successful - Tue Aug 02 16:19:44 2005 ;
 ; Revision Name         ; domapp                                ;
 ; Top-level Entity Name ; domapp                                ;
 ; Family                ; EXCALIBUR_ARM                         ;
@@ -112,7 +112,7 @@ party's intellectual property, are provided herein.
 +----------------+--------------------------------------------------------------+
 ; Device         ; EPXA4F672I2                                                  ;
 ; JTAG usercode  ; 0xFFFFFFFF                                                   ;
-; Checksum       ; 0x007A7C2F                                                   ;
+; Checksum       ; 0x007A1B49                                                   ;
 +----------------+--------------------------------------------------------------+
 
 
@@ -123,7 +123,7 @@ party's intellectual property, are provided herein.
 +----------------+-------------------------------------------------------------+
 ; Device         ; EPXA4F672I2                                                 ;
 ; JTAG usercode  ; 0xFFFFFFFF                                                  ;
-; Checksum       ; 0x007A7C2F                                                  ;
+; Checksum       ; 0x007A1B49                                                  ;
 +----------------+-------------------------------------------------------------+
 
 
@@ -134,7 +134,7 @@ party's intellectual property, are provided herein.
 +----------------+-------------------------------------------------------------+
 ; Device         ; EPC2                                                        ;
 ; JTAG usercode  ; 0xFFFFFFFF                                                  ;
-; Checksum       ; 0x00409EEE                                                  ;
+; Checksum       ; 0x0040C82D                                                  ;
 +----------------+-------------------------------------------------------------+
 
 
@@ -145,7 +145,7 @@ party's intellectual property, are provided herein.
 +----------------+---------------------------------------------------------------+
 ; Device         ; EPC2                                                          ;
 ; JTAG usercode  ; 0xFFFFFFFF                                                    ;
-; Checksum       ; 0x00395563                                                    ;
+; Checksum       ; 0x0036E92D                                                    ;
 +----------------+---------------------------------------------------------------+
 
 
@@ -156,7 +156,7 @@ party's intellectual property, are provided herein.
 +----------------+---------------------------------------------------------------+
 ; Device         ; EPC2                                                          ;
 ; JTAG usercode  ; 0xFFFFFFFF                                                    ;
-; Checksum       ; 0x023CF951                                                    ;
+; Checksum       ; 0x023ED5D3                                                    ;
 +----------------+---------------------------------------------------------------+
 
 
@@ -166,13 +166,13 @@ party's intellectual property, are provided herein.
 Info: *******************************************************************
 Info: Running Quartus II Assembler
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Mon Aug 01 09:49:34 2005
+    Info: Processing started: Tue Aug 02 16:19:37 2005
 Info: Command: quartus_asm --import_settings_files=off --export_settings_files=off domapp -c domapp
 Warning: Data in Simulator initialization files holds embedded processor core in reset because Hexadecimal (Intel-Format) File(s) do not contain initialization data for entry point 0x0 or entry point is in memory external to Excalibur embedded processor stripe
 Warning: Data in passive programming files holds embedded processor core in reset because Hexadecimal (Intel-Format) Files do not contain initialization data for entry point 0x0
 Warning: Data in passive programming files holds embedded processor core in reset because Hexadecimal (Intel-Format) Files do not contain initialization data for entry point 0x0
 Info: Quartus II Assembler was successful. 0 errors, 3 warnings
-    Info: Processing ended: Mon Aug 01 09:49:45 2005
-    Info: Elapsed time: 00:00:11
+    Info: Processing ended: Tue Aug 02 16:19:44 2005
+    Info: Elapsed time: 00:00:06
 
 
