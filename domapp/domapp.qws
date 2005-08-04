@@ -13,6 +13,7 @@ ptn_Child5=Document-4
 ptn_Child6=Document-5
 ptn_Child7=Document-6
 ptn_Child8=Document-7
+ptn_Child9=Document-8
 [ProjectWorkspace.Frames.ChildFrames.Document-0]
 ptn_Child1=ViewFrame-0
 [ProjectWorkspace.Frames.ChildFrames.Document-0.ViewFrame-0]
@@ -22,7 +23,7 @@ InCompileMode=True
 InSimulateMode=False
 InFirmwareMode=False
 WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPHFAAAAAAIFAAAAAACEEAAAAADECAAAAA
-IsActiveChildFrame=True
+IsActiveChildFrame=False
 ptn_Child1=StateMap
 [ProjectWorkspace.Frames.ChildFrames.Document-0.ViewFrame-0.StateMap]
 AFC_IN_REPORT=False
@@ -116,6 +117,19 @@ WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPOGAAAAAA
 IsActiveChildFrame=False
 ptn_Child1=StateMap
 [ProjectWorkspace.Frames.ChildFrames.Document-7.ViewFrame-0.StateMap]
+AFC_IN_REPORT=False
+[ProjectWorkspace.Frames.ChildFrames.Document-8]
+ptn_Child1=ViewFrame-0
+[ProjectWorkspace.Frames.ChildFrames.Document-8.ViewFrame-0]
+DocPathName=chargestamp/charge_stamp_generator.vhd
+DocumentCLSID={ca385d57-a4c7-11d1-a098-0020affa43f2}
+InCompileMode=True
+InSimulateMode=False
+InFirmwareMode=False
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPMNAAAAAAMNAAAAAANLEAAAAAJNCAAAAA
+IsActiveChildFrame=True
+ptn_Child1=StateMap
+[ProjectWorkspace.Frames.ChildFrames.Document-8.ViewFrame-0.StateMap]
 AFC_IN_REPORT=False
 [ProjectWorkspace.Workmode]
 CurrentWorkmode=0

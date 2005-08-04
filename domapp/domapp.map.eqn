@@ -21789,20 +21789,6 @@ B1L29 = !R2_sload_path[0] & !R2_sload_path[1];
 B1L89 = !R2_sload_path[3] & (B1L29 # !R2_sload_path[2]) # !R2_sload_path[4];
 
 
---TE2L1Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|COINCIDENCE_OUT~reg0
---operation mode is normal
-
-TE2L1Q_lut_out = TE2L3 # TE2L4 # TE2L5 # TE2L6;
-TE2L1Q = DFFE(TE2L1Q_lut_out, GLOBAL(UE1_outclock1), , , );
-
-
---TE2_i68 is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|i68
---operation mode is normal
-
-TE2_i68_lut_out = !TE2L91Q & !TE2L81Q & !TE2L02Q & !TE2L7;
-TE2_i68 = DFFE(TE2_i68_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
-
-
 --TE1L1Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_down2up|LC_TX:LC_TX_inst|COINCIDENCE_OUT~reg0
 --operation mode is normal
 
@@ -21815,6 +21801,20 @@ TE1L1Q = DFFE(TE1L1Q_lut_out, GLOBAL(UE1_outclock1), , , );
 
 TE1_i68_lut_out = !TE1L91Q & !TE1L81Q & !TE1L02Q & !TE1L7;
 TE1_i68 = DFFE(TE1_i68_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
+
+
+--TE2L1Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|COINCIDENCE_OUT~reg0
+--operation mode is normal
+
+TE2L1Q_lut_out = TE2L3 # TE2L4 # TE2L5 # TE2L6;
+TE2L1Q = DFFE(TE2L1Q_lut_out, GLOBAL(UE1_outclock1), , , );
+
+
+--TE2_i68 is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|i68
+--operation mode is normal
+
+TE2_i68_lut_out = !TE2L91Q & !TE2L81Q & !TE2L02Q & !TE2L7;
+TE2_i68 = DFFE(TE2_i68_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
 
 
 --L1L172 is slaveregister:inst_slaveregister|DAQ_ctrl_local.trigger_enable[0]~17
@@ -36316,141 +36316,6 @@ L1_i2284 = VE1L53Q # !VE1L04Q # !L1L333 # !L1L933;
 L1L452 = (!L1_i2284 & !K1L4Q & (L1_i1176 # !L1L857)) & CASCADE(L1L652);
 
 
---RE2L21Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_relais:LC_relais_inst|n_tx[0]~reg0
---operation mode is normal
-
-RE2L21Q_lut_out = TD1_i71 & L1_LC_ctrl_local.lc_length[0] # !TD1_i71 & (RE2_got_disc & L1_LC_ctrl_local.lc_length[0] # !RE2_got_disc & RE2L11);
-RE2L21Q = DFFE(RE2L21Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , RE2_i16);
-
-
---TE2L21Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|state~24
---operation mode is normal
-
-TE2L21Q_lut_out = TE2L11Q;
-TE2L21Q = DFFE(TE2L21Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
-
-
---TE2L11Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|state~23
---operation mode is normal
-
-TE2L11Q_lut_out = TE2L01Q;
-TE2L11Q = DFFE(TE2L11Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
-
-
---TE2L3 is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|i~294
---operation mode is normal
-
-TE2L3 = RE2L21Q & (TE2L21Q # TE2L11Q);
-
-
---TE2L9Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|state~21
---operation mode is normal
-
-TE2L9Q_lut_out = RE2_wait1clk & L1_LC_ctrl_local.lc_tx_enable[0] & !TE2L8Q;
-TE2L9Q = DFFE(TE2L9Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
-
-
---TE2L01Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|state~22
---operation mode is normal
-
-TE2L01Q_lut_out = TE2L9Q;
-TE2L01Q = DFFE(TE2L01Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
-
-
---TE2L4 is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|i~295
---operation mode is normal
-
-TE2L4 = !RE2L21Q & (TE2L9Q # TE2L01Q);
-
-
---RE2L31Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_relais:LC_relais_inst|n_tx[1]~reg0
---operation mode is normal
-
-RE2L31Q_lut_out = TD1_i71 & L1_LC_ctrl_local.lc_length[1] # !TD1_i71 & (RE2_got_disc & L1_LC_ctrl_local.lc_length[1] # !RE2_got_disc & RE2L01);
-RE2L31Q = DFFE(RE2L31Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , RE2_i16);
-
-
---TE2L61Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|state~28
---operation mode is normal
-
-TE2L61Q_lut_out = TE2L51Q;
-TE2L61Q = DFFE(TE2L61Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
-
-
---TE2L51Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|state~27
---operation mode is normal
-
-TE2L51Q_lut_out = TE2L41Q;
-TE2L51Q = DFFE(TE2L51Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
-
-
---TE2L5 is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|i~296
---operation mode is normal
-
-TE2L5 = RE2L31Q & (TE2L61Q # TE2L51Q);
-
-
---TE2L31Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|state~25
---operation mode is normal
-
-TE2L31Q_lut_out = TE2L21Q;
-TE2L31Q = DFFE(TE2L31Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
-
-
---TE2L41Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|state~26
---operation mode is normal
-
-TE2L41Q_lut_out = TE2L31Q;
-TE2L41Q = DFFE(TE2L41Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
-
-
---TE2L6 is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|i~297
---operation mode is normal
-
-TE2L6 = !RE2L31Q & (TE2L31Q # TE2L41Q);
-
-
---TE2L91Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|state~31
---operation mode is normal
-
-TE2L91Q_lut_out = TE2L81Q;
-TE2L91Q = DFFE(TE2L91Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
-
-
---TE2L81Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|state~30
---operation mode is normal
-
-TE2L81Q_lut_out = TE2L71Q;
-TE2L81Q = DFFE(TE2L81Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
-
-
---TE2L02Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|state~32
---operation mode is normal
-
-TE2L02Q_lut_out = TE2L91Q;
-TE2L02Q = DFFE(TE2L02Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
-
-
---TE2L71Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|state~29
---operation mode is normal
-
-TE2L71Q_lut_out = TE2L61Q;
-TE2L71Q = DFFE(TE2L71Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
-
-
---TE2L8Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|state~20
---operation mode is normal
-
-TE2L8Q_lut_out = !TE2L02Q & (TE2L8Q # RE2_wait1clk & L1_LC_ctrl_local.lc_tx_enable[0]);
-TE2L8Q = DFFE(TE2L8Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
-
-
---TE2L7 is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|i~299
---operation mode is normal
-
-TE2L7 = TE2L71Q # !TE2L8Q;
-
-
 --RE1L21Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_down2up|LC_relais:LC_relais_inst|n_tx[0]~reg0
 --operation mode is normal
 
@@ -36584,6 +36449,141 @@ TE1L8Q = DFFE(TE1L8Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
 --operation mode is normal
 
 TE1L7 = TE1L71Q # !TE1L8Q;
+
+
+--RE2L21Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_relais:LC_relais_inst|n_tx[0]~reg0
+--operation mode is normal
+
+RE2L21Q_lut_out = TD1_i71 & L1_LC_ctrl_local.lc_length[0] # !TD1_i71 & (RE2_got_disc & L1_LC_ctrl_local.lc_length[0] # !RE2_got_disc & RE2L11);
+RE2L21Q = DFFE(RE2L21Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , RE2_i16);
+
+
+--TE2L21Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|state~24
+--operation mode is normal
+
+TE2L21Q_lut_out = TE2L11Q;
+TE2L21Q = DFFE(TE2L21Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
+
+
+--TE2L11Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|state~23
+--operation mode is normal
+
+TE2L11Q_lut_out = TE2L01Q;
+TE2L11Q = DFFE(TE2L11Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
+
+
+--TE2L3 is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|i~294
+--operation mode is normal
+
+TE2L3 = RE2L21Q & (TE2L21Q # TE2L11Q);
+
+
+--TE2L9Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|state~21
+--operation mode is normal
+
+TE2L9Q_lut_out = RE2_wait1clk & L1_LC_ctrl_local.lc_tx_enable[0] & !TE2L8Q;
+TE2L9Q = DFFE(TE2L9Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
+
+
+--TE2L01Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|state~22
+--operation mode is normal
+
+TE2L01Q_lut_out = TE2L9Q;
+TE2L01Q = DFFE(TE2L01Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
+
+
+--TE2L4 is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|i~295
+--operation mode is normal
+
+TE2L4 = !RE2L21Q & (TE2L9Q # TE2L01Q);
+
+
+--RE2L31Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_relais:LC_relais_inst|n_tx[1]~reg0
+--operation mode is normal
+
+RE2L31Q_lut_out = TD1_i71 & L1_LC_ctrl_local.lc_length[1] # !TD1_i71 & (RE2_got_disc & L1_LC_ctrl_local.lc_length[1] # !RE2_got_disc & RE2L01);
+RE2L31Q = DFFE(RE2L31Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , RE2_i16);
+
+
+--TE2L61Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|state~28
+--operation mode is normal
+
+TE2L61Q_lut_out = TE2L51Q;
+TE2L61Q = DFFE(TE2L61Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
+
+
+--TE2L51Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|state~27
+--operation mode is normal
+
+TE2L51Q_lut_out = TE2L41Q;
+TE2L51Q = DFFE(TE2L51Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
+
+
+--TE2L5 is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|i~296
+--operation mode is normal
+
+TE2L5 = RE2L31Q & (TE2L61Q # TE2L51Q);
+
+
+--TE2L31Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|state~25
+--operation mode is normal
+
+TE2L31Q_lut_out = TE2L21Q;
+TE2L31Q = DFFE(TE2L31Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
+
+
+--TE2L41Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|state~26
+--operation mode is normal
+
+TE2L41Q_lut_out = TE2L31Q;
+TE2L41Q = DFFE(TE2L41Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
+
+
+--TE2L6 is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|i~297
+--operation mode is normal
+
+TE2L6 = !RE2L31Q & (TE2L31Q # TE2L41Q);
+
+
+--TE2L91Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|state~31
+--operation mode is normal
+
+TE2L91Q_lut_out = TE2L81Q;
+TE2L91Q = DFFE(TE2L91Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
+
+
+--TE2L81Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|state~30
+--operation mode is normal
+
+TE2L81Q_lut_out = TE2L71Q;
+TE2L81Q = DFFE(TE2L81Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
+
+
+--TE2L02Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|state~32
+--operation mode is normal
+
+TE2L02Q_lut_out = TE2L91Q;
+TE2L02Q = DFFE(TE2L02Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
+
+
+--TE2L71Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|state~29
+--operation mode is normal
+
+TE2L71Q_lut_out = TE2L61Q;
+TE2L71Q = DFFE(TE2L71Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
+
+
+--TE2L8Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|state~20
+--operation mode is normal
+
+TE2L8Q_lut_out = !TE2L02Q & (TE2L8Q # RE2_wait1clk & L1_LC_ctrl_local.lc_tx_enable[0]);
+TE2L8Q = DFFE(TE2L8Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
+
+
+--TE2L7 is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_TX:LC_TX_inst|i~299
+--operation mode is normal
+
+TE2L7 = TE2L71Q # !TE2L8Q;
 
 
 --VE1L12 is slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|i~6609
@@ -41402,91 +41402,6 @@ L1L552 = (VE1L53Q # L1_i1924 & L1_i2187 & !L1L823) & CASCADE(L1L6841);
 L1L652 = (VE1L53Q # L1_i1924 & L1_i2187 & !L1L823) & CASCADE(L1L6841);
 
 
---RE2_got_rx_n[0] is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_relais:LC_relais_inst|got_rx_n[0]
---operation mode is normal
-
-RE2_got_rx_n[0]_lut_out = RE2_got_rx_n[0] & (!QE2L5Q # !QE2L51Q) # !RE2_got_rx_n[0] & QE2L6Q & QE2L51Q & !QE2L5Q;
-RE2_got_rx_n[0] = DFFE(RE2_got_rx_n[0]_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
-
-
---QE2L6Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_RC_decode:LC_RC_decode_inst|n_rx[1]~reg0
---operation mode is normal
-
-QE2L6Q_lut_out = !SE2L51Q & (QE2_rx_decode_edge_last # SE2L61Q);
-QE2L6Q = DFFE(QE2L6Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , QE2L3);
-
-
---QE2L5Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_RC_decode:LC_RC_decode_inst|n_rx[0]~reg0
---operation mode is normal
-
-QE2L5Q_lut_out = QE2_rx_decode_edge_first;
-QE2L5Q = DFFE(QE2L5Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , QE2L3);
-
-
---RE2L8 is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_relais:LC_relais_inst|i14~40
---operation mode is normal
-
-RE2L8 = RE2_got_rx_n[0] & (!QE2L5Q # !QE2L51Q) # !RE2_got_rx_n[0] & QE2L6Q & QE2L51Q & !QE2L5Q;
-
-
---RE2_got_rx is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_relais:LC_relais_inst|got_rx
---operation mode is normal
-
-RE2_got_rx_lut_out = !RE2L6 & (TD1_i71 # RE2_got_disc # !RE2_i16);
-RE2_got_rx = DFFE(RE2_got_rx_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
-
-
---RE2L6 is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_relais:LC_relais_inst|i12~45
---operation mode is normal
-
-RE2L6 = !RE2_got_rx & (!QE2L5Q & !QE2L6Q # !QE2L51Q);
-
-
---RE2L11 is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_relais:LC_relais_inst|i20~265
---operation mode is normal
-
-RE2L11 = RE2L21Q & (RE2L8 # RE2L6) # !RE2L21Q & RE2L8 & !RE2L6;
-
-
---RE2_got_disc is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_relais:LC_relais_inst|got_disc
---operation mode is normal
-
-RE2_got_disc_lut_out = TD1_i71 & (RE2_wait1clk # TE2L8Q) # !TD1_i71 & RE2_got_disc & (RE2_wait1clk # TE2L8Q);
-RE2_got_disc = DFFE(RE2_got_disc_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
-
-
---RE2_wait1clk is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_relais:LC_relais_inst|wait1clk
---operation mode is normal
-
-RE2_wait1clk_lut_out = RE2_i16 & (TD1_i71 # RE2_got_disc # !RE2L6);
-RE2_wait1clk = DFFE(RE2_wait1clk_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
-
-
---RE2_i16 is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_relais:LC_relais_inst|i16
---operation mode is normal
-
-RE2_i16 = !RE2_wait1clk & !TE2L8Q;
-
-
---RE2_got_rx_n[1] is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_relais:LC_relais_inst|got_rx_n[1]
---operation mode is normal
-
-RE2_got_rx_n[1]_lut_out = QE2L5Q & (QE2L51Q & QE2L6Q # !QE2L51Q & RE2_got_rx_n[1]) # !QE2L5Q & RE2_got_rx_n[1] & (!QE2L51Q # !QE2L6Q);
-RE2_got_rx_n[1] = DFFE(RE2_got_rx_n[1]_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
-
-
---RE2L7 is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_relais:LC_relais_inst|i13~69
---operation mode is normal
-
-RE2L7 = QE2L5Q & (QE2L51Q & QE2L6Q # !QE2L51Q & RE2_got_rx_n[1]) # !QE2L5Q & RE2_got_rx_n[1] & (!QE2L51Q # !QE2L6Q);
-
-
---RE2L01 is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_relais:LC_relais_inst|i19~265
---operation mode is normal
-
-RE2L01 = RE2L31Q & (RE2L7 # RE2L6) # !RE2L31Q & RE2L7 & !RE2L6;
-
-
 --RE1_got_rx_n[0] is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_down2up|LC_relais:LC_relais_inst|got_rx_n[0]
 --operation mode is normal
 
@@ -41527,7 +41442,7 @@ RE1_got_rx = DFFE(RE1_got_rx_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
 RE1L6 = !RE1_got_rx & (!QE1L5Q & !QE1L6Q # !QE1L51Q);
 
 
---RE1L11 is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_down2up|LC_relais:LC_relais_inst|i20~280
+--RE1L11 is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_down2up|LC_relais:LC_relais_inst|i20~265
 --operation mode is normal
 
 RE1L11 = RE1L21Q & (RE1L8 # RE1L6) # !RE1L21Q & RE1L8 & !RE1L6;
@@ -41570,6 +41485,91 @@ RE1L7 = QE1L5Q & (QE1L51Q & QE1L6Q # !QE1L51Q & RE1_got_rx_n[1]) # !QE1L5Q & RE1
 --operation mode is normal
 
 RE1L01 = RE1L31Q & (RE1L7 # RE1L6) # !RE1L31Q & RE1L7 & !RE1L6;
+
+
+--RE2_got_rx_n[0] is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_relais:LC_relais_inst|got_rx_n[0]
+--operation mode is normal
+
+RE2_got_rx_n[0]_lut_out = RE2_got_rx_n[0] & (!QE2L5Q # !QE2L51Q) # !RE2_got_rx_n[0] & QE2L6Q & QE2L51Q & !QE2L5Q;
+RE2_got_rx_n[0] = DFFE(RE2_got_rx_n[0]_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
+
+
+--QE2L6Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_RC_decode:LC_RC_decode_inst|n_rx[1]~reg0
+--operation mode is normal
+
+QE2L6Q_lut_out = !SE2L51Q & (QE2_rx_decode_edge_last # SE2L61Q);
+QE2L6Q = DFFE(QE2L6Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , QE2L3);
+
+
+--QE2L5Q is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_RC_decode:LC_RC_decode_inst|n_rx[0]~reg0
+--operation mode is normal
+
+QE2L5Q_lut_out = QE2_rx_decode_edge_first;
+QE2L5Q = DFFE(QE2L5Q_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , QE2L3);
+
+
+--RE2L8 is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_relais:LC_relais_inst|i14~40
+--operation mode is normal
+
+RE2L8 = RE2_got_rx_n[0] & (!QE2L5Q # !QE2L51Q) # !RE2_got_rx_n[0] & QE2L6Q & QE2L51Q & !QE2L5Q;
+
+
+--RE2_got_rx is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_relais:LC_relais_inst|got_rx
+--operation mode is normal
+
+RE2_got_rx_lut_out = !RE2L6 & (TD1_i71 # RE2_got_disc # !RE2_i16);
+RE2_got_rx = DFFE(RE2_got_rx_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
+
+
+--RE2L6 is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_relais:LC_relais_inst|i12~45
+--operation mode is normal
+
+RE2L6 = !RE2_got_rx & (!QE2L5Q & !QE2L6Q # !QE2L51Q);
+
+
+--RE2L11 is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_relais:LC_relais_inst|i20~280
+--operation mode is normal
+
+RE2L11 = RE2L21Q & (RE2L8 # RE2L6) # !RE2L21Q & RE2L8 & !RE2L6;
+
+
+--RE2_got_disc is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_relais:LC_relais_inst|got_disc
+--operation mode is normal
+
+RE2_got_disc_lut_out = TD1_i71 & (RE2_wait1clk # TE2L8Q) # !TD1_i71 & RE2_got_disc & (RE2_wait1clk # TE2L8Q);
+RE2_got_disc = DFFE(RE2_got_disc_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
+
+
+--RE2_wait1clk is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_relais:LC_relais_inst|wait1clk
+--operation mode is normal
+
+RE2_wait1clk_lut_out = RE2_i16 & (TD1_i71 # RE2_got_disc # !RE2L6);
+RE2_wait1clk = DFFE(RE2_wait1clk_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
+
+
+--RE2_i16 is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_relais:LC_relais_inst|i16
+--operation mode is normal
+
+RE2_i16 = !RE2_wait1clk & !TE2L8Q;
+
+
+--RE2_got_rx_n[1] is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_relais:LC_relais_inst|got_rx_n[1]
+--operation mode is normal
+
+RE2_got_rx_n[1]_lut_out = QE2L5Q & (QE2L51Q & QE2L6Q # !QE2L51Q & RE2_got_rx_n[1]) # !QE2L5Q & RE2_got_rx_n[1] & (!QE2L51Q # !QE2L6Q);
+RE2_got_rx_n[1] = DFFE(RE2_got_rx_n[1]_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
+
+
+--RE2L7 is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_relais:LC_relais_inst|i13~69
+--operation mode is normal
+
+RE2L7 = QE2L5Q & (QE2L51Q & QE2L6Q # !QE2L51Q & RE2_got_rx_n[1]) # !QE2L5Q & RE2_got_rx_n[1] & (!QE2L51Q # !QE2L6Q);
+
+
+--RE2L01 is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_relais:LC_relais_inst|i19~265
+--operation mode is normal
+
+RE2L01 = RE2L31Q & (RE2L7 # RE2L6) # !RE2L31Q & RE2L7 & !RE2L6;
 
 
 --L1L122 is slaveregister:inst_slaveregister|CS_ctrl_local.CS_time[0]~16
@@ -49976,26 +49976,6 @@ L1L5231 = (VE1L34Q & !VE1L54Q) & CASCADE(L1L8231);
 B1L801 = (B1_ATWD_R2R # L1_CS_ctrl_local.CS_enable[5] & B1_now_action) & CASCADE(B1L431);
 
 
---QE2_rx_decode_edge_last is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_RC_decode:LC_RC_decode_inst|rx_decode_edge_last
---operation mode is normal
-
-QE2_rx_decode_edge_last_lut_out = !SE2L51Q & (QE2_rx_decode_edge_last # SE2L61Q);
-QE2_rx_decode_edge_last = DFFE(QE2_rx_decode_edge_last_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , QE2L41Q);
-
-
---QE2L3 is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_RC_decode:LC_RC_decode_inst|i~161
---operation mode is normal
-
-QE2L3 = QE2_rx_decode_time_cnt[1] & QE2_rx_decode_time_cnt[2] & QE2L41Q & !QE2_rx_decode_time_cnt[0];
-
-
---QE2_rx_decode_edge_first is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_RC_decode:LC_RC_decode_inst|rx_decode_edge_first
---operation mode is normal
-
-QE2_rx_decode_edge_first_lut_out = SE2L61Q;
-QE2_rx_decode_edge_first = DFFE(QE2_rx_decode_edge_first_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , QE2L2);
-
-
 --QE1_rx_decode_edge_last is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_down2up|LC_RC_decode:LC_RC_decode_inst|rx_decode_edge_last
 --operation mode is normal
 
@@ -50014,6 +49994,26 @@ QE1L3 = QE1_rx_decode_time_cnt[1] & QE1_rx_decode_time_cnt[2] & QE1L41Q & !QE1_r
 
 QE1_rx_decode_edge_first_lut_out = SE1L61Q;
 QE1_rx_decode_edge_first = DFFE(QE1_rx_decode_edge_first_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , QE1L2);
+
+
+--QE2_rx_decode_edge_last is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_RC_decode:LC_RC_decode_inst|rx_decode_edge_last
+--operation mode is normal
+
+QE2_rx_decode_edge_last_lut_out = !SE2L51Q & (QE2_rx_decode_edge_last # SE2L61Q);
+QE2_rx_decode_edge_last = DFFE(QE2_rx_decode_edge_last_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , QE2L41Q);
+
+
+--QE2L3 is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_RC_decode:LC_RC_decode_inst|i~161
+--operation mode is normal
+
+QE2L3 = QE2_rx_decode_time_cnt[1] & QE2_rx_decode_time_cnt[2] & QE2L41Q & !QE2_rx_decode_time_cnt[0];
+
+
+--QE2_rx_decode_edge_first is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_RC_decode:LC_RC_decode_inst|rx_decode_edge_first
+--operation mode is normal
+
+QE2_rx_decode_edge_first_lut_out = SE2L61Q;
+QE2_rx_decode_edge_first = DFFE(QE2_rx_decode_edge_first_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , QE2L2);
 
 
 --L1L102 is slaveregister:inst_slaveregister|CS_ctrl_local.CS_enable[1]~44
@@ -63900,28 +63900,28 @@ LB1_inst10[6] = DFFE(LB1_inst10[6]_lut_out, GLOBAL(UE1_outclock0), , , );
 --SE1_B_srg[5] is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_down2up|LC_RX_edge:LC_RX_edge_inst|B_srg[5]
 --operation mode is normal
 
-SE1_B_srg[5]_lut_out = COINC_DOWN_B & L1_LC_ctrl_local.lc_rx_enable[0];
+SE1_B_srg[5]_lut_out = COINC_UP_B & L1_LC_ctrl_local.lc_rx_enable[0];
 SE1_B_srg[5] = DFFE(SE1_B_srg[5]_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
 
 
 --SE1_A_srg[5] is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_down2up|LC_RX_edge:LC_RX_edge_inst|A_srg[5]
 --operation mode is normal
 
-SE1_A_srg[5]_lut_out = COINC_DOWN_A & L1_LC_ctrl_local.lc_rx_enable[0];
+SE1_A_srg[5]_lut_out = COINC_UP_A & L1_LC_ctrl_local.lc_rx_enable[0];
 SE1_A_srg[5] = DFFE(SE1_A_srg[5]_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
 
 
 --SE2_B_srg[5] is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_RX_edge:LC_RX_edge_inst|B_srg[5]
 --operation mode is normal
 
-SE2_B_srg[5]_lut_out = COINC_UP_B & L1_LC_ctrl_local.lc_rx_enable[1];
+SE2_B_srg[5]_lut_out = COINC_DOWN_B & L1_LC_ctrl_local.lc_rx_enable[1];
 SE2_B_srg[5] = DFFE(SE2_B_srg[5]_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
 
 
 --SE2_A_srg[5] is local_coincidence:inst_local_coincidence|LC_slice:LC_slice_up2down|LC_RX_edge:LC_RX_edge_inst|A_srg[5]
 --operation mode is normal
 
-SE2_A_srg[5]_lut_out = COINC_UP_A & L1_LC_ctrl_local.lc_rx_enable[1];
+SE2_A_srg[5]_lut_out = COINC_DOWN_A & L1_LC_ctrl_local.lc_rx_enable[1];
 SE2_A_srg[5] = DFFE(SE2_A_srg[5]_lut_out, GLOBAL(UE1_outclock1), !K1L4Q, , );
 
 
@@ -77613,18 +77613,6 @@ COM_AD_D[5] = INPUT();
 COM_AD_D[7] = INPUT();
 
 
---COINC_DOWN_B is COINC_DOWN_B
---operation mode is input
-
-COINC_DOWN_B = INPUT();
-
-
---COINC_DOWN_A is COINC_DOWN_A
---operation mode is input
-
-COINC_DOWN_A = INPUT();
-
-
 --COINC_UP_B is COINC_UP_B
 --operation mode is input
 
@@ -77635,6 +77623,18 @@ COINC_UP_B = INPUT();
 --operation mode is input
 
 COINC_UP_A = INPUT();
+
+
+--COINC_DOWN_B is COINC_DOWN_B
+--operation mode is input
+
+COINC_DOWN_B = INPUT();
+
+
+--COINC_DOWN_A is COINC_DOWN_A
+--operation mode is input
+
+COINC_DOWN_A = INPUT();
 
 
 --COM_AD_D[6] is COM_AD_D[6]
@@ -78103,7 +78103,7 @@ FL_TDI = OUTPUT(FL_TDI_tri_out);
 --COINCIDENCE_OUT_DOWN is COINCIDENCE_OUT_DOWN
 --operation mode is output
 
-COINCIDENCE_OUT_DOWN_tri_out = TRI(TE2L1Q, TE2_i68);
+COINCIDENCE_OUT_DOWN_tri_out = TRI(TE1L1Q, TE1_i68);
 COINCIDENCE_OUT_DOWN = OUTPUT(COINCIDENCE_OUT_DOWN_tri_out);
 
 
@@ -78122,7 +78122,7 @@ COINC_DOWN_BLATCH = OUTPUT(GND);
 --COINCIDENCE_OUT_UP is COINCIDENCE_OUT_UP
 --operation mode is output
 
-COINCIDENCE_OUT_UP_tri_out = TRI(TE1L1Q, TE1_i68);
+COINCIDENCE_OUT_UP_tri_out = TRI(TE2L1Q, TE2_i68);
 COINCIDENCE_OUT_UP = OUTPUT(COINCIDENCE_OUT_UP_tri_out);
 
 
