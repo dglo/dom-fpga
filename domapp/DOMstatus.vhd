@@ -1,3 +1,24 @@
+-------------------------------------------------------------------------------
+-- Title      : DOMAPP
+-- Project    : IceCube DOM main board
+-------------------------------------------------------------------------------
+-- File       : DOMstatus.vhd
+-- Author     : thorsten
+-- Company    : LBNL
+-- Created    : 
+-- Last update: 2005-07-21
+-- Platform   : Altera Excalibur
+-- Standard   : VHDL'93
+-------------------------------------------------------------------------------
+-- Description: this module collects status information
+-------------------------------------------------------------------------------
+-- Copyright (c) 2005
+-------------------------------------------------------------------------------
+-- Revisions  :
+-- Date        Version     Author    Description
+--             V01-01-00   thorsten
+-------------------------------------------------------------------------------
+
 
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.ALL;

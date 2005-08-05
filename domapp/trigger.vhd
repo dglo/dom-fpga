@@ -1,9 +1,25 @@
--------------------------------------------------
--- ATWD trigger logic
--- 
--- This module launched the ATWDs and fADC capture
--- including ping/pong
--------------------------------------------------
+-------------------------------------------------------------------------------
+-- Title      : DOMAPP
+-- Project    : IceCube DOM main board
+-------------------------------------------------------------------------------
+-- File       : trigger.vhd
+-- Author     : thorsten
+-- Company    : LBNL
+-- Created    : 
+-- Last update: 2003-10-23
+-- Platform   : Altera Excalibur
+-- Standard   : VHDL'93
+-------------------------------------------------------------------------------
+-- Description: This module launched the ATWDs and fADC capture including
+--              ping/pong
+-------------------------------------------------------------------------------
+-- Copyright (c) 2003 2004
+-------------------------------------------------------------------------------
+-- Revisions  :
+-- Date        Version     Author    Description
+--             V01-01-00   thorsten 
+-------------------------------------------------------------------------------
+
 
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.all;
