@@ -1,9 +1,25 @@
--------------------------------------------------
--- ATWD trigger logic
--- 
--- This module launched the ATWDs and fADC capture
--- including ping/pong
--------------------------------------------------
+-------------------------------------------------------------------------------
+-- Title      : DOMAPP
+-- Project    : IceCube DOM main board
+-------------------------------------------------------------------------------
+-- File       : trigger.vhd
+-- Author     : thorsten
+-- Company    : LBNL
+-- Created    : 
+-- Last update: 2003-10-23
+-- Platform   : Altera Excalibur
+-- Standard   : VHDL'93
+-------------------------------------------------------------------------------
+-- Description: This module launched the ATWDs and fADC capture including
+--              ping/pong
+-------------------------------------------------------------------------------
+-- Copyright (c) 2003 2004
+-------------------------------------------------------------------------------
+-- Revisions  :
+-- Date        Version     Author    Description
+--             V01-01-00   thorsten 
+-------------------------------------------------------------------------------
+
 
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.all;
@@ -102,7 +118,8 @@ BEGIN
 	OneSPE_nl	<= '1';
 	
 --	veto_trig	<= '1' WHEN trig_veto_short_A='1' OR trig_veto_short_B='1' ELSE '0'; -- busy_FADC_A='1' OR busy_FADC_B='1' ELSE '0'; -- modify for timestamp mode !!!!
-	veto_trig	<= '1' WHEN busy_FADC_A='1' OR busy_FADC_B='1' ELSE '0'; -- modify for timestamp mode !!!!
+	veto_trig	<= '1' WHEN trig_veto_short_A='1' OR trig_veto_short_B='1' OR busy_FADC_A='1' OR busy_FADC_B='1' ELSE '0';
+--	veto_trig	<= '1' WHEN busy_FADC_A='1' OR busy_FADC_B='1' ELSE '0'; -- modify for timestamp mode !!!!
 
 
 	SPE_enable	<= '1' WHEN trigger_enable(1 DOWNTO 0)="01" OR		-- SPE enable

@@ -1,9 +1,26 @@
--------------------------------------------------
--- ATWD interface
--- 
--- this module interfaces the ATWD
--- and provides the waveform data in binary
--------------------------------------------------
+-------------------------------------------------------------------------------
+-- Title      : DOMAPP
+-- Project    : IceCube DOM main board
+-------------------------------------------------------------------------------
+-- File       : ATWD_interface.vhd
+-- Author     : thorsten
+-- Company    : LBNL
+-- Created    : 
+-- Last update: 2003-10-23
+-- Platform   : Altera Excalibur
+-- Standard   : VHDL'93
+-------------------------------------------------------------------------------
+-- Description: this module interfaces the ATWD and provides the waveform data
+-- in binary
+-------------------------------------------------------------------------------
+-- Copyright (c) 2003 2004
+-------------------------------------------------------------------------------
+-- Revisions  :
+-- Date        Version     Author    Description
+--             V01-01-00   thorsten
+-------------------------------------------------------------------------------
+
+
 
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.all;
