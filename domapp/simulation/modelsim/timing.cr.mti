@@ -1,0 +1,144 @@
+C:/FPGAtools/quartus/eda/sim_lib/apex20ke_atoms.vhd {1 {vcom -work work -2002 -explicit C:/FPGAtools/quartus/eda/sim_lib/apex20ke_atoms.vhd
+Model Technology ModelSim SE vcom 5.8b Compiler 2004.01 Jan 26 2004
+-- Loading package standard
+-- Loading package std_logic_1164
+-- Loading package vital_timing
+-- Loading package vital_primitives
+-- Compiling package atom_pack
+-- Compiling package body atom_pack
+-- Loading package atom_pack
+-- Compiling entity mux21
+-- Compiling architecture structure of mux21
+-- Loading package atom_pack
+-- Compiling entity dffe_io
+-- Compiling architecture behave of dffe_io
+-- Compiling entity apex20ke_asynch_lcell
+-- Compiling architecture vital_le of apex20ke_asynch_lcell
+-- Compiling entity apex20ke_lcell_register
+-- Compiling architecture vital_le_reg of apex20ke_lcell_register
+-- Compiling entity apex20ke_lcell
+-- Compiling architecture vital_le_atom of apex20ke_lcell
+-- Loading entity apex20ke_asynch_lcell
+-- Loading entity apex20ke_lcell_register
+-- Compiling entity apex20ke_asynch_io
+-- Compiling architecture vital_asynch_io of apex20ke_asynch_io
+-- Compiling entity apex20ke_io
+-- Compiling architecture arch of apex20ke_io
+-- Loading entity apex20ke_asynch_io
+-- Loading entity dffe_io
+-- Compiling entity apex20ke_asynch_pterm
+-- Compiling architecture vital_pterm of apex20ke_asynch_pterm
+-- Compiling entity apex20ke_pterm_register
+-- Compiling architecture vital_pterm_reg of apex20ke_pterm_register
+-- Compiling entity apex20ke_pterm
+-- Compiling architecture vital_pterm_atom of apex20ke_pterm
+-- Loading entity apex20ke_asynch_pterm
+-- Loading entity apex20ke_pterm_register
+-- Loading package std_logic_arith
+-- Loading package std_logic_unsigned
+-- Compiling entity apex20ke_asynch_mem
+-- Compiling architecture behave of apex20ke_asynch_mem
+-- Compiling entity dffe
+-- Compiling architecture behave of dffe
+-- Compiling entity and1
+-- Compiling architecture altvital of and1
+-- Compiling entity nmux21
+-- Compiling architecture structure of nmux21
+-- Compiling entity bmux21
+-- Compiling architecture structure of bmux21
+-- Compiling entity apex20ke_ram_slice
+-- Compiling architecture structure of apex20ke_ram_slice
+-- Loading entity mux21
+-- Loading entity nmux21
+-- Loading entity bmux21
+-- Loading entity dffe
+-- Loading entity and1
+-- Loading entity apex20ke_asynch_mem
+-- Compiling entity apex20ke_cam
+-- Compiling architecture behave of apex20ke_cam
+-- Compiling entity apex20ke_cam_slice
+-- Compiling architecture structure of apex20ke_cam_slice
+-- Loading entity apex20ke_cam
+-- Compiling entity apex20ke_lvds_transmitter
+-- Compiling architecture vital_transmitter_atom of apex20ke_lvds_transmitter
+-- Loading package textio
+-- Compiling entity apex20ke_lvds_receiver
+-- Compiling architecture vital_receiver_atom of apex20ke_lvds_receiver
+-- Compiling entity apex20ke_pll
+-- Compiling architecture vital_pll_atom of apex20ke_pll
+-- Compiling entity output_delay
+-- Compiling architecture v1 of output_delay
+-- Loading package std_logic_textio
+-- Compiling entity apex20ke_dpram
+-- Compiling architecture vital_dpram_atom of apex20ke_dpram
+-- Loading entity output_delay
+-- Compiling entity apex20ke_upcore
+-- Compiling architecture vital_upcore_atom of apex20ke_upcore
+-- Compiling entity apex20ke_jtagb
+-- Compiling architecture architecture_jtagb of apex20ke_jtagb
+
+} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/sim_models/atwd_model.vhd {1 {vcom -work work -2002 -explicit C:/work_lbnl/IceCubeCVS/dom-fpga/sim_models/atwd_model.vhd
+Model Technology ModelSim SE vcom 5.8b Compiler 2004.01 Jan 26 2004
+-- Loading package standard
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package std_logic_unsigned
+-- Compiling entity atwd_model
+-- Compiling architecture atwd_model_arch of atwd_model
+
+} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/simulation/modelsim/dom.vho {1 {vcom -work work -2002 -explicit C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/simulation/modelsim/dom.vho
+Model Technology ModelSim SE vcom 5.8b Compiler 2004.01 Jan 26 2004
+-- Loading package standard
+-- Loading package std_logic_1164
+-- Loading package vital_timing
+-- Loading package vital_primitives
+-- Loading package atom_pack
+-- Loading package apex20ke_components
+-- Compiling entity dom
+-- Compiling architecture structure of dom
+-- Loading package std_logic_arith
+-- Loading package textio
+-- Loading package std_logic_textio
+-- Loading package std_logic_unsigned
+-- Loading entity apex20ke_upcore
+-- Loading entity apex20ke_io
+-- Loading entity apex20ke_dpram
+-- Loading entity apex20ke_pll
+-- Loading entity apex20ke_lcell
+-- Loading entity apex20ke_ram_slice
+
+} {} {}} C:/FPGAtools/quartus/eda/sim_lib/apex20ke_components.vhd {1 {vcom -work work -2002 -explicit C:/FPGAtools/quartus/eda/sim_lib/apex20ke_components.vhd
+Model Technology ModelSim SE vcom 5.8b Compiler 2004.01 Jan 26 2004
+-- Loading package standard
+-- Loading package std_logic_1164
+-- Loading package vital_timing
+-- Loading package vital_primitives
+-- Loading package atom_pack
+-- Compiling package apex20ke_components
+
+} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/sim_models/FADC_model.vhd {1 {vcom -work work -2002 -explicit C:/work_lbnl/IceCubeCVS/dom-fpga/sim_models/FADC_model.vhd
+Model Technology ModelSim SE vcom 5.8b Compiler 2004.01 Jan 26 2004
+-- Loading package standard
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package std_logic_unsigned
+-- Compiling entity fadc_model
+-- Compiling architecture fadc_arch of fadc_model
+
+} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/simulation/modelsim/testbench.vht {1 {vcom -work work -2002 -explicit C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/simulation/modelsim/testbench.vht
+Model Technology ModelSim SE vcom 5.8b Compiler 2004.01 Jan 26 2004
+-- Loading package standard
+-- Loading package std_logic_1164
+-- Compiling entity dom_vhd_tst
+-- Compiling architecture dom_arch of dom_vhd_tst
+-- Loading package vital_timing
+-- Loading package vital_primitives
+-- Loading package atom_pack
+-- Loading package apex20ke_components
+-- Loading entity domapp
+-- Loading package std_logic_arith
+-- Loading package std_logic_unsigned
+-- Loading entity atwd_model
+-- Loading entity fadc_model
+
+} {} {}}
