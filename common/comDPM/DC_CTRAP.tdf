@@ -1,6 +1,6 @@
 % C:\PROJECTS\ICECUBE\DOR\FPGA\DCOM_01\DC_CTRAP.tdf %
 % AHDL code created by Visual Software Solution's StateCAD 4.11 %
-% Fri Jul 09 13:16:12 2004 %
+% Fri Aug 26 14:21:29 2005 %
 
 % This AHDL code was generated using: %
 %  one-hot state assignment with boolean code format. %
@@ -99,26 +99,28 @@ BEGIN
 
 CLR_BUF =  !RES & comres_rcvd & CMD_WAIT  #  !RES & comres_rcvd & CRES_WAIT ;
 
-CMD_WAIT =  !idle_rcvd & !drreq_rcvd & !sysres_rcvd & !data_rcvd & !
-	bfstat_rcvd & !id_data_avail & !comres_rcvd & !tcal_rcvd & !RES & CMD_WAIT  #
-	  !idle_rcvd & !drreq_rcvd & !sysres_rcvd & !data_rcvd & !bfstat_rcvd & !
-	idreq_rcvd & !comres_rcvd & !tcal_rcvd & !RES & CMD_WAIT  #  !RES & stf_stb &
-	 REC_PULSE  #  !RES & msg_sent & SND_DAT  #  !RES & msg_sent & SND_DRAND  #  
-	!RES & msg_sent & SND_ID  #  !RES & msg_sent & SND_IDLE  #  !RES & msg_sent &
-	 SND_MRNB  #  !RES & msg_sent & SND_MRWB  #  !RES & msg_sent & SND_TC_DAT ;
+CMD_WAIT =  !comres_rcvd & !id_data_avail & !data_rcvd & !bfstat_rcvd & !
+	drreq_rcvd & !sysres_rcvd & !idle_rcvd & !tcal_rcvd & !RES & CMD_WAIT  #  !
+	comres_rcvd & !idreq_rcvd & !data_rcvd & !bfstat_rcvd & !drreq_rcvd & !
+	sysres_rcvd & !idle_rcvd & !tcal_rcvd & !RES & CMD_WAIT  #  !RES & stf_stb & 
+	REC_PULSE  #  !RES & msg_sent & SND_DAT  #  !RES & msg_sent & SND_DRAND  #  !
+	RES & msg_sent & SND_ID  #  !RES & msg_sent & SND_IDLE  #  !RES & msg_sent & 
+	SND_MRNB  #  !RES & msg_sent & SND_MRWB  #  !RES & msg_sent & SND_TC_DAT ;
 
 CRES_WAIT =  !comres_rcvd & !RES & CRES_WAIT  #  !RES & time_bit_5 & PON ;
 
 DOM_REBOOT =  !RES & DOM_REBOOT  #  !RES & msg_sent & SND_DRBT ;
 
-DRREQ_WT =  !drreq_rcvd & !RES & DRREQ_WT  #  !RES & pulse_sent & SND_PULSE ;
+DRREQ_WT =  !tcal_rcvd & !drreq_rcvd & !RES & DRREQ_WT  #  !RES & pulse_sent 
+	& SND_PULSE ;
 
 PON =  !time_bit_5 & PON  #  RES ;
 
-REC_PULSE =  !pulse_rcvd & !stf_stb & !RES & REC_PULSE  #  !RES & del_15us & 
+REC_PULSE =  !stf_stb & !pulse_rcvd & !RES & REC_PULSE  #  !RES & del_15us & 
 	REC_WT ;
 
-REC_WT =  !RES & tcal_rcvd & CMD_WAIT  #  !del_15us & !RES & REC_WT ;
+REC_WT =  !RES & tcal_rcvd & CMD_WAIT  #  !RES & tcal_rcvd & DRREQ_WT  #  !
+	del_15us & !RES & REC_WT ;
 
 SEND_WT =  !RES & pulse_rcvd & !stf_stb & REC_PULSE  #  !del_15us & !RES & 
 	SEND_WT ;
