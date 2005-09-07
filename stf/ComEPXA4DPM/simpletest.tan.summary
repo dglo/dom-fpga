@@ -3,9 +3,9 @@ Timing Analyzer Summary
 --------------------------------------------------------------------------------------
 
 Type           : Worst-case tsu
-Slack          : -2.310 ns
+Slack          : -2.254 ns
 Required Time  : 1.000 ns
-Actual Time    : 3.310 ns
+Actual Time    : 3.254 ns
 From           : OneSPE
 To             : hit_counter:inst_hit_counter|OneSPE0
 
@@ -19,9 +19,9 @@ To             : ATWDTrigger_1
 Type           : Worst-case th
 Slack          : N/A
 Required Time  : None
-Actual Time    : -6.938 ns
-From           : ATWD0_D[0]
-To             : atwd:atwd0|atwd_readout:inst_atwd_readout|ATWD_D_gray[0]~reg0
+Actual Time    : -6.749 ns
+From           : ATWD0_D[5]
+To             : atwd:atwd0|atwd_readout:inst_atwd_readout|ATWD_D_gray[5]~reg0
 
 Type           : Worst-case minimum tco
 Slack          : N/A
@@ -31,23 +31,23 @@ From           : pll2x:inst_pll2x|altclklock:altclklock_component|outclock1
 To             : CLKLK_OUT2p
 
 Type           : Clock Setup: 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock1'
-Slack          : 4.527 ns
+Slack          : 3.414 ns
 Required Time  : 40.00 MHz ( period = 25.000 ns )
-Actual Time    : 62.71 MHz ( period = 15.946 ns )
+Actual Time    : 55.03 MHz ( period = 18.172 ns )
 From           : atwd:atwd1|atwd_trigger:inst_atwd_trigger|launch_mode[1]
 To             : atwd:atwd1|atwd_trigger:inst_atwd_trigger|ATWDTrigger_sig
 
 Type           : Clock Setup: 'pll4x:inst_pll4x|altclklock:altclklock_component|outclock1'
-Slack          : 10.264 ns
+Slack          : 10.268 ns
 Required Time  : 80.00 MHz ( period = 12.500 ns )
 Actual Time    : Restricted to 349.90 MHz ( period = 2.858 ns )
-From           : atwd:atwd1|atwd_control:inst_atwd_control|cclk
-To             : atwd:atwd1|atwd_control:inst_atwd_control|CounterClock~reg0
+From           : atwd:atwd0|atwd_control:inst_atwd_control|cclk
+To             : atwd:atwd0|atwd_control:inst_atwd_control|CounterClock~reg0
 
 Type           : Clock Setup: 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock0'
-Slack          : 10.915 ns
+Slack          : 10.889 ns
 Required Time  : 20.00 MHz ( period = 50.000 ns )
-Actual Time    : 35.50 MHz ( period = 28.170 ns )
+Actual Time    : 35.43 MHz ( period = 28.222 ns )
 From           : stripe:stripe_inst|alt_exc_stripe:lpm_instance|alt_exc_upcore:core|core~SLAVEHREADYO0
 To             : master_data_source:inst_master_data_source|data[31]
 
