@@ -1,5 +1,5 @@
 Flow report for simpletest
-Wed Sep 07 15:15:52 2005
+Mon Sep 12 08:14:51 2005
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -42,12 +42,12 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------+
 ; Flow Summary                                                  ;
 +-----------------------+---------------------------------------+
-; Flow Status           ; Successful - Wed Sep 07 15:15:52 2005 ;
+; Flow Status           ; Successful - Mon Sep 12 08:14:51 2005 ;
 ; Revision Name         ; simpletest                            ;
 ; Top-level Entity Name ; simpletest                            ;
 ; Family                ; EXCALIBUR_ARM                         ;
 ; Device                ; EPXA4F672I2                           ;
-; Total logic elements  ; 4,979 / 16,640 ( 29 % )               ;
+; Total logic elements  ; 4,977 / 16,640 ( 29 % )               ;
 ; Total pins            ; 284 / 463 ( 61 % )                    ;
 ; Total memory bits     ; 27,264 / 212,992 ( 12 % )             ;
 ; Total PLLs            ; 2 / 4 ( 50 % )                        ;
@@ -59,7 +59,7 @@ party's intellectual property, are provided herein.
 +------------------------------------------
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 09/07/2005 15:04:59 ;
+; Start date & time ; 09/12/2005 08:03:17 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; simpletest          ;
 +-------------------+---------------------+
@@ -70,12 +70,12 @@ party's intellectual property, are provided herein.
 +--------------------------------------
 ; Module Name          ; Elapsed Time ;
 +----------------------+--------------+
-; Analysis & Synthesis ; 00:02:19     ;
-; Fitter               ; 00:07:56     ;
-; Assembler            ; 00:00:06     ;
-; Timing Analyzer      ; 00:00:14     ;
-; EDA Netlist Writer   ; 00:00:09     ;
-; Total                ; 00:10:44     ;
+; Analysis & Synthesis ; 00:02:22     ;
+; Fitter               ; 00:08:28     ;
+; Assembler            ; 00:00:07     ;
+; Timing Analyzer      ; 00:00:15     ;
+; EDA Netlist Writer   ; 00:00:11     ;
+; Total                ; 00:11:23     ;
 +----------------------+--------------+
 
 
