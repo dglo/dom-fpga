@@ -3,5 +3,8 @@ Version=2.1
 Product=Quartus II
 Authorization Method=Guard
 Host ID=T000044226
-Part Number=EP20K100EFC324-2
-Logic Cell Usage=1197
+Part Number=EP20K200EFC484-2X
+Logic Cell Usage=1111
+Talkback=run
+Module=GDLG
+Error Message=Internal Error: Sub-system: GDLG, File: ./gdlg_property_page.cpp, Line: 345 rect.top % GIO::GRID_SPACING == 0 Quartus II Version 2.1 Build 166 07/08/2002 SJ Full Version
