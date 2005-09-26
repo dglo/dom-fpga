@@ -25,10 +25,10 @@ FUNCTION tx_dpr_radr_ct
 	clk_en,
 	sload,
 	aclr,
-	data[15..0]
+	data[12..0]
 )
 
 RETURNS (
-	q[15..0],
+	q[12..0],
 	cout
 );
