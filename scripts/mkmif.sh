@@ -50,7 +50,7 @@ last=`expr ${last} + 1`
 echo "[${last}..99] : 0;"
 
 # add the dom comm revision number
-taf=${sdir}/../common/comDPM/test_and_thresholds.tdf
+taf=${sdir}/../common/comDPM/test_and_tresholds.tdf
 dcrev=`awk '$2 ~ /^DCFREV$/ { print $4; }' ${taf} | \
 	sed 's/^00*//1' | sed 's/;.*//1'`
 
