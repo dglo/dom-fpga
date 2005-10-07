@@ -1,0 +1,96 @@
+TITLE "ADC to digital decoder";
+
+-- DID NOT WORK !!!!
+
+INCLUDE "ONE_DET";
+INCLUDE "ctup5";
+
+--FUNCTION ONE_DET (CLK, ct[4..0], hl_edge, lh_edge, res)
+--	RETURNS (ct_aclr, one);
+
+--FUNCTION ctup5 (clock,	aclr)
+--RETURNS (	q[4..0],	cout);
+
+
+CONSTANT	DEC_MIN_THR = 20;
+
+SUBDESIGN	adc_to_digital_2
+
+
+
+(
+	clk				: INPUT;
+	reset			: INPUT;	
+	in[9..2]		: INPUT;	-- Communication ADC, bits 0..1 unused 
+	dudt[7..0]		: INPUT;
+		
+	hl_edge			: OUTPUT;
+	lh_edge			: OUTPUT;
+	
+	one				: OUTPUT;	-- logic one, 1 clock lengths pulse
+)
+
+VARIABLE
+
+	ina[7..0]		: DFF;		-- I/O register
+	inb[7..0]		: DFF;
+	inc[7..0]		: DFF;
+	
+	hl_edge			: DFF;
+	lh_edge			: DFF;
+	
+	agb[3..0]		: DFF;
+	bga[3..0]		: DFF;
+	
+	ct				: ctup5;	-- 5 bit up counter
+	hl_dec_stm		: ONE_DET;	-- state machine
+	
+BEGIN
+	ina[].clk				= clk;
+	inb[].clk				= clk;
+	inc[].clk				= clk;
+	
+	hl_edge.(clk, clrn)		= (clk, !reset);
+	lh_edge.(clk, clrn)		= (clk, !reset);
+	agb[].(clk, clrn)		= (clk, !reset);
+	bga[].(clk, clrn)		= (clk, !reset);
+
+	ina[].d					= in[];
+	inb[].d					= ina[].q;
+	inc[].d					= inb[].q;
+		
+	if( inb[] > ina[] )
+		THEN	bga[0] 		= VCC;
+		else	bga[0]		= GND;		END IF;
+		
+	bga[1].d				= bga[0].q;	
+	bga[2].d				= bga[1].q;
+	bga[3].d				= bga[2].q;	
+	
+	if( ((inc[] - ina[]) > dudt[]) & (bga[3..0].q == H"f") )
+		THEN	hl_edge.d 		= VCC;
+		else	hl_edge.d		= GND;		END IF;		
+	
+		
+	if( ina[] > inb[] )	
+		THEN	agb[0] 		= VCC;
+		else	agb[0]		= GND;		END IF;
+		
+	agb[1].d				= agb[0].q;	
+	agb[2].d				= agb[1].q;
+	agb[3].d				= agb[2].q;
+	
+	if( ((ina[] - inc[]) > dudt[]) & (agb[3..0].q == H"f") )
+		THEN	lh_edge.d 		= VCC;
+		else	lh_edge.d		= GND;		END IF;		
+		
+	ct.(clock,	aclr)		= (clk, hl_dec_stm.ct_aclr);
+
+	hl_dec_stm.	(CLK, hl_edge, lh_edge, res)	=
+				(clk, hl_edge.q, lh_edge.q, reset);
+			
+	one						= hl_dec_stm.one;
+			
+	hl_dec_stm.ct[4..0]		= ct.q[4..0];
+	
+END;

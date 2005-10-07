@@ -1,0 +1,367 @@
+ -- Copyright (C) 1991-2002 Altera Corporation
+ -- Any  megafunction  design,  and related netlist (encrypted  or  decrypted),
+ -- support information,  device programming or simulation file,  and any other
+ -- associated  documentation or information  provided by  Altera  or a partner
+ -- under  Altera's   Megafunction   Partnership   Program  may  be  used  only
+ -- to program  PLD  devices (but not masked  PLD  devices) from  Altera.   Any
+ -- other  use  of such  megafunction  design,  netlist,  support  information,
+ -- device programming or simulation file,  or any other  related documentation
+ -- or information  is prohibited  for  any  other purpose,  including, but not
+ -- limited to  modification,  reverse engineering,  de-compiling, or use  with
+ -- any other  silicon devices,  unless such use is  explicitly  licensed under
+ -- a separate agreement with  Altera  or a megafunction partner.  Title to the
+ -- intellectual property,  including patents,  copyrights,  trademarks,  trade
+ -- secrets,  or maskworks,  embodied in any such megafunction design, netlist,
+ -- support  information,  device programming or simulation file,  or any other
+ -- related documentation or information provided by  Altera  or a megafunction
+ -- partner, remains with Altera, the megafunction partner, or their respective
+ -- licensors. No other licenses, including any licenses needed under any third
+ -- party's intellectual property, are provided herein.
+ ------------------------------------------------------------------------------
+
+
+
+ ------------------------------------------------------------------------------
+ -- N.C.       : No Connect. This pin has no internal connection to the device.
+ -- VCC_INT    : Dedicated power pin, which MUST be connected to VCC  (1.8V).
+ -- VCC_IO     : Dedicated power pin, which MUST be connected to VCC  (Refer to
+ --              the table below for voltage).
+ -- GND        : Dedicated ground pin, which MUST be connected to GND.
+ -- GND+       : Unused input. This pin should be connected to GND. It may also
+ --              be connected  to a  valid signal  on the board  (low, high, or
+ --              toggling)  if that signal is required for a different revision
+ --              of the design.
+ -- GND*       : Unused  I/O  pin.   This pin can either be left unconnected or
+ --              connected to GND.  Connecting this pin to GND will improve the
+ --              device's immunity to noise.
+ ------------------------------------------------------------------------------
+
+
+CHIP  "dcom"  ASSIGNED TO AN: EP20K100EFC324-2
+
+Pin Name/Usage               : Location  : Dir.   : I/O Standard      : Voltage
+-------------------------------------------------------------------------------
+GND*                         : A1        :        :                   :        
+GND*                         : A2        :        :                   :        
+GND*                         : A3        :        :                   :        
+GND*                         : A4        :        :                   :        
+GND*                         : A5        :        :                   :        
+GND*                         : A6        :        :                   :        
+GND*                         : A7        :        :                   :        
+GND*                         : A8        :        :                   :        
+GND*                         : A9        :        :                   :        
+GND*                         : A10       :        :                   :        
+GND*                         : A11       :        :                   :        
+GND*                         : A12       :        :                   :        
+GND*                         : A13       :        :                   :        
+GND*                         : A14       :        :                   :        
+GND*                         : A15       :        :                   :        
+GND*                         : A16       :        :                   :        
+GND*                         : A17       :        :                   :        
+GND*                         : A18       :        :                   :        
+GND*                         : B1        :        :                   :        
+GND*                         : B2        :        :                   :        
+GND*                         : B3        :        :                   :        
+GND*                         : B4        :        :                   :        
+GND*                         : B5        :        :                   :        
+GND*                         : B6        :        :                   :        
+GND*                         : B7        :        :                   :        
+GND*                         : B8        :        :                   :        
+GND+                         : B9        :        :                   :        
+TRST                         : B10       :        :                   :        
+GND*                         : B11       :        :                   :        
+GND*                         : B12       :        :                   :        
+GND*                         : B13       :        :                   :        
+GND*                         : B14       :        :                   :        
+GND*                         : B15       :        :                   :        
+GND*                         : B16       :        :                   :        
+GND*                         : B17       :        :                   :        
+GND*                         : B18       :        :                   :        
+GND*                         : C1        :        :                   :        
+GND*                         : C2        :        :                   :        
+GND*                         : C3        :        :                   :        
+GND*                         : C4        :        :                   :        
+GND*                         : C5        :        :                   :        
+GND*                         : C6        :        :                   :        
+GND*                         : C7        :        :                   :        
+GND*                         : C8        :        :                   :        
+TDO                          : C9        :        :                   :        
+nCEO                         : C10       :        :                   :        
+GND*                         : C11       :        :                   :        
+GND*                         : C12       :        :                   :        
+GND*                         : C13       :        :                   :        
+GND*                         : C14       :        :                   :        
+GND*                         : C15       :        :                   :        
+GND*                         : C16       :        :                   :        
+GND*                         : C17       :        :                   :        
+GND*                         : C18       :        :                   :        
+GND*                         : D1        :        :                   :        
+GND*                         : D2        :        :                   :        
+GND*                         : D3        :        :                   :        
+GND                          : D4        :        :                   :        
+GND*                         : D5        :        :                   :        
+GND*                         : D6        :        :                   :        
+GND*                         : D7        :        :                   :        
+GND*                         : D8        :        :                   :        
+GND*                         : D9        :        :                   :        
+GND+                         : D10       :        :                   :        
+GND*                         : D11       :        :                   :        
+GND*                         : D12       :        :                   :        
+GND*                         : D13       :        :                   :        
+GND*                         : D14       :        :                   :        
+GND                          : D15       :        :                   :        
+GND*                         : D16       :        :                   :        
+GND*                         : D17       :        :                   :        
+GND*                         : D18       :        :                   :        
+GND*                         : E1        :        :                   :        
+GND*                         : E2        :        :                   :        
+GND*                         : E3        :        :                   :        
+GND*                         : E4        :        :                   :        
+GND                          : E5        :        :                   :        
+VCC_IO                       : E6        :        :                   : 3.3V   
+GND*                         : E7        :        :                   :        
+GND*                         : E8        :        :                   :        
+GND*                         : E9        :        :                   :        
+GND*                         : E10       :        :                   :        
+GND*                         : E11       :        :                   :        
+GND*                         : E12       :        :                   :        
+GND*                         : E13       :        :                   :        
+GND                          : E14       :        :                   :        
+GND*                         : E15       :        :                   :        
+GND*                         : E16       :        :                   :        
+GND*                         : E17       :        :                   :        
+GND*                         : E18       :        :                   :        
+GND*                         : F1        :        :                   :        
+GND*                         : F2        :        :                   :        
+GND*                         : F3        :        :                   :        
+GND*                         : F4        :        :                   :        
+VCC_IO                       : F5        :        :                   : 3.3V   
+GND                          : F6        :        :                   :        
+VCC_INT                      : F7        :        :                   : 1.8V   
+GND*                         : F8        :        :                   :        
+GND*                         : F9        :        :                   :        
+GND*                         : F10       :        :                   :        
+GND*                         : F11       :        :                   :        
+VCC_IO                       : F12       :        :                   : 3.3V   
+GND                          : F13       :        :                   :        
+GND*                         : F14       :        :                   :        
+GND*                         : F15       :        :                   :        
+GND*                         : F16       :        :                   :        
+GND*                         : F17       :        :                   :        
+GND*                         : F18       :        :                   :        
+GND*                         : G1        :        :                   :        
+GND*                         : G2        :        :                   :        
+GND*                         : G3        :        :                   :        
+GND*                         : G4        :        :                   :        
+GND*                         : G5        :        :                   :        
+VCC_INT                      : G6        :        :                   : 1.8V   
+GND                          : G7        :        :                   :        
+VCC_IO                       : G8        :        :                   : 3.3V   
+GND                          : G9        :        :                   :        
+GND*                         : G10       :        :                   :        
+VCC_INT                      : G11       :        :                   : 1.8V   
+GND                          : G12       :        :                   :        
+VCC_IO                       : G13       :        :                   : 3.3V   
+GND*                         : G14       :        :                   :        
+GND*                         : G15       :        :                   :        
+GND*                         : G16       :        :                   :        
+GND*                         : G17       :        :                   :        
+GND*                         : G18       :        :                   :        
+GND*                         : H1        :        :                   :        
+GND*                         : H2        :        :                   :        
+GND*                         : H3        :        :                   :        
+GND*                         : H4        :        :                   :        
+GND*                         : H5        :        :                   :        
+GND*                         : H6        :        :                   :        
+VCC_IO                       : H7        :        :                   : 3.3V   
+GND                          : H8        :        :                   :        
+VCC_INT                      : H9        :        :                   : 1.8V   
+VCC_IO                       : H10       :        :                   : 3.3V   
+GND                          : H11       :        :                   :        
+VCC_INT                      : H12       :        :                   : 1.8V   
+GND*                         : H13       :        :                   :        
+GND*                         : H14       :        :                   :        
+GND+                         : H15       :        :                   :        
+GND*                         : H16       :        :                   :        
+GND*                         : H17       :        :                   :        
+GND*                         : H18       :        :                   :        
+GND*                         : J1        :        :                   :        
+DATA0                        : J2        :        :                   :        
+DCLK                         : J3        :        :                   :        
+GND+                         : J4        :        :                   :        
+GND*                         : J5        :        :                   :        
+GND*                         : J6        :        :                   :        
+VCC_CKLK2                    : J7        :        :                   : 3.3V   
+VCC_INT                      : J8        :        :                   : 1.8V   
+GND                          : J9        :        :                   :        
+GND                          : J10       :        :                   :        
+VCC_IO                       : J11       :        :                   : 3.3V   
+GND*                         : J12       :        :                   :        
+GND*                         : J13       :        :                   :        
+GND*                         : J14       :        :                   :        
+GND*                         : J15       :        :                   :        
+MSEL1                        : J16       :        :                   :        
+MSEL0                        : J17       :        :                   :        
+GND*                         : J18       :        :                   :        
+GND*                         : K1        :        :                   :        
+nCE                          : K2        :        :                   :        
+TDI                          : K3        :        :                   :        
+GND*                         : K4        :        :                   :        
+GND*                         : K5        :        :                   :        
+VCC_CKLK4                    : K6        :        :                   : 3.3V   
+GND_CKLK2                    : K7        :        :                   :        
+VCC_IO                       : K8        :        :                   : 3.3V   
+GND                          : K9        :        :                   :        
+GND                          : K10       :        :                   :        
+VCC_INT                      : K11       :        :                   : 1.8V   
+VCC_INT                      : K12       :        :                   :        
+GND*                         : K13       :        :                   :        
+GND*                         : K14       :        :                   :        
+GND*                         : K15       :        :                   :        
+GND+                         : K16       :        :                   :        
+NCONFIG                      : K17       :        :                   :        
+GND*                         : K18       :        :                   :        
+GND*                         : L1        :        :                   :        
+GND+                         : L2        :        :                   :        
+GND*                         : L3        :        :                   :        
+GND*                         : L4        :        :                   :        
+GND*                         : L5        :        :                   :        
+GND_CKLK4                    : L6        :        :                   :        
+VCC_INT                      : L7        :        :                   : 1.8V   
+GND                          : L8        :        :                   :        
+VCC_IO                       : L9        :        :                   : 3.3V   
+VCC_INT                      : L10       :        :                   : 1.8V   
+GND                          : L11       :        :                   :        
+VCC_IO                       : L12       :        :                   : 3.3V   
+GND*                         : L13       :        :                   :        
+GND*                         : L14       :        :                   :        
+GND*                         : L15       :        :                   :        
+GND*                         : L16       :        :                   :        
+GND*                         : L17       :        :                   :        
+GND*                         : L18       :        :                   :        
+GND*                         : M1        :        :                   :        
+GND*                         : M2        :        :                   :        
+GND*                         : M3        :        :                   :        
+GND*                         : M4        :        :                   :        
+GND*                         : M5        :        :                   :        
+VCC_IO                       : M6        :        :                   : 3.3V   
+GND                          : M7        :        :                   :        
+VCC_INT                      : M8        :        :                   : 1.8V   
+GND*                         : M9        :        :                   :        
+GND*                         : M10       :        :                   :        
+VCC_IO                       : M11       :        :                   : 3.3V   
+GND                          : M12       :        :                   :        
+VCC_INT                      : M13       :        :                   : 1.8V   
+GND*                         : M14       :        :                   :        
+GND*                         : M15       :        :                   :        
+GND*                         : M16       :        :                   :        
+GND*                         : M17       :        :                   :        
+GND*                         : M18       :        :                   :        
+GND*                         : N1        :        :                   :        
+GND*                         : N2        :        :                   :        
+GND*                         : N3        :        :                   :        
+GND+                         : N4        :        :                   :        
+VCC_INT                      : N5        :        :                   : 1.8V   
+GND                          : N6        :        :                   :        
+VCC_IO                       : N7        :        :                   : 3.3V   
+GND*                         : N8        :        :                   :        
+GND*                         : N9        :        :                   :        
+GND*                         : N10       :        :                   :        
+GND*                         : N11       :        :                   :        
+VCC_INT                      : N12       :        :                   : 1.8V   
+GND                          : N13       :        :                   :        
+VCC_IO                       : N14       :        :                   : 3.3V   
+GND*                         : N15       :        :                   :        
+GND*                         : N16       :        :                   :        
+GND*                         : N17       :        :                   :        
+GND*                         : N18       :        :                   :        
+GND*                         : P1        :        :                   :        
+GND_CKOUT2                   : P2        :        :                   :        
+VCC_CKOUT2                   : P3        :        :                   : 3.3V   
+GND*                         : P4        :        :                   :        
+GND                          : P5        :        :                   :        
+VCC_IO                       : P6        :        :                   : 3.3V   
+GND*                         : P7        :        :                   :        
+GND*                         : P8        :        :                   :        
+GND*                         : P9        :        :                   :        
+GND*                         : P10       :        :                   :        
+GND*                         : P11       :        :                   :        
+GND*                         : P12       :        :                   :        
+VCC_IO                       : P13       :        :                   : 3.3V   
+GND                          : P14       :        :                   :        
+GND*                         : P15       :        :                   :        
+GND*                         : P16       :        :                   :        
+GND*                         : P17       :        :                   :        
+GND*                         : P18       :        :                   :        
+GND*                         : R1        :        :                   :        
+GND*                         : R2        :        :                   :        
+GND*                         : R3        :        :                   :        
+GND                          : R4        :        :                   :        
+GND*                         : R5        :        :                   :        
+GND*                         : R6        :        :                   :        
+GND*                         : R7        :        :                   :        
+GND*                         : R8        :        :                   :        
+GND*                         : R9        :        :                   :        
+GND*                         : R10       :        :                   :        
+GND*                         : R11       :        :                   :        
+GND*                         : R12       :        :                   :        
+GND*                         : R13       :        :                   :        
+GND*                         : R14       :        :                   :        
+GND                          : R15       :        :                   :        
+GND*                         : R16       :        :                   :        
+GND*                         : R17       :        :                   :        
+GND*                         : R18       :        :                   :        
+GND*                         : T1        :        :                   :        
+GND*                         : T2        :        :                   :        
+GND*                         : T3        :        :                   :        
+GND*                         : T4        :        :                   :        
+GND*                         : T5        :        :                   :        
+GND*                         : T6        :        :                   :        
+GND*                         : T7        :        :                   :        
+GND*                         : T8        :        :                   :        
+GND+                         : T9        :        :                   :        
+GND+                         : T10       :        :                   :        
+GND*                         : T11       :        :                   :        
+GND*                         : T12       :        :                   :        
+GND*                         : T13       :        :                   :        
+GND*                         : T14       :        :                   :        
+GND*                         : T15       :        :                   :        
+GND*                         : T16       :        :                   :        
+GND*                         : T17       :        :                   :        
+GND*                         : T18       :        :                   :        
+GND*                         : U1        :        :                   :        
+GND*                         : U2        :        :                   :        
+GND*                         : U3        :        :                   :        
+GND*                         : U4        :        :                   :        
+GND*                         : U5        :        :                   :        
+GND*                         : U6        :        :                   :        
+GND*                         : U7        :        :                   :        
+CONF_DONE                    : U8        :        :                   :        
+NSTATUS                      : U9        :        :                   :        
+TCK                          : U10       :        :                   :        
+TMS                          : U11       :        :                   :        
+GND*                         : U12       :        :                   :        
+GND*                         : U13       :        :                   :        
+GND*                         : U14       :        :                   :        
+GND*                         : U15       :        :                   :        
+GND*                         : U16       :        :                   :        
+GND*                         : U17       :        :                   :        
+GND*                         : U18       :        :                   :        
+GND*                         : V1        :        :                   :        
+GND*                         : V2        :        :                   :        
+GND*                         : V3        :        :                   :        
+GND*                         : V4        :        :                   :        
+GND*                         : V5        :        :                   :        
+GND*                         : V6        :        :                   :        
+GND*                         : V7        :        :                   :        
+GND*                         : V8        :        :                   :        
+GND*                         : V9        :        :                   :        
+GND*                         : V10       :        :                   :        
+GND*                         : V11       :        :                   :        
+GND*                         : V12       :        :                   :        
+GND*                         : V13       :        :                   :        
+GND*                         : V14       :        :                   :        
+GND*                         : V15       :        :                   :        
+GND*                         : V16       :        :                   :        
+GND*                         : V17       :        :                   :        
+GND*                         : V18       :        :                   :        

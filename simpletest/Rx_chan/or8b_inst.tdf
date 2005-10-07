@@ -1,0 +1,8 @@
+(
+	result_sig
+) = or8b	(
+	.data[][] = data_sig[][]
+)
+RETURNS (
+	.result
+);

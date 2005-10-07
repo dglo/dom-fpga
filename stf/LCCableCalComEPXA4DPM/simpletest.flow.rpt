@@ -1,0 +1,92 @@
+Flow report for simpletest
+Mon Nov 29 16:38:25 2004
+Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Flow Summary
+  3. Flow Settings
+  4. Flow Elapsed Time
+  5. Flow Log
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2004 Altera Corporation
+Any  megafunction  design,  and related netlist (encrypted  or  decrypted),
+support information,  device programming or simulation file,  and any other
+associated  documentation or information  provided by  Altera  or a partner
+under  Altera's   Megafunction   Partnership   Program  may  be  used  only
+to program  PLD  devices (but not masked  PLD  devices) from  Altera.   Any
+other  use  of such  megafunction  design,  netlist,  support  information,
+device programming or simulation file,  or any other  related documentation
+or information  is prohibited  for  any  other purpose,  including, but not
+limited to  modification,  reverse engineering,  de-compiling, or use  with
+any other  silicon devices,  unless such use is  explicitly  licensed under
+a separate agreement with  Altera  or a megafunction partner.  Title to the
+intellectual property,  including patents,  copyrights,  trademarks,  trade
+secrets,  or maskworks,  embodied in any such megafunction design, netlist,
+support  information,  device programming or simulation file,  or any other
+related documentation or information provided by  Altera  or a megafunction
+partner, remains with Altera, the megafunction partner, or their respective
+licensors. No other licenses, including any licenses needed under any third
+party's intellectual property, are provided herein.
+
+
+
++---------------------------------------------------------------+
+; Flow Summary                                                  ;
++-----------------------+---------------------------------------+
+; Flow Status           ; Successful - Mon Nov 29 16:38:25 2004 ;
+; Revision Name         ; simpletest                            ;
+; Top-level Entity Name ; simpletest                            ;
+; Family                ; EXCALIBUR_ARM                         ;
+; Device                ; EPXA4F672I2                           ;
+; Total logic elements  ; 2,935 / 16,640 ( 17 % )               ;
+; Total pins            ; 284 / 463 ( 61 % )                    ;
+; Total memory bits     ; 2,688 / 212,992 ( 1 % )               ;
+; Total PLLs            ; 2 / 4 ( 50 % )                        ;
++-----------------------+---------------------------------------+
+
+
++-----------------------------------------+
+; Flow Settings                           ;
++------------------------------------------
+; Option            ; Setting             ;
++-------------------+---------------------+
+; Start date & time ; 11/29/2004 16:32:54 ;
+; Main task         ; Compilation         ;
+; Revision Name     ; simpletest          ;
++-------------------+---------------------+
+
+
++-------------------------------------+
+; Flow Elapsed Time                   ;
++--------------------------------------
+; Module Name          ; Elapsed Time ;
++----------------------+--------------+
+; Analysis & Synthesis ; 00:01:16     ;
+; Fitter               ; 00:03:47     ;
+; Assembler            ; 00:00:06     ;
+; Timing Analyzer      ; 00:00:08     ;
+; EDA Netlist Writer   ; 00:00:05     ;
+; Total                ; 00:05:22     ;
++----------------------+--------------+
+
+
+------------
+; Flow Log ;
+------------
+quartus_map --import_settings_files=on --export_settings_files=off simpletest -c simpletest
+quartus_fit --import_settings_files=off --export_settings_files=off simpletest -c simpletest
+quartus_asm --import_settings_files=off --export_settings_files=off simpletest -c simpletest
+quartus_tan --import_settings_files=off --export_settings_files=off simpletest -c simpletest
+quartus_eda --import_settings_files=off --export_settings_files=off simpletest -c simpletest
+
+
+
