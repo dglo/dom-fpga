@@ -1,0 +1,55 @@
+--------------------------------------------------------------------------------------
+Timing Analyzer Summary
+--------------------------------------------------------------------------------------
+
+Type           : Worst-case tsu
+Slack          : -2.274 ns
+Required Time  : 1.000 ns
+Actual Time    : 3.274 ns
+From           : OneSPE
+To             : hit_counter:inst_hit_counter|OneSPE0
+
+Type           : Worst-case tco
+Slack          : -1.738 ns
+Required Time  : 1.000 ns
+Actual Time    : 2.738 ns
+From           : atwd:atwd1|atwd_trigger:inst_atwd_trigger|ATWDTrigger_sig
+To             : ATWDTrigger_1
+
+Type           : Worst-case th
+Slack          : N/A
+Required Time  : None
+Actual Time    : -6.689 ns
+From           : TriggerComplete_0
+To             : atwd:atwd0|atwd_trigger:inst_atwd_trigger|TriggerComplete_in_0
+
+Type           : Worst-case minimum tco
+Slack          : N/A
+Required Time  : None
+Actual Time    : 1.189 ns
+From           : pll2x:inst_pll2x|altclklock:altclklock_component|outclock0
+To             : CLKLK_OUT2p
+
+Type           : Clock Setup: 'pll4x:inst_pll4x|altclklock:altclklock_component|outclock0'
+Slack          : 1.801 ns
+Required Time  : 60.00 MHz ( period = 16.666 ns )
+Actual Time    : 76.55 MHz ( period = 13.064 ns )
+From           : slaveregister:slaveregister_inst|command_4_local[1]
+To             : atwd:atwd1|atwd_trigger:inst_atwd_trigger|launch_mode[1]
+
+Type           : Clock Setup: 'pll4x:inst_pll4x|altclklock:altclklock_component|outclock1'
+Slack          : 6.114 ns
+Required Time  : 120.00 MHz ( period = 8.333 ns )
+Actual Time    : Restricted to 349.90 MHz ( period = 2.858 ns )
+From           : atwd:atwd0|atwd_control:inst_atwd_control|cclk
+To             : atwd:atwd0|atwd_control:inst_atwd_control|CounterClock~reg0
+
+Type           : Clock Setup: 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock0'
+Slack          : 9.536 ns
+Required Time  : 20.00 MHz ( period = 50.000 ns )
+Actual Time    : 32.33 MHz ( period = 30.928 ns )
+From           : stripe:stripe_inst|alt_exc_stripe:lpm_instance|alt_exc_upcore:core|core~SLAVEHREADYO0
+To             : master_data_source:inst_master_data_source|wdata[28]~reg0
+
+--------------------------------------------------------------------------------------
+
