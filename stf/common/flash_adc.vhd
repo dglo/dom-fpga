@@ -135,7 +135,7 @@ BEGIN
 	
 	
 	data_sig(9 downto 0)	<= FLASH_AD_D WHEN write_en='0' ELSE wdata(9 downto 0);
-	data_sig(10)			<= FLASH_NCO WHEN write_en='0' ELSE wdata(10);
+	data_sig(10)			<= '0' WHEN write_en='0' ELSE wdata(10); -- Azriel doesn't want to have the overflow flag!  --FLASH_NCO WHEN write_en='0' ELSE wdata(10);
 	data_sig(15 downto 11)	<= (others=>'0') WHEN write_en='0' ELSE wdata(15 downto 11);
 	wraddress_sig	<= wraddress WHEN write_en='0' ELSE address;
 	wren_sig		<= wren WHEN write_en='0' ELSE write_en;

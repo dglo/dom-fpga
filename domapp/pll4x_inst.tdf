@@ -1,0 +1,10 @@
+(
+	locked_sig,
+	clock1_sig
+) = pll4x	(
+	.inclock = inclock_sig
+)
+RETURNS (
+	.locked,
+	.clock1
+);

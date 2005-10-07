@@ -37,6 +37,7 @@ ENTITY atwd_trigger IS
 		enable_disc	: IN STD_LOGIC;
 		enable_LED	: IN STD_LOGIC;
 		done		: OUT STD_LOGIC;
+		deadtime	: IN STD_LOGIC_VECTOR (3 DOWNTO 0) := "0000";
 		-- controller
 		busy		: IN STD_LOGIC;
 		reset_trig	: IN STD_LOGIC;
@@ -47,6 +48,8 @@ ENTITY atwd_trigger IS
 		ATWDTrigger			: OUT STD_LOGIC;
 		TriggerComplete_in	: IN STD_LOGIC;
 		TriggerComplete_out	: OUT STD_LOGIC;
+		-- frontend pulser
+		FE_pulse			: IN STD_LOGIC := '0';
 		-- test connector
 		TC					: OUT STD_LOGIC_VECTOR(7 downto 0)
 	);
@@ -92,7 +95,9 @@ ARCHITECTURE arch_atwd_trigger OF atwd_trigger IS
 	SIGNAL enable_LED_sig				: STD_LOGIC;
 	
 	SIGNAL enable_LED_force	: STD_LOGIC;
-			
+	
+	SIGNAL no_trigger	: STD_LOGIC;
+		
 BEGIN
 	
 	PROCESS(CLK40,RST)
@@ -142,11 +147,41 @@ BEGIN
 			discFF	<= '1';
 		END IF;
 	END PROCESS;
-	rst_trg <= NOT enable_disc;
+	
+	-- rst_trg <= NOT enable_disc;
+	reset_trigger : PROCESS (RST, CLK20)
+		VARIABLE cnt : STD_LOGIC_VECTOR (11 DOWNTO 0);
+	BEGIN
+		IF RST='1' THEN
+			rst_trg	<= '1';
+			cnt		:= CONV_STD_LOGIC_VECTOR(1, 12);
+		ELSIF CLK20'EVENT AND CLK20='1' THEN
+			IF discFF='1' THEN
+				IF cnt(1+CONV_INTEGER(deadtime))='1' THEN
+					rst_trg	<= '1';
+				ELSE
+					rst_trg	<= '0';
+				END IF;
+				cnt	:= cnt + 1;
+			ELSE
+				rst_trg	<= '0';
+				cnt		:= CONV_STD_LOGIC_VECTOR(1, 12);
+			END IF;
+		END IF;
+	END PROCESS;
+	
+	launch_window : PROCESS (CLK40, RST)
+		VARIABLE	got_disc	: STD_LOGIC;
+	BEGIN
+		IF CLK40'EVENT AND CLK40='1' THEN
+			no_trigger	<= got_disc;
+			got_disc	:= discFF;
+		END IF;
+	END PROCESS;
 	
 	disc <= discFF;
 	
-	enable_sig	<= NOT busy AND enable_disc_sig;
+	enable_sig	<= NOT busy AND enable_disc_sig AND NOT no_trigger;
 	set_sig		<= triggered
 				OR (force AND NOT busy);
 	force	<= enable_pos_edge OR enable_LED_force;

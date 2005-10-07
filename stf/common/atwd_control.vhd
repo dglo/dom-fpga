@@ -18,6 +18,7 @@
 -- Revisions  :
 -- Date        Version     Author    Description
 -- 2003-07-17  V01-01-00   thorsten  
+-- 2004-10-22              thorsten  added LC_abort
 -------------------------------------------------------------------------------
 
 LIBRARY IEEE;
@@ -35,6 +36,8 @@ ENTITY atwd_control IS
 		-- trigger interface
 		busy		: OUT STD_LOGIC;
 		reset_trig	: OUT STD_LOGIC;
+		-- LC interface
+		LC_abort	: IN STD_LOGIC := '0';
 		-- handshake to readout
 		start_readout	: OUT STD_LOGIC;
 		readout_done	: IN STD_LOGIC;
@@ -174,11 +177,19 @@ BEGIN
 					DigitalSet		<= '0';
 					DigitalReset	<= '1';
 					ReadWrite		<= '0';
+					AnalogReset		<= '1';
+					RampSet			<= '1';
+					OutputEnable	<= '0';
+					channel			<= "00";
 					reset_trig		<= '1';
 				WHEN ATWDrecover =>
 					state	<= idle;
 			END CASE;
-				
+			
+			-- LC abort (goto restart ATWD)
+			IF LC_abort = '1' THEN
+				state	<= restart_ATWD;
+			END IF;
 		END IF;
 	END PROCESS;
 	

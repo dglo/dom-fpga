@@ -1,0 +1,50 @@
+TITLE "send delay to fade out cable reflection, LAST CHANGE: 2004-12-12";
+
+
+--FUNCTION send_del_ctdn (	clock,	clk_en,	sload,	aclr,	data[7..0])
+--RETURNS (	q[7..0],	cout);
+
+INCLUDE	"send_del_ctdn";
+
+SUBDESIGN	send_delay
+(
+	clk					: INPUT;
+	reset				: INPUT;
+	send_ctrl			: INPUT;
+	send_data			: INPUT;
+	send_del[7..0]		: INPUT;	-- multiples of 50ns
+		
+	send_ctrl_del		: OUTPUT;
+	send_data_del		: OUTPUT;
+)
+
+
+VARIABLE
+	send[1..0]			: DFF;
+	send_ctrl_del		: DFFE;
+	send_data_del		: DFFE;
+	timer				: send_del_ctdn;
+	
+BEGIN
+
+send[].clk		= clk;
+send[].clrn		= !reset;
+send[0].d		= send_ctrl # send_data;
+send[1].d		= send[0].q;
+
+timer.clock		= clk;
+timer.clk_en	= !timer.cout # send[0].q & !send[1].q;
+timer.sload		= send[0].q & !send[1].q;
+timer.aclr		= reset;
+timer.data[]	= send_del[];
+
+send_ctrl_del.clk	= clk;
+send_ctrl_del.clrn	= send_ctrl;
+send_ctrl_del.ena	= timer.q[]==1;
+send_ctrl_del.d		= send_ctrl;
+
+send_data_del.clk	= clk;
+send_data_del.clrn	= send_data;
+send_data_del.ena	= timer.q[]==1;
+send_data_del.d		= send_data;
+END;

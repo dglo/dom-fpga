@@ -48,6 +48,7 @@ ENTITY slaveregister IS
 		-- kale communication interface
 		tx_pack_rdy			: OUT STD_LOGIC;
 		rx_dpr_radr_stb		: OUT STD_LOGIC;
+		com_reset_rcvd		: IN STD_LOGIC;
 		-- test connector
 		TC					: OUT	STD_LOGIC_VECTOR(7 downto 0)
 	);
@@ -81,6 +82,8 @@ BEGIN
 					WHEN "0101000000" =>	-- com control
 						IF reg_write = '1' THEN
 							com_ctrl_local <= reg_wdata;
+							-- debugging
+							TC	<= reg_wdata(31 DOWNTO 24);
 						ELSE
 							reg_rdata <= com_ctrl_local;
 							reg_rdata(31 DOWNTO 1)	<= (OTHERS=>'0');
@@ -127,6 +130,11 @@ BEGIN
 			ELSE	-- reg_enable='0'
 				NULL;
 			END IF;	-- reg_enable
+			
+			IF com_reset_rcvd='1' THEN	-- reset DPM pointers when communications module is reset
+				tx_dpr_wadr_local	<= (others=>'0');
+				rx_dpr_radr_local	<= (others=>'0');
+			END IF;
 		END IF;
 	END PROCESS;
 	

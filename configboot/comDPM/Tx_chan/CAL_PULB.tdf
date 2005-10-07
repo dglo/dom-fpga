@@ -1,0 +1,155 @@
+% D:\DOMCOM\FPGA\FC8B_TEST\TXCHAN\CAL_PULB.tdf %
+% AHDL code created by Visual Software Solution's StateCAD 5.0 %
+% Fri Aug 30 13:46:33 2002 %
+
+% This AHDL code was generated using: %
+%  binary encoded state assignment with structured code format. %
+%  Minimization is enabled,  implied else is enabled,  %
+%  and outputs are speed optimized. %
+
+SUBDESIGN CAL_PULB(
+	CLK :	INPUT;
+	ctup8_q[7..0] :	INPUT;
+	res :	INPUT;
+	snd_rdy :	INPUT;
+	tcal_ena :	INPUT;
+	time_exp :	INPUT;
+	cal_rdy :	OUTPUT;
+	ctup8_aclr :	OUTPUT;
+	time_lat :	OUTPUT;
+	txouten :	OUTPUT;
+	txoutn :	OUTPUT;
+	txoutp :	OUTPUT;
+)
+
+
+VARIABLE
+	sreg1 : MACHINE OF BITS (SV0, SV1, SV4, SV5)
+		WITH STATES (
+			IDLE =	B"0100",
+			CT_CLR =	B"0000",
+			DEL1 =	B"0001",
+			DEL2 =	B"0010",
+			HPULS =	B"0011",
+			LPULS =	B"0101",
+			RDY =	B"0110",
+			TLAT =	B"0111",
+			WT4HDR =	B"1000"
+		);
+
+	cal_rdy :	DFF;
+	ctup8_aclr :	DFF;
+	time_lat :	DFF;
+	txouten :	DFF;
+	txoutn :	DFF;
+	txoutp :	DFF;
+
+	cteq7 :	NODE;
+	cteq15 :	NODE;
+	cteq31 :	NODE;
+BEGIN
+
+% Clock setup %
+	cal_rdy.clk=CLK;
+	ctup8_aclr.clk=CLK;
+	time_lat.clk=CLK;
+	txouten.clk=CLK;
+	txoutn.clk=CLK;
+	txoutp.clk=CLK;
+	sreg1.clk=CLK;
+
+	sreg1.reset =  res ;
+
+	IF ( res ) THEN
+		cal_rdy.clrn=GND;
+		time_lat.clrn=GND;
+		ctup8_aclr.prn=GND;
+		txouten.clrn=GND;
+		txoutn.clrn=GND;
+		txoutp.clrn=GND;
+	ELSE
+		cal_rdy.clrn=VCC;
+		time_lat.clrn=VCC;
+		ctup8_aclr.prn=VCC;
+		txouten.clrn=VCC;
+		txoutn.clrn=VCC;
+		txoutp.clrn=VCC;
+	END IF;
+
+	CASE sreg1 IS
+		WHEN CT_CLR =>
+			sreg1 = TLAT;
+			(cal_rdy,time_lat,ctup8_aclr,txouten,txoutn,txoutp)=(0,1,0,1,0,1);
+		WHEN DEL1 =>
+			IF ( time_exp ) THEN 
+				sreg1 = CT_CLR;
+				(cal_rdy,time_lat,ctup8_aclr,txouten,txoutn,txoutp)=(0,0,1,1,0,0);
+			ELSE
+				sreg1 = DEL1;
+				(cal_rdy,time_lat,ctup8_aclr,txouten,txoutn,txoutp)=(0,0,0,1,0,0);
+			END IF;
+		WHEN DEL2 =>
+			IF ( cteq31 ) THEN 
+				sreg1 = RDY;
+				(cal_rdy,time_lat,ctup8_aclr,txouten,txoutn,txoutp)=(1,0,1,0,0,0);
+			ELSE
+				sreg1 = DEL2;
+				(cal_rdy,time_lat,ctup8_aclr,txouten,txoutn,txoutp)=(0,0,0,1,0,0);
+			END IF;
+		WHEN HPULS =>
+			IF ( cteq7 ) THEN 
+				sreg1 = LPULS;
+				(cal_rdy,time_lat,ctup8_aclr,txouten,txoutn,txoutp)=(0,0,0,1,1,0);
+			ELSE
+				sreg1 = HPULS;
+				(cal_rdy,time_lat,ctup8_aclr,txouten,txoutn,txoutp)=(0,0,0,1,0,1);
+			END IF;
+		WHEN IDLE =>
+			IF ( tcal_ena ) THEN 
+				sreg1 = WT4HDR;
+				(cal_rdy,time_lat,ctup8_aclr,txouten,txoutn,txoutp)=(0,0,1,1,0,0);
+			ELSE
+				sreg1 = IDLE;
+				(cal_rdy,time_lat,ctup8_aclr,txouten,txoutn,txoutp)=(0,0,1,0,0,0);
+			END IF;
+		WHEN LPULS =>
+			IF ( cteq15 ) THEN 
+				sreg1 = DEL2;
+				(cal_rdy,time_lat,ctup8_aclr,txouten,txoutn,txoutp)=(0,0,0,1,0,0);
+			ELSE
+				sreg1 = LPULS;
+				(cal_rdy,time_lat,ctup8_aclr,txouten,txoutn,txoutp)=(0,0,0,1,1,0);
+			END IF;
+		WHEN RDY =>
+			IF ( tcal_ena ) THEN 
+				sreg1 = WT4HDR;
+				(cal_rdy,time_lat,ctup8_aclr,txouten,txoutn,txoutp)=(0,0,1,1,0,0);
+			ELSE
+				sreg1 = RDY;
+				(cal_rdy,time_lat,ctup8_aclr,txouten,txoutn,txoutp)=(1,0,1,0,0,0);
+			END IF;
+		WHEN TLAT =>
+			sreg1 = HPULS;
+			(cal_rdy,time_lat,ctup8_aclr,txouten,txoutn,txoutp)=(0,0,0,1,0,1);
+		WHEN WT4HDR =>
+			IF ( snd_rdy ) THEN 
+				sreg1 = DEL1;
+				(cal_rdy,time_lat,ctup8_aclr,txouten,txoutn,txoutp)=(0,0,0,1,0,0);
+			ELSE
+				sreg1 = WT4HDR;
+				(cal_rdy,time_lat,ctup8_aclr,txouten,txoutn,txoutp)=(0,0,1,1,0,0);
+			END IF;
+	END CASE;
+
+
+% Logic Equations %
+cteq7 =  !ctup8_q7 & !ctup8_q6 & !ctup8_q5 & !ctup8_q4 & !ctup8_q3 & ctup8_q2
+	 & ctup8_q1 & ctup8_q0 ;
+
+cteq15 =  !ctup8_q7 & !ctup8_q6 & !ctup8_q5 & !ctup8_q4 & ctup8_q3 & ctup8_q2
+	 & ctup8_q1 & ctup8_q0 ;
+
+cteq31 =  !ctup8_q7 & !ctup8_q6 & !ctup8_q5 & ctup8_q4 & ctup8_q3 & ctup8_q2 
+	& ctup8_q1 & ctup8_q0 ;
+
+END;
