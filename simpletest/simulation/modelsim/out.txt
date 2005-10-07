@@ -1,5 +1,0 @@
-Altera Excalibur Bus Language Translator
-Version 10.5
-Input: input.dat,	Output: mastercommands.dat
-Writing mastercommands.dat ...
-Translation successful.
