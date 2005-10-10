@@ -1,8 +1,0 @@
-(
-	result_sig[]
-) = ID_HDR_BYTE_2	(
-
-)
-RETURNS (
-	.result[]
-);

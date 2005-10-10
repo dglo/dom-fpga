@@ -1,1 +1,0 @@
-makeprogfile -e EPXA4 -p <out name>.pof <name>.sbd <name>.psof <name>.hex

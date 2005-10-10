@@ -1,8 +1,0 @@
-(
-	result_sig
-) = or16b	(
-	.data[][] = data_sig[][]
-)
-RETURNS (
-	.result
-);
