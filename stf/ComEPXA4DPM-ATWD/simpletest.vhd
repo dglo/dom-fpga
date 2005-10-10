@@ -176,6 +176,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL CLK20	: STD_LOGIC;
 	SIGNAL CLK40	: STD_LOGIC;
 	SIGNAL CLK80	: STD_LOGIC;
+	SIGNAL CLK20n	: STD_LOGIC;
 	SIGNAL CLK30	: STD_LOGIC;
 	SIGNAL CLK60	: STD_LOGIC;
 	SIGNAL CLK120	: STD_LOGIC;
@@ -1427,6 +1428,7 @@ BEGIN
 		);
 	CLKLK_OUT2p	<= CLK20;	-- 40MHz output for FADC
 	
+	CLK20n	<= CLK30;
 	CLK40	<= CLK60;
 	CLK80	<= CLK120;
 	
@@ -1718,7 +1720,7 @@ BEGIN
 		
 	inst_fe_testpulse : fe_testpulse
 		PORT MAP (
-			CLK			=> CLK20,
+			CLK			=> CLK20n,
 			RST			=> RST,
 			-- enable flasher
 			enable		=> fe_pulser_enable,
@@ -1731,7 +1733,7 @@ BEGIN
 	
 	inst_single_led : single_led
 		PORT MAP (
-			CLK			=> CLK20,
+			CLK			=> CLK20n,
 			RST			=> RST,
 			-- enable flasher
 			enable		=> single_led_enable,
@@ -1744,7 +1746,7 @@ BEGIN
 		
 	inst_coinc : coinc
 		PORT MAP (
-			CLK					=> CLK20,
+			CLK					=> CLK20n,
 			RST					=> RST,
 			-- enable
 			enable_coinc_down	=> enable_coinc_down,
@@ -1820,7 +1822,7 @@ BEGIN
 		
 	inst_hit_counter : hit_counter
 		PORT MAP (
-			CLK				=> CLK20,
+			CLK				=> CLK20n,
 			RST				=> RST,
 			-- setup
 			gatetime		=> hit_counter_gate,
@@ -1840,7 +1842,7 @@ BEGIN
 		
 	inst_hit_counter_ff : hit_counter_ff
 		PORT MAP (
-			CLK				=> CLK20,
+			CLK				=> CLK20n,
 			RST				=> RST,
 			-- setup
 			gatetime		=> hit_counter_gate,
@@ -1894,7 +1896,7 @@ BEGIN
 		
 	atwd0 : atwd
 		PORT MAP (
-			CLK20		=> CLK20,
+			CLK20		=> CLK20n,
 			CLK40		=> CLK40,
 			CLK80		=> CLK80,
 			RST			=> RST,
@@ -1940,7 +1942,7 @@ BEGIN
 	
 	atwd1 : atwd
 		PORT MAP (
-			CLK20		=> CLK20,
+			CLK20		=> CLK20n,
 			CLK40		=> CLK40,
 			CLK80		=> CLK80,
 			RST			=> RST,
@@ -2004,7 +2006,7 @@ BEGIN
 		
 	inst_r2r : r2r
 		PORT MAP (
-			CLK			=> CLK20,
+			CLK			=> CLK20n,
 			RST			=> RST,
 			-- enable for TX
 			enable		=> enable_r2r,
@@ -2016,7 +2018,7 @@ BEGIN
 		
 	inst_fe_r2r : fe_r2r
 		PORT MAP (
-			CLK			=> CLK20,
+			CLK			=> CLK20n,
 			RST			=> RST,
 			-- enable for TX
 			enable		=> enable_fe_r2r,
@@ -2029,7 +2031,7 @@ BEGIN
 		
 	flasher_board_inst : flasher_board
 		PORT MAP (
-			CLK					=> CLK20,
+			CLK					=> CLK20n,
 			RST					=> RST,
 			-- enable flasher board flash
 			enable				=> enable_flasher,
