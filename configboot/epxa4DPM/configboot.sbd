@@ -1,0 +1,244 @@
+device configboot
+{
+    family = excalibur_arm; 
+    type = epxa4; 
+    quartus_version = "Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version"; 
+    module stripe
+    {
+        type = excalibur_stripe; 
+        hold_processor = false; 
+        boot_from_flash = false; 
+        configuration_device = epc8; 
+        programming_clock_frequency = 16000000; 
+        endian = little; 
+        parameters uart
+        {
+            enabled = false; 
+            input_pin_standard = lvttl_3v3; 
+            output_pin_standard = slow_slew; 
+        }
+
+        parameters trace
+        {
+            enabled = false; 
+            output_pin_standard = fast_slew; 
+        }
+
+        parameters pld
+        {
+            use_pld_to_stripe_bridge = false; 
+            use_stripe_to_pld_bridge = true; 
+            use_pld_to_stripe_interrupts = false; 
+            use_stripe_to_pld_interrupts = false; 
+            use_debug_extensions = false; 
+            use_trace_extensions = false; 
+            use_gpio_port = false; 
+            gpio_port_width = 8; 
+            pld_to_stripe_interrupt_mode = Six_individual_requests; 
+        }
+
+        parameters clocks
+        {
+            input_clock_frequency = 20000000; 
+            desired_ahb1_clock_frequency = 40000000; 
+            desired_sdram_clock_frequency = 80000000; 
+            pll_ahb_bypass = false; 
+            pll_ahb_m = 28; 
+            pll_ahb_n = 1; 
+            pll_ahb_k = 7; 
+            ahb1_divide = 2; 
+            ahb2_divide = 4; 
+            pll_sdram_bypass = true; 
+            pll_sdram_m = 0; 
+            pll_sdram_n = 0; 
+            pll_sdram_k = 0; 
+        }
+
+        parameters dpram
+        {
+            combined_data_width = 32; 
+            combined_address_range = 0x4000; 
+            combined_mode = false; 
+            combined_outputs_registered = false; 
+            mode[0] = one_port; 
+            data_width[0] = 32; 
+            address_range[0] = 0x2000; 
+            outputs_registered[0] = false; 
+            region region[0]
+            {
+                address_base = 0x80000000; 
+                enabled = true; 
+                address_size = 0x8000; 
+            }
+
+            mode[1] = one_port; 
+            data_width[1] = 32; 
+            address_range[1] = 0x2000; 
+            outputs_registered[1] = false; 
+            region region[1]
+            {
+                address_base = 0x80008000; 
+                enabled = true; 
+                address_size = 0x8000; 
+            }
+
+        }
+
+        parameters sdram
+        {
+            input_pin_standard = lvttl_3v3; 
+            output_pin_standard = fast_slew; 
+            enabled = false; 
+            data_width = 32; 
+            type = SDR; 
+            device_name = "Micron MT48LC16M8A2"; 
+            active_to_read_or_write_delay = 20; 
+            active_to_precharge_command = 45; 
+            active_banka_to_bankb_command = 15; 
+            precharge_command_period = 20; 
+            write_recovery_time = 15; 
+            active_to_active_command_period = 65; 
+            refresh_period = 15625; 
+            auto_refresh_command_period = 65; 
+            burst_length = 8; 
+            row_address_bits = 12; 
+            column_address_bits = 10; 
+            bank_address_bits = 2; 
+            cas_latency = 2.000000; 
+            region region[0]
+            {
+                address_base = 0x0; 
+                enabled = false; 
+                address_size = 0x0; 
+            }
+
+            region region[1]
+            {
+                address_base = 0x800000; 
+                enabled = false; 
+                address_size = 0x0; 
+            }
+
+        }
+
+        parameters ebi
+        {
+            input_pin_standard = lvttl_3v3; 
+            output_pin_standard = fast_slew; 
+            enabled = true; 
+            clock_divide = 4; 
+            timeout_enable = false; 
+            timeout_clock_cycles = 1; 
+            external_clock_enable = true; 
+            split_read = false; 
+            region region[0]
+            {
+                address_base = 0x41000000; 
+                enabled = true; 
+                address_size = 0x400000; 
+                prefetch = false; 
+                synchronous = true; 
+                byte_enable = false; 
+                wait_cycles = 8; 
+                data_width = 16; 
+                chip_select_polarity = low; 
+            }
+
+            region region[1]
+            {
+                address_base = 0x41400000; 
+                enabled = true; 
+                address_size = 0x400000; 
+                prefetch = false; 
+                synchronous = true; 
+                byte_enable = false; 
+                wait_cycles = 0; 
+                data_width = 16; 
+                chip_select_polarity = low; 
+            }
+
+            region region[2]
+            {
+                address_base = 0x50000000; 
+                enabled = true; 
+                address_size = 0x4000; 
+                prefetch = false; 
+                synchronous = true; 
+                byte_enable = true; 
+                wait_cycles = 0; 
+                data_width = 8; 
+                chip_select_polarity = low; 
+            }
+
+            region region[3]
+            {
+                address_base = 0x60000000; 
+                enabled = false; 
+                address_size = 0x0; 
+                prefetch = false; 
+                synchronous = true; 
+                byte_enable = false; 
+                wait_cycles = 0; 
+                data_width = 16; 
+                chip_select_polarity = low; 
+            }
+
+        }
+
+        region registers
+        {
+            address_base = 0x7FFFC000; 
+            enabled = true; 
+            address_size = 0x4000; 
+        }
+
+        region sram[0]
+        {
+            address_base = 0x0; 
+            enabled = true; 
+            address_size = 0x10000; 
+        }
+
+        region sram[1]
+        {
+            address_base = 0x10000; 
+            enabled = true; 
+            address_size = 0x10000; 
+        }
+
+        region pld[0]
+        {
+            address_base = 0x90000000; 
+            enabled = true; 
+            address_size = 0x4000; 
+            prefetch = false; 
+        }
+
+        region pld[1]
+        {
+            address_base = 0x0; 
+            enabled = false; 
+            address_size = 0x0; 
+            prefetch = false; 
+        }
+
+        region pld[2]
+        {
+            address_base = 0x0; 
+            enabled = false; 
+            address_size = 0x0; 
+            prefetch = false; 
+        }
+
+        region pld[3]
+        {
+            address_base = 0x0; 
+            enabled = false; 
+            address_size = 0x0; 
+            prefetch = false; 
+        }
+
+    }
+
+}
+

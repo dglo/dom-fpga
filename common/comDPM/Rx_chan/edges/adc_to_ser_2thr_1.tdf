@@ -1,0 +1,112 @@
+TITLE "ADC to serial decoder, LAST CHANGE: 2004-12-11";
+
+INCLUDE "GET_DUDT";
+INCLUDE "ctup5";
+
+
+--FUNCTION ctup5 (clock,	aclr)
+--RETURNS (	q[4..0],	cout);
+
+--FUNCTION GET_DUDT (CLK, max_level, min_level, cteq16, cteq4, hl_edge, res, uart_done)
+--	RETURNS (ct_aclr, dudt_ena, find_dudt, max_ena, min_ena, rxd);
+
+
+SUBDESIGN	adc_to_ser_2thr
+(
+	clk					: INPUT;
+	reset				: INPUT;
+	uart_done			: INPUT;	
+	in[9..0]			: INPUT;	-- Communication ADC, meanvalue over 4 clocks
+	low_thr[7..0]		: INPUT;	-- Communication threshold, long cable 
+	lrg_thr[9..0]		: INPUT;	-- Communication threshold, short cable 
+		
+	hl_edge				: OUTPUT;
+	lh_edge				: OUTPUT;
+	max_ena				: OUTPUT;	-- dudt greater MINLEVEL
+	min_ena				: OUTPUT;
+
+	find_dudt			: OUTPUT;
+
+	rxd					: OUTPUT;	-- serial data, 1 clock lengths pulse if ==1
+)
+
+VARIABLE
+
+	ina[9..0]		: DFF;		-- I/O register
+	inb[9..0]		: DFF;
+	inc[9..0]		: DFF;
+	ind[9..0]		: DFF;
+	
+	dudt[9..0]		: DFFE;
+	
+	max_level		: DFF;
+	min_level		: DFF;		
+	hl_edge			: DFF;
+	lh_edge			: DFF;
+	
+	a_greater_d		: NODE;
+	d_greater_a		: NODE;
+	
+	ct				: ctup5;	-- 5 bit up counter
+	get_dudt_stm	: GET_DUDT;	-- state machine
+	
+BEGIN
+
+ct.clock					= clk;
+ct.aclr						= get_dudt_stm.ct_aclr;
+
+get_dudt_stm.(CLK, max_level, min_level, cteq16,  cteq4,  hl_edge, res, uart_done)	=
+			(clk, max_level, min_level, ct.q[4],  ct.q[2], hl_edge, reset, uart_done);
+			
+	ina[].clk				= clk;
+	inb[].clk				= clk;
+	inc[].clk				= clk;
+	ind[].clk				= clk;
+
+	min_level.(clk, clrn)	= (clk, !reset);
+	max_level.(clk, clrn)	= (clk, !reset);
+	hl_edge.(clk, clrn)		= (clk, !reset);
+	lh_edge.(clk, clrn)		= (clk, !reset);
+
+	ina[].d					= in[];
+	inb[].d					= ina[].q;
+	inc[].d					= inb[].q;
+	ind[].d					= inc[].q;
+	
+	dudt[].clk				= clk;
+	
+	dudt[].d				= (0,low_thr[7..0]) 				& get_dudt_stm.min_ena
+							# (lrg_thr[9..6],GND,lrg_thr[4..0]) & get_dudt_stm.max_ena;
+																			-- dudt 32x2mV smaller now
+	
+--	dudt[].d				= 	  (low_thr[9..0]) & get_dudt_stm.min_ena	-- last change 2003/10/20
+--							# (GND,lrg_thr[9..1]) & get_dudt_stm.max_ena;
+							
+	dudt[].ena				= get_dudt_stm.dudt_ena;
+
+	d_greater_a				= ind[] > ina[];
+	a_greater_d				= ina[] > ind[];
+	
+	if( a_greater_d & ((ina[] - ind[]) > (0,low_thr[])) )	-- LH-edge used to evaluate the signals strength
+		THEN	min_level	= VCC;						-- and to get the temporary dudt[] treshold
+		else	min_level	= GND;		END IF;		
+
+	if( a_greater_d & ((ina[] - ind[]) > lrg_thr[]) )
+		THEN	max_level	= VCC;
+		else	max_level	= GND;		END IF;		
+	
+	if( d_greater_a & ((ind[] - ina[]) > dudt[]) )	-- HL-edge used to detect a logic one
+		THEN	hl_edge		= VCC;
+		else	hl_edge		= GND;		END IF;		
+		
+	if( a_greater_d & ((ina[] - ind[]) > dudt[]) )
+		THEN	lh_edge		= VCC;
+		else	lh_edge		= GND;		END IF;		
+		
+	rxd						= get_dudt_stm.rxd;
+	find_dudt				= get_dudt_stm.find_dudt;
+			
+	max_ena					= get_dudt_stm.max_ena;	-- test signals
+	min_ena					= get_dudt_stm.min_ena;
+	
+END;

@@ -1,0 +1,21 @@
+(
+	q_sig[],
+	rdempty_sig,
+	wrfull_sig,
+	wrempty_sig,
+	wrusedw_sig[]
+) = tx_fifo	(
+	.data[] = data_sig[],
+	.wrreq = wrreq_sig,
+	.rdreq = rdreq_sig,
+	.rdclk = rdclk_sig,
+	.wrclk = wrclk_sig,
+	.aclr = aclr_sig
+)
+RETURNS (
+	.q[],
+	.rdempty,
+	.wrfull,
+	.wrempty,
+	.wrusedw[]
+);
