@@ -35,6 +35,7 @@ ENTITY coinc IS
 		-- enable
 		enable_coinc_down	: IN STD_LOGIC;
 		enable_coinc_up		: IN STD_LOGIC;
+		enable_coinc_up_and_down	: IN STD_LOGIC := '0';
 		newFF				: IN STD_LOGIC := '0';
 		enable_coinc_atwd	: IN STD_LOGIC := '0';
 		-- simple LC
@@ -125,6 +126,11 @@ ARCHITECTURE arch_coinc OF coinc IS
 	SIGNAL OneSPElatch		: STD_LOGIC;
 	SIGNAL OneSPErst		: STD_LOGIC_VECTOR (2 DOWNTO 0);
 
+	-- addon for LC_up&down
+	SIGNAL got_lc_atwd_a_up		: STD_LOGIC;
+	SIGNAL got_lc_atwd_a_down	: STD_LOGIC;
+	SIGNAL got_lc_atwd_b_up		: STD_LOGIC;
+	SIGNAL got_lc_atwd_b_down	: STD_LOGIC;
 	
 BEGIN
 	
@@ -447,8 +453,12 @@ BEGIN
 			ATWD_B_up_post_cnt		:= 63;
 			ATWD_B_down_pre_cnt		:= 63;
 			ATWD_B_down_post_cnt	:= 63;
-			LC_atwd_a <= '0';
-			LC_atwd_b <= '0';
+			--LC_atwd_a <= '0';
+			--LC_atwd_b <= '0';
+			got_lc_atwd_a_up		<= '0';
+			got_lc_atwd_a_down		<= '0';
+			got_lc_atwd_b_up		<= '0';
+			got_lc_atwd_b_down		<= '0';
 			atwd_a_enable_disc_old	:= '0';
 			atwd_b_enable_disc_old	:= '0';
 		ELSIF CLK'EVENT AND CLK='1' THEN
@@ -457,7 +467,8 @@ BEGIN
 				ATWD_A_up_pre_cnt := 0;
 				IF ATWD_A_up_post_cnt < CONV_INTEGER(LC_up_post_window) THEN
 					IF LC_rx_up_en = '1' THEN
-						LC_atwd_a	<= '1';	-- we have LC
+						-- LC_atwd_a	<= '1';	-- we have LC
+						got_lc_atwd_a_up	<= '1';
 					END IF;
 				END IF;
 			END IF;
@@ -465,7 +476,8 @@ BEGIN
 				ATWD_A_down_pre_cnt := 0;
 				IF ATWD_A_down_post_cnt < CONV_INTEGER(LC_down_post_window) THEN
 					IF LC_rx_down_en = '1' THEN
-						LC_atwd_a	<= '1';	-- we have LC
+						-- LC_atwd_a	<= '1';	-- we have LC
+						got_lc_atwd_a_down	<= '1';
 					END IF;
 				END IF;
 			END IF;
@@ -473,7 +485,8 @@ BEGIN
 			IF ATWD_A_launch='1' THEN
 				IF ATWD_A_up_pre_cnt < CONV_INTEGER(LC_up_pre_window) THEN
 					IF LC_rx_up_en = '1' THEN
-						LC_atwd_a	<= '1';	-- we have LC
+						-- LC_atwd_a	<= '1';	-- we have LC
+						got_lc_atwd_a_up	<= '1';
 					END IF;
 				END IF;
 				ATWD_A_down_post_cnt := 0;
@@ -481,14 +494,19 @@ BEGIN
 			IF ATWD_A_launch='1' THEN
 				IF ATWD_A_down_pre_cnt < CONV_INTEGER(LC_down_pre_window) THEN
 					IF LC_rx_down_en = '1' THEN
-						LC_atwd_a	<= '1';	-- we have LC
+						-- LC_atwd_a	<= '1';	-- we have LC
+						got_lc_atwd_a_down	<= '1';
 					END IF;
 				END IF;
 				ATWD_A_up_post_cnt := 0;
 			END IF;
 			
+			LC_atwd_a <= got_lc_atwd_a_up OR got_lc_atwd_a_down;
+			
 			IF atwd_a_enable_disc='0' AND atwd_a_enable_disc_old='1' THEN
-				LC_atwd_a <= '0';
+				-- LC_atwd_a <= '0';
+				got_lc_atwd_a_up	<= '0';
+				got_lc_atwd_a_down	<= '0';
 			END IF;
 			atwd_a_enable_disc_old	:= atwd_a_enable_disc;
 			
@@ -510,7 +528,8 @@ BEGIN
 				ATWD_B_up_pre_cnt := 0;
 				IF ATWD_B_up_post_cnt < CONV_INTEGER(LC_up_post_window) THEN
 					IF LC_rx_up_en = '1' THEN
-						LC_ATWD_B	<= '1';	-- we have LC
+						-- LC_ATWD_B	<= '1';	-- we have LC
+						got_lc_atwd_b_up	<= '1';
 					END IF;
 				END IF;
 			END IF;
@@ -518,7 +537,8 @@ BEGIN
 				ATWD_B_down_pre_cnt := 0;
 				IF ATWD_B_down_post_cnt < CONV_INTEGER(LC_down_post_window) THEN
 					IF LC_rx_down_en = '1' THEN
-						LC_ATWD_B	<= '1';	-- we have LC
+						-- LC_ATWD_B	<= '1';	-- we have LC
+						got_lc_atwd_b_down	<= '1';
 					END IF;
 				END IF;
 			END IF;
@@ -526,7 +546,8 @@ BEGIN
 			IF ATWD_B_launch='1' THEN
 				IF ATWD_B_up_pre_cnt < CONV_INTEGER(LC_up_pre_window) THEN
 					IF LC_rx_up_en = '1' THEN
-						LC_ATWD_B	<= '1';	-- we have LC
+						-- LC_ATWD_B	<= '1';	-- we have LC
+						got_lc_atwd_b_up	<= '1';
 					END IF;
 				END IF;
 				ATWD_B_down_post_cnt := 0;
@@ -534,14 +555,19 @@ BEGIN
 			IF ATWD_B_launch='1' THEN
 				IF ATWD_B_down_pre_cnt < CONV_INTEGER(LC_down_pre_window) THEN
 					IF LC_rx_down_en = '1' THEN
-						LC_ATWD_B	<= '1';	-- we have LC
+						-- LC_ATWD_B	<= '1';	-- we have LC
+						got_lc_atwd_b_down	<= '1';
 					END IF;
 				END IF;
 				ATWD_B_up_post_cnt := 0;
 			END IF;
 			
+			LC_atwd_b <= got_lc_atwd_b_up OR got_lc_atwd_b_down;
+			
 			IF atwd_b_enable_disc='0' AND atwd_b_enable_disc_old='1' THEN
-				LC_atwd_b <= '0';
+				-- LC_atwd_b <= '0';
+				got_lc_atwd_b_up	<= '0';
+				got_lc_atwd_b_down	<= '0';
 			END IF;
 			atwd_b_enable_disc_old	:= atwd_b_enable_disc;
 			
@@ -562,7 +588,9 @@ BEGIN
 			
 			IF ATWD_A_up_post_cnt = MAX_WINDOW_CNT THEN
 				edgeAold := edgeA;
-				IF LC_atwd_a = '0' THEN -- no LC -> abort
+				-- IF LC_atwd_a = '0' THEN -- no LC -> abort
+				IF (enable_coinc_up_and_down='0' and got_lc_atwd_a_up='0' and got_lc_atwd_a_down='0') OR
+					(enable_coinc_up_and_down='1' and (got_lc_atwd_a_up='0' or got_lc_atwd_a_down='0')) THEN
 					 edgeA := '1';
 				END IF;
 			ELSE
@@ -573,7 +601,9 @@ BEGIN
 			
 			IF ATWD_B_up_post_cnt = MAX_WINDOW_CNT THEN
 				edgeBold := edgeB;
-				IF LC_atwd_b = '0' THEN -- no LC -> abort
+				-- IF LC_atwd_b = '0' THEN -- no LC -> abort
+				IF (enable_coinc_up_and_down='0' and got_lc_atwd_b_up='0' and got_lc_atwd_b_down='0') OR
+					(enable_coinc_up_and_down='1' and (got_lc_atwd_b_up='0' or got_lc_atwd_b_down='0')) THEN
 					 edgeB := '1';
 				END IF;
 			ELSE

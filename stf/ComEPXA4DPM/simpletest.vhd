@@ -295,6 +295,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	-- local coincidence
 	SIGNAL enable_coinc_up		: STD_LOGIC;
 	SIGNAL enable_coinc_down	: STD_LOGIC;
+	SIGNAL enable_coinc_up_and_down	: STD_LOGIC;
 	SIGNAL enable_coinc_newFF	: STD_LOGIC;
 	SIGNAL coinc_down_high		: STD_LOGIC;
 	SIGNAL coinc_down_low		: STD_LOGIC;
@@ -787,6 +788,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			-- enable
 			enable_coinc_down	: IN STD_LOGIC;
 			enable_coinc_up		: IN STD_LOGIC;
+			enable_coinc_up_and_down	: IN STD_LOGIC := '0';
 			newFF				: IN STD_LOGIC;
 			enable_coinc_atwd	: IN STD_LOGIC := '0';
 			-- simple LC
@@ -1275,6 +1277,7 @@ BEGIN
 	enable_coinc_atwd	<= command_2(3);
 	LC_rx_down_en		<= command_2(4);
 	LC_rx_up_en			<= command_2(5);
+	enable_coinc_up_and_down	<= command_2(6);
 	coinc_down_high		<= command_2(8);
 	coinc_down_low		<= command_2(9);
 	coinc_up_high		<= command_2(10);
@@ -1739,6 +1742,7 @@ BEGIN
 			-- enable
 			enable_coinc_down	=> enable_coinc_down,
 			enable_coinc_up		=> enable_coinc_up,
+			enable_coinc_up_and_down	=> enable_coinc_up_and_down,
 			newFF				=> enable_coinc_newFF,	-- '1';
 			enable_coinc_atwd	=> enable_coinc_atwd,
 			-- simple LC
