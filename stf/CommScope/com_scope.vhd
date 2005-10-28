@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2005-10-17
+-- Last update: 2005-10-18
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -103,7 +103,7 @@ BEGIN
                     start_trans <= '1';
                     abort_trans <= '0';
                     rdcnt       <= (OTHERS => '0');
-                    fifo_re     <= '0';
+                    fifo_re     <= '1';
                 WHEN COMP_START =>  -- start transfer if eng and compr gets written into LBM
                     start_trans <= '1';
                     abort_trans <= '0';
@@ -130,7 +130,7 @@ BEGIN
                     state         <= DONE;
                     rdcnt         <= (OTHERS => 'X');
                     fifo_re       <= '0';
-                    start_address <= start_address + xfer_size;
+                    start_address <= start_address + (xfer_size * 4);
                     start_trans   <= '0';
                     abort_trans   <= '1';
                 WHEN DONE =>
