@@ -150,11 +150,11 @@ BEGIN
 	
 	-- rst_trg <= NOT enable_disc;
 	reset_trigger : PROCESS (RST, CLK20)
-		VARIABLE cnt : STD_LOGIC_VECTOR (11 DOWNTO 0);
+		VARIABLE cnt : STD_LOGIC_VECTOR (16 DOWNTO 0);
 	BEGIN
 		IF RST='1' THEN
 			rst_trg	<= '1';
-			cnt		:= CONV_STD_LOGIC_VECTOR(1, 12);
+			cnt		:= CONV_STD_LOGIC_VECTOR(1, 17);
 		ELSIF CLK20'EVENT AND CLK20='1' THEN
 			IF discFF='1' THEN
 				IF cnt(1+CONV_INTEGER(deadtime))='1' THEN
@@ -165,7 +165,7 @@ BEGIN
 				cnt	:= cnt + 1;
 			ELSE
 				rst_trg	<= '0';
-				cnt		:= CONV_STD_LOGIC_VECTOR(1, 12);
+				cnt		:= CONV_STD_LOGIC_VECTOR(1, 17);
 			END IF;
 		END IF;
 	END PROCESS;
