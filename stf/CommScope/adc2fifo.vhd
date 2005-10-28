@@ -55,9 +55,9 @@ BEGIN  -- adc2fifo_arch
             COM_AD_D_int <= (OTHERS => '0');
         ELSIF CLK'EVENT AND CLK = '1' THEN  -- rising clock edge
             fifo_wr_data (31 DOWNTO 30) <= "00";
---            COM_AD_D_int <= COM_AD_D (11 DOWNTO 2);
+            COM_AD_D_int <= COM_AD_D (11 DOWNTO 2);
             -- for testing
-            COM_AD_D_int                <= COM_AD_D_int + 1;
+            --COM_AD_D_int                <= COM_AD_D_int + 1;
             CASE state IS
                 WHEN IDLE =>
                     fifo_wr <= '0';
