@@ -1,9 +1,0 @@
-(
-	result_sig[]
-) = thr_add	(
-	.dataa[] = dataa_sig[],
-	.datab[] = datab_sig[]
-)
-RETURNS (
-	.result[]
-);

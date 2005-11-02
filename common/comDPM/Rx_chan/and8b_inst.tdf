@@ -1,8 +1,0 @@
-(
-	result_sig
-) = and8b	(
-	.data[][] = data_sig[][]
-)
-RETURNS (
-	.result
-);
