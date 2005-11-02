@@ -1,5 +1,5 @@
 -------------------------------------------------
--- DOM top level VHDL file
+-- SimpleTest top level VHDL file
 -------------------------------------------------
 
 LIBRARY IEEE;
@@ -52,9 +52,11 @@ ENTITY simpletest IS
 		CLK4p			: IN STD_LOGIC;
 		CLKLK_OUT2p		: OUT STD_LOGIC;	-- 40MHz outpout for FADC
 		-- Communications DAC
+		COM_DAC_CLK		: OUT STD_LOGIC;
 		COM_TX_SLEEP	: OUT STD_LOGIC;
 		COM_DB			: OUT STD_LOGIC_VECTOR (13 downto 6);
 		-- Communications ADC
+		COM_AD_CLK		: OUT STD_LOGIC;
 		COM_AD_D		: IN STD_LOGIC_VECTOR (9 downto 0);
 		COM_AD_OTR		: IN STD_LOGIC;
 		-- Communications RS485
@@ -64,6 +66,7 @@ ENTITY simpletest IS
 		HDV_IN			: OUT STD_LOGIC;
 		-- FLASH ADC
 		FLASH_AD_D		: IN STD_LOGIC_VECTOR (9 downto 0);
+		FLASH_AD_CLK	: OUT STD_LOGIC;
 		FLASH_AD_STBY	: OUT STD_LOGIC;
 		FLASH_NCO		: IN STD_LOGIC;
 		-- ATWD 0
@@ -358,4 +361,4 @@ BEGIN
 	gpi(3 downto 0)		<= (others=>'0');
 	-- gpo		<= ;
 	
-END simpletest_arch;
+END;

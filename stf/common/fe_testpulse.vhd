@@ -1,24 +1,6 @@
--------------------------------------------------------------------------------
--- Title      : STF
--- Project    : IceCube DOM main board
--------------------------------------------------------------------------------
--- File       : fe_testpulse.vhd
--- Author     : thorsten
--- Company    : LBNL
--- Created    : 
--- Last update: 2003-07-17
--- Platform   : Altera Excalibur
--- Standard   : VHDL'93
--------------------------------------------------------------------------------
--- Description: this modeule triggers the frontend PMT shape testpulser
---              the rate is setable through the divider
--------------------------------------------------------------------------------
--- Copyright (c) 2003 
--------------------------------------------------------------------------------
--- Revisions  :
--- Date        Version     Author    Description
--- 2003-07-17  V01-01-00   thorsten  
--------------------------------------------------------------------------------
+-------------------------------------------------
+--- frontend test pulser
+-------------------------------------------------
 
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.all;
@@ -51,8 +33,6 @@ BEGIN
 		VARIABLE tick_old	: STD_LOGIC;
 		VARIABLE tick_old0	: STD_LOGIC;
 		VARIABLE tick_old1	: STD_LOGIC;
-		VARIABLE tick_old2	: STD_LOGIC;
-		VARIABLE tick_old3	: STD_LOGIC;
 	BEGIN
 		IF RST='1' THEN
 			cnt			:= (others=>'0');
@@ -71,13 +51,9 @@ BEGIN
 	--		END IF;
 			IF (tick OR tick_old OR tick_old0 OR tick_old1)='1' THEN
 				FE_TEST_PULSE	<= '1';
-			ELSIF (tick_old2 OR tick_old3)='1' THEN
-				FE_TEST_PULSE	<= '0';
 			ELSE
-				FE_TEST_PULSE	<= '0';
+				FE_TEST_PULSE	<= 'Z';
 			END IF;
-			tick_old3	:= tick_old2;
-			tick_old2	:= tick_old1;
 			tick_old1	:= tick_old0;
 			tick_old0	:= tick_old;
 			tick_old	:= tick;

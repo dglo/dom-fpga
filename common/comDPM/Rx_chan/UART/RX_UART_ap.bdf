@@ -354,6 +354,40 @@ party's intellectual property, are provided herein.
 	)
 )
 (symbol
+	(rect 16 -215 48 -183)
+	(text "GND" (rect 3 8 13 29)(font "Arial" (font_size 6))(vertical))
+	(text "inst27" (rect -4 3 8 32)(font "Arial" )(vertical)(invisible))
+	(port
+		(pt 32 16)
+		(output)
+		(text "1" (rect 18 0 23 12)(font "Courier New" (bold))(invisible))
+		(text "1" (rect 16 18 28 23)(font "Courier New" (bold))(vertical)(invisible))
+		(line (pt 24 16)(pt 32 16)(line_width 1))
+	)
+	(drawing
+		(line (pt 24 8)(pt 16 16)(line_width 1))
+		(line (pt 16 16)(pt 24 24)(line_width 1))
+		(line (pt 24 8)(pt 24 24)(line_width 1))
+	)
+	(rotate270)
+)
+(symbol
+	(rect 32 -183 48 -151)
+	(text "VCC" (rect 0 2 10 22)(font "Arial" (font_size 6))(vertical))
+	(text "inst7" (rect 5 0 17 23)(font "Arial" )(vertical)(invisible))
+	(port
+		(pt 16 16)
+		(output)
+		(text "1" (rect 19 7 24 19)(font "Courier New" (bold))(invisible))
+		(text "1" (rect 7 6 19 11)(font "Courier New" (bold))(vertical)(invisible))
+		(line (pt 16 16)(pt 8 16)(line_width 1))
+	)
+	(drawing
+		(line (pt 8 24)(pt 8 8)(line_width 1))
+	)
+	(rotate90)
+)
+(symbol
 	(rect 920 -208 968 -176)
 	(text "WIRE" (rect 1 0 24 10)(font "Arial" (font_size 6)))
 	(text "inst29" (rect 3 21 32 33)(font "Arial" ))
@@ -529,6 +563,16 @@ party's intellectual property, are provided herein.
 	(bus)
 )
 (connector
+	(text "GND" (rect 56 -216 80 -204)(font "Arial" ))
+	(pt 48 -199)
+	(pt 104 -199)
+)
+(connector
+	(text "VCC" (rect 56 -184 79 -172)(font "Arial" ))
+	(pt 48 -167)
+	(pt 104 -167)
+)
+(connector
 	(text "clk" (rect 640 -329 654 -317)(font "Arial" ))
 	(pt 680 -312)
 	(pt 632 -312)
@@ -656,7 +700,7 @@ party's intellectual property, are provided herein.
 	(section (rect 0 48 368 72)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Karl-Heinz Sulanke" (rect 56 2 211 20)(font "Arial" (font_size 12)))(border))
 	(section (rect 0 72 280 96)(text "NUMBER" (rect 2 0 49 12)(font "Arial" ))(text "1.00" (rect 56 1 85 17)(font "Arial" (font_size 10)))(border))
 	(section (rect 280 72 368 96)(text "REV" (rect 2 1 24 13)(font "Arial" ))(text "A" (rect 43 1 53 17)(font "Arial" (font_size 10)))(border))
-	(section (rect 0 96 240 120)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Thu Jul 08 15:28:27 2004" (rect 56 3 227 19)(font "Arial" (font_size 10)))(date)(border))
+	(section (rect 0 96 240 120)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Tue Apr 06 10:28:08 2004" (rect 56 3 231 19)(font "Arial" (font_size 10)))(date)(border))
 	(section (rect 240 96 310 120)(text "SHEET" (rect 2 0 37 12)(font "Arial" ))(text "1" (rect 55 5 63 21)(font "Arial" (font_size 10))))
 	(section (rect 310 96 368 120)(text "OF" (rect 10 0 25 12)(font "Arial" ))(text "1" (rect 34 4 42 20)(font "Arial" (font_size 10))))
 	(drawing

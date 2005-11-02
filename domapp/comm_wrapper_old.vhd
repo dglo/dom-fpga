@@ -28,7 +28,7 @@ ENTITY comm_wrapper IS
         dp1_portadatain  : OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
         -- TX DPM
         dp0_portaaddr    : OUT STD_LOGIC_VECTOR (12 DOWNTO 0);
-        dp0_portadataout : IN STD_LOGIC_VECTOR (31 DOWNTO 0);
+        dp0_portadataout : OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
         -- TC
         tc               : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
         );

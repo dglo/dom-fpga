@@ -1,5 +1,5 @@
 Flow report for simpletest
-Mon Nov 29 16:38:25 2004
+Mon Nov 22 07:31:34 2004
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -42,7 +42,7 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------+
 ; Flow Summary                                                  ;
 +-----------------------+---------------------------------------+
-; Flow Status           ; Successful - Mon Nov 29 16:38:25 2004 ;
+; Flow Status           ; Successful - Fri Nov 19 16:33:54 2004 ;
 ; Revision Name         ; simpletest                            ;
 ; Top-level Entity Name ; simpletest                            ;
 ; Family                ; EXCALIBUR_ARM                         ;
@@ -59,7 +59,7 @@ party's intellectual property, are provided herein.
 +------------------------------------------
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 11/29/2004 16:32:54 ;
+; Start date & time ; 11/19/2004 16:28:38 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; simpletest          ;
 +-------------------+---------------------+
@@ -70,12 +70,13 @@ party's intellectual property, are provided herein.
 +--------------------------------------
 ; Module Name          ; Elapsed Time ;
 +----------------------+--------------+
-; Analysis & Synthesis ; 00:01:16     ;
-; Fitter               ; 00:03:47     ;
-; Assembler            ; 00:00:06     ;
+; Analysis & Synthesis ; 00:01:10     ;
+; Fitter               ; 00:03:40     ;
+; Assembler            ; 00:00:05     ;
 ; Timing Analyzer      ; 00:00:08     ;
 ; EDA Netlist Writer   ; 00:00:05     ;
-; Total                ; 00:05:22     ;
+; Timing Analyzer      ; 00:00:13     ;
+; Total                ; 00:05:21     ;
 +----------------------+--------------+
 
 
@@ -87,6 +88,7 @@ quartus_fit --import_settings_files=off --export_settings_files=off simpletest -
 quartus_asm --import_settings_files=off --export_settings_files=off simpletest -c simpletest
 quartus_tan --import_settings_files=off --export_settings_files=off simpletest -c simpletest
 quartus_eda --import_settings_files=off --export_settings_files=off simpletest -c simpletest
+quartus_tan --import_settings_files=on --export_settings_files=off simpletest -c simpletest --speed=2
 
 
 

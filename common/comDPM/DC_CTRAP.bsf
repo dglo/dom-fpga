@@ -137,8 +137,8 @@ party's intellectual property, are provided herein.
 	(port
 		(pt 0 272)
 		(input)
-		(text "RES" (rect 0 0 22 12)(font "Arial" ))
-		(text "RES" (rect 21 267 43 279)(font "Arial" ))
+		(text "RST" (rect 0 0 21 12)(font "Arial" ))
+		(text "RST" (rect 21 267 42 279)(font "Arial" ))
 		(line (pt 0 272)(pt 16 272)(line_width 1))
 	)
 	(port

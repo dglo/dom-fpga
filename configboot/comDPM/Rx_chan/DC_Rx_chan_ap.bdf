@@ -2717,31 +2717,6 @@ party's intellectual property, are provided herein.
 		(rectangle (rect 16 16 160 272)(line_width 1))
 	)
 )
-(symbol
-	(rect 1592 -600 1640 -568)
-	(text "NOT" (rect 1 0 17 9)(font "Arial" (font_size 6)))
-	(text "inst1" (rect 3 21 26 33)(font "Arial" ))
-	(port
-		(pt 0 16)
-		(input)
-		(text "IN" (rect 2 7 12 19)(font "Courier New" (bold))(invisible))
-		(text "IN" (rect 2 7 13 19)(font "Courier New" (bold))(invisible))
-		(line (pt 0 16)(pt 13 16)(line_width 1))
-	)
-	(port
-		(pt 48 16)
-		(output)
-		(text "OUT" (rect 32 7 47 19)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(line (pt 39 16)(pt 48 16)(line_width 1))
-	)
-	(drawing
-		(line (pt 13 25)(pt 13 7)(line_width 1))
-		(line (pt 13 7)(pt 31 16)(line_width 1))
-		(line (pt 13 25)(pt 31 16)(line_width 1))
-		(circle (rect 31 12 39 20)(line_width 1))
-	)
-)
 (connector
 	(text "CLK20" (rect 440 -313 473 -301)(font "Arial" ))
 	(pt 432 -296)
@@ -3639,9 +3614,9 @@ party's intellectual property, are provided herein.
 	(pt 1528 -664)
 )
 (connector
-	(text "buf_res" (rect 1496 -600 1533 -588)(font "Arial" ))
-	(pt 1592 -584)
-	(pt 1472 -584)
+	(text "buf_res" (rect 1432 -680 1469 -668)(font "Arial" ))
+	(pt 1528 -664)
+	(pt 1408 -664)
 )
 (connector
 	(text "rx_we" (rect 1424 -656 1452 -644)(font "Arial" ))
@@ -3654,9 +3629,13 @@ party's intellectual property, are provided herein.
 	(pt 1416 -624)
 )
 (connector
-	(text "buf_res" (rect 1618 -568 1655 -556)(font "Arial" ))
-	(pt 1744 -552)
-	(pt 1608 -552)
+	(pt 1744 -648)
+	(pt 1744 -608)
+)
+(connector
+	(text "buf_res" (rect 1618 -624 1655 -612)(font "Arial" ))
+	(pt 1744 -608)
+	(pt 1608 -608)
 )
 (connector
 	(pt 1664 -680)
@@ -3704,22 +3683,6 @@ party's intellectual property, are provided herein.
 	(pt 1064 -640)
 	(pt 960 -640)
 )
-(connector
-	(pt 1744 -648)
-	(pt 1744 -552)
-)
-(connector
-	(pt 1528 -664)
-	(pt 1656 -664)
-)
-(connector
-	(pt 1656 -664)
-	(pt 1656 -584)
-)
-(connector
-	(pt 1656 -584)
-	(pt 1640 -584)
-)
 (junction (pt 1440 16))
 (junction (pt 1376 240))
 (junction (pt 1920 -720))
@@ -3735,7 +3698,7 @@ party's intellectual property, are provided herein.
 	(section (rect 0 48 368 72)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Karl-Heinz Sulanke" (rect 56 2 211 20)(font "Arial" (font_size 12)))(border))
 	(section (rect 0 72 280 96)(text "NUMBER" (rect 2 0 49 12)(font "Arial" ))(text "1.00" (rect 56 1 85 17)(font "Arial" (font_size 10)))(border))
 	(section (rect 280 72 368 96)(text "REV" (rect 2 1 24 13)(font "Arial" ))(text "A" (rect 43 1 53 17)(font "Arial" (font_size 10)))(border))
-	(section (rect 0 96 240 120)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Fri Jun 18 06:56:11 2004" (rect 56 3 224 19)(font "Arial" (font_size 10)))(date)(border))
+	(section (rect 0 96 240 120)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Wed Jun 16 08:02:54 2004" (rect 56 3 238 19)(font "Arial" (font_size 10)))(date)(border))
 	(section (rect 240 96 310 120)(text "SHEET" (rect 2 0 37 12)(font "Arial" ))(text "1" (rect 55 5 63 21)(font "Arial" (font_size 10))))
 	(section (rect 310 96 368 120)(text "OF" (rect 10 0 25 12)(font "Arial" ))(text "1" (rect 34 4 42 20)(font "Arial" (font_size 10))))
 	(drawing

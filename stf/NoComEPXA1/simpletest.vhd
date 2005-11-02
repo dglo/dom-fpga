@@ -1,25 +1,6 @@
--------------------------------------------------------------------------------
--- Title      : STF
--- Project    : IceCube DOM main board
--------------------------------------------------------------------------------
--- File       : simpletest.vhd
--- Author     : thorsten
--- Company    : LBNL
--- Created    : 
--- Last update: 2003-08-01
--- Platform   : Altera Excalibur
--- Standard   : VHDL'93
--------------------------------------------------------------------------------
--- Description: This is the top level design for the STF without Kalle's
---              communications code (this allows testing of the communication
---              hardware)for the EPXA1
--------------------------------------------------------------------------------
--- Copyright (c) 2003 
--------------------------------------------------------------------------------
--- Revisions  :
--- Date        Version     Author    Description
--- 2003-07-17  V01-01-00   thorsten  
--------------------------------------------------------------------------------
+-------------------------------------------------
+-- SimpleTest top level VHDL file
+-------------------------------------------------
 
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.all;
@@ -154,8 +135,6 @@ ENTITY simpletest IS
 		FL_TCK				: OUT STD_LOGIC;
 		FL_TDI				: OUT STD_LOGIC;
 		FL_TDO				: IN STD_LOGIC;
-		-- CPDL FPGA interface    currently used to show FPGA is confugured
-		PDL_FPGA_D			: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
 		-- Test connector	THERE IS NO 11   I don't know why
 		PGM				: OUT STD_LOGIC_VECTOR (15 downto 0)
 	);
@@ -241,8 +220,6 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL response_2	: STD_LOGIC_VECTOR(31 downto 0);
 	SIGNAL command_3	: STD_LOGIC_VECTOR(31 downto 0);
 	SIGNAL response_3	: STD_LOGIC_VECTOR(31 downto 0);
-	SIGNAL command_4	: STD_LOGIC_VECTOR(31 downto 0);
-	SIGNAL response_4	: STD_LOGIC_VECTOR(31 downto 0);
 	
 	-- com DAC test
 	SIGNAL enable			: STD_LOGIC;
@@ -274,10 +251,6 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL fe_divider			: STD_LOGIC_VECTOR(3 downto 0);
 	-- single LED
 	SIGNAL single_led_enable	: STD_LOGIC;
-	SIGNAL LEDtrig				: STD_LOGIC;
-	SIGNAL SingleLED_TRIGGER_sig	: STD_LOGIC;
-	SIGNAL LEDdelay				: STD_LOGIC_VECTOR (3 DOWNTO 0);
-	SIGNAL trigLED				: STD_LOGIC;
 	
 	-- local coincidence
 	SIGNAL enable_coinc_up		: STD_LOGIC;
@@ -302,26 +275,20 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	-- ATWD0
 	SIGNAL atwd0_enable		: STD_LOGIC;
 	SIGNAL atwd0_enable_disc	: STD_LOGIC;
-	SIGNAL atwd0_enable_LED	: STD_LOGIC;
 	SIGNAL atwd0_done		: STD_LOGIC;
 	SIGNAL atwd0_wdata		: STD_LOGIC_VECTOR(15 downto 0);
 	SIGNAL atwd0_rdata		: STD_LOGIC_VECTOR(15 downto 0);
 	SIGNAL atwd0_address	: STD_LOGIC_VECTOR(8 downto 0);
 	SIGNAL atwd0_write_en	: STD_LOGIC;
-	SIGNAL atwd0_trigger    : STD_LOGIC;
-	SIGNAL atwd0_trig_doneB : STD_LOGIC;
-    
+	
 	-- ATWD1
 	SIGNAL atwd1_enable		: STD_LOGIC;
 	SIGNAL atwd1_enable_disc	: STD_LOGIC;
-	SIGNAL atwd1_enable_LED	: STD_LOGIC;
 	SIGNAL atwd1_done		: STD_LOGIC;
 	SIGNAL atwd1_wdata		: STD_LOGIC_VECTOR(15 downto 0);
 	SIGNAL atwd1_rdata		: STD_LOGIC_VECTOR(15 downto 0);
 	SIGNAL atwd1_address	: STD_LOGIC_VECTOR(8 downto 0);
 	SIGNAL atwd1_write_en	: STD_LOGIC;
-	SIGNAL atwd1_trigger    : STD_LOGIC;
-	SIGNAL atwd1_trig_doneB : STD_LOGIC;    
 	
 	-- AHB master
 	SIGNAL start_trans		: STD_LOGIC;
@@ -346,14 +313,6 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL fl_board			: STD_LOGIC_VECTOR (7 downto 0);
 	SIGNAL fl_board_read	: STD_LOGIC_VECTOR (1 downto 0);
 	
-	-- kale communication
-	SIGNAL com_ctrl			: STD_LOGIC_VECTOR (31 downto 0);
-	SIGNAL com_status		: STD_LOGIC_VECTOR (31 downto 0);
-	
-	SIGNAL systime			: STD_LOGIC_VECTOR (47 DOWNTO 0);
-	SIGNAL atwd0_timestamp  : STD_LOGIC_VECTOR (47 DOWNTO 0);
-	SIGNAL atwd1_timestamp  : STD_LOGIC_VECTOR (47 DOWNTO 0);
-    
 	COMPONENT ROC
 		PORT (
 			CLK			: IN STD_LOGIC;
@@ -531,19 +490,10 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			response_2		: IN	STD_LOGIC_VECTOR(31 downto 0);
 			command_3		: OUT	STD_LOGIC_VECTOR(31 downto 0);
 			response_3		: IN	STD_LOGIC_VECTOR(31 downto 0);
-			com_ctrl		: OUT	STD_LOGIC_VECTOR(31 downto 0);
-			com_status		: IN	STD_LOGIC_VECTOR(31 downto 0);
-			com_tx_data		: OUT	STD_LOGIC_VECTOR(31 downto 0);
-			com_rx_data		: IN	STD_LOGIC_VECTOR(31 downto 0);
 			hitcounter_o	: IN	STD_LOGIC_VECTOR(31 downto 0);
 			hitcounter_m	: IN	STD_LOGIC_VECTOR(31 downto 0);
 			hitcounter_o_ff	: IN	STD_LOGIC_VECTOR(31 downto 0);
 			hitcounter_m_ff	: IN	STD_LOGIC_VECTOR(31 downto 0);
-			systime			: IN	STD_LOGIC_VECTOR(47 DOWNTO 0);
-            atwd0_timestamp : IN	STD_LOGIC_VECTOR(47 DOWNTO 0);
-            atwd1_timestamp	: IN	STD_LOGIC_VECTOR(47 DOWNTO 0);                    
-			command_4		: OUT	STD_LOGIC_VECTOR(31 downto 0);
-			response_4		: IN	STD_LOGIC_VECTOR(31 downto 0);
 			-- COM ADC RX interface
 			com_adc_wdata		: OUT STD_LOGIC_VECTOR (15 downto 0);
 			com_adc_rdata		: IN STD_LOGIC_VECTOR (15 downto 0);
@@ -564,9 +514,6 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			atwd1_rdata			: IN STD_LOGIC_VECTOR (15 downto 0);
 			atwd1_address		: OUT STD_LOGIC_VECTOR (8 downto 0);
 			atwd1_write_en		: OUT STD_LOGIC;
-			-- kale communication interface
-			tx_fifo_wr			: OUT STD_LOGIC;
-			rx_fifo_rd			: OUT STD_LOGIC;
 			-- test connector
 			TC				: OUT	STD_LOGIC_VECTOR(7 downto 0)
 		);
@@ -676,9 +623,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			-- enable flasher
 			enable		: IN STD_LOGIC;
 			-- LED trigger
-			SingleLED_TRIGGER	: OUT STD_LOGIC;
-			-- ATWD trigger
-			trigLED		: OUT STD_LOGIC
+			SingleLED_TRIGGER	: OUT STD_LOGIC
 		);
 	END COMPONENT;
 	
@@ -758,11 +703,9 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			-- enable
 			enable		: IN STD_LOGIC;
 			enable_disc	: IN STD_LOGIC;
-			enable_LED	: IN STD_LOGIC;
 			done		: OUT STD_LOGIC;
 			-- disc
 			OneSPE		: IN STD_LOGIC;
-			LEDtrig		: IN STD_LOGIC;
 			-- stripe interface
 			wdata		: IN STD_LOGIC_VECTOR (15 downto 0);
 			rdata		: OUT STD_LOGIC_VECTOR (15 downto 0);
@@ -782,50 +725,11 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			DigitalReset	: OUT STD_LOGIC;
 			DigitalSet		: OUT STD_LOGIC;
 			ATWD_VDD_SUP	: OUT STD_LOGIC;
-            -- for ping-pong
-            atwd_trig_doneB	: OUT STD_LOGIC;
 			-- test connector
 			TC					: OUT STD_LOGIC_VECTOR(7 downto 0)
 		);
 	END COMPONENT;
-
-	COMPONENT atwd_ping_pong
-        PORT (
-            CLK40		: IN STD_LOGIC;
-            RST			: IN STD_LOGIC;
-            -- single atwd discriminator enables from command register
-            cmd_atwd0_enable_disc : IN STD_LOGIC;
-            cmd_atwd1_enable_disc : IN STD_LOGIC;
-            -- ping-pong mode from command register
-            cmd_ping_pong         : IN STD_LOGIC;        
-            -- CPU atwd read handshake
-            cmd_atwd0_read_done   : IN STD_LOGIC;
-            cmd_atwd1_read_done   : IN STD_LOGIC;
-            -- atwd interface
-            atwd0_trig_doneB      : IN STD_LOGIC;
-            atwd1_trig_doneB      : IN STD_LOGIC;
-            atwd0_enable_disc     : OUT STD_LOGIC;
-            atwd1_enable_disc     : OUT STD_LOGIC;
-			-- test connector
-			TC					  : OUT STD_LOGIC_VECTOR(7 downto 0)
-            );
-    END COMPONENT;
-
-	COMPONENT atwd_timestamp
-        PORT (
-            CLK40		: IN STD_LOGIC;
-            RST			: IN STD_LOGIC;
-            -- ATWD triggers
-            atwd0_trigger   : IN    STD_LOGIC;
-            atwd1_trigger   : IN    STD_LOGIC;        
-            -- system time
-            systime			: IN	STD_LOGIC_VECTOR(47 DOWNTO 0);
-            -- timestamps
-            atwd0_timestamp : OUT	STD_LOGIC_VECTOR(47 DOWNTO 0);
-            atwd1_timestamp : OUT	STD_LOGIC_VECTOR(47 DOWNTO 0)
-            );
-    END COMPONENT;
-    
+	
 	COMPONENT master_data_source
 		PORT (
 			CLK			: IN STD_LOGIC;
@@ -891,25 +795,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 		);
 	END COMPONENT;
 
-	COMPONENT timer
-		PORT (
-			CLK     : IN  STD_LOGIC;
-			RST     : IN  STD_LOGIC;
-			systime : OUT STD_LOGIC_VECTOR (47 DOWNTO 0)
-		);
-	END COMPONENT;
-	
-	COMPONENT LED2ATWDdelay
-		PORT (
-			CLK40		: IN STD_LOGIC;
-			RST			: IN STD_LOGIC;
-			delay		: IN STD_LOGIC_VECTOR (3 DOWNTO 0);
-			LEDin		: IN STD_LOGIC;
-			TRIGout		: OUT STD_LOGIC;
-			-- test connector
-			TC					: OUT STD_LOGIC_VECTOR(7 downto 0)
-		);
-	END COMPONENT;
+
 	
 BEGIN
 	-- general
@@ -972,11 +858,11 @@ BEGIN
 	
 	-- ATWD0
 	atwd0_enable	<= command_0(0);
-	atwd0_enable_LED	<= command_0(3);
+	atwd0_enable_disc	<= command_0(1);
 	response_0(0)	<= atwd0_done;
 	-- ATWD1
 	atwd1_enable	<= command_0(8);
-	atwd1_enable_LED	<= command_0(11);
+	atwd1_enable_disc	<= command_0(9);
 	response_0(8)	<= atwd1_done;
 	-- flash ADC test
 	flash_adc_enable		<= command_0(16);
@@ -1018,8 +904,6 @@ BEGIN
 	response_2(24)	<= fl_board_read(0);
 	response_2(28)	<= fl_board_read(1);
 	
-	-- LED 2 ATWD trigger delay
-	LEDdelay	<= command_4(3 DOWNTO 0);
 	
 	response_0(31 downto 17)	<= (others=>'0');
 	response_0(15 downto 9)		<= (others=>'0');
@@ -1034,7 +918,6 @@ BEGIN
 	response_2(23 downto 16)	<= (others=>'0');
 	response_2(7 downto 0)		<= (others=>'0');
 	
-	response_4	<= (others=>'0');
 	
 	-- hit counter
 	hitcounter_o(15 downto 0)	<= oneSPEcnt;
@@ -1046,8 +929,6 @@ BEGIN
 	hitcounter_m_ff(15 downto 0)	<= multiSPEcnt_ff;
 	hitcounter_m_ff(31 downto 16)	<= (others=>'0');
 	
-	-- fake kallo communication reset
-	com_status(2)	<= com_ctrl(2);
 	
 	
 	-- AHB master test
@@ -1234,19 +1115,10 @@ BEGIN
 			response_2		=> response_2,
 			command_3		=> command_3,
 			response_3		=> response_3,
-			com_ctrl		=> com_ctrl,
-			com_status		=> com_status,
-			com_tx_data		=> open,
-			com_rx_data		=> (others=>'0'),
 			hitcounter_o	=> hitcounter_o,
 			hitcounter_m	=> hitcounter_m,
 			hitcounter_o_ff	=> hitcounter_o_ff,
 			hitcounter_m_ff	=> hitcounter_m_ff,
-			systime			=> systime,
-            atwd0_timestamp => atwd0_timestamp,
-            atwd1_timestamp => atwd1_timestamp,
-			command_4		=> command_4,
-			response_4		=> response_4,
 			-- COM ADC RX interface
 			com_adc_wdata		=> com_adc_wdata,
 			com_adc_rdata		=> com_adc_rdata,
@@ -1267,9 +1139,6 @@ BEGIN
 			atwd1_rdata			=> atwd1_rdata,
 			atwd1_address		=> atwd1_address,
 			atwd1_write_en		=> atwd1_write_en,
-			-- kale communication interface
-			tx_fifo_wr			=> open,
-			rx_fifo_rd			=> open,
 			-- test connector
 			TC				=> open --TC
 		);
@@ -1373,11 +1242,8 @@ BEGIN
 			-- enable flasher
 			enable		=> single_led_enable,
 			-- LED trigger
-			SingleLED_TRIGGER	=> SingleLED_TRIGGER_sig,
-			-- ATWD trigger
-			trigLED		=> trigLED
+			SingleLED_TRIGGER	=> SingleLED_TRIGGER
 		);
-	SingleLED_TRIGGER <= SingleLED_TRIGGER_sig;
 		
 	inst_coinc : coinc
 		PORT MAP (
@@ -1442,42 +1308,7 @@ BEGIN
 			-- test connector
 			TC				=> open
 		);
-
-    inst_atwd_ping_pong : atwd_ping_pong
-        PORT MAP (
-            CLK40                 => CLK40,
-            RST                   => RST,
-            -- single atwd discriminator enables from command register
-            cmd_atwd0_enable_disc => command_0(1),
-            cmd_atwd1_enable_disc => command_0(9),
-            -- ping-pong mode from command register
-            cmd_ping_pong         => command_0(15), 
-            -- CPU atwd read handshake
-            cmd_atwd0_read_done   => command_0(2),
-            cmd_atwd1_read_done   => command_0(10),
-            -- atwd interface
-            atwd0_trig_doneB      => atwd0_trig_doneB,
-            atwd1_trig_doneB      => atwd1_trig_doneB,
-            atwd0_enable_disc     => atwd0_enable_disc,
-            atwd1_enable_disc     => atwd1_enable_disc,
-			-- test connector
-			TC                    => open       
-        );
-	
-    inst_atwd_timestamp : atwd_timestamp
-        PORT MAP (
-            CLK40                 => CLK40,
-            RST                   => RST,
-            -- ATWD triggers
-            atwd0_trigger         => atwd0_trigger,
-            atwd1_trigger         => atwd1_trigger,
-            -- system time
-            systime               => systime,
-            -- timestamps
-            atwd0_timestamp       => atwd0_timestamp,
-            atwd1_timestamp       => atwd1_timestamp
-        );
-    
+		
 	atwd0 : atwd
 		PORT MAP (
 			CLK20		=> CLK20,
@@ -1487,11 +1318,9 @@ BEGIN
 			-- enable
 			enable		=> atwd0_enable,
 			enable_disc	=> atwd0_enable_disc,
-			enable_LED	=> atwd0_enable_LED,
 			done		=> atwd0_done,
 			-- disc
 			OneSPE		=> OneSPE,
-			LEDtrig		=> LEDtrig,
 			-- stripe interface
 			wdata		=> atwd0_wdata,
 			rdata		=> atwd0_rdata,
@@ -1499,7 +1328,7 @@ BEGIN
 			write_en	=> atwd0_write_en,
 			-- atwd
 			ATWD_D			=> ATWD0_D,
-			ATWDTrigger		=> atwd0_trigger,
+			ATWDTrigger		=> ATWDTrigger_0,
 			TriggerComplete	=> TriggerComplete_0,
 			OutputEnable	=> OutputEnable_0,
 			CounterClock	=> CounterClock_0,
@@ -1511,12 +1340,9 @@ BEGIN
 			DigitalReset	=> DigitalReset_0,
 			DigitalSet		=> DigitalSet_0,
 			ATWD_VDD_SUP	=> ATWD0VDD_SUP,
-            -- for ping-pong
-            atwd_trig_doneB => atwd0_trig_doneB,
 			-- test connector
 			TC				=> open
 		);
-	ATWDTrigger_0 <= atwd0_trigger;
 	
 	atwd1 : atwd
 		PORT MAP (
@@ -1527,11 +1353,9 @@ BEGIN
 			-- enable
 			enable		=> atwd1_enable,
 			enable_disc	=> atwd1_enable_disc,
-			enable_LED	=> atwd1_enable_LED,
 			done		=> atwd1_done,
 			-- disc
 			OneSPE		=> OneSPE,
-			LEDtrig		=> LEDtrig,
 			-- stripe interface
 			wdata		=> atwd1_wdata,
 			rdata		=> atwd1_rdata,
@@ -1539,7 +1363,7 @@ BEGIN
 			write_en	=> atwd1_write_en,
 			-- atwd
 			ATWD_D			=> ATWD1_D,
-			ATWDTrigger		=> atwd1_trigger,
+			ATWDTrigger		=> ATWDTrigger_1,
 			TriggerComplete	=> TriggerComplete_1,
 			OutputEnable	=> OutputEnable_1,
 			CounterClock	=> CounterClock_1,
@@ -1551,12 +1375,9 @@ BEGIN
 			DigitalReset	=> DigitalReset_1,
 			DigitalSet		=> DigitalSet_1,
 			ATWD_VDD_SUP	=> ATWD1VDD_SUP,
-            -- for ping-pong
-            atwd_trig_doneB => atwd1_trig_doneB,
 			-- test connector
 			TC				=> open
 		);
-	ATWDTrigger_1 <= atwd1_trigger;
 		
 	inst_master_data_source : master_data_source
 		PORT MAP (
@@ -1619,25 +1440,7 @@ BEGIN
 			TC					=> open
 		);
 	
-	timer_inst : timer
-		PORT MAP (
-			CLK		=> CLK40,
-			RST		=> RST,
-			systime	=> systime
-		);
-		
-	LED2ATWDdelay_inst : LED2ATWDdelay
-		PORT MAP (
-			CLK40		=> CLK40,
-			RST			=> RST,
-			delay		=> LEDdelay,
-			LEDin		=> trigLED,
-			TRIGout		=> LEDtrig,
-			-- test connector
-			TC			=> open
-		);
-		
-		
+	
 	
 	-- PGM(15 downto 12) <= (others=>'0');
 	PGM(15) <= '1';
@@ -1647,10 +1450,6 @@ BEGIN
 	PGM(11) <= 'Z';
 	-- PGM(10 downto 8) <= (others=>'0');
 	PGM(7 downto 0) <= TC;
-	
-	-- indicate FPGA is configured
-	PDL_FPGA_D	<= "01010101";
-	
 	
 	process(CLK20)
 		variable CNT	: STD_LOGIC_VECTOR(2 downto 0);

@@ -1,4 +1,4 @@
-TITLE "Rx Dual Port RAM control, LAST CHANGE: 2004-06-18";
+TITLE "Rx Dual Port RAM control, LAST CHANGE: 2004-04-20";
 
 CONSTANT MAX_PACKET_SIZE	= 256+2;			-- 32bit words, payload + header + CRC
 CONSTANT DPR_ADR_RANGE		= 15;

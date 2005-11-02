@@ -17,7 +17,6 @@
 -- Revisions  :
 -- Date        Version     Author    Description
 -- 2003-09-02  V01-01-00   thorsten  
--- 2005-05-11              thorsten  added "charge stamp"
 -------------------------------------------------------------------------------
 
 LIBRARY IEEE;
@@ -37,7 +36,6 @@ PACKAGE icecube_data_types IS
 			ATWDsize		: STD_LOGIC_VECTOR (1 DOWNTO 0);
 			LC				: STD_LOGIC_VECTOR (1 DOWNTO 0);
 			deadtime		: STD_LOGIC_VECTOR (15 DOWNTO 0);
-			chargestamp		: STD_LOGIC_VECTOR (31 DOWNTO 0);
 		END RECORD;
 	
 	

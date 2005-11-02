@@ -1,5 +1,5 @@
 Analysis & Synthesis report for simpletest
-Fri Oct 07 12:46:26 2005
+Fri Oct 07 12:01:48 2005
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -67,7 +67,7 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                        ;
 +-----------------------------+---------------------------------------+
-; Analysis & Synthesis Status ; Successful - Fri Oct 07 12:46:26 2005 ;
+; Analysis & Synthesis Status ; Successful - Fri Oct 07 12:01:48 2005 ;
 ; Revision Name               ; simpletest                            ;
 ; Top-level Entity Name       ; simpletest                            ;
 ; Family                      ; EXCALIBUR_ARM                         ;
@@ -1465,7 +1465,7 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM-A
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Fri Oct 07 12:44:34 2005
+    Info: Processing started: Fri Oct 07 11:59:54 2005
 Info: Command: quartus_map --import_settings_files=on --export_settings_files=off simpletest -c simpletest
 Info: Found 1 design units and 1 entities in source file pll4x.v
     Info: Found entity 1: pll4x
@@ -1741,47 +1741,47 @@ Info: Found 2 design units and 1 entities in source file simpletest.vhd
     Info: Found entity 1: simpletest
 Info: Found 1 design units and 1 entities in source file ../../common/comDPM/Rx_chan/dc_hdr_dec_ap.tdf
     Info: Found entity 1: dc_hdr_dec_ap
-Warning: VHDL Signal Declaration warning at simpletest.vhd(226): ignored default value for signal dp0_portadataout
-Warning: VHDL Signal Declaration warning at simpletest.vhd(249): ignored default value for signal response_0
-Warning: VHDL Signal Declaration warning at simpletest.vhd(251): ignored default value for signal response_1
-Warning: VHDL Signal Declaration warning at simpletest.vhd(253): ignored default value for signal response_2
-Warning: VHDL Signal Declaration warning at simpletest.vhd(255): used explicit default value for signal response_3 because signal was never assigned a value
-Warning: VHDL Signal Declaration warning at simpletest.vhd(257): ignored default value for signal response_4
-Warning: VHDL Signal Declaration warning at simpletest.vhd(259): used explicit default value for signal response_5 because signal was never assigned a value
-Warning: VHDL Signal Declaration warning at simpletest.vhd(268): used explicit default value for signal com_adc_rdata because signal was never assigned a value
-Warning: VHDL Signal Declaration warning at simpletest.vhd(424): ignored default value for signal tx_dpr_radr
-Warning: Tied undriven net rx_addr[31] at simpletest.vhd(422) to GND or VCC
-Warning: Tied undriven net rx_addr[30] at simpletest.vhd(422) to GND or VCC
-Warning: Tied undriven net rx_addr[29] at simpletest.vhd(422) to GND or VCC
-Warning: Tied undriven net rx_addr[28] at simpletest.vhd(422) to GND or VCC
-Warning: Tied undriven net rx_addr[27] at simpletest.vhd(422) to GND or VCC
-Warning: Tied undriven net rx_addr[26] at simpletest.vhd(422) to GND or VCC
-Warning: Tied undriven net rx_addr[25] at simpletest.vhd(422) to GND or VCC
-Warning: Tied undriven net rx_addr[24] at simpletest.vhd(422) to GND or VCC
-Warning: Tied undriven net rx_addr[23] at simpletest.vhd(422) to GND or VCC
-Warning: Tied undriven net rx_addr[22] at simpletest.vhd(422) to GND or VCC
-Warning: Tied undriven net rx_addr[21] at simpletest.vhd(422) to GND or VCC
-Warning: Tied undriven net rx_addr[20] at simpletest.vhd(422) to GND or VCC
-Warning: Tied undriven net rx_addr[19] at simpletest.vhd(422) to GND or VCC
-Warning: Tied undriven net rx_addr[18] at simpletest.vhd(422) to GND or VCC
-Warning: Tied undriven net rx_addr[17] at simpletest.vhd(422) to GND or VCC
-Warning: Tied undriven net rx_addr[16] at simpletest.vhd(422) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[31] at simpletest.vhd(424) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[30] at simpletest.vhd(424) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[29] at simpletest.vhd(424) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[28] at simpletest.vhd(424) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[27] at simpletest.vhd(424) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[26] at simpletest.vhd(424) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[25] at simpletest.vhd(424) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[24] at simpletest.vhd(424) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[23] at simpletest.vhd(424) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[22] at simpletest.vhd(424) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[21] at simpletest.vhd(424) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[20] at simpletest.vhd(424) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[19] at simpletest.vhd(424) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[18] at simpletest.vhd(424) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[17] at simpletest.vhd(424) to GND or VCC
-Warning: Tied undriven net tx_dpr_radr[16] at simpletest.vhd(424) to GND or VCC
+Warning: VHDL Signal Declaration warning at simpletest.vhd(225): ignored default value for signal dp0_portadataout
+Warning: VHDL Signal Declaration warning at simpletest.vhd(248): ignored default value for signal response_0
+Warning: VHDL Signal Declaration warning at simpletest.vhd(250): ignored default value for signal response_1
+Warning: VHDL Signal Declaration warning at simpletest.vhd(252): ignored default value for signal response_2
+Warning: VHDL Signal Declaration warning at simpletest.vhd(254): used explicit default value for signal response_3 because signal was never assigned a value
+Warning: VHDL Signal Declaration warning at simpletest.vhd(256): ignored default value for signal response_4
+Warning: VHDL Signal Declaration warning at simpletest.vhd(258): used explicit default value for signal response_5 because signal was never assigned a value
+Warning: VHDL Signal Declaration warning at simpletest.vhd(267): used explicit default value for signal com_adc_rdata because signal was never assigned a value
+Warning: VHDL Signal Declaration warning at simpletest.vhd(423): ignored default value for signal tx_dpr_radr
+Warning: Tied undriven net rx_addr[31] at simpletest.vhd(421) to GND or VCC
+Warning: Tied undriven net rx_addr[30] at simpletest.vhd(421) to GND or VCC
+Warning: Tied undriven net rx_addr[29] at simpletest.vhd(421) to GND or VCC
+Warning: Tied undriven net rx_addr[28] at simpletest.vhd(421) to GND or VCC
+Warning: Tied undriven net rx_addr[27] at simpletest.vhd(421) to GND or VCC
+Warning: Tied undriven net rx_addr[26] at simpletest.vhd(421) to GND or VCC
+Warning: Tied undriven net rx_addr[25] at simpletest.vhd(421) to GND or VCC
+Warning: Tied undriven net rx_addr[24] at simpletest.vhd(421) to GND or VCC
+Warning: Tied undriven net rx_addr[23] at simpletest.vhd(421) to GND or VCC
+Warning: Tied undriven net rx_addr[22] at simpletest.vhd(421) to GND or VCC
+Warning: Tied undriven net rx_addr[21] at simpletest.vhd(421) to GND or VCC
+Warning: Tied undriven net rx_addr[20] at simpletest.vhd(421) to GND or VCC
+Warning: Tied undriven net rx_addr[19] at simpletest.vhd(421) to GND or VCC
+Warning: Tied undriven net rx_addr[18] at simpletest.vhd(421) to GND or VCC
+Warning: Tied undriven net rx_addr[17] at simpletest.vhd(421) to GND or VCC
+Warning: Tied undriven net rx_addr[16] at simpletest.vhd(421) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[31] at simpletest.vhd(423) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[30] at simpletest.vhd(423) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[29] at simpletest.vhd(423) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[28] at simpletest.vhd(423) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[27] at simpletest.vhd(423) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[26] at simpletest.vhd(423) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[25] at simpletest.vhd(423) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[24] at simpletest.vhd(423) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[23] at simpletest.vhd(423) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[22] at simpletest.vhd(423) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[21] at simpletest.vhd(423) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[20] at simpletest.vhd(423) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[19] at simpletest.vhd(423) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[18] at simpletest.vhd(423) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[17] at simpletest.vhd(423) to GND or VCC
+Warning: Tied undriven net tx_dpr_radr[16] at simpletest.vhd(423) to GND or VCC
 Info: Found 1 design units and 1 entities in source file ../../../../../fpgatools/quartus/libraries/megafunctions/altclklock.tdf
     Info: Found entity 1: altclklock
 Info: Using design file stripe.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
@@ -2260,12 +2260,6 @@ Warning: Reduced register ahb_master:inst_ahb_master|slavehwrite~reg0 with stuck
 Warning: Reduced register ahb_master:inst_ahb_master|slavehtrans[0]~reg0 with stuck data_in port to stuck value GND
 Info: Duplicate registers merged to single register
     Info: Duplicate register atwd:atwd0|atwd_control:inst_atwd_control|state~20 merged to single register atwd:atwd1|atwd_control:inst_atwd_control|state~20
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[18] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[17] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[2] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[3] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[4] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[5] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[6] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[7] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[8] merged to single register ahb_master:inst_ahb_master|haddr[0]
@@ -2277,19 +2271,25 @@ Info: Duplicate registers merged to single register
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[14] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[15] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[16] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[31] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[30] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[29] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[28] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[27] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[26] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[25] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[24] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[23] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[22] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[21] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[20] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[17] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[18] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[19] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[20] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[21] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[22] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[23] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[24] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[25] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[26] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[27] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[28] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[29] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[30] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[5] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[4] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[3] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[2] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[31] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|sreg~32 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|data_stb~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|sreg~41 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|stf_stb~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|sreg~33 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_ap:DC_Rx_chan_ap|RX_UART_ap:inst|UA_RX_AP:inst|eof_stb~reg
@@ -2308,7 +2308,7 @@ Warning: Reduced register ahb_master:inst_ahb_master|haddr[0] with stuck data_in
 Info: Duplicate registers merged to single register
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|crc_init~reg merged to single register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:DC_Tx_chan_ap|DC_SNAP:inst11|STF
 Warning: TRI or OPNDRN buffers permanently disabled
-    Warning: Node i721
+    Warning: Node i720
 Warning: Output pins are stuck at VCC or GND
     Warning: Pin FPGA_LOADED stuck at GND
     Warning: Pin COM_TX_SLEEP stuck at GND
@@ -2365,7 +2365,7 @@ Info: Implemented 5349 device resources after synthesis - the final resource cou
     Info: Implemented 2 dual-port RAM elements in Excalibur device
     Info: Implemented 1 microprocessor core elements in Excalibur device
 Info: Quartus II Analysis & Synthesis was successful. 0 errors, 142 warnings
-    Info: Processing ended: Fri Oct 07 12:46:26 2005
-    Info: Elapsed time: 00:01:51
+    Info: Processing ended: Fri Oct 07 12:01:48 2005
+    Info: Elapsed time: 00:01:53
 
 

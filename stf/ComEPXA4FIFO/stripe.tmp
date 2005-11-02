@@ -1,4 +1,4 @@
-// Copyright (C) 1991-2004 Altera Corporation
+// Copyright (C) 1991-2002 Altera Corporation
 // Any  megafunction  design,  and related netlist (encrypted  or  decrypted),
 // support information,  device programming or simulation file,  and any other
 // associated  documentation or information  provided by  Altera  or a partner
@@ -85,11 +85,10 @@ stripe <your_instance_name>
 	.dp0_portaaddr(),
 	.dp0_portadatain(),
 	.dp0_portadataout(),
-	.dp1_3_portaclk(),
-	.dp1_portawe(),
-	.dp1_portaaddr(),
-	.dp1_portadatain(),
-	.dp1_portadataout(),
+	.dp2_portawe(),
+	.dp2_portaaddr(),
+	.dp2_portadatain(),
+	.dp2_portadataout(),
 	.gpi(),
 	.gpo()
 );

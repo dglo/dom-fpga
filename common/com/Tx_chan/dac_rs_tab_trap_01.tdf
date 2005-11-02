@@ -5,8 +5,8 @@ SUBDESIGN dac_rs_tab_trap_01
 (
 	txd				: INPUT;	-- serial data
 	tx_ct[4..0]		: INPUT;	-- UART counter
-	h_pulse			: INPUT;	-- time calibration high pulse
-	l_pulse			: INPUT;	-- time calibration low pulse
+	hpuls			: INPUT;	-- time calibration high pulse
+	lpuls			: INPUT;	-- time calibration low pulse
 	rs485_not_dac	: INPUT;	-- driver select
 
 	dac_d[7..0]		: OUTPUT;	-- dac value,  0..ff
@@ -16,13 +16,13 @@ SUBDESIGN dac_rs_tab_trap_01
 BEGIN
 
 	TABLE
-	h_pulse, l_pulse, rs485_not_dac,txd, tx_ct[]=>	dac_d[], rs4_den, rs4_in;
+	hpuls, lpuls, rs485_not_dac,	txd, tx_ct[]=>	dac_d[], rs4_den, rs4_in;
 
 		0,	0,			0,			0,	B"xxxxx"=>	H"80",		0,		0;
 		
 		0,	0,			0,			1,		0	=>	H"80",		0,		0;		
 		0,	0,			0,			1,		1	=>	H"c0",		0,		0;	
-		0,	0,			0,			1,		2	=>	H"ff",		0,		0; -- should be H"ff"	
+		0,	0,			0,			1,		2	=>	H"ff",		0,		0;		
 		0,	0,			0,			1,		3	=>	H"ff",		0,		0;	
 		0,	0,			0,			1,		4	=>	H"ff",		0,		0;
 				
@@ -34,7 +34,7 @@ BEGIN
 			
 		0,	0,			0,			1,		10	=>	H"80",		0,		0;		
 		0,	0,			0,			1,		11	=>	H"40",		0,		0;	
-		0,	0,			0,			1,		12	=>	H"01",		0,		0;	-- should be H"01"	
+		0,	0,			0,			1,		12	=>	H"01",		0,		0;		
 		0,	0,			0,			1,		13	=>	H"01",		0,		0;	
 		0,	0,			0,			1,		14	=>	H"01",		0,		0;
 				

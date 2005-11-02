@@ -1,6 +1,5 @@
-0 invalid
+0 stf_NoCom
 1 stf_Com
 2 domapp
 3 configboot
 4 iceboot
-5 stf_NoCom

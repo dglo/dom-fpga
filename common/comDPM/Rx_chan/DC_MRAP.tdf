@@ -1,21 +1,19 @@
 % C:\PROJECTS\ICECUBE\DOR\FPGA\DCOM_01\RX_CHAN\DC_MRAP.tdf %
 % AHDL code created by Visual Software Solution's StateCAD 4.11 %
-% Wed Jul 21 17:14:18 2004 %
+% Wed Apr 21 09:39:23 2004 %
 
 % This AHDL code was generated using: %
-%  one-hot state assignment with boolean code format. %
+%  binary encoded state assignment with structured code format. %
 %  Minimization is enabled,  implied else is enabled,  %
-%  and outputs are area optimized. %
+%  and outputs are speed optimized. %
 
 SUBDESIGN DC_MRAP(
 	CLK :	INPUT;
 	crc_zero :	INPUT;
-	ctrl_msg :	INPUT;
 	data_msg :	INPUT;
 	data_stb :	INPUT;
 	eof_stb :	INPUT;
 	RESET :	INPUT;
-	stf_stb :	INPUT;
 	byte_ena0a :	OUTPUT;
 	byte_ena0b :	OUTPUT;
 	byte_ena1 :	OUTPUT;
@@ -31,162 +29,267 @@ SUBDESIGN DC_MRAP(
 	first_wadr_rld :	OUTPUT;
 	msg_type_ena :	OUTPUT;
 	rx_we :	OUTPUT;
-	seq0_byte :	OUTPUT;
-	seq1_byte :	OUTPUT;
 )
 
 
 VARIABLE
-	BYTE0 :	DFF;
-	BYTE1 :	DFF;
-	BYTE2 :	DFF;
-	BYTE3 :	DFF;
-	CRC_ERR :	DFF;
-	CTR_ERR :	DFF;
-	CTR_MSG :	DFF;
-	CTRL_OK :	DFF;
-	DAT_MSG :	DFF;
-	DATA_OK :	DFF;
-	DCMD_SEQ1 :	DFF;
-	DPR_DAT_WR :	DFF;
-	EOF_WAIT :	DFF;
-	IDLE :	DFF;
-	LEN0 :	DFF;
-	MTYPE_LEN1 :	DFF;
-	PTYPE_SEQ0 :	DFF;
-	START :	DFF;
-	STF_WAIT :	DFF;
+	sreg : MACHINE OF BITS (SV0, SV1, SV2, SV3)
+		WITH STATES (
+			STF_WAIT =	B"1110",
+			BYTE0 =	B"0000",
+			BYTE1 =	B"0001",
+			BYTE2 =	B"0010",
+			BYTE3 =	B"0011",
+			CTRL_ERR =	B"0100",
+			CTRL_OK =	B"0101",
+			DATA_ERR =	B"0110",
+			DATA_OK =	B"0111",
+			DCMD_SEQ1 =	B"1000",
+			DPR_DAT_WR =	B"1001",
+			EOF_WAIT =	B"1010",
+			LEN0 =	B"1011",
+			MTYPE_LEN1 =	B"1100",
+			PTYPE_SEQ0 =	B"1101"
+		);
+
+	byte_ena0a :	DFF;
+	byte_ena0b :	DFF;
+	byte_ena1 :	DFF;
+	byte_ena2 :	DFF;
+	byte_ena3 :	DFF;
+	cmd_ena :	DFF;
+	crc_init :	DFF;
+	ctrl_error :	DFF;
+	ctrl_rcvd :	DFF;
+	data_error :	DFF;
+	data_rcvd :	DFF;
+	first_wadr_ena :	DFF;
+	first_wadr_rld :	DFF;
+	msg_type_ena :	DFF;
+	rx_we :	DFF;
 
 BEGIN
 
 % Clock setup %
-	BYTE0.clk=CLK;
-	BYTE1.clk=CLK;
-	BYTE2.clk=CLK;
-	BYTE3.clk=CLK;
-	CRC_ERR.clk=CLK;
-	CTR_ERR.clk=CLK;
-	CTR_MSG.clk=CLK;
-	CTRL_OK.clk=CLK;
-	DAT_MSG.clk=CLK;
-	DATA_OK.clk=CLK;
-	DCMD_SEQ1.clk=CLK;
-	DPR_DAT_WR.clk=CLK;
-	EOF_WAIT.clk=CLK;
-	IDLE.clk=CLK;
-	LEN0.clk=CLK;
-	MTYPE_LEN1.clk=CLK;
-	PTYPE_SEQ0.clk=CLK;
-	START.clk=CLK;
-	STF_WAIT.clk=CLK;
+	byte_ena0a.clk=CLK;
+	byte_ena0b.clk=CLK;
+	byte_ena1.clk=CLK;
+	byte_ena2.clk=CLK;
+	byte_ena3.clk=CLK;
+	cmd_ena.clk=CLK;
+	crc_init.clk=CLK;
+	ctrl_error.clk=CLK;
+	ctrl_rcvd.clk=CLK;
+	data_error.clk=CLK;
+	data_rcvd.clk=CLK;
+	first_wadr_ena.clk=CLK;
+	first_wadr_rld.clk=CLK;
+	msg_type_ena.clk=CLK;
+	rx_we.clk=CLK;
+	sreg.clk=CLK;
 
-BYTE0 =  !eof_stb & !DAT_MSG & !stf_stb & BYTE0  #  !eof_stb & !data_stb & !
-	stf_stb & BYTE0  #  !stf_stb & data_stb & BYTE3  #  !stf_stb & data_stb & 
-	data_msg & DCMD_SEQ1 ;
-
-BYTE1 =  !data_stb & !stf_stb & BYTE1  #  !stf_stb & DPR_DAT_WR ;
-
-BYTE2 =  !stf_stb & data_stb & BYTE1  #  !data_stb & !stf_stb & BYTE2 ;
-
-BYTE3 =  !stf_stb & data_stb & BYTE2  #  !data_stb & !stf_stb & BYTE3 ;
-
-CTRL_OK =  !stf_stb & eof_stb & crc_zero & EOF_WAIT ;
-
-DATA_OK =  !stf_stb & eof_stb & crc_zero & BYTE0 ;
-
-DCMD_SEQ1 =  !data_stb & !stf_stb & DCMD_SEQ1  #  !stf_stb & data_stb & 
-	PTYPE_SEQ0 ;
-
-DPR_DAT_WR =  !stf_stb & data_stb & DAT_MSG & BYTE0 ;
-
-EOF_WAIT =  !stf_stb & data_stb & ctrl_msg & DCMD_SEQ1  #  !eof_stb & !
-	stf_stb & EOF_WAIT ;
-
-LEN0 =  !data_stb & !stf_stb & LEN0  #  !stf_stb & START ;
-
-MTYPE_LEN1 =  !stf_stb & data_stb & LEN0  #  !data_stb & !stf_stb & 
-	MTYPE_LEN1 ;
-
-PTYPE_SEQ0 =  !stf_stb & data_stb & MTYPE_LEN1  #  !data_stb & !stf_stb & 
-	PTYPE_SEQ0 ;
-
-START =  stf_stb ;
-
-STF_WAIT =  !stf_stb & eof_stb & !crc_zero & BYTE0  #  !stf_stb & CTRL_OK  # 
-	 !stf_stb & DATA_OK  #  !stf_stb & data_stb & !ctrl_msg & !data_msg & 
-	DCMD_SEQ1  #  !stf_stb & eof_stb & !crc_zero & EOF_WAIT  #  !stf_stb & 
-	STF_WAIT ;
-
+	sreg.reset =  RESET ;
 
 	IF ( RESET ) THEN
-		CRC_ERR.clrn=GND;
-		CTR_ERR.clrn=GND;
-		CTR_MSG.clrn=GND;
-		DAT_MSG.clrn=GND;
-		IDLE.prn=GND;
+		first_wadr_rld.clrn=GND;
+		ctrl_error.clrn=GND;
+		ctrl_rcvd.clrn=GND;
+		data_error.clrn=GND;
+		data_rcvd.clrn=GND;
+		first_wadr_ena.clrn=GND;
+		rx_we.clrn=GND;
+		byte_ena0b.clrn=GND;
+		cmd_ena.clrn=GND;
+		msg_type_ena.clrn=GND;
+		crc_init.prn=GND;
+		byte_ena3.clrn=GND;
+		byte_ena2.clrn=GND;
+		byte_ena1.clrn=GND;
+		byte_ena0a.prn=GND;
 	ELSE
-		CRC_ERR.clrn=VCC;
-		CTR_ERR.clrn=VCC;
-		CTR_MSG.clrn=VCC;
-		DAT_MSG.clrn=VCC;
-		IDLE.prn=VCC;
+		first_wadr_rld.clrn=VCC;
+		ctrl_error.clrn=VCC;
+		ctrl_rcvd.clrn=VCC;
+		data_error.clrn=VCC;
+		data_rcvd.clrn=VCC;
+		first_wadr_ena.clrn=VCC;
+		rx_we.clrn=VCC;
+		byte_ena0b.clrn=VCC;
+		cmd_ena.clrn=VCC;
+		msg_type_ena.clrn=VCC;
+		crc_init.prn=VCC;
+		byte_ena3.clrn=VCC;
+		byte_ena2.clrn=VCC;
+		byte_ena1.clrn=VCC;
+		byte_ena0a.prn=VCC;
 	END IF;
-CRC_ERR =  stf_stb & DAT_MSG  #  eof_stb & !BYTE0 & DAT_MSG  #  eof_stb & !
-	crc_zero & DAT_MSG ;
 
-CTR_ERR =  stf_stb & CTR_MSG  #  eof_stb & !EOF_WAIT & CTR_MSG  #  eof_stb & 
-	!crc_zero & CTR_MSG ;
+	CASE sreg IS
+		WHEN BYTE0 =>
+			IF ( !eof_stb & !data_stb ) THEN 
+				sreg = BYTE0;
+				(first_wadr_rld,ctrl_error,ctrl_rcvd,data_error,data_rcvd,first_wadr_ena,
+					rx_we,byte_ena0b,cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,
+					byte_ena0a)=(0,0,0,0,0,0,0,0,0,0,0,0,0,0,1);
+			END IF;
+			IF ( eof_stb & crc_zero ) THEN 
+				sreg = DATA_OK;
+				(first_wadr_rld,ctrl_error,ctrl_rcvd,data_error,data_rcvd,first_wadr_ena,
+					rx_we,byte_ena0b,cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,
+					byte_ena0a)=(0,0,0,0,1,0,0,0,0,0,0,0,0,0,0);
+			END IF;
+			IF ( data_stb ) THEN 
+				sreg = DPR_DAT_WR;
+				(first_wadr_rld,ctrl_error,ctrl_rcvd,data_error,data_rcvd,first_wadr_ena,
+					rx_we,byte_ena0b,cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,
+					byte_ena0a)=(0,0,0,0,0,0,1,0,0,0,0,0,0,0,0);
+			END IF;
+			IF ( eof_stb & !crc_zero ) THEN 
+				sreg = DATA_ERR;
+				(first_wadr_rld,ctrl_error,ctrl_rcvd,data_error,data_rcvd,first_wadr_ena,
+					rx_we,byte_ena0b,cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,
+					byte_ena0a)=(1,0,0,1,0,0,0,0,0,0,0,0,0,0,0);
+			END IF;
+		WHEN BYTE1 =>
+			IF ( data_stb ) THEN 
+				sreg = BYTE2;
+				(first_wadr_rld,ctrl_error,ctrl_rcvd,data_error,data_rcvd,first_wadr_ena,
+					rx_we,byte_ena0b,cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,
+					byte_ena0a)=(0,0,0,0,0,0,0,0,0,0,0,0,1,0,0);
+			ELSE
+				sreg = BYTE1;
+				(first_wadr_rld,ctrl_error,ctrl_rcvd,data_error,data_rcvd,first_wadr_ena,
+					rx_we,byte_ena0b,cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,
+					byte_ena0a)=(0,0,0,0,0,0,0,1,0,0,0,0,0,1,0);
+			END IF;
+		WHEN BYTE2 =>
+			IF ( data_stb ) THEN 
+				sreg = BYTE3;
+				(first_wadr_rld,ctrl_error,ctrl_rcvd,data_error,data_rcvd,first_wadr_ena,
+					rx_we,byte_ena0b,cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,
+					byte_ena0a)=(0,0,0,0,0,0,0,0,0,0,0,1,0,0,0);
+			ELSE
+				sreg = BYTE2;
+				(first_wadr_rld,ctrl_error,ctrl_rcvd,data_error,data_rcvd,first_wadr_ena,
+					rx_we,byte_ena0b,cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,
+					byte_ena0a)=(0,0,0,0,0,0,0,0,0,0,0,0,1,0,0);
+			END IF;
+		WHEN BYTE3 =>
+			IF ( data_stb ) THEN 
+				sreg = BYTE0;
+				(first_wadr_rld,ctrl_error,ctrl_rcvd,data_error,data_rcvd,first_wadr_ena,
+					rx_we,byte_ena0b,cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,
+					byte_ena0a)=(0,0,0,0,0,0,0,0,0,0,0,0,0,0,1);
+			ELSE
+				sreg = BYTE3;
+				(first_wadr_rld,ctrl_error,ctrl_rcvd,data_error,data_rcvd,first_wadr_ena,
+					rx_we,byte_ena0b,cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,
+					byte_ena0a)=(0,0,0,0,0,0,0,0,0,0,0,1,0,0,0);
+			END IF;
+		WHEN CTRL_ERR =>
+			sreg = STF_WAIT;
+			(first_wadr_rld,ctrl_error,ctrl_rcvd,data_error,data_rcvd,first_wadr_ena,
+				rx_we,byte_ena0b,cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,
+				byte_ena0a)=(0,0,0,0,0,0,0,0,0,0,1,0,0,0,1);
+		WHEN CTRL_OK =>
+			sreg = STF_WAIT;
+			(first_wadr_rld,ctrl_error,ctrl_rcvd,data_error,data_rcvd,first_wadr_ena,
+				rx_we,byte_ena0b,cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,
+				byte_ena0a)=(0,0,0,0,0,0,0,0,0,0,1,0,0,0,1);
+		WHEN DATA_ERR =>
+			sreg = STF_WAIT;
+			(first_wadr_rld,ctrl_error,ctrl_rcvd,data_error,data_rcvd,first_wadr_ena,
+				rx_we,byte_ena0b,cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,
+				byte_ena0a)=(0,0,0,0,0,0,0,0,0,0,1,0,0,0,1);
+		WHEN DATA_OK =>
+			sreg = STF_WAIT;
+			(first_wadr_rld,ctrl_error,ctrl_rcvd,data_error,data_rcvd,first_wadr_ena,
+				rx_we,byte_ena0b,cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,
+				byte_ena0a)=(0,0,0,0,0,0,0,0,0,0,1,0,0,0,1);
+		WHEN DCMD_SEQ1 =>
+			IF ( !data_stb ) THEN 
+				sreg = DCMD_SEQ1;
+				(first_wadr_rld,ctrl_error,ctrl_rcvd,data_error,data_rcvd,first_wadr_ena,
+					rx_we,byte_ena0b,cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,
+					byte_ena0a)=(0,0,0,0,0,1,0,0,1,0,0,1,0,0,0);
+			END IF;
+			IF ( data_stb & !data_msg ) THEN 
+				sreg = EOF_WAIT;
+				(first_wadr_rld,ctrl_error,ctrl_rcvd,data_error,data_rcvd,first_wadr_ena,
+					rx_we,byte_ena0b,cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,
+					byte_ena0a)=(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+			END IF;
+			IF ( data_stb & data_msg ) THEN 
+				sreg = BYTE0;
+				(first_wadr_rld,ctrl_error,ctrl_rcvd,data_error,data_rcvd,first_wadr_ena,
+					rx_we,byte_ena0b,cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,
+					byte_ena0a)=(0,0,0,0,0,0,0,0,0,0,0,0,0,0,1);
+			END IF;
+		WHEN DPR_DAT_WR =>
+			sreg = BYTE1;
+			(first_wadr_rld,ctrl_error,ctrl_rcvd,data_error,data_rcvd,first_wadr_ena,
+				rx_we,byte_ena0b,cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,
+				byte_ena0a)=(0,0,0,0,0,0,0,1,0,0,0,0,0,1,0);
+		WHEN EOF_WAIT =>
+			IF ( !eof_stb ) THEN 
+				sreg = EOF_WAIT;
+				(first_wadr_rld,ctrl_error,ctrl_rcvd,data_error,data_rcvd,first_wadr_ena,
+					rx_we,byte_ena0b,cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,
+					byte_ena0a)=(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+			END IF;
+			IF ( eof_stb & crc_zero ) THEN 
+				sreg = CTRL_OK;
+				(first_wadr_rld,ctrl_error,ctrl_rcvd,data_error,data_rcvd,first_wadr_ena,
+					rx_we,byte_ena0b,cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,
+					byte_ena0a)=(0,0,1,0,0,0,0,0,0,0,0,0,0,0,0);
+			END IF;
+			IF ( eof_stb & !crc_zero ) THEN 
+				sreg = CTRL_ERR;
+				(first_wadr_rld,ctrl_error,ctrl_rcvd,data_error,data_rcvd,first_wadr_ena,
+					rx_we,byte_ena0b,cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,
+					byte_ena0a)=(0,1,0,0,0,0,0,0,0,0,0,0,0,0,0);
+			END IF;
+		WHEN LEN0 =>
+			IF ( data_stb ) THEN 
+				sreg = MTYPE_LEN1;
+				(first_wadr_rld,ctrl_error,ctrl_rcvd,data_error,data_rcvd,first_wadr_ena,
+					rx_we,byte_ena0b,cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,
+					byte_ena0a)=(0,0,0,0,0,0,0,1,0,1,0,0,0,1,0);
+			ELSE
+				sreg = LEN0;
+				(first_wadr_rld,ctrl_error,ctrl_rcvd,data_error,data_rcvd,first_wadr_ena,
+					rx_we,byte_ena0b,cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,
+					byte_ena0a)=(0,0,0,0,0,0,0,0,0,0,0,0,0,0,1);
+			END IF;
+		WHEN MTYPE_LEN1 =>
+			IF ( data_stb ) THEN 
+				sreg = PTYPE_SEQ0;
+				(first_wadr_rld,ctrl_error,ctrl_rcvd,data_error,data_rcvd,first_wadr_ena,
+					rx_we,byte_ena0b,cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,
+					byte_ena0a)=(0,0,0,0,0,0,0,0,0,0,0,0,1,0,0);
+			ELSE
+				sreg = MTYPE_LEN1;
+				(first_wadr_rld,ctrl_error,ctrl_rcvd,data_error,data_rcvd,first_wadr_ena,
+					rx_we,byte_ena0b,cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,
+					byte_ena0a)=(0,0,0,0,0,0,0,1,0,1,0,0,0,1,0);
+			END IF;
+		WHEN PTYPE_SEQ0 =>
+			IF ( data_stb ) THEN 
+				sreg = DCMD_SEQ1;
+				(first_wadr_rld,ctrl_error,ctrl_rcvd,data_error,data_rcvd,first_wadr_ena,
+					rx_we,byte_ena0b,cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,
+					byte_ena0a)=(0,0,0,0,0,1,0,0,1,0,0,1,0,0,0);
+			ELSE
+				sreg = PTYPE_SEQ0;
+				(first_wadr_rld,ctrl_error,ctrl_rcvd,data_error,data_rcvd,first_wadr_ena,
+					rx_we,byte_ena0b,cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,
+					byte_ena0a)=(0,0,0,0,0,0,0,0,0,0,0,0,1,0,0);
+			END IF;
+		WHEN STF_WAIT =>
+			sreg = LEN0;
+			(first_wadr_rld,ctrl_error,ctrl_rcvd,data_error,data_rcvd,first_wadr_ena,
+				rx_we,byte_ena0b,cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,
+				byte_ena0a)=(0,0,0,0,0,0,0,0,0,0,0,0,0,0,1);
+	END CASE;
 
-CTR_MSG =  !eof_stb & !stf_stb & CTR_MSG  #  DCMD_SEQ1 & data_stb & ctrl_msg 
-	& IDLE ;
-
-DAT_MSG =  !eof_stb & !stf_stb & DAT_MSG  #  DCMD_SEQ1 & data_stb & data_msg 
-	& IDLE ;
-
-IDLE =  CRC_ERR  #  CTR_ERR  #  EOF_WAIT & eof_stb & crc_zero & CTR_MSG  #  
-	BYTE0 & eof_stb & crc_zero & DAT_MSG  #  !data_msg & !ctrl_msg & IDLE  #  !
-	data_stb & IDLE  #  !DCMD_SEQ1 & IDLE ;
-
-
-
-(seq1_byte,seq0_byte,ctrl_rcvd,data_rcvd,first_wadr_ena,rx_we,byte_ena0b,
-	cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,byte_ena0a)= (  (
-	 BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, BYTE0,
-	 BYTE0, BYTE0, BYTE0) & ((0,0,0,0,0,0,0,0,0,0,0,0,0,1) ) ) # (  ( BYTE1, 
-	BYTE1, BYTE1, BYTE1, BYTE1, BYTE1, BYTE1, BYTE1, BYTE1, BYTE1, BYTE1, BYTE1, 
-	BYTE1, BYTE1) & ((0,0,0,0,0,0,1,0,0,0,0,0,1,0) ) ) # (  ( BYTE2, BYTE2, BYTE2
-	, BYTE2, BYTE2, BYTE2, BYTE2, BYTE2, BYTE2, BYTE2, BYTE2, BYTE2, BYTE2, BYTE2
-	) & ((0,0,0,0,0,0,0,0,0,0,0,1,0,0) ) ) # (  ( BYTE3, BYTE3, BYTE3, BYTE3, 
-	BYTE3, BYTE3, BYTE3, BYTE3, BYTE3, BYTE3, BYTE3, BYTE3, BYTE3, BYTE3) & ((0,0
-	,0,0,0,0,0,0,0,0,1,0,0,0) ) ) # (  ( CTRL_OK, CTRL_OK, CTRL_OK, CTRL_OK, 
-	CTRL_OK, CTRL_OK, CTRL_OK, CTRL_OK, CTRL_OK, CTRL_OK, CTRL_OK, CTRL_OK, 
-	CTRL_OK, CTRL_OK) & ((0,0,1,0,0,0,0,0,0,0,0,0,0,0) ) ) # (  ( DATA_OK, 
-	DATA_OK, DATA_OK, DATA_OK, DATA_OK, DATA_OK, DATA_OK, DATA_OK, DATA_OK, 
-	DATA_OK, DATA_OK, DATA_OK, DATA_OK, DATA_OK) & ((0,0,0,1,0,0,0,0,0,0,0,0,0,0)
-	 ) ) # (  ( DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1,
-	 DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1,
-	 DCMD_SEQ1) & ((1,0,0,0,1,0,0,1,0,0,1,0,0,0) ) ) # (  ( DPR_DAT_WR, 
-	DPR_DAT_WR, DPR_DAT_WR, DPR_DAT_WR, DPR_DAT_WR, DPR_DAT_WR, DPR_DAT_WR, 
-	DPR_DAT_WR, DPR_DAT_WR, DPR_DAT_WR, DPR_DAT_WR, DPR_DAT_WR, DPR_DAT_WR, 
-	DPR_DAT_WR) & ((0,0,0,0,0,1,0,0,0,0,0,0,0,0) ) ) # (  ( EOF_WAIT, EOF_WAIT, 
-	EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, 
-	EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT) & ((0,0,0,0,0,0,0,0,0,0,0,0
-	,0,0) ) ) # (  ( LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, 
-	LEN0, LEN0, LEN0, LEN0) & ((0,0,0,0,0,0,0,0,0,0,0,0,0,1) ) ) # (  ( 
-	MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, 
-	MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, 
-	MTYPE_LEN1, MTYPE_LEN1) & ((0,0,0,0,0,0,1,0,1,0,0,0,1,0) ) ) # (  ( 
-	PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, 
-	PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, 
-	PTYPE_SEQ0, PTYPE_SEQ0) & ((0,1,0,0,0,0,0,0,0,0,0,1,0,0) ) ) # (  ( START, 
-	START, START, START, START, START, START, START, START, START, START, START, 
-	START, START) & ((0,0,0,0,0,0,0,0,0,1,0,0,0,1) ) ) # (  ( STF_WAIT, STF_WAIT,
-	 STF_WAIT, STF_WAIT, STF_WAIT, STF_WAIT, STF_WAIT, STF_WAIT, STF_WAIT, 
-	STF_WAIT, STF_WAIT, STF_WAIT, STF_WAIT, STF_WAIT) & ((0,0,0,0,0,0,0,0,0,1,0,0
-	,0,1) ) );
-
-(first_wadr_rld,data_error,ctrl_error)= (  ( CRC_ERR, CRC_ERR, CRC_ERR) & ((1
-	,1,0) ) ) # (  ( CTR_ERR, CTR_ERR, CTR_ERR) & ((0,0,1) ) ) # (  ( CTR_MSG, 
-	CTR_MSG, CTR_MSG) & ((0,0,0) ) ) # (  ( DAT_MSG, DAT_MSG, DAT_MSG) & ((0,0,0)
-	 ) ) # (  ( IDLE, IDLE, IDLE) & ((0,0,0) ) );
 END;

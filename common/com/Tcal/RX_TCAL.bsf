@@ -46,8 +46,8 @@ party's intellectual property, are provided herein.
 	(port
 		(pt 0 64)
 		(input)
-		(text "pulse_lh" (rect 0 0 52 15)(font "Arial" ))
-		(text "pulse_lh" (rect 21 59 73 74)(font "Arial" ))
+		(text "pulse_det" (rect 0 0 60 15)(font "Arial" ))
+		(text "pulse_det" (rect 21 59 81 74)(font "Arial" ))
 		(line (pt 0 64)(pt 16 64)(line_width 1))
 	)
 	(port

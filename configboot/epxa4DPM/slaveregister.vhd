@@ -48,7 +48,6 @@ ENTITY slaveregister IS
 		-- kale communication interface
 		tx_pack_rdy			: OUT STD_LOGIC;
 		rx_dpr_radr_stb		: OUT STD_LOGIC;
-		com_reset_rcvd		: IN STD_LOGIC;
 		-- test connector
 		TC					: OUT	STD_LOGIC_VECTOR(7 downto 0)
 	);
@@ -78,22 +77,21 @@ BEGIN
 			rx_dpr_radr_stb	<= '0';
 			reg_rdata <= (others=>'X');
 			IF reg_enable = '1' THEN
-				CASE reg_address(11 downto 2) IS
-					WHEN "0101000000" =>	-- com control
+				CASE reg_address(6 downto 2) IS
+					WHEN "01100" =>	-- com control
 						IF reg_write = '1' THEN
 							com_ctrl_local <= reg_wdata;
-							-- debugging
-							TC	<= reg_wdata(31 DOWNTO 24);
 						ELSE
 							reg_rdata <= com_ctrl_local;
-							reg_rdata(31 DOWNTO 1)	<= (OTHERS=>'0');
+							reg_rdata(31 DOWNTO 3)	<= (OTHERS=>'0');
+							reg_rdata(1 DOWNTO 0)	<= (OTHERS=>'0');
 						END IF;
-					WHEN "0101000001" => -- com status
+					WHEN "01101" => -- com status
 						IF reg_write = '1' THEN
 						ELSE
 							reg_rdata <= com_status;
 						END IF;
-					WHEN "0101000010" =>	-- tx_dpr_wadr
+					WHEN "11100" =>	-- tx_dpr_wadr
 						IF reg_write = '1' THEN
 							tx_dpr_wadr_local <= reg_wdata (15 DOWNTO 0);
 							tx_pack_rdy	<= '1';
@@ -101,13 +99,13 @@ BEGIN
 							reg_rdata (15 DOWNTO 0)		<= tx_dpr_wadr_local;
 							reg_rdata (31 DOWNTO 16)	<= (OTHERS=>'0');
 						END IF;
-					WHEN "0101000011" =>	-- tx_dpr_radr
+					WHEN "11101" =>	-- tx_dpr_radr
 						IF reg_write = '1' THEN
 						ELSE
 							reg_rdata (15 DOWNTO 0)		<= tx_dpr_radr;
 							reg_rdata (31 DOWNTO 16)	<= (OTHERS=>'0');
 						END IF;
-					WHEN "0101000100" =>	-- rx_dpr_radr
+					WHEN "11110" =>	-- rx_dpr_radr
 						IF reg_write = '1' THEN
 							rx_dpr_radr_stb	<= '1';
 							rx_dpr_radr_local <= reg_wdata (15 DOWNTO 0);
@@ -115,7 +113,7 @@ BEGIN
 							reg_rdata (15 DOWNTO 0)		<= rx_dpr_radr_local;
 							reg_rdata (31 DOWNTO 16)	<= (OTHERS=>'0');
 						END IF;
-					WHEN "0101000101" =>	-- rx_addr
+					WHEN "11111" =>	-- rx_addr
 						IF reg_write = '1' THEN
 						ELSE
 							reg_rdata (15 DOWNTO 0)		<= rx_addr;
@@ -130,11 +128,6 @@ BEGIN
 			ELSE	-- reg_enable='0'
 				NULL;
 			END IF;	-- reg_enable
-			
-			IF com_reset_rcvd='1' THEN	-- reset DPM pointers when communications module is reset
-				tx_dpr_wadr_local	<= (others=>'0');
-				rx_dpr_radr_local	<= (others=>'0');
-			END IF;
 		END IF;
 	END PROCESS;
 	

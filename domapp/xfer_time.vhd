@@ -1,26 +1,3 @@
--------------------------------------------------------------------------------
--- Title      : DOMAPP
--- Project    : IceCube DOM main board
--------------------------------------------------------------------------------
--- File       : xfer_time.vhd
--- Author     : thorsten
--- Company    : LBNL
--- Created    : 
--- Last update: 2005-07-20
--- Platform   : Altera Excalibur
--- Standard   : VHDL'93
--------------------------------------------------------------------------------
--- Description: This module measures the time required to transfer waveform
---              data from the FPGA buffers to the external LBM
---              This is debug code to get performance information
--------------------------------------------------------------------------------
--- Copyright (c) 2005
--------------------------------------------------------------------------------
--- Revisions  :
--- Date        Version     Author    Description
---             V01-01-00   thorsten
--------------------------------------------------------------------------------
-
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;

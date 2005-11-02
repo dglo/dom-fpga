@@ -18,7 +18,6 @@
 -- Revisions  :
 -- Date        Version     Author    Description
 -- 2004-08-02  V00-00-00   thorsten
--- 2005-03-09              thorsten  added Kalle's ne comm signals
 -------------------------------------------------------------------------------
 
 
@@ -105,15 +104,7 @@ ARCHITECTURE arch_comm_wrapper OF comm_wrapper IS
                 tc              : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
                 tx_addr         : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
                 tx_dpr_radr     : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
-                tx_error        : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
-			com_thr_d		: IN STD_LOGIC_VECTOR(7 DOWNTO 0);
-			dac_max_d		: IN STD_LOGIC_VECTOR(6 DOWNTO 5);
-			rec_del_d		: IN STD_LOGIC_VECTOR(7 DOWNTO 0);
-			send_del_d		: IN STD_LOGIC_VECTOR(7 DOWNTO 0);
-			clev_min_d		: IN STD_LOGIC_VECTOR(9 DOWNTO 0);
-			clev_max_d		: IN STD_LOGIC_VECTOR(9 DOWNTO 0);
-			clev_wr			: IN STD_LOGIC;
-			thr_del_wr		: IN STD_LOGIC
+                tx_error        : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
                 );
     END COMPONENT;
 
@@ -180,16 +171,8 @@ BEGIN
             tc              => TC,
             tx_addr         => tx_dpm,
             tx_dpr_radr     => tx_tail,
-            tx_error        => COMM_STAT.tx_error,
-		com_thr_d		=> x"40",
-		dac_max_d		=> "10",
-		rec_del_d		=> x"01",
-		send_del_d		=> x"01",
-		clev_min_d		=> "1100100000",
-		clev_max_d		=> "1100101010",
-		clev_wr			=> '0', --'1'
-		thr_del_wr		=> '0'
-        );
+            tx_error        => COMM_STAT.tx_error
+            );
 
     dp1_portaaddr <= rx_head (12 DOWNTO 0);
     dp0_portaaddr <= tx_dpm (12 DOWNTO 0);

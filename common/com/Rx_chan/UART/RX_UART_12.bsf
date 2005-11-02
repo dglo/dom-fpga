@@ -78,13 +78,6 @@ party's intellectual property, are provided herein.
 		(text "ctrl_err" (rect 79 75 123 91)(font "Arial" (font_size 8)))
 		(line (pt 144 80)(pt 128 80)(line_width 1))
 	)
-	(port
-		(pt 144 96)
-		(output)
-		(text "uart_done" (rect 0 0 62 16)(font "Arial" (font_size 8)))
-		(text "uart_done" (rect 61 91 123 107)(font "Arial" (font_size 8)))
-		(line (pt 144 96)(pt 128 96)(line_width 1))
-	)
 	(drawing
 		(rectangle (rect 16 16 128 112)(line_width 1))
 	)

@@ -20,10 +20,7 @@ ENTITY flash_ADC IS
 		write_en	: IN STD_LOGIC;
 		-- enable for RX
 		enable		: IN STD_LOGIC;
-		enable_disc	: IN STD_LOGIC;
 		done		: OUT STD_LOGIC;
-		-- disc
-		OneSPE		: IN STD_LOGIC;
 		-- communications ADC connections
 		FLASH_AD_D		: IN STD_LOGIC_VECTOR (9 downto 0);
 		FLASH_AD_CLK	: OUT STD_LOGIC;
@@ -45,8 +42,6 @@ ARCHITECTURE arch_flash_ADC OF flash_ADC IS
 	SIGNAL wren_sig			: STD_LOGIC;
 	SIGNAL rden_sig			: STD_LOGIC;
 	
-	SIGNAL disc			: STD_LOGIC;
-	SIGNAL discFF		: STD_LOGIC;
 		
 	COMPONENT com_adc_mem
 		PORT
@@ -62,16 +57,6 @@ ARCHITECTURE arch_flash_ADC OF flash_ADC IS
 	END COMPONENT;
 	
 BEGIN
-
-	PROCESS(OneSPE,enable)
-	BEGIN
-		IF enable_disc='0' THEN
-			disc	<= '0';
-		ELSIF OneSPE'EVENT AND OneSPE='1' THEN
-			disc	<= '1';
-		END IF;
-	END PROCESS;
-	discFF	<= disc;
 	
 	PROCESS(CLK2x,RST)
 		VARIABLE toggle	: STD_LOGIC;
@@ -95,11 +80,11 @@ BEGIN
 			MEM_write_addr	:= (others=>'0');
 			wraddress	<= (others=>'0');
 		ELSIF CLK'EVENT AND CLK='1' THEN
-			IF enable = '0' AND enable_disc='0' THEN		-- do not take date
+			IF enable = '0' THEN		-- do not take date
 				wren	<= '0';
 				done	<= '0';
 				MEM_write_addr	:= (others=>'0');
-			ELSIF enable='1' OR (enable_disc='1' AND discFF='1') THEN			-- take data
+			ELSE					-- take data
 				IF MEM_write_addr(9)='1' THEN	-- memory is full
 					wren	<= '0';
 					done	<= '1';

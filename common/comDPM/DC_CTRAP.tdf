@@ -1,11 +1,11 @@
 % C:\PROJECTS\ICECUBE\DOR\FPGA\DCOM_01\DC_CTRAP.tdf %
 % AHDL code created by Visual Software Solution's StateCAD 4.11 %
-% Fri Aug 26 14:21:29 2005 %
+% Tue May 18 16:28:14 2004 %
 
 % This AHDL code was generated using: %
-%  one-hot state assignment with boolean code format. %
+%  binary encoded state assignment with structured code format. %
 %  Minimization is enabled,  implied else is enabled,  %
-%  and outputs are area optimized. %
+%  and outputs are speed optimized. %
 
 SUBDESIGN DC_CTRAP(
 	CLK :	INPUT;
@@ -23,7 +23,7 @@ SUBDESIGN DC_CTRAP(
 	pulse_rcvd :	INPUT;
 	pulse_sent :	INPUT;
 	reboot_req :	INPUT;
-	RES :	INPUT;
+	RST :	INPUT;
 	stf_stb :	INPUT;
 	sysres_rcvd :	INPUT;
 	tcal_rcvd :	INPUT;
@@ -50,176 +50,385 @@ SUBDESIGN DC_CTRAP(
 
 
 VARIABLE
-	CLR_BUF :	DFF;
-	CMD_WAIT :	DFF;
-	COM_OFF :	DFF;
-	COM_ON :	DFF;
-	CRES_WAIT :	DFF;
-	DOM_REBOOT :	DFF;
-	DRREQ_WT :	DFF;
-	PON :	DFF;
-	REC_PULSE :	DFF;
-	REC_WT :	DFF;
-	SEND_WT :	DFF;
-	SND_DAT :	DFF;
-	SND_DRAND :	DFF;
-	SND_DRBT :	DFF;
-	SND_ID :	DFF;
-	SND_IDLE :	DFF;
-	SND_MRNB :	DFF;
-	SND_MRWB :	DFF;
-	SND_PULSE :	DFF;
-	SND_TC_DAT :	DFF;
-	SYS_RESET :	DFF;
+	sreg : MACHINE OF BITS (SV3, SV8, SV9, SV10, SV11)
+		WITH STATES (
+			CLR_BUF =	B"00000",
+			CMD_WAIT =	B"00001",
+			CRES_WAIT =	B"00010",
+			DOM_REBOOT =	B"00011",
+			DRREQ_WT =	B"00100",
+			PON =	B"00101",
+			REC_PULSE =	B"00110",
+			REC_WT =	B"00111",
+			SEND_WT =	B"01000",
+			SND_DAT =	B"01001",
+			SND_DRAND =	B"01010",
+			SND_DRBT =	B"01011",
+			SND_ID =	B"01100",
+			SND_IDLE =	B"01101",
+			SND_MRNB =	B"01110",
+			SND_MRWB =	B"01111",
+			SND_PULSE =	B"10000",
+			SND_TC_DAT =	B"10001",
+			SYS_RESET =	B"10010"
+		);
+
+	sreg1 : MACHINE OF BITS (SV12)
+		WITH STATES (
+			COM_OFF =	B"0",
+			COM_ON =	B"1"
+		);
+
+	buf_res :	DFF;
+	cmd_snd0 :	DFF;
+	cmd_snd1 :	DFF;
+	cmd_snd2 :	DFF;
+	cmd_snd3 :	DFF;
+	com_avail :	DFF;
+	COMM_RESET :	DFF;
+	reboot_gnt :	DFF;
+	rec_ena :	DFF;
+	send_ctrl :	DFF;
+	send_data :	DFF;
+	send_id :	DFF;
+	send_tcal :	DFF;
+	tcal_cyc :	DFF;
+	tcal_data :	DFF;
+	tcal_prec :	DFF;
+	tcal_psnd :	DFF;
+	timer_clrn :	DFF;
 
 BEGIN
 
 % Clock setup %
-	CLR_BUF.clk=CLK;
-	CMD_WAIT.clk=CLK;
-	COM_OFF.clk=CLK;
-	COM_ON.clk=CLK;
-	CRES_WAIT.clk=CLK;
-	DOM_REBOOT.clk=CLK;
-	DRREQ_WT.clk=CLK;
-	PON.clk=CLK;
-	REC_PULSE.clk=CLK;
-	REC_WT.clk=CLK;
-	SEND_WT.clk=CLK;
-	SND_DAT.clk=CLK;
-	SND_DRAND.clk=CLK;
-	SND_DRBT.clk=CLK;
-	SND_ID.clk=CLK;
-	SND_IDLE.clk=CLK;
-	SND_MRNB.clk=CLK;
-	SND_MRWB.clk=CLK;
-	SND_PULSE.clk=CLK;
-	SND_TC_DAT.clk=CLK;
-	SYS_RESET.clk=CLK;
+	buf_res.clk=CLK;
+	cmd_snd0.clk=CLK;
+	cmd_snd1.clk=CLK;
+	cmd_snd2.clk=CLK;
+	cmd_snd3.clk=CLK;
+	com_avail.clk=CLK;
+	COMM_RESET.clk=CLK;
+	reboot_gnt.clk=CLK;
+	rec_ena.clk=CLK;
+	send_ctrl.clk=CLK;
+	send_data.clk=CLK;
+	send_id.clk=CLK;
+	send_tcal.clk=CLK;
+	tcal_cyc.clk=CLK;
+	tcal_data.clk=CLK;
+	tcal_prec.clk=CLK;
+	tcal_psnd.clk=CLK;
+	timer_clrn.clk=CLK;
+	sreg.clk=CLK;
+	sreg1.clk=CLK;
 
-CLR_BUF =  !RES & comres_rcvd & CMD_WAIT  #  !RES & comres_rcvd & CRES_WAIT ;
+	IF ( RST ) THEN 
+		sreg = PON;
+		(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+			tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+			send_data,send_ctrl)=(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+	ELSE
+		CASE sreg IS
+			WHEN CLR_BUF =>
+				sreg = SND_IDLE;
+				(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+					tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+					send_data,send_ctrl)=(0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,1);
+			WHEN CMD_WAIT =>
+				IF ( !comres_rcvd & !idreq_rcvd & !data_rcvd & !bfstat_rcvd & !drreq_rcvd
+					 & !sysres_rcvd & !idle_rcvd & !tcal_rcvd  #  !comres_rcvd & !id_data_avail &
+					 !data_rcvd & !bfstat_rcvd & !drreq_rcvd & !sysres_rcvd & !idle_rcvd & !
+					tcal_rcvd ) THEN 
+					sreg = CMD_WAIT;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+				END IF;
+				IF ( comres_rcvd ) THEN 
+					sreg = CLR_BUF;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+				END IF;
+				IF ( idreq_rcvd & id_data_avail ) THEN 
+					sreg = SND_ID;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0);
+				END IF;
+				IF ( data_rcvd & !dpr_rx_aff  #  bfstat_rcvd & !dpr_rx_aff ) THEN 
+					sreg = SND_MRWB;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1);
+				END IF;
+				IF ( drreq_rcvd & !dpr_tx_ef ) THEN 
+					sreg = SND_DAT;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0);
+				END IF;
+				IF ( drreq_rcvd & dpr_tx_ef & !reboot_req ) THEN 
+					sreg = SND_DRAND;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1);
+				END IF;
+				IF ( data_rcvd & dpr_rx_aff  #  bfstat_rcvd & dpr_rx_aff ) THEN 
+					sreg = SND_MRNB;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,1);
+				END IF;
+				IF ( sysres_rcvd ) THEN 
+					sreg = SYS_RESET;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0);
+				END IF;
+				IF ( drreq_rcvd & reboot_req & dpr_tx_ef ) THEN 
+					sreg = SND_DRBT;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,1);
+				END IF;
+				IF ( idle_rcvd ) THEN 
+					sreg = SND_IDLE;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,1);
+				END IF;
+				IF ( tcal_rcvd ) THEN 
+					sreg = REC_WT;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0);
+				END IF;
+			WHEN CRES_WAIT =>
+				IF ( comres_rcvd ) THEN 
+					sreg = CLR_BUF;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+				ELSE
+					sreg = CRES_WAIT;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+				END IF;
+			WHEN DOM_REBOOT =>
+				sreg = DOM_REBOOT;
+				(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+					tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+					send_data,send_ctrl)=(0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0);
+			WHEN DRREQ_WT =>
+				IF ( drreq_rcvd ) THEN 
+					sreg = SND_TC_DAT;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(0,0,0,0,0,1,0,0,1,0,0,0,0,0,1,0,0);
+				ELSE
+					sreg = DRREQ_WT;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0);
+				END IF;
+			WHEN PON =>
+				IF ( time_bit_5 ) THEN 
+					sreg = CRES_WAIT;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+				ELSE
+					sreg = PON;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+				END IF;
+			WHEN REC_PULSE =>
+				IF ( !stf_stb & !pulse_rcvd ) THEN 
+					sreg = REC_PULSE;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0);
+				END IF;
+				IF ( stf_stb ) THEN 
+					sreg = CMD_WAIT;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+				END IF;
+				IF ( pulse_rcvd & !stf_stb ) THEN 
+					sreg = SEND_WT;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0);
+				END IF;
+			WHEN REC_WT =>
+				IF ( del_15us ) THEN 
+					sreg = REC_PULSE;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0);
+				ELSE
+					sreg = REC_WT;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0);
+				END IF;
+			WHEN SEND_WT =>
+				IF ( del_15us ) THEN 
+					sreg = SND_PULSE;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(0,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0,0);
+				ELSE
+					sreg = SEND_WT;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0);
+				END IF;
+			WHEN SND_DAT =>
+				IF ( msg_sent ) THEN 
+					sreg = CMD_WAIT;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+				ELSE
+					sreg = SND_DAT;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0);
+				END IF;
+			WHEN SND_DRAND =>
+				IF ( msg_sent ) THEN 
+					sreg = CMD_WAIT;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+				ELSE
+					sreg = SND_DRAND;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1);
+				END IF;
+			WHEN SND_DRBT =>
+				IF ( msg_sent ) THEN 
+					sreg = DOM_REBOOT;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0);
+				ELSE
+					sreg = SND_DRBT;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,1);
+				END IF;
+			WHEN SND_ID =>
+				IF ( msg_sent ) THEN 
+					sreg = CMD_WAIT;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+				ELSE
+					sreg = SND_ID;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0);
+				END IF;
+			WHEN SND_IDLE =>
+				IF ( msg_sent ) THEN 
+					sreg = CMD_WAIT;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+				ELSE
+					sreg = SND_IDLE;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,1);
+				END IF;
+			WHEN SND_MRNB =>
+				IF ( msg_sent ) THEN 
+					sreg = CMD_WAIT;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+				ELSE
+					sreg = SND_MRNB;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,1);
+				END IF;
+			WHEN SND_MRWB =>
+				IF ( msg_sent ) THEN 
+					sreg = CMD_WAIT;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+				ELSE
+					sreg = SND_MRWB;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1);
+				END IF;
+			WHEN SND_PULSE =>
+				IF ( pulse_sent ) THEN 
+					sreg = DRREQ_WT;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0);
+				ELSE
+					sreg = SND_PULSE;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(0,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0,0);
+				END IF;
+			WHEN SND_TC_DAT =>
+				IF ( msg_sent ) THEN 
+					sreg = CMD_WAIT;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+				ELSE
+					sreg = SND_TC_DAT;
+					(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+						tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+						send_data,send_ctrl)=(0,0,0,0,0,1,0,0,1,0,0,0,0,0,1,0,0);
+				END IF;
+			WHEN SYS_RESET =>
+				sreg = SYS_RESET;
+				(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+					tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+					send_data,send_ctrl)=(0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0);
+		END CASE;
+	END IF;
+	sreg1.reset =  RST ;
 
-CMD_WAIT =  !comres_rcvd & !id_data_avail & !data_rcvd & !bfstat_rcvd & !
-	drreq_rcvd & !sysres_rcvd & !idle_rcvd & !tcal_rcvd & !RES & CMD_WAIT  #  !
-	comres_rcvd & !idreq_rcvd & !data_rcvd & !bfstat_rcvd & !drreq_rcvd & !
-	sysres_rcvd & !idle_rcvd & !tcal_rcvd & !RES & CMD_WAIT  #  !RES & stf_stb & 
-	REC_PULSE  #  !RES & msg_sent & SND_DAT  #  !RES & msg_sent & SND_DRAND  #  !
-	RES & msg_sent & SND_ID  #  !RES & msg_sent & SND_IDLE  #  !RES & msg_sent & 
-	SND_MRNB  #  !RES & msg_sent & SND_MRWB  #  !RES & msg_sent & SND_TC_DAT ;
+	IF ( RST ) THEN
+		com_avail.clrn=GND;
+	ELSE
+		com_avail.clrn=VCC;
+	END IF;
 
-CRES_WAIT =  !comres_rcvd & !RES & CRES_WAIT  #  !RES & time_bit_5 & PON ;
+	CASE sreg1 IS
+		WHEN COM_OFF =>
+			IF ( !SV3 & SV8 & SV9 & !SV10 & SV11 & msg_sent ) THEN 
+				sreg1 = COM_ON;
+				com_avail=VCC;
+			ELSE
+				sreg1 = COM_OFF;
+				com_avail=GND;
+			END IF;
+		WHEN COM_ON =>
+			IF ( SV3 & !SV8 & !SV9 & SV10 & !SV11  #  !SV3 & !SV8 & !SV9 & SV10 & SV11
+				 ) THEN 
+				sreg1 = COM_OFF;
+				com_avail=GND;
+			ELSE
+				sreg1 = COM_ON;
+				com_avail=VCC;
+			END IF;
+	END CASE;
 
-DOM_REBOOT =  !RES & DOM_REBOOT  #  !RES & msg_sent & SND_DRBT ;
-
-DRREQ_WT =  !tcal_rcvd & !drreq_rcvd & !RES & DRREQ_WT  #  !RES & pulse_sent 
-	& SND_PULSE ;
-
-PON =  !time_bit_5 & PON  #  RES ;
-
-REC_PULSE =  !stf_stb & !pulse_rcvd & !RES & REC_PULSE  #  !RES & del_15us & 
-	REC_WT ;
-
-REC_WT =  !RES & tcal_rcvd & CMD_WAIT  #  !RES & tcal_rcvd & DRREQ_WT  #  !
-	del_15us & !RES & REC_WT ;
-
-SEND_WT =  !RES & pulse_rcvd & !stf_stb & REC_PULSE  #  !del_15us & !RES & 
-	SEND_WT ;
-
-SND_DAT =  !RES & drreq_rcvd & !dpr_tx_ef & CMD_WAIT  #  !msg_sent & !RES & 
-	SND_DAT ;
-
-SND_DRAND =  !RES & drreq_rcvd & dpr_tx_ef & !reboot_req & CMD_WAIT  #  !
-	msg_sent & !RES & SND_DRAND ;
-
-SND_DRBT =  !RES & drreq_rcvd & reboot_req & dpr_tx_ef & CMD_WAIT  #  !
-	msg_sent & !RES & SND_DRBT ;
-
-SND_ID =  !RES & idreq_rcvd & id_data_avail & CMD_WAIT  #  !msg_sent & !RES &
-	 SND_ID ;
-
-SND_IDLE =  !RES & CLR_BUF  #  !RES & idle_rcvd & CMD_WAIT  #  !msg_sent & !
-	RES & SND_IDLE ;
-
-SND_MRNB =  !RES & data_rcvd & dpr_rx_aff & CMD_WAIT  #  !RES & bfstat_rcvd &
-	 dpr_rx_aff & CMD_WAIT  #  !msg_sent & !RES & SND_MRNB ;
-
-SND_MRWB =  !RES & data_rcvd & !dpr_rx_aff & CMD_WAIT  #  !RES & bfstat_rcvd 
-	& !dpr_rx_aff & CMD_WAIT  #  !msg_sent & !RES & SND_MRWB ;
-
-SND_PULSE =  !RES & del_15us & SEND_WT  #  !pulse_sent & !RES & SND_PULSE ;
-
-SND_TC_DAT =  !RES & drreq_rcvd & DRREQ_WT  #  !msg_sent & !RES & SND_TC_DAT 
-	;
-
-SYS_RESET =  !RES & sysres_rcvd & CMD_WAIT  #  !RES & SYS_RESET ;
-
-
-COM_OFF =  !SND_IDLE & COM_OFF  #  !msg_sent & COM_OFF  #  SYS_RESET & COM_ON
-	  #  DOM_REBOOT & COM_ON  #  RES ;
-
-COM_ON =  !RES & SND_IDLE & msg_sent & COM_OFF  #  !SYS_RESET & !DOM_REBOOT &
-	 !RES & COM_ON ;
-
-
-
-com_avail= COM_ON ;
-
-(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
-	tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
-	send_data,send_ctrl)= (  ( CLR_BUF, CLR_BUF, CLR_BUF, CLR_BUF, CLR_BUF, 
-	CLR_BUF, CLR_BUF, CLR_BUF, CLR_BUF, CLR_BUF, CLR_BUF, CLR_BUF, CLR_BUF, 
-	CLR_BUF, CLR_BUF, CLR_BUF, CLR_BUF) & ((0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0) ) 
-	) # (  ( CMD_WAIT, CMD_WAIT, CMD_WAIT, CMD_WAIT, CMD_WAIT, CMD_WAIT, CMD_WAIT
-	, CMD_WAIT, CMD_WAIT, CMD_WAIT, CMD_WAIT, CMD_WAIT, CMD_WAIT, CMD_WAIT, 
-	CMD_WAIT, CMD_WAIT, CMD_WAIT) & ((1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0) ) ) # ( 
-	 ( CRES_WAIT, CRES_WAIT, CRES_WAIT, CRES_WAIT, CRES_WAIT, CRES_WAIT, 
-	CRES_WAIT, CRES_WAIT, CRES_WAIT, CRES_WAIT, CRES_WAIT, CRES_WAIT, CRES_WAIT, 
-	CRES_WAIT, CRES_WAIT, CRES_WAIT, CRES_WAIT) & ((1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-	,0,0) ) ) # (  ( DOM_REBOOT, DOM_REBOOT, DOM_REBOOT, DOM_REBOOT, DOM_REBOOT, 
-	DOM_REBOOT, DOM_REBOOT, DOM_REBOOT, DOM_REBOOT, DOM_REBOOT, DOM_REBOOT, 
-	DOM_REBOOT, DOM_REBOOT, DOM_REBOOT, DOM_REBOOT, DOM_REBOOT, DOM_REBOOT) & ((0
-	,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0) ) ) # (  ( DRREQ_WT, DRREQ_WT, DRREQ_WT, 
-	DRREQ_WT, DRREQ_WT, DRREQ_WT, DRREQ_WT, DRREQ_WT, DRREQ_WT, DRREQ_WT, 
-	DRREQ_WT, DRREQ_WT, DRREQ_WT, DRREQ_WT, DRREQ_WT, DRREQ_WT, DRREQ_WT) & ((1,0
-	,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0) ) ) # (  ( PON, PON, PON, PON, PON, PON, PON,
-	 PON, PON, PON, PON, PON, PON, PON, PON, PON, PON) & ((0,0,0,0,0,0,0,0,0,0,0,
-	0,0,0,0,0,0) ) ) # (  ( REC_PULSE, REC_PULSE, REC_PULSE, REC_PULSE, REC_PULSE
-	, REC_PULSE, REC_PULSE, REC_PULSE, REC_PULSE, REC_PULSE, REC_PULSE, REC_PULSE
-	, REC_PULSE, REC_PULSE, REC_PULSE, REC_PULSE, REC_PULSE) & ((1,0,0,0,0,0,0,1,
-	1,0,0,0,0,0,0,0,0) ) ) # (  ( REC_WT, REC_WT, REC_WT, REC_WT, REC_WT, REC_WT,
-	 REC_WT, REC_WT, REC_WT, REC_WT, REC_WT, REC_WT, REC_WT, REC_WT, REC_WT, 
-	REC_WT, REC_WT) & ((1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0) ) ) # (  ( SEND_WT, 
-	SEND_WT, SEND_WT, SEND_WT, SEND_WT, SEND_WT, SEND_WT, SEND_WT, SEND_WT, 
-	SEND_WT, SEND_WT, SEND_WT, SEND_WT, SEND_WT, SEND_WT, SEND_WT, SEND_WT) & ((0
-	,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0) ) ) # (  ( SND_DAT, SND_DAT, SND_DAT, 
-	SND_DAT, SND_DAT, SND_DAT, SND_DAT, SND_DAT, SND_DAT, SND_DAT, SND_DAT, 
-	SND_DAT, SND_DAT, SND_DAT, SND_DAT, SND_DAT, SND_DAT) & ((0,0,0,0,0,0,0,0,0,0
-	,0,0,0,0,0,1,0) ) ) # (  ( SND_DRAND, SND_DRAND, SND_DRAND, SND_DRAND, 
-	SND_DRAND, SND_DRAND, SND_DRAND, SND_DRAND, SND_DRAND, SND_DRAND, SND_DRAND, 
-	SND_DRAND, SND_DRAND, SND_DRAND, SND_DRAND, SND_DRAND, SND_DRAND) & ((0,0,0,0
-	,0,0,0,0,0,0,1,1,0,0,0,0,1) ) ) # (  ( SND_DRBT, SND_DRBT, SND_DRBT, SND_DRBT
-	, SND_DRBT, SND_DRBT, SND_DRBT, SND_DRBT, SND_DRBT, SND_DRBT, SND_DRBT, 
-	SND_DRBT, SND_DRBT, SND_DRBT, SND_DRBT, SND_DRBT, SND_DRBT) & ((0,0,0,0,0,0,0
-	,0,0,0,1,1,1,0,0,0,1) ) ) # (  ( SND_ID, SND_ID, SND_ID, SND_ID, SND_ID, 
-	SND_ID, SND_ID, SND_ID, SND_ID, SND_ID, SND_ID, SND_ID, SND_ID, SND_ID, 
-	SND_ID, SND_ID, SND_ID) & ((0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0) ) ) # (  ( 
-	SND_IDLE, SND_IDLE, SND_IDLE, SND_IDLE, SND_IDLE, SND_IDLE, SND_IDLE, 
-	SND_IDLE, SND_IDLE, SND_IDLE, SND_IDLE, SND_IDLE, SND_IDLE, SND_IDLE, 
-	SND_IDLE, SND_IDLE, SND_IDLE) & ((0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,1) ) ) # ( 
-	 ( SND_MRNB, SND_MRNB, SND_MRNB, SND_MRNB, SND_MRNB, SND_MRNB, SND_MRNB, 
-	SND_MRNB, SND_MRNB, SND_MRNB, SND_MRNB, SND_MRNB, SND_MRNB, SND_MRNB, 
-	SND_MRNB, SND_MRNB, SND_MRNB) & ((0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,1) ) ) # ( 
-	 ( SND_MRWB, SND_MRWB, SND_MRWB, SND_MRWB, SND_MRWB, SND_MRWB, SND_MRWB, 
-	SND_MRWB, SND_MRWB, SND_MRWB, SND_MRWB, SND_MRWB, SND_MRWB, SND_MRWB, 
-	SND_MRWB, SND_MRWB, SND_MRWB) & ((0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1) ) ) # ( 
-	 ( SND_PULSE, SND_PULSE, SND_PULSE, SND_PULSE, SND_PULSE, SND_PULSE, 
-	SND_PULSE, SND_PULSE, SND_PULSE, SND_PULSE, SND_PULSE, SND_PULSE, SND_PULSE, 
-	SND_PULSE, SND_PULSE, SND_PULSE, SND_PULSE) & ((0,0,1,0,0,0,1,0,1,0,0,0,0,0,0
-	,0,0) ) ) # (  ( SND_TC_DAT, SND_TC_DAT, SND_TC_DAT, SND_TC_DAT, SND_TC_DAT, 
-	SND_TC_DAT, SND_TC_DAT, SND_TC_DAT, SND_TC_DAT, SND_TC_DAT, SND_TC_DAT, 
-	SND_TC_DAT, SND_TC_DAT, SND_TC_DAT, SND_TC_DAT, SND_TC_DAT, SND_TC_DAT) & ((0
-	,0,0,0,0,1,0,0,1,0,0,0,0,0,1,0,0) ) ) # (  ( SYS_RESET, SYS_RESET, SYS_RESET,
-	 SYS_RESET, SYS_RESET, SYS_RESET, SYS_RESET, SYS_RESET, SYS_RESET, SYS_RESET,
-	 SYS_RESET, SYS_RESET, SYS_RESET, SYS_RESET, SYS_RESET, SYS_RESET, SYS_RESET)
-	 & ((0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0) ) );
 END;

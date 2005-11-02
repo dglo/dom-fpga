@@ -4,7 +4,7 @@
 6 pulsers
 7 discriminator_rate
 8 local_coinc
-9 flasher_board
+9 flash_board
 10 trigger
 11 local_clock
 12 supernova

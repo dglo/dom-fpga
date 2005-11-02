@@ -49,8 +49,7 @@ ARCHITECTURE arch_pedestal_sub OF pedestal_sub IS
 BEGIN
 
 	-- subtract pedestal
-	-- ATWD_data	<= ATWD_bin_data - ATWD_ped_data;
-	ATWD_data	<= ATWD_bin_data - ATWD_ped_data WHEN ATWD_bin_data > ATWD_ped_data ELSE (OTHERS=>'0');
+	ATWD_data	<= ATWD_bin_data - ATWD_ped_data;
 	-- route address out
 	ATWD_ped_addr	<= ATWD_bin_addr;
 	ATWD_addr		<= ATWD_bin_addr;

@@ -1,4 +1,4 @@
-TITLE "control message, header-byte generation, K.-H. Sulanke,DESY Zeuthen, 2004-07-15";
+TITLE "control message, header-byte generation, K.-H. Sulanke,DESY Zeuthen, 2004-04-25";
 -- according Arthur Jones protocol
 
 SUBDESIGN dc_hdr_bytes_ap
@@ -10,9 +10,6 @@ SUBDESIGN dc_hdr_bytes_ap
 	send_id			: INPUT;
 	dom_adr_en		: INPUT;
 	tx_dout15		: INPUT;
-	dac_lev[7..0]	: INPUT;
-	dorlev_up_rq	: INPUT;
-	dorlev_dn_rq	: INPUT;
 		
 	eof[7..0]		: OUTPUT;	-- end of frame	
 	stf[7..0]		: OUTPUT;	-- start of frame		
@@ -34,23 +31,17 @@ BEGIN
 					# H"00"	& send_id;
 										
 	len1_[7]	    = A_nB;
-
-	seq0_[7..0]	    = dac_lev[7..0];	-- Sequence byte0 with presently used comm. DAC level
 	
+	seq0_[7..0]	    = H"00"	& send_ctrl	-- Sequence byte0
+					# H"01"	& send_tcal
+					# H"02"	& send_id;
+					
 	seq1_[3..0]	    = cmd_snd[3..0];
-	seq1_[5..4]	    = H"0";	
-	seq1_[6]	    = dorlev_dn_rq;	-- ask DOR for less comm. signal
-	seq1_[7]	    = dorlev_up_rq;	-- ask DOR for more comm. signal
-	
---	seq0_[7..0]	    = H"00"	& send_ctrl	-- Sequence byte0
---					# H"01"	& send_tcal
---					# H"02"	& send_id;
+	seq1_[7..4]	    = H"0";	
 
 	stf[7..0]		= H"E3";
 	eof[7..0]		= H"99";
 	
 	tx_dout_15		=  dom_adr_en & A_nB
 					# !dom_adr_en & tx_dout15;
-					
-
 END;

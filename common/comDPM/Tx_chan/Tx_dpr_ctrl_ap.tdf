@@ -1,4 +1,4 @@
-TITLE "Tx Dual Port RAM control, LAST CHANGE: 2004-06-18";
+TITLE "Tx Dual Port RAM control, LAST CHANGE: 2004-04-22";
 
 INCLUDE "tx_dpr_radr_ct";
 

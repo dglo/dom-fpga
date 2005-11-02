@@ -24,13 +24,15 @@ FUNCTION dc_tx_fifo
 	data[7..0],
 	wrreq,
 	rdreq,
-	clock,
+	rdclk,
+	wrclk,
 	aclr
 )
 
 RETURNS (
 	q[7..0],
-	full,
-	empty,
-	usedw[9..0]
+	rdempty,
+	wrfull,
+	wrempty,
+	wrusedw[9..0]
 );

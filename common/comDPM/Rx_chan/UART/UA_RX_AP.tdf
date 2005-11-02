@@ -1,6 +1,6 @@
-% C:\PROJECTS\ICECUBE\DOR\FPGA\DCOM_01\RX_CHAN\UART\UA_RX_AP.tdf %
+% C:\PROJECTS\ICECUBE\DOR\FPGA\DC_TEST\RX_CHAN\UART\UA_RX_AP.tdf %
 % AHDL code created by Visual Software Solution's StateCAD 4.11 %
-% Thu Jul 15 08:03:33 2004 %
+% Tue Apr 06 10:09:33 2004 %
 
 % This AHDL code was generated using: %
 %  binary encoded state assignment with structured code format. %
@@ -27,19 +27,17 @@ SUBDESIGN UA_RX_AP(
 VARIABLE
 	sreg : MACHINE OF BITS (SV0, SV1, SV3, SV4)
 		WITH STATES (
-			RXIDLE =	B"0101",
-			DAT_WT =	B"0000",
-			DATA =	B"0001",
-			EOF =	B"0010",
-			ERROR =	B"0011",
-			RXDAT =	B"0100",
-			RXSTART =	B"0110",
-			RXSTOP =	B"0111",
-			SHFT0 =	B"1000",
-			SHFT1 =	B"1001",
-			SHFT_WT =	B"1010",
-			STF =	B"1011",
-			WT =	B"1100"
+			RXIDLE =	B"0100",
+			DATA =	B"0000",
+			EOF =	B"0001",
+			ERROR =	B"0010",
+			RXDAT =	B"0011",
+			RXSTART =	B"0101",
+			RXSTOP =	B"0110",
+			SHFT0 =	B"0111",
+			SHFT1 =	B"1000",
+			STF =	B"1001",
+			WT =	B"1010"
 		);
 
 	ctclr :	DFF;
@@ -85,14 +83,6 @@ BEGIN
 	END IF;
 
 	CASE sreg IS
-		WHEN DAT_WT =>
-			IF ( rxcteq5 ) THEN 
-				sreg = DATA;
-				(err_stb,eof_stb,stf_stb,data_stb,shen,shd,ctclr)=(0,0,0,1,0,0,0);
-			ELSE
-				sreg = DAT_WT;
-				(err_stb,eof_stb,stf_stb,data_stb,shen,shd,ctclr)=(0,0,0,0,0,0,0);
-			END IF;
 		WHEN DATA =>
 			sreg = RXIDLE;
 			(err_stb,eof_stb,stf_stb,data_stb,shen,shd,ctclr)=(0,0,0,0,0,0,1);
@@ -107,17 +97,13 @@ BEGIN
 				sreg = RXDAT;
 				(err_stb,eof_stb,stf_stb,data_stb,shen,shd,ctclr)=(0,0,0,0,0,0,0);
 			END IF;
-			IF ( rxd & !rxcteq5 ) THEN 
-				sreg = SHFT_WT;
-				(err_stb,eof_stb,stf_stb,data_stb,shen,shd,ctclr)=(0,0,0,0,0,0,0);
+			IF ( rxd ) THEN 
+				sreg = SHFT1;
+				(err_stb,eof_stb,stf_stb,data_stb,shen,shd,ctclr)=(0,0,0,0,1,1,0);
 			END IF;
 			IF ( rxcteq5 & !rxd ) THEN 
 				sreg = SHFT0;
 				(err_stb,eof_stb,stf_stb,data_stb,shen,shd,ctclr)=(0,0,0,0,1,0,0);
-			END IF;
-			IF ( rxd & rxcteq5 ) THEN 
-				sreg = SHFT1;
-				(err_stb,eof_stb,stf_stb,data_stb,shen,shd,ctclr)=(0,0,0,0,1,1,0);
 			END IF;
 		WHEN RXIDLE =>
 			IF ( rxd ) THEN 
@@ -140,24 +126,6 @@ BEGIN
 				sreg = RXSTOP;
 				(err_stb,eof_stb,stf_stb,data_stb,shen,shd,ctclr)=(0,0,0,0,0,0,0);
 			END IF;
-			IF ( rxd & !rxcteq5 ) THEN 
-				sreg = DAT_WT;
-				(err_stb,eof_stb,stf_stb,data_stb,shen,shd,ctclr)=(0,0,0,0,0,0,0);
-			END IF;
-			IF ( rxdata7 & !rxdata6 & !rxdata5 & rxdata4 & rxdata3 & !rxdata2 & !
-				rxdata1 & rxdata0 & rxcteq5 & !rxd ) THEN 
-				sreg = EOF;
-				(err_stb,eof_stb,stf_stb,data_stb,shen,shd,ctclr)=(0,1,0,0,0,0,0);
-			END IF;
-			IF ( rxdata7 & rxdata6 & rxdata5 & !rxdata4 & !rxdata3 & !rxdata2 & 
-				rxdata1 & rxdata0 & rxcteq5 & !rxd ) THEN 
-				sreg = STF;
-				(err_stb,eof_stb,stf_stb,data_stb,shen,shd,ctclr)=(0,0,1,0,0,0,0);
-			END IF;
-			IF ( rxd & rxcteq5 ) THEN 
-				sreg = DATA;
-				(err_stb,eof_stb,stf_stb,data_stb,shen,shd,ctclr)=(0,0,0,1,0,0,0);
-			END IF;
 			IF ( !rxdata0 & rxcteq5 & !rxd  #  rxdata6 & !rxdata1 & rxcteq5 & !rxd  # 
 				 rxdata5 & !rxdata1 & rxcteq5 & !rxd  #  !rxdata4 & !rxdata1 & rxcteq5 & !rxd
 				  #  !rxdata3 & !rxdata1 & rxcteq5 & !rxd  #  rxdata2 & rxcteq5 & !rxd  #  
@@ -173,20 +141,26 @@ BEGIN
 				sreg = ERROR;
 				(err_stb,eof_stb,stf_stb,data_stb,shen,shd,ctclr)=(1,0,0,0,0,0,0);
 			END IF;
+			IF ( rxd ) THEN 
+				sreg = DATA;
+				(err_stb,eof_stb,stf_stb,data_stb,shen,shd,ctclr)=(0,0,0,1,0,0,0);
+			END IF;
+			IF ( rxdata7 & rxdata6 & rxdata5 & !rxdata4 & !rxdata3 & !rxdata2 & 
+				rxdata1 & rxdata0 & rxcteq5 & !rxd ) THEN 
+				sreg = STF;
+				(err_stb,eof_stb,stf_stb,data_stb,shen,shd,ctclr)=(0,0,1,0,0,0,0);
+			END IF;
+			IF ( rxdata7 & !rxdata6 & !rxdata5 & rxdata4 & rxdata3 & !rxdata2 & !
+				rxdata1 & rxdata0 & rxcteq5 & !rxd ) THEN 
+				sreg = EOF;
+				(err_stb,eof_stb,stf_stb,data_stb,shen,shd,ctclr)=(0,1,0,0,0,0,0);
+			END IF;
 		WHEN SHFT0 =>
 			sreg = WT;
 			(err_stb,eof_stb,stf_stb,data_stb,shen,shd,ctclr)=(0,0,0,0,0,0,0);
 		WHEN SHFT1 =>
 			sreg = WT;
 			(err_stb,eof_stb,stf_stb,data_stb,shen,shd,ctclr)=(0,0,0,0,0,0,0);
-		WHEN SHFT_WT =>
-			IF ( rxcteq5 ) THEN 
-				sreg = SHFT1;
-				(err_stb,eof_stb,stf_stb,data_stb,shen,shd,ctclr)=(0,0,0,0,1,1,0);
-			ELSE
-				sreg = SHFT_WT;
-				(err_stb,eof_stb,stf_stb,data_stb,shen,shd,ctclr)=(0,0,0,0,0,0,0);
-			END IF;
 		WHEN STF =>
 			sreg = RXIDLE;
 			(err_stb,eof_stb,stf_stb,data_stb,shen,shd,ctclr)=(0,0,0,0,0,0,1);
@@ -195,12 +169,12 @@ BEGIN
 				sreg = WT;
 				(err_stb,eof_stb,stf_stb,data_stb,shen,shd,ctclr)=(0,0,0,0,0,0,0);
 			END IF;
-			IF ( rxlast & rxcteq9 ) THEN 
-				sreg = RXSTOP;
-				(err_stb,eof_stb,stf_stb,data_stb,shen,shd,ctclr)=(0,0,0,0,0,0,0);
-			END IF;
 			IF ( !rxlast & rxcteq9 ) THEN 
 				sreg = RXDAT;
+				(err_stb,eof_stb,stf_stb,data_stb,shen,shd,ctclr)=(0,0,0,0,0,0,0);
+			END IF;
+			IF ( rxlast & rxcteq9 ) THEN 
+				sreg = RXSTOP;
 				(err_stb,eof_stb,stf_stb,data_stb,shen,shd,ctclr)=(0,0,0,0,0,0,0);
 			END IF;
 	END CASE;

@@ -13,7 +13,7 @@
 -- Description: This module measures the hit rates for MPEs, SPEs, and SNs. SN  
 --              data is output as a 32 bit word. The 16 MSBs is the time stamp 
 --              and the lower 16 bits contain four consecutive 4 bit rates. The
---              lowest 4 bit is the earliest rate and so on.
+--		lowest 4 bit is the earliest rate and so on.
 -------------------------------------------------------------------------------
 -- Copyright (c) 2003 
 -------------------------------------------------------------------------------
@@ -78,10 +78,6 @@ signal sn_t_cnt 	: STD_LOGIC_VECTOR(1 downto 0);
 
 --signal systime : STD_LOGIC_VECTOR(47 downto 0);
 
-	-- stretch the RM_daq_disc signal to run the processes at 20MHz
-	SIGNAL RM_daq_disc_20MHz	: STD_LOGIC_VECTOR (1 DOWNTO 0);
-	SIGNAL RM_daq_disc_old		: STD_LOGIC_VECTOR (1 DOWNTO 0);
-
 begin
 
 RM_stat.RM_rate_update	<= RM_rate_update;
@@ -95,19 +91,10 @@ RM_stat.sn_rate_update	<= sn_rate_update;
 rate_dead_int(10 downto 1) <= RM_ctrl.RM_rate_dead(9 downto 0); --multiply dead time by 2 for 100ns intervals
 rate_dead_int(0) <= '0';
 
-sn_dead_int(8) <= '0';
-sn_dead_int(7 downto 5) <= RM_ctrl.RM_sn_dead; ---&&& was (2 downto 0)
-sn_dead_int(4 downto 0) <= "00000"; ---&&&
 
-	PROCESS (CLK40, RST)
-	BEGIN
-		IF RST='1' THEN
-			RM_daq_disc_old	<= "00";
-		ELSIF CLK40'EVENT AND CLK40='1' THEN
-			RM_daq_disc_old	<= RM_daq_disc;
-		END IF;
-	END PROCESS;
-	RM_daq_disc_20MHz	<= RM_daq_disc OR RM_daq_disc_old;
+sn_dead_int(8 downto 6) <= RM_ctrl.RM_sn_dead; ---&&& was (2 downto 0)
+sn_dead_int(5 downto 0) <= "000000"; ---&&&
+
 
 
 rate_meters_machine: process (CLK20, RST)
@@ -168,27 +155,27 @@ begin
 		else
 			RM_rate_update <= '0';
 			
-			if RM_ctrl.RM_rate_enable(1) = '1' and RM_daq_disc_20MHz(1) = '1' and lockout_MPE = 0 then
+			if RM_ctrl.RM_rate_enable(1) = '1' and RM_daq_disc(1) = '1' and lockout_MPE = 0 then
 				rate_MPE_int <= rate_MPE_int + '1';
 			end if;
 		
-			if RM_ctrl.RM_rate_enable(1) = '1' and (lockout_MPE > 0 or RM_daq_disc_20MHz(1) = '1') and lockout_MPE < rate_dead_int then 
+			if RM_ctrl.RM_rate_enable(1) = '1' and (lockout_MPE > 0 or RM_daq_disc(1) = '1') and lockout_MPE < rate_dead_int then 
 				lockout_MPE <= lockout_MPE + '1';
 			elsif RM_ctrl.RM_rate_enable(1) = '0' or lockout_MPE >= rate_dead_int then
 				lockout_MPE <= (others => '0');
 			end if;
 			
-			if RM_ctrl.RM_rate_enable(0) = '1' and RM_daq_disc_20MHz(0) = '1' and lockout_SPE = 0 then
+			if RM_ctrl.RM_rate_enable(0) = '1' and RM_daq_disc(0) = '1' and lockout_SPE = 0 then
 				rate_SPE_int <= rate_SPE_int + '1';
 			end if;
 			
-			--if RM_daq_disc_20MHz(0) = '1' and lockout_SPE < rate_dead_int then
+			--if RM_daq_disc(0) = '1' and lockout_SPE < rate_dead_int then
 			--	SPE_disc <= '1';
 			--elsif lockout_MPE >=  rate_dead_int then
 			--	SPE_disc <= '0';
 			--end if;
 		
-			if RM_ctrl.RM_rate_enable(0) = '1' and (lockout_SPE > 0 or RM_daq_disc_20MHz(0) = '1') and lockout_SPE < rate_dead_int then 
+			if RM_ctrl.RM_rate_enable(0) = '1' and (lockout_SPE > 0 or RM_daq_disc(0) = '1') and lockout_SPE < rate_dead_int then 
 				lockout_SPE <= lockout_SPE + '1';
 			elsif RM_ctrl.RM_rate_enable(0) = '0' or lockout_SPE >= rate_dead_int then
 				lockout_SPE <= (others => '0');
@@ -222,8 +209,8 @@ begin
 				sn_rate <= (others => '0');
 			end if;
 		else 
-			if (RM_ctrl.RM_sn_enable = "01" and (lockout_SN > 0 or RM_daq_disc_20MHz(0) = '1') and lockout_SN <= sn_dead_int) or
-			   (RM_ctrl.RM_sn_enable = "10" and (lockout_SN > 0 or RM_daq_disc_20MHz(1) = '1') and lockout_SN <= sn_dead_int) 
+			if (RM_ctrl.RM_sn_enable = "01" and (lockout_SN > 0 or RM_daq_disc(0) = '1') and lockout_SN <= sn_dead_int) or
+			   (RM_ctrl.RM_sn_enable = "10" and (lockout_SN > 0 or RM_daq_disc(1) = '1') and lockout_SN <= sn_dead_int) 
 				then 
 				lockout_SN <= lockout_SN + '1';
 			elsif
@@ -231,7 +218,7 @@ begin
 				lockout_SN <= (others => '0');
 			end if;
 			 	
-			if ((RM_ctrl.RM_sn_enable = "10" and RM_daq_disc_20MHz(1) = '1') or (RM_ctrl.RM_sn_enable = "01" and RM_daq_disc_20MHz(0) = '1')) and lockout_SN = 0 and sn_rate < 15 then
+			if ((RM_ctrl.RM_sn_enable = "10" and RM_daq_disc(1) = '1') or (RM_ctrl.RM_sn_enable = "01" and RM_daq_disc(0) = '1')) and lockout_SN = 0 and sn_rate < 15 then
 				sn_rate <= sn_rate + '1';
 			elsif RM_ctrl.RM_sn_enable = "00" then
 				sn_rate <= (others => '0');

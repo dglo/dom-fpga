@@ -1,5 +1,5 @@
 Timing Analyzer report for simpletest
-Mon Nov 29 16:38:16 2004
+Mon Nov 22 07:31:33 2004
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -52,7 +52,7 @@ party's intellectual property, are provided herein.
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Option                                                           ; Setting            ; From         ; To                                                                   ;
 +------------------------------------------------------------------+--------------------+--------------+----------------------------------------------------------------------+
-; Device name                                                      ; EPXA4F672I2        ;              ;                                                                      ;
+; Device name                                                      ; EPXA4F672C2        ;              ;                                                                      ;
 ; Report IO Paths Separately                                       ; Off                ;              ;                                                                      ;
 ; Include external delays to/from device pins in fmax calculations ; Off                ;              ;                                                                      ;
 ; Run All Timing Analyses                                          ; On                 ;              ;                                                                      ;
@@ -1195,8 +1195,8 @@ party's intellectual property, are provided herein.
 Info: *******************************************************************
 Info: Running Quartus II Timing Analyzer
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Mon Nov 29 16:38:07 2004
-Info: Command: quartus_tan --import_settings_files=off --export_settings_files=off simpletest -c simpletest
+    Info: Processing started: Mon Nov 22 07:31:21 2004
+Info: Command: quartus_tan --import_settings_files=on --export_settings_files=off simpletest -c simpletest --speed=2
 Info: Started post-fitting delay annotation
 Info: Delay annotation completed successfully
 Warning: Clock Setting CLK1p is unassigned
@@ -1390,7 +1390,7 @@ Info: Minimum tco from clock CLK2p to destination pin CLKLK_OUT2p through clock 
 Info: All timing requirements were met. See Report window for more details.
 Warning: Found invalid timing assignments -- see Ignored Timing Assignments report for details
 Info: Quartus II Timing Analyzer was successful. 0 errors, 3 warnings
-    Info: Processing ended: Mon Nov 29 16:38:16 2004
-    Info: Elapsed time: 00:00:08
+    Info: Processing ended: Mon Nov 22 07:31:33 2004
+    Info: Elapsed time: 00:00:12
 
 

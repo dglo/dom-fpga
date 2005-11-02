@@ -536,7 +536,7 @@ FE_PULSER_P[0]               : W24       : output : LVTTL             :         
 RESERVED_INPUT               : W25       :        :                   :         : 8         :                
 RESERVED_INPUT               : W26       :        :                   :         : 8         :                
 RESERVED_INPUT               : Y1        :        :                   :         : 12        :                
-RESERVED_INPUT               : Y2        :        :                   :         : 12        :                
+CLK3p                        : Y2        : input  : LVTTL             :         : 12        : N              
 PGM[15]                      : Y3        : output : LVTTL             :         : 13        : Y              
 PGM[14]                      : Y4        : output : LVTTL             :         : 13        : Y              
 CLK4p                        : Y5        : input  : LVTTL             :         : 13        : Y              
@@ -585,7 +585,7 @@ R2BUS[4]                     : AA21      : output : LVTTL             :         
 RESERVED_INPUT               : AA22      :        :                   :         : 9         :                
 RESERVED_INPUT               : AA23      :        :                   :         : 9         :                
 COMM_RESET                   : AA24      : output : LVTTL             :         : 9         : Y              
-CLK3p                        : AA25      : input  : LVTTL             :         : 8         : N              
+RESERVED_INPUT               : AA25      :        :                   :         : 8         :                
 RESERVED_INPUT               : AA26      :        :                   :         : 8         :                
 COINCIDENCE_OUT_UP           : AB1       : output : LVTTL             :         : 12        : Y              
 COINCIDENCE_OUT_DOWN         : AB2       : output : LVTTL             :         : 12        : Y              

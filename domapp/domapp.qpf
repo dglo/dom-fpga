@@ -21,10 +21,9 @@
 
 
 QUARTUS_VERSION = "4.0"
-DATE = "07:42:55  November 03, 2005"
+DATE = "17:27:33  August 09, 2004"
 
 
 # Active Revisions
 
 PROJECT_REVISION = "domapp"
-PROJECT_REVISION = "dom"

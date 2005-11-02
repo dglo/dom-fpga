@@ -461,7 +461,7 @@ RESERVED_INPUT               : U1        :        :                   :         
 COM_TX_SLEEP                 : U2        : output : LVTTL             :         : 12        : Y              
 RESERVED_INPUT               : U3        :        :                   :         : 13        :                
 RESERVED_INPUT               : U4        :        :                   :         : 13        :                
-CLK3p                        : U5        : input  : LVTTL             :         : 13        : N              
+RESERVED_INPUT               : U5        :        :                   :         : 13        :                
 RESERVED_INPUT               : U6        :        :                   :         : 13        :                
 RESERVED_INPUT               : U7        :        :                   :         : 13        :                
 VCC_CKOUT2                   : U8        : power  :                   : 3.3V    :           :                
@@ -510,7 +510,7 @@ FE_PULSER_N[1]               : V24       : output : LVTTL             :         
 RESERVED_INPUT               : V25       :        :                   :         : 8         :                
 RESERVED_INPUT               : V26       :        :                   :         : 8         :                
 RESERVED_INPUT               : W1        :        :                   :         : 12        :                
-RESERVED_INPUT               : W2        :        :                   :         : 12        :                
+CLK3p                        : W2        : input  : LVTTL             :         : 12        : N              
 RESERVED_INPUT               : W3        :        :                   :         : 13        :                
 RESERVED_INPUT               : W4        :        :                   :         : 13        :                
 RESERVED_INPUT               : W5        :        :                   :         : 13        :                
@@ -570,8 +570,8 @@ RESERVED_INPUT               : AA6       :        :                   :         
 RESERVED_INPUT               : AA7       :        :                   :         : 12        :                
 RESERVED_INPUT               : AA8       :        :                   :         : 11        :                
 RESERVED_INPUT               : AA9       :        :                   :         : 11        :                
-COINC_UP_A                   : AA10      : input  : LVTTL             :         : 11        : Y              
-COINC_DOWN_BLATCH            : AA11      : output : LVTTL             :         : 11        : Y              
+COINC_DOWN_A                 : AA10      : input  : LVTTL             :         : 11        : Y              
+COINC_UP_BLATCH              : AA11      : output : LVTTL             :         : 11        : Y              
 FLASH_AD_D[4]                : AA12      : input  : 2.5 V             :         : 11        : Y              
 RESERVED_INPUT               : AA13      :        :                   :         : 11        :                
 TriggerComplete_0            : AA14      : input  : LVTTL             :         : 10        : Y              
@@ -587,16 +587,16 @@ RESERVED_INPUT               : AA23      :        :                   :         
 COMM_RESET                   : AA24      : output : LVTTL             :         : 9         : Y              
 RESERVED_INPUT               : AA25      :        :                   :         : 8         :                
 RESERVED_INPUT               : AA26      :        :                   :         : 8         :                
-COINCIDENCE_OUT_DOWN         : AB1       : output : LVTTL             :         : 12        : Y              
-COINCIDENCE_OUT_UP           : AB2       : output : LVTTL             :         : 12        : Y              
+COINCIDENCE_OUT_UP           : AB1       : output : LVTTL             :         : 12        : Y              
+COINCIDENCE_OUT_DOWN         : AB2       : output : LVTTL             :         : 12        : Y              
 PGM[8]                       : AB3       : output : LVTTL             :         : 12        : Y              
 PGM[10]                      : AB4       : output : LVTTL             :         : 12        : Y              
 RESERVED_INPUT               : AB5       :        :                   :         : 12        :                
 RESERVED_INPUT               : AB6       :        :                   :         : 12        :                
 RESERVED_INPUT               : AB7       :        :                   :         : 12        :                
 ATWDTrigger_0                : AB8       : output : LVTTL             :         : 11        : Y              
-COINC_UP_BBAR                : AB9       : input  : LVTTL             :         : 11        : Y              
-COINC_DOWN_A                 : AB10      : input  : LVTTL             :         : 11        : Y              
+COINC_DOWN_BBAR              : AB9       : input  : LVTTL             :         : 11        : Y              
+COINC_UP_A                   : AB10      : input  : LVTTL             :         : 11        : Y              
 FLASH_AD_D[0]                : AB11      : input  : 2.5 V             :         : 11        : Y              
 FLASH_AD_D[5]                : AB12      : input  : 2.5 V             :         : 11        : Y              
 FLASH_AD_STBY                : AB13      : output : LVTTL             :         : 11        : Y              
@@ -621,8 +621,8 @@ RESERVED_INPUT               : AC5       :        :                   :         
 RESERVED_INPUT               : AC6       :        :                   :         : 12        :                
 RESERVED_INPUT               : AC7       :        :                   :         : 12        :                
 RESERVED_INPUT               : AC8       :        :                   :         : 11        :                
-COINC_UP_ALATCH              : AC9       : output : LVTTL             :         : 11        : Y              
-COINC_UP_B                   : AC10      : input  : LVTTL             :         : 11        : Y              
+COINC_DOWN_ALATCH            : AC9       : output : LVTTL             :         : 11        : Y              
+COINC_DOWN_B                 : AC10      : input  : LVTTL             :         : 11        : Y              
 FLASH_AD_D[1]                : AC11      : input  : 2.5 V             :         : 11        : Y              
 FLASH_AD_D[7]                : AC12      : input  : 2.5 V             :         : 11        : Y              
 FLASH_AD_D[9]                : AC13      : input  : 2.5 V             :         : 11        : Y              
@@ -647,8 +647,8 @@ RESERVED_INPUT               : AD5       :        :                   :         
 RESERVED_INPUT               : AD6       :        :                   :         : 12        :                
 ATWDTrigger_1                : AD7       : output : LVTTL             :         : 11        : Y              
 MultiSPE_nl                  : AD8       : output : LVTTL             :         : 11        : Y              
-COINC_UP_BLATCH              : AD9       : output : LVTTL             :         : 11        : Y              
-COINC_DOWN_B                 : AD10      : input  : LVTTL             :         : 11        : Y              
+COINC_DOWN_BLATCH            : AD9       : output : LVTTL             :         : 11        : Y              
+COINC_UP_B                   : AD10      : input  : LVTTL             :         : 11        : Y              
 FLASH_AD_D[2]                : AD11      : input  : 2.5 V             :         : 11        : Y              
 FLASH_AD_D[8]                : AD12      : input  : 2.5 V             :         : 11        : Y              
 CONF_DONE                    : AD13      : bidir  :                   :         :           :                
@@ -673,8 +673,8 @@ RESERVED_INPUT               : AE5       :        :                   :         
 GND                          : AE6       : gnd    :                   :         :           :                
 RESERVED_INPUT               : AE7       :        :                   :         : 11        :                
 VCC_INT                      : AE8       : power  :                   : 1.8V    :           :                
-COINC_UP_ABAR                : AE9       : input  : LVTTL             :         : 11        : Y              
-COINC_DOWN_ABAR              : AE10      : input  : LVTTL             :         : 11        : Y              
+COINC_DOWN_ABAR              : AE9       : input  : LVTTL             :         : 11        : Y              
+COINC_UP_ABAR                : AE10      : input  : LVTTL             :         : 11        : Y              
 FLASH_AD_D[6]                : AE11      : input  : 2.5 V             :         : 11        : Y              
 NSTATUS                      : AE12      : bidir  :                   :         :           :                
 GND                          : AE13      : gnd    :                   :         :           :                
@@ -698,8 +698,8 @@ RESERVED_INPUT               : AF5       :        :                   :         
 VCC_IO                       : AF6       : power  :                   : 3.3V    :           :                
 RESERVED_INPUT               : AF7       :        :                   :         : 11        :                
 GND                          : AF8       : gnd    :                   :         :           :                
-COINC_DOWN_ALATCH            : AF9       : output : LVTTL             :         : 11        : Y              
-COINC_DOWN_BBAR              : AF10      : input  : LVTTL             :         : 11        : Y              
+COINC_UP_ALATCH              : AF9       : output : LVTTL             :         : 11        : Y              
+COINC_UP_BBAR                : AF10      : input  : LVTTL             :         : 11        : Y              
 FLASH_AD_D[3]                : AF11      : input  : 2.5 V             :         : 11        : Y              
 MultiSPE                     : AF12      : input  : LVTTL             :         : 10        : Y              
 VCC_IO                       : AF13      : power  :                   : 3.3V    :           :                

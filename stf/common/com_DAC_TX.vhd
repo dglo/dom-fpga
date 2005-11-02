@@ -1,24 +1,6 @@
--------------------------------------------------------------------------------
--- Title      : STF
--- Project    : IceCube DOM main board
--------------------------------------------------------------------------------
--- File       : com_DAC_TX.vhd
--- Author     : thorsten
--- Company    : LBNL
--- Created    : 
--- Last update: 2003-07-17
--- Platform   : Altera Excalibur
--- Standard   : VHDL'93
--------------------------------------------------------------------------------
--- Description: this module interfaces the communication DAC and allows to
---              transmit triangle waveforms or simulated communication waveforms
--------------------------------------------------------------------------------
--- Copyright (c) 2003 
--------------------------------------------------------------------------------
--- Revisions  :
--- Date        Version     Author    Description
--- 2003-07-17  V01-01-00   thorsten  
--------------------------------------------------------------------------------
+-------------------------------------------------
+--- simple transmitter for the communication DAC
+-------------------------------------------------
 
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.all;
@@ -34,8 +16,6 @@ ENTITY com_DAC_TX IS
 		-- enable for TX
 		enable		: IN STD_LOGIC;
 		enable_square	: IN STD_LOGIC;
-		enable_bitbang	: IN STD_LOGIC := '0';
-		data_bitbang	: IN STD_LOGIC_VECTOR(7 DOWNTO 0) := "00000000";
 		-- communications DAC connections
 		COM_DAC_CLK		: OUT STD_LOGIC;
 		COM_TX_SLEEP	: OUT STD_LOGIC;
@@ -133,15 +113,9 @@ BEGIN
 							wait_cnt_l := wait_cnt_l - 1;
 						END IF;
 				END CASE;
-			ELSIF enable_bitbang='1' THEN
-				cnt	:= "10000000";
-				COM_TX_SLEEP	<= '0';
-				COM_DB <= data_bitbang;
-				state <= state1;
-				wait_cnt := "1110";
 			ELSE
 				cnt	:= "10000000";
-				COM_TX_SLEEP	<= '0';
+				COM_TX_SLEEP	<= '1';
 				COM_DB <= cnt;
 				state <= state1;
 				wait_cnt := "1110";

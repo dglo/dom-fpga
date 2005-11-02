@@ -1,24 +1,6 @@
--------------------------------------------------------------------------------
--- Title      : DOMAPP
--- Project    : IceCube DOM main board
--------------------------------------------------------------------------------
--- File       : ATWD_control.vhd
--- Author     : thorsten
--- Company    : LBNL
--- Created    : 
--- Last update: 2003-10-23
--- Platform   : Altera Excalibur
--- Standard   : VHDL'93
--------------------------------------------------------------------------------
--- Description: This module controls the ATWD. digitize, readout, ...
--------------------------------------------------------------------------------
--- Copyright (c) 2003 2004
--------------------------------------------------------------------------------
--- Revisions  :
--- Date        Version     Author    Description
---             V01-01-00   thorsten
--------------------------------------------------------------------------------
-
+-------------------------------------------------
+-- ATWD control
+-------------------------------------------------
 
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.all;
@@ -78,8 +60,6 @@ ARCHITECTURE arch_ATWD_control OF ATWD_control IS
 	
 	SIGNAL overflow		: STD_LOGIC;
 	
-	SIGNAL status		: STD_LOGIC_VECTOR (7 DOWNTO 0);
-	
 BEGIN
 	
 	ATWD_VDD_SUP	<= '1';
@@ -115,7 +95,6 @@ BEGIN
 					IF ATWDTrigger='1' AND ATWD_enable='1' THEN
 						state	<= wait_trig_compl;
 					END IF;
-					ReadWrite		<= '0';
 					DigitalSet		<= '0';
 					DigitalReset	<= '1';
 					channel			<= "00";
@@ -185,9 +164,9 @@ BEGIN
 					counterclk_high	<= '1';
 					ATWD_D_we			<= '1';
 				WHEN readout_end =>
-					IF (ATWD_mode(1 DOWNTO 0)=ATWD_mode_ALL AND channel="11") OR	--we are done
-					   (ATWD_mode(1 DOWNTO 0)=ATWD_mode_NORMAL AND overflow='0') OR
-					   (ATWD_mode(1 DOWNTO 0)=ATWD_mode_NORMAL AND channel="10") OR
+					IF (ATWD_mode=ATWD_mode_ALL AND channel="11") OR	--we are done
+					   (ATWD_mode=ATWD_mode_NORMAL AND overflow='0') OR
+					   (ATWD_mode=ATWD_mode_NORMAL AND channel="10") OR
 					   abort='1' THEN
 						state	<= idle; --restart_ATWD;
 					ELSE
@@ -262,13 +241,5 @@ BEGIN
 			END IF;
 		END IF;
 	END PROCESS;
-	
-	status(0)	<= '1' WHEN state=IDLE ELSE '0';	-- idle
-	status(1)	<= '1' WHEN state=wait_trig_compl ELSE '0';	-- acquire
-	status(2)	<= '1' WHEN state=settle ELSE '0';	-- settle
-	status(3)	<= '1' WHEN state=init_digitize OR state=init_digitize ELSE '0';	-- digitize
-	status(4)	<= '1' WHEN state=readout_L0 OR state=readout_L1 OR state=readout_H0 OR state=readout_H1 OR state=readout_end ELSE '0';	-- readout
-	status(5)	<= '1' WHEN state=power_up_init1 OR state=power_up_init2 OR state=next_channel ELSE '0';	-- misc
-	status(7 DOWNTO 6)	<= "00";
 	
 END;

@@ -1,13 +1,8 @@
-TITLE "timer used for DOM-TCAL, K.-H. Sulanke,DESY Zeuthen, 2003/09/21";
+TITLE "timer used for DOM-TCAL, K.-H. Sulanke,DESY Zeuthen, 08/03/2003";
 
-INCLUDE "dc_tcal_ct.inc";	-- modulus 20000 15 bit counter
+INCLUDE "dc_tcal_ct.inc";
 
---FUNCTION dc_tcal_ct (	clock,	aclr)
---RETURNS (	q[14..0]);
-
--- clock = 20MHz / 50ns
-
-CONSTANT DELAY_15us = 300;	-- 15us
+CONSTANT QUIET_TIME = 200;	-- 10us
 
 OPTIONS	BIT0=LSB;
 
@@ -15,42 +10,41 @@ SUBDESIGN tcal_timer
 (
 	CCLK			: INPUT;	-- communication clock
 	tcal_psnd		: INPUT;	-- TCAL timer start
-	timer_clrn		: INPUT;	-- 
 
-	del_15us		: OUTPUT;	-- TCAL can start now
+	line_quiet		: OUTPUT;	-- TCAL can start now
 	h_pulse			: OUTPUT;	-- TCAL high pulse time
 	l_pulse			: OUTPUT;	-- TCAL low pulse time
 	pulse_sent		: OUTPUT;	-- whole TCAL pulse sent
 	tx_time_lat		: OUTPUT;	-- to latch the start time time of the TCAL pulse
 )
 VARIABLE
-	del_15us		: DFF;
+	line_quiet		: DFF;
 	h_pulse			: DFF;
 	l_pulse			: DFF;
 	pulse_sent		: DFF;
 	tx_time_lat		: DFF;
-	timer			: dc_tcal_ct;	-- modulus 20000 15 bit counter
+	time			: dc_tcal_ct;	-- modulus 20000 15 bit counter
 
 BEGIN
 
-timer.clock		= CCLK;
-timer.aclr		= !timer_clrn;
+time.clock		= CCLK;
+time.aclr		= !tcal_psnd;
 
-del_15us.(clk, clrn)	= (CCLK, timer_clrn);
-h_pulse.(clk, clrn)		= (CCLK, timer_clrn);
-l_pulse.(clk, clrn)		= (CCLK, timer_clrn);
-pulse_sent.(clk, clrn)	= (CCLK, timer_clrn);
-tx_time_lat.(clk, clrn)	= (CCLK, timer_clrn);
+line_quiet.clk	= CCLK;
+h_pulse.clk		= CCLK;
+l_pulse.clk		= CCLK;
+pulse_sent.clk	= CCLK;
+tx_time_lat.clk	= CCLK;
 
-del_15us.d		= (timer.q[]==DELAY_15us);		-- 15us delay
+line_quiet.d	= (time.q[]==QUIET_TIME);		-- 10us delay
 
-tx_time_lat.d	= (timer.q[]==(DELAY_15us+2)) & tcal_psnd;
+tx_time_lat.d	= (time.q[]==QUIET_TIME);
 
-h_pulse.d		= (timer.q[]==(DELAY_15us+2)) & tcal_psnd	-- 1us pulse (h+l)
-				# h_pulse.q & !(timer.q[]==(DELAY_15us+12));
-l_pulse.d		= (timer.q[]==(DELAY_15us+12)) & tcal_psnd
-				# l_pulse.q & !(timer.q[]==(DELAY_15us+22));
+h_pulse.d		= (time.q[]==QUIET_TIME)
+				# h_pulse.q & !(time.q[]==(QUIET_TIME+20));
+l_pulse.d		= (time.q[]==(QUIET_TIME+20))
+				# l_pulse.q & !(time.q[]==(QUIET_TIME+40));
 				
-pulse_sent.d	= (timer.q[]==(DELAY_15us+22)) & tcal_psnd;
+pulse_sent.d	= (time.q[]==(QUIET_TIME+60));	-- 1us later
 
 END;

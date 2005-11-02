@@ -203,17 +203,17 @@ ARCHITECTURE rtl OF compressor_in IS
 	SIGNAL   ring_data_dly1			: STD_LOGIC_VECTOR (17 DOWNTO 0);
 	SIGNAL   h_compr_data	 		: STD_LOGIC_VECTOR (7 DOWNTO 0);
 
-  	SIGNAL   i_dly1 				: INTEGER RANGE 31 DOWNTO 0 ;
-  	SIGNAL   i_dly 					: INTEGER RANGE 31 DOWNTO 0 ;	
- 	SIGNAL   j_dly					: INTEGER RANGE 31 DOWNTO 0 ;	
-  	SIGNAL   i 						: INTEGER RANGE 31 DOWNTO 0 ;	
- 	SIGNAL   j						: INTEGER RANGE 31 DOWNTO 0 ;	
-  	SIGNAL   k 						: INTEGER RANGE 63 DOWNTO 0 ;	
- 	SIGNAL   l 						: INTEGER RANGE 63 DOWNTO 0 ;		
- 	SIGNAL   m 						: INTEGER RANGE 63 DOWNTO 0 ;		
-   	SIGNAL   y 						: INTEGER RANGE 31 DOWNTO 0 ;	
-   	SIGNAL   z 						: INTEGER RANGE 31 DOWNTO 0 ;	
-  	SIGNAL   p 						: INTEGER RANGE 63 DOWNTO 0 ;	
+  	SIGNAL   i_dly1 				: INTEGER RANGE 17 DOWNTO 0 ;	
+  	SIGNAL   i_dly 					: INTEGER RANGE 17 DOWNTO 0 ;	
+ 	SIGNAL   j_dly					: INTEGER RANGE 17 DOWNTO 0 ;	
+  	SIGNAL   i 						: INTEGER RANGE 17 DOWNTO 0 ;	
+ 	SIGNAL   j						: INTEGER RANGE 17 DOWNTO 0 ;	
+  	SIGNAL   k 						: INTEGER RANGE 40 DOWNTO 0 ;	
+ 	SIGNAL   l 						: INTEGER RANGE 35 DOWNTO 0 ;		
+ 	SIGNAL   m 						: INTEGER RANGE 42 DOWNTO 0 ;		
+   	SIGNAL   y 						: INTEGER RANGE 18 DOWNTO 0 ;	
+   	SIGNAL   z 						: INTEGER RANGE 18 DOWNTO 0 ;	
+  	SIGNAL   p 						: INTEGER RANGE 40 DOWNTO 0 ;	
 
 ------
 --interface signals

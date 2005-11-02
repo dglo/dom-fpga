@@ -1,5 +1,5 @@
 EDA Netlist Writer report for configboot
-Thu Jun 24 09:58:36 2004
+Fri May 14 11:33:46 2004
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -42,7 +42,7 @@ party's intellectual property, are provided herein.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Thu Jun 24 09:58:36 2004 ;
+; EDA Netlist Writer Status ; Successful - Fri May 14 11:33:46 2004 ;
 ; Revision Name             ; configboot                            ;
 ; Top-level Entity Name     ; configboot                            ;
 ; Family                    ; EXCALIBUR_ARM                         ;
@@ -82,11 +82,11 @@ party's intellectual property, are provided herein.
 Info: *******************************************************************
 Info: Running Quartus II EDA Netlist Writer
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Thu Jun 24 09:58:32 2004
+    Info: Processing started: Fri May 14 11:33:43 2004
 Info: Command: quartus_eda --import_settings_files=off --export_settings_files=off configboot -c configboot
 Info: Generated file configboot.vo in folder C:/work_lbnl/IceCubeCVS/dom-fpga/configboot/epxa4DPM/simulation/modelsim/ for EDA simulation tool
 Info: Quartus II EDA Netlist Writer was successful. 0 errors, 0 warnings
-    Info: Processing ended: Thu Jun 24 09:58:36 2004
+    Info: Processing ended: Fri May 14 11:33:46 2004
     Info: Elapsed time: 00:00:03
 
 

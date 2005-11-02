@@ -20,9 +20,11 @@
 
 module version_rom (
 	address,
+	inclock,
 	q);
 
 	input	[6:0]  address;
+	input	  inclock;
 	output	[15:0]  q;
 
 endmodule

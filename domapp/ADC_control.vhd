@@ -18,7 +18,6 @@
 -- Revisions  :
 -- Date        Version     Author    Description
 -- 2003-08-26  V01-01-00   thorsten  
--- 2004-11-09              thorsten  added flabby local coincidence
 -------------------------------------------------------------------------------
 
 LIBRARY IEEE;
@@ -40,8 +39,7 @@ ENTITY ADC_control IS
 		lc_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		daq_mode	: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		ATWD_AB		: IN STD_LOGIC;	-- indicates if ping or pong
-		abort_ATWD	: OUT STD_LOGIC;
-		abort_FADC	: OUT STD_LOGIC;
+		abort		: OUT STD_LOGIC;
 		-- trigger
 		ATWDtrigger		: IN STD_LOGIC;
 		rst_trig	: OUT STD_LOGIC;
@@ -70,7 +68,7 @@ END ADC_control;
 
 ARCHITECTURE arch_ADC_control OF ADC_control IS
 
-	TYPE STATE_TYPE IS (IDLE, WAIT_DONE, WR_HEADER, RESET_TRIG, WAIT_LC_SOFT, WAIT_LC_FLABBY, CLEAR_LC_HARD, GOT_LC, WAIT_BUFFER);
+	TYPE STATE_TYPE IS (IDLE, WAIT_DONE, WR_HEADER, RESET_TRIG, WAIT_LC_SOFT, CLEAR_LC_HARD, GOT_LC, WAIT_BUFFER);
 	SIGNAL state: STATE_TYPE;
 	
 	SIGNAL enable	: STD_LOGIC;
@@ -78,8 +76,6 @@ ARCHITECTURE arch_ADC_control OF ADC_control IS
 	SIGNAL eventtype	: STD_LOGIC_VECTOR (1 DOWNTO 0);
 	
 	SIGNAL deadtime_cnt	: STD_LOGIC_VECTOR (15 DOWNTO 0);
-	
-	SIGNAL flabby_LC_flag	: STD_LOGIC;
 	
 BEGIN
 
@@ -89,7 +85,6 @@ BEGIN
 			state <= IDLE;
 			enable	<= '0';
 			busy	<= '0';
-			flabby_LC_flag	<= '0';
 			eventtype	<= eventEngineering;
 		ELSIF CLK40'EVENT AND CLK40='1' THEN
 			CASE state IS
@@ -100,17 +95,14 @@ BEGIN
 					enable	<= '1';
 					busy	<= '0';
 					eventtype	<= "XX";
-					flabby_LC_flag	<= '0';
 				WHEN WAIT_DONE =>
-					IF lc_mode=LC_HARD AND LC_abort='1' AND trigger_word(15 DOWNTO 2)="00000000000000" THEN
+					IF lc_mode=LC_HARD AND LC_abort='1' THEN
 						state <= CLEAR_LC_HARD;
-					ELSIF lc_mode=LC_SOFT AND LC_abort='1' AND trigger_word(15 DOWNTO 2)="00000000000000" THEN
+					ELSIF lc_mode=LC_SOFT AND LC_abort='1' THEN
 						state <= WAIT_LC_SOFT;
-					ELSIF lc_mode=LC_FLABBY AND LC_abort='1' AND trigger_word(15 DOWNTO 2)="00000000000000" THEN
-						state <= WAIT_LC_FLABBY;
-					ELSIF LC_abort='1' THEN
+					ELSIF lc_mode=LC_OFF AND LC_abort='1' THEN
 						state <= GOT_LC;
-					ELSIF ATWD_busy='0' AND FADC_busy='0' THEN
+					ELSIF lc_mode=LC_OFF AND ATWD_busy='0' AND FADC_busy='0' THEN
 						state <= WAIT_BUFFER;
 					END IF;
 					enable	<= '0';
@@ -121,23 +113,15 @@ BEGIN
 						state <= RESET_TRIG;
 					END IF;
 					eventtype	<= "XX";
-					flabby_LC_flag	<= '0';
 				WHEN WAIT_LC_SOFT =>
 					IF ATWD_busy='0' AND FADC_busy='0' THEN
 						state <= WAIT_BUFFER;
 					END IF;
 					eventtype	<= eventTimestamp;
-					flabby_LC_flag	<= '0';
-				WHEN WAIT_LC_FLABBY =>
-					IF ATWD_busy='0' AND FADC_busy='0' THEN
-						state <= WAIT_BUFFER;
-					END IF;
-					flabby_LC_flag	<= '1';
 				WHEN GOT_LC =>
 					IF ATWD_busy='0' AND FADC_busy='0' THEN
 						state <= WAIT_BUFFER;
 					END IF;
-					flabby_LC_flag	<= '0';
 				WHEN WAIT_BUFFER =>
 					IF buffer_full='0' THEN
 						state <= WR_HEADER;
@@ -152,13 +136,11 @@ BEGIN
 					enable	<= '0';
 					busy	<= '1';
 					eventtype	<= "XX";
-					flabby_LC_flag	<= '0';
 				WHEN OTHERS =>
 					state <= IDLE;
 					enable	<= '0';
 					busy	<= '1';
 					eventtype	<= "XX";
-					flabby_LC_flag	<= '0';
 			END CASE;
 		END IF;
 	END PROCESS;
@@ -166,9 +148,8 @@ BEGIN
 	FADC_enable	<= '1' WHEN enable='1' AND (daq_mode=FADC_ONLY OR daq_mode=ATWD_FADC) ELSE '0';
 	ATWD_enable	<= '1' WHEN enable='1' AND daq_mode=ATWD_FADC ELSE '0';
 	
-	abort_ATWD	<= '1' WHEN state=CLEAR_LC_HARD OR state=WAIT_LC_SOFT OR state=WAIT_LC_FLABBY ELSE '0';
-	abort_FADC	<= '1' WHEN state=CLEAR_LC_HARD OR state=WAIT_LC_SOFT ELSE '0';
-	rst_trig	<= '1' WHEN state=WR_HEADER OR state=RESET_TRIG ELSE '0';
+	abort	<= '1' WHEN state=CLEAR_LC_HARD OR state=WAIT_LC_SOFT ELSE '0';
+	rst_trig	<= '1' WHEN state=WR_HEADER ELSE '0';
 	
 	--write header
 	PROCESS(CLK40,RST)
@@ -198,7 +179,7 @@ BEGIN
 
 	HEADER_data.eventtype <= eventtype;
 	--!! add ATWD FADC available ----- !!!!!!!!!!!!!
-	HEADER_data.ATWDavail <= '1' WHEN eventtype=eventEngineering AND daq_mode=ATWD_FADC AND lc_mode/=LC_FLABBY ELSE '0';
+	HEADER_data.ATWDavail <= '1' WHEN eventtype=eventEngineering AND daq_mode=ATWD_FADC ELSE '0';
 	HEADER_data.FADCavail <= '1' WHEN eventtype=eventEngineering AND (daq_mode=ATWD_FADC OR daq_mode=FADC_ONLY) ELSE '0';
 	
 END;

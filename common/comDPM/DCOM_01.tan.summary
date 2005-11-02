@@ -5,51 +5,51 @@ Timing Analyzer Summary
 Type           : Worst-case tsu
 Slack          : N/A
 Required Time  : None
-Actual Time    : 17.481 ns
-From           : RST
-To             : DC_CTRAP:DC_CTRAP|SV11
+Actual Time    : 12.475 ns
+From           : tx_dataout[11]
+To             : DC_Tx_chan_ap:DC_Tx_chan_ap|tx_uart_ap:inst7|txshr10:53|lpm_shiftreg:lpm_shiftreg_component|dffs[4]
 
 Type           : Worst-case tco
 Slack          : N/A
 Required Time  : None
-Actual Time    : 20.932 ns
-From           : DC_Rx_chan_ap:DC_Rx_chan_ap|Rx_dpr_ctrl_ap:inst24|dpr_radr[3]
+Actual Time    : 20.999 ns
+From           : DC_Rx_chan_ap:DC_Rx_chan_ap|Rx_dpr_ctrl_ap:inst24|dpr_radr[0]
 To             : rx_dpr_aff
 
 Type           : Worst-case tpd
 Slack          : N/A
 Required Time  : None
-Actual Time    : 12.162 ns
+Actual Time    : 11.065 ns
 From           : rx_dpr_radr_stb
 To             : msg_rd
 
 Type           : Worst-case th
 Slack          : N/A
 Required Time  : None
-Actual Time    : -2.152 ns
-From           : COM_AD_D[1]
-To             : DC_Rx_chan_ap:DC_Rx_chan_ap|dc_rapcal_lh:inst29|inst10[1]
+Actual Time    : -1.817 ns
+From           : rx_dpr_radr[3]
+To             : DC_Rx_chan_ap:DC_Rx_chan_ap|Rx_dpr_ctrl_ap:inst24|dpr_radr[3]
 
 Type           : Worst-case minimum tco
 Slack          : N/A
 Required Time  : None
-Actual Time    : 6.229 ns
-From           : DC_Rx_chan_ap:DC_Rx_chan_ap|inst41[1]
-To             : rx_datain[17]
+Actual Time    : 6.227 ns
+From           : DC_Tx_chan_ap:DC_Tx_chan_ap|inst16[11]
+To             : tx_dpr_radr[11]
 
 Type           : Worst-case minimum tpd
 Slack          : N/A
 Required Time  : None
-Actual Time    : 6.427 ns
-From           : reboot_req
-To             : tc[0]
+Actual Time    : 11.065 ns
+From           : rx_dpr_radr_stb
+To             : msg_rd
 
 Type           : Clock Setup: 'CLK20'
 Slack          : N/A
 Required Time  : None
-Actual Time    : 64.75 MHz ( period = 15.445 ns )
-From           : DC_Rx_chan_ap:DC_Rx_chan_ap|Rx_dpr_ctrl_ap:inst24|dpr_radr[3]
-To             : DC_CTRAP:DC_CTRAP|SV9
+Actual Time    : 59.22 MHz ( period = 16.886 ns )
+From           : DC_Rx_chan_ap:DC_Rx_chan_ap|mean_val:inst21|add10:141|lpm_add_sub:lpm_add_sub_component|addcore:adder1_0[1]|a_csnbuffer:result_node|sout_node[2]
+To             : DC_Rx_chan_ap:DC_Rx_chan_ap|mean_val:inst21|inst2~147
 
 --------------------------------------------------------------------------------------
 

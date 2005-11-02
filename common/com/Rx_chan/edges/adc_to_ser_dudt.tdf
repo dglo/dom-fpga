@@ -1,4 +1,4 @@
-TITLE "ADC to serial decoder, LAST CHANGE: 2003/10/30";
+TITLE "ADC to serial decoder, LAST CHANGE: 2003/08/31";
 
 INCLUDE "GET_DUDT";
 INCLUDE "ctup5";
@@ -9,27 +9,28 @@ INCLUDE "ctup5";
 --FUNCTION ctup5 (clock,	aclr)
 --RETURNS (	q[4..0],	cout);
 
---FUNCTION GET_DUDT (CLK, max_level, min_level, cteq16, cteq4, hl_edge, res, uart_done)
+--FUNCTION GET_DUDT (CLK, max_level, min_level, cteq16, cteq4, hl_edge, lh_edge, res, uart_done)
 --	RETURNS (ct_aclr, dudt_ena, find_dudt, max_ena, min_ena, rxd);
 
+CONSTANT	DEC_MIN_THR = 22;	-- x4 = 80mV between 3 ADC samples
 
 SUBDESIGN	adc_to_ser_dudt
 (
-	clk					: INPUT;
-	reset				: INPUT;
-	uart_done			: INPUT;	
-	in[9..0]			: INPUT;	-- Communication ADC, meanvalue over 4 clocks
-	low_thr[9..0]		: INPUT;	-- Communication threshold, long cable 
-	lrg_thr[9..0]		: INPUT;	-- Communication threshold, short cable 
-		
-	hl_edge				: OUTPUT;
-	lh_edge				: OUTPUT;
-	max_ena				: OUTPUT;	-- dudt greater MINLEVEL
-	min_ena				: OUTPUT;
+	clk				: INPUT;
+	reset			: INPUT;
+	uart_done		: INPUT;	
+	in[9..0]		: INPUT;	-- Communication ADC, meanvalue over 4 clocks
+	low_thr[9..0]	: INPUT;	-- Communication threshold, long cable 
+	lrg_thr[9..0]	: INPUT;	-- Communication threshold, short cable 
+	
+	hl_edge			: OUTPUT;
+	lh_edge			: OUTPUT;
+	max_ena			: OUTPUT;	-- dudt greater MINLEVEL
+	min_ena			: OUTPUT;
 
-	find_dudt			: OUTPUT;
+	find_dudt		: OUTPUT;
 
-	rxd					: OUTPUT;	-- serial data, 1 clock lengths pulse if ==1
+	rxd				: OUTPUT;	-- serial data, 1 clock lengths pulse if ==1
 )
 
 VARIABLE
@@ -57,8 +58,8 @@ BEGIN
 ct.clock					= clk;
 ct.aclr						= get_dudt_stm.ct_aclr;
 
-get_dudt_stm.(CLK, max_level, min_level, cteq16,  cteq4,  hl_edge, res, uart_done)	=
-			(clk, max_level, min_level, ct.q[4],  ct.q[2], hl_edge, reset, uart_done);
+get_dudt_stm.(CLK, max_level, min_level, cteq16,  cteq4,  hl_edge, lh_edge, res, uart_done)	=
+			(clk, max_level, min_level, ct.q[4],  ct.q[2], hl_edge, lh_edge, reset, uart_done);
 			
 	ina[].clk				= clk;
 	inb[].clk				= clk;
@@ -75,14 +76,9 @@ get_dudt_stm.(CLK, max_level, min_level, cteq16,  cteq4,  hl_edge, res, uart_don
 	inc[].d					= inb[].q;
 	ind[].d					= inc[].q;
 	
-	dudt[].clk				= clk;
-	
-	dudt[].d				= (low_thr[9..0]) 					& get_dudt_stm.min_ena
-							# (lrg_thr[9..6],GND,lrg_thr[4..0]) & get_dudt_stm.max_ena;
-																			-- dudt 32x2mV smaller now
-	
---	dudt[].d				= 	  (low_thr[9..0]) & get_dudt_stm.min_ena	-- last change 2003/10/20
---							# (GND,lrg_thr[9..1]) & get_dudt_stm.max_ena;
+	dudt[].clk				= clk;		
+	dudt[].d				= low_thr[] & get_dudt_stm.min_ena
+							# lrg_thr[] & get_dudt_stm.max_ena;
 							
 	dudt[].ena				= get_dudt_stm.dudt_ena;
 

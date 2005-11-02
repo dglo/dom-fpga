@@ -13,44 +13,9 @@ SOFTWARE_SETTINGS_LIST
 }
 FILES
 {
-	AHDL_FILE = ..\..\common\com\Tcal\TCWF_64x12.tdf;
-	AHDL_FILE = ..\..\common\com\Tcal\TCWF_64x10.tdf;
-	AHDL_FILE = ..\..\common\com\Tcal\TCAL_SAMPLES.tdf;
-	AHDL_FILE = ..\..\common\com\Tcal\tcwf_af_ct.tdf;
-	AHDL_FILE = ..\..\common\com\Tcal\DCTC_FWR.tdf;
-	AHDL_FILE = ..\..\common\com\Tcal\TCWF_FIFO_32x10.tdf;
-	AHDL_FILE = ..\..\common\com\Rx_chan\edges\GET_DUDT.tdf;
-	INCLUDE_FILE = ..\..\common\com\Rx_chan\edges\GET_DUDT.inc;
-	AHDL_FILE = ..\..\common\com\Rx_chan\edges\adc_to_ser_dudt.tdf;
-	AHDL_FILE = ..\..\common\com\Tx_chan\dac_rs_tab_rect_01.tdf;
-	VHDL_FILE = ..\common\atwd_timestamp.vhd;
-	VHDL_FILE = ..\common\atwd_ping_pong.vhd;
-	AHDL_FILE = ..\..\common\com\DCREV.tdf;
-	INCLUDE_FILE = ..\..\common\com\Tcal\dc_tcal_ct.inc;
-	AHDL_FILE = ..\..\common\com\Tcal\thr_add.tdf;
-	GDF_FILE = ..\..\common\com\Tcal\dc_rapcal_lh.gdf;
-	AHDL_FILE = ..\..\common\com\Tcal\dc_tcal_ct.tdf;
-	AHDL_FILE = ..\..\common\com\Tcal\mux2x8.tdf;
-	AHDL_FILE = ..\..\common\com\Tcal\RX_TCAL.tdf;
-	AHDL_FILE = ..\..\common\com\Tcal\TCAL_Timer.tdf;
-	AHDL_FILE = ..\..\common\com\Tcal\tcwf_16x10.tdf;
-	AHDL_FILE = ..\..\common\com\Tcal\tcwf_ct.tdf;
-	AHDL_FILE = ..\..\common\com\Tcal\comp_10.tdf;
-	AHDL_FILE = ..\..\common\com\Tx_chan\shift_ct.tdf;
-	AHDL_FILE = ..\..\common\com\Tx_chan\shrg48pld.tdf;
-	AHDL_FILE = ..\..\common\com\Tx_chan\ID_HDR_BYTE_0.tdf;
-	AHDL_FILE = ..\..\common\com\Tx_chan\ID_HDR_BYTE_2.tdf;
-	AHDL_FILE = ..\..\common\com\Tx_chan\mux16x8.tdf;
-	AHDL_FILE = ..\..\common\com\rev_005.tdf;
-	VHDL_FILE = ..\common\slaveregister.vhd;
-	VHDL_FILE = ..\common\timer.vhd;
-	AHDL_FILE = ..\..\common\com\Rx_chan\edges\ONE_DET.tdf;
-	INCLUDE_FILE = ..\..\common\com\Rx_chan\edges\ONE_DET.inc;
-	AHDL_FILE = ..\..\common\com\Rx_chan\edges\adc_to_digital.tdf;
-	AHDL_FILE = ..\..\common\com\Tx_chan\dac_rs_tab_trap_01.tdf;
-	BDF_FILE = ..\..\common\com\Rx_chan\DC_Rx_chan_04.bdf;
-	BDF_FILE = ..\..\common\com\Tx_chan\DC_Tx_chan_04.bdf;
-	BDF_FILE = ..\..\common\com\dcom.bdf;
+	AHDL_FILE = ..\..\common\com\rev_003.tdf;
+	BDF_FILE = ..\..\common\com\dcom_03.bdf;
+	VHDL_FILE = slaveregister.vhd;
 	AHDL_FILE = ..\..\common\com\Rx_chan\DC_MREC.tdf;
 	INCLUDE_FILE = ..\..\common\com\Parity\Par_74180.inc;
 	AHDL_FILE = ..\..\common\com\Rx_chan\du_dt_2_clks.tdf;
@@ -73,6 +38,7 @@ FILES
 	AHDL_FILE = ..\..\common\com\Rx_chan\UART\rxshr8.tdf;
 	AHDL_FILE = ..\..\common\com\Rx_chan\UART\UA_RX_12.tdf;
 	AHDL_FILE = ..\..\common\com\Rx_chan\RX_MREC.tdf;
+	BDF_FILE = ..\..\common\com\Rx_chan\DC_Rx_chan_01.bdf;
 	AHDL_FILE = ..\..\common\com\Rx_chan\meanval\dec2.tdf;
 	AHDL_FILE = ..\..\common\com\Rx_chan\meanval\add10.tdf;
 	GDF_FILE = ..\..\common\com\Rx_chan\meanval\mean_val.gdf;
@@ -91,6 +57,7 @@ FILES
 	AHDL_FILE = ..\..\common\com\Tx_chan\txbitct.tdf;
 	AHDL_FILE = ..\..\common\com\Tx_chan\txct.tdf;
 	AHDL_FILE = ..\..\common\com\Tx_chan\txshr10.tdf;
+	BDF_FILE = ..\..\common\com\Tx_chan\DC_Tx_chan_01.bdf;
 	BDF_FILE = ..\..\common\com\Parity\Par_74180.bdf;
 	BDF_FILE = ..\..\common\com\Mono_flop\mono.bdf;
 	VHDL_FILE = ..\..\common\com\dec_threshold.vhd;
@@ -121,5 +88,4 @@ FILES
 	VHDL_FILE = ..\common\ahb_master.vhd;
 	VHDL_FILE = simpletest.vhd;
 	MIF_FILE = version_rom.mif;
-	VHDL_FILE = ..\common\LED2ATWDdelay.vhd;
 }

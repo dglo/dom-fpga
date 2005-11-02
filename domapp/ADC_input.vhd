@@ -162,8 +162,7 @@ ARCHITECTURE arch_ADC_input OF ADC_input IS
 			lc_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			daq_mode	: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			ATWD_AB		: IN STD_LOGIC;	-- indicates if ping or pong
-			abort_ATWD	: OUT STD_LOGIC;
-			abort_FADC	: OUT STD_LOGIC;
+			abort		: OUT STD_LOGIC;
 			-- trigger
 			ATWDtrigger		: IN STD_LOGIC;
 			rst_trig		: OUT STD_LOGIC;
@@ -189,63 +188,18 @@ ARCHITECTURE arch_ADC_input OF ADC_input IS
 		);
 	END COMPONENT;
 	
-	-- chargestamp
-	COMPONENT chargestamp IS
-	    GENERIC (
-	        FADC_WIDTH : INTEGER := 10
-	    );
-	    PORT (
-	        CLK40       : IN  STD_LOGIC;
-	        RST         : IN  STD_LOGIC;
-	        systime     : IN  STD_LOGIC_VECTOR (47 DOWNTO 0);
-	        -- FADC
-	        busy_FADC   : IN  STD_LOGIC;
-	        FADC_D      : IN  STD_LOGIC_VECTOR (FADC_WIDTH-1 DOWNTO 0);
-	        FADC_NCO    : IN  STD_LOGIC;
-	        FADC_addr   : IN  STD_LOGIC_VECTOR (7 DOWNTO 0);
-	        -- charege
-	        chargestamp : OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
-	        -- test connector
-	        TC          : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
-        );
-	END COMPONENT;
-	
 	
 	SIGNAL ATWD_enable	: STD_LOGIC;
 	SIGNAL ATWD_busy	: STD_LOGIC;
 	SIGNAL ATWD_n_chan	: STD_LOGIC_VECTOR (1 DOWNTO 0);
 	SIGNAL FADC_enable	: STD_LOGIC;
 	SIGNAL FADC_busy	: STD_LOGIC;
-	SIGNAL abort_ATWD	: STD_LOGIC;
-	SIGNAL abort_FADC	: STD_LOGIC;
-	
-	SIGNAL TriggerComplete_sync	: STD_LOGIC;
-	
-	-- chargestamp
-	SIGNAL HEADER_data_int	: HEADER_VECTOR;
-	SIGNAL charge_stamp		: STD_LOGIC_VECTOR (31 DOWNTO 0);
-	SIGNAL FADC_addr_int	: STD_LOGIC_VECTOR (7 DOWNTO 0);
+	SIGNAL abort		: STD_LOGIC;
 	
 BEGIN
 
--- debugging
-	TC(0)	<= ATWD_busy;
-	TC(1)	<= FADC_busy;
-
-
 	busy_FADC	<= FADC_busy;
 
-	PROCESS (CLK40, RST)
-		VARIABLE	TrigC	: STD_LOGIC;
-	BEGIN
-		IF RST='1' THEN
-			TriggerComplete_sync <= '1';
-			TrigC := '1';
-		ELSIF CLK40'EVENT AND CLK40='1' THEN
-			TriggerComplete_sync <= TrigC;
-			TrigC	:= TriggerComplete;
-		END IF;
-	END PROCESS;
 
 	-- ATWD_interface
 	inst_ATWD_interface : ATWD_interface
@@ -258,10 +212,10 @@ BEGIN
 			ATWD_busy		=> ATWD_busy,
 			ATWD_n_chan		=> ATWD_n_chan,
 			ATWD_mode		=> ATWD_mode,
-			abort			=> abort_ATWD,
+			abort			=> abort,
 			-- ATWD
 			ATWDTrigger		=> ATWDTrigger,
-			TriggerComplete	=> TriggerComplete_sync,
+			TriggerComplete	=> TriggerComplete,
 			OutputEnable	=> OutputEnable,
 			CounterClock	=> CounterClock,
 			RampSet			=> RampSet,
@@ -295,14 +249,14 @@ BEGIN
 			-- enable
 			FADC_enable		=> FADC_enable,
 			FADC_busy		=> FADC_busy,
-			abort			=> abort_FADC,
+			abort			=> abort,
 			trigger			=> ATWDTrigger,
 			-- FADC
 			FADC_D			=> FADC_D,
 			FADC_NCO		=> FADC_NCO,
 			-- buffer interface
 			FADC_data		=> FADC_data,
-			FADC_addr		=> FADC_addr_int,
+			FADC_addr		=> FADC_addr,
 			FADC_we			=> FADC_we,
 			-- test connector
 			TC				=> open
@@ -319,12 +273,11 @@ BEGIN
 			lc_mode		=> LC_mode,
 			daq_mode	=> DAQ_mode,
 			ATWD_AB		=> ATWD_AB,
-			abort_ATWD	=> abort_ATWD,
-			abort_FADC	=> abort_FADC,
+			abort		=> abort,
 			-- trigger
 			ATWDtrigger		=> ATWDTrigger,
 			rst_trig		=> rst_trig,
-			TriggerComplete	=> TriggerComplete_sync,
+			TriggerComplete	=> TriggerComplete,
 			trigger_word	=> trigger_word,
 			-- local coincidence
 			LC_abort		=> LC_abort,
@@ -339,37 +292,10 @@ BEGIN
 			FADC_busy	=> FADC_busy,
 			-- data output
 			buffer_full	=> buffer_full,
-			HEADER_data	=> HEADER_data_int,
+			HEADER_data	=> HEADER_data,
 			HEADER_we	=> HEADER_we,
 			-- test connector
 			TC			=> open
 		);
-		
-	-- chargestamp
-	inst_chargestamp : chargestamp
-	    GENERIC MAP (
-	        FADC_WIDTH => FADC_WIDTH
-	    )
-	    PORT MAP (
-	        CLK40       => CLK40,
-	        RST         => RST,
-	        systime     => systime,
-	        -- FADC
-	        busy_FADC   => FADC_busy,
-	        FADC_D      => FADC_D,
-	        FADC_NCO    => FADC_NCO,
-	        FADC_addr   => FADC_addr_int,
-	        -- charege
-	        chargestamp => charge_stamp,
-	        -- test connector
-	        TC          => open
-        );
-	FADC_addr <= FADC_addr_int;
-	
-	PROCESS(HEADER_data_int,charge_stamp)
-	BEGIN
-		HEADER_data				<= HEADER_data_int;
-		HEADER_data.chargestamp	<= charge_stamp;
-	END PROCESS;
 		
 END;

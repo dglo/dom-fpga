@@ -26,9 +26,9 @@ party's intellectual property, are provided herein.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 0 0 160 64)
+	(rect 0 0 160 80)
 	(text "version_rom" (rect 46 1 121 17)(font "Arial" (font_size 10)))
-	(text "inst" (rect 8 48 24 60)(font "Arial" ))
+	(text "inst" (rect 8 64 24 76)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -37,16 +37,25 @@ party's intellectual property, are provided herein.
 		(line (pt 0 32)(pt 16 32)(line_width 3))
 	)
 	(port
-		(pt 160 32)
+		(pt 0 48)
+		(input)
+		(text "inclock" (rect 0 0 36 14)(font "Arial" (font_size 8)))
+		(text "inclock" (rect 26 42 58 55)(font "Arial" (font_size 8)))
+		(line (pt 0 48)(pt 16 48)(line_width 1))
+	)
+	(port
+		(pt 160 40)
 		(output)
 		(text "q[15..0]" (rect 0 0 39 14)(font "Arial" (font_size 8)))
-		(text "q[15..0]" (rect 105 26 141 39)(font "Arial" (font_size 8)))
-		(line (pt 160 32)(pt 144 32)(line_width 3))
+		(text "q[15..0]" (rect 105 34 141 47)(font "Arial" (font_size 8)))
+		(line (pt 160 40)(pt 144 40)(line_width 3))
 	)
 	(drawing
 		(line (pt 16 16)(pt 144 16)(line_width 1))
-		(line (pt 144 16)(pt 144 48)(line_width 1))
-		(line (pt 144 48)(pt 16 48)(line_width 1))
-		(line (pt 16 48)(pt 16 16)(line_width 1))
+		(line (pt 144 16)(pt 144 64)(line_width 1))
+		(line (pt 144 64)(pt 16 64)(line_width 1))
+		(line (pt 16 64)(pt 16 16)(line_width 1))
+		(line (pt 16 42)(pt 22 48)(line_width 1))
+		(line (pt 22 48)(pt 16 54)(line_width 1))
 	)
 )

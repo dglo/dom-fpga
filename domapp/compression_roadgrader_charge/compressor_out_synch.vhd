@@ -413,7 +413,7 @@ ram_wr_address_gen: PROCESS (comprn_bfr_state, clk40, reset)
 		(comprn_bfr_state = wr_cmpr_or_hdr) THEN   
 			ram_address 		<= "00000001111"; 
 			hit_size_in_header 	<= "00000001100"; 
-			compr_size 			<= "000000011";   
+			compr_size 			<= "000000010";   
  	  ELSIF (comprn_bfr_state = wr_compr) THEN
 			IF (RingReadEn = '1') THEN
 				ram_address 		<= ram_address + 1;
@@ -422,9 +422,9 @@ ram_wr_address_gen: PROCESS (comprn_bfr_state, clk40, reset)
 				ram_address <= ram_address;
 				hit_size_in_header 	<= hit_size_in_header; 
 			  IF (hit_size_in_header(1 DOWNTO 0) = "00") THEN  
-				  compr_size 		<= hit_size_in_header(10 DOWNTO 2) ; 
+				  compr_size 		<= hit_size_in_header(10 DOWNTO 2) - '1'; 
 			  ELSE 
-				  compr_size 		<= hit_size_in_header(10 DOWNTO 2) + '1'; 
+				  compr_size 		<= hit_size_in_header(10 DOWNTO 2)      ; 
 			  END IF;								
 			END IF;
  	  ELSIF (header_write	= '1') THEN    

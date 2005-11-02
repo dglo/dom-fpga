@@ -50,7 +50,7 @@ party's intellectual property, are provided herein.
 +-----------------+-------------------+
 |Option           |Setting            |
 +-----------------+-------------------+
-|Start date & time|11/12/2003 13:34:18|
+|Start date & time|08/20/2003 11:29:50|
 |Main task        |Compilation        |
 |Settings name    |dcom               |
 +-----------------+-------------------+
@@ -65,7 +65,7 @@ party's intellectual property, are provided herein.
 |Family name                               |APEX20KE          |
 |Focus entity name                         ||dcom             |
 |Device                                    |EP20K100EFC324-2  |
-|Compilation mode                          |Synthesis only    |
+|Compilation mode                          |Full              |
 |Disk space/compilation speed tradeoff     |Normal            |
 |Preserve fewer node names                 |On                |
 |Optimize timing                           |Normal Compilation|
@@ -106,9 +106,12 @@ party's intellectual property, are provided herein.
 +-----------------------------------------------------------------------------+
 Info: Found 1 design units and 1 entities in source file c:\projects\icecube\dor\fpga\dcom_01\dcom.bdf
   Info: Found entity 1: dcom
+Warning: Bidirectional pin nrx_led missing source
+Warning: Bidirectional pin rxwrff missing source
+Warning: Bidirectional pin nerr_led missing source
 Warning: Pin rs4_out not connected
 Warning: Primitive GND of instance inst not used
-Info: Design dcom: BDF to VHDL file generation was successful. 0 errors, 2 warnings
+Info: Design dcom: BDF to VHDL file generation was successful. 0 errors, 5 warnings
 
 +-----------------------------------------------------------------------------+
 |Processing Time                                                              |

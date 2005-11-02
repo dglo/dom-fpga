@@ -1,24 +1,6 @@
--------------------------------------------------------------------------------
--- Title      : STF
--- Project    : IceCube DOM main board
--------------------------------------------------------------------------------
--- File       : flash_adc.vhd
--- Author     : thorsten
--- Company    : LBNL
--- Created    : 
--- Last update: 2003-07-17
--- Platform   : Altera Excalibur
--- Standard   : VHDL'93
--------------------------------------------------------------------------------
--- Description: this module interfaces the FADC and samples 512 samples on CPU
---              or dicriminator trigger
--------------------------------------------------------------------------------
--- Copyright (c) 2003 
--------------------------------------------------------------------------------
--- Revisions  :
--- Date        Version     Author    Description
--- 2003-07-17  V01-01-00   thorsten  
--------------------------------------------------------------------------------
+-------------------------------------------------
+--- simple receiver for the FLASH ADC
+-------------------------------------------------
 
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.all;
@@ -113,7 +95,7 @@ BEGIN
 			MEM_write_addr	:= (others=>'0');
 			wraddress	<= (others=>'0');
 		ELSIF CLK'EVENT AND CLK='1' THEN
-			IF enable = '0' AND enable_disc='0' THEN		-- do not take data
+			IF enable = '0' AND enable_disc='0' THEN		-- do not take date
 				wren	<= '0';
 				done	<= '0';
 				MEM_write_addr	:= (others=>'0');
@@ -135,7 +117,7 @@ BEGIN
 	
 	
 	data_sig(9 downto 0)	<= FLASH_AD_D WHEN write_en='0' ELSE wdata(9 downto 0);
-	data_sig(10)			<= '0' WHEN write_en='0' ELSE wdata(10); -- Azriel doesn't want to have the overflow flag!  --FLASH_NCO WHEN write_en='0' ELSE wdata(10);
+	data_sig(10)			<= FLASH_NCO WHEN write_en='0' ELSE wdata(10);
 	data_sig(15 downto 11)	<= (others=>'0') WHEN write_en='0' ELSE wdata(15 downto 11);
 	wraddress_sig	<= wraddress WHEN write_en='0' ELSE address;
 	wren_sig		<= wren WHEN write_en='0' ELSE write_en;

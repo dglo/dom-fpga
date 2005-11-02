@@ -1,25 +1,7 @@
--------------------------------------------------------------------------------
--- Title      : DOMAPP
--- Project    : IceCube DOM main board
--------------------------------------------------------------------------------
--- File       : FADC_input.vhd
--- Author     : thorsten
--- Company    : LBNL
--- Created    : 
--- Last update: 2003-10-23
--- Platform   : Altera Excalibur
--- Standard   : VHDL'93
--------------------------------------------------------------------------------
--- Description: central input latch for the fADC to ensure timing
--------------------------------------------------------------------------------
--- Copyright (c) 2003 2004
--------------------------------------------------------------------------------
--- Revisions  :
--- Date        Version     Author    Description
---             V01-01-00   thorsten
--------------------------------------------------------------------------------
-
-
+-------------------------------------------------
+-- fADC input latch
+-- central input latch for the fADC to ensure timing
+-------------------------------------------------
 
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.all;

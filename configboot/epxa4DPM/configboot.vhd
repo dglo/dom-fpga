@@ -32,20 +32,21 @@ ENTITY configboot IS
 		nPOR			: IN STD_LOGIC;
 		nRESET			: INOUT	STD_LOGIC;
 		-- EBI
-		INTEXTPIN		: IN	STD_LOGIC;
-		EBIACK			: IN	STD_LOGIC;
-		EBIDQ			: INOUT	STD_LOGIC_VECTOR(15 downto 0);
-		EBICLK			: OUT	STD_LOGIC;
-		EBIWEN			: OUT	STD_LOGIC;
-		EBIOEN			: OUT	STD_LOGIC;
-		EBIADDR			: OUT	STD_LOGIC_VECTOR(24 downto 0);
-		EBIBE			: OUT	STD_LOGIC_VECTOR(1 downto 0);
-		EBICSN			: OUT	STD_LOGIC_VECTOR(3 downto 0);
+		INTEXTPIN			: IN	STD_LOGIC;
+		EBIACK				: IN	STD_LOGIC;
+		EBIDQ				: INOUT	STD_LOGIC_VECTOR(15 downto 0);
+		EBICLK				: OUT	STD_LOGIC;
+		EBIWEN				: OUT	STD_LOGIC;
+		EBIOEN				: OUT	STD_LOGIC;
+		EBIADDR				: OUT	STD_LOGIC_VECTOR(24 downto 0);
+		EBIBE				: OUT	STD_LOGIC_VECTOR(1 downto 0);
+		EBICSN				: OUT	STD_LOGIC_VECTOR(3 downto 0);
 		-- general FPGA IO
 		CLK1p			: IN STD_LOGIC;
 		CLK2p			: IN STD_LOGIC;
 		CLK3p			: IN STD_LOGIC;
 		CLK4p			: IN STD_LOGIC;
+		CLKLK_OUT2p		: OUT STD_LOGIC;	-- 40MHz outpout for FADC
 		COMM_RESET		: OUT STD_LOGIC;
 		FPGA_LOADED		: OUT STD_LOGIC;
 		-- Communications DAC
@@ -59,8 +60,14 @@ ENTITY configboot IS
 		HDV_RxENA		: OUT STD_LOGIC;
 		HDV_TxENA		: OUT STD_LOGIC;
 		HDV_IN			: OUT STD_LOGIC;
+		-- FLASH ADC
+		FLASH_AD_D		: IN STD_LOGIC_VECTOR (9 downto 0);
+		FLASH_AD_STBY	: OUT STD_LOGIC;
+		FLASH_NCO		: IN STD_LOGIC;
 		-- ATWD 0
+		ATWD0_D			: IN STD_LOGIC_VECTOR (9 downto 0);
 		ATWDTrigger_0	: OUT STD_LOGIC;
+		TriggerComplete_0	: IN STD_LOGIC;
 		OutputEnable_0	: OUT STD_LOGIC;
 		CounterClock_0	: OUT STD_LOGIC;
 		ShiftClock_0	: OUT STD_LOGIC;
@@ -70,8 +77,11 @@ ENTITY configboot IS
 		AnalogReset_0	: OUT STD_LOGIC;
 		DigitalReset_0	: OUT STD_LOGIC;
 		DigitalSet_0	: OUT STD_LOGIC;
+		ATWD0VDD_SUP	: OUT STD_LOGIC;
 		-- ATWD 1
+		ATWD1_D			: IN STD_LOGIC_VECTOR (9 downto 0);
 		ATWDTrigger_1	: OUT STD_LOGIC;
+		TriggerComplete_1	: IN STD_LOGIC;
 		OutputEnable_1	: OUT STD_LOGIC;
 		CounterClock_1	: OUT STD_LOGIC;
 		ShiftClock_1	: OUT STD_LOGIC;
@@ -81,9 +91,11 @@ ENTITY configboot IS
 		AnalogReset_1	: OUT STD_LOGIC;
 		DigitalReset_1	: OUT STD_LOGIC;
 		DigitalSet_1	: OUT STD_LOGIC;
+		ATWD1VDD_SUP	: OUT STD_LOGIC;
 		-- A_nB switch
-		A_nB			: IN STD_LOGIC;
-		TC				: OUT STD_LOGIC_VECTOR(7 downto 0)
+		A_nB				: IN STD_LOGIC;
+		-- Test connector	THERE IS NO 11   I don't know why
+		PGM				: OUT STD_LOGIC_VECTOR (15 downto 0)
 	);
 END configboot;
 
@@ -261,7 +273,6 @@ ARCHITECTURE configboot_arch OF configboot IS
 			-- kale communication interface
 			tx_pack_rdy			: OUT STD_LOGIC;
 			rx_dpr_radr_stb		: OUT STD_LOGIC;
-			com_reset_rcvd		: IN STD_LOGIC;
 			-- test connector
 			TC				: OUT	STD_LOGIC_VECTOR(7 downto 0)
 		);
@@ -338,15 +349,15 @@ BEGIN
 	
 	
 	-- kale communications
-	com_status(0)	<= drbt_gnt;
+	com_status(2)	<= drbt_gnt;
+	com_status(0)	<= tx_alm_empty;
 	com_status(1)	<= tx_pack_sent;
-	com_status(2)	<= tx_alm_empty;
 	com_status(3)	<= rx_pack_rcvd;
 	com_status(4)	<= com_reset_rcvd;
 	com_status(5)	<= rx_dpr_aff;
 	com_status(6)	<= com_avail;
 	com_status(31 downto 7)	<= 	(OTHERS=>'0');
-	drbt_req		<= com_ctrl(0);
+	drbt_req		<= com_ctrl(2);
 
 	
 	
@@ -363,6 +374,7 @@ BEGIN
 			clock0		=> CLK20,
 			clock1		=> CLK40
 		);
+	CLKLK_OUT2p	<= CLK40;
 	
 	stripe_inst : stripe
 		PORT MAP (
@@ -452,9 +464,8 @@ BEGIN
 			-- kale communication interface
 			tx_pack_rdy			=> tx_pack_rdy,
 			rx_dpr_radr_stb		=> rx_dpr_radr_stb,
-			com_reset_rcvd		=> com_reset_rcvd,
 			-- test connector
-			TC				=> TC
+			TC				=> open --TC
 		);
 
 		
@@ -475,7 +486,7 @@ BEGIN
 			id				=> (OTHERS=>'0'),
 			rx_dpr_radr		=> rx_dpr_radr,
 			systime			=> systime,
-			tc				=> open, --TC,
+			tc				=> open,
 			tx_dataout		=> dp0_portadataout,
 			tx_dpr_wadr		=> tx_dpr_wadr,
 			tx_pack_sent	=> tx_pack_sent,
@@ -511,36 +522,13 @@ BEGIN
 		);
 		
 
+	
+	PGM(15 downto 0) <= (others=>'Z');
+	
 	-- indicate FPGA is configured
 	FPGA_LOADED	<= '0';
 	
 	-- Reset through comm	
 	COMM_RESET	<= '1'; -- disbled    NOT COMM_nRESET;
-	
-	
-	
-	-- safe ATWD idle state to keep the ATWD input bufferes happy
-	-- ATWD 0
-	ATWDTrigger_0	<= '0';
-	OutputEnable_0	<= '0';
-	CounterClock_0	<= '0';
-	ShiftClock_0	<= '0';
-	RampSet_0		<= '0';
-	ChannelSelect_0	<= "00";
-	ReadWrite_0		<= '0';
-	AnalogReset_0	<= '0';
-	DigitalReset_0	<= '1';
-	DigitalSet_0	<= '0';
-	-- ATWD 1
-	ATWDTrigger_1	<= '0';
-	OutputEnable_1	<= '0';
-	CounterClock_1	<= '0';
-	ShiftClock_1	<= '0';
-	RampSet_1		<= '0';
-	ChannelSelect_1	<= "00";
-	ReadWrite_1		<= '0';
-	AnalogReset_1	<= '0';
-	DigitalReset_1	<= '1';
-	DigitalSet_1	<= '0';
 		
 END;
