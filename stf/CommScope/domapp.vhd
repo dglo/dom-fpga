@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2005-10-17
+-- Last update: 2005-11-02
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -329,6 +329,8 @@ ARCHITECTURE arch_domapp OF domapp IS
         PORT (
             CLK              : IN  STD_LOGIC;
             RST              : IN  STD_LOGIC;
+            -- launch
+            launch           : IN  STD_LOGIC;
             -- Communications ADC
             COM_AD_D         : IN  STD_LOGIC_VECTOR (11 DOWNTO 0);
             COM_AD_OTR       : IN  STD_LOGIC;
@@ -410,6 +412,8 @@ ARCHITECTURE arch_domapp OF domapp IS
     SIGNAL fifo_data        : STD_LOGIC_VECTOR (31 DOWNTO 0);
     SIGNAL fifo_rd          : STD_LOGIC;
     SIGNAL fifo_almost_full : STD_LOGIC;
+
+    SIGNAL adc_launch : STD_LOGIC;
 
 
     
@@ -621,6 +625,8 @@ BEGIN
         PORT MAP (
             CLK              => CLK20,
             RST              => RST,
+            -- launch
+            launch           => adc_launch,
             -- Communications ADC
             COM_AD_D         => COM_AD_D,
             COM_AD_OTR       => COM_AD_OTR,
@@ -629,6 +635,7 @@ BEGIN
             fifo_rd          => fifo_rd,
             fifo_almost_full => fifo_almost_full
             );
+    adc_launch <= '1' WHEN gpo = x"a5" ELSE '0';
 
 
     COM_DB <= (OTHERS => 'Z');
