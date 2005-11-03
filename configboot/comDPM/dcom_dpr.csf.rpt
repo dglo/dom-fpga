@@ -1,0 +1,123 @@
+dcom_dpr - Quartus II Compilation Report File
+-------------------------------------------------------------------------------
+
++-----------------------------------------------------------------------------+
+|Report Information                                                           |
++------------------+----------------------------------------------------------+
+|Project           |c:\projects\icecube\dor\fpga\dcom_01\db\DCOM_01.quartus_db|
+|Compiler Settings |dcom_dpr                                                  |
+|Quartus II Version|2.1 Build 166 07/08/2002 SJ Full Version                  |
++------------------+----------------------------------------------------------+
+
+Table of Contents
+    Compilation Report
+        Legal Notice
+        Project Settings
+            General Settings
+        Results for "dcom_dpr" Compiler Settings
+            Compiler Settings
+            Device Options
+            Messages
+            Processing Time
+
++-----------------------------------------------------------------------------+
+|Legal Notice                                                                 |
++-----------------------------------------------------------------------------+
+Copyright (C) 1991-2002 Altera Corporation
+Any  megafunction  design,  and related netlist (encrypted  or  decrypted),
+support information,  device programming or simulation file,  and any other
+associated  documentation or information  provided by  Altera  or a partner
+under  Altera's   Megafunction   Partnership   Program  may  be  used  only
+to program  PLD  devices (but not masked  PLD  devices) from  Altera.   Any
+other  use  of such  megafunction  design,  netlist,  support  information,
+device programming or simulation file,  or any other  related documentation
+or information  is prohibited  for  any  other purpose,  including, but not
+limited to  modification,  reverse engineering,  de-compiling, or use  with
+any other  silicon devices,  unless such use is  explicitly  licensed under
+a separate agreement with  Altera  or a megafunction partner.  Title to the
+intellectual property,  including patents,  copyrights,  trademarks,  trade
+secrets,  or maskworks,  embodied in any such megafunction design, netlist,
+support  information,  device programming or simulation file,  or any other
+related documentation or information provided by  Altera  or a megafunction
+partner, remains with Altera, the megafunction partner, or their respective
+licensors. No other licenses, including any licenses needed under any third
+party's intellectual property, are provided herein.
+
+
++-----------------------------------------------------------------------------+
+|General Settings                                                             |
++-----------------------------------------------------------------------------+
++-----------------+-------------------+
+|Option           |Setting            |
++-----------------+-------------------+
+|Start date & time|11/25/2003 17:24:48|
+|Main task        |Compilation        |
+|Settings name    |dcom_dpr           |
++-----------------+-------------------+
+
++-----------------------------------------------------------------------------+
+|Compiler Settings                                                            |
++-----------------------------------------------------------------------------+
++------------------------------------------+------------------+
+|Option                                    |Setting           |
++------------------------------------------+------------------+
+|Chip name                                 |dcom_dpr          |
+|Family name                               |APEX20KE          |
+|Focus entity name                         ||dcom_dpr         |
+|Device                                    |EP20K200EFC484-2X |
+|Compilation mode                          |Synthesis only    |
+|Disk space/compilation speed tradeoff     |Normal            |
+|Preserve fewer node names                 |On                |
+|Optimize timing                           |Normal compilation|
+|Optimize IOC register placement for timing|On                |
+|Generate timing analyses                  |On                |
+|Fast Fit compilation                      |On                |
+|SignalProbe compilation                   |Off               |
++------------------------------------------+------------------+
+
++-----------------------------------------------------------------------------+
+|Device Options                                                               |
++-----------------------------------------------------------------------------+
++----------------------------------------------------------------+--------------+
+|Option                                                          |Setting       |
++----------------------------------------------------------------+--------------+
+|Auto-restart configuration after error                          |Off           |
+|Release clears before tri-states                                |Off           |
+|Enable user-supplied start-up clock (CLKUSR)                    |Off           |
+|Enable device-wide reset (DEV_CLRn)                             |Off           |
+|Enable device-wide output enable (DEV_OE)                       |Off           |
+|Enable INIT_DONE output                                         |Off           |
+|Auto-increment JTAG user code for multiple configuration devices|Off           |
+|Disable CONF_DONE and nSTATUS pull-ups on configuration device  |Off           |
+|Generate Tabular Text File (.ttf)                               |Off           |
+|Generate Raw Binary File (.rbf)                                 |Off           |
+|Generate Hexadecimal Output File (.hexout)                      |Off           |
+|Configuration scheme                                            |Passive Serial|
+|Hexadecimal Output File count direction                         |Down          |
+|JTAG user code for target device                                |0X0           |
+|JTAG user code for configuration device                         |0X0           |
+|Hexadecimal Output File start address                           |0             |
+|Auto usercode                                                   |Off           |
+|Configuration device auto usercode                              |Off           |
++----------------------------------------------------------------+--------------+
+
++-----------------------------------------------------------------------------+
+|Messages                                                                     |
++-----------------------------------------------------------------------------+
+Info: Found 1 design units and 1 entities in source file c:\projects\icecube\dor\fpga\dcom_01\dcom_dpr.bdf
+  Info: Found entity 1: dcom_dpr
+Warning: Bidirectional pin HDV_Rx_ENA missing source
+Warning: Bidirectional pin HDV_IN missing source
+Warning: Bidirectional pin HDV_TxENA missing source
+Info: Design dcom_dpr: BDF to VHDL file generation was successful. 0 errors, 3 warnings
+
++-----------------------------------------------------------------------------+
+|Processing Time                                                              |
++-----------------------------------------------------------------------------+
++----------------+------------+
+|Module Name     |Elapsed Time|
++----------------+------------+
+|Database Builder|00:00:00    |
+|Total           |00:00:00    |
++----------------+------------+
+

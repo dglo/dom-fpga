@@ -1,0 +1,63 @@
+TITLE "DCOM test signals, K.-H. Sulanke,DESY Zeuthen, 2004-08-30";
+
+CONSTANT DCOM_REV= 24;
+
+SUBDESIGN test_signals
+(
+--	stf_stb			: INPUT;
+--	data_stb		: INPUT;
+--	eof_stb			: INPUT;
+--	comres_rcvd		: INPUT;	
+--	lh_edge			: INPUT;
+--	data_error		: INPUT;
+--	ctrl_msg		: INPUT;
+--	data_msg		: INPUT;	
+--	crc_zero		: INPUT;
+--	rx_addr[1..0]	: INPUT;
+--	tx_dataout[15..12]	: INPUT;
+--	rx_we			: INPUT;
+--	drreq_rcvd		: INPUT;
+--	tx_empty		: INPUT;
+--	tx_alm_empty	: INPUT;	
+--	tx_pack_sent	: INPUT;
+--	tx_dpr_ren		: INPUT;
+--	send_data		: INPUT;
+--	tx_pack_rdy		: INPUT;
+	
+	reboot_req		: INPUT;
+	drreq_rcvd		: INPUT;
+	idle_rcvd		: INPUT;	
+--	reboot_gnt		: INPUT;
+--	com_avail		: INPUT;
+	buf_res			: INPUT;
+--	data_error		: INPUT;
+	ctrl_error		: INPUT;
+	tcal_rcvd		: INPUT;
+	pulse_rcvd		: INPUT;
+	pulse_sent		: INPUT;
+	
+	
+	tc[7..0]		: OUTPUT;	-- DOM test connector
+	rev[15..0]		: OUTPUT;	-- DOM test connector
+)
+
+BEGIN
+
+	tc[0]	= reboot_req;
+	tc[1]	= drreq_rcvd;
+	tc[2]	= idle_rcvd;
+	tc[3]	= ctrl_error;
+	tc[4]	= buf_res;
+	tc[5]	= tcal_rcvd;
+	tc[6]	= pulse_rcvd;
+	tc[7]	= pulse_sent;
+--	tc[0]	= comres_rcvd;
+--	tc[1]	= drreq_rcvd;
+--	tc[2]	= data_msg;
+--	tc[3]	= send_data;
+--	tc[4]	= tx_empty;
+--	tc[5]	= buf_res;
+--	tc[6]	= ctrl_error;
+--	tc[7]	= data_error;
+
+END;

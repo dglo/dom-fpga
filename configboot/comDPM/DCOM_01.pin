@@ -1,0 +1,528 @@
+ -- Copyright (C) 1991-2004 Altera Corporation
+ -- Any  megafunction  design,  and related netlist (encrypted  or  decrypted),
+ -- support information,  device programming or simulation file,  and any other
+ -- associated  documentation or information  provided by  Altera  or a partner
+ -- under  Altera's   Megafunction   Partnership   Program  may  be  used  only
+ -- to program  PLD  devices (but not masked  PLD  devices) from  Altera.   Any
+ -- other  use  of such  megafunction  design,  netlist,  support  information,
+ -- device programming or simulation file,  or any other  related documentation
+ -- or information  is prohibited  for  any  other purpose,  including, but not
+ -- limited to  modification,  reverse engineering,  de-compiling, or use  with
+ -- any other  silicon devices,  unless such use is  explicitly  licensed under
+ -- a separate agreement with  Altera  or a megafunction partner.  Title to the
+ -- intellectual property,  including patents,  copyrights,  trademarks,  trade
+ -- secrets,  or maskworks,  embodied in any such megafunction design, netlist,
+ -- support  information,  device programming or simulation file,  or any other
+ -- related documentation or information provided by  Altera  or a megafunction
+ -- partner, remains with Altera, the megafunction partner, or their respective
+ -- licensors. No other licenses, including any licenses needed under any third
+ -- party's intellectual property, are provided herein.
+ ------------------------------------------------------------------------------
+
+
+
+ ------------------------------------------------------------------------------
+ -- NC         : No Connect. This pin has no internal connection to the device.
+ -- VCC_INT    : Dedicated power pin, which MUST be connected to VCC  (1.8V).
+ -- VCC_IO     : Dedicated power pin, which MUST be connected to VCC  (Refer to
+ --              the table below for voltage).
+ -- GND        : Dedicated ground pin, which MUST be connected to GND.
+ -- GND+       : Unused input. This pin should be connected to GND. It may also
+ --              be connected  to a  valid signal  on the board  (low, high, or
+ --              toggling)  if that signal is required for a different revision
+ --              of the design.
+ -- GND*       : Unused  I/O  pin.   This pin can either be left unconnected or
+ --              connected to GND.  Connecting this pin to GND will improve the
+ --              device's immunity to noise.
+ ------------------------------------------------------------------------------
+
+
+Quartus II Version 4.0 Build 190 1/28/2004 SJ Full Version
+CHIP  "DCOM_01"  ASSIGNED TO AN: EP20K200EFC484-2X
+
+Pin Name/Usage               : Location  : Dir.   : I/O Standard      : Voltage : I/O Bank  : User Assignment
+-------------------------------------------------------------------------------------------------------------
+GND                          : A1        : gnd    :                   :         :           :                
+id[32]                       : A2        : input  : LVTTL             :         : 8         : N              
+systime[15]                  : A3        : input  : LVTTL             :         : 8         : N              
+tx_error[9]                  : A4        : output : LVTTL             :         : 8         : N              
+systime[13]                  : A5        : input  : LVTTL             :         : 8         : N              
+id[26]                       : A6        : input  : LVTTL             :         : 8         : N              
+id[28]                       : A7        : input  : LVTTL             :         : 8         : N              
+systime[10]                  : A8        : input  : LVTTL             :         : 8         : N              
+NC                           : A9        :        :                   :         :           :                
+NC                           : A10       :        :                   :         :           :                
+GND                          : A11       : gnd    :                   :         :           :                
+NC                           : A12       :        :                   :         :           :                
+NC                           : A13       :        :                   :         :           :                
+NC                           : A14       :        :                   :         :           :                
+systime[16]                  : A15       : input  : LVTTL             :         : 3         : N              
+id[21]                       : A16       : input  : LVTTL             :         : 3         : N              
+id[27]                       : A17       : input  : LVTTL             :         : 3         : N              
+systime[20]                  : A18       : input  : LVTTL             :         : 3         : N              
+HDV_TxENA                    : A19       : output : LVTTL             :         : 3         : N              
+tx_error[1]                  : A20       : output : LVTTL             :         : 3         : N              
+rev[0]                       : A21       : output : LVTTL             :         : 3         : N              
+GND                          : A22       : gnd    :                   :         :           :                
+VCC_INT                      : B1        : power  :                   : 1.8V    :           :                
+GND                          : B2        : gnd    :                   :         :           :                
+id[41]                       : B3        : input  : LVTTL             :         : 8         : N              
+HDV_IN                       : B4        : output : LVTTL             :         : 8         : N              
+tx_dataout[20]               : B5        : input  : LVTTL             :         : 8         : N              
+id[19]                       : B6        : input  : LVTTL             :         : 8         : N              
+id[25]                       : B7        : input  : LVTTL             :         : 8         : N              
+id[23]                       : B8        : input  : LVTTL             :         : 8         : N              
+systime[45]                  : B9        : input  : LVTTL             :         : 8         : N              
+systime[24]                  : B10       : input  : LVTTL             :         : 8         : N              
+systime[22]                  : B11       : input  : LVTTL             :         : 8         : N              
+systime[31]                  : B12       : input  : LVTTL             :         : 3         : N              
+systime[19]                  : B13       : input  : LVTTL             :         : 3         : N              
+systime[8]                   : B14       : input  : LVTTL             :         : 3         : N              
+id[20]                       : B15       : input  : LVTTL             :         : 3         : N              
+id[22]                       : B16       : input  : LVTTL             :         : 3         : N              
+id[24]                       : B17       : input  : LVTTL             :         : 3         : N              
+GND*                         : B18       :        :                   :         : 3         :                
+GND*                         : B19       :        :                   :         : 3         :                
+tx_dataout[11]               : B20       : input  : LVTTL             :         : 3         : N              
+GND                          : B21       : gnd    :                   :         :           :                
+VCC_INT                      : B22       : power  :                   : 1.8V    :           :                
+tx_dataout[30]               : C1        : input  : LVTTL             :         : 8         : N              
+id[30]                       : C2        : input  : LVTTL             :         : 8         : N              
+systime[28]                  : C3        : input  : LVTTL             :         : 8         : N              
+tx_dataout[28]               : C4        : input  : LVTTL             :         : 1         : N              
+systime[32]                  : C5        : input  : LVTTL             :         : 1         : N              
+systime[33]                  : C6        : input  : LVTTL             :         : 1         : N              
+tx_dataout[22]               : C7        : input  : LVTTL             :         : 1         : N              
+systime[41]                  : C8        : input  : LVTTL             :         : 1         : N              
+tx_dataout[16]               : C9        : input  : LVTTL             :         : 1         : N              
+systime[47]                  : C10       : input  : LVTTL             :         : 1         : N              
+GND*                         : C11       :        :                   :         : 2         :                
+GND*                         : C12       :        :                   :         : 2         :                
+tx_error[0]                  : C13       : output : LVTTL             :         : 2         : N              
+GND*                         : C14       :        :                   :         : 2         :                
+rev[2]                       : C15       : output : LVTTL             :         : 2         : N              
+COM_DB[6]                    : C16       : output : LVTTL             :         : 2         : N              
+GND*                         : C17       :        :                   :         : 2         :                
+tx_error[8]                  : C18       : output : LVTTL             :         : 2         : N              
+systime[25]                  : C19       : input  : LVTTL             :         : 2         : N              
+id[43]                       : C20       : input  : LVTTL             :         : 3         : N              
+systime[14]                  : C21       : input  : LVTTL             :         : 3         : N              
+rev[1]                       : C22       : output : LVTTL             :         : 3         : N              
+id[46]                       : D1        : input  : LVTTL             :         : 8         : N              
+systime[43]                  : D2        : input  : LVTTL             :         : 8         : N              
+systime[12]                  : D3        : input  : LVTTL             :         : 8         : N              
+systime[30]                  : D4        : input  : LVTTL             :         : 1         : N              
+tx_dataout[27]               : D5        : input  : LVTTL             :         : 1         : N              
+systime[37]                  : D6        : input  : LVTTL             :         : 1         : N              
+systime[46]                  : D7        : input  : LVTTL             :         : 1         : N              
+id[8]                        : D8        : input  : LVTTL             :         : 1         : N              
+systime[11]                  : D9        : input  : LVTTL             :         : 1         : N              
+systime[34]                  : D10       : input  : LVTTL             :         : 1         : N              
+GND+                         : D11       :        :                   :         : 1         :                
+TRST                         : D12       : input  :                   :         :           :                
+systime[23]                  : D13       : input  : LVTTL             :         : 2         : N              
+systime[6]                   : D14       : input  : LVTTL             :         : 2         : N              
+rev[14]                      : D15       : output : LVTTL             :         : 2         : N              
+rev[9]                       : D16       : output : LVTTL             :         : 2         : N              
+GND*                         : D17       :        :                   :         : 2         :                
+GND*                         : D18       :        :                   :         : 2         :                
+id[42]                       : D19       : input  : LVTTL             :         : 3         : N              
+rev[8]                       : D20       : output : LVTTL             :         : 3         : N              
+systime[2]                   : D21       : input  : LVTTL             :         : 3         : N              
+id[39]                       : D22       : input  : LVTTL             :         : 3         : N              
+id[47]                       : E1        : input  : LVTTL             :         : 8         : N              
+id[29]                       : E2        : input  : LVTTL             :         : 8         : N              
+id[40]                       : E3        : input  : LVTTL             :         : 8         : N              
+id[37]                       : E4        : input  : LVTTL             :         : 8         : N              
+tx_dataout[31]               : E5        : input  : LVTTL             :         : 8         : N              
+id[33]                       : E6        : input  : LVTTL             :         : 8         : N              
+tx_dataout[3]                : E7        : input  : LVTTL             :         : 1         : N              
+tx_dataout[25]               : E8        : input  : LVTTL             :         : 1         : N              
+tx_dataout[29]               : E9        : input  : LVTTL             :         : 1         : N              
+systime[36]                  : E10       : input  : LVTTL             :         : 1         : N              
+TDO                          : E11       : output :                   :         :           :                
+nCEO                         : E12       : output :                   :         :           :                
+rev[4]                       : E13       : output : LVTTL             :         : 2         : N              
+systime[4]                   : E14       : input  : LVTTL             :         : 2         : N              
+GND*                         : E15       :        :                   :         : 2         :                
+rev[11]                      : E16       : output : LVTTL             :         : 2         : N              
+HVD_Rx                       : E17       : input  : LVTTL             :         : 2         : N              
+id[34]                       : E18       : input  : LVTTL             :         : 3         : N              
+id[35]                       : E19       : input  : LVTTL             :         : 3         : N              
+tx_dataout[23]               : E20       : input  : LVTTL             :         : 3         : N              
+rev[13]                      : E21       : output : LVTTL             :         : 3         : N              
+id[4]                        : E22       : input  : LVTTL             :         : 3         : N              
+systime[40]                  : F1        : input  : LVTTL             :         : 8         : N              
+id[6]                        : F2        : input  : LVTTL             :         : 8         : N              
+id[1]                        : F3        : input  : LVTTL             :         : 8         : N              
+systime[1]                   : F4        : input  : LVTTL             :         : 8         : N              
+id[2]                        : F5        : input  : LVTTL             :         : 8         : N              
+GND                          : F6        : gnd    :                   :         :           :                
+tx_dataout[0]                : F7        : input  : LVTTL             :         : 8         : N              
+tx_dataout[2]                : F8        : input  : LVTTL             :         : 1         : N              
+systime[38]                  : F9        : input  : LVTTL             :         : 1         : N              
+tx_dataout[8]                : F10       : input  : LVTTL             :         : 1         : N              
+systime[27]                  : F11       : input  : LVTTL             :         : 1         : N              
+GND+                         : F12       :        :                   :         : 1         :                
+systime[29]                  : F13       : input  : LVTTL             :         : 2         : N              
+GND*                         : F14       :        :                   :         : 2         :                
+GND*                         : F15       :        :                   :         : 2         :                
+tx_error[5]                  : F16       : output : LVTTL             :         : 2         : N              
+GND                          : F17       : gnd    :                   :         :           :                
+id[3]                        : F18       : input  : LVTTL             :         : 3         : N              
+id[36]                       : F19       : input  : LVTTL             :         : 3         : N              
+id[7]                        : F20       : input  : LVTTL             :         : 3         : N              
+tx_error[12]                 : F21       : output : LVTTL             :         : 3         : N              
+systime[39]                  : F22       : input  : LVTTL             :         : 3         : N              
+GND*                         : G1        :        :                   :         : 8         :                
+tx_dataout[6]                : G2        : input  : LVTTL             :         : 8         : N              
+id[44]                       : G3        : input  : LVTTL             :         : 8         : N              
+tx_dataout[9]                : G4        : input  : LVTTL             :         : 8         : N              
+tx_dataout[5]                : G5        : input  : LVTTL             :         : 8         : N              
+tx_error[4]                  : G6        : output : LVTTL             :         : 8         : N              
+GND                          : G7        : gnd    :                   :         :           :                
+VCC_IO                       : G8        : power  :                   : 3.3V    :           :                
+tx_dataout[1]                : G9        : input  : LVTTL             :         : 1         : N              
+tx_dataout[19]               : G10       : input  : LVTTL             :         : 1         : N              
+systime[17]                  : G11       : input  : LVTTL             :         : 1         : N              
+systime[21]                  : G12       : input  : LVTTL             :         : 1         : N              
+systime[7]                   : G13       : input  : LVTTL             :         : 1         : N              
+A_nB                         : G14       : input  : LVTTL             :         : 2         : N              
+GND*                         : G15       :        :                   :         : 2         :                
+GND                          : G16       : gnd    :                   :         :           :                
+GND*                         : G17       :        :                   :         : 2         :                
+tx_dataout[24]               : G18       : input  : LVTTL             :         : 3         : N              
+id[38]                       : G19       : input  : LVTTL             :         : 3         : N              
+tx_dataout[15]               : G20       : input  : LVTTL             :         : 3         : N              
+GND*                         : G21       :        :                   :         : 3         :                
+rev[5]                       : G22       : output : LVTTL             :         : 3         : N              
+tx_dataout[7]                : H1        : input  : LVTTL             :         : 8         : N              
+id[12]                       : H2        : input  : LVTTL             :         : 8         : N              
+tx_dataout[4]                : H3        : input  : LVTTL             :         : 8         : N              
+id[10]                       : H4        : input  : LVTTL             :         : 8         : N              
+GND*                         : H5        :        :                   :         : 8         :                
+id[17]                       : H6        : input  : LVTTL             :         : 8         : N              
+VCC_IO                       : H7        : power  :                   : 3.3V    :           :                
+GND                          : H8        : gnd    :                   :         :           :                
+VCC_INT                      : H9        : power  :                   : 1.8V    :           :                
+systime[35]                  : H10       : input  : LVTTL             :         : 1         : N              
+tx_dataout[12]               : H11       : input  : LVTTL             :         : 1         : N              
+systime[9]                   : H12       : input  : LVTTL             :         : 1         : N              
+tx_error[6]                  : H13       : output : LVTTL             :         : 2         : N              
+VCC_IO                       : H14       : power  :                   : 3.3V    :           :                
+GND                          : H15       : gnd    :                   :         :           :                
+COM_DB[3]                    : H16       : output : LVTTL             :         : 2         : N              
+GND*                         : H17       :        :                   :         : 3         :                
+tx_error[3]                  : H18       : output : LVTTL             :         : 3         : N              
+systime[42]                  : H19       : input  : LVTTL             :         : 3         : N              
+GND*                         : H20       :        :                   :         : 3         :                
+systime[44]                  : H21       : input  : LVTTL             :         : 3         : N              
+tx_error[13]                 : H22       : output : LVTTL             :         : 3         : N              
+rx_datain[19]                : J1        : output : LVTTL             :         : 7         : N              
+rx_datain[21]                : J2        : output : LVTTL             :         : 7         : N              
+COMM_RESET                   : J3        : output : LVTTL             :         : 7         : N              
+id[14]                       : J4        : input  : LVTTL             :         : 8         : N              
+rx_addr[14]                  : J5        : output : LVTTL             :         : 7         : N              
+id[45]                       : J6        : input  : LVTTL             :         : 8         : N              
+tc[0]                        : J7        : output : LVTTL             :         : 7         : N              
+VCC_INT                      : J8        : power  :                   : 1.8V    :           :                
+GND                          : J9        : gnd    :                   :         :           :                
+VCC_IO                       : J10       : power  :                   : 3.3V    :           :                
+GND                          : J11       : gnd    :                   :         :           :                
+tx_dataout[17]               : J12       : input  : LVTTL             :         : 2         : N              
+VCC_INT                      : J13       : power  :                   : 1.8V    :           :                
+GND                          : J14       : gnd    :                   :         :           :                
+VCC_IO                       : J15       : power  :                   : 3.3V    :           :                
+tx_error[2]                  : J16       : output : LVTTL             :         : 3         : N              
+tx_error[10]                 : J17       : output : LVTTL             :         : 3         : N              
+tx_addr[2]                   : J18       : output : LVTTL             :         : 4         : N              
+id[16]                       : J19       : input  : LVTTL             :         : 3         : N              
+id[11]                       : J20       : input  : LVTTL             :         : 3         : N              
+GND*                         : J21       :        :                   :         : 3         :                
+tx_error[11]                 : J22       : output : LVTTL             :         : 3         : N              
+rev[12]                      : K1        : output : LVTTL             :         : 7         : N              
+tx_dpr_wadr[0]               : K2        : input  : LVTTL             :         : 7         : N              
+rx_datain[23]                : K3        : output : LVTTL             :         : 7         : N              
+tx_dataout[13]               : K4        : input  : LVTTL             :         : 8         : N              
+com_reset_rcvd               : K5        : output : LVTTL             :         : 7         : N              
+id[15]                       : K6        : input  : LVTTL             :         : 8         : N              
+COM_AD_D[0]                  : K7        : input  : LVTTL             :         : 8         : N              
+id[31]                       : K8        : input  : LVTTL             :         : 8         : N              
+VCC_IO                       : K9        : power  :                   : 3.3V    :           :                
+GND                          : K10       : gnd    :                   :         :           :                
+VCC_INT                      : K11       : power  :                   : 1.8V    :           :                
+VCC_IO                       : K12       : power  :                   : 3.3V    :           :                
+GND                          : K13       : gnd    :                   :         :           :                
+VCC_INT                      : K14       : power  :                   : 1.8V    :           :                
+COM_DB[4]                    : K15       : output : LVTTL             :         : 3         : N              
+COM_DB[1]                    : K16       : output : LVTTL             :         : 3         : N              
+GND+                         : K17       :        :                   :         : 4         :                
+tx_dpr_radr[2]               : K18       : output : LVTTL             :         : 4         : N              
+tx_dataout[26]               : K19       : input  : LVTTL             :         : 3         : N              
+id[18]                       : K20       : input  : LVTTL             :         : 3         : N              
+id[13]                       : K21       : input  : LVTTL             :         : 3         : N              
+systime[3]                   : K22       : input  : LVTTL             :         : 3         : N              
+VCC_IO                       : L1        : power  :                   : 3.3V    :           :                
+GND                          : L2        : gnd    :                   :         :           :                
+id[9]                        : L3        : input  : LVTTL             :         : 8         : N              
+DATA0                        : L4        : input  :                   :         :           :                
+DCLK                         : L5        : bidir  :                   :         :           :                
+GND+                         : L6        :        :                   :         : 8         :                
+systime[26]                  : L7        : input  : LVTTL             :         : 8         : N              
+tx_dataout[10]               : L8        : input  : LVTTL             :         : 8         : N              
+VCC_CKLK2                    : L9        : power  :                   : 1.8V    :           :                
+VCC_INT                      : L10       : power  :                   : 1.8V    :           :                
+GND                          : L11       : gnd    :                   :         :           :                
+GND                          : L12       : gnd    :                   :         :           :                
+VCC_IO                       : L13       : power  :                   : 3.3V    :           :                
+tc[6]                        : L14       : output : LVTTL             :         : 4         : N              
+rx_datain[22]                : L15       : output : LVTTL             :         : 4         : N              
+tx_dpr_wadr[3]               : L16       : input  : LVTTL             :         : 4         : N              
+tx_dpr_radr[11]              : L17       : output : LVTTL             :         : 4         : N              
+MSEL1                        : L18       : input  :                   :         :           :                
+MSEL0                        : L19       : input  :                   :         :           :                
+tx_dpr_radr[6]               : L20       : output : LVTTL             :         : 4         : N              
+GND*                         : L21       :        :                   :         : 3         :                
+VCC_IO                       : L22       : power  :                   : 3.3V    :           :                
+GND                          : M1        : gnd    :                   :         :           :                
+reboot_req                   : M2        : input  : LVTTL             :         : 7         : N              
+rx_addr[10]                  : M3        : output : LVTTL             :         : 7         : N              
+nCE                          : M4        : input  :                   :         :           :                
+TDI                          : M5        : input  :                   :         :           :                
+rx_dpr_radr[6]               : M6        : input  : LVTTL             :         : 7         : N              
+id[0]                        : M7        : input  : LVTTL             :         : 8         : N              
+VCC_CKLK4                    : M8        : power  :                   : 1.8V    :           :                
+GND_CKLK2                    : M9        : gnd    :                   :         :           :                
+VCC_IO                       : M10       : power  :                   : 3.3V    :           :                
+GND                          : M11       : gnd    :                   :         :           :                
+GND                          : M12       : gnd    :                   :         :           :                
+VCC_INT                      : M13       : power  :                   : 1.8V    :           :                
+VCC_INT                      : M14       :        :                   :         :           :                
+tx_addr[6]                   : M15       : output : LVTTL             :         : 4         : N              
+rx_datain[16]                : M16       : output : LVTTL             :         : 4         : N              
+tc[5]                        : M17       : output : LVTTL             :         : 4         : N              
+GND+                         : M18       :        :                   :         : 4         :                
+NCONFIG                      : M19       : input  :                   :         :           :                
+rev[10]                      : M20       : output : LVTTL             :         : 4         : N              
+GND                          : M21       : gnd    :                   :         :           :                
+VCC_INT                      : M22       : power  :                   : 1.8V    :           :                
+tc[4]                        : N1        : output : LVTTL             :         : 7         : N              
+rx_addr[0]                   : N2        : output : LVTTL             :         : 7         : N              
+tx_dpr_wadr[5]               : N3        : input  : LVTTL             :         : 7         : N              
+CLK20                        : N4        : input  : LVTTL             :         : 8         : N              
+COM_AD_D[9]                  : N5        : input  : LVTTL             :         : 8         : N              
+rx_addr[15]                  : N6        : output : LVTTL             :         : 7         : N              
+tx_dataout[18]               : N7        : input  : LVTTL             :         : 8         : N              
+GND_CKLK4                    : N8        : gnd    :                   :         :           :                
+VCC_INT                      : N9        : power  :                   : 1.8V    :           :                
+GND                          : N10       : gnd    :                   :         :           :                
+VCC_IO                       : N11       : power  :                   : 3.3V    :           :                
+VCC_INT                      : N12       : power  :                   : 1.8V    :           :                
+GND                          : N13       : gnd    :                   :         :           :                
+VCC_IO                       : N14       : power  :                   : 3.3V    :           :                
+tx_dpr_radr[8]               : N15       : output : LVTTL             :         : 4         : N              
+tx_addr[8]                   : N16       : output : LVTTL             :         : 4         : N              
+tx_dpr_radr[1]               : N17       : output : LVTTL             :         : 4         : N              
+rx_datain[9]                 : N18       : output : LVTTL             :         : 4         : N              
+rx_datain[18]                : N19       : output : LVTTL             :         : 4         : N              
+rev[6]                       : N20       : output : LVTTL             :         : 3         : N              
+GND*                         : N21       :        :                   :         : 3         :                
+tx_dataout[21]               : N22       : input  : LVTTL             :         : 3         : N              
+tx_dpr_wadr[1]               : P1        : input  : LVTTL             :         : 7         : N              
+rx_dpr_radr[1]               : P2        : input  : LVTTL             :         : 7         : N              
+tx_dpr_wadr[4]               : P3        : input  : LVTTL             :         : 7         : N              
+tx_dataout[14]               : P4        : input  : LVTTL             :         : 8         : N              
+GND*                         : P5        :        :                   :         :           :                
+id[5]                        : P6        : input  : LVTTL             :         : 8         : N              
+rx_addr[3]                   : P7        : output : LVTTL             :         : 6         : N              
+VCC_IO                       : P8        : power  :                   : 3.3V    :           :                
+GND                          : P9        : gnd    :                   :         :           :                
+VCC_INT                      : P10       : power  :                   : 1.8V    :           :                
+rx_error[10]                 : P11       : output : LVTTL             :         : 6         : N              
+rx_error[1]                  : P12       : output : LVTTL             :         : 5         : N              
+VCC_IO                       : P13       : power  :                   : 3.3V    :           :                
+GND                          : P14       : gnd    :                   :         :           :                
+VCC_INT                      : P15       : power  :                   : 1.8V    :           :                
+tx_dpr_radr[14]              : P16       : output : LVTTL             :         : 4         : N              
+tx_dpr_radr[10]              : P17       : output : LVTTL             :         : 4         : N              
+tx_addr[10]                  : P18       : output : LVTTL             :         : 4         : N              
+rx_datain[15]                : P19       : output : LVTTL             :         : 4         : N              
+COM_DB[5]                    : P20       : output : LVTTL             :         : 3         : N              
+COM_DB[2]                    : P21       : output : LVTTL             :         : 3         : N              
+systime[5]                   : P22       : input  : LVTTL             :         : 3         : N              
+tc[3]                        : R1        : output : LVTTL             :         : 7         : N              
+GND*                         : R2        :        :                   :         : 7         :                
+tx_dpr_wadr[15]              : R3        : input  : LVTTL             :         : 7         : N              
+id_avail                     : R4        : input  : LVTTL             :         : 7         : N              
+COM_AD_D[6]                  : R5        : input  : LVTTL             :         : 7         : N              
+GND+                         : R6        :        :                   :         :           :                
+VCC_INT                      : R7        : power  :                   : 1.8V    :           :                
+GND                          : R8        : gnd    :                   :         :           :                
+VCC_IO                       : R9        : power  :                   : 3.3V    :           :                
+rx_dpr_radr[12]              : R10       : input  : LVTTL             :         : 6         : N              
+tx_pack_rdy                  : R11       : input  : LVTTL             :         : 6         : N              
+rx_error[11]                 : R12       : output : LVTTL             :         : 5         : N              
+rx_error[2]                  : R13       : output : LVTTL             :         : 5         : N              
+VCC_INT                      : R14       : power  :                   : 1.8V    :           :                
+GND                          : R15       : gnd    :                   :         :           :                
+VCC_IO                       : R16       : power  :                   : 3.3V    :           :                
+tx_addr[13]                  : R17       : output : LVTTL             :         : 4         : N              
+tx_dpr_wadr[10]              : R18       : input  : LVTTL             :         : 4         : N              
+tx_addr[4]                   : R19       : output : LVTTL             :         : 4         : N              
+rx_datain[20]                : R20       : output : LVTTL             :         : 4         : N              
+rx_datain[10]                : R21       : output : LVTTL             :         : 4         : N              
+systime[0]                   : R22       : input  : LVTTL             :         : 3         : N              
+rx_we                        : T1        : output : LVTTL             :         : 7         : N              
+COM_DB[0]                    : T2        : output : LVTTL             :         : 7         : N              
+COM_DB[7]                    : T3        : output : LVTTL             :         : 7         : N              
+GND_CKOUT2                   : T4        : gnd    :                   :         :           :                
+VCC_CKOUT2                   : T5        : power  :                   : 3.3V    :           :                
+rx_addr[1]                   : T6        : output : LVTTL             :         : 6         : N              
+GND                          : T7        : gnd    :                   :         :           :                
+VCC_IO                       : T8        : power  :                   : 3.3V    :           :                
+COM_AD_D[8]                  : T9        : input  : LVTTL             :         : 6         : N              
+systime[18]                  : T10       : input  : LVTTL             :         : 6         : N              
+GND*                         : T11       :        :                   :         : 6         :                
+rx_datain[7]                 : T12       : output : LVTTL             :         : 5         : N              
+rx_error[15]                 : T13       : output : LVTTL             :         : 5         : N              
+rx_datain[13]                : T14       : output : LVTTL             :         : 5         : N              
+VCC_IO                       : T15       : power  :                   : 3.3V    :           :                
+GND                          : T16       : gnd    :                   :         :           :                
+tx_dpr_radr[9]               : T17       : output : LVTTL             :         : 4         : N              
+tx_addr[14]                  : T18       : output : LVTTL             :         : 4         : N              
+tx_dpr_wadr[2]               : T19       : input  : LVTTL             :         : 4         : N              
+tc[2]                        : T20       : output : LVTTL             :         : 4         : N              
+tc[7]                        : T21       : output : LVTTL             :         : 4         : N              
+tx_addr[1]                   : T22       : output : LVTTL             :         : 4         : N              
+GND*                         : U1        :        :                   :         : 7         :                
+rev[15]                      : U2        : output : LVTTL             :         : 7         : N              
+rx_dpr_radr[10]              : U3        : input  : LVTTL             :         : 7         : N              
+GND*                         : U4        :        :                   :         : 7         :                
+com_avail                    : U5        : output : LVTTL             :         : 7         : N              
+GND                          : U6        : gnd    :                   :         :           :                
+rx_addr[12]                  : U7        : output : LVTTL             :         : 6         : N              
+rx_addr[11]                  : U8        : output : LVTTL             :         : 6         : N              
+rx_dpr_radr_stb              : U9        : input  : LVTTL             :         : 6         : N              
+GND*                         : U10       :        :                   :         : 6         :                
+rx_dpr_radr[8]               : U11       : input  : LVTTL             :         : 6         : N              
+COM_AD_D[4]                  : U12       : input  : LVTTL             :         : 6         : N              
+rx_error[6]                  : U13       : output : LVTTL             :         : 5         : N              
+rx_error[5]                  : U14       : output : LVTTL             :         : 5         : N              
+rx_datain[0]                 : U15       : output : LVTTL             :         : 5         : N              
+tc[1]                        : U16       : output : LVTTL             :         : 5         : N              
+GND                          : U17       : gnd    :                   :         :           :                
+rx_datain[2]                 : U18       : output : LVTTL             :         : 5         : N              
+rx_datain[17]                : U19       : output : LVTTL             :         : 4         : N              
+tx_dpr_wadr[14]              : U20       : input  : LVTTL             :         : 4         : N              
+tx_dpr_wadr[13]              : U21       : input  : LVTTL             :         : 4         : N              
+tx_addr[0]                   : U22       : output : LVTTL             :         : 4         : N              
+rx_dpr_radr[2]               : V1        : input  : LVTTL             :         : 7         : N              
+rx_addr[5]                   : V2        : output : LVTTL             :         : 7         : N              
+GND*                         : V3        :        :                   :         : 7         :                
+rev[3]                       : V4        : output : LVTTL             :         : 7         : N              
+GND*                         : V5        :        :                   :         : 6         :                
+rx_addr[4]                   : V6        : output : LVTTL             :         : 6         : N              
+GND*                         : V7        :        :                   :         : 6         :                
+COM_AD_D[5]                  : V8        : input  : LVTTL             :         : 6         : N              
+tx_dpr_wadr[9]               : V9        : input  : LVTTL             :         : 6         : N              
+COM_AD_D[3]                  : V10       : input  : LVTTL             :         : 6         : N              
+GND+                         : V11       :        :                   :         : 5         :                
+GND+                         : V12       :        :                   :         : 5         :                
+rx_datain[11]                : V13       : output : LVTTL             :         : 5         : N              
+rx_error[0]                  : V14       : output : LVTTL             :         : 5         : N              
+rx_datain[30]                : V15       : output : LVTTL             :         : 5         : N              
+rx_datain[14]                : V16       : output : LVTTL             :         : 5         : N              
+rx_error[13]                 : V17       : output : LVTTL             :         : 5         : N              
+rx_datain[3]                 : V18       : output : LVTTL             :         : 5         : N              
+tx_dpr_radr[13]              : V19       : output : LVTTL             :         : 4         : N              
+tx_addr[15]                  : V20       : output : LVTTL             :         : 4         : N              
+tx_dpr_radr[0]               : V21       : output : LVTTL             :         : 4         : N              
+GND*                         : V22       :        :                   :         : 4         :                
+rx_dpr_radr[15]              : W1        : input  : LVTTL             :         : 7         : N              
+tx_error[14]                 : W2        : output : LVTTL             :         : 7         : N              
+rx_dpr_aff                   : W3        : output : LVTTL             :         : 7         : N              
+rx_addr[7]                   : W4        : output : LVTTL             :         : 7         : N              
+rx_addr[8]                   : W5        : output : LVTTL             :         : 7         : N              
+rx_addr[9]                   : W6        : output : LVTTL             :         : 6         : N              
+rx_addr[6]                   : W7        : output : LVTTL             :         : 6         : N              
+COM_AD_D[7]                  : W8        : input  : LVTTL             :         : 6         : N              
+GND*                         : W9        :        :                   :         : 6         :                
+CONF_DONE                    : W10       : bidir  :                   :         :           :                
+NSTATUS                      : W11       : bidir  :                   :         :           :                
+TCK                          : W12       : input  :                   :         :           :                
+TMS                          : W13       : input  :                   :         :           :                
+rx_error[7]                  : W14       : output : LVTTL             :         : 5         : N              
+rx_datain[25]                : W15       : output : LVTTL             :         : 5         : N              
+rx_error[12]                 : W16       : output : LVTTL             :         : 5         : N              
+rx_error[14]                 : W17       : output : LVTTL             :         : 5         : N              
+rx_datain[28]                : W18       : output : LVTTL             :         : 5         : N              
+tx_pack_sent                 : W19       : output : LVTTL             :         : 4         : N              
+tx_dpr_wadr[6]               : W20       : input  : LVTTL             :         : 4         : N              
+rx_datain[8]                 : W21       : output : LVTTL             :         : 4         : N              
+tx_addr[11]                  : W22       : output : LVTTL             :         : 4         : N              
+HDV_Rx_ENA                   : Y1        : output : LVTTL             :         : 7         : N              
+COM_AD_D[1]                  : Y2        : input  : LVTTL             :         : 7         : N              
+COM_TX_SLEEP                 : Y3        : output : LVTTL             :         : 7         : N              
+GND*                         : Y4        :        :                   :         : 7         :                
+rx_dpr_radr[7]               : Y5        : input  : LVTTL             :         : 6         : N              
+rx_error[4]                  : Y6        : output : LVTTL             :         : 6         : N              
+rx_addr[13]                  : Y7        : output : LVTTL             :         : 6         : N              
+COM_AD_D[2]                  : Y8        : input  : LVTTL             :         : 6         : N              
+rx_dpr_radr[14]              : Y9        : input  : LVTTL             :         : 6         : N              
+GND*                         : Y10       :        :                   :         : 6         :                
+rx_datain[1]                 : Y11       : output : LVTTL             :         : 5         : N              
+rx_datain[5]                 : Y12       : output : LVTTL             :         : 5         : N              
+rx_error[9]                  : Y13       : output : LVTTL             :         : 5         : N              
+rx_error[3]                  : Y14       : output : LVTTL             :         : 5         : N              
+rx_datain[12]                : Y15       : output : LVTTL             :         : 5         : N              
+rx_error[8]                  : Y16       : output : LVTTL             :         : 5         : N              
+rx_datain[26]                : Y17       : output : LVTTL             :         : 5         : N              
+rx_datain[4]                 : Y18       : output : LVTTL             :         : 5         : N              
+tx_dpr_wadr[8]               : Y19       : input  : LVTTL             :         : 4         : N              
+tx_addr[9]                   : Y20       : output : LVTTL             :         : 4         : N              
+tx_dpr_radr[15]              : Y21       : output : LVTTL             :         : 4         : N              
+tx_dpr_radr[4]               : Y22       : output : LVTTL             :         : 4         : N              
+VCC_INT                      : AA1       : power  :                   : 1.8V    :           :                
+GND                          : AA2       : gnd    :                   :         :           :                
+rx_dpr_radr[4]               : AA3       : input  : LVTTL             :         : 7         : N              
+rx_dpr_radr[3]               : AA4       : input  : LVTTL             :         : 7         : N              
+rx_dpr_radr[0]               : AA5       : input  : LVTTL             :         : 7         : N              
+rx_pack_rcvd                 : AA6       : output : LVTTL             :         : 7         : N              
+msg_rd                       : AA7       : output : LVTTL             :         : 7         : N              
+rx_dpr_radr[5]               : AA8       : input  : LVTTL             :         : 7         : N              
+tx_error[7]                  : AA9       : output : LVTTL             :         : 7         : N              
+tx_alm_empty                 : AA10      : output : LVTTL             :         : 7         : N              
+rx_datain[6]                 : AA11      : output : LVTTL             :         : 7         : N              
+rx_datain[24]                : AA12      : output : LVTTL             :         : 4         : N              
+rx_datain[31]                : AA13      : output : LVTTL             :         : 4         : N              
+tx_error[15]                 : AA14      : output : LVTTL             :         : 4         : N              
+tx_dpr_radr[3]               : AA15      : output : LVTTL             :         : 4         : N              
+tx_dpr_wadr[11]              : AA16      : input  : LVTTL             :         : 4         : N              
+tx_addr[7]                   : AA17      : output : LVTTL             :         : 4         : N              
+tx_addr[5]                   : AA18      : output : LVTTL             :         : 4         : N              
+tx_dpr_radr[12]              : AA19      : output : LVTTL             :         : 4         : N              
+tx_addr[12]                  : AA20      : output : LVTTL             :         : 4         : N              
+GND                          : AA21      : gnd    :                   :         :           :                
+VCC_INT                      : AA22      : power  :                   : 1.8V    :           :                
+GND                          : AB1       : gnd    :                   :         :           :                
+rx_dpr_radr[13]              : AB2       : input  : LVTTL             :         : 7         : N              
+reboot_gnt                   : AB3       : output : LVTTL             :         : 7         : N              
+rx_dpr_radr[11]              : AB4       : input  : LVTTL             :         : 7         : N              
+rx_dpr_radr[9]               : AB5       : input  : LVTTL             :         : 7         : N              
+rev[7]                       : AB6       : output : LVTTL             :         : 7         : N              
+data_rcvd                    : AB7       : output : LVTTL             :         : 7         : N              
+rx_addr[2]                   : AB8       : output : LVTTL             :         : 7         : N              
+NC                           : AB9       :        :                   :         :           :                
+NC                           : AB10      :        :                   :         :           :                
+GND                          : AB11      : gnd    :                   :         :           :                
+NC                           : AB12      :        :                   :         :           :                
+NC                           : AB13      :        :                   :         :           :                
+NC                           : AB14      :        :                   :         :           :                
+rx_datain[27]                : AB15      : output : LVTTL             :         : 4         : N              
+rx_datain[29]                : AB16      : output : LVTTL             :         : 4         : N              
+tx_addr[3]                   : AB17      : output : LVTTL             :         : 4         : N              
+tx_dpr_wadr[7]               : AB18      : input  : LVTTL             :         : 4         : N              
+tx_dpr_radr[7]               : AB19      : output : LVTTL             :         : 4         : N              
+tx_dpr_wadr[12]              : AB20      : input  : LVTTL             :         : 4         : N              
+tx_dpr_radr[5]               : AB21      : output : LVTTL             :         : 4         : N              
+GND                          : AB22      : gnd    :                   :         :           :                

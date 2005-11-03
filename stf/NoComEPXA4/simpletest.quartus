@@ -1,0 +1,47 @@
+COMPILER_SETTINGS_LIST
+{
+	COMPILER_SETTINGS = simpletest;
+}
+SIMULATOR_SETTINGS_LIST
+{
+	SIMULATOR_SETTINGS = simpletest;
+}
+SOFTWARE_SETTINGS_LIST
+{
+	SOFTWARE_SETTINGS = Debug;
+	SOFTWARE_SETTINGS = Release;
+}
+FILES
+{
+	VHDL_FILE = ..\common\LED2ATWDdelay.vhd;
+	VHDL_FILE = ..\common\atwd_timestamp.vhd;
+	VHDL_FILE = ..\common\atwd_ping_pong.vhd;
+	VHDL_FILE = ..\common\timer.vhd;
+	VHDL_FILE = ..\common\slaveregister.vhd;
+	VHDL_FILE = ..\common\ahb_slave.vhd;
+	VHDL_FILE = ..\common\atwd.vhd;
+	VHDL_FILE = ..\common\atwd_control.vhd;
+	VHDL_FILE = ..\common\atwd_readout.vhd;
+	VHDL_FILE = ..\common\atwd_trigger.vhd;
+	VHDL_FILE = ..\common\coinc.vhd;
+	VERILOG_FILE = ..\common\com_adc_mem.v;
+	VHDL_FILE = ..\common\com_ADC_RX.vhd;
+	VHDL_FILE = ..\common\com_DAC_TX.vhd;
+	VHDL_FILE = ..\common\fe_r2r.vhd;
+	VHDL_FILE = ..\common\fe_testpulse.vhd;
+	VHDL_FILE = ..\common\flash_adc.vhd;
+	VHDL_FILE = ..\common\flasher_board.vhd;
+	VHDL_FILE = ..\common\gray2bin.vhd;
+	VHDL_FILE = ..\common\hit_counter.vhd;
+	VHDL_FILE = ..\common\hit_counter_ff.vhd;
+	VHDL_FILE = ..\common\master_data_source.vhd;
+	VERILOG_FILE = ..\common\pll2x.v;
+	VERILOG_FILE = ..\common\pll4x.v;
+	VHDL_FILE = ..\common\r2r.vhd;
+	VHDL_FILE = ..\common\ROC.vhd;
+	VHDL_FILE = ..\common\rs486.vhd;
+	VHDL_FILE = ..\common\single_led.vhd;
+	VHDL_FILE = ..\common\ahb_master.vhd;
+	VHDL_FILE = simpletest.vhd;
+	MIF_FILE = version_rom.mif;
+}

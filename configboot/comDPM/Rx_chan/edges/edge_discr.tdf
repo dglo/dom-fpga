@@ -1,0 +1,45 @@
+TITLE "HL & LH edge-discriminator";
+
+SUBDESIGN edge_discr
+(
+	dudt[9..0]		: INPUT;
+	in[9..0]		: INPUT;
+		
+	clk				: INPUT;
+	reset			: INPUT;	
+		
+	hl_edge			: OUTPUT;
+	lh_edge			: OUTPUT;
+		
+	ina[9..0]		: OUTPUT;	
+	inb[9..0]		: OUTPUT;
+	inc[9..0]		: OUTPUT;
+)
+
+VARIABLE
+	ina[9..0]		: DFF;
+	inb[9..0]		: DFF;
+	inc[9..0]		: DFF;
+	hl_edge			: DFF;
+	lh_edge			: DFF;
+	
+BEGIN
+	ina[9..0].(clk, clrn)	= (clk, !reset);
+	inb[9..0].(clk, clrn)	= (clk, !reset);
+	inc[9..0].(clk, clrn)	= (clk, !reset);
+	
+	ina[9..0].d				= in[9..0];
+	inb[9..0].d				= ina[9..0].q;
+	inc[9..0].d				= inb[9..0].q;
+	
+	hl_edge.(clk, clrn)		= (clk, !reset);
+	lh_edge.(clk, clrn)		= (clk, !reset);
+			
+	if((inc[] > ina[]) & ((inc[]-ina[]) > dudt[]))
+		THEN	hl_edge = VCC;
+		else	hl_edge	= GND;		END IF;
+		
+	if((ina[] > inc[]) & ((ina[]-inc[]) > dudt[]))
+		THEN	lh_edge = VCC;
+		else	lh_edge	= GND;		END IF;
+END;
