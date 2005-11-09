@@ -79,6 +79,7 @@ ARCHITECTURE LC_slice_arch OF LC_slice IS
             -- to TX
             n_tx      : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
             tx        : OUT STD_LOGIC;
+            next_lc   : IN  STD_LOGIC;
             -- test
             TC        : OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
             );
@@ -93,6 +94,7 @@ ARCHITECTURE LC_slice_arch OF LC_slice IS
             -- internal LC signals
             n               : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
             tx              : IN  STD_LOGIC;
+            next_lc         : OUT STD_LOGIC;
             -- LC hardware
             COINCIDENCE_OUT : OUT STD_LOGIC;
             -- test
@@ -104,10 +106,11 @@ ARCHITECTURE LC_slice_arch OF LC_slice IS
     SIGNAL edge_pos : STD_LOGIC;
     SIGNAL edge_neg : STD_LOGIC;
 
-    SIGNAL n_rx : STD_LOGIC_VECTOR (1 DOWNTO 0);
-    SIGNAL rx   : STD_LOGIC;
-    SIGNAL n_tx : STD_LOGIC_VECTOR (1 DOWNTO 0);
-    SIGNAL tx   : STD_LOGIC;
+    SIGNAL n_rx    : STD_LOGIC_VECTOR (1 DOWNTO 0);
+    SIGNAL rx      : STD_LOGIC;
+    SIGNAL n_tx    : STD_LOGIC_VECTOR (1 DOWNTO 0);
+    SIGNAL tx      : STD_LOGIC;
+    SIGNAL next_lc : STD_LOGIC;
     
 BEGIN  -- LC_slice_arch
 
@@ -159,6 +162,7 @@ BEGIN  -- LC_slice_arch
             -- to TX
             n_tx      => n_tx,
             tx        => tx,
+            next_lc   => next_lc,
             -- test
             TC        => OPEN
             );
@@ -172,6 +176,7 @@ BEGIN  -- LC_slice_arch
             -- internal LC signals
             n               => n_tx,
             tx              => tx,
+            next_lc         => next_lc,
             -- LC hardware
             COINCIDENCE_OUT => COINCIDENCE_OUT,
             -- test

@@ -86,6 +86,20 @@ party's intellectual property, are provided herein.
 		(line (pt 0 144)(pt 16 144)(line_width 1))
 	)
 	(port
+		(pt 0 160)
+		(input)
+		(text "seq1_byte" (rect 0 0 51 12)(font "Arial" ))
+		(text "seq1_byte" (rect 21 155 72 167)(font "Arial" ))
+		(line (pt 0 160)(pt 16 160)(line_width 1))
+	)
+	(port
+		(pt 0 176)
+		(input)
+		(text "seq0_byte" (rect 0 0 51 12)(font "Arial" ))
+		(text "seq0_byte" (rect 21 171 72 183)(font "Arial" ))
+		(line (pt 0 176)(pt 16 176)(line_width 1))
+	)
+	(port
 		(pt 200 32)
 		(output)
 		(text "ctrl_msg" (rect 0 0 42 12)(font "Arial" ))
@@ -165,15 +179,15 @@ party's intellectual property, are provided herein.
 	(port
 		(pt 200 208)
 		(output)
-		(text "data_msg_ena" (rect 0 0 71 12)(font "Arial" ))
-		(text "data_msg_ena" (rect 108 203 179 215)(font "Arial" ))
+		(text "domlev_up_rq" (rect 0 0 69 12)(font "Arial" ))
+		(text "domlev_up_rq" (rect 110 203 179 215)(font "Arial" ))
 		(line (pt 200 208)(pt 184 208)(line_width 1))
 	)
 	(port
 		(pt 200 224)
 		(output)
-		(text "data_msg_d" (rect 0 0 60 12)(font "Arial" ))
-		(text "data_msg_d" (rect 119 219 179 231)(font "Arial" ))
+		(text "domlev_dn_rq" (rect 0 0 69 12)(font "Arial" ))
+		(text "domlev_dn_rq" (rect 110 219 179 231)(font "Arial" ))
 		(line (pt 200 224)(pt 184 224)(line_width 1))
 	)
 	(drawing

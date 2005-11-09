@@ -78,7 +78,7 @@ party's intellectual property, are provided herein.
 )
 (pin
 	(output)
-	(rect 984 -320 1169 -304)
+	(rect 984 -352 1169 -336)
 	(text "OUTPUT" (rect 1 0 48 13)(font "Arial" (font_size 6)))
 	(text "data[7..0]" (rect 90 0 145 15)(font "Arial" ))
 	(pt 0 8)
@@ -94,7 +94,7 @@ party's intellectual property, are provided herein.
 )
 (pin
 	(output)
-	(rect 984 -296 1160 -280)
+	(rect 984 -328 1160 -312)
 	(text "OUTPUT" (rect 1 0 48 13)(font "Arial" (font_size 6)))
 	(text "data_stb" (rect 90 0 142 15)(font "Arial" ))
 	(pt 0 8)
@@ -110,7 +110,7 @@ party's intellectual property, are provided herein.
 )
 (pin
 	(output)
-	(rect 984 -272 1160 -256)
+	(rect 984 -304 1160 -288)
 	(text "OUTPUT" (rect 1 0 48 13)(font "Arial" (font_size 6)))
 	(text "ctrl_stb" (rect 90 0 134 15)(font "Arial" ))
 	(pt 0 8)
@@ -126,9 +126,25 @@ party's intellectual property, are provided herein.
 )
 (pin
 	(output)
-	(rect 984 -248 1160 -232)
+	(rect 984 -280 1160 -264)
 	(text "OUTPUT" (rect 1 0 48 13)(font "Arial" (font_size 6)))
 	(text "ctrl_err" (rect 90 0 131 15)(font "Arial" ))
+	(pt 0 8)
+	(drawing
+		(line (pt 0 8)(pt 52 8)(line_width 1))
+		(line (pt 52 4)(pt 78 4)(line_width 1))
+		(line (pt 52 12)(pt 78 12)(line_width 1))
+		(line (pt 52 12)(pt 52 4)(line_width 1))
+		(line (pt 78 4)(pt 82 8)(line_width 1))
+		(line (pt 82 8)(pt 78 12)(line_width 1))
+		(line (pt 78 12)(pt 82 8)(line_width 1))
+	)
+)
+(pin
+	(output)
+	(rect 984 -248 1160 -232)
+	(text "OUTPUT" (rect 1 0 48 13)(font "Arial" (font_size 6)))
+	(text "uart_done" (rect 90 0 151 15)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 0 8)(pt 52 8)(line_width 1))
@@ -273,7 +289,7 @@ party's intellectual property, are provided herein.
 	)
 )
 (symbol
-	(rect 688 -288 832 -192)
+	(rect 680 -344 824 -248)
 	(text "rxshr8" (rect 50 2 99 21)(font "Arial" (font_size 10)))
 	(text "inst1" (rect 8 77 37 92)(font "Arial" ))
 	(port
@@ -564,6 +580,30 @@ party's intellectual property, are provided herein.
 		(rectangle (rect 16 16 112 208)(line_width 1))
 	)
 )
+(symbol
+	(rect 920 -256 968 -224)
+	(text "WIRE" (rect 1 0 29 13)(font "Arial" (font_size 6)))
+	(text "inst29" (rect 3 21 40 36)(font "Arial" ))
+	(port
+		(pt 0 16)
+		(input)
+		(text "IN" (rect 2 7 17 23)(font "Courier New" (bold))(invisible))
+		(text "IN" (rect 2 7 17 23)(font "Courier New" (bold))(invisible))
+		(line (pt 0 16)(pt 14 16)(line_width 1))
+	)
+	(port
+		(pt 48 16)
+		(output)
+		(text "OUT" (rect 32 7 55 23)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 32 7 55 23)(font "Courier New" (bold))(invisible))
+		(line (pt 32 16)(pt 48 16)(line_width 1))
+	)
+	(drawing
+		(line (pt 14 7)(pt 32 16)(line_width 1))
+		(line (pt 14 25)(pt 14 7)(line_width 1))
+		(line (pt 14 25)(pt 32 16)(line_width 1))
+	)
+)
 (connector
 	(pt 264 -80)
 	(pt 360 -80)
@@ -631,21 +671,6 @@ party's intellectual property, are provided herein.
 	(pt 120 -8)
 )
 (connector
-	(text "clk" (rect 648 -273 664 -258)(font "Arial" ))
-	(pt 688 -256)
-	(pt 640 -256)
-)
-(connector
-	(text "shen" (rect 648 -257 678 -242)(font "Arial" ))
-	(pt 688 -240)
-	(pt 640 -240)
-)
-(connector
-	(text "shd" (rect 648 -241 671 -226)(font "Arial" ))
-	(pt 688 -224)
-	(pt 640 -224)
-)
-(connector
 	(text "rxlast" (rect 656 -137 687 -122)(font "Arial" ))
 	(pt 648 -120)
 	(pt 720 -120)
@@ -656,25 +681,10 @@ party's intellectual property, are provided herein.
 	(pt 512 -120)
 )
 (connector
-	(text "data[7..0]" (rect 840 -265 895 -250)(font "Arial" ))
-	(pt 832 -248)
-	(pt 904 -248)
-	(bus)
-)
-(connector
 	(text "rxct4_q[3..0]" (rect 512 -105 583 -90)(font "Arial" ))
 	(pt 600 -88)
 	(pt 504 -88)
 	(bus)
-)
-(connector
-	(pt 768 -192)
-	(pt 768 -176)
-)
-(connector
-	(text "ctclr" (rect 649 -193 673 -178)(font "Arial" ))
-	(pt 768 -176)
-	(pt 640 -176)
 )
 (connector
 	(text "clk" (rect 288 -305 304 -290)(font "Arial" ))
@@ -789,6 +799,45 @@ party's intellectual property, are provided herein.
 	(pt 888 -24)
 	(pt 968 -24)
 )
+(connector
+	(text "clk" (rect 640 -329 656 -314)(font "Arial" ))
+	(pt 680 -312)
+	(pt 632 -312)
+)
+(connector
+	(text "shen" (rect 640 -313 670 -298)(font "Arial" ))
+	(pt 680 -296)
+	(pt 632 -296)
+)
+(connector
+	(text "shd" (rect 640 -297 663 -282)(font "Arial" ))
+	(pt 680 -280)
+	(pt 632 -280)
+)
+(connector
+	(text "data[7..0]" (rect 832 -321 887 -306)(font "Arial" ))
+	(pt 824 -304)
+	(pt 896 -304)
+	(bus)
+)
+(connector
+	(pt 760 -248)
+	(pt 760 -232)
+)
+(connector
+	(text "ctclr" (rect 641 -249 665 -234)(font "Arial" ))
+	(pt 760 -232)
+	(pt 632 -232)
+)
+(connector
+	(pt 968 -240)
+	(pt 984 -240)
+)
+(connector
+	(text "ctclr" (rect 840 -257 864 -242)(font "Arial" ))
+	(pt 920 -240)
+	(pt 832 -240)
+)
 (text "rxd=1 is a pulse of one clock length" (rect 16 -232 242 -216)(font "Arial" (font_size 8)))
 (text "UART do decode a 10 bit serial data stream" (rect 120 40 398 56)(font "Arial" (font_size 8)))
 (text "Data rate = 1 MBit/s" (rect 120 56 249 72)(font "Arial" (font_size 8)))
@@ -798,12 +847,12 @@ party's intellectual property, are provided herein.
 (text "Data Byte :   1 Start, 8 Data, 1Stop=1" (rect 120 88 362 104)(font "Arial" (font_size 8)))
 (title_block
 	(rect 800 80 1168 200)
-	(section (rect 0 0 368 24)(text "TITLE" (rect 2 0 37 15)(font "Arial" ))(text "Rx UART,  DOR Rev. 1.2" (rect 56 2 301 25)(font "Arial" (font_size 12)))(border))
+	(section (rect 0 0 368 24)(text "TITLE" (rect 2 0 37 15)(font "Arial" ))(text "Rx UART,  DOR Rev. 1.3" (rect 56 2 301 25)(font "Arial" (font_size 12)))(border))
 	(section (rect 0 24 368 48)(text "COMPANY" (rect 2 0 65 15)(font "Arial" ))(text "DESY Zeuthen" (rect 56 2 199 25)(font "Arial" (font_size 12)))(border))
 	(section (rect 0 48 368 72)(text "DESIGNER" (rect 2 0 71 15)(font "Arial" ))(text "Karl-Heinz Sulanke" (rect 56 2 236 25)(font "Arial" (font_size 12)))(border))
 	(section (rect 0 72 280 96)(text "NUMBER" (rect 2 0 59 15)(font "Arial" ))(text "1.00" (rect 56 1 91 20)(font "Arial" (font_size 10)))(border))
 	(section (rect 280 72 368 96)(text "REV" (rect 2 1 28 16)(font "Arial" ))(text "A" (rect 43 1 55 20)(font "Arial" (font_size 10)))(border))
-	(section (rect 0 96 240 120)(text "DATE" (rect 2 0 36 15)(font "Arial" ))(text "Mon May 05 13:22:13 2003" (rect 56 3 276 22)(font "Arial" (font_size 10)))(date)(border))
+	(section (rect 0 96 240 120)(text "DATE" (rect 2 0 36 15)(font "Arial" ))(text "Wed Aug 27 13:46:35 2003" (rect 56 3 278 22)(font "Arial" (font_size 10)))(date)(border))
 	(section (rect 240 96 310 120)(text "SHEET" (rect 2 0 46 15)(font "Arial" ))(text "1" (rect 55 5 64 24)(font "Arial" (font_size 10))))
 	(section (rect 310 96 368 120)(text "OF" (rect 10 0 27 15)(font "Arial" ))(text "1" (rect 34 4 43 23)(font "Arial" (font_size 10))))
 	(drawing

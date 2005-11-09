@@ -1,4 +1,4 @@
-// Copyright (C) 1991-2002 Altera Corporation
+// Copyright (C) 1991-2004 Altera Corporation
 // Any  megafunction  design,  and related netlist (encrypted  or  decrypted),
 // support information,  device programming or simulation file,  and any other
 // associated  documentation or information  provided by  Altera  or a partner
@@ -24,7 +24,9 @@
 parameter REGISTERS_BASE_ADDRESS = 32'h7fffc000;
 parameter REGISTERS_SIZE = 32'h00004000;
 parameter DPSRAM0_BASE_ADDRESS = 32'h80000000;
-parameter DPSRAM0_SIZE = 32'h00020000;
+parameter DPSRAM0_SIZE = 32'h00008000;
+parameter DPSRAM1_BASE_ADDRESS = 32'h80010000;
+parameter DPSRAM1_SIZE = 32'h00008000;
 parameter SDRAM0_BASE_ADDRESS = 32'h00000000;
 parameter SDRAM0_SIZE = 32'h00800000;
 parameter SDRAM1_BASE_ADDRESS = 32'h00800000;

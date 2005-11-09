@@ -1,6 +1,26 @@
--------------------------------------------------
--- ATWD
--------------------------------------------------
+-------------------------------------------------------------------------------
+-- Title      : STF
+-- Project    : IceCube DOM main board
+-------------------------------------------------------------------------------
+-- File       : atwd.vhd
+-- Author     : thorsten
+-- Company    : LBNL
+-- Created    : 
+-- Last update: 2003/08/01
+-- Platform   : Altera Excalibur
+-- Standard   : VHDL'93
+-------------------------------------------------------------------------------
+-- Description: this is the main ATWD code module. It does the triggering of
+-- the ATWD, holds the buffer memory and call the modules for triggering,
+-- control and readout.
+-------------------------------------------------------------------------------
+-- Copyright (c) 2003 
+-------------------------------------------------------------------------------
+-- Revisions  :
+-- Date        Version     Author    Description
+-- 2003-07-17  V01-01-00   thorsten  
+-- 2004-10-22              thorsten  added LC_abort
+-------------------------------------------------------------------------------
 
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.all;
@@ -17,9 +37,15 @@ ENTITY atwd IS
 		-- enable
 		enable		: IN STD_LOGIC;
 		enable_disc	: IN STD_LOGIC;
+		enable_LED	: IN STD_LOGIC;
 		done		: OUT STD_LOGIC;
+		deadtime	: IN STD_LOGIC_VECTOR (3 DOWNTO 0) := "0000";
 		-- disc
 		OneSPE		: IN STD_LOGIC;
+		LEDtrig		: IN STD_LOGIC;
+		-- LC interface
+		LC_abort	: IN STD_LOGIC := '0';
+		LC_enable	: IN STD_LOGIC := '0';
 		-- stripe interface
 		wdata		: IN STD_LOGIC_VECTOR (15 downto 0);
 		rdata		: OUT STD_LOGIC_VECTOR (15 downto 0);
@@ -39,6 +65,10 @@ ENTITY atwd IS
 		DigitalReset	: OUT STD_LOGIC;
 		DigitalSet		: OUT STD_LOGIC;
 		ATWD_VDD_SUP	: OUT STD_LOGIC;
+        -- for ping-pong
+        atwd_trig_doneB	: OUT STD_LOGIC;        
+		-- frontend pulser
+		FE_pulse			: IN STD_LOGIC := '0';
 		-- test connector
 		TC					: OUT STD_LOGIC_VECTOR(7 downto 0)
 	);
@@ -68,6 +98,10 @@ ARCHITECTURE arch_atwd OF atwd IS
 	SIGNAL ATWD_addr		: STD_LOGIC_VECTOR(8 downto 0);
 	SIGNAL ATWD_write		: STD_LOGIC;
 	
+	-- simple LC
+	SIGNAL enable_disc_local	: STD_LOGIC;
+	SIGNAL reset_LC				: STD_LOGIC;
+
 	COMPONENT atwd_control
 		PORT (
 			CLK20		: IN STD_LOGIC;
@@ -77,6 +111,8 @@ ARCHITECTURE arch_atwd OF atwd IS
 			-- trigger interface
 			busy		: OUT STD_LOGIC;
 			reset_trig	: OUT STD_LOGIC;
+			-- LC interface
+			LC_abort	: IN STD_LOGIC := '0';
 			-- handshake to readout
 			start_readout	: OUT STD_LOGIC;
 			readout_done	: IN STD_LOGIC;
@@ -135,16 +171,21 @@ ARCHITECTURE arch_atwd OF atwd IS
 			-- enable
 			enable		: IN STD_LOGIC;
 			enable_disc	: IN STD_LOGIC;
+			enable_LED	: IN STD_LOGIC;
 			done		: OUT STD_LOGIC;
+			deadtime	: IN STD_LOGIC_VECTOR (3 DOWNTO 0);
 			-- controller
 			busy		: IN STD_LOGIC;
 			reset_trig	: IN STD_LOGIC;
 			-- disc
 			OneSPE		: IN STD_LOGIC;
+			LEDtrig		: IN STD_LOGIC;
 			-- atwd
 			ATWDTrigger			: OUT STD_LOGIC;
 			TriggerComplete_in	: IN STD_LOGIC;
 			TriggerComplete_out	: OUT STD_LOGIC;
+			-- frontend pulser
+			FE_pulse			: IN STD_LOGIC := '0';
 			-- test connector
 			TC					: OUT STD_LOGIC_VECTOR(7 downto 0)
 		);
@@ -177,6 +218,8 @@ BEGIN
 			-- trigger interface
 			busy			=> busy,
 			reset_trig		=> reset_trig,
+			-- LC interface
+			LC_abort		=> LC_abort,
 			-- handshake to readout
 			start_readout	=> start_readout,
 			readout_done	=> readout_done,
@@ -231,17 +274,22 @@ BEGIN
 			RST			=> RST,
 			-- enable
 			enable		=> enable,
-			enable_disc	=> enable_disc,
+			enable_disc	=> enable_disc_local,
+			enable_LED	=> enable_LED,
 			done		=> done,
+			deadtime	=> deadtime,
 			-- controller
 			busy		=> busy,
 			reset_trig	=> reset_trig,
 			-- disc
 			OneSPE		=> OneSPE,
+			LEDtrig		=> LEDtrig,
 			-- atwd
 			ATWDTrigger			=> ATWDTrigger_sig,
 			TriggerComplete_in	=> TriggerComplete,
 			TriggerComplete_out	=> TriggerComplete_out,
+			-- frontend pulser
+			FE_pulse			=> FE_pulse,
 			-- test connector
 			TC					=> open
 		);
@@ -255,7 +303,9 @@ BEGIN
 	wren_sig		<= ATWD_write WHEN write_en='0' ELSE write_en;
 	
 	rden_sig		<= '1';
-	
+
+    atwd_trig_doneB <= TriggerComplete_out;
+    
 	inst_com_adc_mem : com_adc_mem
 		PORT MAP (
 			data		=> data_sig,
@@ -266,5 +316,21 @@ BEGIN
 			clock		=> CLK40,
 			q	 		=> rdata
 		);
+		
+		
+	-- auto restart for LC
+	enable_disc_local	<= enable_disc WHEN LC_enable = '0' ELSE enable_disc AND NOT reset_LC;
+	PROCESS (CLK40, RST)
+	BEGIN
+		IF RST='1' THEN
+			reset_LC	<= '0';
+		ELSIF CLK40'EVENT AND CLK40='1' THEN
+			IF LC_abort='1' THEN
+				reset_LC	<= '1';
+			ELSIF busy = '0' THEN
+				reset_LC	<= '0';
+			END IF;
+		END IF;
+	END PROCESS;
 
 END;

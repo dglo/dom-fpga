@@ -27,6 +27,8 @@ USE IEEE.std_logic_arith.all;
 USE IEEE.std_logic_unsigned.all;
 
 USE WORK.icecube_data_types.all;
+USE WORK.ctrl_data_types.all;
+USE WORK.monitor_data_type.all;
 
 
 ENTITY pingpong IS
@@ -34,6 +36,7 @@ ENTITY pingpong IS
 		FADC_WIDTH		: INTEGER := 10
 		);
 	port (
+		CLK20		: IN STD_LOGIC;
 		CLK40		: IN STD_LOGIC;
 		CLK80		: IN STD_LOGIC;
 		RST			: IN STD_LOGIC;
@@ -45,6 +48,7 @@ ENTITY pingpong IS
 		LC_mode			: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		DAQ_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		ATWD_AB			: IN STD_LOGIC;	-- indicates if ping or pong
+		COMPR_ctrl		: IN COMPR_STRUCT;
 		-- trigger
 		rst_trig		: OUT STD_LOGIC;
 		trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
@@ -83,6 +87,8 @@ ENTITY pingpong IS
 		ATWD_data		: OUT STD_LOGIC_VECTOR (31 downto 0);
 		FADC_addr		: IN STD_LOGIC_VECTOR (6 downto 0);
 		FADC_data		: OUT STD_LOGIC_VECTOR (31 downto 0);
+		-- monitoring
+		PP_status	: OUT PP_STRUCT;
 		-- test connector
 		TC			: OUT STD_LOGIC_VECTOR(7 downto 0)
 	);
@@ -186,10 +192,11 @@ ARCHITECTURE arch_pingpong OF pingpong IS
 			FADC_WIDTH		: INTEGER := 10
 			);
 		PORT (
+			CLK20		: IN STD_LOGIC;
 			CLK40		: IN STD_LOGIC;
 			RST			: IN STD_LOGIC;
 			-- enable
-				-- ???? need to know the algorithm for that
+			COMPR_ctrl	: IN COMPR_STRUCT;
 			-- data input from data buffer
 			data_avail_in	: IN STD_LOGIC;
 			read_done_in	: OUT STD_LOGIC;
@@ -234,8 +241,14 @@ ARCHITECTURE arch_pingpong OF pingpong IS
 	SIGNAL ATWD_rdata	: STD_LOGIC_VECTOR (31 downto 0);
 	SIGNAL FADC_raddr	: STD_LOGIC_VECTOR (6 downto 0);
 	SIGNAL FADC_rdata	: STD_LOGIC_VECTOR (31 downto 0);
+	
+	SIGNAL busy_int			: STD_LOGIC;
+	SIGNAL busy_FADC_int	: STD_LOGIC;
 
 BEGIN
+
+	busy		<= busy_int;
+	busy_FADC	<= busy_FADC_int;
 
 -- ATWD and FADC input
 	inst_ADC_input : ADC_input
@@ -248,8 +261,8 @@ BEGIN
 			RST			=> RST,
 			systime		=> systime,
 			-- enable
-			busy			=> busy,
-			busy_FADC		=> busy_FADC,
+			busy			=> busy_int,
+			busy_FADC		=> busy_FADC_int,
 			ATWD_mode		=> ATWD_mode,
 			LC_mode			=> LC_mode,
 			DAQ_mode		=> DAQ_mode,
@@ -291,7 +304,7 @@ BEGIN
 			FADC_data	=> FADC_wdata,
 			FADC_we		=> FADC_we,
 			-- test connector
-			TC			=> open
+			TC			=> TC --open
 		);
 	
 	
@@ -330,10 +343,11 @@ BEGIN
 			FADC_WIDTH		=> FADC_WIDTH
 			)
 		PORT MAP (
+			CLK20		=> CLK20,
 			CLK40		=> CLK40,
 			RST			=> RST,
 			-- enable
-				-- ???? need to know the algorithm for that
+			COMPR_ctrl	=> COMPR_ctrl,
 			-- data input from data buffer
 			data_avail_in	=> data_available,
 			read_done_in	=> read_done_r,
@@ -357,5 +371,10 @@ BEGIN
 			-- test connector
 			TC			=> open
 		);
+		
+	-- monitoring
+	PP_status.busy			<= busy_int;
+	PP_status.busy_FADC		<= busy_FADC_int;
+	PP_status.buffer_full	<= buffer_full;
 	
 END arch_pingpong;

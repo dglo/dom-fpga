@@ -32,109 +32,87 @@
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 2.2
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "10:24:23  APRIL 07, 2004"
 set_global_assignment -name LAST_QUARTUS_VERSION "4.0 SP1"
+set_global_assignment -name VHDL_FILE ../comDPM/Rx_chan/DC_MRAP.vhd
 set_global_assignment -name VHDL_FILE ahb_slave.vhd
 set_global_assignment -name VHDL_FILE timer.vhd
 set_global_assignment -name VHDL_FILE ROC.vhd
 set_global_assignment -name VERILOG_FILE pll2x.v
-set_global_assignment -name VHDL_FILE ../../common/comDPM/Tx_chan/my_or16b.vhd
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/Rx_dpr_ctrl_ap.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Tcal/dc_tcal_ct.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/and16b.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/rx_packet_ct.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/rx_dpr_wadr_ct.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/rx_dpr_adr_ct.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Tcal/TCWF_64x10.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Tcal/TCAL_SAMPLES.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Tcal/tcwf_af_ct.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Tcal/comp_10.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Tcal/DCTC_FWR.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Tcal/thr_add.tdf
-set_global_assignment -name GDF_FILE ../../common/comDPM/Tcal/dc_rapcal_lh.gdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/DC_MREC.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Tcal/TCWF_FIFO_32x10.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/DC_MRAP.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/crc_error_ct.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/meanval/or12.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/meanval/or10.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/meanval/add10.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/meanval/add12.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/meanval/mux4x10.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/meanval/ct3.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/meanval/ctup4.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/meanval/dec2.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/meanval/dec3.tdf
-set_global_assignment -name GDF_FILE ../../common/comDPM/Rx_chan/meanval/mean_val.gdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/reset_ct4.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/edges/GET_DUDT.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/edges/ctup4b.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/edges/ctup5.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/edges/ctup3b.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/edges/adc_to_ser_dudt.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/UART/rxshr8.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/UART/rxct5.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/UART/rxct8.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/UART/rxct4.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/UART/UA_RX_AP.tdf
-set_global_assignment -name BDF_FILE ../../common/comDPM/Rx_chan/UART/RX_UART_ap.bdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/tx_dpr_radr_ct.tdf
-set_global_assignment -name INCLUDE_FILE ../../common/comDPM/Tx_chan/tx_dpr_radr_ct.inc
-set_global_assignment -name BDF_FILE ../../common/comDPM/Rx_chan/DC_Rx_chan_ap.bdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/dac_rs_tab_rect_01.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/ID_HDR_BYTE_0.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/hdr_bytes_ap.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/Tx_dpr_ctrl_ap.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/ID_HDR_BYTE_2.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/tx_packet_ct.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/or16b.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/shift_ct.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/tx_plen_ct_ap.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/shrg48pld.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/dc_hdr_bytes_ap.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/dc_tx_mux.tdf
-set_global_assignment -name VHDL_FILE ../../common/comDPM/crc_rx.vhd
-set_global_assignment -name VHDL_FILE ../../common/comDPM/crc_tx.vhd
-set_global_assignment -name VHDL_FILE ../../common/comDPM/crc32.vhd
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/DC_SNAP.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/txct.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/txbitct.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/TX_UART.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/txshr10.tdf
-set_global_assignment -name BDF_FILE ../../common/comDPM/Tx_chan/tx_uart_ap.bdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/test_signals.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/DCREV_DPR.tdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Tcal/DCOM_tcal_timer.tdf
-set_global_assignment -name BDF_FILE ../../common/comDPM/Tx_chan/DC_Tx_chan_ap.bdf
-set_global_assignment -name AHDL_FILE ../../common/comDPM/DC_CTRAP.tdf
-set_global_assignment -name BDF_FILE ../../common/comDPM/dcom_ap.bdf
+set_global_assignment -name VHDL_FILE ../comDPM/Tx_chan/my_or16b.vhd
+set_global_assignment -name AHDL_FILE ../comDPM/Rx_chan/Rx_dpr_ctrl_ap.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Tcal/dc_tcal_ct.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Rx_chan/and16b.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Rx_chan/rx_packet_ct.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Rx_chan/rx_dpr_wadr_ct.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Rx_chan/rx_dpr_adr_ct.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Tcal/TCWF_64x10.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Tcal/TCAL_SAMPLES.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Tcal/tcwf_af_ct.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Tcal/comp_10.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Tcal/DCTC_FWR.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Tcal/thr_add.tdf
+set_global_assignment -name GDF_FILE ../comDPM/Tcal/dc_rapcal_lh.gdf
+set_global_assignment -name AHDL_FILE ../comDPM/Rx_chan/DC_MREC.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Tcal/TCWF_FIFO_32x10.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Rx_chan/crc_error_ct.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Rx_chan/meanval/or12.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Rx_chan/meanval/or10.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Rx_chan/meanval/add10.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Rx_chan/meanval/add12.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Rx_chan/meanval/mux4x10.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Rx_chan/meanval/ct3.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Rx_chan/meanval/ctup4.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Rx_chan/meanval/dec2.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Rx_chan/meanval/dec3.tdf
+set_global_assignment -name GDF_FILE ../comDPM/Rx_chan/meanval/mean_val.gdf
+set_global_assignment -name AHDL_FILE ../comDPM/Rx_chan/reset_ct4.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Rx_chan/edges/GET_DUDT.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Rx_chan/edges/ctup4b.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Rx_chan/edges/ctup5.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Rx_chan/edges/ctup3b.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Rx_chan/edges/adc_to_ser_dudt.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Rx_chan/UART/rxshr8.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Rx_chan/UART/rxct5.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Rx_chan/UART/rxct8.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Rx_chan/UART/rxct4.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Rx_chan/UART/UA_RX_AP.tdf
+set_global_assignment -name BDF_FILE ../comDPM/Rx_chan/UART/RX_UART_ap.bdf
+set_global_assignment -name AHDL_FILE ../comDPM/Tx_chan/tx_dpr_radr_ct.tdf
+set_global_assignment -name INCLUDE_FILE ../comDPM/Tx_chan/tx_dpr_radr_ct.inc
+set_global_assignment -name BDF_FILE ../comDPM/Rx_chan/DC_Rx_chan_ap.bdf
+set_global_assignment -name AHDL_FILE ../comDPM/Tx_chan/dac_rs_tab_rect_01.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Tx_chan/ID_HDR_BYTE_0.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Tx_chan/hdr_bytes_ap.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Tx_chan/Tx_dpr_ctrl_ap.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Tx_chan/ID_HDR_BYTE_2.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Tx_chan/tx_packet_ct.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Tx_chan/or16b.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Tx_chan/shift_ct.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Tx_chan/tx_plen_ct_ap.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Tx_chan/shrg48pld.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Tx_chan/dc_hdr_bytes_ap.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Tx_chan/dc_tx_mux.tdf
+set_global_assignment -name VHDL_FILE ../comDPM/crc_rx.vhd
+set_global_assignment -name VHDL_FILE ../comDPM/crc_tx.vhd
+set_global_assignment -name VHDL_FILE ../comDPM/crc32.vhd
+set_global_assignment -name AHDL_FILE ../comDPM/Tx_chan/DC_SNAP.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Tx_chan/txct.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Tx_chan/txbitct.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Tx_chan/TX_UART.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Tx_chan/txshr10.tdf
+set_global_assignment -name BDF_FILE ../comDPM/Tx_chan/tx_uart_ap.bdf
+set_global_assignment -name AHDL_FILE ../comDPM/test_signals.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/DCREV_DPR.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Tcal/DCOM_tcal_timer.tdf
+set_global_assignment -name BDF_FILE ../comDPM/Tx_chan/DC_Tx_chan_ap.bdf
+set_global_assignment -name AHDL_FILE ../comDPM/DC_CTRAP.tdf
+set_global_assignment -name BDF_FILE ../comDPM/dcom_ap.bdf
 set_global_assignment -name VHDL_FILE slaveregister.vhd
 set_global_assignment -name VHDL_FILE configboot.vhd
 set_global_assignment -name MIF_FILE version_rom.mif
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/dc_hdr_dec_ap.tdf
+set_global_assignment -name AHDL_FILE ../comDPM/Rx_chan/dc_hdr_dec_ap.tdf
 
 # Pin & Location Assignments
 # ==========================
-set_location_assignment PIN_AC26 -to ATWD0VDD_SUP
-set_location_assignment PIN_Y15 -to ATWD0_D\[0\]
-set_location_assignment PIN_V15 -to ATWD0_D\[1\]
-set_location_assignment PIN_AC15 -to ATWD0_D\[2\]
-set_location_assignment PIN_AA15 -to ATWD0_D\[3\]
-set_location_assignment PIN_AE16 -to ATWD0_D\[4\]
-set_location_assignment PIN_AB16 -to ATWD0_D\[5\]
-set_location_assignment PIN_AA16 -to ATWD0_D\[6\]
-set_location_assignment PIN_W16 -to ATWD0_D\[7\]
-set_location_assignment PIN_AF17 -to ATWD0_D\[8\]
-set_location_assignment PIN_AD17 -to ATWD0_D\[9\]
-set_location_assignment PIN_AC25 -to ATWD1VDD_SUP
-set_location_assignment PIN_AA17 -to ATWD1_D\[0\]
-set_location_assignment PIN_AF18 -to ATWD1_D\[1\]
-set_location_assignment PIN_AB18 -to ATWD1_D\[2\]
-set_location_assignment PIN_AD18 -to ATWD1_D\[3\]
-set_location_assignment PIN_AC20 -to ATWD1_D\[4\]
-set_location_assignment PIN_AC19 -to ATWD1_D\[5\]
-set_location_assignment PIN_AE22 -to ATWD1_D\[6\]
-set_location_assignment PIN_AA18 -to ATWD1_D\[7\]
-set_location_assignment PIN_AD21 -to ATWD1_D\[8\]
-set_location_assignment PIN_AE20 -to ATWD1_D\[9\]
 set_location_assignment PIN_AB8 -to ATWDTrigger_0
 set_location_assignment PIN_AD7 -to ATWDTrigger_1
 set_location_assignment PIN_E4 -to A_nB
@@ -142,7 +120,6 @@ set_location_assignment PIN_AC16 -to AnalogReset_0
 set_location_assignment PIN_AC18 -to AnalogReset_1
 set_location_assignment PIN_R23 -to CLK1p
 set_location_assignment PIN_Y5 -to CLK4p
-set_location_assignment PIN_M4 -to CLKLK_OUT2p
 set_location_assignment PIN_H24 -to CLK_REF
 set_location_assignment PIN_AA24 -to COMM_RESET
 set_location_assignment PIN_L5 -to COM_AD_D\[0\]
@@ -226,47 +203,14 @@ set_location_assignment PIN_H15 -to EBIDQ\[8\]
 set_location_assignment PIN_E15 -to EBIDQ\[9\]
 set_location_assignment PIN_C22 -to EBIOEN
 set_location_assignment PIN_E21 -to EBIWEN
-set_location_assignment PIN_AC22 -to FE_TEST_PULSE
-set_location_assignment PIN_AB11 -to FLASH_AD_D\[0\]
-set_location_assignment PIN_AC11 -to FLASH_AD_D\[1\]
-set_location_assignment PIN_AD11 -to FLASH_AD_D\[2\]
-set_location_assignment PIN_AF11 -to FLASH_AD_D\[3\]
-set_location_assignment PIN_AA12 -to FLASH_AD_D\[4\]
-set_location_assignment PIN_AB12 -to FLASH_AD_D\[5\]
-set_location_assignment PIN_AE11 -to FLASH_AD_D\[6\]
-set_location_assignment PIN_AC12 -to FLASH_AD_D\[7\]
-set_location_assignment PIN_AD12 -to FLASH_AD_D\[8\]
-set_location_assignment PIN_AC13 -to FLASH_AD_D\[9\]
-set_location_assignment PIN_AB13 -to FLASH_AD_STBY
-set_location_assignment PIN_AB14 -to FLASH_NCO
 set_location_assignment PIN_Y23 -to FPGA_LOADED
 set_location_assignment PIN_F4 -to HDV_IN
 set_location_assignment PIN_H3 -to HDV_Rx
 set_location_assignment PIN_G4 -to HDV_RxENA
 set_location_assignment PIN_G3 -to HDV_TxENA
 set_location_assignment PIN_H19 -to INTEXTPIN
-set_location_assignment PIN_AF12 -to MultiSPE
-set_location_assignment PIN_AD8 -to MultiSPE_nl
-set_location_assignment PIN_AF15 -to OneSPE
-set_location_assignment PIN_AB19 -to OneSPE_nl
 set_location_assignment PIN_W14 -to OutputEnable_0
 set_location_assignment PIN_W17 -to OutputEnable_1
-set_location_assignment PIN_B20 -to PGM\[0\]
-set_location_assignment PIN_AB4 -to PGM\[10\]
-set_location_assignment PIN_W20 -to PGM\[11\]
-set_location_assignment PIN_M5 -to PGM\[12\]
-set_location_assignment PIN_V7 -to PGM\[13\]
-set_location_assignment PIN_Y4 -to PGM\[14\]
-set_location_assignment PIN_Y3 -to PGM\[15\]
-set_location_assignment PIN_B18 -to PGM\[1\]
-set_location_assignment PIN_B22 -to PGM\[2\]
-set_location_assignment PIN_A20 -to PGM\[3\]
-set_location_assignment PIN_A18 -to PGM\[4\]
-set_location_assignment PIN_V3 -to PGM\[5\]
-set_location_assignment PIN_T7 -to PGM\[6\]
-set_location_assignment PIN_U24 -to PGM\[7\]
-set_location_assignment PIN_AB3 -to PGM\[8\]
-set_location_assignment PIN_R24 -to PGM\[9\]
 set_location_assignment PIN_AD15 -to RampSet_0
 set_location_assignment PIN_AE18 -to RampSet_1
 set_location_assignment PIN_AD16 -to ReadWrite_0
@@ -274,13 +218,19 @@ set_location_assignment PIN_AD20 -to ReadWrite_1
 set_location_assignment PIN_AC14 -to ShiftClock_0
 set_location_assignment PIN_Y17 -to ShiftClock_1
 set_location_assignment PIN_AA1 -to SingleLED_TRIGGER
-set_location_assignment PIN_AA14 -to TriggerComplete_0
-set_location_assignment PIN_AC17 -to TriggerComplete_1
 set_location_assignment PIN_P21 -to dummy2
 set_location_assignment PIN_J24 -to nPOR
 set_location_assignment PIN_B16 -to nRESET
 set_location_assignment PIN_A23 -to ~INIT_DONE~
 set_instance_assignment -name RESERVE_PIN "AS INPUT TRI-STATED" -to dummy2
+set_location_assignment PIN_B20 -to TC\[0\]
+set_location_assignment PIN_B18 -to TC\[1\]
+set_location_assignment PIN_B22 -to TC\[2\]
+set_location_assignment PIN_A20 -to TC\[3\]
+set_location_assignment PIN_A18 -to TC\[4\]
+set_location_assignment PIN_V3 -to TC\[5\]
+set_location_assignment PIN_T7 -to TC\[6\]
+set_location_assignment PIN_U24 -to TC\[7\]
 
 # Timing Assignments
 # ==================
@@ -309,28 +259,6 @@ set_global_assignment -name CYCLONE_CONFIGURATION_SCHEME "PASSIVE SERIAL"
 set_global_assignment -name DEVICE EPXA4F672I2
 set_global_assignment -name ROUTING_BACK_ANNOTATION_MODE OFF
 set_global_assignment -name APEX20KE_DEVICE_IO_STANDARD LVTTL
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD0VDD_SUP
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD0_D\[0\]
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD0_D\[1\]
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD0_D\[2\]
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD0_D\[3\]
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD0_D\[4\]
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD0_D\[5\]
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD0_D\[6\]
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD0_D\[7\]
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD0_D\[8\]
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD0_D\[9\]
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1VDD_SUP
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[0\]
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[1\]
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[2\]
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[3\]
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[4\]
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[5\]
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[6\]
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[7\]
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[8\]
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[9\]
 set_instance_assignment -name IO_STANDARD LVTTL -to ATWDTrigger_0
 set_instance_assignment -name IO_STANDARD LVTTL -to ATWDTrigger_1
 set_instance_assignment -name IO_STANDARD LVTTL -to A_nB
@@ -338,7 +266,6 @@ set_instance_assignment -name IO_STANDARD LVTTL -to AnalogReset_0
 set_instance_assignment -name IO_STANDARD LVTTL -to AnalogReset_1
 set_instance_assignment -name IO_STANDARD LVTTL -to CLK1p
 set_instance_assignment -name IO_STANDARD LVTTL -to CLK4p
-set_instance_assignment -name IO_STANDARD LVTTL -to CLKLK_OUT2p
 set_instance_assignment -name IO_STANDARD LVTTL -to CLK_REF
 set_instance_assignment -name IO_STANDARD LVTTL -to COMM_RESET
 set_instance_assignment -name IO_STANDARD "2.5 V" -to COM_AD_D\[0\]
@@ -422,47 +349,14 @@ set_instance_assignment -name IO_STANDARD LVTTL -to EBIDQ\[8\]
 set_instance_assignment -name IO_STANDARD LVTTL -to EBIDQ\[9\]
 set_instance_assignment -name IO_STANDARD LVTTL -to EBIOEN
 set_instance_assignment -name IO_STANDARD LVTTL -to EBIWEN
-set_instance_assignment -name IO_STANDARD LVTTL -to FE_TEST_PULSE
-set_instance_assignment -name IO_STANDARD "2.5 V" -to FLASH_AD_D\[0\]
-set_instance_assignment -name IO_STANDARD "2.5 V" -to FLASH_AD_D\[1\]
-set_instance_assignment -name IO_STANDARD "2.5 V" -to FLASH_AD_D\[2\]
-set_instance_assignment -name IO_STANDARD "2.5 V" -to FLASH_AD_D\[3\]
-set_instance_assignment -name IO_STANDARD "2.5 V" -to FLASH_AD_D\[4\]
-set_instance_assignment -name IO_STANDARD "2.5 V" -to FLASH_AD_D\[5\]
-set_instance_assignment -name IO_STANDARD "2.5 V" -to FLASH_AD_D\[6\]
-set_instance_assignment -name IO_STANDARD "2.5 V" -to FLASH_AD_D\[7\]
-set_instance_assignment -name IO_STANDARD "2.5 V" -to FLASH_AD_D\[8\]
-set_instance_assignment -name IO_STANDARD "2.5 V" -to FLASH_AD_D\[9\]
-set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_STBY
-set_instance_assignment -name IO_STANDARD "2.5 V" -to FLASH_NCO
 set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_LOADED
 set_instance_assignment -name IO_STANDARD LVTTL -to HDV_IN
 set_instance_assignment -name IO_STANDARD LVTTL -to HDV_Rx
 set_instance_assignment -name IO_STANDARD LVTTL -to HDV_RxENA
 set_instance_assignment -name IO_STANDARD LVTTL -to HDV_TxENA
 set_instance_assignment -name IO_STANDARD LVTTL -to INTEXTPIN
-set_instance_assignment -name IO_STANDARD LVTTL -to MultiSPE
-set_instance_assignment -name IO_STANDARD LVTTL -to MultiSPE_nl
-set_instance_assignment -name IO_STANDARD LVTTL -to OneSPE
-set_instance_assignment -name IO_STANDARD LVTTL -to OneSPE_nl
 set_instance_assignment -name IO_STANDARD LVTTL -to OutputEnable_0
 set_instance_assignment -name IO_STANDARD LVTTL -to OutputEnable_1
-set_instance_assignment -name IO_STANDARD LVTTL -to PGM\[0\]
-set_instance_assignment -name IO_STANDARD LVTTL -to PGM\[10\]
-set_instance_assignment -name IO_STANDARD LVTTL -to PGM\[11\]
-set_instance_assignment -name IO_STANDARD LVTTL -to PGM\[12\]
-set_instance_assignment -name IO_STANDARD LVTTL -to PGM\[13\]
-set_instance_assignment -name IO_STANDARD LVTTL -to PGM\[14\]
-set_instance_assignment -name IO_STANDARD LVTTL -to PGM\[15\]
-set_instance_assignment -name IO_STANDARD LVTTL -to PGM\[1\]
-set_instance_assignment -name IO_STANDARD LVTTL -to PGM\[2\]
-set_instance_assignment -name IO_STANDARD LVTTL -to PGM\[3\]
-set_instance_assignment -name IO_STANDARD LVTTL -to PGM\[4\]
-set_instance_assignment -name IO_STANDARD LVTTL -to PGM\[5\]
-set_instance_assignment -name IO_STANDARD LVTTL -to PGM\[6\]
-set_instance_assignment -name IO_STANDARD LVTTL -to PGM\[7\]
-set_instance_assignment -name IO_STANDARD LVTTL -to PGM\[8\]
-set_instance_assignment -name IO_STANDARD LVTTL -to PGM\[9\]
 set_instance_assignment -name IO_STANDARD LVTTL -to RampSet_0
 set_instance_assignment -name IO_STANDARD LVTTL -to RampSet_1
 set_instance_assignment -name IO_STANDARD LVTTL -to ReadWrite_0
@@ -470,11 +364,17 @@ set_instance_assignment -name IO_STANDARD LVTTL -to ReadWrite_1
 set_instance_assignment -name IO_STANDARD LVTTL -to ShiftClock_0
 set_instance_assignment -name IO_STANDARD LVTTL -to ShiftClock_1
 set_instance_assignment -name IO_STANDARD LVTTL -to SingleLED_TRIGGER
-set_instance_assignment -name IO_STANDARD LVTTL -to TriggerComplete_0
-set_instance_assignment -name IO_STANDARD LVTTL -to TriggerComplete_1
 set_instance_assignment -name IO_STANDARD LVTTL -to dummy2
 set_instance_assignment -name IO_STANDARD LVTTL -to nPOR
 set_instance_assignment -name IO_STANDARD LVTTL -to nRESET
+set_instance_assignment -name IO_STANDARD LVTTL -to TC\[0\]
+set_instance_assignment -name IO_STANDARD LVTTL -to TC\[1\]
+set_instance_assignment -name IO_STANDARD LVTTL -to TC\[2\]
+set_instance_assignment -name IO_STANDARD LVTTL -to TC\[3\]
+set_instance_assignment -name IO_STANDARD LVTTL -to TC\[4\]
+set_instance_assignment -name IO_STANDARD LVTTL -to TC\[5\]
+set_instance_assignment -name IO_STANDARD LVTTL -to TC\[6\]
+set_instance_assignment -name IO_STANDARD LVTTL -to TC\[7\]
 
 # Timing Analysis Assignments
 # ===========================
@@ -593,6 +493,7 @@ set_global_assignment -name LOGICLOCK_INCREMENTAL_COMPILE_ASSIGNMENT off
 	set_global_assignment -name EDA_MAINTAIN_DESIGN_HIERARCHY OFF -section_id eda_simulation
 	set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST ON -section_id eda_simulation
 	set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
+	set_global_assignment -name EDA_EXCALIBUR_ATOMS_AS_SINGLE_STRIPE OFF -section_id eda_simulation
 
 # end EDA_TOOL_SETTINGS(eda_simulation)
 # -------------------------------------

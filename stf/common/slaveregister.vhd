@@ -1,6 +1,25 @@
--------------------------------------------------
---- register for the stripe
--------------------------------------------------
+-------------------------------------------------------------------------------
+-- Title      : STF
+-- Project    : IceCube DOM main board
+-------------------------------------------------------------------------------
+-- File       : slaveregister.vhd
+-- Author     : thorsten
+-- Company    : LBNL
+-- Created    : 
+-- Last update: 2003-08-01
+-- Platform   : Altera Excalibur
+-- Standard   : VHDL'93
+-------------------------------------------------------------------------------
+-- Description: this module provides the registers for the CPU inside the FPGA
+--              the module is connected to ahb_slave.vhd
+-------------------------------------------------------------------------------
+-- Copyright (c) 2003 
+-------------------------------------------------------------------------------
+-- Revisions  :
+-- Date        Version     Author    Description
+-- 2003-07-17  V01-01-00   thorsten  
+-------------------------------------------------------------------------------
+
 
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.all;
@@ -37,6 +56,11 @@ ENTITY slaveregister IS
 		hitcounter_o_ff	: IN	STD_LOGIC_VECTOR(31 downto 0);
 		hitcounter_m_ff	: IN	STD_LOGIC_VECTOR(31 downto 0);
 		systime			: IN	STD_LOGIC_VECTOR(47 DOWNTO 0);
+		atwd0_timestamp	: IN	STD_LOGIC_VECTOR(47 DOWNTO 0);
+		atwd1_timestamp : IN	STD_LOGIC_VECTOR(47 DOWNTO 0);
+		dom_id			: OUT	STD_LOGIC_VECTOR(63 DOWNTO 0);
+		command_4		: OUT	STD_LOGIC_VECTOR(31 downto 0);
+		response_4		: IN	STD_LOGIC_VECTOR(31 downto 0);
 		-- COM ADC RX interface
 		com_adc_wdata		: OUT STD_LOGIC_VECTOR (15 downto 0);
 		com_adc_rdata		: IN STD_LOGIC_VECTOR (15 downto 0);
@@ -86,6 +110,7 @@ ARCHITECTURE arch_slaveregister OF slaveregister IS
 	SIGNAL command_2_local	: STD_LOGIC_VECTOR (31 DOWNTO 0);
 	SIGNAL command_3_local	: STD_LOGIC_VECTOR (31 DOWNTO 0);
 	SIGNAL com_ctrl_local	: STD_LOGIC_VECTOR (31 DOWNTO 0);
+	SIGNAL command_4_local	: STD_LOGIC_VECTOR (31 DOWNTO 0);
 	
 BEGIN
 	reg_wait_sig <= '1';
@@ -104,8 +129,10 @@ BEGIN
 			command_1_local	<= "00000000000000001111000000000000";
 			command_2_local	<= (others=>'0');
 			command_3_local	<= (others=>'0');
-			com_ctrl_local	<= "00000000000000000001011000000000";
+			com_ctrl_local	<= "00000001001000000001011000000000";
+			command_4_local	<= (others=>'0');
 			
+			dom_id			<= (others=>'0');
 			
 		ELSIF CLK'EVENT AND CLK='1' THEN
 	--		com_adc_write_en <= '0';
@@ -113,6 +140,7 @@ BEGIN
 	--		atwd0_write_en <= '0';
 			tx_fifo_wr	<= '0';
 			rx_fifo_rd	<= '0';
+			reg_rdata <= (others=>'X');
 			IF reg_enable = '1' THEN
 				IF reg_address(19 downto 18) = "00" THEN	-- map into the domapp addr space for the number
 					IF reg_address(15 downto 12) = "0000" THEN
@@ -231,6 +259,51 @@ BEGIN
 										reg_rdata (15 DOWNTO 0) <= systime (47 DOWNTO 32);
 										reg_rdata (31 DOWNTO 16) <= (OTHERS=>'0');
 									END IF;
+								WHEN "10010" =>	-- atwd0 timestamp lower 32 bit
+									IF reg_write = '1' THEN
+									ELSE
+										reg_rdata <= atwd0_timestamp (31 DOWNTO 0);
+									END IF;
+								WHEN "10011" =>	-- atwd0 timestamp upper 16 bit
+									IF reg_write = '1' THEN
+									ELSE
+										reg_rdata (15 DOWNTO 0) <= atwd0_timestamp (47 DOWNTO 32);
+										reg_rdata (31 DOWNTO 16) <= (OTHERS=>'0');
+									END IF;
+								WHEN "10100" =>	-- atwd1 timestamp lower 32 bit
+									IF reg_write = '1' THEN
+									ELSE
+										reg_rdata <= atwd1_timestamp (31 DOWNTO 0);
+									END IF;
+								WHEN "10101" =>	-- atwd1 timestamp upper 16 bit
+									IF reg_write = '1' THEN
+									ELSE
+										reg_rdata (15 DOWNTO 0) <= atwd1_timestamp (47 DOWNTO 32);
+										reg_rdata (31 DOWNTO 16) <= (OTHERS=>'0');
+									END IF;
+								WHEN "10110" => -- dom_id low 32 bit
+									IF reg_write = '1' THEN
+										dom_id (31 DOWNTO 0) <= reg_wdata;
+									ELSE
+									--	reg_rdata	<= dom_id (31 DOWNTO 0);
+									END IF;
+								WHEN "10111" => -- dom_id high 32 bit
+									IF reg_write = '1' THEN
+										dom_id (63 DOWNTO 32) <= reg_wdata;
+									ELSE
+									--	reg_rdata	<= dom_id (63 DOWNTO 32);
+									END IF;
+								WHEN "11000" => -- command 4
+									IF reg_write = '1' THEN
+										command_4_local <= reg_wdata;
+									ELSE
+										reg_rdata <= command_4_local;
+									END IF;
+								WHEN "11001" =>	-- response 4
+									IF reg_write = '1' THEN
+									ELSE
+										reg_rdata <= response_4;
+									END IF;
 								WHEN OTHERS =>
 									IF reg_write = '1' THEN
 									ELSE
@@ -303,6 +376,7 @@ BEGIN
 	command_2	<= command_2_local; --registers(6)(31 downto 0);
 	command_3	<= command_3_local; --registers(10)(31 downto 0);
 	com_ctrl	<= com_ctrl_local; --registers(12)(31 downto 0);
+	command_4	<= command_4_local;
 	-- com_tx_data	<= registers(14)(31 downto 0);
 	-- TC <= registers(CONV_INTEGER(15))(7 downto 0);
 	

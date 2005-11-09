@@ -1,5 +1,23 @@
 -------------------------------------------------------------------------------
--- timestamp timer
+-- Title      : STF
+-- Project    : IceCube DOM main board
+-------------------------------------------------------------------------------
+-- File       : timer.vhd
+-- Author     : thorsten
+-- Company    : LBNL
+-- Created    : 
+-- Last update: 2003-07-17
+-- Platform   : Altera Excalibur
+-- Standard   : VHDL'93
+-------------------------------------------------------------------------------
+-- Description: this module provides a 48 bit counter used for the DOMMB
+--              system time
+-------------------------------------------------------------------------------
+-- Copyright (c) 2003 
+-------------------------------------------------------------------------------
+-- Revisions  :
+-- Date        Version     Author    Description
+-- 2003-07-17  V01-01-00   thorsten  
 -------------------------------------------------------------------------------
 
 LIBRARY IEEE;

@@ -1,6 +1,6 @@
 % C:\PROJECTS\ICECUBE\DOR\FPGA\DCOM_01\RX_CHAN\EDGES\DOR_DUDT.tdf %
 % AHDL code created by Visual Software Solution's StateCAD 5.0 %
-% Tue Sep 02 17:31:41 2003 %
+% Mon Oct 27 17:52:24 2003 %
 
 % This AHDL code was generated using: %
 %  binary encoded state assignment with structured code format. %
@@ -13,7 +13,6 @@ SUBDESIGN DOR_DUDT(
 	cteq16 :	INPUT;
 	hl_edge :	INPUT;
 	idle_rcvd :	INPUT;
-	lh_edge :	INPUT;
 	max_level :	INPUT;
 	min_level :	INPUT;
 	receive :	INPUT;
@@ -32,18 +31,20 @@ SUBDESIGN DOR_DUDT(
 
 
 VARIABLE
-	sreg : MACHINE OF BITS (SV0, SV1, SV2)
+	sreg : MACHINE OF BITS (SV0, SV1, SV2, SV3)
 		WITH STATES (
-			IDLE =	B"001",
-			HLWT =	B"000",
-			LHWT =	B"010",
-			MAX_DUDT =	B"011",
-			MIN_DUDT =	B"100",
-			START =	B"101",
-			STB =	B"110"
+			IDLE =	B"0010",
+			CLR_CT =	B"0000",
+			HLWT =	B"0001",
+			MAX_DUDT =	B"0011",
+			MIN_DUDT =	B"0100",
+			START_0 =	B"0101",
+			START_1 =	B"0110",
+			STB =	B"0111",
+			WT =	B"1000"
 		);
 
-	sreg1 : MACHINE OF BITS (SV3, SV4, SV5)
+	sreg1 : MACHINE OF BITS (SV4, SV5, SV6)
 		WITH STATES (
 			START_LEVEL =	B"100",
 			LONG_CABLE =	B"000",
@@ -94,6 +95,9 @@ BEGIN
 	END IF;
 
 	CASE sreg IS
+		WHEN CLR_CT =>
+			sreg = START_0;
+			(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,0,0,0,0,0);
 		WHEN HLWT =>
 			IF ( !hl_edge & !uart_done ) THEN 
 				sreg = HLWT;
@@ -104,11 +108,11 @@ BEGIN
 				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,1,0,1,0,1);
 			END IF;
 			IF ( hl_edge & !uart_done ) THEN 
-				sreg = STB;
-				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(1,1,0,0,0,0);
+				sreg = WT;
+				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,0,0,0,0,0);
 			END IF;
 			IF ( signal_lev1 & uart_done  #  signal_lev0 & uart_done ) THEN 
-				sreg = START;
+				sreg = START_1;
 				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,1,0,0,0,0);
 			END IF;
 		WHEN IDLE =>
@@ -124,17 +128,9 @@ BEGIN
 				sreg = MIN_DUDT;
 				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,0,1,1,0,1);
 			END IF;
-		WHEN LHWT =>
-			IF ( lh_edge  #  cteq16 ) THEN 
-				sreg = HLWT;
-				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,1,0,0,0,0);
-			ELSE
-				sreg = LHWT;
-				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,0,0,0,0,0);
-			END IF;
 		WHEN MAX_DUDT =>
 			IF ( cteq4 ) THEN 
-				sreg = START;
+				sreg = CLR_CT;
 				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,1,0,0,0,0);
 			ELSE
 				sreg = MAX_DUDT;
@@ -146,24 +142,45 @@ BEGIN
 				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,0,1,1,0,1);
 			END IF;
 			IF ( cteq4 ) THEN 
-				sreg = START;
+				sreg = CLR_CT;
 				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,1,0,0,0,0);
 			END IF;
 			IF ( max_level & !cteq4 ) THEN 
 				sreg = MAX_DUDT;
 				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,0,1,1,1,0);
 			END IF;
-		WHEN START =>
+		WHEN START_0 =>
+			IF ( !receive & !cteq16  #  !hl_edge & !cteq16 ) THEN 
+				sreg = START_0;
+				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,0,0,0,0,0);
+			END IF;
+			IF ( hl_edge & receive & !cteq16 ) THEN 
+				sreg = WT;
+				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,0,0,0,0,0);
+			END IF;
+			IF ( cteq16 ) THEN 
+				sreg = IDLE;
+				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,1,0,1,0,1);
+			END IF;
+		WHEN START_1 =>
 			IF ( hl_edge & receive ) THEN 
-				sreg = STB;
-				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(1,1,0,0,0,0);
+				sreg = WT;
+				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,0,0,0,0,0);
 			ELSE
-				sreg = START;
+				sreg = START_1;
 				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,1,0,0,0,0);
 			END IF;
 		WHEN STB =>
-			sreg = LHWT;
-			(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,0,0,0,0,0);
+			sreg = HLWT;
+			(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,1,0,0,0,0);
+		WHEN WT =>
+			IF ( cteq16 ) THEN 
+				sreg = STB;
+				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(1,0,0,0,0,0);
+			ELSE
+				sreg = WT;
+				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,0,0,0,0,0);
+			END IF;
 	END CASE;
 
 	sreg1.reset =  reset ;
@@ -181,11 +198,12 @@ BEGIN
 			sreg1 = LONG_CABLE;
 			(signal_lev1,signal_lev0)=(0,1);
 		WHEN MAX_WT =>
-			IF ( !uart_rdy ) THEN 
+			IF ( !SV3 & !uart_rdy  #  SV2 & !uart_rdy  #  !SV1 & !uart_rdy  #  SV0 & !
+				uart_rdy  #  !cteq16 & !uart_rdy ) THEN 
 				sreg1 = MAX_WT;
 				(signal_lev1,signal_lev0)=(0,0);
 			END IF;
-			IF ( !idle_rcvd & uart_rdy ) THEN 
+			IF ( cteq16 & !SV0 & SV1 & !SV2 & SV3  #  !idle_rcvd & uart_rdy ) THEN 
 				sreg1 = START_LEVEL;
 				(signal_lev1,signal_lev0)=(0,0);
 			END IF;
@@ -194,7 +212,8 @@ BEGIN
 				(signal_lev1,signal_lev0)=(1,0);
 			END IF;
 		WHEN MIN_WT =>
-			IF ( !uart_rdy ) THEN 
+			IF ( !uart_rdy & !cteq16  #  !uart_rdy & SV0  #  !uart_rdy & !SV1  #  !
+				uart_rdy & SV2  #  !uart_rdy & !SV3 ) THEN 
 				sreg1 = MIN_WT;
 				(signal_lev1,signal_lev0)=(0,0);
 			END IF;
@@ -202,7 +221,7 @@ BEGIN
 				sreg1 = LONG_CABLE;
 				(signal_lev1,signal_lev0)=(0,1);
 			END IF;
-			IF ( !idle_rcvd & uart_rdy ) THEN 
+			IF ( cteq16 & !SV0 & SV1 & !SV2 & SV3  #  !idle_rcvd & uart_rdy ) THEN 
 				sreg1 = START_LEVEL;
 				(signal_lev1,signal_lev0)=(0,0);
 			END IF;
@@ -210,16 +229,16 @@ BEGIN
 			sreg1 = SHORT_CABLE;
 			(signal_lev1,signal_lev0)=(1,0);
 		WHEN START_LEVEL =>
-			IF ( !SV2 & !SV0  #  !SV1 & !SV0  #  !SV2 & SV1  #  SV0 & SV1  #  !SV1 & 
-				SV2  #  SV0 & SV2  #  !cteq4 ) THEN 
+			IF ( SV0  #  !SV3 & !SV1  #  !SV2 & !SV1  #  !SV3 & SV2  #  SV1 & SV2  #  
+				!SV2 & SV3  #  SV1 & SV3  #  !cteq4 ) THEN 
 				sreg1 = START_LEVEL;
 				(signal_lev1,signal_lev0)=(0,0);
 			END IF;
-			IF ( !SV0 & SV1 & SV2 & cteq4 ) THEN 
+			IF ( !SV0 & !SV1 & SV2 & SV3 & cteq4 ) THEN 
 				sreg1 = MAX_WT;
 				(signal_lev1,signal_lev0)=(0,0);
 			END IF;
-			IF ( SV0 & !SV1 & !SV2 & cteq4 ) THEN 
+			IF ( !SV0 & SV1 & !SV2 & !SV3 & cteq4 ) THEN 
 				sreg1 = MIN_WT;
 				(signal_lev1,signal_lev0)=(0,0);
 			END IF;

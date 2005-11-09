@@ -11,6 +11,7 @@ ENTITY LC_TX IS
         -- internal LC signals
         n               : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
         tx              : IN  STD_LOGIC;
+        next_lc         : OUT STD_LOGIC;
         -- LC hardware
         COINCIDENCE_OUT : OUT STD_LOGIC;
         -- test
@@ -21,7 +22,7 @@ END LC_TX;
 
 ARCHITECTURE LC_TX_arch OF LC_TX IS
 
-    TYPE   state_type IS (IDLE, BIT0A, BIT0Aw, BIT0B, BIT0Bw, BIT1A, BIT1Aw, BIT1B ,BIT1Bw,wait1,wait2,wait3,wait4);
+    TYPE   state_type IS (IDLE, BIT0A, BIT0Aw, BIT0B, BIT0Bw, BIT1A, BIT1Aw, BIT1B, BIT1Bw, wait1, wait2, wait3, wait4);
     SIGNAL state : state_type;
     
 BEGIN  -- LC_TX_arch
@@ -41,44 +42,44 @@ BEGIN  -- LC_TX_arch
                 WHEN BIT0A =>
                     COINCIDENCE_OUT <= NOT n(0);
                     state           <= BIT0Aw;
-				WHEN BIT0Aw =>
+                WHEN BIT0Aw =>
                     COINCIDENCE_OUT <= NOT n(0);
                     state           <= BIT0B;
 
                 WHEN BIT0B =>
                     COINCIDENCE_OUT <= n(0);
                     state           <= BIT0Bw;
-				WHEN BIT0Bw =>
+                WHEN BIT0Bw =>
                     COINCIDENCE_OUT <= n(0);
                     state           <= BIT1A;
 
                 WHEN BIT1A =>
                     COINCIDENCE_OUT <= NOT n(1);
                     state           <= BIT1Aw;
-				WHEN BIT1Aw =>
+                WHEN BIT1Aw =>
                     COINCIDENCE_OUT <= NOT n(1);
                     state           <= BIT1B;
 
                 WHEN BIT1B =>
                     COINCIDENCE_OUT <= n(1);
                     state           <= BIT1Bw;
-				WHEN BIT1Bw =>
+                WHEN BIT1Bw =>
                     COINCIDENCE_OUT <= n(1);
                     state           <= wait1;
 
-				WHEN wait1 =>
-					COINCIDENCE_OUT <= 'Z';
-					state           <= wait2;
-				WHEN wait2 =>
-					COINCIDENCE_OUT <= 'Z';
-					state           <= wait3;
-				WHEN wait3 =>
-					COINCIDENCE_OUT <= 'Z';
-					state           <= wait4;
-				WHEN wait4 =>
-					COINCIDENCE_OUT <= 'Z';
-					state           <= IDLE;
-					
+                WHEN wait1 =>
+                    COINCIDENCE_OUT <= 'Z';
+                    state           <= wait2;
+                WHEN wait2 =>
+                    COINCIDENCE_OUT <= 'Z';
+                    state           <= wait3;
+                WHEN wait3 =>
+                    COINCIDENCE_OUT <= 'Z';
+                    state           <= wait4;
+                WHEN wait4 =>
+                    COINCIDENCE_OUT <= 'Z';
+                    state           <= IDLE;
+                    
                 WHEN OTHERS =>
                     COINCIDENCE_OUT <= 'Z';
                     state           <= IDLE;
@@ -86,4 +87,6 @@ BEGIN  -- LC_TX_arch
         END IF;
     END PROCESS transmit;
 
+    next_lc <= '1' WHEN state = IDLE ELSE '0';
+    
 END LC_TX_arch;

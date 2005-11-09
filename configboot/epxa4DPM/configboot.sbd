@@ -133,7 +133,7 @@ device configboot
             split_read = false; 
             region region[0]
             {
-                address_base = 0x40000000; 
+                address_base = 0x41000000; 
                 enabled = true; 
                 address_size = 0x400000; 
                 prefetch = false; 
@@ -146,7 +146,7 @@ device configboot
 
             region region[1]
             {
-                address_base = 0x40400000; 
+                address_base = 0x41400000; 
                 enabled = true; 
                 address_size = 0x400000; 
                 prefetch = false; 
@@ -208,7 +208,7 @@ device configboot
 
         region pld[0]
         {
-            address_base = 0x90080000; 
+            address_base = 0x90000000; 
             enabled = true; 
             address_size = 0x4000; 
             prefetch = false; 

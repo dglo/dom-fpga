@@ -1,5 +1,6 @@
-TITLE "control message, header-bytes decoder, K.-H. Sulanke,DESY Zeuthen, 2004-04-08";
+TITLE "control message, header-bytes decoder, K.-H. Sulanke,DESY Zeuthen, 2004-08-17";
 -- according Arthur Jones protocol
+-- including comm. DAC level adaption
 
 SUBDESIGN hdr_decoder
 (
@@ -11,16 +12,31 @@ SUBDESIGN hdr_decoder
 	cmd_ena			: INPUT;
 	dom_A_sel	    : INPUT;
 	dom_B_sel	    : INPUT;
+	seq0_byte	    : INPUT;
+	seq1_byte	    : INPUT;
+	ctrl_rcvd		: INPUT;
 	
 	ctrl_msg	    : OUTPUT;	
 	data_msg	    : OUTPUT;
 	cmd_rec[3..0]	: OUTPUT;
+	dorlev_up_rqa   : OUTPUT;	-- request from DOM_a to increase the Tx signal
+	dorlev_dn_rqa	: OUTPUT;	-- 1 clock length only
+	dorlev_up_rqb   : OUTPUT;	-- request from DOM_a to increase the Tx signal
+	dorlev_dn_rqb	: OUTPUT;
+	domleva[7..0]	: OUTPUT;	-- presently used DAC level by DOM_a
+	domlevb[7..0]	: OUTPUT;	
 )
 
 VARIABLE
 	ctrl_msg		: DFFE;
 	data_msg		: DFFE;
 	cmd_rec[3..0]	: DFFE;
+	domleva[7..0]	: DFFE;
+	domlevb[7..0]	: DFFE;
+	dorlev_up_rqa   : DFF;	-- request from DOM_a to increase the Tx signal
+	dorlev_dn_rqa	: DFF;
+	dorlev_up_rqb   : DFF;	-- request from DOM_a to increase the Tx signal
+	dorlev_dn_rqb	: DFF;
 
 BEGIN
 
@@ -42,5 +58,24 @@ BEGIN
 	cmd_rec[].clrn		= !reset;
 	cmd_rec[].ena		= cmd_ena & data_stb;
 	cmd_rec[3..0].d		= data[3..0];
+	
+	dorlev_up_rqa.(clk,clrn)	= (clk, !reset);
+	dorlev_dn_rqa.(clk,clrn)	= (clk, !reset);
+	dorlev_up_rqb.(clk,clrn)	= (clk, !reset);
+	dorlev_dn_rqb.(clk,clrn)	= (clk, !reset);
+	
+	dorlev_up_rqa.d		= data[7] & ctrl_msg.q & seq1_byte & data_stb & dom_A_sel;
+	dorlev_dn_rqa.d		= data[6] & ctrl_msg.q & seq1_byte & data_stb & dom_A_sel;
+	dorlev_up_rqb.d		= data[7] & ctrl_msg.q & seq1_byte & data_stb & dom_B_sel;
+	dorlev_dn_rqb.d		= data[6] & ctrl_msg.q & seq1_byte & data_stb & dom_B_sel;	
 
+	domleva[].clk		= clk;
+	domleva[].clrn		= !reset;
+	domleva[].ena		= seq0_byte & data_stb & dom_A_sel;
+	domleva[7..0].d		= data[7..0];
+	
+	domlevb[].clk		= clk;
+	domlevb[].clrn		= !reset;
+	domlevb[].ena		= seq0_byte & data_stb & dom_B_sel;
+	domlevb[7..0].d		= data[7..0];
 END;

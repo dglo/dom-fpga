@@ -1,6 +1,24 @@
--------------------------------------------------
---- master interface on the PLD to STRIPE bridge
--------------------------------------------------
+-------------------------------------------------------------------------------
+-- Title      : STF
+-- Project    : IceCube DOM main board
+-------------------------------------------------------------------------------
+-- File       : ahb_master.vhd
+-- Author     : thorsten
+-- Company    : LBNL
+-- Created    : 
+-- Last update: 2003-07-17
+-- Platform   : Altera Excalibur
+-- Standard   : VHDL'93
+-------------------------------------------------------------------------------
+-- Description: this module handles the AHB master interface of the STRIPE in
+--              write only mode
+-------------------------------------------------------------------------------
+-- Copyright (c) 2003 
+-------------------------------------------------------------------------------
+-- Revisions  :
+-- Date        Version     Author    Description
+-- 2003-07-17  V01-01-00   thorsten  
+-------------------------------------------------------------------------------
 
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.all;

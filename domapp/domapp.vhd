@@ -27,6 +27,7 @@ USE IEEE.std_logic_arith.all;
 USE IEEE.std_logic_unsigned.all;
 
 USE WORK.ctrl_data_types.all;
+USE WORK.monitor_data_type.all;
 
 
 ENTITY domapp IS
@@ -303,6 +304,7 @@ ARCHITECTURE arch_domapp OF domapp IS
 			DAQ_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			LBM_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			COMPR_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
+			COMPR_ctrl		: IN COMPR_STRUCT;
 			-- monitor signals
 			-- Lookback Memory Pointer
 			LBM_ptr			: OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
@@ -314,8 +316,10 @@ ARCHITECTURE arch_domapp OF domapp IS
 			discMPEpulse	: OUT STD_LOGIC;
 			-- interface to local coincidence
 			LC_trigger		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
-			LC_abort		: IN STD_LOGIC;
+			LC_abort		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 	 		LC				: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
+			LC_launch		: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
+			LC_disc			: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
 			-- discriminator
 			MultiSPE		: IN STD_LOGIC;
 			OneSPE			: IN STD_LOGIC;
@@ -375,6 +379,8 @@ ARCHITECTURE arch_domapp OF domapp IS
 			slavebuserrint	: IN	STD_LOGIC;
 			slavehresp		: IN	STD_LOGIC_VECTOR(1 downto 0);
 			slavehrdata		: IN	STD_LOGIC_VECTOR(31 downto 0);
+			-- monitoring
+			DAQ_status		: OUT	DAQ_STATUS_STRUCT;
 			-- test connector
 			TC				: OUT STD_LOGIC_VECTOR (7 downto 0)
 		);
@@ -383,6 +389,7 @@ ARCHITECTURE arch_domapp OF domapp IS
 	COMPONENT slaveregister
 		PORT (
 			CLK			: IN STD_LOGIC;
+			CLK40		: IN STD_LOGIC;
 			RST			: IN STD_LOGIC;
 			systime		: IN STD_LOGIC_VECTOR (47 DOWNTO 0);
 			-- connections to the stripe
@@ -399,9 +406,12 @@ ARCHITECTURE arch_domapp OF domapp IS
 			masterhsize		: IN	STD_LOGIC_VECTOR(1 downto 0);
 			masterhtrans	: IN	STD_LOGIC_VECTOR(1 downto 0);
 			masterhwdata	: IN	STD_LOGIC_VECTOR(31 downto 0);
+			intpld			: OUT	STD_LOGIC_VECTOR (5 DOWNTO 0);
 			-- command register
 			DAQ_ctrl		: OUT DAQ_STRUCT;
 			CS_ctrl			: OUT CS_STRUCT;
+			cs_flash_time	: IN STD_LOGIC_VECTOR (47 DOWNTO 0);
+			cs_flash_now	: IN STD_LOGIC;
 			LC_ctrl			: OUT LC_STRUCT;
 			RM_ctrl			: OUT RM_CTRL_STRUCT;
 			RM_stat			: IN  RM_STAT_STRUCT;
@@ -409,6 +419,10 @@ ARCHITECTURE arch_domapp OF domapp IS
 			COMM_STAT		: IN  COMM_STAT_STRUCT;
 			
 			DOM_status		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
+			COMPR_ctrl		: OUT COMPR_STRUCT;
+			debugging		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
+			CS_FL_aux_reset	: OUT STD_LOGIC;
+			CS_FL_attn		: IN STD_LOGIC;
 			-- pointers
 			LBM_ptr			: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 			-- kale communication interface
@@ -422,7 +436,7 @@ ARCHITECTURE arch_domapp OF domapp IS
 			ATWD_ped_data_B	: OUT STD_LOGIC_VECTOR (9 DOWNTO 0);
 			ATWD_ped_addr_B	: IN STD_LOGIC_VECTOR (8 DOWNTO 0);
 			-- test connector
-			TC				: OUT STD_LOGIC_VECTOR(7 downto 0)
+			TC				: OUT STD_LOGIC_VECTOR(15 downto 0)
 		);
 	END COMPONENT;
 	
@@ -486,6 +500,8 @@ ARCHITECTURE arch_domapp OF domapp IS
 			cs_wf_addr			: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
 			cs_flash_now		: OUT STD_LOGIC;
 			cs_flash_time		: OUT STD_LOGIC_VECTOR (47 DOWNTO 0);
+			CS_FL_aux_reset		: IN STD_LOGIC;
+			CS_FL_attn			: OUT STD_LOGIC;
 			-- DAQ interface
 			cs_daq_trigger		: OUT STD_LOGIC_VECTOR (5 DOWNTO 0);
 			cs_daq_veto			: IN STD_LOGIC;
@@ -503,7 +519,71 @@ ARCHITECTURE arch_domapp OF domapp IS
 			TC					: OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
 		);
 	END COMPONENT;
+	
+	COMPONENT local_coincidence
+		PORT (
+			-- Common Inputs
+			CLK20                : IN  STD_LOGIC;
+			CLK40                : IN  STD_LOGIC;
+			CLK80                : IN  STD_LOGIC;
+			RST                  : IN  STD_LOGIC;
+			systime              : IN  STD_LOGIC_VECTOR (47 DOWNTO 0);
+			-- slaveregister
+			LC_ctrl              : IN  LC_STRUCT;
+			-- DAQ interface
+			lc_daq_trigger       : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
+			lc_daq_abort         : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
+			lc_daq_disc          : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
+			lc_daq_launch        : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
+			-- I/O
+			COINCIDENCE_OUT_DOWN : OUT STD_LOGIC;
+			COINC_DOWN_ALATCH    : OUT STD_LOGIC;
+			COINC_DOWN_ABAR      : IN  STD_LOGIC;
+			COINC_DOWN_A         : IN  STD_LOGIC;
+			COINC_DOWN_BLATCH    : OUT STD_LOGIC;
+			COINC_DOWN_BBAR      : IN  STD_LOGIC;
+			COINC_DOWN_B         : IN  STD_LOGIC;
+			COINCIDENCE_OUT_UP   : OUT STD_LOGIC;
+			COINC_UP_ALATCH      : OUT STD_LOGIC;
+			COINC_UP_ABAR        : IN  STD_LOGIC;
+			COINC_UP_A           : IN  STD_LOGIC;
+			COINC_UP_BLATCH      : OUT STD_LOGIC;
+			COINC_UP_BBAR        : IN  STD_LOGIC;
+			COINC_UP_B           : IN  STD_LOGIC;
+			-- test
+			TC                   : OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
+		);
+	END COMPONENT;
 
+	COMPONENT DOMstatus
+    	PORT (
+	        CLK20      : IN  STD_LOGIC;
+	        CLK40      : IN  STD_LOGIC;
+	        CLK80      : IN  STD_LOGIC;
+	        RST        : IN  STD_LOGIC;
+	        -- monitor inputs
+	        DAQ_status : IN  DAQ_STATUS_STRUCT;
+	        MultiSPE   : IN  STD_LOGIC;
+	        OneSPE     : IN  STD_LOGIC;
+	        -- to the slaveregister
+	        DOM_status : OUT STD_LOGIC_VECTOR (31 DOWNTO 0)
+        );
+	END COMPONENT;
+	
+	COMPONENT xfer_time
+		PORT (
+			CLK20      : IN  STD_LOGIC;
+			RST        : IN  STD_LOGIC;
+			-- the info
+			enable_DAQ : IN  STD_LOGIC;
+			xfer_eng   : IN  STD_LOGIC;
+			xfer_compr : IN  STD_LOGIC;
+			-- the xfer time
+			AHB_load   : OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
+			-- test comnnector
+			TC         : OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
+		);
+	END COMPONENT;
 
 
 	-- gerneal siganls
@@ -592,7 +672,10 @@ ARCHITECTURE arch_domapp OF domapp IS
 	SIGNAL COMM_CTRL		: COMM_CTRL_STRUCT;
 	SIGNAL COMM_STAT		: COMM_STAT_STRUCT;
 			
+	SIGNAL CS_FL_aux_reset	: STD_LOGIC;
+	SIGNAL CS_FL_attn		: STD_LOGIC;
 	
+	SIGNAL DOM_status		: STD_LOGIC_VECTOR (31 DOWNTO 0);	
 	
 	SIGNAL ATWD_ped_data_A	: STD_LOGIC_VECTOR (9 DOWNTO 0);
 	SIGNAL ATWD_ped_addr_A	: STD_LOGIC_VECTOR (8 DOWNTO 0);
@@ -607,9 +690,29 @@ ARCHITECTURE arch_domapp OF domapp IS
 	
 	-- Calibration Sources
 	SIGNAL CS_ctrl		: CS_STRUCT;
+	SIGNAL cs_flash_time	: STD_LOGIC_VECTOR (47 DOWNTO 0);
 	SIGNAL CS_trigger	: STD_LOGIC_VECTOR (5 DOWNTO 0);
 	SIGNAL cs_wf_data	: STD_LOGIC_VECTOR (7 DOWNTO 0);
 	SIGNAL cs_wf_addr	: STD_LOGIC_VECTOR (7 DOWNTO 0);
+	SIGNAL cs_flash_now	: STD_LOGIC;
+	
+	-- local coincidence
+	SIGNAL LC_ctrl			: LC_STRUCT;
+	SIGNAL lc_daq_trigger	: STD_LOGIC_VECTOR (1 DOWNTO 0);
+	SIGNAL lc_daq_abort		: STD_LOGIC_VECTOR (1 DOWNTO 0);
+	SIGNAL lc_daq_disc		: STD_LOGIC_VECTOR (1 DOWNTO 0);
+	SIGNAL lc_daq_launch	: STD_LOGIC_VECTOR (1 DOWNTO 0);
+	
+	-- Compression
+	SIGNAL COMPR_ctrl	: COMPR_STRUCT;
+	
+	-- monitoring
+	SIGNAL DAQ_status	:DAQ_STATUS_STRUCT;
+	
+	-- debugging
+	SIGNAL debugging		: STD_LOGIC_VECTOR (31 DOWNTO 0);
+	SIGNAL TCdaq			: STD_LOGIC_VECTOR (7 DOWNTO 0);
+	SIGNAL TCslave			: STD_LOGIC_VECTOR (15 DOWNTO 0);
 	
 BEGIN
 	-- general
@@ -632,7 +735,7 @@ BEGIN
 	-- dp2_portadataout	<= ;
 	
 	-- interrupts
-	intpld	<= (others=>'0');
+	-- intpld	<= (others=>'0');
 	
 	-- GP stripe IO
 	gpi(7 downto 0)		<= (others=>'0');
@@ -763,6 +866,7 @@ BEGIN
 			DAQ_mode		=> DAQ_ctrl.DAQ_mode,
 			LBM_mode		=> DAQ_ctrl.LBM_mode,
 			COMPR_mode		=> DAQ_ctrl.COMPR_mode,
+			COMPR_ctrl		=> COMPR_ctrl,
 			-- monitor signals
 			-- Lookback Memory Pointer
 			LBM_ptr			=> LBM_ptr,
@@ -773,9 +877,11 @@ BEGIN
 			discSPEpulse	=> RM_daq_disc(0),
 			discMPEpulse	=> RM_daq_disc(1),
 			-- interface to local coincidence
-			LC_trigger		=> "00",
-			LC_abort		=> '0',
+			LC_trigger		=> lc_daq_trigger,
+			LC_abort		=> lc_daq_abort,
 	 		LC				=> "00",
+			LC_launch		=> lc_daq_launch,
+			LC_disc			=> lc_daq_disc,
 			-- discriminator
 			MultiSPE		=> MultiSPE,
 			OneSPE			=> OneSPE,
@@ -835,13 +941,16 @@ BEGIN
 			slavebuserrint	=> slavebuserrint,
 			slavehresp		=> slavehresp,
 			slavehrdata		=> slavehrdata,
+			-- monitoring
+			DAQ_status		=> DAQ_status,
 			-- test connector
-			TC				=> open
+			TC				=> TCdaq --open
 		);
 		
 	inst_slaveregister : slaveregister
 		PORT MAP (
 			CLK			=> CLK20,
+			CLK40		=> CLK40,
 			RST			=> RST,
 			systime		=> systime,
 			-- connections to the stripe
@@ -858,15 +967,22 @@ BEGIN
 			masterhsize		=> masterhsize,
 			masterhtrans	=> masterhtrans,
 			masterhwdata	=> masterhwdata,
+			intpld			=> intpld,
 			-- command register
 			DAQ_ctrl		=> DAQ_ctrl,
 			CS_ctrl			=> CS_ctrl,
-			LC_ctrl			=> open,
+			cs_flash_time	=> cs_flash_time,
+			cs_flash_now	=> cs_flash_now,
+			LC_ctrl			=> LC_ctrl,
 			RM_ctrl			=> RM_ctrl,
 			RM_stat			=> RM_stat,
 			COMM_CTRL		=> COMM_CTRL,
 			COMM_STAT		=> COMM_STAT,
-			DOM_status		=> X"00000000",
+			DOM_status		=> DOM_status,
+			COMPR_ctrl		=> COMPR_ctrl,
+			debugging		=> debugging,
+			CS_FL_aux_reset	=> CS_FL_aux_reset,
+			CS_FL_attn		=> CS_FL_attn,
 			-- pointers
 			LBM_ptr			=> LBM_ptr,
 			-- kale communication interface
@@ -880,7 +996,7 @@ BEGIN
 			ATWD_ped_data_B	=> ATWD_ped_data_B,
 			ATWD_ped_addr_B	=> ATWD_ped_addr_B,
 			-- test connector
-			TC				=> open
+			TC				=> TCslave --open
 		);
 		
 	inst_comm_wrapper : comm_wrapper
@@ -939,8 +1055,10 @@ BEGIN
 			cs_ctrl				=> CS_ctrl,
 			cs_wf_data			=> cs_wf_data,
 			cs_wf_addr			=> cs_wf_addr,
-			cs_flash_now		=> open,
-			cs_flash_time		=> open,
+			cs_flash_now		=> cs_flash_now,
+			cs_flash_time		=> cs_flash_time,
+			CS_FL_aux_reset		=> CS_FL_aux_reset,
+			CS_FL_attn			=> CS_FL_attn,
 			-- DAQ interface
 			cs_daq_trigger		=> CS_trigger,
 			cs_daq_veto			=> '0',
@@ -957,8 +1075,89 @@ BEGIN
 			--test
 			TC					=> open
 		);
+		
+	FL_TMS	<= 'Z';
+	FL_TCK	<= 'Z';
+	FL_TDI	<= 'Z';
+	
+		
+	inst_local_coincidence : local_coincidence
+		PORT MAP (
+			-- Common Inputs
+			CLK20                => CLK20,
+			CLK40                => CLK40,
+			CLK80                => CLK80,
+			RST                  => RST,
+			systime              => systime,
+			-- slaveregister
+			LC_ctrl              => LC_ctrl,
+			-- DAQ interface
+			lc_daq_trigger       => lc_daq_trigger,
+			lc_daq_abort         => lc_daq_abort,
+			lc_daq_disc          => lc_daq_disc,
+			lc_daq_launch        => lc_daq_launch,
+			-- I/O
+			COINCIDENCE_OUT_DOWN => COINCIDENCE_OUT_UP,
+			COINC_DOWN_ALATCH    => COINC_UP_ALATCH,
+			COINC_DOWN_ABAR      => COINC_UP_ABAR,
+			COINC_DOWN_A         => COINC_UP_A,
+			COINC_DOWN_BLATCH    => COINC_UP_BLATCH,
+			COINC_DOWN_BBAR      => COINC_UP_BBAR,
+			COINC_DOWN_B         => COINC_UP_B,
+			COINCIDENCE_OUT_UP   => COINCIDENCE_OUT_DOWN,
+			COINC_UP_ALATCH      => COINC_DOWN_ALATCH,
+			COINC_UP_ABAR        => COINC_DOWN_ABAR,
+			COINC_UP_A           => COINC_DOWN_A,
+			COINC_UP_BLATCH      => COINC_DOWN_BLATCH,
+			COINC_UP_BBAR        => COINC_DOWN_BBAR,
+			COINC_UP_B           => COINC_DOWN_B,
+			-- Swapped up/down because of cable misswiring
+--			COINCIDENCE_OUT_DOWN => COINCIDENCE_OUT_DOWN,
+--			COINC_DOWN_ALATCH    => COINC_DOWN_ALATCH,
+--			COINC_DOWN_ABAR      => COINC_DOWN_ABAR,
+--			COINC_DOWN_A         => COINC_DOWN_A,
+--			COINC_DOWN_BLATCH    => COINC_DOWN_BLATCH,
+--			COINC_DOWN_BBAR      => COINC_DOWN_BBAR,
+--			COINC_DOWN_B         => COINC_DOWN_B,
+--			COINCIDENCE_OUT_UP   => COINCIDENCE_OUT_UP,
+--			COINC_UP_ALATCH      => COINC_UP_ALATCH,
+--			COINC_UP_ABAR        => COINC_UP_ABAR,
+--			COINC_UP_A           => COINC_UP_A,
+--			COINC_UP_BLATCH      => COINC_UP_BLATCH,
+--			COINC_UP_BBAR        => COINC_UP_BBAR,
+--			COINC_UP_B           => COINC_UP_B,
+			-- test
+			TC                   => OPEN
+		);
 	
 	
+	inst_DOMstatus : DOMstatus
+		PORT MAP (
+			CLK20      => CLK20,
+			CLK40      => CLK40,
+			CLK80      => CLK80,
+			RST        => RST,
+			-- monitor inputs
+			DAQ_status => DAQ_status,
+			MultiSPE   => MultiSPE,
+			OneSPE     => OneSPE,
+			-- to the slaveregister
+			DOM_status => DOM_status
+		);
+	
+	Inst_xfer_time : xfer_time
+		PORT MAP (
+			CLK20      => CLK20,
+			RST        => RST,
+			-- the info
+			enable_DAQ => DAQ_ctrl.enable_DAQ,
+			xfer_eng   => DAQ_status.AHB_status.xfer_eng,
+			xfer_compr => DAQ_status.AHB_status.xfer_compr,
+			-- the xfer time
+			AHB_load   => debugging,
+			-- test comnnector
+			TC         => OPEN
+		);
 	
 	
 	-- FPGA loaded output to be read by the CPU through the CPLD
@@ -969,12 +1168,144 @@ BEGIN
 	PLD_FPGA		<= (OTHERS=>'Z');
 	PLD_FPGA_BUSY	<= 'Z';
 	-- Test connector (JP13) No defined use for it yet!
-	FPGA_D		<= (OTHERS=>'Z');
-	FPGA_DA		<= 'Z';
-	FPGA_CE		<= 'Z';
+--	FPGA_D		<= (OTHERS=>'Z');
+--	FPGA_DA		<= 'Z';
+--	FPGA_CE		<= 'Z';
 	FPGA_RW		<= 'Z';
 	-- Test connector (JP19)
-	PGM			<= (OTHERS=>'Z');
-		
+--	PGM			<= (OTHERS=>'Z');
+--	PGM(15 downto 0)	<= TCslave(15 downto 0);
+--	PGM(7 downto 0)		<= TCslave(7 downto 0);
+--	PGM(9 downto 8)		<= TCdaq(1 downto 0);
+--	PGM(15 downto 10)	<= TCslave(13 downto 8);
+--	PGM(7 downto 0)			<= TCdaq(7 downto 0); --(OTHERS=>'Z');
+--	PGM(8)					<= CS_ctrl.CS_CPU;
+--	PGM(9)					<= CS_trigger(0);
+--	PGM(10)					<= TCslave(15);
+--	FPGA_D(7 downto 2)		<= TCdaq(5 downto 0);	
+--	FPGA_D(1 downto 0)		<= (OTHERS=>'Z');
+--	FPGA_CE		<= TCdaq(6);
+--	FPGA_DA		<= TCdaq(7);
 	
+
+	--------------------------
+	-- AHB_master / missing 8 samples debugging
+	--------------------------
+	process (CLK80)
+	begin
+		if CLK80'EVENT and CLK80='1' then
+			PGM(0)				<= slavehwrite;
+			PGM(1)				<= slavehreadyi;
+			PGM(3 downto 2)		<= slavehtrans;
+			PGM(5 downto 4)		<= slavehsize;
+			PGM(8 downto 6)		<= slavehburst;
+			PGM(9)				<= slavebuserrint;
+			PGM(11 downto 10)	<= slavehresp;
+			PGM(12)				<= DAQ_status.AHB_status.AHB_ERROR;
+			PGM(14 downto 13)	<= TCslave(9 downto 8);
+			if slavehaddr(10 downto 5) = "000000" then
+				PGM(15) <= '0';
+			else
+				PGM(15) <= '1';
+			END IF;
+			FPGA_D(4 downto 0)	<= slavehaddr(4 downto 0);
+			FPGA_D(7 downto 5)	<= slavehwdata(2 downto 0);
+			FPGA_CE				<= slavehwdata(3);
+			FPGA_DA				<= slavehwdata(5);
+		end if;
+	end process;
+
+
+	--------------------------
+	-- check for long AHB_master wait_tig times
+	--------------------------
+--	process (CLK20, RST)
+--		variable cnt : std_logic_vector (7 downto 0);
+--	begin
+--		if RST='1' THEN
+--			cnt := (others=>'0');
+--		elsif CLK20'event and CLK20='1' then
+--			FPGA_CE		<= '0';
+--			if slavehreadyo='1' then -- everything id fine, we can xfer data
+--				cnt := (others=>'0');
+--			else
+--				if cnt(7)='0' then
+--					cnt := cnt + 1;
+--				else
+--					FPGA_CE		<= '1';
+--					null; -- we reched the timeout
+--				end if;
+--			end if;
+--		end if;
+--	end process;
+	
+	--------------------------
+	-- LC debugging
+	--------------------------
+--	process (CLK20, RST)
+--	begin
+--		if RST='1' THEN
+--			debugging <= (others=>'0');
+--		elsif CLK20'EVENT and CLK20='1' THEN
+--			if lc_daq_trigger(0)='1' OR lc_daq_trigger(1)='1' THEN
+--				debugging <= debugging + 1;
+--			end if;
+--		end if;
+--	end process;
+
+
+	------------------------------
+	-- John J pedestal debugging	
+	------------------------------
+--	process (CLK40,RST)
+--		variable this : std_logic_vector (5 downto 0);
+--		variable old  : std_logic_vector (5 downto 0);
+--		type cnts_type is array (0 to 5) of integer range 0 to 65535;
+--		variable cnts : cnts_type;
+--		variable delaycnt : integer;-
+--	begin
+--		if RST='1' THEN
+--			this := (others=>'0');
+--			old  := (others=>'0');
+--			for i in 0 to 5 loop
+--				cnts(i) := 0;
+--			end loop;
+--			delaycnt := 0;
+--		elsif CLK40'EVENT AND CLK40='1' THEN
+--			old := this;
+--			this(0) := CS_ctrl.CS_CPU;
+--			this(1) := CS_trigger(0);
+--			this(2) := TCdaq(0);
+--			this(3) := '0';
+--			this(4) := TCdaq(6);
+--			this(5) := TCdaq(7);
+--			for i in 0 to 2 loop
+--				if this(i)='1' and old(i)='0' then
+--					cnts(i) := cnts(i) + 1;
+--				end if;
+--			end loop;
+--			if this(0)='1' and old(0)='0' then
+--				if delaycnt <= 7500 then
+--					cnts(3) := cnts(3) + 1;
+--				end if;
+--				delaycnt := 0;
+--			else
+--				delaycnt := delaycnt + 1;
+--			end if;
+--			if this(0)='1' and old(0)='0' and TCdaq(6)='1' then -- busy A
+--				cnts(4) := cnts(4) + 1;
+--			end if;
+--			if this(0)='1' and old(0)='0' and TCdaq(7)='1' then -- busy B
+--				cnts(5) := cnts(5) + 1;
+--			end if;
+			
+--			debugging (15 downto 0)   <= conv_std_logic_vector(cnts(0),16);
+--			debugging (31 downto 16)  <= conv_std_logic_vector(cnts(1),16);
+--			cs_flash_time (15 downto 0) <= conv_std_logic_vector(cnts(2),16);
+--			cs_flash_time (31 downto 16) <= conv_std_logic_vector(cnts(3),16);
+--			DOM_status (15 downto 0) <= conv_std_logic_vector(cnts(4),16);
+--			DOM_status (31 downto 16) <= conv_std_logic_vector(cnts(5),16);
+--		end if;
+--	end process;
+
 END arch_domapp;

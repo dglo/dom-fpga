@@ -1,9 +1,9 @@
 % C:\PROJECTS\ICECUBE\DOR\FPGA\DCOM_01\RX_CHAN\EDGES\HL_DSCR.tdf %
 % AHDL code created by Visual Software Solution's StateCAD 4.11 %
-% Thu Jul 15 08:47:54 2004 %
+% Sat Dec 11 11:47:58 2004 %
 
 % This AHDL code was generated using: %
-%  binary encoded state assignment with structured code format. %
+%  one-hot state assignment with boolean code format. %
 %  Minimization is enabled,  implied else is enabled,  %
 %  and outputs are speed optimized. %
 
@@ -15,14 +15,9 @@ SUBDESIGN HL_DSCR(
 	ct3 :	INPUT;
 	low_hl :	INPUT;
 	low_lev :	INPUT;
-	lrg_hl :	INPUT;
-	lrg_lev :	INPUT;
 	res :	INPUT;
-	uart_done :	INPUT;
 	ct_aclr :	OUTPUT;
 	hl_edge :	OUTPUT;
-	lowsig :	OUTPUT;
-	lrgsig :	OUTPUT;
 	maxen :	OUTPUT;
 	one :	OUTPUT;
 	one_lev :	OUTPUT;
@@ -30,34 +25,19 @@ SUBDESIGN HL_DSCR(
 
 
 VARIABLE
-	sreg : MACHINE OF BITS (SV0, SV1, SV2)
-		WITH STATES (
-			HL_WT =	B"001",
-			CNT1 =	B"000",
-			STB =	B"010",
-			TCAL_EDGE =	B"011",
-			WT1 =	B"100",
-			WT2 =	B"101",
-			WT3 =	B"110"
-		);
-
-	sreg1 : MACHINE OF BITS (SV3, SV4)
-		WITH STATES (
-			UADONE =	B"01",
-			STRONG =	B"00",
-			UAWT =	B"10"
-		);
-
+	CNT1 :	DFF;
 	ct_aclr :	DFF;
 	hl_edge :	DFF;
-	lowsig :	DFF;
-	lrgsig :	DFF;
+	HL_WT :	DFF;
 	maxen :	DFF;
 	one :	DFF;
 	one_lev :	DFF;
+	STB :	DFF;
+	TCAL_EDGE :	DFF;
+	WT1 :	DFF;
+	WT2 :	DFF;
+	WT3 :	DFF;
 
-	cteq2 :	NODE;
-	cteq3 :	NODE;
 	cteq5 :	NODE;
 	cteq8 :	NODE;
 	cteq12 :	NODE;
@@ -65,136 +45,83 @@ VARIABLE
 BEGIN
 
 % Clock setup %
+	CNT1.clk=CLK;
 	ct_aclr.clk=CLK;
 	hl_edge.clk=CLK;
-	lowsig.clk=CLK;
-	lrgsig.clk=CLK;
+	HL_WT.clk=CLK;
 	maxen.clk=CLK;
 	one.clk=CLK;
 	one_lev.clk=CLK;
-	sreg.clk=CLK;
-	sreg1.clk=CLK;
-
-	sreg.reset =  res ;
+	STB.clk=CLK;
+	TCAL_EDGE.clk=CLK;
+	WT1.clk=CLK;
+	WT2.clk=CLK;
+	WT3.clk=CLK;
 
 	IF ( res ) THEN
+		CNT1.clrn=GND;
+		HL_WT.prn=GND;
+		STB.clrn=GND;
+		TCAL_EDGE.clrn=GND;
+		WT1.clrn=GND;
+		WT2.clrn=GND;
+		WT3.clrn=GND;
 		one_lev.clrn=GND;
 		ct_aclr.prn=GND;
 		maxen.prn=GND;
 		hl_edge.clrn=GND;
 		one.clrn=GND;
 	ELSE
+		CNT1.clrn=VCC;
+		HL_WT.prn=VCC;
+		STB.clrn=VCC;
+		TCAL_EDGE.clrn=VCC;
+		WT1.clrn=VCC;
+		WT2.clrn=VCC;
+		WT3.clrn=VCC;
 		one_lev.clrn=VCC;
 		ct_aclr.prn=VCC;
 		maxen.prn=VCC;
 		hl_edge.clrn=VCC;
 		one.clrn=VCC;
 	END IF;
+CNT1 =  !cteq5 & CNT1  #  low_hl & HL_WT ;
 
-	CASE sreg IS
-		WHEN CNT1 =>
-			IF ( !cteq5 & !cteq3  #  !lowsig & !cteq3  #  !cteq5 & !lrgsig  #  !lowsig
-				 & !lrgsig ) THEN 
-				sreg = CNT1;
-				(one_lev,ct_aclr,maxen,hl_edge,one)=(0,0,0,1,0);
-			END IF;
-			IF ( !low_lev & cteq5 & lowsig  #  !lrg_lev & cteq3 & lrgsig ) THEN 
-				sreg = HL_WT;
-				(one_lev,ct_aclr,maxen,hl_edge,one)=(0,1,1,0,0);
-			END IF;
-			IF ( low_lev & cteq5 & lowsig  #  lrg_lev & cteq3 & lrgsig ) THEN 
-				sreg = TCAL_EDGE;
-				(one_lev,ct_aclr,maxen,hl_edge,one)=(1,0,0,0,0);
-			END IF;
-		WHEN HL_WT =>
-			IF ( low_hl & lowsig  #  lrg_hl & lrgsig ) THEN 
-				sreg = CNT1;
-				(one_lev,ct_aclr,maxen,hl_edge,one)=(0,0,0,1,0);
-			ELSE
-				sreg = HL_WT;
-				(one_lev,ct_aclr,maxen,hl_edge,one)=(0,1,1,0,0);
-			END IF;
-		WHEN STB =>
-			sreg = WT2;
-			(one_lev,ct_aclr,maxen,hl_edge,one)=(0,0,0,0,0);
-		WHEN TCAL_EDGE =>
-			sreg = WT1;
-			(one_lev,ct_aclr,maxen,hl_edge,one)=(0,0,0,0,0);
-		WHEN WT1 =>
-			IF ( cteq8 ) THEN 
-				sreg = STB;
-				(one_lev,ct_aclr,maxen,hl_edge,one)=(0,0,0,0,1);
-			ELSE
-				sreg = WT1;
-				(one_lev,ct_aclr,maxen,hl_edge,one)=(0,0,0,0,0);
-			END IF;
-		WHEN WT2 =>
-			IF ( cteq12 ) THEN 
-				sreg = WT3;
-				(one_lev,ct_aclr,maxen,hl_edge,one)=(0,0,1,0,0);
-			ELSE
-				sreg = WT2;
-				(one_lev,ct_aclr,maxen,hl_edge,one)=(0,0,0,0,0);
-			END IF;
-		WHEN WT3 =>
-			IF ( cteq15 ) THEN 
-				sreg = HL_WT;
-				(one_lev,ct_aclr,maxen,hl_edge,one)=(0,1,1,0,0);
-			ELSE
-				sreg = WT3;
-				(one_lev,ct_aclr,maxen,hl_edge,one)=(0,0,1,0,0);
-			END IF;
-	END CASE;
+HL_WT =  !low_lev & cteq5 & CNT1  #  !low_hl & HL_WT  #  cteq15 & WT3 ;
 
-	sreg1.reset =  res ;
+STB =  cteq8 & WT1 ;
 
-	IF ( res ) THEN
-		lrgsig.clrn=GND;
-		lowsig.prn=GND;
-	ELSE
-		lrgsig.clrn=VCC;
-		lowsig.prn=VCC;
-	END IF;
+TCAL_EDGE =  low_lev & cteq5 & CNT1 ;
 
-	CASE sreg1 IS
-		WHEN STRONG =>
-			IF ( uart_done ) THEN 
-				sreg1 = UADONE;
-				lrgsig=GND;
-				lowsig=VCC;
-			ELSE
-				sreg1 = STRONG;
-				lowsig=GND;
-				lrgsig=VCC;
-			END IF;
-		WHEN UADONE =>
-			IF ( cteq2 & lrg_lev & uart_done ) THEN 
-				sreg1 = UAWT;
-				lowsig=GND;
-				lrgsig=VCC;
-			ELSE
-				sreg1 = UADONE;
-				lrgsig=GND;
-				lowsig=VCC;
-			END IF;
-		WHEN UAWT =>
-			IF ( cteq12 ) THEN 
-				sreg1 = STRONG;
-				lowsig=GND;
-				lrgsig=VCC;
-			ELSE
-				sreg1 = UAWT;
-				lowsig=GND;
-				lrgsig=VCC;
-			END IF;
-	END CASE;
+WT1 =  TCAL_EDGE  #  !cteq8 & WT1 ;
 
+WT2 =  STB  #  !cteq12 & WT2 ;
+
+WT3 =  cteq12 & WT2  #  !cteq15 & WT3 ;
+
+
+
+(one_lev,ct_aclr,maxen,hl_edge,one) = (  ( CNT1, CNT1, CNT1, CNT1, CNT1) & ( 
+	! ( cteq5, cteq5, cteq5, cteq5, cteq5) ) & ((0,0,0,1,0) ) ) # (  ( HL_WT, 
+	HL_WT, HL_WT, HL_WT, HL_WT) & (  ( low_hl, low_hl, low_hl, low_hl, low_hl) ) 
+	& ((0,0,0,1,0) ) ) # (  ( CNT1, CNT1, CNT1, CNT1, CNT1) & ( ! ( low_lev, 
+	low_lev, low_lev, low_lev, low_lev)&  ( cteq5, cteq5, cteq5, cteq5, cteq5) ) 
+	& ((0,1,1,0,0) ) ) # (  ( HL_WT, HL_WT, HL_WT, HL_WT, HL_WT) & ( ! ( low_hl, 
+	low_hl, low_hl, low_hl, low_hl) ) & ((0,1,1,0,0) ) ) # (  ( WT3, WT3, WT3, 
+	WT3, WT3) & (  ( cteq15, cteq15, cteq15, cteq15, cteq15) ) & ((0,1,1,0,0) ) )
+	 # (  ( WT1, WT1, WT1, WT1, WT1) & (  ( cteq8, cteq8, cteq8, cteq8, cteq8) ) 
+	& ((0,0,0,0,1) ) ) # (  ( CNT1, CNT1, CNT1, CNT1, CNT1) & (  ( low_lev, 
+	low_lev, low_lev, low_lev, low_lev)&  ( cteq5, cteq5, cteq5, cteq5, cteq5) ) 
+	& ((1,0,0,0,0) ) ) # (  ( TCAL_EDGE, TCAL_EDGE, TCAL_EDGE, TCAL_EDGE, 
+	TCAL_EDGE) & ((1,1,1,1,1) ) & ((0,0,0,0,0) ) ) # (  ( WT1, WT1, WT1, WT1, WT1
+	) & ( ! ( cteq8, cteq8, cteq8, cteq8, cteq8) ) & ((0,0,0,0,0) ) ) # (  ( STB,
+	 STB, STB, STB, STB) & ((1,1,1,1,1) ) & ((0,0,0,0,0) ) ) # (  ( WT2, WT2, WT2
+	, WT2, WT2) & ( ! ( cteq12, cteq12, cteq12, cteq12, cteq12) ) & ((0,0,0,0,0) 
+	) ) # (  ( WT2, WT2, WT2, WT2, WT2) & (  ( cteq12, cteq12, cteq12, cteq12, 
+	cteq12) ) & ((0,0,1,0,0) ) ) # (  ( WT3, WT3, WT3, WT3, WT3) & ( ! ( cteq15, 
+	cteq15, cteq15, cteq15, cteq15) ) & ((0,0,1,0,0) ) );
 
 % Logic Equations %
-cteq2 =  !ct3 & !ct2 & ct1 & !ct0 ;
-
-cteq3 =  !ct3 & !ct2 & ct1 & ct0 ;
-
 cteq5 =  !ct3 & ct2 & !ct1 & ct0 ;
 
 cteq8 =  ct3 & !ct2 & !ct1 & !ct0 ;

@@ -4,7 +4,7 @@
    MODULE: ARM-Based Excalibur
    PROJECT: simpletest
    ============================================================
-   File Name: C:\cygwin\home\thorsten\build\dom-fpga\stf\NoComEPXA4\stripe.h
+   File Name: /work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/stripe.h
    Megafunction Name(s): ARM-Based Excalibur
    ============================================================
 
@@ -19,9 +19,9 @@
 #define EXC_DEFINE_BOOT_FROM_SERIAL
 
 #define	EXC_INPUT_CLK_FREQUENCY (20000000)
-#define	EXC_AHB1_CLK_FREQUENCY (10000000)
-#define	EXC_AHB2_CLK_FREQUENCY (5000000)
-#define	EXC_SDRAM_CLK_FREQUENCY (10000000)
+#define	EXC_AHB1_CLK_FREQUENCY (80000000)
+#define	EXC_AHB2_CLK_FREQUENCY (40000000)
+#define	EXC_SDRAM_CLK_FREQUENCY (80000000)
 
 /* Registers Block */
 #define	EXC_REGISTERS_BASE (0x7fffc000)
@@ -70,8 +70,11 @@
 
 /* Dual Port SRAM Block(s) */
 #define	EXC_DPSRAM_BLOCK0_BASE (0x80000000)
-#define	EXC_DPSRAM_BLOCK0_SIZE (0x00020000)
-#define	EXC_DPSRAM_BLOCK0_WIDTH (8)
+#define	EXC_DPSRAM_BLOCK0_SIZE (0x00008000)
+#define	EXC_DPSRAM_BLOCK0_WIDTH (32)
+#define	EXC_DPSRAM_BLOCK1_BASE (0x80010000)
+#define	EXC_DPSRAM_BLOCK1_SIZE (0x00008000)
+#define	EXC_DPSRAM_BLOCK1_WIDTH (32)
 
 /* PLD Block(s) */
 #define	EXC_PLD_BLOCK0_BASE (0x90000000)

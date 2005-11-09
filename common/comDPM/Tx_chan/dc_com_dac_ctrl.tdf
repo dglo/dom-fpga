@@ -24,6 +24,8 @@ SUBDESIGN dc_com_dac_ctrl
 	
 	dac_d[7..0]		: OUTPUT;	-- dac value,  0..ff
 	dac_lev[7..0]	: OUTPUT;	-- dac max. value, 196..255
+	dac_max[7..0]	: INPUT;	-- comm. DAC max. level
+	dac_max_ld		: INPUT;
 )
 
 VARIABLE

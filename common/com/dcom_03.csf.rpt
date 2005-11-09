@@ -50,7 +50,7 @@ party's intellectual property, are provided herein.
 +-----------------+-------------------+
 |Option           |Setting            |
 +-----------------+-------------------+
-|Start date & time|06/05/2003 09:38:16|
+|Start date & time|06/17/2003 16:40:40|
 |Main task        |Compilation        |
 |Settings name    |dcom_03            |
 +-----------------+-------------------+
@@ -104,10 +104,7 @@ party's intellectual property, are provided herein.
 +-----------------------------------------------------------------------------+
 |Messages                                                                     |
 +-----------------------------------------------------------------------------+
-Info: Found 1 design units and 1 entities in source file c:\projects\icecube\dor\fpga\dcom_01\dcom_03.bdf
-  Info: Found entity 1: dcom_03
-Warning: Function du_dt_2_clks of instance inst not used
-Info: Design dcom_03: BDF to VHDL file generation was successful. 0 errors, 1 warning
+Info: Design dcom_03: Symbol file generation was successful. 0 errors, 0 warnings
 
 +-----------------------------------------------------------------------------+
 |Processing Time                                                              |

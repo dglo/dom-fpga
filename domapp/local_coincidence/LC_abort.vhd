@@ -38,8 +38,8 @@ ARCHITECTURE arch_LC_abort OF LC_abort IS
     SIGNAL got_pre_lc_up    : STD_LOGIC;
     SIGNAL got_pre_lc_down  : STD_LOGIC;
 
-    SIGNAL abort_test  : STD_LOGIC;
-    SIGNAL abort_clear : STD_LOGIC;
+    SIGNAL abort_test  : STD_LOGIC;	-- for testing
+    SIGNAL abort_clear : STD_LOGIC;	-- for testing
     
 BEGIN  -- arch_LC_abort
 
@@ -134,14 +134,15 @@ BEGIN  -- arch_LC_abort
                     got_pre_lc_down  <= '0';
                 END IF;
                 abort_test <= '1';
-            ELSIF launch = '0' AND launch_old = '1' THEN
-                abort            <= '0';
-                got_post_lc_up   <= '0';
-                got_post_lc_down <= '0';
-                got_pre_lc_up    <= '0';
-                got_pre_lc_down  <= '0';
-                abort_clear      <= '1';
+      --      ELSIF launch = '0' AND launch_old = '1' THEN
+      --          abort            <= '0';
+      --          got_post_lc_up   <= '0';
+      --          got_post_lc_down <= '0';
+      --          got_pre_lc_up    <= '0';
+      --          got_pre_lc_down  <= '0';
+      --          abort_clear      <= '1';
             ELSE
+				abort       <= '0';
                 abort_test  <= '0';
                 abort_clear <= '0';
             END IF;

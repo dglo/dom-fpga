@@ -26,6 +26,8 @@ LIBRARY IEEE;
 USE IEEE.std_logic_1164.all;
 
 USE WORK.icecube_data_types.all;
+USE WORK.ctrl_data_types.all;
+USE WORK.monitor_data_type.all;
 
 
 ENTITY daq IS
@@ -47,6 +49,7 @@ ENTITY daq IS
 		DAQ_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		LBM_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		COMPR_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
+		COMPR_ctrl		: IN COMPR_STRUCT;
 		-- monitor signals
 		-- Lookback Memory Pointer
 		LBM_ptr			: OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
@@ -58,8 +61,10 @@ ENTITY daq IS
 		discMPEpulse	: OUT STD_LOGIC;
 		-- interface to local coincidence
 		LC_trigger		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
-		LC_abort		: IN STD_LOGIC;
+		LC_abort		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
  		LC				: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
+		LC_launch		: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
+		LC_disc			: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
 		-- discriminator
 		MultiSPE		: IN STD_LOGIC;
 		OneSPE			: IN STD_LOGIC;
@@ -119,6 +124,8 @@ ENTITY daq IS
 		slavebuserrint	: IN	STD_LOGIC;
 		slavehresp		: IN	STD_LOGIC_VECTOR(1 downto 0);
 		slavehrdata		: IN	STD_LOGIC_VECTOR(31 downto 0);
+		-- monitoring
+		DAQ_status		: OUT	DAQ_STATUS_STRUCT;
 		-- test connector
 		TC				: OUT STD_LOGIC_VECTOR (7 downto 0)
 	);
@@ -186,6 +193,7 @@ ARCHITECTURE daq_arch OF daq IS
 			FADC_WIDTH		: INTEGER := 10
 			);
 		port (
+			CLK20		: IN STD_LOGIC;
 			CLK40		: IN STD_LOGIC;
 			CLK80		: IN STD_LOGIC;
 			RST			: IN STD_LOGIC;
@@ -197,6 +205,7 @@ ARCHITECTURE daq_arch OF daq IS
 			LC_mode			: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			DAQ_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			ATWD_AB			: IN STD_LOGIC;	-- indicates if ping or pong
+			COMPR_ctrl		: IN COMPR_STRUCT;
 			-- trigger
 			rst_trig		: OUT STD_LOGIC;
 			trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
@@ -235,6 +244,8 @@ ARCHITECTURE daq_arch OF daq IS
 			ATWD_data		: OUT STD_LOGIC_VECTOR (31 downto 0);
 			FADC_addr		: IN STD_LOGIC_VECTOR (6 downto 0);
 			FADC_data		: OUT STD_LOGIC_VECTOR (31 downto 0);
+			-- monitoring
+			PP_status	: OUT PP_STRUCT;
 			-- test connector
 			TC			: OUT STD_LOGIC_VECTOR(7 downto 0)
 		);
@@ -281,8 +292,12 @@ ARCHITECTURE daq_arch OF daq IS
 			ahb_address		: IN	STD_LOGIC_VECTOR(31 downto 0);
 			wdata			: OUT	STD_LOGIC_VECTOR(31 downto 0);
 			wait_sig		: IN	STD_LOGIC;
+			ready			: IN	STD_LOGIC;
 			trans_length	: OUT	INTEGER;
 			bus_error		: IN	STD_LOGIC;
+			-- monitoring
+			xfer_eng		: OUT	STD_LOGIC;
+			xfer_compr		: OUT	STD_LOGIC;
 			-- test connector
 			TC				: OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
 		);
@@ -315,6 +330,7 @@ ARCHITECTURE daq_arch OF daq IS
 			ahb_address		: OUT	STD_LOGIC_VECTOR(31 downto 0);
 			wdata			: IN	STD_LOGIC_VECTOR(31 downto 0);
 			wait_sig		: OUT	STD_LOGIC;
+			ready			: OUT	STD_LOGIC;
 			trans_length	: IN	INTEGER;
 			bus_error		: OUT	STD_LOGIC
 		);
@@ -372,10 +388,42 @@ ARCHITECTURE daq_arch OF daq IS
 	SIGNAL ahb_address		: STD_LOGIC_VECTOR(31 downto 0);
 	SIGNAL wdata			: STD_LOGIC_VECTOR(31 downto 0);
 	SIGNAL wait_sig			: STD_LOGIC;
+	SIGNAL ready			: STD_LOGIC;
 	SIGNAL trans_length		: INTEGER;
 	SIGNAL bus_error		: STD_LOGIC;
+	
+	-- for rate meters and local coincidence
+	SIGNAL discSPEpulse_local	: STD_LOGIC;
+	SIGNAL discMPEpulse_local	: STD_LOGIC;
+	
+	-- monitoring
+	SIGNAL xfer_eng		: STD_LOGIC;
+	SIGNAL xfer_compr	: STD_LOGIC;
+	
+	-- monitoring
+	SIGNAL PING_status	: PP_STRUCT;
+	SIGNAL PONG_status	: PP_STRUCT;
+	
+	--debugging
+	SIGNAL TCping	: STD_LOGIC_VECTOR (7 DOWNTO 0);
+	SIGNAL TCpong	: STD_LOGIC_VECTOR (7 DOWNTO 0);
 
 BEGIN
+	
+	-- debugging ------
+--	TC(1 DOWNTO 0)	<= TCping(1 DOWNTO 0);
+--	TC(2)			<= busy_A;
+--	TC(3)			<= enable_AB(0);
+--	TC(5 DOWNTO 4)	<= TCping(1 DOWNTO 0);
+--	TC(6)			<= busy_B;
+--	TC(7)			<= enable_AB(1);
+	
+	
+
+	discSPEpulse	<= discSPEpulse_local;
+	discMPEpulse	<= discMPEpulse_local;
+	LC_disc		<= discMPEpulse_local & discSPEpulse_local;
+	LC_launch	<= busy_B & busy_A;
 
 	inst_trigger : trigger
 		PORT MAP (
@@ -406,8 +454,8 @@ BEGIN
 			-- trigger outputs
 			ATWDTrigger_A	=> ATWDTrigger_0,
 			ATWDTrigger_B	=> ATWDTrigger_1,
-			discSPEpulse	=> discSPEpulse,
-			discMPEpulse	=> discMPEpulse,
+			discSPEpulse	=> discSPEpulse_local,
+			discMPEpulse	=> discMPEpulse_local,
 			-- test connector
 			TC				=> open
 		);
@@ -435,6 +483,7 @@ BEGIN
 			FADC_WIDTH		=> FADC_WIDTH
 			)
 		port MAP (
+			CLK20		=> CLK20,
 			CLK40		=> CLK40,
 			CLK80		=> CLK80,
 			RST			=> RST,
@@ -446,11 +495,12 @@ BEGIN
 			LC_mode			=> LC_mode,
 			DAQ_mode		=> DAQ_mode,
 			ATWD_AB			=> ATWD_A,
+			COMPR_ctrl		=> COMPR_ctrl,
 			-- trigger
 			rst_trig		=> rst_trig_A,
 			trigger_word	=> trigger_word,
 			-- local coincidence
-			LC_abort		=> LC_abort,
+			LC_abort		=> LC_abort(0),
 			LC				=> LC,
 			-- ATWD
 			ATWDTrigger		=> ATWDTrigger_sig_A,
@@ -484,8 +534,10 @@ BEGIN
 			ATWD_data		=> ATWD_data_A,
 			FADC_addr		=> FADC_addr_A,
 			FADC_data		=> FADC_data_A,
+			-- monitoring
+			PP_status	=> PING_status,
 			-- test connector
-			TC			=> open
+			TC			=> TCping --open
 		);
 	
 	pong : pingpong		-- B
@@ -493,6 +545,7 @@ BEGIN
 			FADC_WIDTH		=> FADC_WIDTH
 			)
 		port MAP (
+			CLK20		=> CLK20,
 			CLK40		=> CLK40,
 			CLK80		=> CLK80,
 			RST			=> RST,
@@ -504,11 +557,12 @@ BEGIN
 			LC_mode			=> LC_mode,
 			DAQ_mode		=> DAQ_mode,
 			ATWD_AB			=> ATWD_B,
+			COMPR_ctrl		=> COMPR_ctrl,
 			-- trigger
 			rst_trig		=> rst_trig_B,
 			trigger_word	=> trigger_word,
 			-- local coincidence
-			LC_abort		=> LC_abort,
+			LC_abort		=> LC_abort(1),
 			LC				=> LC,
 			-- ATWD
 			ATWDTrigger		=> ATWDTrigger_sig_B,
@@ -542,8 +596,10 @@ BEGIN
 			ATWD_data		=> ATWD_data_B,
 			FADC_addr		=> FADC_addr_B,
 			FADC_data		=> FADC_data_B,
+			-- monitoring
+			PP_status	=> PONG_status,
 			-- test connector
-			TC			=> open
+			TC			=> TCpong --open
 		);
 		
 	inst_mem_interface : mem_interface
@@ -587,13 +643,19 @@ BEGIN
 			ahb_address		=> ahb_address,
 			wdata			=> wdata,
 			wait_sig		=> wait_sig,
+			ready			=> ready,
 			trans_length	=> trans_length,
 			bus_error		=> bus_error,
+			-- monitoring
+			xfer_eng		=> xfer_eng,
+			xfer_compr		=> xfer_compr,
 			-- test connector
-			TC				=> open
+			TC			=> open
 		);
+	--TC(7 downto 6) <= busy_B & busy_A;
+		
 	
-	CLK20n	<= CLK20;
+	CLK20n	<= NOT CLK20;
 	inst_ahb_master : ahb_master
 		PORT MAP (
 			CLK			=> CLK20n,
@@ -621,8 +683,21 @@ BEGIN
 			ahb_address		=> ahb_address,
 			wdata			=> wdata,
 			wait_sig		=> wait_sig,
+			ready			=> ready,
 			trans_length	=> trans_length,
 			bus_error		=> bus_error
 		);
+		
+	--monitoring
+	DAQ_status.AHB_status.AHB_ERROR			<= bus_error;
+	DAQ_status.AHB_status.slavebuserrint	<= slavebuserrint;
+	DAQ_status.AHB_status.xfer_eng			<= xfer_eng;
+	DAQ_status.AHB_status.xfer_compr		<= xfer_compr;
+	DAQ_status.PING_status					<= PING_status;
+	DAQ_status.PONG_status					<= PONG_status;
+		
+	-- gebugging
+	TC(0)	<= bus_error;
+	TC(1)	<= slavebuserrint;
 
 END daq_arch;

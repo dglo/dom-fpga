@@ -56,6 +56,7 @@ ENTITY ahb_master IS
 		ahb_address		: OUT	STD_LOGIC_VECTOR(31 downto 0);
 		wdata			: IN	STD_LOGIC_VECTOR(31 downto 0);
 		wait_sig		: OUT	STD_LOGIC;
+		ready			: OUT	STD_LOGIC;
 		trans_length	: IN	INTEGER;
 		bus_error		: OUT	STD_LOGIC
 	);
@@ -86,7 +87,7 @@ ARCHITECTURE ahb_ahb_master OF ahb_master IS
 	SIGNAL master_state: STATE_TYPE;
 
 	SIGNAL hready		: STD_LOGIC;
-	SIGNAL haddr		: STD_LOGIC_VECTOR(31 downto 0);
+	-- SIGNAL haddr		: STD_LOGIC_VECTOR(31 downto 0);
 	SIGNAL beat_count	: INTEGER;
 	SIGNAL start_trans_reg	: STD_LOGIC;
 BEGIN
@@ -97,19 +98,20 @@ BEGIN
 	hready			<= slavehreadyo;
 	slavehreadyi	<= hready;
 
-	slavehaddr	<= haddr;
-	ahb_address	<= haddr;
+	-- slavehaddr	<= haddr;
+	-- ahb_address	<= haddr;
 
 	wait_sig	<= NOT hready;
 	
 	slavehclk	<= CLK;
 
 	PROCESS(CLK,RST)
+		VARIABLE haddr		: STD_LOGIC_VECTOR(31 downto 0);
 	BEGIN
 		IF RST='1' THEN
 			master_state	<= address_phase;
 			slavehtrans		<= IDLE;
-			haddr			<= (others=>'0');
+			haddr			:= (others=>'0');
 			slavehwrite		<= AHB_READ;
 			slavehsize		<= AHB_WORD;
 			slavehburst		<= SINGLE;
@@ -122,7 +124,7 @@ BEGIN
 					IF start_trans_reg='1' AND hready='1' THEN
 						master_state	<= burst_phase;
 						slavehtrans		<= NONSEQ;
-						haddr			<= haddr;
+						haddr			:= haddr;
 						slavehwrite		<= AHB_WRITE;
 						slavehsize		<= AHB_WORD;
 						slavehburst		<= INCR;
@@ -132,7 +134,7 @@ BEGIN
 					ELSIF start_trans_reg='1' THEN
 						master_state	<= address_phase;
 						slavehtrans		<= NONSEQ;
-						haddr			<= address;
+						haddr			:= address;
 						slavehwrite		<= AHB_WRITE;
 						slavehsize		<= AHB_WORD;
 						slavehburst		<= INCR;
@@ -142,7 +144,7 @@ BEGIN
 					ELSE
 						master_state	<= address_phase;
 						slavehtrans		<= IDLE;
-						haddr			<= address;
+						haddr			:= address;
 						slavehwrite		<= AHB_READ;
 						slavehsize		<= AHB_WORD;
 						slavehburst		<= SINGLE;
@@ -154,7 +156,7 @@ BEGIN
 					IF slavehresp=ERROR_AHB THEN
 						master_state	<= error_phase;
 						slavehtrans		<= IDLE;
-						haddr			<= address;
+						haddr			:= address;
 						slavehwrite		<= AHB_READ;
 						slavehsize		<= AHB_WORD;
 						slavehburst		<= SINGLE;
@@ -168,16 +170,17 @@ BEGIN
 						ELSE
 							slavehtrans		<= SEQ;
 						END IF;
-						haddr			<= haddr;
+						haddr			:= haddr;
 						slavehwrite		<= AHB_WRITE;
 						slavehsize		<= AHB_WORD;
 						slavehburst		<= INCR;
-						slavehwdata		<= wdata;
+						-- test to get data transfer right
+						--slavehwdata		<= wdata;
 						bus_error		<= '0';
 --						wait_sig		<= '1';
 					ELSIF abort_trans='0' THEN	-- beat_count < trans_length OR abort_trans='1' THEN
 						master_state	<= burst_phase;
-						haddr			<= haddr + 4;
+						haddr			:= haddr + 4;
 						IF haddr(9 DOWNTO 2) = "0000000000" THEN	-- the AHB bus has a 1kbyte boundary limit for transfers
 							slavehtrans		<= NONSEQ;
 						ELSE
@@ -192,7 +195,7 @@ BEGIN
 					ELSE
 						master_state	<= address_phase;
 						slavehtrans		<= IDLE;
-						haddr			<= haddr;
+						haddr			:= haddr;
 						slavehwrite		<= AHB_READ;
 						slavehsize		<= AHB_WORD;
 						slavehburst		<= SINGLE;
@@ -204,7 +207,7 @@ BEGIN
 					IF hready='1' THEN
 						master_state	<= address_phase;
 						slavehtrans		<= IDLE;
-						haddr			<= haddr;
+						haddr			:= haddr;
 						slavehwrite		<= AHB_READ;
 						slavehsize		<= AHB_WORD;
 						slavehburst		<= SINGLE;
@@ -214,7 +217,7 @@ BEGIN
 					ELSE
 						master_state	<= error_phase;
 						slavehtrans		<= IDLE;
-						haddr			<= haddr;
+						haddr			:= haddr;
 						slavehwrite		<= AHB_READ;
 						slavehsize		<= AHB_WORD;
 						slavehburst		<= SINGLE;
@@ -225,8 +228,13 @@ BEGIN
 				WHEN OTHERS =>
 					NULL;
 			END CASE;
+			
+			slavehaddr	<= haddr;
+			ahb_address	<= haddr;
 		END IF;
 	END PROCESS;
+	
+	ready	<= '1' WHEN master_state=address_phase ELSE '0';
 	
 	PROCESS(CLK,RST)
 	BEGIN

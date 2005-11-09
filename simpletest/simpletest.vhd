@@ -50,12 +50,13 @@ ENTITY simpletest IS
 		CLK2p			: IN STD_LOGIC;
 		CLK3p			: IN STD_LOGIC;
 		CLK4p			: IN STD_LOGIC;
+		CLKLK_OUT2p		: OUT STD_LOGIC;	-- 40MHz outpout for FADC
 		-- Communications DAC
-		COM_DAC_CLK		: OUT STD_LOGIC;
+		-- COM_DAC_CLK		: OUT STD_LOGIC;
 		COM_TX_SLEEP	: OUT STD_LOGIC;
 		COM_DB			: OUT STD_LOGIC_VECTOR (13 downto 6);
 		-- Communications ADC
-		COM_AD_CLK		: OUT STD_LOGIC;
+		-- COM_AD_CLK		: OUT STD_LOGIC;
 		COM_AD_D		: IN STD_LOGIC_VECTOR (9 downto 0);
 		COM_AD_OTR		: IN STD_LOGIC;
 		-- Communications RS485
@@ -65,7 +66,7 @@ ENTITY simpletest IS
 		HDV_IN			: OUT STD_LOGIC;
 		-- FLASH ADC
 		FLASH_AD_D		: IN STD_LOGIC_VECTOR (9 downto 0);
-		FLASH_AD_CLK	: OUT STD_LOGIC;
+		-- FLASH_AD_CLK	: OUT STD_LOGIC;
 		FLASH_AD_STBY	: OUT STD_LOGIC;
 		FLASH_NCO		: IN STD_LOGIC;
 		-- ATWD 0
@@ -125,7 +126,17 @@ ENTITY simpletest IS
 		COINC_UP_BLATCH		: OUT STD_LOGIC;
 		COINC_UP_BBAR		: IN STD_LOGIC;
 		COINC_UP_B			: IN STD_LOGIC;
-		
+		-- flasher board
+		FL_Trigger			: OUT STD_LOGIC;
+		FL_Trigger_bar		: OUT STD_LOGIC;
+		FL_ATTN				: IN STD_LOGIC;
+		FL_PRE_TRIG			: OUT STD_LOGIC;
+		FL_TMS				: OUT STD_LOGIC;
+		FL_TCK				: OUT STD_LOGIC;
+		FL_TDI				: OUT STD_LOGIC;
+		FL_TDO				: IN STD_LOGIC;
+		-- A_nB switch
+		A_nB				: IN STD_LOGIC;
 		-- Test connector	THERE IS NO 11   I don't know why
 		PGM				: OUT STD_LOGIC_VECTOR (15 downto 0)
 	);
@@ -142,6 +153,8 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL CLK40	: STD_LOGIC;
 	SIGNAL CLK80	: STD_LOGIC;
 	SIGNAL RST		: STD_LOGIC;
+	
+	SIGNAL B_nA		: STD_LOGIC;
 	
 	SIGNAL TC		: STD_LOGIC_VECTOR (7 downto 0);
 	
@@ -210,6 +223,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL command_2	: STD_LOGIC_VECTOR(31 downto 0);
 	SIGNAL response_2	: STD_LOGIC_VECTOR(31 downto 0);
 	SIGNAL command_3	: STD_LOGIC_VECTOR(31 downto 0);
+	SIGNAL response_3	: STD_LOGIC_VECTOR(31 downto 0);
 	
 	-- com DAC test
 	SIGNAL enable			: STD_LOGIC;
@@ -299,6 +313,34 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	-- R2R ladder at analog frontend
 	SIGNAL enable_fe_r2r	: STD_LOGIC;
 	
+	-- flasher board
+	SIGNAL fl_board			: STD_LOGIC_VECTOR (7 downto 0);
+	SIGNAL fl_board_read	: STD_LOGIC_VECTOR (1 downto 0);
+	
+	-- kale communication
+	SIGNAL com_tx_data		: STD_LOGIC_VECTOR (31 downto 0);
+	SIGNAL com_rx_data		: STD_LOGIC_VECTOR (31 downto 0);
+	SIGNAL com_tx_fifo		: STD_LOGIC_VECTOR (7 downto 0);
+	SIGNAL com_rx_fifo		: STD_LOGIC_VECTOR (7 downto 0);
+	SIGNAL com_ctrl			: STD_LOGIC_VECTOR (31 downto 0);
+	SIGNAL com_status		: STD_LOGIC_VECTOR (31 downto 0);
+	
+	SIGNAL tx_fifo_wr		: STD_LOGIC;
+	SIGNAL rx_fifo_rd		: STD_LOGIC;
+	SIGNAL msg_rd			: STD_LOGIC;
+	SIGNAL fifo_msg			: STD_LOGIC;
+	SIGNAL rxrdef			: STD_LOGIC;
+	SIGNAL txwraef			: STD_LOGIC;
+	SIGNAL txwraff			: STD_LOGIC;
+	SIGNAL msg_ct_q			: STD_LOGIC_VECTOR (7 downto 0);
+	SIGNAL txrdef			: STD_LOGIC;
+	SIGNAL rxwrff			: STD_LOGIC;
+	SIGNAL rxwraff			: STD_LOGIC;
+	SIGNAL dec_thr			: STD_LOGIC_VECTOR (9 downto 0);
+	SIGNAL temp_data		: STD_LOGIC_VECTOR (7 downto 0);
+	SIGNAL RST_kalle		: STD_LOGIC;
+	SIGNAL ctrl_err			: STD_LOGIC;
+	SIGNAL ctrl_err_cnt		: STD_LOGIC_VECTOR (7 downto 0);
 	
 	COMPONENT ROC
 		PORT (
@@ -476,6 +518,11 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			command_2		: OUT	STD_LOGIC_VECTOR(31 downto 0);
 			response_2		: IN	STD_LOGIC_VECTOR(31 downto 0);
 			command_3		: OUT	STD_LOGIC_VECTOR(31 downto 0);
+			response_3		: IN	STD_LOGIC_VECTOR(31 downto 0);
+			com_ctrl		: OUT	STD_LOGIC_VECTOR(31 downto 0);
+			com_status		: IN	STD_LOGIC_VECTOR(31 downto 0);
+			com_tx_data		: OUT	STD_LOGIC_VECTOR(31 downto 0);
+			com_rx_data		: IN	STD_LOGIC_VECTOR(31 downto 0);
 			hitcounter_o	: IN	STD_LOGIC_VECTOR(31 downto 0);
 			hitcounter_m	: IN	STD_LOGIC_VECTOR(31 downto 0);
 			hitcounter_o_ff	: IN	STD_LOGIC_VECTOR(31 downto 0);
@@ -500,27 +547,30 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			atwd1_rdata			: IN STD_LOGIC_VECTOR (15 downto 0);
 			atwd1_address		: OUT STD_LOGIC_VECTOR (8 downto 0);
 			atwd1_write_en		: OUT STD_LOGIC;
+			-- kale communication interface
+			tx_fifo_wr			: OUT STD_LOGIC;
+			rx_fifo_rd			: OUT STD_LOGIC;
 			-- test connector
 			TC				: OUT	STD_LOGIC_VECTOR(7 downto 0)
 		);
 	END COMPONENT;
 
-	COMPONENT com_DAC_TX
-		PORT (
-			CLK			: IN STD_LOGIC;
-			CLK2x		: IN STD_LOGIC;
-			RST			: IN STD_LOGIC;
-			-- enable for TX
-			enable		: IN STD_LOGIC;
-			enable_square	: IN STD_LOGIC;
-			-- communications DAC connections
-			COM_DAC_CLK		: OUT STD_LOGIC;
-			COM_TX_SLEEP	: OUT STD_LOGIC;
-			COM_DB			: OUT STD_LOGIC_VECTOR (13 downto 6);
-			-- test connector
-			TC				: OUT	STD_LOGIC_VECTOR(7 downto 0)
-		);
-	END COMPONENT;
+--	COMPONENT com_DAC_TX
+--		PORT (
+--			CLK			: IN STD_LOGIC;
+--			CLK2x		: IN STD_LOGIC;
+--			RST			: IN STD_LOGIC;
+--			-- enable for TX
+--			enable		: IN STD_LOGIC;
+--			enable_square	: IN STD_LOGIC;
+--			-- communications DAC connections
+--			COM_DAC_CLK		: OUT STD_LOGIC;
+--			COM_TX_SLEEP	: OUT STD_LOGIC;
+--			COM_DB			: OUT STD_LOGIC_VECTOR (13 downto 6);
+--			-- test connector
+--			TC				: OUT	STD_LOGIC_VECTOR(7 downto 0)
+--		);
+--	END COMPONENT;
 	
 	COMPONENT rs486
 		PORT (
@@ -542,27 +592,27 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 		);
 	END COMPONENT;
 	
-	COMPONENT com_ADC_RC
-		PORT (
-			CLK			: IN STD_LOGIC;
-			CLK2x		: IN STD_LOGIC;
-			RST			: IN STD_LOGIC;
-			-- stripe interface
-			wdata		: IN STD_LOGIC_VECTOR (15 downto 0);
-			rdata		: OUT STD_LOGIC_VECTOR (15 downto 0);
-			address		: IN STD_LOGIC_VECTOR (8 downto 0);
-			write_en	: IN STD_LOGIC;
-			-- enable for RX
-			enable		: IN STD_LOGIC;
-			done		: OUT STD_LOGIC;
-			-- communications ADC connections
-			COM_AD_CLK	: OUT STD_LOGIC;
-			COM_AD_D	: IN STD_LOGIC_VECTOR (9 downto 0);
-			COM_AD_OTR	: IN STD_LOGIC;
-			-- test connector
-			TC			: OUT	STD_LOGIC_VECTOR(7 downto 0)
-		);
-	END COMPONENT;
+--	COMPONENT com_ADC_RC
+--		PORT (
+--			CLK			: IN STD_LOGIC;
+--			CLK2x		: IN STD_LOGIC;
+--			RST			: IN STD_LOGIC;
+--			-- stripe interface
+--			wdata		: IN STD_LOGIC_VECTOR (15 downto 0);
+--			rdata		: OUT STD_LOGIC_VECTOR (15 downto 0);
+--			address		: IN STD_LOGIC_VECTOR (8 downto 0);
+--			write_en	: IN STD_LOGIC;
+--			-- enable for RX
+--			enable		: IN STD_LOGIC;
+--			done		: OUT STD_LOGIC;
+--			-- communications ADC connections
+--			COM_AD_CLK	: OUT STD_LOGIC;
+--			COM_AD_D	: IN STD_LOGIC_VECTOR (9 downto 0);
+--			COM_AD_OTR	: IN STD_LOGIC;
+--			-- test connector
+--			TC			: OUT	STD_LOGIC_VECTOR(7 downto 0)
+--		);
+--	END COMPONENT;
 	
 	COMPONENT flash_ADC
 		PORT (
@@ -761,6 +811,83 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			TC			: OUT	STD_LOGIC_VECTOR(7 downto 0)
 		);
 	END COMPONENT;
+	
+	COMPONENT flasher_board
+		PORT (
+			-- control input
+			fl_board			: IN STD_LOGIC_VECTOR(7 downto 0);
+			fl_board_read		: OUT STD_LOGIC_VECTOR(1 downto 0);
+			-- flasher board
+			FL_Trigger			: OUT STD_LOGIC;
+			FL_Trigger_bar		: OUT STD_LOGIC;
+			FL_ATTN				: IN STD_LOGIC;
+			FL_PRE_TRIG			: OUT STD_LOGIC;
+			FL_TMS				: OUT STD_LOGIC;
+			FL_TCK				: OUT STD_LOGIC;
+			FL_TDI				: OUT STD_LOGIC;
+			FL_TDO				: IN STD_LOGIC;
+			-- Test connector
+			TC					: OUT STD_LOGIC_VECTOR (7 downto 0)
+		);
+	END COMPONENT;
+
+	COMPONENT dcom_01 
+		port (
+			BCLK :  IN  STD_LOGIC;
+			CCLK :  IN  STD_LOGIC;
+			mono_clk_en :  IN  STD_LOGIC;
+			rs4_out :  IN  STD_LOGIC;
+			msg_rd :  IN  STD_LOGIC;
+			dom_A_sel_L :  IN  STD_LOGIC;
+			dom_B_sel_L :  IN  STD_LOGIC;
+			reset :  IN  STD_LOGIC;
+			tx_wrreq :  IN  STD_LOGIC;
+			line_quiet :  IN  STD_LOGIC;
+			pulse_rcvd :  IN  STD_LOGIC;
+			pulse_sent :  IN  STD_LOGIC;
+			rx_rdreq :  IN  STD_LOGIC;
+			dec_thr : IN STD_LOGIC_VECTOR(9 downto 0);
+			fc_adc :  IN  STD_LOGIC_VECTOR(9 downto 0);
+			tx_fd :  IN  STD_LOGIC_VECTOR(7 downto 0);
+			txd :  OUT  STD_LOGIC;
+			last_byte :  OUT  STD_LOGIC;
+			dac_clk :  OUT  STD_LOGIC;
+			dac_slp :  OUT  STD_LOGIC;
+			rs4_in :  OUT  STD_LOGIC;
+			rs4_den :  OUT  STD_LOGIC;
+			ntx_led :  OUT  STD_LOGIC;
+			msg_sent :  OUT  STD_LOGIC;
+			txwref :  OUT  STD_LOGIC;
+			txwraef :  OUT  STD_LOGIC;
+			txwrff :  OUT  STD_LOGIC;
+			txrdef :  OUT  STD_LOGIC;
+			txwraff :  OUT  STD_LOGIC;
+			ctrl_sent :  OUT  STD_LOGIC;
+			rs4_ren :  OUT  STD_LOGIC;
+			nrx_led :  OUT  STD_LOGIC;
+			adc_clk :  OUT  STD_LOGIC;
+			data_stb :  OUT  STD_LOGIC;
+			ctrl_stb :  OUT  STD_LOGIC;
+			ctrl_err :  OUT  STD_LOGIC;
+			rxwrff :  OUT  STD_LOGIC;
+			rxwraff :  OUT  STD_LOGIC;
+			rxrdef :  OUT  STD_LOGIC;
+			stf_rcvd :  OUT  STD_LOGIC;
+			eof_rcvd :  OUT  STD_LOGIC;
+			bfstat_rcvd :  OUT  STD_LOGIC;
+			drreq_rcvd :  OUT  STD_LOGIC;
+			sysres_rcvd :  OUT  STD_LOGIC;
+			comres_rcvd :  OUT  STD_LOGIC;
+			msg_rcvd :  OUT  STD_LOGIC;
+			msg_err :  OUT  STD_LOGIC;
+			fifo_msg :  OUT  STD_LOGIC;
+			nerr_led :  OUT  STD_LOGIC;
+			dac_db :  OUT  STD_LOGIC_VECTOR(7 downto 0);
+			data :  OUT  STD_LOGIC_VECTOR(7 downto 0);
+			msg_ct_q :  OUT  STD_LOGIC_VECTOR(7 downto 0);
+			rx_fq :  OUT  STD_LOGIC_VECTOR(7 downto 0)
+		);
+	END COMPONENT;
 
 
 	
@@ -823,42 +950,77 @@ BEGIN
 	gpi(3 downto 0)		<= (others=>'0');
 	-- gpo		<= ;
 	
-	-- com DAC test
-	enable <= command_0(0);
-	enable_square	<= command_0(1);
-	-- com ADC test
-	com_adc_enable	<= command_0(8);
-	response_0(8)	<= com_adc_done;
+	-- ATWD0
+	atwd0_enable	<= command_0(0);
+	atwd0_enable_disc	<= command_0(1);
+	response_0(0)	<= atwd0_done;
+	-- ATWD1
+	atwd1_enable	<= command_0(8);
+	atwd1_enable_disc	<= command_0(9);
+	response_0(8)	<= atwd1_done;
 	-- flash ADC test
 	flash_adc_enable		<= command_0(16);
 	flash_adc_enable_disc	<= command_0(17);
 	response_0(16)	<= flash_adc_done;
 	-- frontend pulser
 	fe_pulser_enable	<= command_0(24);
-	fe_divider			<= command_3(19 downto 16);
+	fe_divider			<= command_1(19 downto 16);
 	-- single LED
-	single_led_enable	<= command_0(28);
+	single_led_enable	<= command_0(26);
+	-- R2R ladder
+	enable_r2r		<= command_0(28);	
+	enable_fe_r2r	<= command_0(30);
 	
-	response_0(31 downto 17)	<= (others=>'0');
-	response_0(15 downto 9)	<= (others=>'0');
-	response_0(7 downto 0)	<= (others=>'0');
 	
-	response_1(31 downto 25)	<= (others=>'0');
-	response_1(23 downto 17)	<= (others=>'0');
-	response_1(7 downto 0)		<= (others=>'0');
-	
-	response_2(31 downto 10)		<= (others=>'0');
-	response_2(7 downto 1)		<= (others=>'0');
+	-- com DAC test
+--	enable <= command_1(0);
+--	enable_square	<= command_1(1);
+	-- com ADC test
+--	com_adc_enable	<= command_1(4);
+--	response_1(4)	<= com_adc_done;
+	-- RS485
+--	rs486_ena		<= command_1(10 downto 9);
+--	rs486_tx		<= command_1(8);
+--	response_1(8)	<= rs486_rx;
+--	enable_rs485	<= command_1(11);
 	
 	-- local coincidence
-	enable_coinc_up		<= command_1(0);
-	enable_coinc_down	<= command_1(1);
-	coinc_down_high		<= command_1(8);
-	coinc_down_low		<= command_1(9);
-	coinc_up_high		<= command_1(10);
-	coinc_up_low		<= command_1(11);
-	coinc_latch			<= command_1(15 downto 12);
-	response_1(15 downto 8)	<= coinc_disc;
+	enable_coinc_up		<= command_2(0);
+	enable_coinc_down	<= command_2(1);
+	coinc_down_high		<= command_2(8);
+	coinc_down_low		<= command_2(9);
+	coinc_up_high		<= command_2(10);
+	coinc_up_low		<= command_2(11);
+	coinc_latch			<= command_2(15 downto 12);
+	response_2(15 downto 8)	<= coinc_disc;
+	-- flasher board
+	fl_board		<= command_2(31 downto 24);
+	response_2(24)	<= fl_board_read(0);
+	response_2(28)	<= fl_board_read(1);
+	
+	
+	response_0(31 downto 17)	<= (others=>'0');
+	response_0(15 downto 9)		<= (others=>'0');
+	response_0(7 downto 1)		<= (others=>'0');
+	
+	response_1(31 downto 9)	<= (others=>'0');
+	response_1(8 downto 4)	<= (others=>'0');
+	response_1(3 downto 0)	<= (others=>'0');
+	
+	response_2(31 downto 29)	<= (others=>'0');
+	response_2(27 downto 25)	<= (others=>'0');
+	response_2(23 downto 16)	<= (others=>'0');
+	response_2(7 downto 0)		<= (others=>'0');
+	
+	-- AHB master test
+--	master_enable	<= command_2(8);
+--	response_2(8)	<= master_done;
+--	response_2(9)	<= master_berr;
+--	master_addr_start	<= command_3(15 downto 0);
+	master_enable	<= low; --command_2(8);
+	-- response_2(8)	<= master_done;
+	-- response_2(9)	<= master_berr;
+	master_addr_start	<= (others=>'0'); --command_3(15 downto 0);
 	
 	-- hit counter
 	hitcounter_o(15 downto 0)	<= oneSPEcnt;
@@ -870,30 +1032,57 @@ BEGIN
 	hitcounter_m_ff(15 downto 0)	<= multiSPEcnt_ff;
 	hitcounter_m_ff(31 downto 16)	<= (others=>'0');
 	
-	-- ATWD0
-	atwd0_enable	<= command_1(16);
-	atwd0_enable_disc	<= command_1(17);
-	response_1(16)	<= atwd0_done;
-	-- ATWD1
-	atwd1_enable	<= command_1(24);
-	atwd1_enable_disc	<= command_1(25);
-	response_1(24)	<= atwd1_done;
+	-- kale communications
+	com_tx_fifo					<= com_tx_data(7 downto 0);
+	com_rx_data(7 downto 0)		<= com_rx_fifo;
+	com_rx_data(31 downto 8)	<= (others=>'1');
+	PROCESS(CLK20,RST)
+		VARIABLE old	: STD_LOGIC;
+	BEGIN
+		IF RST='1' THEN
+			msg_rd	<= '0';
+			old		:= '0';
+		ELSIF CLK20'EVENT AND CLK20='1' THEN
+			IF com_ctrl(0)='1' AND old='0' THEN
+				msg_rd	<= '1';
+			ELSE
+				msg_rd	<= '0';
+			END IF;
+			old := com_ctrl(0);
+		END IF;
+	END PROCESS;
+	com_status(0)	<= fifo_msg;
+	com_status(1)	<= rxrdef;
+	com_status(6)	<= rxwraff;
+	com_status(7)	<= rxwrff;
+	com_status(15 downto 8)	<= msg_ct_q;
+	com_status(16)	<= txwraef;
+	com_status(17)	<= txwraff;
+	com_status(20)	<= txrdef;
+	dec_thr			<= com_ctrl(25 downto 16);
+--	PROCESS (RST,CLK20)
+--	BEGIN
+--		IF RST='1' THEN
+--			com_status(31 downto 24)	<= (others=>'0');
+--		ELSIF CLK20'EVENT AND CLK20='1' THEN
+--			IF tx_fifo_wr='1' THEN
+--				com_status(31 downto 24)	<= com_tx_fifo;
+--			END IF;
+--		END IF;
+--	END PROCESS;
+	PROCESS (RST, CLK20)
+	BEGIN
+		IF RST='1' THEN
+			ctrl_err_cnt	<= (others=>'0');
+		ELSIF CLK20'EVENT AND CLK20='1' THEN
+			IF ctrl_err='1' THEN
+				ctrl_err_cnt <= ctrl_err_cnt + 1;
+			END IF;
+		END IF;
+	END PROCESS;
+	com_status(31 downto 24)	<= 	ctrl_err_cnt;
 	
-	-- RS485
-	rs486_ena		<= command_2(2 downto 1);
-	rs486_tx		<= command_2(0);
-	response_2(0)	<= rs486_rx;
-	enable_rs485	<= command_2(4);
-	
-	-- AHB master test
-	master_enable	<= command_2(8);
-	response_2(8)	<= master_done;
-	response_2(9)	<= master_berr;
-	master_addr_start	<= command_3(15 downto 0);
-	
-	-- R2R ladder
-	enable_r2r		<= command_2(16);	
-	enable_fe_r2r	<= command_2(20);
+	TC(7)			<= temp_data(7);
 	
 	inst_ROC : ROC
 		PORT MAP (
@@ -915,6 +1104,7 @@ BEGIN
 			locked		=> open,
 			clock1		=> CLK80
 		);
+	CLKLK_OUT2p	<= CLK40;	-- 40MHz output for FADC
 	
 	stripe_inst : stripe
 		PORT MAP (
@@ -1065,6 +1255,11 @@ BEGIN
 			command_2		=> command_2,
 			response_2		=> response_2,
 			command_3		=> command_3,
+			response_3		=> response_3,
+			com_ctrl		=> com_ctrl,
+			com_status		=> com_status,
+			com_tx_data		=> com_tx_data,
+			com_rx_data		=> com_rx_data,
 			hitcounter_o	=> hitcounter_o,
 			hitcounter_m	=> hitcounter_m,
 			hitcounter_o_ff	=> hitcounter_o_ff,
@@ -1089,25 +1284,27 @@ BEGIN
 			atwd1_rdata			=> atwd1_rdata,
 			atwd1_address		=> atwd1_address,
 			atwd1_write_en		=> atwd1_write_en,
+			-- kale communication interface
+			tx_fifo_wr			=> tx_fifo_wr,
+			rx_fifo_rd			=> rx_fifo_rd,
 			-- test connector
 			TC				=> open --TC
 		);
 		
-	com_DAC_TX_inst : com_DAC_TX
-		PORT MAP (
-			CLK				=> CLK20,
-			CLK2x			=> CLK40,
-			RST				=> RST,
-			-- enable for TX
-			enable			=> enable,
-			enable_square	=> enable_square,
-			-- communications DAC connections
-			COM_DAC_CLK		=> COM_DAC_CLK,
-			COM_TX_SLEEP	=> COM_TX_SLEEP,
-			COM_DB			=> COM_DB,
-			-- test connector
-			TC				=> open
-		);
+--	com_DAC_TX_inst : com_DAC_TX
+--		PORT MAP (
+--			CLK				=> CLK20,
+--			CLK2x			=> CLK40,
+--			RST				=> RST,
+--			-- enable for TX
+--			enable			=> enable,
+--			-- communications DAC connections
+--			COM_DAC_CLK		=> open, --COM_DAC_CLK,
+--			COM_TX_SLEEP	=> COM_TX_SLEEP,
+--			COM_DB			=> COM_DB,
+--			-- test connector
+--			TC				=> open
+--		);
 	
 	inst_rs486 : rs486
 		PORT MAP (
@@ -1128,26 +1325,26 @@ BEGIN
 			TC			=> open
 		);
 		
-	inst_com_ADC_RC : com_ADC_RC
-		PORT MAP(
-			CLK			=> CLK20,
-			CLK2x		=> CLK40,
-			RST			=> RST,
-			-- stripe interface
-			wdata		=> com_adc_wdata,
-			rdata		=> com_adc_rdata,
-			address		=> com_adc_address,
-			write_en	=> com_adc_write_en,
-			-- enable for RX
-			enable		=> com_adc_enable,
-			done		=> com_adc_done,
-			-- communications ADC connections
-			COM_AD_CLK	=> COM_AD_CLK,
-			COM_AD_D	=> COM_AD_D,
-			COM_AD_OTR	=> COM_AD_OTR,
-			-- test connector
-			TC			=> open
-		);
+--	inst_com_ADC_RC : com_ADC_RC
+--		PORT MAP(
+--			CLK			=> CLK20,
+--			CLK2x		=> CLK40,
+--			RST			=> RST,
+--			-- stripe interface
+--			wdata		=> com_adc_wdata,
+--			rdata		=> com_adc_rdata,
+--			address		=> com_adc_address,
+--			write_en	=> com_adc_write_en,
+--			-- enable for RX
+--			enable		=> com_adc_enable,
+--			done		=> com_adc_done,
+--			-- communications ADC connections
+--			COM_AD_CLK	=> open, --COM_AD_CLK,
+--			COM_AD_D	=> COM_AD_D,
+--			COM_AD_OTR	=> COM_AD_OTR,
+--			-- test connector
+--			TC			=> open
+--		);
 		
 	inst_flash_ADC : flash_ADC
 		PORT MAP (
@@ -1167,7 +1364,7 @@ BEGIN
 			OneSPE		=> OneSPE,
 			-- communications ADC connections
 			FLASH_AD_D		=> FLASH_AD_D,
-			FLASH_AD_CLK	=> FLASH_AD_CLK,
+			FLASH_AD_CLK	=> open, --FLASH_AD_CLK,
 			FLASH_AD_STBY	=> FLASH_AD_STBY,
 			FLASH_NCO		=> FLASH_NCO,
 			-- test connector
@@ -1225,7 +1422,7 @@ BEGIN
 			COINC_UP_BBAR		=> COINC_UP_BBAR,
 			COINC_UP_B			=> COINC_UP_B,
 			-- test connector
-			TC					=> TC
+			TC					=> open --TC
 		);
 		
 	inst_hit_counter : hit_counter
@@ -1370,6 +1567,84 @@ BEGIN
 			FE_PULSER_N	=> FE_PULSER_N,
 			-- test connector
 			TC			=> open
+		);
+		
+	flasher_board_inst : flasher_board
+		PORT MAP (
+			-- control input
+			fl_board			=> fl_board,
+			fl_board_read		=> fl_board_read,
+			-- flasher board
+			FL_Trigger			=> FL_Trigger,
+			FL_Trigger_bar		=> FL_Trigger_bar,
+			FL_ATTN				=> FL_ATTN,
+			FL_PRE_TRIG			=> FL_PRE_TRIG,
+			FL_TMS				=> FL_TMS,
+			FL_TCK				=> FL_TCK,
+			FL_TDI				=> FL_TDI,
+			FL_TDO				=> FL_TDO,
+			-- Test connector
+			TC					=> open
+		);
+	
+	B_nA	<= NOT A_nB;
+	RST_kalle	<= RST OR com_ctrl(4);
+	TC(0)	<= tx_fifo_wr;
+	dcom_01_inst : dcom_01 
+		port MAP (
+			BCLK		=> CLK20,
+			CCLK		=> CLK20,
+			mono_clk_en	=> low,
+			rs4_out		=> low,
+			msg_rd		=> msg_rd,
+			dom_A_sel_L	=> B_nA,
+			dom_B_sel_L	=> A_nB,
+			reset		=> RST_kalle,
+			tx_wrreq	=> tx_fifo_wr,
+			line_quiet	=> low,
+			pulse_rcvd	=> low,
+			pulse_sent	=> low,
+			rx_rdreq	=> rx_fifo_rd,
+			dec_thr		=> dec_thr,
+			fc_adc		=> COM_AD_D,
+			tx_fd		=> com_tx_fifo,
+			txd			=> TC(6),
+			last_byte	=> open,
+			dac_clk		=> open,
+			dac_slp		=> COM_TX_SLEEP,
+			rs4_in		=> open,
+			rs4_den		=> open,
+			ntx_led		=> open,
+			msg_sent	=> open,
+			txwref		=> open,
+			txwraef		=> txwraef,
+			txwrff		=> open,
+			txrdef		=> txrdef,
+			txwraff		=> txwraff,
+			ctrl_sent	=> TC(5),
+			rs4_ren		=> open,
+			nrx_led		=> open,
+			adc_clk		=> open,
+			data_stb	=> TC(3),
+			ctrl_stb	=> TC(4),
+			ctrl_err	=> ctrl_err,
+			rxwrff		=> rxwrff,
+			rxwraff		=> rxwraff,
+			rxrdef		=> rxrdef,
+			stf_rcvd	=> TC(1),
+			eof_rcvd	=> TC(2),
+			bfstat_rcvd	=> open,
+			drreq_rcvd	=> open,
+			sysres_rcvd	=> open,
+			comres_rcvd	=> open, --TC(0),
+			msg_rcvd	=> open,
+			msg_err		=> open,
+			fifo_msg	=> fifo_msg,
+			nerr_led	=> open,
+			dac_db		=> COM_DB,
+			data		=> temp_data,
+			msg_ct_q	=> msg_ct_q,
+			rx_fq		=> com_rx_fifo
 		);
 	
 	

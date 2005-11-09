@@ -1,6 +1,6 @@
 Flow report for DCOM_01
-Tue May 18 16:42:04 2004
-Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
+Mon Sep 12 14:49:24 2005
+Version 4.2 Build 157 12/07/2004 SJ Full Version
 
 
 ---------------------
@@ -39,27 +39,31 @@ party's intellectual property, are provided herein.
 
 
 
-+---------------------------------------------------------------+
-; Flow Summary                                                  ;
-+-----------------------+---------------------------------------+
-; Flow Status           ; Successful - Tue May 18 16:42:04 2004 ;
-; Revision Name         ; DCOM_01                               ;
-; Top-level Entity Name ; dcom_ap                               ;
-; Family                ; APEX20KE                              ;
-; Device                ; EP20K200EFC484-2X                     ;
-; Total logic elements  ; 1,501                                 ;
-; Total pins            ; 337                                   ;
-; Total memory bits     ; 640                                   ;
-; Total PLLs            ; 0                                     ;
-+-----------------------+---------------------------------------+
++--------------------------------------------------------------------+
+; Flow Summary                                                       ;
++-------------------------+------------------------------------------+
+; Flow Status             ; Successful - Mon Sep 12 14:49:24 2005    ;
+; Quartus II Version      ; 4.2 Build 157 12/07/2004 SJ Full Version ;
+; Revision Name           ; DCOM_01                                  ;
+; Top-level Entity Name   ; dcom_ap                                  ;
+; Family                  ; EXCALIBUR_ARM                            ;
+; Met timing requirements ; Yes                                      ;
+; Total logic elements    ; 1,538 / 16,640 ( 9 % )                   ;
+; Total pins              ; 405 / 463 ( 87 % )                       ;
+; Total virtual pins      ; 0                                        ;
+; Total memory bits       ; 640 / 212,992 ( < 1 % )                  ;
+; Total PLLs              ; 0 / 4 ( 0 % )                            ;
+; Device                  ; EPXA4F672C1                              ;
+; Timing Models           ; Final                                    ;
++-------------------------+------------------------------------------+
 
 
 +-----------------------------------------+
 ; Flow Settings                           ;
-+------------------------------------------
++-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 05/18/2004 16:41:16 ;
+; Start date & time ; 09/12/2005 14:46:36 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; DCOM_01             ;
 +-------------------+---------------------+
@@ -67,18 +71,24 @@ party's intellectual property, are provided herein.
 
 +-------------------------------------+
 ; Flow Elapsed Time                   ;
-+--------------------------------------
++----------------------+--------------+
 ; Module Name          ; Elapsed Time ;
 +----------------------+--------------+
-; Analysis & Synthesis ; 00:00:48     ;
-; Total                ; 00:00:48     ;
+; Analysis & Synthesis ; 00:00:33     ;
+; Fitter               ; 00:02:00     ;
+; Assembler            ; 00:00:04     ;
+; Timing Analyzer      ; 00:00:06     ;
+; Total                ; 00:02:43     ;
 +----------------------+--------------+
 
 
 ------------
 ; Flow Log ;
 ------------
-quartus_map --lower_priority --import_settings_files=on --export_settings_files=off DCOM_01 -c DCOM_01
+quartus_map --import_settings_files=on --export_settings_files=off DCOM_01 -c DCOM_01
+quartus_fit --import_settings_files=off --export_settings_files=off DCOM_01 -c DCOM_01
+quartus_asm --import_settings_files=off --export_settings_files=off DCOM_01 -c DCOM_01
+quartus_tan --import_settings_files=off --export_settings_files=off DCOM_01 -c DCOM_01
 
 
 

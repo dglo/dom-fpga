@@ -8,6 +8,8 @@ ENTITY adc2fifo IS
     PORT (
         CLK              : IN  STD_LOGIC;
         RST              : IN  STD_LOGIC;
+        -- launch
+        launch           : IN  STD_LOGIC;
         -- Communications ADC
         COM_AD_D         : IN  STD_LOGIC_VECTOR (11 DOWNTO 0);
         COM_AD_OTR       : IN  STD_LOGIC;
@@ -41,7 +43,7 @@ ARCHITECTURE adc2fifo_arch OF adc2fifo IS
 
     SIGNAL fifo_wr_data : STD_LOGIC_VECTOR (31 DOWNTO 0);
     SIGNAL fifo_wr      : STD_LOGIC;
-    TYPE   state_type IS (IDLE, sample0, sample1, sample2);
+    TYPE   state_type IS (WAIT_LAUNCH, IDLE, sample0, sample1, sample2);
     SIGNAL state        : state_type;
     
 BEGIN  -- adc2fifo_arch
@@ -51,14 +53,19 @@ BEGIN  -- adc2fifo_arch
         IF RST = '1' THEN                   -- asynchronous reset (active high)
             fifo_wr_data <= (OTHERS => '0');
             fifo_wr      <= '0';
-            state        <= IDLE;
+            state        <= WAIT_LAUNCH;
             COM_AD_D_int <= (OTHERS => '0');
         ELSIF CLK'EVENT AND CLK = '1' THEN  -- rising clock edge
             fifo_wr_data (31 DOWNTO 30) <= "00";
---            COM_AD_D_int <= COM_AD_D (11 DOWNTO 2);
+            COM_AD_D_int                <= COM_AD_D (11 DOWNTO 2);
             -- for testing
-            COM_AD_D_int                <= COM_AD_D_int + 1;
+            --COM_AD_D_int                <= COM_AD_D_int + 1;
             CASE state IS
+                WHEN WAIT_LAUNCH =>
+                    fifo_wr <= '0';
+                    IF launch = '1' THEN
+                        state <= IDLE;
+                    END IF;
                 WHEN IDLE =>
                     fifo_wr <= '0';
                     state   <= sample0;

@@ -1,9 +1,25 @@
--------------------------------------------------
--- ATWD trigger logic
--- 
--- This module launched the ATWDs and fADC capture
--- including ping/pong
--------------------------------------------------
+-------------------------------------------------------------------------------
+-- Title      : DOMAPP
+-- Project    : IceCube DOM main board
+-------------------------------------------------------------------------------
+-- File       : trigger.vhd
+-- Author     : thorsten
+-- Company    : LBNL
+-- Created    : 
+-- Last update: 2003-10-23
+-- Platform   : Altera Excalibur
+-- Standard   : VHDL'93
+-------------------------------------------------------------------------------
+-- Description: This module launched the ATWDs and fADC capture including
+--              ping/pong
+-------------------------------------------------------------------------------
+-- Copyright (c) 2003 2004
+-------------------------------------------------------------------------------
+-- Revisions  :
+-- Date        Version     Author    Description
+--             V01-01-00   thorsten 
+-------------------------------------------------------------------------------
+
 
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.all;
@@ -98,11 +114,12 @@ ARCHITECTURE trigger_arch OF trigger IS
 
 BEGIN
 
-	MultiSPE_nl	<= 'Z';
-	OneSPE_nl	<= 'Z';
+	MultiSPE_nl	<= '1';
+	OneSPE_nl	<= '1';
 	
 --	veto_trig	<= '1' WHEN trig_veto_short_A='1' OR trig_veto_short_B='1' ELSE '0'; -- busy_FADC_A='1' OR busy_FADC_B='1' ELSE '0'; -- modify for timestamp mode !!!!
-	veto_trig	<= '1' WHEN busy_FADC_A='1' OR busy_FADC_B='1' ELSE '0'; -- modify for timestamp mode !!!!
+	veto_trig	<= '1' WHEN trig_veto_short_A='1' OR trig_veto_short_B='1' OR busy_FADC_A='1' OR busy_FADC_B='1' ELSE '0';
+--	veto_trig	<= '1' WHEN busy_FADC_A='1' OR busy_FADC_B='1' ELSE '0'; -- modify for timestamp mode !!!!
 
 
 	SPE_enable	<= '1' WHEN trigger_enable(1 DOWNTO 0)="01" OR		-- SPE enable
@@ -131,9 +148,10 @@ BEGIN
 		ELSIF CLK40'EVENT AND CLK40='1' THEN
 			discSPE_latch	<= discSPE;
 			discSPE_pulse	<= discSPE_latch; -- AND NOT rst_trigger_spe;
+			rst_trigger_spe	<= NOT discSPE_pulse AND discSPE_latch;
 		END IF;
 	END PROCESS;
-	rst_trigger_spe	<= NOT discSPE_pulse AND discSPE_latch;
+	-- rst_trigger_spe	<= NOT discSPE_pulse AND discSPE_latch;
 	discSPEpulse	<= NOT discSPE_pulse AND discSPE_latch;
 	
 	disc_FF_MPE : PROCESS(MultiSPE,rst_trigger_mpe)
@@ -153,9 +171,10 @@ BEGIN
 		ELSIF CLK40'EVENT AND CLK40='1' THEN
 			discMPE_latch	<= discMPE;
 			discMPE_pulse	<= discMPE_latch; -- AND NOT rst_trigger_mpe;
+			rst_trigger_mpe	<= NOT discMPE_pulse AND discMPE_latch;
 		END IF;
 	END PROCESS;
-	rst_trigger_mpe	<= NOT discMPE_pulse AND discMPE_latch;
+	-- rst_trigger_mpe	<= NOT discMPE_pulse AND discMPE_latch;
 	discMPEpulse	<= NOT discMPE_pulse AND discMPE_latch;
 	
 	
@@ -284,9 +303,22 @@ BEGIN
 	
 
 	trigger_word (15 DOWNTO 10)	<= (OTHERS=>'0');
-	trigger_word (9 DOWNTO 8)	<= LC_trigger;
-	trigger_word (7 DOWNTO 2)	<= CS_trigger;
-	trigger_word (1)			<= discMPE;
-	trigger_word (0)			<= discSPE;
+	-- trigger_word (9 DOWNTO 8)	<= LC_trigger;
+	-- trigger_word (7 DOWNTO 2)	<= CS_trigger;
+	PROCESS (RST, CLK40) -- to adjust the timing for ADC_control
+	BEGIN
+		IF RST='1' THEN
+			trigger_word (1)	<= '0';
+			trigger_word (0)	<= '0';
+			trigger_word (9 DOWNTO 8)	<= (OTHERS=>'0');
+			trigger_word (7 DOWNTO 2)	<= (OTHERS=>'0');
+		ELSIF CLK40'EVENT AND CLK40='1' THEN
+			trigger_word (1)	<= discMPE;
+			trigger_word (0)	<= discSPE;
+			trigger_word (9 DOWNTO 8)	<= LC_trigger;
+			trigger_word (7 DOWNTO 2)	<= CS_trigger;
+
+		END IF;
+	END PROCESS;
 
 END trigger_arch;

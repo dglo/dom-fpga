@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DCOM_01
-Fri Jul 16 10:00:42 2004
+Wed Aug 18 16:24:00 2004
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -43,7 +43,7 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                        ;
 +-----------------------------+---------------------------------------+
-; Analysis & Synthesis Status ; Successful - Fri Jul 16 10:00:42 2004 ;
+; Analysis & Synthesis Status ; Successful - Wed Aug 18 16:24:00 2004 ;
 ; Revision Name               ; DCOM_01                               ;
 ; Top-level Entity Name       ; dcom_ap                               ;
 ; Family                      ; APEX20KE                              ;
@@ -124,12 +124,12 @@ party's intellectual property, are provided herein.
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Fri Jul 16 10:00:41 2004
+    Info: Processing started: Wed Aug 18 16:24:00 2004
 Info: Command: quartus_map --lower_priority --import_settings_files=on --export_settings_files=off DCOM_01 -c DCOM_01 --convert_bdf_to_vhdl=dcom_ap.bdf
 Info: Found 1 design units and 1 entities in source file dcom_ap.bdf
     Info: Found entity 1: dcom_ap
 Info: Quartus II Analysis & Synthesis was successful. 0 errors, 0 warnings
-    Info: Processing ended: Fri Jul 16 10:00:42 2004
+    Info: Processing ended: Wed Aug 18 16:24:00 2004
     Info: Elapsed time: 00:00:00
 
 

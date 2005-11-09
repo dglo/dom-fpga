@@ -1,6 +1,25 @@
--------------------------------------------------
--- ATWD control
--------------------------------------------------
+-------------------------------------------------------------------------------
+-- Title      : STF
+-- Project    : IceCube DOM main board
+-------------------------------------------------------------------------------
+-- File       : atwd_control.vhd
+-- Author     : thorsten
+-- Company    : LBNL
+-- Created    : 
+-- Last update: 2004-03-25
+-- Platform   : Altera Excalibur
+-- Standard   : VHDL'93
+-------------------------------------------------------------------------------
+-- Description: this module does all the ATWD timing except triggering and
+--              readout
+-------------------------------------------------------------------------------
+-- Copyright (c) 2003 
+-------------------------------------------------------------------------------
+-- Revisions  :
+-- Date        Version     Author    Description
+-- 2003-07-17  V01-01-00   thorsten  
+-- 2004-10-22              thorsten  added LC_abort
+-------------------------------------------------------------------------------
 
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.all;
@@ -17,6 +36,8 @@ ENTITY atwd_control IS
 		-- trigger interface
 		busy		: OUT STD_LOGIC;
 		reset_trig	: OUT STD_LOGIC;
+		-- LC interface
+		LC_abort	: IN STD_LOGIC := '0';
 		-- handshake to readout
 		start_readout	: OUT STD_LOGIC;
 		readout_done	: IN STD_LOGIC;
@@ -102,7 +123,7 @@ BEGIN
 					counterclk_low	<= '1';
 					counterclk_high	<= '0';
 					settle_cnt		<= 0;
-					digitize_cnt	<= 0;
+					digitize_cnt	<= 1;
 				WHEN settle =>
 					IF settle_cnt=128 THEN
 						state	<= digitize;
@@ -156,11 +177,19 @@ BEGIN
 					DigitalSet		<= '0';
 					DigitalReset	<= '1';
 					ReadWrite		<= '0';
+					AnalogReset		<= '1';
+					RampSet			<= '1';
+					OutputEnable	<= '0';
+					channel			<= "00";
 					reset_trig		<= '1';
 				WHEN ATWDrecover =>
 					state	<= idle;
 			END CASE;
-				
+			
+			-- LC abort (goto restart ATWD)
+			IF LC_abort = '1' THEN
+				state	<= restart_ATWD;
+			END IF;
 		END IF;
 	END PROCESS;
 	

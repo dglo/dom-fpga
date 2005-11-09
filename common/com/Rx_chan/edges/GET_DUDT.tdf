@@ -1,6 +1,6 @@
 % C:\PROJECTS\ICECUBE\DOR\FPGA\DCOM_01\RX_CHAN\EDGES\GET_DUDT.tdf %
 % AHDL code created by Visual Software Solution's StateCAD 5.0 %
-% Tue Sep 02 19:20:07 2003 %
+% Sat Nov 01 12:20:36 2003 %
 
 % This AHDL code was generated using: %
 %  binary encoded state assignment with structured code format. %
@@ -12,7 +12,6 @@ SUBDESIGN GET_DUDT(
 	cteq4 :	INPUT;
 	cteq16 :	INPUT;
 	hl_edge :	INPUT;
-	lh_edge :	INPUT;
 	max_level :	INPUT;
 	min_level :	INPUT;
 	res :	INPUT;
@@ -31,11 +30,11 @@ VARIABLE
 		WITH STATES (
 			IDLE =	B"001",
 			HLWT =	B"000",
-			LHWT =	B"010",
-			MAX_DUDT =	B"011",
-			MIN_DUDT =	B"100",
-			START =	B"101",
-			STB =	B"110"
+			MAX_DUDT =	B"010",
+			MIN_DUDT =	B"011",
+			START =	B"100",
+			STB =	B"101",
+			WT =	B"110"
 		);
 
 	ct_aclr :	DFF;
@@ -101,18 +100,10 @@ BEGIN
 				sreg = MAX_DUDT;
 				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,0,1,1,1,0);
 			END IF;
-		WHEN LHWT =>
-			IF ( lh_edge  #  cteq16 ) THEN 
-				sreg = HLWT;
-				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,1,0,0,0,0);
-			ELSE
-				sreg = LHWT;
-				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,0,0,0,0,0);
-			END IF;
 		WHEN MAX_DUDT =>
 			IF ( cteq4 ) THEN 
 				sreg = START;
-				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,1,0,0,0,0);
+				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,0,0,0,0,0);
 			ELSE
 				sreg = MAX_DUDT;
 				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,0,1,1,1,0);
@@ -128,19 +119,37 @@ BEGIN
 			END IF;
 			IF ( cteq4 ) THEN 
 				sreg = START;
-				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,1,0,0,0,0);
+				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,0,0,0,0,0);
 			END IF;
 		WHEN START =>
-			IF ( hl_edge ) THEN 
+			IF ( !hl_edge & !cteq16 ) THEN 
+				sreg = START;
+				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,0,0,0,0,0);
+			END IF;
+			IF ( hl_edge & !cteq16 ) THEN 
 				sreg = STB;
 				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(1,1,0,0,0,0);
-			ELSE
-				sreg = START;
-				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,1,0,0,0,0);
+			END IF;
+			IF ( cteq16 ) THEN 
+				sreg = IDLE;
+				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,1,0,1,0,1);
 			END IF;
 		WHEN STB =>
-			sreg = LHWT;
+			sreg = WT;
 			(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,0,0,0,0,0);
+		WHEN WT =>
+			IF ( !cteq16 & !uart_done ) THEN 
+				sreg = WT;
+				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,0,0,0,0,0);
+			END IF;
+			IF ( cteq16 & !uart_done ) THEN 
+				sreg = HLWT;
+				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,1,0,0,0,0);
+			END IF;
+			IF ( uart_done ) THEN 
+				sreg = IDLE;
+				(rxd,ct_aclr,find_dudt,dudt_ena,max_ena,min_ena)=(0,1,0,1,0,1);
+			END IF;
 	END CASE;
 
 END;

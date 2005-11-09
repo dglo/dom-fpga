@@ -21,8 +21,7 @@
 
 FUNCTION version_rom 
 (
-	address[6..0],
-	inclock
+	address[6..0]
 )
 
 RETURNS (
