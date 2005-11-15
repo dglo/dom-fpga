@@ -147,7 +147,7 @@ RESERVED_INPUT               : D25       :        :                   :         
 RESERVED_INPUT               : D26       :        :                   :         : 8         :                
 RESERVED_INPUT               : E1        :        :                   :         : 12        :                
 RESERVED_INPUT               : E2        :        :                   :         : 12        :                
-adis16209_PWR                : E3        : output : LVTTL             :         : 13        : Y              
+FPGA_DA                      : E3        : output : LVTTL             :         : 13        : Y              
 A_nB                         : E4        : input  : LVTTL             :         : 13        : Y              
 SDRAMADDR[11]                : E5        : output : LVTTL             :         : 2         : N              
 SDRAMADDR[2]                 : E6        : output : LVTTL             :         : 2         : N              
@@ -173,7 +173,7 @@ RESERVED_INPUT               : E25       :        :                   :         
 RESERVED_INPUT               : E26       :        :                   :         : 8         :                
 RESERVED_INPUT               : F1        :        :                   :         : 12        :                
 RESERVED_INPUT               : F2        :        :                   :         : 12        :                
-adis16209_SCLK               : F3        : output : LVTTL             :         : 13        : Y              
+FPGA_CE                      : F3        : output : LVTTL             :         : 13        : Y              
 HDV_IN                       : F4        : output : LVTTL             :         : 13        : Y              
 SDRAMADDR[7]                 : F5        : output : LVTTL             :         : 2         : N              
 SDRAMADDR[14]                : F6        : output : LVTTL             :         : 2         : N              
@@ -483,8 +483,8 @@ FE_PULSER_N[2]               : U23       : output : LVTTL             :         
 PGM[7]                       : U24       : output : LVTTL             :         : 9         : Y              
 RESERVED_INPUT               : U25       :        :                   :         : 8         :                
 RESERVED_INPUT               : U26       :        :                   :         : 8         :                
-adis16209_RST                : V1        : output : LVTTL             :         : 12        : Y              
-FPGA_D3[4]                   : V2        : output : LVTTL             :         : 12        : Y              
+FPGA_D[2]                    : V1        : output : LVTTL             :         : 12        : Y              
+FPGA_D[3]                    : V2        : output : LVTTL             :         : 12        : Y              
 PGM[5]                       : V3        : output : LVTTL             :         : 13        : Y              
 RESERVED_INPUT               : V4        :        :                   :         : 13        :                
 RESERVED_INPUT               : V5        :        :                   :         : 13        :                
@@ -509,8 +509,8 @@ FE_PULSER_P[1]               : V23       : output : LVTTL             :         
 FE_PULSER_N[1]               : V24       : output : LVTTL             :         : 9         : Y              
 RESERVED_INPUT               : V25       :        :                   :         : 8         :                
 RESERVED_INPUT               : V26       :        :                   :         : 8         :                
-FPGA_D0[0]                   : W1        : output : LVTTL             :         : 12        : Y              
-FPGA_D0[1]                   : W2        : output : LVTTL             :         : 12        : Y              
+FPGA_D[0]                    : W1        : output : LVTTL             :         : 12        : Y              
+FPGA_D[1]                    : W2        : output : LVTTL             :         : 12        : Y              
 RESERVED_INPUT               : W3        :        :                   :         : 13        :                
 RESERVED_INPUT               : W4        :        :                   :         : 13        :                
 RESERVED_INPUT               : W5        :        :                   :         : 13        :                
@@ -535,8 +535,8 @@ FE_PULSER_N[0]               : W23       : output : LVTTL             :         
 FE_PULSER_P[0]               : W24       : output : LVTTL             :         : 9         : Y              
 RESERVED_INPUT               : W25       :        :                   :         : 8         :                
 RESERVED_INPUT               : W26       :        :                   :         : 8         :                
-FPGA_D3[3]                   : Y1        : output : LVTTL             :         : 12        : Y              
-adis16209_nCS                : Y2        : output : LVTTL             :         : 12        : Y              
+FPGA_D[4]                    : Y1        : output : LVTTL             :         : 12        : Y              
+FPGA_D[5]                    : Y2        : output : LVTTL             :         : 12        : Y              
 PGM[15]                      : Y3        : output : LVTTL             :         : 13        : Y              
 PGM[14]                      : Y4        : output : LVTTL             :         : 13        : Y              
 CLK4p                        : Y5        : input  : LVTTL             :         : 13        : Y              
@@ -562,7 +562,7 @@ PLD_FPGA_nOE                 : Y24       : input  : LVTTL             :         
 RESERVED_INPUT               : Y25       :        :                   :         : 8         :                
 RESERVED_INPUT               : Y26       :        :                   :         : 8         :                
 SingleLED_TRIGGER            : AA1       : output : LVTTL             :         : 12        : Y              
-adis16209_DIN                : AA2       : output : LVTTL             :         : 12        : Y              
+FPGA_D[6]                    : AA2       : output : LVTTL             :         : 12        : Y              
 RESERVED_INPUT               : AA3       :        :                   :         : 12        :                
 RESERVED_INPUT               : AA4       :        :                   :         : 12        :                
 RESERVED_INPUT               : AA5       :        :                   :         : 12        :                
@@ -614,7 +614,7 @@ RESERVED_INPUT               : AB24      :        :                   :         
 RESERVED_INPUT               : AB25      :        :                   :         : 8         :                
 RESERVED_INPUT               : AB26      :        :                   :         : 8         :                
 RESERVED_INPUT               : AC1       :        :                   :         : 12        :                
-adis16209_DOUT               : AC2       : input  : LVTTL             :         : 12        : Y              
+FPGA_D[7]                    : AC2       : output : LVTTL             :         : 12        : Y              
 VCC_INT                      : AC3       : power  :                   : 1.8V    :           :                
 GND                          : AC4       : gnd    :                   :         :           :                
 RESERVED_INPUT               : AC5       :        :                   :         : 12        :                

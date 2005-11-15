@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2007-03-22
+-- Last update: 2003-09-30
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -19,7 +19,6 @@
 -- Revisions  :
 -- Date        Version     Author    Description
 -- 2003-09-29  V01-01-00   thorsten  
--- 2007-03-22              thorsten  added ATWD dead flag
 -------------------------------------------------------------------------------
 
 LIBRARY IEEE;
@@ -50,15 +49,9 @@ ENTITY pingpong IS
 		DAQ_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		ATWD_AB			: IN STD_LOGIC;	-- indicates if ping or pong
 		COMPR_ctrl		: IN COMPR_STRUCT;
-		ICETOP_ctrl		: IN ICETOP_CTRL_STRUCT;
-		-- some status bits
-                dead_flag               : OUT STD_LOGIC;
-		SPE_level_stretch	: IN STD_LOGIC_VECTOR (1 downto 0);
-		got_ATWD_WF		: OUT STD_LOGIC;
 		-- trigger
 		rst_trig		: OUT STD_LOGIC;
 		trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
-		minimum_bias_hit	: IN STD_LOGIC;
 		-- local coincidence
 		LC_abort		: IN STD_LOGIC;
 		LC				: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
@@ -121,15 +114,9 @@ ARCHITECTURE arch_pingpong OF pingpong IS
 			LC_mode			: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			DAQ_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			ATWD_AB			: IN STD_LOGIC;	-- indicates if ping or pong
-			ICETOP_ctrl		: IN ICETOP_CTRL_STRUCT;
-			-- some status bits
-                        dead_flag               : OUT STD_LOGIC;
-			SPE_level_stretch	: IN STD_LOGIC_VECTOR (1 downto 0);
-			got_ATWD_WF		: OUT STD_LOGIC;
 			-- trigger
 			rst_trig		: OUT STD_LOGIC;
 			trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
-			minimum_bias_hit	: IN STD_LOGIC;
 			-- local coincidence
 			LC_abort		: IN STD_LOGIC;
 			LC				: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
@@ -280,15 +267,9 @@ BEGIN
 			LC_mode			=> LC_mode,
 			DAQ_mode		=> DAQ_mode,
 			ATWD_AB			=> ATWD_AB,
-			ICETOP_ctrl		=> ICETOP_ctrl,
-			-- some status bits
-                        dead_flag               => dead_flag,
-			SPE_level_stretch	=> SPE_level_stretch,
-			got_ATWD_WF		=> got_ATWD_WF,
 			-- trigger
 			rst_trig		=> rst_trig,
 			trigger_word	=> trigger_word,
-			minimum_bias_hit	=> minimum_bias_hit,
 			-- local coincidence
 			LC_abort		=> LC_abort,
 			LC				=> LC,

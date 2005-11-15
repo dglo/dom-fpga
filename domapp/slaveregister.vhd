@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2007-05-15
+-- Last update: 2003-12-03
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -17,9 +17,7 @@
 -------------------------------------------------------------------------------
 -- Revisions  :
 -- Date        Version     Author    Description
--- 2003-07-17  V01-01-00   thorsten
--- 2006-                   thorsten  Added Comm Threshold registers
--- 2006-02-06              thorsten  commented out Roadgrader registers  
+-- 2003-07-17  V01-01-00   thorsten  
 -------------------------------------------------------------------------------
 
 
@@ -65,9 +63,6 @@ ENTITY slaveregister IS
 		DOM_status		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 		COMPR_ctrl		: OUT COMPR_STRUCT;
 		debugging		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
-		ICETOP_ctrl		: OUT ICETOP_CTRL_STRUCT;
-		INCL_ctrl		: OUT INCLINOMETER_CTRL_STRUCT;
-		INCL_stat		: IN INCLINOMETER_STAT_STRUCT;
 		-- Flasher Board
 		CS_FL_aux_reset	: OUT STD_LOGIC;
 		CS_FL_attn		: IN STD_LOGIC;
@@ -194,8 +189,6 @@ ARCHITECTURE arch_slaveregister OF slaveregister IS
 	SIGNAL RM_ctrl_local	: RM_CTRL_STRUCT;
 	SIGNAL COMM_ctrl_local	: COMM_CTRL_STRUCT;
 	SIGNAL COMPR_ctrl_local	: COMPR_STRUCT;
-	SIGNAL ICETOP_ctrl_local	: ICETOP_CTRL_STRUCT;
-	SIGNAL INCL_ctrl_local	: INCLINOMETER_CTRL_STRUCT;
 	
 	SIGNAL CS_FL_aux_reset_local : STD_LOGIC;
 	
@@ -225,26 +218,22 @@ BEGIN
 		IF RST='1' THEN
 			DAQ_ctrl_local.LBM_ptr_RST	<= '0';
 			CS_ctrl_local.CS_CPU		<= '0';
-			DAQ_ctrl_local	<= ('0', "00", (OTHERS=>'0'), "00", "00", "00", "00", "00", '0', '1');
+			DAQ_ctrl_local	<= ('0', "00", (OTHERS=>'0'), "00", "00", "00", "00", "00", '0');
 			CS_ctrl_local	<= ((OTHERS=>'0'), "000", (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), '0', '0');
 			-- LC_ctrl_local	<= ('0', (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (1,2,3,4), (1,2,3,4));
 			LC_ctrl_local	<= ('0', (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (1,2,3,4), (1,2,3,4), (OTHERS=>'0'), (OTHERS=>'0'), '0');
-			RM_ctrl_local	<= ((OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), '0');
-			COMM_ctrl_local	<= ('0', (OTHERS=>'0'), 'X', '0', '0', (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), '0', '0');
+			RM_ctrl_local	<= ((OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'));
+			COMM_ctrl_local	<= ('0', (OTHERS=>'0'), 'X', '0', '0', (OTHERS=>'0'), (OTHERS=>'0'));
 			id_set			<= "00";
-	--		COMPR_ctrl_local	<= ((OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), '0', '0');
-			INCL_ctrl_local	<= ('0', (OTHERS=>'0'), '0');
+			COMPR_ctrl_local	<= ((OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), '0', '0');
 			int_clr			<= (OTHERS=>'0');
 		ELSIF CLK'EVENT AND CLK='1' THEN
 			DAQ_ctrl_local.LBM_ptr_RST	<= '0';
 			CS_ctrl_local.CS_CPU	<= '0';
 			COMM_ctrl_local.tx_packet_ready		<= '0';
 			COMM_ctrl_local.rx_dpr_raddr_stb	<= '0';
-			COMM_ctrl_local.thres_delay_wr			<= '0';
-			COMM_ctrl_local.clev_wr					<= '0';
-			INCL_ctrl_local.incl_data_tx_update		<= '0';
 			int_clr			<= (OTHERS=>'0');
-			reg_rdata <= (others=>'X');	-- to make sure we don't create a latch
+			reg_rdata <= (others=>'X');	-- to make sur ewe don't create a latch
 			IF reg_enable = '1' THEN
 				IF std_match( reg_address(13 downto 2) , "00000-------" ) THEN	-- version ROM
 					reg_rdata(15 downto 0)	<= rom_data;
@@ -268,12 +257,9 @@ BEGIN
 						DAQ_ctrl_local.DAQ_mode		<= reg_wdata(9 downto 8);
 						DAQ_ctrl_local.ATWD_mode	<= reg_wdata(13 downto 12);
 						DAQ_ctrl_local.LC_mode		<= reg_wdata(17 downto 16);
-						DAQ_ctrl_local.LC_heart_beat	<= NOT reg_wdata(19);
 						DAQ_ctrl_local.LBM_mode		<= reg_wdata(21 downto 20);
 						DAQ_ctrl_local.COMPR_mode	<= reg_wdata(25 downto 24);
 						COMPR_ctrl_local.COMPR_mode	<= reg_wdata(25 downto 24); -- Joshua needs this
-						ICETOP_ctrl_local.IceTop_mode	<= reg_wdata(28);	-- for IceTop
-						ICETOP_ctrl_local.minimum_bias	<= reg_wdata(29);	-- for IceTop
 					END IF;
 					IF READBACK=1 THEN
 						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
@@ -282,11 +268,8 @@ BEGIN
 						reg_rdata(9 downto 8)	<= DAQ_ctrl_local.DAQ_mode;
 						reg_rdata(13 downto 12)	<= DAQ_ctrl_local.ATWD_mode;
 						reg_rdata(17 downto 16)	<= DAQ_ctrl_local.LC_mode;
-						reg_rdata(19)			<= NOT DAQ_ctrl_local.LC_heart_beat;
 						reg_rdata(21 downto 20)	<= DAQ_ctrl_local.LBM_mode;
 						reg_rdata(25 downto 24)	<= DAQ_ctrl_local.COMPR_mode;
-						reg_rdata(28)			<= ICETOP_ctrl_local.IceTop_mode;
-						reg_rdata(29)			<= ICETOP_ctrl_local.minimum_bias;
 					ELSE
 						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
 					END IF;
@@ -408,16 +391,11 @@ BEGIN
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0480") ) THEN	-- Rate Monitor Control
 					IF reg_write = '1' THEN
 						RM_ctrl_local.RM_rate_enable	<= reg_wdata(1 downto 0);
-						RM_ctrl_local.atwd_acq_cnt_en	<= reg_wdata(4);
-                                                RM_ctrl_local.dead_cnt_en       <= reg_wdata(9 DOWNTO 8);
 						RM_ctrl_local.RM_rate_dead		<= reg_wdata(25 downto 16);
 					END IF;
 					IF READBACK=1 THEN
 						reg_rdata(1 downto 0)	<= RM_ctrl_local.RM_rate_enable;
-						reg_rdata(4)			<= RM_ctrl_local.atwd_acq_cnt_en;
-						reg_rdata(7 downto 2)	<= (OTHERS=>'0');
-                                                reg_rdata(9 DOWNTO 8)   <= RM_ctrl_local.dead_cnt_en;
-						reg_rdata(15 downto 10)	<= (OTHERS=>'0');
+						reg_rdata(15 downto 2)	<= (OTHERS=>'0');
 						reg_rdata(25 downto 16)	<= RM_ctrl_local.RM_rate_dead;
 						reg_rdata(31 downto 26)	<= (OTHERS=>'0');
 					ELSE
@@ -427,20 +405,16 @@ BEGIN
 					reg_rdata(31 downto 0)	<= RM_stat.rm_rate_SPE;
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0488") ) THEN	-- Rate Monitor MPE
 					reg_rdata(31 downto 0)	<= RM_stat.rm_rate_MPE;
-				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"048C") ) THEN	-- ATWD ACQ cnt
-					reg_rdata(31 downto 0)	<= RM_stat.atwd_acq_cnt;
-				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0490") ) THEN    -- ATWD dead time count
-					reg_rdata(31 downto 0)	<= RM_stat.dead_cnt;
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"04A0") ) THEN	-- Supernove Meter Control
 					IF reg_write = '1' THEN
 						RM_ctrl_local.RM_sn_enable	<= reg_wdata(1 downto 0);
-						RM_ctrl_local.RM_sn_dead		<= reg_wdata(22 downto 16);
+						RM_ctrl_local.RM_sn_dead		<= reg_wdata(18 downto 16);
 					END IF;
 					IF READBACK=1 THEN
 						reg_rdata(1 downto 0)	<= RM_ctrl_local.RM_sn_enable;
 						reg_rdata(15 downto 2)	<= (OTHERS=>'0');
-						reg_rdata(22 downto 16)	<= RM_ctrl_local.RM_sn_dead;
-						reg_rdata(31 downto 23)	<= (OTHERS=>'0');
+						reg_rdata(18 downto 16)	<= RM_ctrl_local.RM_sn_dead;
+						reg_rdata(31 downto 19)	<= (OTHERS=>'0');
 					ELSE
 						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
 					END IF;
@@ -531,37 +505,6 @@ BEGIN
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"051C") ) THEN	-- Communication Error
 					reg_rdata(15 downto 0)	<= COMM_stat.rx_error;
 					reg_rdata(31 downto 16)	<= COMM_stat.tx_error;
-				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0520") ) THEN	-- Communication Level adaption limits
-					IF reg_write = '1' THEN
-						COMM_ctrl_local.clev_wr				<= '1';
-						COMM_ctrl_local.level_adapt_min	<= reg_wdata(9 DOWNTO 0);
-						COMM_ctrl_local.level_adapt_max	<= reg_wdata(25 DOWNTO 16);
-					END IF;
-					IF READBACK=1 THEN
-						reg_rdata(9 DOWNTO 0)	<= COMM_ctrl_local.level_adapt_min;
-						reg_rdata(25 DOWNTO 16)	<= COMM_ctrl_local.level_adapt_max;
-						reg_rdata(16 downto 10)	<= (OTHERS=>'0');
-						reg_rdata(31 downto 26)	<= (OTHERS=>'0');
-					ELSE
-						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
-					END IF;
-				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0524") ) THEN	-- Communication Thresholds and Delays
-					IF reg_write = '1' THEN
-						COMM_ctrl_local.thres_delay_wr		<= '1';
-						COMM_ctrl_local.comm_threshold	<= reg_wdata(7 DOWNTO 0);
-						COMM_ctrl_local.DAC_max			<= reg_wdata(9 DOWNTO 8);
-						COMM_ctrl_local.RX_delay		<= reg_wdata(23 DOWNTO 16);
-						COMM_ctrl_local.TX_delay		<= reg_wdata(31 DOWNTO 24);
-					END IF;
-					IF READBACK=1 THEN
-						reg_rdata(7 DOWNTO 0)	<= COMM_ctrl_local.comm_threshold;
-						reg_rdata(9 DOWNTO 8)	<= COMM_ctrl_local.DAC_max;
-						reg_rdata(23 DOWNTO 16)	<= COMM_ctrl_local.RX_delay;
-						reg_rdata(31 DOWNTO 24)	<= COMM_ctrl_local.TX_delay;
-						reg_rdata(15 downto 10)	<= (OTHERS=>'0');
-					ELSE
-						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
-					END IF;
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0530") ) THEN	-- DOM ID LSB
 					IF reg_write = '1' THEN
 						COMM_ctrl_local.id(31 DOWNTO 0)	<= reg_wdata(31 DOWNTO 0);
@@ -585,113 +528,80 @@ BEGIN
 					END IF;
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0540") ) THEN	-- Compression Control
 					IF reg_write = '1' THEN
-	--					COMPR_ctrl_local.threshold0	<= reg_wdata(0);
-						COMPR_ctrl_local.LASTonly	<= reg_wdata(0);
-						COMPR_ctrl_local.all_chan_for_forced_trig <= reg_wdata(1);
+						COMPR_ctrl_local.threshold0	<= reg_wdata(0);
+						COMPR_ctrl_local.LASTonly	<= reg_wdata(1);
 					END IF;
 					IF READBACK=1 THEN
-	--					reg_rdata(0)			<= COMPR_ctrl_local.threshold0;
+						reg_rdata(0)			<= COMPR_ctrl_local.threshold0;
 						reg_rdata(0)			<= COMPR_ctrl_local.LASTonly;
-						reg_rdata(1)			<= COMPR_ctrl_local.all_chan_for_forced_trig;
 						reg_rdata(31 downto 2)	<= (OTHERS=>'0');
 					ELSE
 						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
 					END IF;
-	--			ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0544") ) THEN	-- Compression FADC
-	--				IF reg_write = '1' THEN
-	--					COMPR_ctrl_local.FADCthres	<= reg_wdata(9 DOWNTO 0);
-	--				END IF;
-	--				IF READBACK=1 THEN
-	--					reg_rdata(9 DOWNTO 0)	<= COMPR_ctrl_local.FADCthres;
-	--					reg_rdata(31 downto 10)	<= (OTHERS=>'0');
-	--				ELSE
-	--					reg_rdata(31 downto 0)	<= (OTHERS=>'0');
-	--				END IF;
-	--			ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0548") ) THEN	-- Compression ATWD A 1/0
-	--				IF reg_write = '1' THEN
-	--					COMPR_ctrl_local.ATWDa0thres	<= reg_wdata(9 DOWNTO 0);
-	--					COMPR_ctrl_local.ATWDa1thres	<= reg_wdata(25 DOWNTO 16);
-	--				END IF;
-	--				IF READBACK=1 THEN
-	--					reg_rdata(9 DOWNTO 0)	<= COMPR_ctrl_local.ATWDa0thres;
-	--					reg_rdata(25 DOWNTO 16)	<= COMPR_ctrl_local.ATWDa1thres;
-	--					reg_rdata(16 downto 10)	<= (OTHERS=>'0');
-	--					reg_rdata(31 downto 26)	<= (OTHERS=>'0');
-	--				ELSE
-	--					reg_rdata(31 downto 0)	<= (OTHERS=>'0');
-	--				END IF;
-	--			ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"054C") ) THEN	-- Compression ATWD A 3/2
-	--				IF reg_write = '1' THEN
-	--					COMPR_ctrl_local.ATWDa2thres	<= reg_wdata(9 DOWNTO 0);
-	--					COMPR_ctrl_local.ATWDa3thres	<= reg_wdata(25 DOWNTO 16);
-	--				END IF;
-	--				IF READBACK=1 THEN
-	--					reg_rdata(9 DOWNTO 0)	<= COMPR_ctrl_local.ATWDa2thres;
-	--					reg_rdata(25 DOWNTO 16)	<= COMPR_ctrl_local.ATWDa3thres;
-	--					reg_rdata(16 downto 10)	<= (OTHERS=>'0');
-	--					reg_rdata(31 downto 26)	<= (OTHERS=>'0');
-	--				ELSE
-	--					reg_rdata(31 downto 0)	<= (OTHERS=>'0');
-	--				END IF;
-	--			ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0550") ) THEN	-- Compression ATWD B 1/0
-	--				IF reg_write = '1' THEN
-	--					COMPR_ctrl_local.ATWDb0thres	<= reg_wdata(9 DOWNTO 0);
-	--					COMPR_ctrl_local.ATWDb1thres	<= reg_wdata(25 DOWNTO 16);
-	--				END IF;
-	--				IF READBACK=1 THEN
-	--					reg_rdata(9 DOWNTO 0)	<= COMPR_ctrl_local.ATWDb0thres;
-	--					reg_rdata(25 DOWNTO 16)	<= COMPR_ctrl_local.ATWDb1thres;
-	--					reg_rdata(16 downto 10)	<= (OTHERS=>'0');
-	--					reg_rdata(31 downto 26)	<= (OTHERS=>'0');
-	--				ELSE
-	--					reg_rdata(31 downto 0)	<= (OTHERS=>'0');
-	--				END IF;
-	--			ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0554") ) THEN	-- Compression ATWD B 3/2
-	--				IF reg_write = '1' THEN
-	--					COMPR_ctrl_local.ATWDb2thres	<= reg_wdata(9 DOWNTO 0);
-	--					COMPR_ctrl_local.ATWDb3thres	<= reg_wdata(25 DOWNTO 16);
-	--				END IF;
-	--				IF READBACK=1 THEN
-	--					reg_rdata(9 DOWNTO 0)	<= COMPR_ctrl_local.ATWDb2thres;
-	--					reg_rdata(25 DOWNTO 16)	<= COMPR_ctrl_local.ATWDb3thres;
-	--					reg_rdata(16 downto 10)	<= (OTHERS=>'0');
-	--					reg_rdata(31 downto 26)	<= (OTHERS=>'0');
-	--				ELSE
-	--					reg_rdata(31 downto 0)	<= (OTHERS=>'0');
-	--				END IF;
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0544") ) THEN	-- Compression FADC
+					IF reg_write = '1' THEN
+						COMPR_ctrl_local.FADCthres	<= reg_wdata(9 DOWNTO 0);
+					END IF;
+					IF READBACK=1 THEN
+						reg_rdata(9 DOWNTO 0)	<= COMPR_ctrl_local.FADCthres;
+						reg_rdata(31 downto 10)	<= (OTHERS=>'0');
+					ELSE
+						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+					END IF;
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0548") ) THEN	-- Compression ATWD A 1/0
+					IF reg_write = '1' THEN
+						COMPR_ctrl_local.ATWDa0thres	<= reg_wdata(9 DOWNTO 0);
+						COMPR_ctrl_local.ATWDa1thres	<= reg_wdata(25 DOWNTO 16);
+					END IF;
+					IF READBACK=1 THEN
+						reg_rdata(9 DOWNTO 0)	<= COMPR_ctrl_local.ATWDa0thres;
+						reg_rdata(25 DOWNTO 16)	<= COMPR_ctrl_local.ATWDa1thres;
+						reg_rdata(16 downto 10)	<= (OTHERS=>'0');
+						reg_rdata(31 downto 26)	<= (OTHERS=>'0');
+					ELSE
+						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+					END IF;
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"054C") ) THEN	-- Compression ATWD A 3/2
+					IF reg_write = '1' THEN
+						COMPR_ctrl_local.ATWDa2thres	<= reg_wdata(9 DOWNTO 0);
+						COMPR_ctrl_local.ATWDa3thres	<= reg_wdata(25 DOWNTO 16);
+					END IF;
+					IF READBACK=1 THEN
+						reg_rdata(9 DOWNTO 0)	<= COMPR_ctrl_local.ATWDa2thres;
+						reg_rdata(25 DOWNTO 16)	<= COMPR_ctrl_local.ATWDa3thres;
+						reg_rdata(16 downto 10)	<= (OTHERS=>'0');
+						reg_rdata(31 downto 26)	<= (OTHERS=>'0');
+					ELSE
+						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+					END IF;
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0550") ) THEN	-- Compression ATWD B 1/0
+					IF reg_write = '1' THEN
+						COMPR_ctrl_local.ATWDb0thres	<= reg_wdata(9 DOWNTO 0);
+						COMPR_ctrl_local.ATWDb1thres	<= reg_wdata(25 DOWNTO 16);
+					END IF;
+					IF READBACK=1 THEN
+						reg_rdata(9 DOWNTO 0)	<= COMPR_ctrl_local.ATWDb0thres;
+						reg_rdata(25 DOWNTO 16)	<= COMPR_ctrl_local.ATWDb1thres;
+						reg_rdata(16 downto 10)	<= (OTHERS=>'0');
+						reg_rdata(31 downto 26)	<= (OTHERS=>'0');
+					ELSE
+						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+					END IF;
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0554") ) THEN	-- Compression ATWD B 3/2
+					IF reg_write = '1' THEN
+						COMPR_ctrl_local.ATWDb2thres	<= reg_wdata(9 DOWNTO 0);
+						COMPR_ctrl_local.ATWDb3thres	<= reg_wdata(25 DOWNTO 16);
+					END IF;
+					IF READBACK=1 THEN
+						reg_rdata(9 DOWNTO 0)	<= COMPR_ctrl_local.ATWDb2thres;
+						reg_rdata(25 DOWNTO 16)	<= COMPR_ctrl_local.ATWDb3thres;
+						reg_rdata(16 downto 10)	<= (OTHERS=>'0');
+						reg_rdata(31 downto 26)	<= (OTHERS=>'0');
+					ELSE
+						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+					END IF;
 			
-				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0560") ) THEN	-- IceTop specific
-					IF reg_write = '1' THEN
-						ICETOP_ctrl_local.IT_atwd_charge_chan	<= reg_wdata(1 DOWNTO 0);
-						ICETOP_ctrl_local.IT_scan_mode			<= reg_wdata(4);
-					END IF;
-					IF READBACK=1 THEN
-						reg_rdata(1 DOWNTO 0)	<= ICETOP_ctrl_local.IT_atwd_charge_chan;
-						reg_rdata(3 downto 2)	<= (OTHERS=>'0');
-						reg_rdata(4)			<= ICETOP_ctrl_local.IT_scan_mode;
-						reg_rdata(31 downto 5)	<= (OTHERS=>'0');
-					ELSE
-						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
-					END IF;
-				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0580") ) THEN	-- Inclinometer specific
-					IF reg_write = '1' THEN
-						INCL_ctrl_local.incl_data_tx_update <= '1';
-						INCL_ctrl_local.incl_data_tx	<= reg_wdata(15 DOWNTO 0);
-						INCL_ctrl_local.incl_en			<= reg_wdata(31);
-					END IF;
-					IF READBACK=1 THEN
-						reg_rdata(15 DOWNTO 0)	<= INCL_ctrl_local.incl_data_tx;
-						reg_rdata(15 downto 30)	<= (OTHERS=>'0');
-						reg_rdata(31)			<= INCL_ctrl_local.incl_en;
-					ELSE
-						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
-					END IF;
-				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0584") ) THEN	-- Inclinometer specific
-					reg_rdata(15 downto 0)	<= INCL_stat.incl_data_rx;
-					reg_rdata(27 downto 16)	<= (OTHERS=>'0');
-					reg_rdata(29 downto 28)	<= INCL_stat.incl_DIO;
-					reg_rdata(30)			<= '0';
-					reg_rdata(31)			<= INCL_stat.incl_busy;
+					
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"07F8") ) THEN	-- PONG (just in case we want to implement a 3D PONG game with IceCubeA) 
 					reg_rdata(31 downto 0) <= X"504F4E47";	-- ASCII PONG
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"07FC") ) THEN	-- Firmware Debugging
@@ -730,9 +640,7 @@ BEGIN
 	COMM_ctrl	<= COMM_ctrl_local;
 	COMPR_ctrl	<= COMPR_ctrl_local;
 	-- COMPR_ctrl.COMPR_mode	<= DAQ_ctrl_local.COMPR_mode; moved to register
-	ICETOP_ctrl	<= ICETOP_ctrl_local;
-	INCL_ctrl	<= INCL_ctrl_local;
-		
+	
 	CS_FL_aux_reset	<= CS_FL_aux_reset_local;
 	
 	

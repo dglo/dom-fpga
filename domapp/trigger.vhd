@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2007-08-16
+-- Last update: 2003-10-23
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -32,7 +32,6 @@ ENTITY trigger IS
 		enable_DAQ		: IN STD_LOGIC;
 		enable_AB		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		trigger_enable	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
-		heart_beat_mode	: IN STD_LOGIC;
 		-- trigger sources
 		cs_trigger		: IN STD_LOGIC_VECTOR (5 DOWNTO 0);	-- calibration sources
 		lc_trigger		: IN STD_LOGIC_VECTOR (1 DOWNTO 0); -- local coincidence
@@ -46,8 +45,6 @@ ENTITY trigger IS
 		ATWDTrigger_sig_A	: OUT STD_LOGIC;
 		ATWDTrigger_sig_B	: OUT STD_LOGIC;
 		trigger_word	: OUT STD_LOGIC_VECTOR (15 DOWNTO 0);
-		veto_LC_abort_A	: OUT STD_LOGIC;
-		veto_LC_abort_B	: OUT STD_LOGIC;
 		-- discriminator
 		MultiSPE		: IN STD_LOGIC;
 		OneSPE			: IN STD_LOGIC;
@@ -58,7 +55,6 @@ ENTITY trigger IS
 		ATWDTrigger_B	: OUT STD_LOGIC;
 		discSPEpulse	: OUT STD_LOGIC;
 		discMPEpulse	: OUT STD_LOGIC;
-		SPE_level_stretch	: OUT STD_LOGIC_VECTOR (1 downto 0);
 		-- test connector
 		TC				: OUT STD_LOGIC_VECTOR (7 downto 0)
 	);
@@ -80,8 +76,8 @@ ARCHITECTURE trigger_arch OF trigger IS
 	SIGNAL trig_lut_A		: STD_LOGIC;
 	SIGNAL trig_lut_B		: STD_LOGIC;
 	
-	SIGNAL discSPE			: STD_LOGIC := '0';
-	SIGNAL discMPE			: STD_LOGIC := '0';
+	SIGNAL discSPE			: STD_LOGIC;
+	SIGNAL discMPE			: STD_LOGIC;
 	SIGNAL rst_trigger_spe	: STD_LOGIC;
 	SIGNAL rst_trigger_mpe	: STD_LOGIC;
 	
@@ -149,11 +145,10 @@ BEGIN
 		IF RST='1' THEN
 			discSPE_latch	<= '1';
 			discSPE_pulse	<= '0';
-			rst_trigger_spe	<= '0';
 		ELSIF CLK40'EVENT AND CLK40='1' THEN
 			discSPE_latch	<= discSPE;
-			discSPE_pulse	<= discSPE_latch AND NOT rst_trigger_spe;
-			rst_trigger_spe	<= discSPE_pulse AND discSPE_latch AND NOT rst_trigger_spe;
+			discSPE_pulse	<= discSPE_latch; -- AND NOT rst_trigger_spe;
+			rst_trigger_spe	<= NOT discSPE_pulse AND discSPE_latch;
 		END IF;
 	END PROCESS;
 	-- rst_trigger_spe	<= NOT discSPE_pulse AND discSPE_latch;
@@ -173,11 +168,10 @@ BEGIN
 		IF RST='1' THEN
 			discMPE_latch	<= '1';
 			discMPE_pulse	<= '0';
-			rst_trigger_mpe	<= '0';
 		ELSIF CLK40'EVENT AND CLK40='1' THEN
 			discMPE_latch	<= discMPE;
-			discMPE_pulse	<= discMPE_latch AND NOT rst_trigger_mpe;
-			rst_trigger_mpe	<= discMPE_pulse AND discMPE_latch AND NOT rst_trigger_mpe;
+			discMPE_pulse	<= discMPE_latch; -- AND NOT rst_trigger_mpe;
+			rst_trigger_mpe	<= NOT discMPE_pulse AND discMPE_latch;
 		END IF;
 	END PROCESS;
 	-- rst_trigger_mpe	<= NOT discMPE_pulse AND discMPE_latch;
@@ -324,65 +318,6 @@ BEGIN
 			trigger_word (9 DOWNTO 8)	<= LC_trigger;
 			trigger_word (7 DOWNTO 2)	<= CS_trigger;
 
-		END IF;
-	END PROCESS;
-	
-	VETO_LC : PROCESS (CLK40, RST)
-		VARIABLE cs_trigger_hold : STD_LOGIC_VECTOR (5 DOWNTO 0);
-		--VARIABLE cs_trigger_hold1 : STD_LOGIC_VECTOR (5 DOWNTO 0);
-	BEGIN
-		IF RST='1' THEN
-			veto_LC_abort_A <= '0';
-			veto_LC_abort_B <= '0';
-			cs_trigger_hold  := (OTHERS=>'0');
-			--cs_trigger_hold1 := (OTHERS=>'0');
-		ELSIF CLK40'EVENT AND CLK40='1' THEN
-			IF ATWDTrigger_A_sig='1' AND ATWDTrigger_A_shift(0)='0' AND heart_beat_mode='1' AND ((cs_trigger_hold AND trigger_enable(7 DOWNTO 2)) /= "000000") THEN
-				veto_LC_abort_A <= '1';
-			END IF;
-			IF rst_trg_A='1' THEN
-				veto_LC_abort_A <= '0';
-			END IF;
-			IF ATWDTrigger_B_sig='1' AND ATWDTrigger_B_shift(0)='0' AND heart_beat_mode='1' AND ((cs_trigger_hold AND trigger_enable(7 DOWNTO 2)) /= "000000") THEN
-				veto_LC_abort_B <= '1';
-			END IF;
-			IF rst_trg_B='1' THEN
-				veto_LC_abort_B <= '0';
-			END IF;
-			
-			cs_trigger_hold  := cs_trigger;
-			--cs_trigger_hold  := cs_trigger_hold1;
-			--cs_trigger_hold1 := cs_trigger;
-		END IF;
-	END PROCESS;
-	
-	-- synchronize and stretch the incomming discriminator signals
-	-- used to tag ATWD waveforms (PMT signal present in waveform)
-	PROCESS (CLK40, RST)
-		VARIABLE OneSPE_sync	: STD_LOGIC_VECTOR (1 DOWNTO 0);
-		VARIABLE MultiSPE_sync	: STD_LOGIC_VECTOR (1 DOWNTO 0);
-		VARIABLE OneSPE_stretch		: STD_LOGIC_VECTOR (2 DOWNTO 0);
-		VARIABLE MultiSPE_stretch	: STD_LOGIC_VECTOR (2 DOWNTO 0);
-	BEGIN
-		IF RST='1' THEN
-			OneSPE_sync		:= "00";
-			MultiSPE_sync	:= "00";
-			OneSPE_stretch		:= "000";
-			MultiSPE_stretch	:= "000";
-			SPE_level_stretch	<= "00";
-		ELSIF CLK40'EVENT AND CLK40='1' THEN
-			SPE_level_stretch(0)	<= OneSPE_sync(0) OR OneSPE_stretch(2) OR OneSPE_stretch(1) OR OneSPE_stretch(0);
-			SPE_level_stretch(1)	<= MultiSPE_sync(0) OR MultiSPE_stretch(2) OR MultiSPE_stretch(1) OR MultiSPE_stretch(0);
-			-- strech discriminator signals
-			OneSPE_stretch(1 DOWNTO 0)		:= OneSPE_stretch(2 DOWNTO 1);
-			OneSPE_stretch(2)				:= OneSPE_sync(0) OR discSPE_pulse;
-			MultiSPE_stretch(1 DOWNTO 0)	:= MultiSPE_stretch(2 DOWNTO 1);
-			MultiSPE_stretch(2)				:= MultiSPE_sync(0) OR discMPE_pulse;
-			-- synchronize inputs
-			OneSPE_sync(0)		:= OneSPE_sync(1);
-			OneSPE_sync(1)		:= OneSPE;
-			MultiSPE_sync(0)	:= MultiSPE_sync(1);
-			MultiSPE_sync(1)	:= MultiSPE;
 		END IF;
 	END PROCESS;
 

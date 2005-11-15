@@ -32,8 +32,6 @@
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 2.2
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "10:24:23  APRIL 07, 2004"
 set_global_assignment -name LAST_QUARTUS_VERSION "4.0 SP1"
-set_global_assignment -name VHDL_FILE ../common/CommonClock.vhd
-set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/tx_uart_shr10_sclr.tdf
 set_global_assignment -name AHDL_FILE ../../common/comDPM/test_and_tresholds.tdf
 set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/meanval/mean_over_4_clks.tdf
 set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/rec_delay.tdf
@@ -156,11 +154,10 @@ set_global_assignment -name VHDL_FILE ../common/ahb_master.vhd
 set_global_assignment -name VHDL_FILE simpletest.vhd
 set_global_assignment -name MIF_FILE version_rom.mif
 set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/dc_hdr_dec_ap.tdf
-set_global_assignment -name SIGNALTAP_FILE "tcal-timer.stp"
-set_global_assignment -name SIGNALTAP_FILE "tcal-break.stp"
 
 # Pin & Location Assignments
 # ==========================
+set_global_assignment -name RESERVE_PIN "AS INPUT TRI-STATED"
 set_location_assignment PIN_AC26 -to ATWD0VDD_SUP
 set_location_assignment PIN_Y15 -to ATWD0_D\[0\]
 set_location_assignment PIN_V15 -to ATWD0_D\[1\]
@@ -445,16 +442,6 @@ set_location_assignment PIN_J24 -to nPOR
 set_location_assignment PIN_B16 -to nRESET
 set_location_assignment PIN_A23 -to ~INIT_DONE~
 set_instance_assignment -name RESERVE_PIN "AS INPUT TRI-STATED" -to dummy2
-set_location_assignment PIN_E3 -to FPGA_DA
-set_location_assignment PIN_F3 -to FPGA_CE
-set_location_assignment PIN_W1 -to FPGA_D\[0\]
-set_location_assignment PIN_W2 -to FPGA_D\[1\]
-set_location_assignment LC10_8_Z1 -to "atwd:atwd0\|atwd_trigger:inst_atwd_trigger\|ATWDTrigger_sig"
-set_location_assignment LC10_3_Z1 -to "atwd:atwd1\|atwd_trigger:inst_atwd_trigger\|ATWDTrigger_sig"
-set_location_assignment LC10_1_Z3 -to "atwd:atwd0\|atwd_trigger:inst_atwd_trigger\|discFF"
-set_location_assignment LC9_1_Z3 -to "atwd:atwd1\|atwd_trigger:inst_atwd_trigger\|discFF"
-set_location_assignment PIN_P20 -to CLK3p
-set_location_assignment PIN_W6 -to CLK2p
 
 # Timing Assignments
 # ==================
@@ -472,8 +459,8 @@ set_global_assignment -name DEVICE_FILTER_PACKAGE FBGA
 set_global_assignment -name SAVE_DISK_SPACE OFF
 set_global_assignment -name TOP_LEVEL_ENTITY simpletest
 set_global_assignment -name VHDL_SHOW_LMF_MAPPING_MESSAGES OFF
-set_global_assignment -name AUTO_ENABLE_SMART_COMPILE on
-set_global_assignment -name USER_LIBRARIES "c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\tx_chan;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\uart;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\edges;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\meanval;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\tcal"
+set_global_assignment -name AUTO_ENABLE_SMART_COMPILE On
+set_global_assignment -name USER_LIBRARIES "c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm"
 
 # Fitter Assignments
 # ==================
@@ -766,12 +753,6 @@ set_instance_assignment -name IO_STANDARD LVTTL -to UARTTXD
 set_instance_assignment -name IO_STANDARD LVTTL -to dummy2
 set_instance_assignment -name IO_STANDARD LVTTL -to nPOR
 set_instance_assignment -name IO_STANDARD LVTTL -to nRESET
-set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_DA
-set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_CE
-set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_D\[0\]
-set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_D\[1\]
-set_instance_assignment -name IO_STANDARD LVTTL -to CLK3p
-set_instance_assignment -name IO_STANDARD LVTTL -to CLK2p
 
 # Timing Analysis Assignments
 # ===========================
@@ -847,8 +828,7 @@ set_global_assignment -name GENERATE_CONFIG_JBC_FILE_COMPRESSED OFF
 
 # SignalTap II Assignments
 # ========================
-set_global_assignment -name ENABLE_SIGNALTAP off
-set_global_assignment -name USE_SIGNALTAP_FILE "tcal-break.stp"
+set_global_assignment -name ENABLE_SIGNALTAP Off
 
 # LogicLock Region Assignments
 # ============================
@@ -934,29 +914,6 @@ set_global_assignment -name LOGICLOCK_INCREMENTAL_COMPILE_ASSIGNMENT off
 
 # ------------------------
 # start ENTITY(simpletest)
-
-	# Pin & Location Assignments
-	# ==========================
-	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to AnalogReset_0
-	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to AnalogReset_1
-	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ChannelSelect_0\[0\]
-	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ChannelSelect_0\[1\]
-	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ChannelSelect_1\[0\]
-	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ChannelSelect_1\[1\]
-	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to CounterClock_0
-	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to CounterClock_1
-	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to DigitalReset_0
-	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to DigitalReset_1
-	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to DigitalSet_0
-	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to DigitalSet_1
-	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to OutputEnable_0
-	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to OutputEnable_1
-	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to RampSet_0
-	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to RampSet_1
-	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ReadWrite_0
-	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ReadWrite_1
-	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ShiftClock_0
-	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ShiftClock_1
 
 	# Timing Assignments
 	# ==================

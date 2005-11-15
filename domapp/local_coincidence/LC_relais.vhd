@@ -1,27 +1,3 @@
--------------------------------------------------------------------------------
--- Title      : DOMAPP
--- Project    : IceCube DOM main board
--------------------------------------------------------------------------------
--- File       : LC_relais.vhd
--- Author     : thorsten
--- Company    : LBNL
--- Created    : 
--- Last update: 2005-05-23
--- Platform   : Altera Excalibur
--- Standard   : VHDL'93
--------------------------------------------------------------------------------
--- Description: This module does the relaying of LC messages
--------------------------------------------------------------------------------
--- Copyright (c) 2003 2004
--------------------------------------------------------------------------------
--- Revisions  :
--- Date        Version     Author    Description
---             V01-01-00   thorsten
--- 2005-06-08              thorsten  swapped priority relay - local disc  
--------------------------------------------------------------------------------
-
-
-
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.ALL;
 USE IEEE.std_logic_unsigned.ALL;
@@ -110,17 +86,17 @@ BEGIN  -- LC_relais_arch
 
             -- ready to send the next LC
             IF next_lc = '1' AND wait1clk = '0' THEN
-                IF got_disc = '1' THEN
-                    -- send disc BUFFER
-                    n_tx     <= lc_length;
-                    tx       <= '1';
-                    got_disc := '0';
-                    wait1clk := '1';
-				ELSIF got_rx = '1' THEN
+                IF got_rx = '1' THEN
                     -- send relais BUFFER
                     n_tx     <= got_rx_n;
                     tx       <= '1';
                     got_rx   := '0';
+                    wait1clk := '1';
+                ELSIF got_disc = '1' THEN
+                    -- send disc BUFFER
+                    n_tx     <= lc_length;
+                    tx       <= '1';
+                    got_disc := '0';
                     wait1clk := '1';
                 ELSE
                     tx       <= '0';

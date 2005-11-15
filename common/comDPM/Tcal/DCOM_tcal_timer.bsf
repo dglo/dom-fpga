@@ -4,23 +4,29 @@ editor if you plan to continue editing the block that represents it in
 the Block Editor! File corruption is VERY likely to occur.
 */
 /*
-Copyright (C) 1991-2005 Altera Corporation
-Your use of Altera Corporation's design tools, logic functions 
-and other software and tools, and its AMPP partner logic       
-functions, and any output files any of the foregoing           
-(including device programming or simulation files), and any    
-associated documentation or information are expressly subject  
-to the terms and conditions of the Altera Program License      
-Subscription Agreement, Altera MegaCore Function License       
-Agreement, or other applicable license agreement, including,   
-without limitation, that your use is for the sole purpose of   
-programming logic devices manufactured by Altera and sold by   
-Altera or its authorized distributors.  Please refer to the    
-applicable agreement for further details.
+Copyright (C) 1991-2004 Altera Corporation
+Any  megafunction  design,  and related netlist (encrypted  or  decrypted),
+support information,  device programming or simulation file,  and any other
+associated  documentation or information  provided by  Altera  or a partner
+under  Altera's   Megafunction   Partnership   Program  may  be  used  only
+to program  PLD  devices (but not masked  PLD  devices) from  Altera.   Any
+other  use  of such  megafunction  design,  netlist,  support  information,
+device programming or simulation file,  or any other  related documentation
+or information  is prohibited  for  any  other purpose,  including, but not
+limited to  modification,  reverse engineering,  de-compiling, or use  with
+any other  silicon devices,  unless such use is  explicitly  licensed under
+a separate agreement with  Altera  or a megafunction partner.  Title to the
+intellectual property,  including patents,  copyrights,  trademarks,  trade
+secrets,  or maskworks,  embodied in any such megafunction design, netlist,
+support  information,  device programming or simulation file,  or any other
+related documentation or information provided by  Altera  or a megafunction
+partner, remains with Altera, the megafunction partner, or their respective
+licensors. No other licenses, including any licenses needed under any third
+party's intellectual property, are provided herein.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 200 176)
+	(rect 16 16 176 176)
 	(text "DCOM_tcal_timer" (rect 5 0 92 12)(font "Arial" ))
 	(text "inst" (rect 8 144 25 156)(font "Arial" ))
 	(port
@@ -52,55 +58,55 @@ applicable agreement for further details.
 		(line (pt 0 80)(pt 16 80)(line_width 1))
 	)
 	(port
-		(pt 184 32)
+		(pt 160 32)
 		(output)
 		(text "del_15us" (rect 0 0 43 12)(font "Arial" ))
-		(text "del_15us" (rect 120 27 163 39)(font "Arial" ))
-		(line (pt 184 32)(pt 168 32)(line_width 1))
+		(text "del_15us" (rect 96 27 139 39)(font "Arial" ))
+		(line (pt 160 32)(pt 144 32)(line_width 1))
 	)
 	(port
-		(pt 184 48)
+		(pt 160 48)
 		(output)
 		(text "del_30us" (rect 0 0 43 12)(font "Arial" ))
-		(text "del_30us" (rect 120 43 163 55)(font "Arial" ))
-		(line (pt 184 48)(pt 168 48)(line_width 1))
+		(text "del_30us" (rect 96 43 139 55)(font "Arial" ))
+		(line (pt 160 48)(pt 144 48)(line_width 1))
 	)
 	(port
-		(pt 184 64)
+		(pt 160 64)
 		(output)
 		(text "h_pulse" (rect 0 0 37 12)(font "Arial" ))
-		(text "h_pulse" (rect 126 59 163 71)(font "Arial" ))
-		(line (pt 184 64)(pt 168 64)(line_width 1))
+		(text "h_pulse" (rect 102 59 139 71)(font "Arial" ))
+		(line (pt 160 64)(pt 144 64)(line_width 1))
 	)
 	(port
-		(pt 184 80)
+		(pt 160 80)
 		(output)
 		(text "l_pulse" (rect 0 0 34 12)(font "Arial" ))
-		(text "l_pulse" (rect 129 75 163 87)(font "Arial" ))
-		(line (pt 184 80)(pt 168 80)(line_width 1))
+		(text "l_pulse" (rect 105 75 139 87)(font "Arial" ))
+		(line (pt 160 80)(pt 144 80)(line_width 1))
 	)
 	(port
-		(pt 184 96)
+		(pt 160 96)
 		(output)
 		(text "pulse_sent" (rect 0 0 53 12)(font "Arial" ))
-		(text "pulse_sent" (rect 110 91 163 103)(font "Arial" ))
-		(line (pt 184 96)(pt 168 96)(line_width 1))
+		(text "pulse_sent" (rect 86 91 139 103)(font "Arial" ))
+		(line (pt 160 96)(pt 144 96)(line_width 1))
 	)
 	(port
-		(pt 184 112)
+		(pt 160 112)
 		(output)
 		(text "tx_time_lat" (rect 0 0 54 12)(font "Arial" ))
-		(text "tx_time_lat" (rect 109 107 163 119)(font "Arial" ))
-		(line (pt 184 112)(pt 168 112)(line_width 1))
+		(text "tx_time_lat" (rect 85 107 139 119)(font "Arial" ))
+		(line (pt 160 112)(pt 144 112)(line_width 1))
 	)
 	(port
-		(pt 184 128)
+		(pt 160 128)
 		(output)
-		(text "DC_CTRAP_res" (rect 0 0 80 12)(font "Arial" ))
-		(text "DC_CTRAP_res" (rect 83 123 163 135)(font "Arial" ))
-		(line (pt 184 128)(pt 168 128)(line_width 1))
+		(text "RES" (rect 0 0 22 12)(font "Arial" ))
+		(text "RES" (rect 117 123 139 135)(font "Arial" ))
+		(line (pt 160 128)(pt 144 128)(line_width 1))
 	)
 	(drawing
-		(rectangle (rect 16 16 168 144)(line_width 1))
+		(rectangle (rect 16 16 144 144)(line_width 1))
 	)
 )

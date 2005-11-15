@@ -130,7 +130,7 @@ ENTITY simpletest IS
 		FE_PULSER_P		: OUT STD_LOGIC_VECTOR (3 downto 0);
 		FE_PULSER_N		: OUT STD_LOGIC_VECTOR (3 downto 0);
 		-- frontend testpulser (R2R ladder ATWD ch3 MUX)
-		R2BUS			: OUT STD_LOGIC_VECTOR (7 downto 0);
+		R2BUS			: OUT STD_LOGIC_VECTOR (6 downto 0);
 		-- on board single LED flasher
 		SingleLED_TRIGGER	: OUT STD_LOGIC;
 		-- local coincidence
@@ -161,10 +161,7 @@ ENTITY simpletest IS
 		A_nB				: IN STD_LOGIC;
 		-- CPDL FPGA interface    currently used to show FPGA is confugured
 		PDL_FPGA_D			: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
-		FPGA_DA				: IN STD_LOGIC;
-		FPGA_CE				: OUT STD_LOGIC;
 		-- Test connector	THERE IS NO 11   I don't know why
-		FPGA_D			: OUT STD_LOGIC_VECTOR (1 DOWNTO 0); -- added for alternate LC pin test on 5.1 boards
 		PGM				: OUT STD_LOGIC_VECTOR (15 downto 0)
 	);
 END simpletest;
@@ -184,7 +181,6 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL B_nA		: STD_LOGIC;
 	
 	SIGNAL TC		: STD_LOGIC_VECTOR (7 downto 0);
-	SIGNAL TC_1PPS	: STD_LOGIC_VECTOR (7 downto 0);
 	
 	-- PLD to STRIPE bridge
 	SIGNAL slavehclk		: STD_LOGIC;
@@ -438,19 +434,17 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 
 	
 	SIGNAL systime			: STD_LOGIC_VECTOR (47 DOWNTO 0);
-	SIGNAL systime_1PPS		: STD_LOGIC_VECTOR (47 DOWNTO 0);
 	SIGNAL atwd0_timestamp  : STD_LOGIC_VECTOR (47 DOWNTO 0);
 	SIGNAL atwd1_timestamp  : STD_LOGIC_VECTOR (47 DOWNTO 0);
 	SIGNAL dom_id			: STD_LOGIC_VECTOR (63 DOWNTO 0);
 	
 	COMPONENT ROC
 		PORT (
-			CLK_EXT		: IN  STD_LOGIC;
-        	CLK_PLL		: IN  STD_LOGIC;
+			CLK			: IN STD_LOGIC;
 			RST			: OUT STD_LOGIC
 		);
 	END COMPONENT;
-	
+
 	COMPONENT pll2x
 		PORT (
 			inclock		: IN STD_LOGIC;
@@ -646,7 +640,6 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			com_clev_wr		: OUT	STD_LOGIC;
 			com_thr_del		: OUT	STD_LOGIC_VECTOR(31 downto 0);
 			com_thr_del_wr	: OUT	STD_LOGIC;
-			systime_1PPS	: IN	STD_LOGIC_VECTOR(47 DOWNTO 0);
 			-- COM ADC RX interface
 			com_adc_wdata		: OUT STD_LOGIC_VECTOR (15 downto 0);
 			com_adc_rdata		: IN STD_LOGIC_VECTOR (15 downto 0);
@@ -1177,17 +1170,6 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			TC					: OUT STD_LOGIC_VECTOR(7 downto 0)
 		);
 	END COMPONENT;
-	
-	COMPONENT CommonClock
-    PORT (
-        CLK20        : IN  STD_LOGIC;
-        RST          : IN  STD_LOGIC;
-        systime      : IN  STD_LOGIC_VECTOR (47 DOWNTO 0);
-        PPS          : IN  STD_LOGIC;
-        systime_1PPS : OUT STD_LOGIC_VECTOR (47 DOWNTO 0);
-        TC           : OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
-        );
-	END COMPONENT;
 
 	
 BEGIN
@@ -1421,8 +1403,7 @@ BEGIN
 	
 	inst_ROC : ROC
 		PORT MAP (
-			CLK_EXT		=> CLK3p,
-        	CLK_PLL		=> CLK20,
+			CLK			=> CLK20,
 			RST			=> RST
 		);
 		
@@ -1617,7 +1598,6 @@ BEGIN
 			com_clev_wr		=> com_clev_wr,
 			com_thr_del		=> com_thr_del,
 			com_thr_del_wr	=> com_thr_del_wr,
-			systime_1PPS	=> systime_1PPS,
 			-- COM ADC RX interface
 			com_adc_wdata		=> com_adc_wdata,
 			com_adc_rdata		=> com_adc_rdata,
@@ -1754,11 +1734,7 @@ BEGIN
 			trigLED		=> trigLED_onboard
 		);
 	SingleLED_TRIGGER <= SingleLED_TRIGGER_sig;
-	
-	--COINCIDENCE_OUT_DOWN <= 'Z';
-	--COINCIDENCE_OUT_UP <= 'Z';
-	FPGA_D(0) <= 'Z';
-	FPGA_D(1) <= 'Z';	
+		
 	inst_coinc : coinc
 		PORT MAP (
 			CLK					=> CLK20,
@@ -1793,7 +1769,6 @@ BEGIN
 			coinc_latch			=> coinc_latch,
 			coinc_disc			=> coinc_disc,
 			-- local coincidence
-			--COINCIDENCE_OUT_DOWN	=> FPGA_D(0), --COINCIDENCE_OUT_DOWN,
 			COINCIDENCE_OUT_DOWN	=> COINCIDENCE_OUT_DOWN,
 			COINC_DOWN_ALATCH	=> COINC_DOWN_ALATCH,
 			COINC_DOWN_ABAR		=> COINC_DOWN_ABAR,
@@ -1801,7 +1776,6 @@ BEGIN
 			COINC_DOWN_BLATCH	=> COINC_DOWN_BLATCH,
 			COINC_DOWN_BBAR		=> COINC_DOWN_BBAR,
 			COINC_DOWN_B		=> COINC_DOWN_B,
-			--COINCIDENCE_OUT_UP	=> FPGA_D(1), --COINCIDENCE_OUT_UP,
 			COINCIDENCE_OUT_UP	=> COINCIDENCE_OUT_UP,
 			COINC_UP_ALATCH		=> COINC_UP_ALATCH,
 			COINC_UP_ABAR		=> COINC_UP_ABAR,
@@ -1810,7 +1784,7 @@ BEGIN
 			COINC_UP_BBAR		=> COINC_UP_BBAR,
 			COINC_UP_B			=> COINC_UP_B,
 			-- test connector
-			TC					=> open --TC
+			TC					=> TC
 		);
 	-- for simple local coincidence FADC launch
 	--flash_adc_enable_disc_lc	<= flash_adc_enable_disc WHEN enable_coinc_atwd='0' ELSE flash_adc_enable_disc AND NOT (atwd0_LC_abort OR atwd1_LC_abort);
@@ -2029,11 +2003,10 @@ BEGIN
 			-- enable for TX
 			enable		=> enable_r2r,
 			-- communications DAC connections
-			R2BUS		=> R2BUS (6 downto 0),
+			R2BUS		=> R2BUS,
 			-- test connector
 			TC			=> open
 		);
-	R2BUS(7) <= '0';
 		
 	inst_fe_r2r : fe_r2r
 		PORT MAP (
@@ -2165,7 +2138,7 @@ BEGIN
 			id				=> dom_id(47 DOWNTO 0),
 			rx_dpr_radr		=> rx_dpr_radr(15 DOWNTO 0),
 			systime			=> systime,
-			tc				=> open, --TC, --open,
+			tc				=> open,
 			tx_dataout		=> dp0_portadataout,
 			tx_dpr_wadr		=> tx_dpr_wadr(15 DOWNTO 0),
 			tx_pack_sent	=> tx_pack_sent,
@@ -2202,17 +2175,6 @@ BEGIN
 		);
 	com_rx_data(15 DOWNTO 0)	<= rx_error;
 	com_rx_data(31 DOWNTO 16)	<= tx_error;
-	
-	CommonClock_inst : CommonClock
-    PORT MAP (
-        CLK20        => CLK20,
-        RST          => RST,
-        systime      => systime,
-        PPS          => FPGA_DA,
-        systime_1PPS => systime_1PPS,
-        TC           => TC_1PPS
-        );
-	FPGA_CE <= TC_1PPS(0);
 
 	-- arthur debugg
 --	dp0_portaaddr <= (OTHERS=>'0');

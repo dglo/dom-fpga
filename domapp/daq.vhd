@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2007-03-22
+-- Last update: 2003-10-23
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -19,7 +19,6 @@
 -- Revisions  :
 -- Date        Version     Author    Description
 -- 2003-10-23  V01-01-00   thorsten  
--- 2007-03-22              thorsten  added ATWD dead flag
 -------------------------------------------------------------------------------
 
 
@@ -47,12 +46,10 @@ ENTITY daq IS
 		trigger_enable	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
 		ATWD_mode		: IN STD_LOGIC_VECTOR (2 DOWNTO 0);
 		LC_mode			: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
-		LC_heart_beat	: IN STD_LOGIC;
 		DAQ_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		LBM_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		COMPR_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		COMPR_ctrl		: IN COMPR_STRUCT;
-		ICETOP_ctrl		: IN ICETOP_CTRL_STRUCT;
 		-- monitor signals
 		-- Lookback Memory Pointer
 		LBM_ptr			: OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
@@ -62,13 +59,10 @@ ENTITY daq IS
 		-- interface to countrate meter
 		discSPEpulse	: OUT STD_LOGIC;
 		discMPEpulse	: OUT STD_LOGIC;
-                dead_status     : OUT DEAD_STATUS_STRUCT;
-		got_ATWD_WF		: OUT STD_LOGIC;
 		-- interface to local coincidence
 		LC_trigger		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		LC_abort		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
- 		LC_A			: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
-		LC_B			: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
+ 		LC				: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		LC_launch		: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
 		LC_disc			: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
 		-- discriminator
@@ -147,7 +141,6 @@ ARCHITECTURE daq_arch OF daq IS
 			enable_DAQ		: IN STD_LOGIC;
 			enable_AB		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			trigger_enable	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
-			heart_beat_mode	: IN STD_LOGIC;
 			-- trigger sources
 			cs_trigger		: IN STD_LOGIC_VECTOR (5 DOWNTO 0);	-- calibration sources
 			lc_trigger		: IN STD_LOGIC_VECTOR (1 DOWNTO 0); -- local coincidence
@@ -161,8 +154,6 @@ ARCHITECTURE daq_arch OF daq IS
 			ATWDTrigger_sig_A	: OUT STD_LOGIC;
 			ATWDTrigger_sig_B	: OUT STD_LOGIC;
 			trigger_word	: OUT STD_LOGIC_VECTOR (15 DOWNTO 0);
-			veto_LC_abort_A	: OUT STD_LOGIC;
-			veto_LC_abort_B	: OUT STD_LOGIC;
 			-- discriminator
 			MultiSPE		: IN STD_LOGIC;
 			OneSPE			: IN STD_LOGIC;
@@ -173,7 +164,6 @@ ARCHITECTURE daq_arch OF daq IS
 			ATWDTrigger_B	: OUT STD_LOGIC;
 			discSPEpulse	: OUT STD_LOGIC;
 			discMPEpulse	: OUT STD_LOGIC;
-			SPE_level_stretch	: OUT STD_LOGIC_VECTOR (1 downto 0);
 			-- test connector
 			TC				: OUT STD_LOGIC_VECTOR (7 downto 0)
 		);
@@ -216,15 +206,9 @@ ARCHITECTURE daq_arch OF daq IS
 			DAQ_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			ATWD_AB			: IN STD_LOGIC;	-- indicates if ping or pong
 			COMPR_ctrl		: IN COMPR_STRUCT;
-			ICETOP_ctrl		: IN ICETOP_CTRL_STRUCT;
-			-- some status bits
-                        dead_flag               : OUT STD_LOGIC;
-			SPE_level_stretch	: IN STD_LOGIC_VECTOR (1 downto 0);
-			got_ATWD_WF		: OUT STD_LOGIC;
 			-- trigger
 			rst_trig		: OUT STD_LOGIC;
 			trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
-			minimum_bias_hit	: IN STD_LOGIC;
 			-- local coincidence
 			LC_abort		: IN STD_LOGIC;
 			LC				: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
@@ -351,46 +335,7 @@ ARCHITECTURE daq_arch OF daq IS
 			bus_error		: OUT	STD_LOGIC
 		);
 	END COMPONENT;
-
-	COMPONENT dead_time
-	    PORT (
-	        CLK         : IN  STD_LOGIC;
-	        RST         : IN  STD_LOGIC;
-	        -- inputs
-	        enable_AB   : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
-	        dead_flag_A : IN  STD_LOGIC;
-	        dead_flag_B : IN  STD_LOGIC;
-	        -- status flags to rate meters
-	        dead_status : OUT DEAD_STATUS_STRUCT;
-	        -- test port
-	        TC          : OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
-        );
-    END COMPONENT;
-
-	COMPONENT minimum_bias
-	    PORT (
-	        CLK               : IN  STD_LOGIC;
-	        RST               : IN  STD_LOGIC;
-	        -- enable
-	        enable            : IN  STD_LOGIC;
-	        -- ATWD launch link
-	        ATWDTrigger_A_sig : IN  STD_LOGIC;
-	        rst_trig_A        : IN  STD_LOGIC;
-	        LC_abort_A        : IN  STD_LOGIC;
-	        ATWDTrigger_B_sig : IN  STD_LOGIC;
-	        rst_trig_B        : IN  STD_LOGIC;
-	        LC_abort_B        : IN  STD_LOGIC;
-			-- min bias hit tag
-			minimum_bias_hit  : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
-	        -- LC veto
-	        veto_LC_A         : OUT STD_LOGIC;
-	        veto_LC_B         : OUT STD_LOGIC;
-	        -- test connector
-	        TC                : OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
-	        );
-	END COMPONENT;
-
-
+	
 	SIGNAL CLK20n		: STD_LOGIC;
 	
 	-- local FADC signals
@@ -451,13 +396,6 @@ ARCHITECTURE daq_arch OF daq IS
 	SIGNAL discSPEpulse_local	: STD_LOGIC;
 	SIGNAL discMPEpulse_local	: STD_LOGIC;
 	
-	SIGNAL SPE_level_stretch	: STD_LOGIC_VECTOR (1 downto 0);
-	
-	-- no required for calibration trigger in hard-LC
-	SIGNAL veto_LC_abort_A	: STD_LOGIC;
-	SIGNAL veto_LC_abort_B	: STD_LOGIC;
-	SIGNAL LC_abort_gated	: STD_LOGIC_VECTOR (1 DOWNTO 0);
-	
 	-- monitoring
 	SIGNAL xfer_eng		: STD_LOGIC;
 	SIGNAL xfer_compr	: STD_LOGIC;
@@ -466,23 +404,9 @@ ARCHITECTURE daq_arch OF daq IS
 	SIGNAL PING_status	: PP_STRUCT;
 	SIGNAL PONG_status	: PP_STRUCT;
 	
-    -- dead TIME
-    SIGNAL dead_flag_A : STD_LOGIC;
-    SIGNAL dead_flag_B : STD_LOGIC;
-    
-    --debugging
+	--debugging
 	SIGNAL TCping	: STD_LOGIC_VECTOR (7 DOWNTO 0);
 	SIGNAL TCpong	: STD_LOGIC_VECTOR (7 DOWNTO 0);
-	
-	-- minimum bias LC veto
-	SIGNAL veto_LC_minbias	: STD_LOGIC_VECTOR (1 DOWNTO 0);
-	SIGNAL LC_abort_minbias	: STD_LOGIC_VECTOR (1 DOWNTO 0);
-	
-	SIGNAL minimum_bias_hit	: STD_LOGIC_VECTOR (1 DOWNTO 0);
-	
-	-- ATWD waveform aquisition count flag
-	SIGNAL got_ATWD_WF_A	: STD_LOGIC;
-	SIGNAL got_ATWD_WF_B	: STD_LOGIC;
 
 BEGIN
 	
@@ -494,20 +418,12 @@ BEGIN
 --	TC(6)			<= busy_B;
 --	TC(7)			<= enable_AB(1);
 	
-	LC_abort_gated(0) <= LC_abort(0) AND NOT veto_LC_abort_A;
-	LC_abort_gated(1) <= LC_abort(1) AND NOT veto_LC_abort_B;
 	
-	LC_abort_minbias(0)	<= LC_abort_gated(0) AND NOT veto_LC_minbias(0);
-	LC_abort_minbias(1)	<= LC_abort_gated(1) AND NOT veto_LC_minbias(1);
 
 	discSPEpulse	<= discSPEpulse_local;
 	discMPEpulse	<= discMPEpulse_local;
 	LC_disc		<= discMPEpulse_local & discSPEpulse_local;
 	LC_launch	<= busy_B & busy_A;
-	
-	-- we can OR the pulses as they should not happen at the same time
-	-- for ATWD waveform acq counter
-	got_ATWD_WF	<= got_ATWD_WF_A OR got_ATWD_WF_B;
 
 	inst_trigger : trigger
 		PORT MAP (
@@ -517,7 +433,6 @@ BEGIN
 			enable_DAQ		=> enable_DAQ,
 			enable_AB		=> enable_AB,
 			trigger_enable	=> trigger_enable,
-			heart_beat_mode	=> LC_heart_beat,
 			-- trigger sources
 			cs_trigger		=> CS_trigger,
 			lc_trigger		=> LC_trigger,
@@ -531,8 +446,6 @@ BEGIN
 			ATWDTrigger_sig_A	=> ATWDTrigger_sig_A,
 			ATWDTrigger_sig_B	=> ATWDTrigger_sig_B,
 			trigger_word	=> trigger_word,
-			veto_LC_abort_A	=> veto_LC_abort_A,
-			veto_LC_abort_B	=> veto_LC_abort_B,
 			-- discriminator
 			MultiSPE		=> MultiSPE,
 			OneSPE			=> OneSPE,
@@ -543,7 +456,6 @@ BEGIN
 			ATWDTrigger_B	=> ATWDTrigger_1,
 			discSPEpulse	=> discSPEpulse_local,
 			discMPEpulse	=> discMPEpulse_local,
-			SPE_level_stretch	=> SPE_level_stretch,
 			-- test connector
 			TC				=> open
 		);
@@ -584,18 +496,12 @@ BEGIN
 			DAQ_mode		=> DAQ_mode,
 			ATWD_AB			=> ATWD_A,
 			COMPR_ctrl		=> COMPR_ctrl,
-			ICETOP_ctrl		=> ICETOP_ctrl,
-			-- some status bits
-                        dead_flag               => dead_flag_A,
-			SPE_level_stretch	=> SPE_level_stretch,
-			got_ATWD_WF		=> got_ATWD_WF_A,
 			-- trigger
 			rst_trig		=> rst_trig_A,
 			trigger_word	=> trigger_word,
-			minimum_bias_hit	=> minimum_bias_hit(0),
 			-- local coincidence
-			LC_abort		=> LC_abort_minbias(0), --LC_abort_gated(0),
-			LC				=> LC_A,
+			LC_abort		=> LC_abort(0),
+			LC				=> LC,
 			-- ATWD
 			ATWDTrigger		=> ATWDTrigger_sig_A,
 			TriggerComplete	=> TriggerComplete_0,
@@ -652,18 +558,12 @@ BEGIN
 			DAQ_mode		=> DAQ_mode,
 			ATWD_AB			=> ATWD_B,
 			COMPR_ctrl		=> COMPR_ctrl,
-			ICETOP_ctrl		=> ICETOP_ctrl,
-			-- some status bits
-                        dead_flag               => dead_flag_B,
-			SPE_level_stretch	=> SPE_level_stretch,
-			got_ATWD_WF		=> got_ATWD_WF_B,
 			-- trigger
 			rst_trig		=> rst_trig_B,
 			trigger_word	=> trigger_word,
-			minimum_bias_hit	=> minimum_bias_hit(1),
 			-- local coincidence
-			LC_abort		=> LC_abort_minbias(1), --LC_abort_gated(1),
-			LC				=> LC_B,
+			LC_abort		=> LC_abort(1),
+			LC				=> LC,
 			-- ATWD
 			ATWDTrigger		=> ATWDTrigger_sig_B,
 			TriggerComplete	=> TriggerComplete_1,
@@ -788,44 +688,7 @@ BEGIN
 			bus_error		=> bus_error
 		);
 		
-	dead_time_inst : dead_time
-	    PORT map (
-	        CLK         => CLK40,
-	        RST         => RST,
-	        -- inputs
-	        enable_AB   => enable_AB,
-	        dead_flag_A => dead_flag_A,
-	        dead_flag_B => dead_flag_B,
-	        -- status flags to rate meters
-	        dead_status => dead_status,
-	        -- test port
-	        TC          =>open
-        );
-
-	minimum_bias_inst : minimum_bias
-	    PORT MAP (
-	        CLK               => CLK40,
-	        RST               => RST,
-	        -- enable
-	        enable            => ICETOP_ctrl.minimum_bias,
-	        -- ATWD launch link
-	        ATWDTrigger_A_sig => ATWDTrigger_sig_A,
-	        rst_trig_A        => rst_trig_A,
-	        LC_abort_A        => LC_abort_gated(0),
-	        ATWDTrigger_B_sig => ATWDTrigger_sig_B,
-	        rst_trig_B        => rst_trig_B,
-	        LC_abort_B        => LC_abort_gated(1),
-			-- min bias hit tag
-			minimum_bias_hit  => minimum_bias_hit,
-	        -- LC veto
-	        veto_LC_A         => veto_LC_minbias(0),
-	        veto_LC_B         => veto_LC_minbias(1),
-	        -- test connector
-	        TC                => OPEN
-        );
-
-
---monitoring
+	--monitoring
 	DAQ_status.AHB_status.AHB_ERROR			<= bus_error;
 	DAQ_status.AHB_status.slavebuserrint	<= slavebuserrint;
 	DAQ_status.AHB_status.xfer_eng			<= xfer_eng;

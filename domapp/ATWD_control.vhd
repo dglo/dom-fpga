@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2008-02-08
+-- Last update: 2003-10-23
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -17,7 +17,6 @@
 -- Revisions  :
 -- Date        Version     Author    Description
 --             V01-01-00   thorsten
--- 2008-02-08              thorsten  chagned end of cclk timing (better for ATWD)
 -------------------------------------------------------------------------------
 
 
@@ -27,7 +26,6 @@ USE IEEE.std_logic_arith.all;
 USE IEEE.std_logic_unsigned.all;
 LIBRARY WORK;
 USE WORK.constants.ALL;
-USE WORK.ctrl_data_types.all;
 
 
 ENTITY ATWD_control IS
@@ -41,10 +39,6 @@ ENTITY ATWD_control IS
 		ATWD_mode	: IN STD_LOGIC_VECTOR (2 DOWNTO 0);
 		ATWD_n_chan	: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
 		abort		: IN STD_LOGIC;
-		ICETOP_ctrl	: IN ICETOP_CTRL_STRUCT;
-		-- some status bits
-		--trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
-		forced_launch	: IN STD_LOGIC;
 		-- atwd
 		ATWDTrigger		: IN STD_LOGIC;
 		TriggerComplete	: IN STD_LOGIC;
@@ -71,26 +65,8 @@ END ATWD_control;
 
 
 ARCHITECTURE arch_ATWD_control OF ATWD_control IS
-
-	COMPONENT icetop_get_atwd_chan
-		PORT (
-			CLK            : IN  STD_LOGIC;
-			RST            : IN  STD_LOGIC;
-			-- mode
-			icetop_mode_en : IN  STD_LOGIC;
-			icetop_scan    : IN  STD_LOGIC;
-			icetop_channel : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
-			-- ATWD status
-			abort          : IN  STD_LOGIC;
-			overflow       : IN  STD_LOGIC;
-			get_chan       : OUT STD_LOGIC;
-			channel        : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
-			-- test connector
-			TC             : OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
-		);
-	END COMPONENT;
 	
-	TYPE ATWD_state_type is (pre_digitize, digitize, post_digitize, idle, init_digitize, next_channel, power_up_init1, power_up_init2, readout_L0, readout_L1, readout_H0, readout_H1, readout_end, settle, wait_trig_compl, chk_cycle, dummy_cycle);
+	TYPE ATWD_state_type is (digitize, idle, init_digitize, next_channel, power_up_init1, power_up_init2, readout_L0, readout_L1, readout_H0, readout_H1, readout_end, settle, wait_trig_compl);
 	SIGNAL state	: ATWD_state_type;
 	
 	SIGNAL settle_cnt	: INTEGER;
@@ -103,11 +79,6 @@ ARCHITECTURE arch_ATWD_control OF ATWD_control IS
 	SIGNAL overflow		: STD_LOGIC;
 	
 	SIGNAL status		: STD_LOGIC_VECTOR (7 DOWNTO 0);
-	
-	-- status bit: we acquiring data, now wr cycle through ATWD channels 
-	SIGNAL do_channel_cycle	: STD_LOGIC;
-	SIGNAL dummy_cycle_cnt	: INTEGER RANGE 0 TO 31;
-	SIGNAL icetop_get_chan	: STD_LOGIC;
 	
 BEGIN
 	
@@ -137,7 +108,6 @@ BEGIN
 					ATWD_D_we			<= '0';
 					readout_cnt		<= conv_std_logic_vector(-1,8); --(OTHERS=>'1'); -- -1
 					ATWD_n_chan		<= "00";
-					do_channel_cycle <= '0';
 				WHEN power_up_init2 =>
 					state	<= idle;
 					DigitalReset	<= '0';
@@ -154,7 +124,6 @@ BEGIN
 					counterclk_low	<= '1';
 					counterclk_high	<= '0';
 					readout_cnt		<= (OTHERS=>'1'); -- -1
-					do_channel_cycle <= '0';
 				WHEN wait_trig_compl =>
 					IF TriggerComplete='0' THEN
 						state	<= init_digitize;
@@ -168,36 +137,21 @@ BEGIN
 					settle_cnt		<= 0;
 					digitize_cnt	<= 1; -- 0;
 				WHEN settle =>
-					IF settle_cnt=128 OR ((abort='1' OR do_channel_cycle = '1') AND icetop_get_chan = '0')THEN
-						state	<= pre_digitize;
+					IF settle_cnt=128 OR abort='1' THEN
+						state	<= digitize;
 					END IF;
 					ReadWrite	<= '1';
-					counterclk_low	<= '0';
-					counterclk_high	<= '1';
 					settle_cnt	<= settle_cnt+1;
-				WHEN pre_digitize =>
-					counterclk_low	<= '0';
-					counterclk_high	<= '1';
-					state	<= digitize;
 				WHEN digitize =>
 					DigitalReset	<= '0';
 					RampSet			<= '0';
 					counterclk_low	<= '0';
 					counterclk_high	<= '0';
 					digitize_cnt	<= digitize_cnt + 1;
-					IF digitize_cnt=512 OR ((abort='1' OR do_channel_cycle = '1') AND icetop_get_chan = '0') THEN
-						state	<= post_digitize;
-						counterclk_low	<= '1';
-					END IF;
-				WHEN post_digitize =>
-					counterclk_low	<= '1';
-					counterclk_high	<= '0';
-					IF ((abort = '1' OR do_channel_cycle = '1') AND icetop_get_chan = '0') THEN
-						state <= dummy_cycle;
-					ELSE
+					IF digitize_cnt=512 OR abort='1' THEN
 						state	<= readout_L0;
+						counterclk_high	<= '1';
 					END IF;
-					dummy_cycle_cnt	<= 0;
 				WHEN readout_L0 =>
 					state	<= readout_L1;
 					DigitalSet		<= '1';
@@ -205,8 +159,8 @@ BEGIN
 					AnalogReset		<= '1';
 					OutputEnable	<= '1';
 					ShiftClock		<= '0';
-					counterclk_low	<= '1';
-					counterclk_high	<= '0';
+					counterclk_low	<= '0';
+					counterclk_high	<= '1';
 					ATWD_D_we			<= '0';
 				WHEN readout_L1 =>
 					state	<= readout_H0;
@@ -217,7 +171,7 @@ BEGIN
 					ATWD_D_gray	<= ATWD_D;
 					readout_cnt	<= readout_cnt + 1;
 				WHEN readout_H1 =>
-					IF readout_cnt=127 OR ((abort='1' OR do_channel_cycle = '1') AND icetop_get_chan = '0') THEN
+					IF readout_cnt=127 OR abort='1' THEN
 						state	<= readout_end;
 					ELSE
 						state	<= readout_L0;
@@ -227,17 +181,15 @@ BEGIN
 					AnalogReset		<= '1';
 					OutputEnable	<= '1';
 					ShiftClock		<= '1';
-					counterclk_low	<= '1';
-					counterclk_high	<= '0';
+					counterclk_low	<= '0';
+					counterclk_high	<= '1';
 					ATWD_D_we			<= '1';
 				WHEN readout_end =>
 					IF (ATWD_mode(1 DOWNTO 0)=ATWD_mode_ALL AND channel="11") OR	--we are done
 					   (ATWD_mode(1 DOWNTO 0)=ATWD_mode_NORMAL AND overflow='0') OR
 					   (ATWD_mode(1 DOWNTO 0)=ATWD_mode_NORMAL AND channel="10") OR
-					   (ATWD_mode(1 DOWNTO 0)=ATWD_mode_BEACON AND (overflow='0' OR channel="10") AND forced_launch='0') OR
-					   (ATWD_mode(1 DOWNTO 0)=ATWD_mode_BEACON AND channel="11" AND forced_launch='1') OR
-					   abort='1' OR do_channel_cycle = '1' THEN
-						state	<= chk_cycle; --idle; --restart_ATWD;
+					   abort='1' THEN
+						state	<= idle; --restart_ATWD;
 					ELSE
 						state	<= next_channel;
 					END IF;
@@ -258,34 +210,6 @@ BEGIN
 					AnalogReset		<= '1';
 					readout_cnt		<= conv_std_logic_vector(-1,8); --(OTHERS=>'1'); -- -1
 					channel			<= channel + 1;
-				WHEN chk_cycle => -- check if we finished cycling through all ATWD channels
-					IF channel = "11" THEN
-						state <= idle;
-					ELSE
-						state <= next_channel;
-					END IF;
-					DigitalSet		<= '1';
-					RampSet			<= '1';
-					AnalogReset		<= '1';
-					OutputEnable	<= '0';
-					ShiftClock		<= '0';
-					counterclk_low	<= '1';
-					counterclk_high	<= '0';
-					ATWD_D_we		<= '0';
-					do_channel_cycle <= '1';
-				WHEN dummy_cycle => -- dummy reset for channel cycle
-					IF dummy_cycle_cnt >= 30 THEN
-						state <= chk_cycle;
-					END IF;
-					dummy_cycle_cnt	<= dummy_cycle_cnt + 1;
-					DigitalSet		<= '1';
-					RampSet			<= '1';
-					AnalogReset		<= '1';
-					OutputEnable	<= '0';
-					ShiftClock		<= '0';
-					counterclk_low	<= '1';
-					counterclk_high	<= '0';
-					ATWD_D_we		<= '0';
 --				WHEN restart_ATWD =>
 --					IF TriggerComplete='1' THEN
 --						state	<= ATWDrecover;
@@ -346,22 +270,5 @@ BEGIN
 	status(4)	<= '1' WHEN state=readout_L0 OR state=readout_L1 OR state=readout_H0 OR state=readout_H1 OR state=readout_end ELSE '0';	-- readout
 	status(5)	<= '1' WHEN state=power_up_init1 OR state=power_up_init2 OR state=next_channel ELSE '0';	-- misc
 	status(7 DOWNTO 6)	<= "00";
-	
-	inst_icetop_get_atwd_chan : icetop_get_atwd_chan
-		PORT MAP (
-			CLK            => CLK40,
-			RST            => RST,
-			-- mode
-			icetop_mode_en => ICETOP_ctrl.IceTop_mode,
-			icetop_scan    => ICETOP_ctrl.IT_scan_mode,
-			icetop_channel => ICETOP_ctrl.IT_atwd_charge_chan,
-			-- ATWD status
-			abort          => abort,
-			overflow       => overflow,
-			get_chan       => icetop_get_chan,
-			channel        => channel,
-			-- test connector
-			TC             => OPEN
-		);
 	
 END;

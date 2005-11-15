@@ -358,27 +358,6 @@ party's intellectual property, are provided herein.
 		(text "dac_lev[7..0]" (rect 170 283 243 297)(font "Arial" (font_size 8)))
 		(line (pt 264 288)(pt 248 288)(line_width 3))
 	)
-	(port
-		(pt 264 304)
-		(output)
-		(text "tx_data[7..0]" (rect 0 0 70 14)(font "Arial" (font_size 8)))
-		(text "tx_data[7..0]" (rect 173 299 243 313)(font "Arial" (font_size 8)))
-		(line (pt 264 304)(pt 248 304)(line_width 3))
-	)
-	(port
-		(pt 264 320)
-		(output)
-		(text "data_val" (rect 0 0 48 14)(font "Arial" (font_size 8)))
-		(text "data_val" (rect 195 315 243 329)(font "Arial" (font_size 8)))
-		(line (pt 264 320)(pt 248 320)(line_width 1))
-	)
-	(port
-		(pt 264 336)
-		(output)
-		(text "ctrl_val" (rect 0 0 41 14)(font "Arial" (font_size 8)))
-		(text "ctrl_val" (rect 202 331 243 345)(font "Arial" (font_size 8)))
-		(line (pt 264 336)(pt 248 336)(line_width 1))
-	)
 	(drawing
 		(rectangle (rect 16 16 248 528)(line_width 1))
 	)

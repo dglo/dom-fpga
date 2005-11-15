@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2010-04-20
+-- Last update: 2005-07-11
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -38,7 +38,6 @@ PACKAGE ctrl_data_types IS
             LBM_mode       : STD_LOGIC_VECTOR (1 DOWNTO 0);
             COMPR_mode     : STD_LOGIC_VECTOR (1 DOWNTO 0);
             LBM_ptr_RST    : STD_LOGIC;
-            LC_heart_beat  : STD_LOGIC;
         END RECORD;
 
     -- control data for the CalibrationSource module
@@ -70,18 +69,16 @@ PACKAGE ctrl_data_types IS
             lc_cable_length_down : CABLE_LENGTH_VECTOR;
             lc_self_mode         : STD_LOGIC_VECTOR (1 DOWNTO 0);
             lc_self_window       : STD_LOGIC_VECTOR (5 DOWNTO 0);
-            LC_up_and_down       : STD_LOGIC;
+			LC_up_and_down       : STD_LOGIC;
         END RECORD;
 
     -- control data for the RateMeter & Supernova module
     TYPE RM_CTRL_STRUCT IS
         RECORD
-            rm_rate_enable  : STD_LOGIC_VECTOR (1 DOWNTO 0);
-            rm_rate_dead    : STD_LOGIC_VECTOR (9 DOWNTO 0);
-            rm_sn_enable    : STD_LOGIC_VECTOR (1 DOWNTO 0);
-            rm_sn_dead      : STD_LOGIC_VECTOR (6 DOWNTO 0);
-            dead_cnt_en     : STD_LOGIC_VECTOR (1 DOWNTO 0);
-            atwd_acq_cnt_en : STD_LOGIC;
+            rm_rate_enable : STD_LOGIC_VECTOR (1 DOWNTO 0);
+            rm_rate_dead   : STD_LOGIC_VECTOR (9 DOWNTO 0);
+            rm_sn_enable   : STD_LOGIC_VECTOR (1 DOWNTO 0);
+            rm_sn_dead     : STD_LOGIC_VECTOR (2 DOWNTO 0);
         END RECORD;
     
     TYPE RM_STAT_STRUCT IS
@@ -90,27 +87,24 @@ PACKAGE ctrl_data_types IS
             RM_rate_MPE    : STD_LOGIC_VECTOR (31 DOWNTO 0);
             RM_rate_update : STD_LOGIC;
             RM_sn_data     : STD_LOGIC_VECTOR (31 DOWNTO 0);
-            dead_cnt       : STD_LOGIC_VECTOR (31 DOWNTO 0);
-            atwd_acq_cnt   : STD_LOGIC_VECTOR (31 DOWNTO 0);
             sn_rate_update : STD_LOGIC;
         END RECORD;
 
     -- control data for the data compression module
     TYPE COMPR_STRUCT IS
         RECORD
-            COMPR_mode               : STD_LOGIC_VECTOR (1 DOWNTO 0);
---            ATWDa0thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
---            ATWDa1thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
---            ATWDa2thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
---            ATWDa3thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
---            ATWDb0thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
---            ATWDb1thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
---            ATWDb2thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
---            ATWDb3thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
---            FADCthres   : STD_LOGIC_VECTOR (9 DOWNTO 0);
---            threshold0  : STD_LOGIC;
-            all_chan_for_forced_trig : STD_LOGIC;
-            LASTonly                 : STD_LOGIC;
+            COMPR_mode  : STD_LOGIC_VECTOR (1 DOWNTO 0);
+            ATWDa0thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
+            ATWDa1thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
+            ATWDa2thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
+            ATWDa3thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
+            ATWDb0thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
+            ATWDb1thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
+            ATWDb2thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
+            ATWDb3thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
+            FADCthres   : STD_LOGIC_VECTOR (9 DOWNTO 0);
+            threshold0  : STD_LOGIC;
+            LASTonly    : STD_LOGIC;
         END RECORD;
     
     TYPE COMM_CTRL_STRUCT IS
@@ -122,14 +116,6 @@ PACKAGE ctrl_data_types IS
             rx_dpr_raddr_stb : STD_LOGIC;  -- rx_dpr_radr updated
             tx_head          : STD_LOGIC_VECTOR(15 DOWNTO 0);
             rx_tail          : STD_LOGIC_VECTOR(15 DOWNTO 0);
-            comm_threshold   : STD_LOGIC_VECTOR(7 DOWNTO 0);  -- Comm parameters
-            DAC_max          : STD_LOGIC_VECTOR(1 DOWNTO 0);
-            RX_delay         : STD_LOGIC_VECTOR(7 DOWNTO 0);
-            TX_delay         : STD_LOGIC_VECTOR(7 DOWNTO 0);
-            level_adapt_min  : STD_LOGIC_VECTOR(9 DOWNTO 0);
-            level_adapt_max  : STD_LOGIC_VECTOR(9 DOWNTO 0);
-            thres_delay_wr   : STD_LOGIC;
-            clev_wr          : STD_LOGIC;
         END RECORD;
 
     TYPE COMM_STAT_STRUCT IS
@@ -148,30 +134,6 @@ PACKAGE ctrl_data_types IS
             rx_head         : STD_LOGIC_VECTOR(15 DOWNTO 0);
         END RECORD;
 
-    -- control data for IceTop modifications
-    TYPE ICETOP_CTRL_STRUCT IS
-        RECORD
-            IceTop_mode         : STD_LOGIC;
-            IT_atwd_charge_chan : STD_LOGIC_VECTOR (1 DOWNTO 0);
-            IT_scan_mode        : STD_LOGIC;
-            minimum_bias        : STD_LOGIC;
-        END RECORD;
-
-
-    -- data type for the SPI inclinometer
-    TYPE INCLINOMETER_CTRL_STRUCT IS
-        RECORD
-            incl_en             : STD_LOGIC;
-            incl_data_tx        : STD_LOGIC_VECTOR (15 DOWNTO 0);
-            incl_data_tx_update : STD_LOGIC;
-        END RECORD;
-
-    TYPE INCLINOMETER_STAT_STRUCT IS
-        RECORD
-            incl_data_rx : STD_LOGIC_VECTOR (15 DOWNTO 0);
-            incl_busy    : STD_LOGIC;
-            incl_DIO     : STD_LOGIC_VECTOR (1 DOWNTO 0);
-        END RECORD;
     
 END ctrl_data_types;
 

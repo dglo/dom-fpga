@@ -4,23 +4,29 @@ editor if you plan to continue editing the block that represents it in
 the Block Editor! File corruption is VERY likely to occur.
 */
 /*
-Copyright (C) 1991-2005 Altera Corporation
-Your use of Altera Corporation's design tools, logic functions 
-and other software and tools, and its AMPP partner logic       
-functions, and any output files any of the foregoing           
-(including device programming or simulation files), and any    
-associated documentation or information are expressly subject  
-to the terms and conditions of the Altera Program License      
-Subscription Agreement, Altera MegaCore Function License       
-Agreement, or other applicable license agreement, including,   
-without limitation, that your use is for the sole purpose of   
-programming logic devices manufactured by Altera and sold by   
-Altera or its authorized distributors.  Please refer to the    
-applicable agreement for further details.
+Copyright (C) 1991-2004 Altera Corporation
+Any  megafunction  design,  and related netlist (encrypted  or  decrypted),
+support information,  device programming or simulation file,  and any other
+associated  documentation or information  provided by  Altera  or a partner
+under  Altera's   Megafunction   Partnership   Program  may  be  used  only
+to program  PLD  devices (but not masked  PLD  devices) from  Altera.   Any
+other  use  of such  megafunction  design,  netlist,  support  information,
+device programming or simulation file,  or any other  related documentation
+or information  is prohibited  for  any  other purpose,  including, but not
+limited to  modification,  reverse engineering,  de-compiling, or use  with
+any other  silicon devices,  unless such use is  explicitly  licensed under
+a separate agreement with  Altera  or a megafunction partner.  Title to the
+intellectual property,  including patents,  copyrights,  trademarks,  trade
+secrets,  or maskworks,  embodied in any such megafunction design, netlist,
+support  information,  device programming or simulation file,  or any other
+related documentation or information provided by  Altera  or a megafunction
+partner, remains with Altera, the megafunction partner, or their respective
+licensors. No other licenses, including any licenses needed under any third
+party's intellectual property, are provided herein.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 200 208)
+	(rect 16 16 208 208)
 	(text "DCTC_FWR" (rect 5 0 67 12)(font "Arial" ))
 	(text "inst" (rect 8 176 25 188)(font "Arial" ))
 	(port
@@ -68,81 +74,74 @@ applicable agreement for further details.
 	(port
 		(pt 0 128)
 		(input)
-		(text "tcwf_af" (rect 0 0 37 12)(font "Arial" ))
-		(text "tcwf_af" (rect 21 123 58 135)(font "Arial" ))
+		(text "tcwf_rd_next" (rect 0 0 63 12)(font "Arial" ))
+		(text "tcwf_rd_next" (rect 21 123 84 135)(font "Arial" ))
 		(line (pt 0 128)(pt 16 128)(line_width 1))
 	)
 	(port
 		(pt 0 144)
 		(input)
-		(text "tcwf_ef" (rect 0 0 37 12)(font "Arial" ))
-		(text "tcwf_ef" (rect 21 139 58 151)(font "Arial" ))
+		(text "wfm_ct_cout" (rect 0 0 63 12)(font "Arial" ))
+		(text "wfm_ct_cout" (rect 21 139 84 151)(font "Arial" ))
 		(line (pt 0 144)(pt 16 144)(line_width 1))
 	)
 	(port
-		(pt 0 160)
-		(input)
-		(text "tcwf_rd_next" (rect 0 0 63 12)(font "Arial" ))
-		(text "tcwf_rd_next" (rect 21 155 84 167)(font "Arial" ))
-		(line (pt 0 160)(pt 16 160)(line_width 1))
-	)
-	(port
-		(pt 184 32)
+		(pt 192 32)
 		(output)
 		(text "pulse_rcvd" (rect 0 0 54 12)(font "Arial" ))
-		(text "pulse_rcvd" (rect 109 27 163 39)(font "Arial" ))
-		(line (pt 184 32)(pt 168 32)(line_width 1))
+		(text "pulse_rcvd" (rect 117 27 171 39)(font "Arial" ))
+		(line (pt 192 32)(pt 176 32)(line_width 1))
 	)
 	(port
-		(pt 184 48)
+		(pt 192 48)
 		(output)
 		(text "rx_time_lat" (rect 0 0 54 12)(font "Arial" ))
-		(text "rx_time_lat" (rect 109 43 163 55)(font "Arial" ))
-		(line (pt 184 48)(pt 168 48)(line_width 1))
+		(text "rx_time_lat" (rect 117 43 171 55)(font "Arial" ))
+		(line (pt 192 48)(pt 176 48)(line_width 1))
 	)
 	(port
-		(pt 184 64)
+		(pt 192 64)
 		(output)
 		(text "tcwf_aclr" (rect 0 0 44 12)(font "Arial" ))
-		(text "tcwf_aclr" (rect 119 59 163 71)(font "Arial" ))
-		(line (pt 184 64)(pt 168 64)(line_width 1))
+		(text "tcwf_aclr" (rect 127 59 171 71)(font "Arial" ))
+		(line (pt 192 64)(pt 176 64)(line_width 1))
 	)
 	(port
-		(pt 184 80)
+		(pt 192 80)
 		(output)
 		(text "tcwf_rdreq" (rect 0 0 51 12)(font "Arial" ))
-		(text "tcwf_rdreq" (rect 112 75 163 87)(font "Arial" ))
-		(line (pt 184 80)(pt 168 80)(line_width 1))
+		(text "tcwf_rdreq" (rect 120 75 171 87)(font "Arial" ))
+		(line (pt 192 80)(pt 176 80)(line_width 1))
 	)
 	(port
-		(pt 184 96)
+		(pt 192 96)
 		(output)
 		(text "tcwf_wrreq" (rect 0 0 53 12)(font "Arial" ))
-		(text "tcwf_wrreq" (rect 110 91 163 103)(font "Arial" ))
-		(line (pt 184 96)(pt 168 96)(line_width 1))
+		(text "tcwf_wrreq" (rect 118 91 171 103)(font "Arial" ))
+		(line (pt 192 96)(pt 176 96)(line_width 1))
 	)
 	(port
-		(pt 184 112)
+		(pt 192 112)
 		(output)
-		(text "wfm_ct_aclr" (rect 0 0 60 12)(font "Arial" ))
-		(text "wfm_ct_aclr" (rect 103 107 163 119)(font "Arial" ))
-		(line (pt 184 112)(pt 168 112)(line_width 1))
+		(text "wfm_ct_clk_en" (rect 0 0 74 12)(font "Arial" ))
+		(text "wfm_ct_clk_en" (rect 97 107 171 119)(font "Arial" ))
+		(line (pt 192 112)(pt 176 112)(line_width 1))
 	)
 	(port
-		(pt 184 128)
+		(pt 192 128)
 		(output)
 		(text "wfm_ct_sload" (rect 0 0 68 12)(font "Arial" ))
-		(text "wfm_ct_sload" (rect 95 123 163 135)(font "Arial" ))
-		(line (pt 184 128)(pt 168 128)(line_width 1))
+		(text "wfm_ct_sload" (rect 103 123 171 135)(font "Arial" ))
+		(line (pt 192 128)(pt 176 128)(line_width 1))
 	)
 	(port
-		(pt 184 144)
+		(pt 192 144)
 		(output)
 		(text "wfm_data_val" (rect 0 0 69 12)(font "Arial" ))
-		(text "wfm_data_val" (rect 94 139 163 151)(font "Arial" ))
-		(line (pt 184 144)(pt 168 144)(line_width 1))
+		(text "wfm_data_val" (rect 102 139 171 151)(font "Arial" ))
+		(line (pt 192 144)(pt 176 144)(line_width 1))
 	)
 	(drawing
-		(rectangle (rect 16 16 168 176)(line_width 1))
+		(rectangle (rect 16 16 176 176)(line_width 1))
 	)
 )
