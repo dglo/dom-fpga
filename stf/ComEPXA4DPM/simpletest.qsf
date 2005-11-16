@@ -32,6 +32,7 @@
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 2.2
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "10:24:23  APRIL 07, 2004"
 set_global_assignment -name LAST_QUARTUS_VERSION "4.0 SP1"
+set_global_assignment -name AHDL_FILE ../../common/comDPM/Tx_chan/tx_uart_shr10_sclr.tdf
 set_global_assignment -name AHDL_FILE ../../common/comDPM/test_and_tresholds.tdf
 set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/meanval/mean_over_4_clks.tdf
 set_global_assignment -name AHDL_FILE ../../common/comDPM/Rx_chan/rec_delay.tdf
