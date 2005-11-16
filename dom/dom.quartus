@@ -1,0 +1,26 @@
+COMPILER_SETTINGS_LIST
+{
+	COMPILER_SETTINGS = dom;
+}
+SIMULATOR_SETTINGS_LIST
+{
+	SIMULATOR_SETTINGS = dom;
+}
+SOFTWARE_SETTINGS_LIST
+{
+	SOFTWARE_SETTINGS = Debug;
+	SOFTWARE_SETTINGS = Release;
+}
+FILES
+{
+	VHDL_FILE = gray2bin.vhd;
+	VHDL_FILE = dom.vhd;
+	VHDL_FILE = fADC_input.vhd;
+	VHDL_FILE = trigger.vhd;
+	VHDL_FILE = daq.vhd;
+	VHDL_FILE = ATWD_interface.vhd;
+	VHDL_FILE = mem_interface.vhd;
+	VHDL_FILE = ATWD.vhd;
+	VHDL_FILE = FADC_interface.vhd;
+	VHDL_FILE = data_buffer.vhd;
+}
