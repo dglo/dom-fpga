@@ -1,5 +1,5 @@
 Timing Analyzer report for domapp
-Thu Nov 17 10:54:53 2005
+Wed Nov 23 15:28:19 2005
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -1172,7 +1172,7 @@ party's intellectual property, are provided herein.
 Info: *******************************************************************
 Info: Running Quartus II Timing Analyzer
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Thu Nov 17 10:54:31 2005
+    Info: Processing started: Wed Nov 23 15:27:57 2005
 Info: Command: quartus_tan --import_settings_files=off --export_settings_files=off domapp -c domapp
 Info: Started post-fitting delay annotation
 Info: Delay annotation completed successfully
@@ -1568,7 +1568,7 @@ Info: Minimum tco from clock CLK2p to destination pin CLKLK_OUT2p through clock 
 Info: All timing requirements were met. See Report window for more details.
 Warning: Found invalid timing assignments -- see Ignored Timing Assignments report for details
 Info: Quartus II Timing Analyzer was successful. 0 errors, 4 warnings
-    Info: Processing ended: Thu Nov 17 10:54:53 2005
-    Info: Elapsed time: 00:00:22
+    Info: Processing ended: Wed Nov 23 15:28:19 2005
+    Info: Elapsed time: 00:00:21
 
 
