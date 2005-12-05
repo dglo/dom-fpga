@@ -577,7 +577,7 @@ BEGIN
             reg_wdata     => reg_wdata,
             reg_rdata     => (OTHERS => '1'),
             reg_enable    => reg_enable,
-            reg_wait_sig  => '0'
+            reg_wait_sig  => '1'
             );
 
     slavereg : PROCESS (CLK20, RST)
