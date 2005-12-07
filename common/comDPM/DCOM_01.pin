@@ -42,492 +42,680 @@
  ------------------------------------------------------------------------------
 
 
-Quartus II Version 4.1 Build 181 06/29/2004 SJ Full Version
-CHIP  "DCOM_01"  ASSIGNED TO AN: EP20K200EFC484-2X
+Quartus II Version 4.2 Build 157 12/07/2004 SJ Full Version
+CHIP  "DCOM_01"  ASSIGNED TO AN: EPXA4F672C1
 
 Pin Name/Usage               : Location  : Dir.   : I/O Standard      : Voltage : I/O Bank  : User Assignment
 -------------------------------------------------------------------------------------------------------------
-GND                          : A1        : gnd    :                   :         :           :                
-GND*                         : A2        :        :                   :         : 8         :                
-GND*                         : A3        :        :                   :         : 8         :                
-GND*                         : A4        :        :                   :         : 8         :                
-GND*                         : A5        :        :                   :         : 8         :                
-GND*                         : A6        :        :                   :         : 8         :                
-GND*                         : A7        :        :                   :         : 8         :                
-GND*                         : A8        :        :                   :         : 8         :                
-NC                           : A9        :        :                   :         :           :                
-NC                           : A10       :        :                   :         :           :                
-GND                          : A11       : gnd    :                   :         :           :                
-NC                           : A12       :        :                   :         :           :                
-NC                           : A13       :        :                   :         :           :                
-NC                           : A14       :        :                   :         :           :                
-GND*                         : A15       :        :                   :         : 3         :                
-GND*                         : A16       :        :                   :         : 3         :                
-GND*                         : A17       :        :                   :         : 3         :                
-GND*                         : A18       :        :                   :         : 3         :                
-GND*                         : A19       :        :                   :         : 3         :                
-GND*                         : A20       :        :                   :         : 3         :                
-GND*                         : A21       :        :                   :         : 3         :                
-GND                          : A22       : gnd    :                   :         :           :                
-VCC_INT                      : B1        : power  :                   : 1.8V    :           :                
+GND                          : A2        : gnd    :                   :         :           :                
+VCC_INT                      : A3        : power  :                   : 1.8V    :           :                
+GND*                         : A4        :        :                   :         : 2         :                
+rx_error[9]                  : A5        : output : LVTTL             :         : 2         : N              
+VCC_IO                       : A6        : power  :                   : 3.3V    :           :                
+SD_DQ26                      : A7        :        :                   :         :           :                
+GND                          : A8        : gnd    :                   :         :           :                
+tx_dpr_wadr[7]               : A9        : input  : LVTTL             :         : 2         : N              
+GND                          : A10       : gnd    :                   :         :           :                
+tx_dpr_radr[14]              : A11       : output : LVTTL             :         : 2         : N              
+tx_addr[14]                  : A12       : output : LVTTL             :         : 2         : N              
+VCC_IO                       : A13       : power  :                   : 3.3V    :           :                
+GND                          : A14       : gnd    :                   :         :           :                
+GND+                         : A15       :        :                   :         : 3         :                
+GND+                         : A16       :        :                   :         : 3         :                
+GND                          : A17       : gnd    :                   :         :           :                
+tx_addr[12]                  : A18       : output : LVTTL             :         : 3         : N              
+GND                          : A19       : gnd    :                   :         :           :                
+tx_dpr_wadr[12]              : A20       : input  : LVTTL             :         : 3         : N              
+VCC_IO                       : A21       : power  :                   : 3.3V    :           :                
+GND*                         : A22       :        :                   :         : 3         :                
+tx_error[10]                 : A23       : output : LVTTL             :         : 3         : N              
+VCC_INT                      : A24       : power  :                   : 1.8V    :           :                
+GND                          : A25       : gnd    :                   :         :           :                
+GND                          : B1        : gnd    :                   :         :           :                
 GND                          : B2        : gnd    :                   :         :           :                
-GND*                         : B3        :        :                   :         : 8         :                
-GND*                         : B4        :        :                   :         : 8         :                
-GND*                         : B5        :        :                   :         : 8         :                
-GND*                         : B6        :        :                   :         : 8         :                
-GND*                         : B7        :        :                   :         : 8         :                
-GND*                         : B8        :        :                   :         : 8         :                
-GND*                         : B9        :        :                   :         : 8         :                
-GND*                         : B10       :        :                   :         : 8         :                
-GND*                         : B11       :        :                   :         : 8         :                
-GND*                         : B12       :        :                   :         : 3         :                
-GND*                         : B13       :        :                   :         : 3         :                
-GND*                         : B14       :        :                   :         : 3         :                
-GND*                         : B15       :        :                   :         : 3         :                
-GND*                         : B16       :        :                   :         : 3         :                
-GND*                         : B17       :        :                   :         : 3         :                
-GND*                         : B18       :        :                   :         : 3         :                
-GND*                         : B19       :        :                   :         : 3         :                
-GND*                         : B20       :        :                   :         : 3         :                
+VCC_INT                      : B3        : power  :                   : 1.8V    :           :                
+rx_error[8]                  : B4        : output : LVTTL             :         : 2         : N              
+tx_error[7]                  : B5        : output : LVTTL             :         : 2         : N              
+GND                          : B6        : gnd    :                   :         :           :                
+SD_DQ27                      : B7        :        :                   :         :           :                
+VCC_INT                      : B8        : power  :                   : 1.8V    :           :                
+tx_dpr_wadr[15]              : B9        : input  : LVTTL             :         : 2         : N              
+VCC_INT                      : B10       : power  :                   : 1.8V    :           :                
+tx_dpr_radr[0]               : B11       : output : LVTTL             :         : 2         : N              
+tx_dpr_wadr[6]               : B12       : input  : LVTTL             :         : 2         : N              
+GND                          : B13       : gnd    :                   :         :           :                
+VCC_IO                       : B14       : power  :                   : 3.3V    :           :                
+TDO                          : B15       : output :                   :         : 3         :                
+NRESET                       : B16       :        :                   :         :           :                
+VCC_INT                      : B17       : power  :                   : 1.8V    :           :                
+tx_dpr_radr[15]              : B18       : output : LVTTL             :         : 3         : N              
+VCC_INT                      : B19       : power  :                   : 1.8V    :           :                
+tx_addr[7]                   : B20       : output : LVTTL             :         : 3         : N              
 GND                          : B21       : gnd    :                   :         :           :                
-VCC_INT                      : B22       : power  :                   : 1.8V    :           :                
-GND*                         : C1        :        :                   :         : 8         :                
-GND*                         : C2        :        :                   :         : 8         :                
-GND*                         : C3        :        :                   :         : 8         :                
-GND*                         : C4        :        :                   :         : 1         :                
-GND*                         : C5        :        :                   :         : 1         :                
-GND*                         : C6        :        :                   :         : 1         :                
-GND*                         : C7        :        :                   :         : 1         :                
-GND*                         : C8        :        :                   :         : 1         :                
-GND*                         : C9        :        :                   :         : 1         :                
-GND*                         : C10       :        :                   :         : 1         :                
-GND*                         : C11       :        :                   :         : 2         :                
-GND*                         : C12       :        :                   :         : 2         :                
-GND*                         : C13       :        :                   :         : 2         :                
-GND*                         : C14       :        :                   :         : 2         :                
-GND*                         : C15       :        :                   :         : 2         :                
-GND*                         : C16       :        :                   :         : 2         :                
-GND*                         : C17       :        :                   :         : 2         :                
-GND*                         : C18       :        :                   :         : 2         :                
-GND*                         : C19       :        :                   :         : 2         :                
-GND*                         : C20       :        :                   :         : 3         :                
-GND*                         : C21       :        :                   :         : 3         :                
-GND*                         : C22       :        :                   :         : 3         :                
-GND*                         : D1        :        :                   :         : 8         :                
-GND*                         : D2        :        :                   :         : 8         :                
-GND*                         : D3        :        :                   :         : 8         :                
-GND*                         : D4        :        :                   :         : 1         :                
-GND*                         : D5        :        :                   :         : 1         :                
-GND*                         : D6        :        :                   :         : 1         :                
-GND*                         : D7        :        :                   :         : 1         :                
-GND*                         : D8        :        :                   :         : 1         :                
-GND*                         : D9        :        :                   :         : 1         :                
-GND*                         : D10       :        :                   :         : 1         :                
-GND+                         : D11       :        :                   :         : 1         :                
-TRST                         : D12       : input  :                   :         : 1         :                
-GND*                         : D13       :        :                   :         : 2         :                
-GND*                         : D14       :        :                   :         : 2         :                
-GND*                         : D15       :        :                   :         : 2         :                
-GND*                         : D16       :        :                   :         : 2         :                
-GND*                         : D17       :        :                   :         : 2         :                
-GND*                         : D18       :        :                   :         : 2         :                
-GND*                         : D19       :        :                   :         : 3         :                
-GND*                         : D20       :        :                   :         : 3         :                
-GND*                         : D21       :        :                   :         : 3         :                
-GND*                         : D22       :        :                   :         : 3         :                
-GND*                         : E1        :        :                   :         : 8         :                
-GND*                         : E2        :        :                   :         : 8         :                
-GND*                         : E3        :        :                   :         : 8         :                
-GND*                         : E4        :        :                   :         : 8         :                
-GND*                         : E5        :        :                   :         : 8         :                
-GND*                         : E6        :        :                   :         : 8         :                
-GND*                         : E7        :        :                   :         : 1         :                
-GND*                         : E8        :        :                   :         : 1         :                
-GND*                         : E9        :        :                   :         : 1         :                
-GND*                         : E10       :        :                   :         : 1         :                
-TDO                          : E11       : output :                   :         : 1         :                
-nCEO                         : E12       : output :                   :         : 1         :                
-GND*                         : E13       :        :                   :         : 2         :                
-GND*                         : E14       :        :                   :         : 2         :                
-GND*                         : E15       :        :                   :         : 2         :                
-GND*                         : E16       :        :                   :         : 2         :                
-GND*                         : E17       :        :                   :         : 2         :                
-GND*                         : E18       :        :                   :         : 3         :                
-GND*                         : E19       :        :                   :         : 3         :                
-GND*                         : E20       :        :                   :         : 3         :                
-GND*                         : E21       :        :                   :         : 3         :                
-GND*                         : E22       :        :                   :         : 3         :                
-GND*                         : F1        :        :                   :         : 8         :                
-GND*                         : F2        :        :                   :         : 8         :                
-GND*                         : F3        :        :                   :         : 8         :                
-GND*                         : F4        :        :                   :         : 8         :                
-GND*                         : F5        :        :                   :         : 8         :                
-GND                          : F6        : gnd    :                   :         :           :                
-GND*                         : F7        :        :                   :         : 8         :                
-GND*                         : F8        :        :                   :         : 1         :                
-GND*                         : F9        :        :                   :         : 1         :                
-GND*                         : F10       :        :                   :         : 1         :                
-GND*                         : F11       :        :                   :         : 1         :                
-GND+                         : F12       :        :                   :         : 1         :                
-GND*                         : F13       :        :                   :         : 2         :                
-GND*                         : F14       :        :                   :         : 2         :                
-GND*                         : F15       :        :                   :         : 2         :                
-GND*                         : F16       :        :                   :         : 2         :                
-GND                          : F17       : gnd    :                   :         :           :                
-GND*                         : F18       :        :                   :         : 3         :                
-GND*                         : F19       :        :                   :         : 3         :                
-GND*                         : F20       :        :                   :         : 3         :                
-GND*                         : F21       :        :                   :         : 3         :                
-GND*                         : F22       :        :                   :         : 3         :                
-GND*                         : G1        :        :                   :         : 8         :                
-GND*                         : G2        :        :                   :         : 8         :                
-GND*                         : G3        :        :                   :         : 8         :                
-GND*                         : G4        :        :                   :         : 8         :                
-GND*                         : G5        :        :                   :         : 8         :                
-GND*                         : G6        :        :                   :         : 8         :                
-GND                          : G7        : gnd    :                   :         :           :                
-VCC_IO                       : G8        : power  :                   : 3.3V    :           :                
-GND*                         : G9        :        :                   :         : 1         :                
-GND*                         : G10       :        :                   :         : 1         :                
-GND*                         : G11       :        :                   :         : 1         :                
-GND*                         : G12       :        :                   :         : 1         :                
-GND*                         : G13       :        :                   :         : 1         :                
-GND*                         : G14       :        :                   :         : 2         :                
-GND*                         : G15       :        :                   :         : 2         :                
-GND                          : G16       : gnd    :                   :         :           :                
-GND*                         : G17       :        :                   :         : 2         :                
-GND*                         : G18       :        :                   :         : 3         :                
-GND*                         : G19       :        :                   :         : 3         :                
-GND*                         : G20       :        :                   :         : 3         :                
-GND*                         : G21       :        :                   :         : 3         :                
-GND*                         : G22       :        :                   :         : 3         :                
-GND*                         : H1        :        :                   :         : 8         :                
-GND*                         : H2        :        :                   :         : 8         :                
-GND*                         : H3        :        :                   :         : 8         :                
-GND*                         : H4        :        :                   :         : 8         :                
-GND*                         : H5        :        :                   :         : 8         :                
-GND*                         : H6        :        :                   :         : 8         :                
-VCC_IO                       : H7        : power  :                   : 3.3V    :           :                
-GND                          : H8        : gnd    :                   :         :           :                
-VCC_INT                      : H9        : power  :                   : 1.8V    :           :                
-GND*                         : H10       :        :                   :         : 1         :                
-GND*                         : H11       :        :                   :         : 1         :                
-GND*                         : H12       :        :                   :         : 1         :                
-GND*                         : H13       :        :                   :         : 2         :                
-VCC_IO                       : H14       : power  :                   : 3.3V    :           :                
-GND                          : H15       : gnd    :                   :         :           :                
-GND*                         : H16       :        :                   :         : 2         :                
-GND*                         : H17       :        :                   :         : 3         :                
-GND*                         : H18       :        :                   :         : 3         :                
-GND*                         : H19       :        :                   :         : 3         :                
-GND*                         : H20       :        :                   :         : 3         :                
-GND*                         : H21       :        :                   :         : 3         :                
-GND*                         : H22       :        :                   :         : 3         :                
-GND*                         : J1        :        :                   :         : 7         :                
-GND*                         : J2        :        :                   :         : 7         :                
-GND*                         : J3        :        :                   :         : 7         :                
-GND*                         : J4        :        :                   :         : 8         :                
-GND*                         : J5        :        :                   :         : 7         :                
-GND*                         : J6        :        :                   :         : 8         :                
-GND*                         : J7        :        :                   :         : 7         :                
-VCC_INT                      : J8        : power  :                   : 1.8V    :           :                
-GND                          : J9        : gnd    :                   :         :           :                
-VCC_IO                       : J10       : power  :                   : 3.3V    :           :                
-GND                          : J11       : gnd    :                   :         :           :                
-GND*                         : J12       :        :                   :         : 2         :                
-VCC_INT                      : J13       : power  :                   : 1.8V    :           :                
-GND                          : J14       : gnd    :                   :         :           :                
-VCC_IO                       : J15       : power  :                   : 3.3V    :           :                
-GND*                         : J16       :        :                   :         : 3         :                
-GND*                         : J17       :        :                   :         : 3         :                
-GND*                         : J18       :        :                   :         : 4         :                
-GND*                         : J19       :        :                   :         : 3         :                
-GND*                         : J20       :        :                   :         : 3         :                
-GND*                         : J21       :        :                   :         : 3         :                
-GND*                         : J22       :        :                   :         : 3         :                
-GND*                         : K1        :        :                   :         : 7         :                
-GND*                         : K2        :        :                   :         : 7         :                
-GND*                         : K3        :        :                   :         : 7         :                
-GND*                         : K4        :        :                   :         : 8         :                
-GND*                         : K5        :        :                   :         : 7         :                
-GND*                         : K6        :        :                   :         : 8         :                
-GND*                         : K7        :        :                   :         : 8         :                
-GND*                         : K8        :        :                   :         : 8         :                
-VCC_IO                       : K9        : power  :                   : 3.3V    :           :                
-GND                          : K10       : gnd    :                   :         :           :                
-VCC_INT                      : K11       : power  :                   : 1.8V    :           :                
-VCC_IO                       : K12       : power  :                   : 3.3V    :           :                
-GND                          : K13       : gnd    :                   :         :           :                
-VCC_INT                      : K14       : power  :                   : 1.8V    :           :                
-GND*                         : K15       :        :                   :         : 3         :                
-GND*                         : K16       :        :                   :         : 3         :                
-GND+                         : K17       :        :                   :         : 4         :                
-GND*                         : K18       :        :                   :         : 4         :                
-GND*                         : K19       :        :                   :         : 3         :                
-GND*                         : K20       :        :                   :         : 3         :                
-GND*                         : K21       :        :                   :         : 3         :                
-GND*                         : K22       :        :                   :         : 3         :                
-VCC_IO                       : L1        : power  :                   : 3.3V    :           :                
-GND                          : L2        : gnd    :                   :         :           :                
-GND*                         : L3        :        :                   :         : 8         :                
-DATA0                        : L4        : input  :                   :         : 8         :                
-DCLK                         : L5        : bidir  :                   :         : 8         :                
-GND+                         : L6        :        :                   :         : 8         :                
-GND*                         : L7        :        :                   :         : 8         :                
-GND*                         : L8        :        :                   :         : 8         :                
-VCC_CKLK2                    : L9        : power  :                   : 1.8V    :           :                
-VCC_INT                      : L10       : power  :                   : 1.8V    :           :                
+tx_dpr_wadr[2]               : B22       : input  : LVTTL             :         : 3         : N              
+GND*                         : B23       :        :                   :         : 3         :                
+VCC_INT                      : B24       : power  :                   : 1.8V    :           :                
+GND                          : B25       : gnd    :                   :         :           :                
+GND                          : B26       : gnd    :                   :         :           :                
+VCC_INT                      : C1        : power  :                   : 1.8V    :           :                
+VCC_INT                      : C2        : power  :                   : 1.8V    :           :                
+GND                          : C3        : gnd    :                   :         :           :                
+VCC_INT                      : C4        : power  :                   : 1.8V    :           :                
+rev[6]                       : C5        : output : LVTTL             :         : 2         : N              
+rx_error[13]                 : C6        : output : LVTTL             :         : 2         : N              
+SD_DQ30                      : C7        :        :                   :         :           :                
+DDR_VS2                      : C8        :        :                   :         : 2         :                
+GND*                         : C9        :        :                   :         : 2         :                
+SD_DQ_ECC2                   : C10       :        :                   :         : 2         :                
+SD_DQ_ECC3                   : C11       :        :                   :         : 2         :                
+tx_dpr_wadr[5]               : C12       : input  : LVTTL             :         : 2         : N              
+tx_addr[6]                   : C13       : output : LVTTL             :         : 2         : N              
+JSELECT                      : C14       :        :                   :         : 3         :                
+GND                          : C15       :        :                   :         : 3         :                
+BOOT_FLASH                   : C16       :        :                   :         : 3         :                
+rev[2]                       : C17       : output : LVTTL             :         : 6         : N              
+EBI_A22                      : C18       :        :                   :         :           :                
+GND*                         : C19       :        :                   :         : 6         :                
+GND*                         : C20       :        :                   :         : 6         :                
+systime[32]                  : C21       : input  : LVTTL             :         : 6         : N              
+id[38]                       : C22       : input  : LVTTL             :         : 6         : N              
+VCC_INT                      : C23       : power  :                   : 1.8V    :           :                
+GND                          : C24       : gnd    :                   :         :           :                
+VCC_INT                      : C25       : power  :                   : 1.8V    :           :                
+VCC_INT                      : C26       : power  :                   : 1.8V    :           :                
+rec_del_d[5]                 : D1        : input  : LVTTL             :         : 12        : N              
+send_del_d[1]                : D2        : input  : LVTTL             :         : 12        : N              
+VCC_INT                      : D3        : power  :                   : 1.8V    :           :                
+GND                          : D4        : gnd    :                   :         :           :                
+tx_error[4]                  : D5        : output : LVTTL             :         : 2         : N              
+rx_error[2]                  : D6        : output : LVTTL             :         : 2         : N              
+SD_DQ31                      : D7        :        :                   :         :           :                
+SD_DQ24                      : D8        :        :                   :         :           :                
+rx_error[10]                 : D9        : output : LVTTL             :         : 2         : N              
+SD_DQM_ECC                   : D10       :        :                   :         : 2         :                
+SD_DQ_ECC5                   : D11       :        :                   :         : 2         :                
+tx_dpr_radr[2]               : D12       : output : LVTTL             :         : 2         : N              
+tx_dpr_wadr[9]               : D13       : input  : LVTTL             :         : 2         : N              
+DEBUG_EN                     : D14       :        :                   :         : 3         :                
+nCEO                         : D15       : output :                   :         : 3         :                
+TRST                         : D16       : input  :                   :         : 3         :                
+rev[15]                      : D17       : output : LVTTL             :         : 6         : N              
+systime[21]                  : D18       : input  : LVTTL             :         : 6         : N              
+systime[47]                  : D19       : input  : LVTTL             :         : 6         : N              
+clev_max_d[7]                : D20       : input  : LVTTL             :         : 6         : N              
+clev_max_d[6]                : D21       : input  : LVTTL             :         : 6         : N              
+systime[41]                  : D22       : input  : LVTTL             :         : 6         : N              
+GND                          : D23       : gnd    :                   :         :           :                
+VCC_INT                      : D24       : power  :                   : 1.8V    :           :                
+id[18]                       : D25       : input  : LVTTL             :         : 8         : N              
+id[21]                       : D26       : input  : LVTTL             :         : 8         : N              
+rec_del_d[0]                 : E1        : input  : LVTTL             :         : 12        : N              
+rec_del_d[1]                 : E2        : input  : LVTTL             :         : 12        : N              
+COM_AD_D[0]                  : E3        : input  : LVTTL             :         : 13        : N              
+systime[16]                  : E4        : input  : LVTTL             :         : 13        : N              
+tx_error[11]                 : E5        : output : LVTTL             :         : 2         : N              
+rx_error[4]                  : E6        : output : LVTTL             :         : 2         : N              
+rx_error[0]                  : E7        : output : LVTTL             :         : 2         : N              
+SD_DQ28                      : E8        :        :                   :         :           :                
+rev[1]                       : E9        : output : LVTTL             :         : 2         : N              
+SD_DQ_ECC4                   : E10       :        :                   :         : 2         :                
+tx_dpr_radr[11]              : E11       : output : LVTTL             :         : 2         : N              
+tx_addr[4]                   : E12       : output : LVTTL             :         : 2         : N              
+tx_dpr_wadr[0]               : E13       : input  : LVTTL             :         : 2         : N              
+rev[7]                       : E14       : output : LVTTL             :         : 6         : N              
+rx_we                        : E15       : output : LVTTL             :         : 6         : N              
+systime[42]                  : E16       : input  : LVTTL             :         : 6         : N              
+EBI_A24                      : E17       :        :                   :         :           :                
+GND*                         : E18       :        :                   :         : 6         :                
+systime[38]                  : E19       : input  : LVTTL             :         : 6         : N              
+id[23]                       : E20       : input  : LVTTL             :         : 6         : N              
+systime[27]                  : E21       : input  : LVTTL             :         : 6         : N              
+VCC_CKLK5                    : E22       : power  :                   : 1.8V    :           :                
+VCC_CKLK6                    : E23       : power  :                   : 1.8V    :           :                
+PROC_TMS                     : E24       :        :                   :         : 7         :                
+id[20]                       : E25       : input  : LVTTL             :         : 8         : N              
+id[26]                       : E26       : input  : LVTTL             :         : 8         : N              
+rx_dpr_radr[9]               : F1        : input  : LVTTL             :         : 12        : N              
+rx_dpr_radr[8]               : F2        : input  : LVTTL             :         : 12        : N              
+systime[35]                  : F3        : input  : LVTTL             :         : 13        : N              
+COM_AD_D[9]                  : F4        : input  : LVTTL             :         : 13        : N              
+rx_error[5]                  : F5        : output : LVTTL             :         : 2         : N              
+HVD_TxENA                    : F6        : output : LVTTL             :         : 2         : N              
+SD_CLKE                      : F7        :        :                   :         :           :                
+rx_error[1]                  : F8        : output : LVTTL             :         : 2         : N              
+rx_error[14]                 : F9        : output : LVTTL             :         : 2         : N              
+SD_DQS_ECC                   : F10       :        :                   :         : 2         :                
+SD_DQ_ECC6                   : F11       :        :                   :         : 2         :                
+tx_dpr_radr[6]               : F12       : output : LVTTL             :         : 2         : N              
+tx_dpr_wadr[11]              : F13       : input  : LVTTL             :         : 2         : N              
+HVD_Rx                       : F14       : input  : LVTTL             :         : 6         : N              
+tx_error[8]                  : F15       : output : LVTTL             :         : 6         : N              
+tx_error[5]                  : F16       : output : LVTTL             :         : 6         : N              
+GND*                         : F17       :        :                   :         : 6         :                
+tx_error[13]                 : F18       : output : LVTTL             :         : 6         : N              
+clev_min_d[6]                : F19       : input  : LVTTL             :         : 6         : N              
+systime[29]                  : F20       : input  : LVTTL             :         : 6         : N              
+systime[7]                   : F21       : input  : LVTTL             :         : 7         : N              
+GND_CKLK5                    : F22       : gnd    :                   :         :           :                
+GND_CKLK6                    : F23       : gnd    :                   :         :           :                
+PROC_TCK                     : F24       :        :                   :         : 7         :                
+id[44]                       : F25       : input  : LVTTL             :         : 8         : N              
+id[41]                       : F26       : input  : LVTTL             :         : 8         : N              
+rx_addr[15]                  : G1        : output : LVTTL             :         : 12        : N              
+rx_dpr_aff                   : G2        : output : LVTTL             :         : 12        : N              
+COM_AD_D[1]                  : G3        : input  : LVTTL             :         : 13        : N              
+COM_AD_D[8]                  : G4        : input  : LVTTL             :         : 13        : N              
+rx_error[3]                  : G5        : output : LVTTL             :         : 2         : N              
+tx_error[15]                 : G6        : output : LVTTL             :         : 2         : N              
+rev[10]                      : G7        : output : LVTTL             :         : 2         : N              
+SD_DQ29                      : G8        :        :                   :         :           :                
+rx_error[11]                 : G9        : output : LVTTL             :         : 2         : N              
+SD_DQ_ECC0                   : G10       :        :                   :         : 2         :                
+tx_dpr_wadr[8]               : G11       : input  : LVTTL             :         : 2         : N              
+tx_addr[1]                   : G12       : output : LVTTL             :         : 2         : N              
+tx_dpr_wadr[3]               : G13       : input  : LVTTL             :         : 2         : N              
+HVD_IN                       : G14       : output : LVTTL             :         : 6         : N              
+systime[37]                  : G15       : input  : LVTTL             :         : 6         : N              
+systime[9]                   : G16       : input  : LVTTL             :         : 6         : N              
+systime[46]                  : G17       : input  : LVTTL             :         : 6         : N              
+systime[36]                  : G18       : input  : LVTTL             :         : 6         : N              
+systime[43]                  : G19       : input  : LVTTL             :         : 6         : N              
+clev_max_d[3]                : G20       : input  : LVTTL             :         : 6         : N              
+systime[33]                  : G21       : input  : LVTTL             :         : 7         : N              
+systime[11]                  : G22       : input  : LVTTL             :         : 7         : N              
+PROC_TDO                     : G23       :        :                   :         : 7         :                
+PROC_TRST                    : G24       :        :                   :         : 7         :                
+id[40]                       : G25       : input  : LVTTL             :         : 8         : N              
+id[47]                       : G26       : input  : LVTTL             :         : 8         : N              
+err_stb                      : H1        : output : LVTTL             :         : 12        : N              
+tx_pack_rdy                  : H2        : input  : LVTTL             :         : 12        : N              
+tx_addr[13]                  : H3        : output : LVTTL             :         : 13        : N              
+rev[3]                       : H4        : output : LVTTL             :         : 13        : N              
+rev[4]                       : H5        : output : LVTTL             :         : 13        : N              
+TRACEPIPESTAT0               : H6        :        :                   :         :           :                
+TRACEPIPESTAT1               : H7        :        :                   :         :           :                
+tx_error[9]                  : H8        : output : LVTTL             :         : 2         : N              
+SD_DQ25                      : H9        :        :                   :         :           :                
+tx_pack_sent                 : H10       : output : LVTTL             :         : 2         : N              
+tx_dpr_wadr[1]               : H11       : input  : LVTTL             :         : 2         : N              
+tx_dpr_wadr[10]              : H12       : input  : LVTTL             :         : 2         : N              
+tx_dpr_radr[10]              : H13       : output : LVTTL             :         : 2         : N              
+clev_min_d[0]                : H14       : input  : LVTTL             :         : 6         : N              
+HVD_RxENA                    : H15       : output : LVTTL             :         : 6         : N              
+tx_error[2]                  : H16       : output : LVTTL             :         : 6         : N              
+systime[25]                  : H17       : input  : LVTTL             :         : 6         : N              
+systime[44]                  : H18       : input  : LVTTL             :         : 6         : N              
+systime[13]                  : H19       : input  : LVTTL             :         : 6         : N              
+systime[19]                  : H20       : input  : LVTTL             :         : 6         : N              
+systime[23]                  : H21       : input  : LVTTL             :         : 7         : N              
+id[30]                       : H22       : input  : LVTTL             :         : 7         : N              
+PROC_TDI                     : H23       :        :                   :         : 7         :                
+CLK_REF                      : H24       :        :                   :         :           :                
+id[36]                       : H25       : input  : LVTTL             :         : 8         : N              
+com_thr_d[2]                 : H26       : input  : LVTTL             :         : 8         : N              
+tx_dataout[13]               : J1        : input  : LVTTL             :         : 12        : N              
+data_stb                     : J2        : output : LVTTL             :         : 12        : N              
+id[19]                       : J3        : input  : LVTTL             :         : 13        : N              
+id[24]                       : J4        : input  : LVTTL             :         : 13        : N              
+tx_error[0]                  : J5        : output : LVTTL             :         : 13        : N              
+TRACESYNC                    : J6        :        :                   :         :           :                
+TRACEPKT4                    : J7        :        :                   :         :           :                
+rx_error[7]                  : J8        : output : LVTTL             :         : 2         : N              
+rx_error[6]                  : J9        : output : LVTTL             :         : 2         : N              
+rx_error[15]                 : J10       : output : LVTTL             :         : 2         : N              
+SD_DQ_ECC1                   : J11       :        :                   :         : 2         :                
+tx_dpr_wadr[13]              : J12       : input  : LVTTL             :         : 2         : N              
+tx_addr[5]                   : J13       : output : LVTTL             :         : 2         : N              
+rev[5]                       : J14       : output : LVTTL             :         : 6         : N              
+systime[30]                  : J15       : input  : LVTTL             :         : 6         : N              
+EBI_A23                      : J16       :        :                   :         :           :                
+systime[8]                   : J17       : input  : LVTTL             :         : 6         : N              
+clev_max_d[5]                : J18       : input  : LVTTL             :         : 6         : N              
+systime[20]                  : J19       : input  : LVTTL             :         : 6         : N              
+systime[12]                  : J20       : input  : LVTTL             :         : 7         : N              
+systime[28]                  : J21       : input  : LVTTL             :         : 7         : N              
+systime[14]                  : J22       : input  : LVTTL             :         : 7         : N              
+EN_SELECT                    : J23       :        :                   :         : 7         :                
+NPOR                         : J24       :        :                   :         :           :                
+systime[31]                  : J25       : input  : LVTTL             :         : 8         : N              
+com_thr_d[6]                 : J26       : input  : LVTTL             :         : 8         : N              
+rx_addr[12]                  : K1        : output : LVTTL             :         : 12        : N              
+rx_addr[10]                  : K2        : output : LVTTL             :         : 12        : N              
+tx_addr[3]                   : K3        : output : LVTTL             :         : 13        : N              
+rev[0]                       : K4        : output : LVTTL             :         : 13        : N              
+id[17]                       : K5        : input  : LVTTL             :         : 13        : N              
+TRACEPKT3                    : K6        :        :                   :         :           :                
+TRACEPKT8                    : K7        :        :                   :         :           :                
+rx_error[12]                 : K8        : output : LVTTL             :         : 2         : N              
+rev[8]                       : K9        : output : LVTTL             :         : 2         : N              
+SD_DQS3                      : K10       :        :                   :         :           :                
+tx_dpr_wadr[4]               : K11       : input  : LVTTL             :         : 2         : N              
+GND*                         : K12       :        :                   :         : 2         :                
+tx_dpr_wadr[14]              : K13       : input  : LVTTL             :         : 2         : N              
+tc[5]                        : K14       : output : LVTTL             :         : 6         : N              
+tx_error[3]                  : K15       : output : LVTTL             :         : 6         : N              
+id[46]                       : K16       : input  : LVTTL             :         : 6         : N              
+systime[45]                  : K17       : input  : LVTTL             :         : 6         : N              
+COM_AD_D[4]                  : K18       : input  : LVTTL             :         : 6         : N              
+systime[10]                  : K19       : input  : LVTTL             :         : 8         : N              
+systime[22]                  : K20       : input  : LVTTL             :         : 8         : N              
+systime[18]                  : K21       : input  : LVTTL             :         : 8         : N              
+systime[40]                  : K22       : input  : LVTTL             :         : 8         : N              
+GND                          : K23       : gnd    :                   :         :           :                
+systime[15]                  : K24       : input  : LVTTL             :         : 8         : N              
+clev_min_d[2]                : K25       : input  : LVTTL             :         : 8         : N              
+clev_max_d[0]                : K26       : input  : LVTTL             :         : 8         : N              
+rx_dpr_radr[3]               : L1        : input  : LVTTL             :         : 12        : N              
+rx_addr[8]                   : L2        : output : LVTTL             :         : 12        : N              
+id[42]                       : L3        : input  : LVTTL             :         : 13        : N              
+id[39]                       : L4        : input  : LVTTL             :         : 13        : N              
+tx_addr[0]                   : L5        : output : LVTTL             :         : 13        : N              
+TRACEPKT7                    : L6        :        :                   :         :           :                
+TRACEPKT14                   : L7        :        :                   :         :           :                
+TRACEPKT2                    : L8        :        :                   :         :           :                
+TRACECLK                     : L9        :        :                   :         :           :                
+TRACEPIPESTAT2               : L10       :        :                   :         :           :                
 GND                          : L11       : gnd    :                   :         :           :                
-GND                          : L12       : gnd    :                   :         :           :                
-VCC_IO                       : L13       : power  :                   : 3.3V    :           :                
-GND*                         : L14       :        :                   :         : 4         :                
-GND*                         : L15       :        :                   :         : 4         :                
-GND*                         : L16       :        :                   :         : 4         :                
-GND*                         : L17       :        :                   :         : 4         :                
-MSEL1                        : L18       : input  :                   :         : 4         :                
-MSEL0                        : L19       : input  :                   :         : 4         :                
-GND*                         : L20       :        :                   :         : 4         :                
-GND*                         : L21       :        :                   :         : 3         :                
-VCC_IO                       : L22       : power  :                   : 3.3V    :           :                
-GND                          : M1        : gnd    :                   :         :           :                
-GND*                         : M2        :        :                   :         : 7         :                
-GND*                         : M3        :        :                   :         : 7         :                
-nCE                          : M4        : input  :                   :         : 8         :                
-TDI                          : M5        : input  :                   :         : 8         :                
-GND*                         : M6        :        :                   :         : 7         :                
-GND*                         : M7        :        :                   :         : 8         :                
-VCC_CKLK4                    : M8        : power  :                   : 1.8V    :           :                
-GND_CKLK2                    : M9        : gnd    :                   :         :           :                
+VCC_IO                       : L12       : power  :                   : 3.3V    :           :                
+VCC_INT                      : L13       : power  :                   : 1.8V    :           :                
+VCC_IO                       : L14       : power  :                   : 3.3V    :           :                
+VCC_INT                      : L15       : power  :                   : 1.8V    :           :                
+GND                          : L16       : gnd    :                   :         :           :                
+VCC_IO                       : L17       : power  :                   : 3.3V    :           :                
+GND_CKLK3                    : L18       : gnd    :                   :         :           :                
+systime[17]                  : L19       : input  : LVTTL             :         : 8         : N              
+clev_max_d[8]                : L20       : input  : LVTTL             :         : 8         : N              
+id[22]                       : L21       : input  : LVTTL             :         : 8         : N              
+thr_del_wr                   : L22       : input  : LVTTL             :         : 8         : N              
+com_thr_d[0]                 : L23       : input  : LVTTL             :         : 8         : N              
+id[25]                       : L24       : input  : LVTTL             :         : 8         : N              
+systime[26]                  : L25       : input  : LVTTL             :         : 8         : N              
+id[45]                       : L26       : input  : LVTTL             :         : 8         : N              
+COM_DB[0]                    : M1        : output : LVTTL             :         : 12        : N              
+tc[3]                        : M2        : output : LVTTL             :         : 12        : N              
+tc[4]                        : M3        : output : LVTTL             :         : 12        : N              
+GND*                         : M4        :        :                   :         :           :                
+tx_dpr_radr[1]               : M5        : output : LVTTL             :         : 13        : N              
+TRACEPKT12                   : M6        :        :                   :         :           :                
+TRACEPKT10                   : M7        :        :                   :         :           :                
+TRACEPKT0                    : M8        :        :                   :         :           :                
+TRACEPKT5                    : M9        :        :                   :         :           :                
 VCC_IO                       : M10       : power  :                   : 3.3V    :           :                
-GND                          : M11       : gnd    :                   :         :           :                
+VCC_IO                       : M11       : power  :                   : 3.3V    :           :                
 GND                          : M12       : gnd    :                   :         :           :                
 VCC_INT                      : M13       : power  :                   : 1.8V    :           :                
-VCC_INT                      : M14       :        :                   :         :           :                
-GND*                         : M15       :        :                   :         : 4         :                
-GND*                         : M16       :        :                   :         : 4         :                
-GND*                         : M17       :        :                   :         : 4         :                
-GND+                         : M18       :        :                   :         : 4         :                
-NCONFIG                      : M19       : input  :                   :         : 4         :                
-GND*                         : M20       :        :                   :         : 4         :                
-GND                          : M21       : gnd    :                   :         :           :                
-VCC_INT                      : M22       : power  :                   : 1.8V    :           :                
-GND*                         : N1        :        :                   :         : 7         :                
-GND*                         : N2        :        :                   :         : 7         :                
-GND*                         : N3        :        :                   :         : 7         :                
-GND+                         : N4        :        :                   :         : 8         :                
-GND*                         : N5        :        :                   :         : 8         :                
-GND*                         : N6        :        :                   :         : 7         :                
-GND*                         : N7        :        :                   :         : 8         :                
-GND_CKLK4                    : N8        : gnd    :                   :         :           :                
-VCC_INT                      : N9        : power  :                   : 1.8V    :           :                
-GND                          : N10       : gnd    :                   :         :           :                
-VCC_IO                       : N11       : power  :                   : 3.3V    :           :                
+VCC_IO                       : M14       : power  :                   : 3.3V    :           :                
+GND                          : M15       : gnd    :                   :         :           :                
+VCC_INT                      : M16       : power  :                   : 1.8V    :           :                
+GND                          : M17       : gnd    :                   :         :           :                
+GND_CKLK3                    : M18       : gnd    :                   :         :           :                
+systime[34]                  : M19       : input  : LVTTL             :         : 8         : N              
+NCONFIG                      : M20       : input  :                   :         : 9         :                
+com_thr_d[4]                 : M21       : input  : LVTTL             :         : 8         : N              
+clev_min_d[3]                : M22       : input  : LVTTL             :         : 8         : N              
+id[35]                       : M23       : input  : LVTTL             :         : 8         : N              
+id[43]                       : M24       : input  : LVTTL             :         : 8         : N              
+com_thr_d[5]                 : M25       : input  : LVTTL             :         : 8         : N              
+systime[24]                  : M26       : input  : LVTTL             :         : 8         : N              
+GND                          : N1        : gnd    :                   :         :           :                
+VCC_INT                      : N2        : power  :                   : 1.8V    :           :                
+VCC_IO                       : N3        : power  :                   : 3.3V    :           :                
+GND                          : N4        : gnd    :                   :         :           :                
+GND+                         : N5        :        :                   :         :           :                
+TRACEPKT15                   : N6        :        :                   :         :           :                
+TRACEPKT13                   : N7        :        :                   :         :           :                
+TRACEPKT6                    : N8        :        :                   :         :           :                
+TRACEPKT1                    : N9        :        :                   :         :           :                
+VCC_INT                      : N10       : power  :                   : 1.8V    :           :                
+GND                          : N11       : gnd    :                   :         :           :                
 VCC_INT                      : N12       : power  :                   : 1.8V    :           :                
 GND                          : N13       : gnd    :                   :         :           :                
-VCC_IO                       : N14       : power  :                   : 3.3V    :           :                
-GND*                         : N15       :        :                   :         : 4         :                
-GND*                         : N16       :        :                   :         : 4         :                
-GND*                         : N17       :        :                   :         : 4         :                
-GND*                         : N18       :        :                   :         : 4         :                
-GND*                         : N19       :        :                   :         : 4         :                
-GND*                         : N20       :        :                   :         : 3         :                
-GND*                         : N21       :        :                   :         : 3         :                
-GND*                         : N22       :        :                   :         : 3         :                
-GND*                         : P1        :        :                   :         : 7         :                
-GND*                         : P2        :        :                   :         : 7         :                
-GND*                         : P3        :        :                   :         : 7         :                
-GND*                         : P4        :        :                   :         : 8         :                
-GND*                         : P5        :        :                   :         :           :                
-GND*                         : P6        :        :                   :         : 8         :                
-GND*                         : P7        :        :                   :         : 6         :                
-VCC_IO                       : P8        : power  :                   : 3.3V    :           :                
-GND                          : P9        : gnd    :                   :         :           :                
-VCC_INT                      : P10       : power  :                   : 1.8V    :           :                
-GND*                         : P11       :        :                   :         : 6         :                
-GND*                         : P12       :        :                   :         : 5         :                
-VCC_IO                       : P13       : power  :                   : 3.3V    :           :                
+GND                          : N14       : gnd    :                   :         :           :                
+VCC_IO                       : N15       : power  :                   : 3.3V    :           :                
+GND                          : N16       : gnd    :                   :         :           :                
+VCC_IO                       : N17       : power  :                   : 3.3V    :           :                
+GND                          : N18       : gnd    :                   :         :           :                
+VCC_CKLK3                    : N19       : power  :                   : 1.8V    :           :                
+com_avail                    : N20       : output : LVTTL             :         : 9         : N              
+MSEL1                        : N21       : input  :                   :         : 9         :                
+MSEL0                        : N22       : input  :                   :         : 9         :                
+id[28]                       : N23       : input  : LVTTL             :         : 8         : N              
+VCC_IO                       : N24       : power  :                   : 3.3V    :           :                
+tx_addr[9]                   : N25       : output : LVTTL             :         : 8         : N              
+GND                          : N26       : gnd    :                   :         :           :                
+GND                          : P1        : gnd    :                   :         :           :                
+GND                          : P2        : gnd    :                   :         :           :                
+GND                          : P3        : gnd    :                   :         :           :                
+dac_max_d[5]                 : P4        : input  : LVTTL             :         : 12        : N              
+TDI                          : P5        : input  :                   :         : 13        :                
+nCE                          : P6        : input  :                   :         : 13        :                
+rev[9]                       : P7        : output : LVTTL             :         : 13        : N              
+TRACEPKT11                   : P8        :        :                   :         :           :                
+TRACEPKT9                    : P9        :        :                   :         :           :                
+VCC_IO                       : P10       : power  :                   : 3.3V    :           :                
+VCC_IO                       : P11       : power  :                   : 3.3V    :           :                
+VCC_IO                       : P12       : power  :                   : 3.3V    :           :                
+GND                          : P13       : gnd    :                   :         :           :                
 GND                          : P14       : gnd    :                   :         :           :                
 VCC_INT                      : P15       : power  :                   : 1.8V    :           :                
-GND*                         : P16       :        :                   :         : 4         :                
-GND*                         : P17       :        :                   :         : 4         :                
-GND*                         : P18       :        :                   :         : 4         :                
-GND*                         : P19       :        :                   :         : 4         :                
-GND*                         : P20       :        :                   :         : 3         :                
-GND*                         : P21       :        :                   :         : 3         :                
-GND*                         : P22       :        :                   :         : 3         :                
-GND*                         : R1        :        :                   :         : 7         :                
-GND*                         : R2        :        :                   :         : 7         :                
-GND*                         : R3        :        :                   :         : 7         :                
-GND*                         : R4        :        :                   :         : 7         :                
-GND*                         : R5        :        :                   :         : 7         :                
-GND+                         : R6        :        :                   :         :           :                
-VCC_INT                      : R7        : power  :                   : 1.8V    :           :                
-GND                          : R8        : gnd    :                   :         :           :                
-VCC_IO                       : R9        : power  :                   : 3.3V    :           :                
-GND*                         : R10       :        :                   :         : 6         :                
-GND*                         : R11       :        :                   :         : 6         :                
-GND*                         : R12       :        :                   :         : 5         :                
-GND*                         : R13       :        :                   :         : 5         :                
+GND                          : P16       : gnd    :                   :         :           :                
+VCC_IO                       : P17       : power  :                   : 3.3V    :           :                
+VCC_INT                      : P18       : power  :                   : 1.8V    :           :                
+GND_CKOUT1                   : P19       : gnd    :                   :         :           :                
+GND+                         : P20       :        :                   :         : 9         :                
+tx_error[6]                  : P21       : output : LVTTL             :         : 8         : N              
+GND*                         : P22       :        :                   :         :           :                
+GND                          : P23       : gnd    :                   :         :           :                
+VCC_INT                      : P24       : power  :                   : 1.8V    :           :                
+VCC_INT                      : P25       : power  :                   : 1.8V    :           :                
+GND                          : P26       : gnd    :                   :         :           :                
+COM_DB[3]                    : R1        : output : LVTTL             :         : 12        : N              
+id_avail                     : R2        : input  : LVTTL             :         : 12        : N              
+tx_dpr_radr[8]               : R3        : output : LVTTL             :         : 13        : N              
+tx_dpr_radr[5]               : R4        : output : LVTTL             :         : 13        : N              
+clev_min_d[9]                : R5        : input  : LVTTL             :         : 13        : N              
+GND*                         : R6        :        :                   :         : 13        :                
+DCLK                         : R7        : bidir  :                   :         : 13        :                
+GND_CKLK4                    : R8        : gnd    :                   :         :           :                
+VCC_CKLK4                    : R9        : power  :                   : 1.8V    :           :                
+VCC_INT                      : R10       : power  :                   : 1.8V    :           :                
+VCC_INT                      : R11       : power  :                   : 1.8V    :           :                
+GND                          : R12       : gnd    :                   :         :           :                
+VCC_IO                       : R13       : power  :                   : 3.3V    :           :                
 VCC_INT                      : R14       : power  :                   : 1.8V    :           :                
 GND                          : R15       : gnd    :                   :         :           :                
 VCC_IO                       : R16       : power  :                   : 3.3V    :           :                
-GND*                         : R17       :        :                   :         : 4         :                
-GND*                         : R18       :        :                   :         : 4         :                
-GND*                         : R19       :        :                   :         : 4         :                
-GND*                         : R20       :        :                   :         : 4         :                
-GND*                         : R21       :        :                   :         : 4         :                
-GND*                         : R22       :        :                   :         : 3         :                
-GND*                         : T1        :        :                   :         : 7         :                
-GND*                         : T2        :        :                   :         : 7         :                
-GND*                         : T3        :        :                   :         : 7         :                
-GND_CKOUT2                   : T4        : gnd    :                   :         :           :                
-VCC_CKOUT2                   : T5        : power  :                   : 3.3V    :           :                
-GND*                         : T6        :        :                   :         : 6         :                
-GND                          : T7        : gnd    :                   :         :           :                
-VCC_IO                       : T8        : power  :                   : 3.3V    :           :                
-GND*                         : T9        :        :                   :         : 6         :                
-GND*                         : T10       :        :                   :         : 6         :                
-GND*                         : T11       :        :                   :         : 6         :                
-GND*                         : T12       :        :                   :         : 5         :                
-GND*                         : T13       :        :                   :         : 5         :                
-GND*                         : T14       :        :                   :         : 5         :                
+GND                          : R17       : gnd    :                   :         :           :                
+VCC_IO                       : R18       : power  :                   : 3.3V    :           :                
+VCC_CKOUT1                   : R19       : power  :                   : 3.3V    :           :                
+send_del_d[7]                : R20       : input  : LVTTL             :         : 9         : N              
+VCC_INT                      : R21       :        :                   :         :           :                
+reboot_gnt                   : R22       : output : LVTTL             :         : 9         : N              
+GND+                         : R23       :        :                   :         : 9         :                
+clev_max_d[1]                : R24       : input  : LVTTL             :         : 8         : N              
+com_thr_d[1]                 : R25       : input  : LVTTL             :         : 8         : N              
+com_thr_d[3]                 : R26       : input  : LVTTL             :         : 8         : N              
+id[11]                       : T1        : input  : LVTTL             :         : 12        : N              
+rx_addr[13]                  : T2        : output : LVTTL             :         : 12        : N              
+GND*                         : T3        :        :                   :         : 13        :                
+rev[12]                      : T4        : output : LVTTL             :         : 13        : N              
+GND*                         : T5        :        :                   :         : 13        :                
+id[34]                       : T6        : input  : LVTTL             :         : 13        : N              
+tx_alm_empty                 : T7        : output : LVTTL             :         : 13        : N              
+VCC_CKLK2                    : T8        : power  :                   : 1.8V    :           :                
+GND_CKLK2                    : T9        : gnd    :                   :         :           :                
+VCC_IO                       : T10       : power  :                   : 3.3V    :           :                
+GND                          : T11       : gnd    :                   :         :           :                
+VCC_INT                      : T12       : power  :                   : 1.8V    :           :                
+GND                          : T13       : gnd    :                   :         :           :                
+GND                          : T14       : gnd    :                   :         :           :                
 VCC_IO                       : T15       : power  :                   : 3.3V    :           :                
 GND                          : T16       : gnd    :                   :         :           :                
-GND*                         : T17       :        :                   :         : 4         :                
-GND*                         : T18       :        :                   :         : 4         :                
-GND*                         : T19       :        :                   :         : 4         :                
-GND*                         : T20       :        :                   :         : 4         :                
-GND*                         : T21       :        :                   :         : 4         :                
-GND*                         : T22       :        :                   :         : 4         :                
-GND*                         : U1        :        :                   :         : 7         :                
-GND*                         : U2        :        :                   :         : 7         :                
-GND*                         : U3        :        :                   :         : 7         :                
-GND*                         : U4        :        :                   :         : 7         :                
-GND*                         : U5        :        :                   :         : 7         :                
-GND                          : U6        : gnd    :                   :         :           :                
-GND*                         : U7        :        :                   :         : 6         :                
-GND*                         : U8        :        :                   :         : 6         :                
-GND*                         : U9        :        :                   :         : 6         :                
-GND*                         : U10       :        :                   :         : 6         :                
-GND*                         : U11       :        :                   :         : 6         :                
-GND*                         : U12       :        :                   :         : 6         :                
-GND*                         : U13       :        :                   :         : 5         :                
-GND*                         : U14       :        :                   :         : 5         :                
-GND*                         : U15       :        :                   :         : 5         :                
-GND*                         : U16       :        :                   :         : 5         :                
+VCC_INT                      : T17       : power  :                   : 1.8V    :           :                
+GND                          : T18       : gnd    :                   :         :           :                
+GND_CKLK1                    : T19       : gnd    :                   :         :           :                
+tx_dataout[21]               : T20       : input  : LVTTL             :         : 9         : N              
+systime[1]                   : T21       : input  : LVTTL             :         : 9         : N              
+send_del_d[4]                : T22       : input  : LVTTL             :         : 9         : N              
+GND+                         : T23       :        :                   :         :           :                
+id[14]                       : T24       : input  : LVTTL             :         : 9         : N              
+clev_min_d[7]                : T25       : input  : LVTTL             :         : 8         : N              
+clev_max_d[9]                : T26       : input  : LVTTL             :         : 8         : N              
+id[10]                       : U1        : input  : LVTTL             :         : 12        : N              
+id[8]                        : U2        : input  : LVTTL             :         : 12        : N              
+tx_addr[10]                  : U3        : output : LVTTL             :         : 13        : N              
+tx_error[12]                 : U4        : output : LVTTL             :         : 13        : N              
+tx_dpr_radr[12]              : U5        : output : LVTTL             :         : 13        : N              
+clev_min_d[1]                : U6        : input  : LVTTL             :         : 13        : N              
+rev[11]                      : U7        : output : LVTTL             :         : 13        : N              
+VCC_CKOUT2                   : U8        : power  :                   : 3.3V    :           :                
+VCC_INT                      : U9        : power  :                   : 1.8V    :           :                
+GND                          : U10       : gnd    :                   :         :           :                
+VCC_IO                       : U11       : power  :                   : 3.3V    :           :                
+GND                          : U12       : gnd    :                   :         :           :                
+VCC_IO                       : U13       : power  :                   : 3.3V    :           :                
+VCC_INT                      : U14       : power  :                   : 1.8V    :           :                
+VCC_IO                       : U15       : power  :                   : 3.3V    :           :                
+VCC_INT                      : U16       : power  :                   : 1.8V    :           :                
 GND                          : U17       : gnd    :                   :         :           :                
-GND*                         : U18       :        :                   :         : 5         :                
-GND*                         : U19       :        :                   :         : 4         :                
-GND*                         : U20       :        :                   :         : 4         :                
-GND*                         : U21       :        :                   :         : 4         :                
-GND*                         : U22       :        :                   :         : 4         :                
-GND*                         : V1        :        :                   :         : 7         :                
-GND*                         : V2        :        :                   :         : 7         :                
-GND*                         : V3        :        :                   :         : 7         :                
-GND*                         : V4        :        :                   :         : 7         :                
-GND*                         : V5        :        :                   :         : 6         :                
-GND*                         : V6        :        :                   :         : 6         :                
-GND*                         : V7        :        :                   :         : 6         :                
-GND*                         : V8        :        :                   :         : 6         :                
-GND*                         : V9        :        :                   :         : 6         :                
-GND*                         : V10       :        :                   :         : 6         :                
-GND+                         : V11       :        :                   :         : 5         :                
-GND+                         : V12       :        :                   :         : 5         :                
-GND*                         : V13       :        :                   :         : 5         :                
-GND*                         : V14       :        :                   :         : 5         :                
-GND*                         : V15       :        :                   :         : 5         :                
-GND*                         : V16       :        :                   :         : 5         :                
-GND*                         : V17       :        :                   :         : 5         :                
-GND*                         : V18       :        :                   :         : 5         :                
-GND*                         : V19       :        :                   :         : 4         :                
-GND*                         : V20       :        :                   :         : 4         :                
-GND*                         : V21       :        :                   :         : 4         :                
-GND*                         : V22       :        :                   :         : 4         :                
-GND*                         : W1        :        :                   :         : 7         :                
-GND*                         : W2        :        :                   :         : 7         :                
-GND*                         : W3        :        :                   :         : 7         :                
-GND*                         : W4        :        :                   :         : 7         :                
-GND*                         : W5        :        :                   :         : 7         :                
-GND*                         : W6        :        :                   :         : 6         :                
-GND*                         : W7        :        :                   :         : 6         :                
-GND*                         : W8        :        :                   :         : 6         :                
-GND*                         : W9        :        :                   :         : 6         :                
-CONF_DONE                    : W10       : bidir  :                   :         : 5         :                
-NSTATUS                      : W11       : bidir  :                   :         : 5         :                
-TCK                          : W12       : input  :                   :         : 5         :                
-TMS                          : W13       : input  :                   :         : 5         :                
-GND*                         : W14       :        :                   :         : 5         :                
-GND*                         : W15       :        :                   :         : 5         :                
-GND*                         : W16       :        :                   :         : 5         :                
-GND*                         : W17       :        :                   :         : 5         :                
-GND*                         : W18       :        :                   :         : 5         :                
-GND*                         : W19       :        :                   :         : 4         :                
-GND*                         : W20       :        :                   :         : 4         :                
-GND*                         : W21       :        :                   :         : 4         :                
-GND*                         : W22       :        :                   :         : 4         :                
-GND*                         : Y1        :        :                   :         : 7         :                
-GND*                         : Y2        :        :                   :         : 7         :                
-GND*                         : Y3        :        :                   :         : 7         :                
-GND*                         : Y4        :        :                   :         : 7         :                
-GND*                         : Y5        :        :                   :         : 6         :                
-GND*                         : Y6        :        :                   :         : 6         :                
-GND*                         : Y7        :        :                   :         : 6         :                
-GND*                         : Y8        :        :                   :         : 6         :                
-GND*                         : Y9        :        :                   :         : 6         :                
-GND*                         : Y10       :        :                   :         : 6         :                
-GND*                         : Y11       :        :                   :         : 5         :                
-GND*                         : Y12       :        :                   :         : 5         :                
-GND*                         : Y13       :        :                   :         : 5         :                
-GND*                         : Y14       :        :                   :         : 5         :                
-GND*                         : Y15       :        :                   :         : 5         :                
-GND*                         : Y16       :        :                   :         : 5         :                
-GND*                         : Y17       :        :                   :         : 5         :                
-GND*                         : Y18       :        :                   :         : 5         :                
-GND*                         : Y19       :        :                   :         : 4         :                
-GND*                         : Y20       :        :                   :         : 4         :                
-GND*                         : Y21       :        :                   :         : 4         :                
-GND*                         : Y22       :        :                   :         : 4         :                
-VCC_INT                      : AA1       : power  :                   : 1.8V    :           :                
-GND                          : AA2       : gnd    :                   :         :           :                
-GND*                         : AA3       :        :                   :         : 7         :                
-GND*                         : AA4       :        :                   :         : 7         :                
-GND*                         : AA5       :        :                   :         : 7         :                
-GND*                         : AA6       :        :                   :         : 7         :                
-GND*                         : AA7       :        :                   :         : 7         :                
-GND*                         : AA8       :        :                   :         : 7         :                
-GND*                         : AA9       :        :                   :         : 7         :                
-GND*                         : AA10      :        :                   :         : 7         :                
-GND*                         : AA11      :        :                   :         : 7         :                
-GND*                         : AA12      :        :                   :         : 4         :                
-GND*                         : AA13      :        :                   :         : 4         :                
-GND*                         : AA14      :        :                   :         : 4         :                
-GND*                         : AA15      :        :                   :         : 4         :                
-GND*                         : AA16      :        :                   :         : 4         :                
-GND*                         : AA17      :        :                   :         : 4         :                
-GND*                         : AA18      :        :                   :         : 4         :                
-GND*                         : AA19      :        :                   :         : 4         :                
-GND*                         : AA20      :        :                   :         : 4         :                
-GND                          : AA21      : gnd    :                   :         :           :                
-VCC_INT                      : AA22      : power  :                   : 1.8V    :           :                
-GND                          : AB1       : gnd    :                   :         :           :                
-GND*                         : AB2       :        :                   :         : 7         :                
-GND*                         : AB3       :        :                   :         : 7         :                
-GND*                         : AB4       :        :                   :         : 7         :                
-GND*                         : AB5       :        :                   :         : 7         :                
-GND*                         : AB6       :        :                   :         : 7         :                
-GND*                         : AB7       :        :                   :         : 7         :                
-GND*                         : AB8       :        :                   :         : 7         :                
-NC                           : AB9       :        :                   :         :           :                
-NC                           : AB10      :        :                   :         :           :                
-GND                          : AB11      : gnd    :                   :         :           :                
-NC                           : AB12      :        :                   :         :           :                
-NC                           : AB13      :        :                   :         :           :                
-NC                           : AB14      :        :                   :         :           :                
-GND*                         : AB15      :        :                   :         : 4         :                
-GND*                         : AB16      :        :                   :         : 4         :                
-GND*                         : AB17      :        :                   :         : 4         :                
-GND*                         : AB18      :        :                   :         : 4         :                
-GND*                         : AB19      :        :                   :         : 4         :                
-GND*                         : AB20      :        :                   :         : 4         :                
-GND*                         : AB21      :        :                   :         : 4         :                
-GND                          : AB22      : gnd    :                   :         :           :                
+VCC_IO                       : U18       : power  :                   : 3.3V    :           :                
+VCC_CKLK1                    : U19       : power  :                   : 1.8V    :           :                
+COM_DB[4]                    : U20       : output : LVTTL             :         : 9         : N              
+rx_addr[3]                   : U21       : output : LVTTL             :         : 9         : N              
+tx_dataout[29]               : U22       : input  : LVTTL             :         : 9         : N              
+tx_dataout[5]                : U23       : input  : LVTTL             :         : 9         : N              
+id[6]                        : U24       : input  : LVTTL             :         : 9         : N              
+clev_max_d[4]                : U25       : input  : LVTTL             :         : 8         : N              
+systime[39]                  : U26       : input  : LVTTL             :         : 8         : N              
+GND*                         : V1        :        :                   :         : 12        :                
+rx_addr[11]                  : V2        : output : LVTTL             :         : 12        : N              
+tx_dpr_radr[13]              : V3        : output : LVTTL             :         : 13        : N              
+GND*                         : V4        :        :                   :         : 13        :                
+tx_addr[15]                  : V5        : output : LVTTL             :         : 13        : N              
+tx_dpr_radr[4]               : V6        : output : LVTTL             :         : 13        : N              
+tx_dpr_radr[9]               : V7        : output : LVTTL             :         : 13        : N              
+GND_CKOUT2                   : V8        : gnd    :                   :         :           :                
+GND                          : V9        : gnd    :                   :         :           :                
+VCC_IO                       : V10       : power  :                   : 3.3V    :           :                
+rev[14]                      : V11       : output : LVTTL             :         : 11        : N              
+rx_datain[31]                : V12       : output : LVTTL             :         : 11        : N              
+rx_packets[5]                : V13       : output : LVTTL             :         : 11        : N              
+rx_packets[1]                : V14       : output : LVTTL             :         : 11        : N              
+rx_datain[21]                : V15       : output : LVTTL             :         : 10        : N              
+rx_datain[28]                : V16       : output : LVTTL             :         : 10        : N              
+VCC_IO                       : V17       : power  :                   : 3.3V    :           :                
+GND                          : V18       : gnd    :                   :         :           :                
+rec_del_d[2]                 : V19       : input  : LVTTL             :         : 9         : N              
+send_del_d[3]                : V20       : input  : LVTTL             :         : 9         : N              
+id[7]                        : V21       : input  : LVTTL             :         : 9         : N              
+COM_DB[6]                    : V22       : output : LVTTL             :         : 9         : N              
+rx_addr[9]                   : V23       : output : LVTTL             :         : 9         : N              
+tc[7]                        : V24       : output : LVTTL             :         : 9         : N              
+id[32]                       : V25       : input  : LVTTL             :         : 8         : N              
+id[33]                       : V26       : input  : LVTTL             :         : 8         : N              
+rx_dpr_radr[1]               : W1        : input  : LVTTL             :         : 12        : N              
+rx_addr[0]                   : W2        : output : LVTTL             :         : 12        : N              
+id[29]                       : W3        : input  : LVTTL             :         : 13        : N              
+id[37]                       : W4        : input  : LVTTL             :         : 13        : N              
+tx_dpr_radr[7]               : W5        : output : LVTTL             :         : 13        : N              
+GND+                         : W6        :        :                   :         : 13        :                
+DATA0                        : W7        : input  :                   :         : 13        :                
+GND                          : W8        : gnd    :                   :         :           :                
+reboot_req                   : W9        : input  : LVTTL             :         : 11        : N              
+rx_datain[3]                 : W10       : output : LVTTL             :         : 11        : N              
+rx_datain[12]                : W11       : output : LVTTL             :         : 11        : N              
+COM_AD_D[6]                  : W12       : input  : LVTTL             :         : 11        : N              
+msg_rd                       : W13       : output : LVTTL             :         : 11        : N              
+rx_datain[9]                 : W14       : output : LVTTL             :         : 10        : N              
+rx_datain[26]                : W15       : output : LVTTL             :         : 10        : N              
+eof_stb                      : W16       : output : LVTTL             :         : 10        : N              
+tx_dataout[3]                : W17       : input  : LVTTL             :         : 10        : N              
+id[3]                        : W18       : input  : LVTTL             :         : 10        : N              
+GND                          : W19       : gnd    :                   :         :           :                
+tx_dataout[17]               : W20       : input  : LVTTL             :         : 9         : N              
+send_del_d[6]                : W21       : input  : LVTTL             :         : 9         : N              
+id[16]                       : W22       : input  : LVTTL             :         : 9         : N              
+A_nB                         : W23       : input  : LVTTL             :         : 9         : N              
+rx_addr[2]                   : W24       : output : LVTTL             :         : 9         : N              
+id[27]                       : W25       : input  : LVTTL             :         : 8         : N              
+id[31]                       : W26       : input  : LVTTL             :         : 8         : N              
+rx_packets[3]                : Y1        : output : LVTTL             :         : 12        : N              
+rx_packets[14]               : Y2        : output : LVTTL             :         : 12        : N              
+tx_addr[11]                  : Y3        : output : LVTTL             :         : 13        : N              
+clev_max_d[2]                : Y4        : input  : LVTTL             :         : 13        : N              
+CLK20                        : Y5        : input  : LVTTL             :         : 13        : N              
+tx_addr[8]                   : Y6        : output : LVTTL             :         : 13        : N              
+tc[6]                        : Y7        : output : LVTTL             :         : 12        : N              
+rx_dpr_radr[6]               : Y8        : input  : LVTTL             :         : 11        : N              
+tx_error[14]                 : Y9        : output : LVTTL             :         : 11        : N              
+rx_datain[6]                 : Y10       : output : LVTTL             :         : 11        : N              
+rx_dpr_radr[0]               : Y11       : input  : LVTTL             :         : 11        : N              
+COM_AD_D[7]                  : Y12       : input  : LVTTL             :         : 11        : N              
+COM_AD_D[5]                  : Y13       : input  : LVTTL             :         : 11        : N              
+rx_packets[2]                : Y14       : output : LVTTL             :         : 11        : N              
+rx_datain[11]                : Y15       : output : LVTTL             :         : 10        : N              
+tc[2]                        : Y16       : output : LVTTL             :         : 10        : N              
+systime[5]                   : Y17       : input  : LVTTL             :         : 10        : N              
+tx_dataout[7]                : Y18       : input  : LVTTL             :         : 10        : N              
+id[2]                        : Y19       : input  : LVTTL             :         : 9         : N              
+systime[4]                   : Y20       : input  : LVTTL             :         : 9         : N              
+tx_dataout[8]                : Y21       : input  : LVTTL             :         : 9         : N              
+tx_dataout[14]               : Y22       : input  : LVTTL             :         : 9         : N              
+COM_DB[2]                    : Y23       : output : LVTTL             :         : 9         : N              
+id[9]                        : Y24       : input  : LVTTL             :         : 9         : N              
+clev_min_d[8]                : Y25       : input  : LVTTL             :         : 8         : N              
+clev_min_d[4]                : Y26       : input  : LVTTL             :         : 8         : N              
+rx_packets[10]               : AA1       : output : LVTTL             :         : 12        : N              
+rx_pack_rcvd                 : AA2       : output : LVTTL             :         : 12        : N              
+RST                          : AA3       : input  : LVTTL             :         : 12        : N              
+tc[0]                        : AA4       : output : LVTTL             :         : 12        : N              
+id[13]                       : AA5       : input  : LVTTL             :         : 12        : N              
+tx_dataout[24]               : AA6       : input  : LVTTL             :         : 12        : N              
+rx_packets[0]                : AA7       : output : LVTTL             :         : 12        : N              
+rx_dpr_radr[15]              : AA8       : input  : LVTTL             :         : 11        : N              
+rx_datain[19]                : AA9       : output : LVTTL             :         : 11        : N              
+COM_TX_SLEEP                 : AA10      : output : LVTTL             :         : 11        : N              
+rx_packets[4]                : AA11      : output : LVTTL             :         : 11        : N              
+rx_packets[6]                : AA12      : output : LVTTL             :         : 11        : N              
+rx_dpr_radr[11]              : AA13      : input  : LVTTL             :         : 11        : N              
+rx_datain[17]                : AA14      : output : LVTTL             :         : 10        : N              
+rx_datain[30]                : AA15      : output : LVTTL             :         : 10        : N              
+rx_datain[24]                : AA16      : output : LVTTL             :         : 10        : N              
+rx_datain[14]                : AA17      : output : LVTTL             :         : 10        : N              
+tx_dataout[2]                : AA18      : input  : LVTTL             :         : 10        : N              
+id[4]                        : AA19      : input  : LVTTL             :         : 9         : N              
+systime[6]                   : AA20      : input  : LVTTL             :         : 9         : N              
+COM_DB[7]                    : AA21      : output : LVTTL             :         : 9         : N              
+systime[3]                   : AA22      : input  : LVTTL             :         : 9         : N              
+id[15]                       : AA23      : input  : LVTTL             :         : 9         : N              
+tx_dataout[9]                : AA24      : input  : LVTTL             :         : 9         : N              
+clev_wr                      : AA25      : input  : LVTTL             :         : 8         : N              
+clev_min_d[5]                : AA26      : input  : LVTTL             :         : 8         : N              
+tx_dataout[16]               : AB1       : input  : LVTTL             :         : 12        : N              
+id[5]                        : AB2       : input  : LVTTL             :         : 12        : N              
+send_del_d[0]                : AB3       : input  : LVTTL             :         : 12        : N              
+rx_dpr_radr[14]              : AB4       : input  : LVTTL             :         : 12        : N              
+rx_addr[1]                   : AB5       : output : LVTTL             :         : 12        : N              
+rx_addr[7]                   : AB6       : output : LVTTL             :         : 12        : N              
+tx_error[1]                  : AB7       : output : LVTTL             :         : 12        : N              
+rx_dpr_radr[4]               : AB8       : input  : LVTTL             :         : 11        : N              
+rx_datain[2]                 : AB9       : output : LVTTL             :         : 11        : N              
+rx_dpr_radr[10]              : AB10      : input  : LVTTL             :         : 11        : N              
+rx_packets[12]               : AB11      : output : LVTTL             :         : 11        : N              
+COM_AD_D[3]                  : AB12      : input  : LVTTL             :         : 11        : N              
+com_reset_rcvd               : AB13      : output : LVTTL             :         : 11        : N              
+rx_datain[5]                 : AB14      : output : LVTTL             :         : 11        : N              
+rx_datain[27]                : AB15      : output : LVTTL             :         : 10        : N              
+rx_datain[25]                : AB16      : output : LVTTL             :         : 10        : N              
+tx_dataout[19]               : AB17      : input  : LVTTL             :         : 10        : N              
+tx_dataout[15]               : AB18      : input  : LVTTL             :         : 10        : N              
+com_thr_d[7]                 : AB19      : input  : LVTTL             :         : 9         : N              
+tx_dataout[10]               : AB20      : input  : LVTTL             :         : 9         : N              
+tx_dataout[28]               : AB21      : input  : LVTTL             :         : 9         : N              
+tx_dataout[12]               : AB22      : input  : LVTTL             :         : 9         : N              
+tx_dataout[26]               : AB23      : input  : LVTTL             :         : 9         : N              
+COM_DB[5]                    : AB24      : output : LVTTL             :         : 9         : N              
+tx_dpr_radr[3]               : AB25      : output : LVTTL             :         : 8         : N              
+tx_addr[2]                   : AB26      : output : LVTTL             :         : 8         : N              
+id[0]                        : AC1       : input  : LVTTL             :         : 12        : N              
+tx_dataout[0]                : AC2       : input  : LVTTL             :         : 12        : N              
+VCC_INT                      : AC3       : power  :                   : 1.8V    :           :                
+GND                          : AC4       : gnd    :                   :         :           :                
+tx_dataout[18]               : AC5       : input  : LVTTL             :         : 12        : N              
+rx_addr[14]                  : AC6       : output : LVTTL             :         : 12        : N              
+tx_dataout[30]               : AC7       : input  : LVTTL             :         : 12        : N              
+rx_datain[23]                : AC8       : output : LVTTL             :         : 11        : N              
+dac_max_d[6]                 : AC9       : input  : LVTTL             :         : 11        : N              
+tx_dataout[22]               : AC10      : input  : LVTTL             :         : 11        : N              
+rx_packets[13]               : AC11      : output : LVTTL             :         : 11        : N              
+rx_packets[7]                : AC12      : output : LVTTL             :         : 11        : N              
+rx_packets[11]               : AC13      : output : LVTTL             :         : 11        : N              
+rx_datain[15]                : AC14      : output : LVTTL             :         : 10        : N              
+COMM_RESET                   : AC15      : output : LVTTL             :         : 10        : N              
+tc[1]                        : AC16      : output : LVTTL             :         : 10        : N              
+rx_datain[13]                : AC17      : output : LVTTL             :         : 10        : N              
+rec_del_d[6]                 : AC18      : input  : LVTTL             :         : 10        : N              
+rec_del_d[4]                 : AC19      : input  : LVTTL             :         : 10        : N              
+tx_dataout[31]               : AC20      : input  : LVTTL             :         : 10        : N              
+tx_dataout[11]               : AC21      : input  : LVTTL             :         : 10        : N              
+COM_DB[1]                    : AC22      : output : LVTTL             :         : 9         : N              
+GND                          : AC23      : gnd    :                   :         :           :                
+VCC_INT                      : AC24      : power  :                   : 1.8V    :           :                
+id[1]                        : AC25      : input  : LVTTL             :         : 9         : N              
+tx_dataout[4]                : AC26      : input  : LVTTL             :         : 9         : N              
+VCC_INT                      : AD1       : power  :                   : 1.8V    :           :                
+VCC_INT                      : AD2       : power  :                   : 1.8V    :           :                
+GND                          : AD3       : gnd    :                   :         :           :                
+VCC_INT                      : AD4       : power  :                   : 1.8V    :           :                
+rx_dpr_radr[5]               : AD5       : input  : LVTTL             :         : 12        : N              
+rx_dpr_radr[7]               : AD6       : input  : LVTTL             :         : 12        : N              
+rx_datain[29]                : AD7       : output : LVTTL             :         : 11        : N              
+rx_dpr_radr[12]              : AD8       : input  : LVTTL             :         : 11        : N              
+tx_dataout[25]               : AD9       : input  : LVTTL             :         : 11        : N              
+COM_AD_D[2]                  : AD10      : input  : LVTTL             :         : 11        : N              
+rx_packets[8]                : AD11      : output : LVTTL             :         : 11        : N              
+data_rcvd                    : AD12      : output : LVTTL             :         : 11        : N              
+CONF_DONE                    : AD13      : bidir  :                   :         : 10        :                
+TCK                          : AD14      : input  :                   :         : 10        :                
+rx_datain[16]                : AD15      : output : LVTTL             :         : 10        : N              
+rx_datain[0]                 : AD16      : output : LVTTL             :         : 10        : N              
+rx_datain[4]                 : AD17      : output : LVTTL             :         : 10        : N              
+systime[0]                   : AD18      : input  : LVTTL             :         : 10        : N              
+send_del_d[5]                : AD19      : input  : LVTTL             :         : 10        : N              
+rec_del_d[7]                 : AD20      : input  : LVTTL             :         : 10        : N              
+tx_dataout[6]                : AD21      : input  : LVTTL             :         : 10        : N              
+tx_dataout[27]               : AD22      : input  : LVTTL             :         : 9         : N              
+VCC_INT                      : AD23      : power  :                   : 1.8V    :           :                
+GND                          : AD24      : gnd    :                   :         :           :                
+VCC_INT                      : AD25      : power  :                   : 1.8V    :           :                
+VCC_INT                      : AD26      : power  :                   : 1.8V    :           :                
+GND                          : AE1       : gnd    :                   :         :           :                
+GND                          : AE2       : gnd    :                   :         :           :                
+VCC_INT                      : AE3       : power  :                   : 1.8V    :           :                
+rx_addr[6]                   : AE4       : output : LVTTL             :         : 12        : N              
+rx_addr[4]                   : AE5       : output : LVTTL             :         : 12        : N              
+GND                          : AE6       : gnd    :                   :         :           :                
+rx_dpr_radr[13]              : AE7       : input  : LVTTL             :         : 11        : N              
+VCC_INT                      : AE8       : power  :                   : 1.8V    :           :                
+rx_datain[1]                 : AE9       : output : LVTTL             :         : 11        : N              
+rev[13]                      : AE10      : output : LVTTL             :         : 11        : N              
+rx_packets[15]               : AE11      : output : LVTTL             :         : 11        : N              
+NSTATUS                      : AE12      : bidir  :                   :         : 10        :                
+GND                          : AE13      : gnd    :                   :         :           :                
+VCC_IO                       : AE14      : power  :                   : 3.3V    :           :                
+TMS                          : AE15      : input  :                   :         : 10        :                
+rx_datain[20]                : AE16      : output : LVTTL             :         : 10        : N              
+rx_datain[7]                 : AE17      : output : LVTTL             :         : 10        : N              
+stf_stb                      : AE18      : output : LVTTL             :         : 10        : N              
+VCC_INT                      : AE19      : power  :                   : 1.8V    :           :                
+rx_datain[22]                : AE20      : output : LVTTL             :         : 10        : N              
+GND                          : AE21      : gnd    :                   :         :           :                
+rx_addr[5]                   : AE22      : output : LVTTL             :         : 10        : N              
+send_del_d[2]                : AE23      : input  : LVTTL             :         : 10        : N              
+VCC_INT                      : AE24      : power  :                   : 1.8V    :           :                
+GND                          : AE25      : gnd    :                   :         :           :                
+GND                          : AE26      : gnd    :                   :         :           :                
+GND                          : AF2       : gnd    :                   :         :           :                
+VCC_INT                      : AF3       : power  :                   : 1.8V    :           :                
+tx_dataout[23]               : AF4       : input  : LVTTL             :         : 12        : N              
+tx_dataout[20]               : AF5       : input  : LVTTL             :         : 12        : N              
+VCC_IO                       : AF6       : power  :                   : 3.3V    :           :                
+rx_datain[8]                 : AF7       : output : LVTTL             :         : 11        : N              
+GND                          : AF8       : gnd    :                   :         :           :                
+rx_dpr_radr[2]               : AF9       : input  : LVTTL             :         : 11        : N              
+rx_dpr_radr_stb              : AF10      : input  : LVTTL             :         : 11        : N              
+rx_packets[9]                : AF11      : output : LVTTL             :         : 11        : N              
+GND+                         : AF12      :        :                   :         : 10        :                
+VCC_IO                       : AF13      : power  :                   : 3.3V    :           :                
+GND                          : AF14      : gnd    :                   :         :           :                
+GND+                         : AF15      :        :                   :         : 10        :                
+rx_datain[10]                : AF16      : output : LVTTL             :         : 10        : N              
+rx_datain[18]                : AF17      : output : LVTTL             :         : 10        : N              
+systime[2]                   : AF18      : input  : LVTTL             :         : 10        : N              
+GND                          : AF19      : gnd    :                   :         :           :                
+rec_del_d[3]                 : AF20      : input  : LVTTL             :         : 10        : N              
+VCC_IO                       : AF21      : power  :                   : 3.3V    :           :                
+tx_dataout[1]                : AF22      : input  : LVTTL             :         : 10        : N              
+id[12]                       : AF23      : input  : LVTTL             :         : 10        : N              
+VCC_INT                      : AF24      : power  :                   : 1.8V    :           :                
+GND                          : AF25      : gnd    :                   :         :           :                

@@ -1,0 +1,10 @@
+db
+*.sbi
+*.pof
+*.sof
+*.psof
+*.rpt
+*.pin
+simpletest.eqn
+*.qar
+*.qarlog

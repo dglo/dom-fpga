@@ -1,9 +1,11 @@
-Flow Status : Successful - Wed Dec 15 16:19:47 2004
-Quartus II Version : 4.1 Build 181 06/29/2004 SJ Full Version
+Flow Status : Successful - Mon Sep 12 14:47:09 2005
+Quartus II Version : 4.2 Build 157 12/07/2004 SJ Full Version
 Revision Name : DCOM_01
 Top-level Entity Name : dcom_ap
-Family : Cyclone
-Total logic elements : 1,568
+Family : EXCALIBUR_ARM
+Met timing requirements : N/A
+Total logic elements : 1,538
 Total pins : 405
+Total virtual pins : 0
 Total memory bits : 640
 Total PLLs : 0

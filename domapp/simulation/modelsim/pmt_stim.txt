@@ -1,0 +1,10 @@
+0 0 ns 500 ns 0		-- this is the initial delay until signals begin
+1 10 ns 4990 ns 1	-- OneSPE pulse, 10 ns long, wait 4990 ns to next pulse, a single pulse
+1 5 ns 144495 ns 1	-- OneSPE pulse, 5 ns long, wait 144495 ns to next pulse, a single pulse
+1 5 ns 49995 ns 1	-- OneSPE pulse, 5 ns long, wait 49995 ns to next pulse, a single pulse
+1 5 ns 99995 ns 1	-- OneSPE pulse, 5 ns long, wait 99995 ns to next pulse, a single pulse
+1 5 ns 49995 ns 1	-- OneSPE pulse, 5 ns long, wait 49995 ns to next pulse, a single pulse
+2 10 ns 500 ns 3	-- MultiSPE pulse, 10 ns long, 500 ns delay, 3 pulses
+0 0 ns 10000 ns 0	-- insert a delay
+3 50 ns 500 ns 3	-- another sequence of 3, this time on both signals
+
