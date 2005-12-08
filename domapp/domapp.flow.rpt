@@ -1,5 +1,5 @@
 Flow report for domapp
-Thu Nov 03 08:13:49 2005
+Wed Nov 23 15:28:19 2005
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -42,12 +42,12 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------+
 ; Flow Summary                                                  ;
 +-----------------------+---------------------------------------+
-; Flow Status           ; Successful - Thu Nov 03 08:13:24 2005 ;
+; Flow Status           ; Successful - Wed Nov 23 15:27:55 2005 ;
 ; Revision Name         ; domapp                                ;
 ; Top-level Entity Name ; domapp                                ;
 ; Family                ; EXCALIBUR_ARM                         ;
 ; Device                ; EPXA4F672I2                           ;
-; Total logic elements  ; 10,235 / 16,640 ( 61 % )              ;
+; Total logic elements  ; 9,252 / 16,640 ( 55 % )               ;
 ; Total pins            ; 308 / 463 ( 66 % )                    ;
 ; Total memory bits     ; 96,896 / 212,992 ( 45 % )             ;
 ; Total PLLs            ; 2 / 4 ( 50 % )                        ;
@@ -59,7 +59,7 @@ party's intellectual property, are provided herein.
 +------------------------------------------
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 11/03/2005 07:42:56 ;
+; Start date & time ; 11/23/2005 15:02:28 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; domapp              ;
 +-------------------+---------------------+
@@ -70,11 +70,11 @@ party's intellectual property, are provided herein.
 +--------------------------------------
 ; Module Name          ; Elapsed Time ;
 +----------------------+--------------+
-; Analysis & Synthesis ; 00:14:00     ;
-; Fitter               ; 00:16:15     ;
-; Assembler            ; 00:00:06     ;
+; Analysis & Synthesis ; 00:09:15     ;
+; Fitter               ; 00:15:57     ;
+; Assembler            ; 00:00:09     ;
 ; Timing Analyzer      ; 00:00:22     ;
-; Total                ; 00:30:43     ;
+; Total                ; 00:25:43     ;
 +----------------------+--------------+
 
 

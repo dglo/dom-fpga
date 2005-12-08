@@ -1,5 +1,5 @@
 EDA Netlist Writer report for simpletest
-Wed Nov 02 11:44:59 2005
+Wed Nov 16 09:55:32 2005
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -42,7 +42,7 @@ party's intellectual property, are provided herein.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Wed Nov 02 11:44:59 2005 ;
+; EDA Netlist Writer Status ; Successful - Wed Nov 16 09:55:32 2005 ;
 ; Revision Name             ; simpletest                            ;
 ; Top-level Entity Name     ; simpletest                            ;
 ; Family                    ; EXCALIBUR_ARM                         ;
@@ -82,11 +82,11 @@ party's intellectual property, are provided herein.
 Info: *******************************************************************
 Info: Running Quartus II EDA Netlist Writer
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Wed Nov 02 11:44:51 2005
+    Info: Processing started: Wed Nov 16 09:55:23 2005
 Info: Command: quartus_eda --import_settings_files=off --export_settings_files=off simpletest -c simpletest
 Info: Generated file simpletest.vo in folder C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/simulation/modelsim/ for EDA simulation tool
 Info: Quartus II EDA Netlist Writer was successful. 0 errors, 0 warnings
-    Info: Processing ended: Wed Nov 02 11:44:59 2005
-    Info: Elapsed time: 00:00:07
+    Info: Processing ended: Wed Nov 16 09:55:32 2005
+    Info: Elapsed time: 00:00:08
 
 
