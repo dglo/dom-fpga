@@ -1,27 +1,3 @@
--------------------------------------------------------------------------------
--- Title      : DOMAPP
--- Project    : IceCube DOM main board
--------------------------------------------------------------------------------
--- File       : LC_abort.vhd
--- Author     : thorsten
--- Company    : LBNL
--- Created    : 
--- Last update: 2005-05-23
--- Platform   : Altera Excalibur
--- Standard   : VHDL'93
--------------------------------------------------------------------------------
--- Description: This module checks if LC is satisfied and initiates an abort
---              if not satisfied. The module corrects for the delays in the LC
---              cables
--------------------------------------------------------------------------------
--- Copyright (c) 2005
--------------------------------------------------------------------------------
--- Revisions  :
--- Date        Version     Author    Description
---             V01-01-00   thorsten  
--------------------------------------------------------------------------------
-
-
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.ALL;
 USE IEEE.std_logic_unsigned.ALL;
@@ -43,7 +19,6 @@ ENTITY LC_abort IS
         lc_post_window    : IN  STD_LOGIC_VECTOR (5 DOWNTO 0);
         selfLCmode        : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
         selfLC_window     : IN  STD_LOGIC_VECTOR (5 DOWNTO 0);
-        LC_up_and_down    : IN  STD_LOGIC;
         -- local LC interface
         launch            : IN  STD_LOGIC;
         disc              : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
@@ -167,26 +142,29 @@ BEGIN  -- arch_LC_abort
             -- do the abort
             IF (launch_timer = (cable_length_up(CONV_INTEGER(lc_length))+CONV_INTEGER(lc_post_window)+1) AND (cable_length_up(CONV_INTEGER(lc_length)) >= cable_length_down(CONV_INTEGER(lc_length)))) OR
                 (launch_timer = (cable_length_down(CONV_INTEGER(lc_length))+CONV_INTEGER(lc_post_window)+1) AND (cable_length_up(CONV_INTEGER(lc_length)) <= cable_length_down(CONV_INTEGER(lc_length)))) THEN
---                IF got_post_lc_up = '0' AND got_post_lc_down = '0' AND got_pre_lc_up = '0' AND got_pre_lc_down = '0' AND got_selfLC = '0'THEN
---                    abort <= '1';
---                ELSE
---                    abort <= '0';
---                END IF;
-                IF (LC_up_and_down = '1' AND (got_post_lc_up = '1' OR got_pre_lc_up = '1') AND (got_post_lc_down = '1' OR got_pre_lc_down = '1')) OR  --
-                    -- for Mark
-                    (LC_up_and_down = '0' AND (got_post_lc_up = '1' OR got_pre_lc_up = '1' OR got_post_lc_down = '1' OR got_pre_lc_down = '1')) OR  --
-                    -- normal mode
-                    got_selfLC = '1'THEN
-                    abort <= '0';
+                IF got_post_lc_up = '0' AND got_post_lc_down = '0' AND got_pre_lc_up = '0' AND got_pre_lc_down = '0' AND got_selfLC = '0'THEN
+                    abort            <= '1';
+                    got_post_lc_up   <= '0';
+                    got_post_lc_down <= '0';
+                    got_pre_lc_up    <= '0';
+                    got_pre_lc_down  <= '0';
+                    got_selfLC       <= '0';
                 ELSE
-                    abort <= '1';
+                    abort            <= '0';
+                    got_post_lc_up   <= '0';
+                    got_post_lc_down <= '0';
+                    got_pre_lc_up    <= '0';
+                    got_pre_lc_down  <= '0';
+                    got_selfLC       <= '0';
                 END IF;
-                got_post_lc_up   <= '0';
-                got_post_lc_down <= '0';
-                got_pre_lc_up    <= '0';
-                got_pre_lc_down  <= '0';
-                got_selfLC       <= '0';
-                abort_test       <= '1';
+                abort_test <= '1';
+                --      ELSIF launch = '0' AND launch_old = '1' THEN
+                --          abort            <= '0';
+                --          got_post_lc_up   <= '0';
+                --          got_post_lc_down <= '0';
+                --          got_pre_lc_up    <= '0';
+                --          got_pre_lc_down  <= '0';
+                --          abort_clear      <= '1';
             ELSE
                 abort       <= '0';
                 abort_test  <= '0';

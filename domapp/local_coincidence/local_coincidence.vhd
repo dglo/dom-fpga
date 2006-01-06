@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2005-04-21
+-- Last update: 2005-07-12
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -103,8 +103,12 @@ ARCHITECTURE ARCH_local_coincidence OF local_coincidence IS
             cable_length_down : IN  CABLE_LENGTH_VECTOR;
             lc_pre_window     : IN  STD_LOGIC_VECTOR (5 DOWNTO 0);
             lc_post_window    : IN  STD_LOGIC_VECTOR (5 DOWNTO 0);
+            selfLCmode        : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
+            selfLC_window     : IN  STD_LOGIC_VECTOR (5 DOWNTO 0);
+            LC_up_and_down    : IN  STD_LOGIC;
             -- local LC interface
             launch            : IN  STD_LOGIC;
+            disc              : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
             up_n              : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
             lc_update_up      : IN  STD_LOGIC;
             down_n            : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
@@ -135,8 +139,8 @@ BEGIN
             CLK80           => CLK80,
             rst             => RST,
             -- setup
-            rx_enable       => LC_ctrl.lc_rx_enable(1),
-            tx_enable       => LC_ctrl.lc_tx_enable(0),
+            rx_enable       => LC_ctrl.lc_rx_enable(0),
+            tx_enable       => LC_ctrl.lc_tx_enable(1),
             lc_length       => LC_ctrl.lc_length,
             -- from DAQ
             disc            => lc_daq_disc(0),
@@ -163,8 +167,8 @@ BEGIN
             CLK80           => CLK80,
             rst             => RST,
             -- setup
-            rx_enable       => LC_ctrl.lc_rx_enable(0),
-            tx_enable       => LC_ctrl.lc_tx_enable(1),
+            rx_enable       => LC_ctrl.lc_rx_enable(1),
+            tx_enable       => LC_ctrl.lc_tx_enable(0),
             lc_length       => LC_ctrl.lc_length,
             -- from DAQ
             disc            => lc_daq_disc(0),
@@ -195,8 +199,12 @@ BEGIN
             cable_length_down => LC_ctrl.lc_cable_length_down,
             lc_pre_window     => LC_ctrl.lc_pre_window,
             lc_post_window    => LC_ctrl.lc_post_window,
+            selfLCmode        => LC_ctrl.lc_self_mode,
+            selfLC_window     => LC_ctrl.lc_self_window,
+            LC_up_and_down    => LC_ctrl.LC_up_and_down,
             -- local LC interface
             launch            => lc_daq_launch(0),
+            disc              => lc_daq_disc,
             up_n              => up_n,
             lc_update_up      => update_up,
             down_n            => down_n,
@@ -213,10 +221,14 @@ BEGIN
             RST               => RST,
             -- setup
             lc_length         => LC_ctrl.lc_length,
+            disc              => lc_daq_disc,
             cable_length_up   => LC_ctrl.lc_cable_length_up,
             cable_length_down => LC_ctrl.lc_cable_length_down,
             lc_pre_window     => LC_ctrl.lc_pre_window,
             lc_post_window    => LC_ctrl.lc_post_window,
+            selfLCmode        => LC_ctrl.lc_self_mode,
+            selfLC_window     => LC_ctrl.lc_self_window,
+            LC_up_and_down    => LC_ctrl.LC_up_and_down,
             -- local LC interface
             launch            => lc_daq_launch(1),
             up_n              => up_n,
