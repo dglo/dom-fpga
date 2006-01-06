@@ -70,6 +70,7 @@ entity bit_stuff is
            	wreq         	: in std_logic;
            	clock        	: in std_logic;
            	reset        	: in std_logic;
+           	op_reset		  :in std_logic;
 		   	word_ack		: in std_logic;
 		   	last_input		: in std_logic; -- This signal is needed to flush the buffer at the end of channel.
            	DY           	: out word32;
@@ -90,8 +91,8 @@ architecture Behav of bit_stuff is
 						flush,
 						finish	);
 						
-	--attribute enum_encoding : string;
-	--attribute enum_encoding of state : type is "one-hot";
+--	attribute enum_encoding : string;
+--	attribute enum_encoding of state : type is "one-hot";
 
    	signal 	state_now, state_next :   state;
 
@@ -115,9 +116,21 @@ begin
 -- The shift occurs in such a way that the old bits is filled with zeros.
 -- The overflow is not a problem.
 
-inst_barrel_shifter: 
-	component lpm_clshift
-		generic map (	LPM_WIDTH => N+L-1,
+--inst_barrel_shifter: 
+--	component lpm_clshift
+--		generic map (	LPM_WIDTH => N+L-1,
+--						LPM_WIDTHDIST => M,
+--						LPM_SHIFTTYPE  => "LOGICAL"
+--					)
+--		port map (		data => IB,
+--						direction => '0', -- left-shift (towards MSB)
+--						distance => shift_dist,
+--						result => shift_result
+--				);
+				
+	
+inst_barrel_shifter: lpm_clshift 
+	generic map (	LPM_WIDTH => N+L-1,
 						LPM_WIDTHDIST => M,
 						LPM_SHIFTTYPE  => "LOGICAL"
 					)
@@ -126,7 +139,7 @@ inst_barrel_shifter:
 						distance => shift_dist,
 						result => shift_result
 				);
-
+				
 	IB <= X"0000000" & B"000" & DX;
 
 	shift_dist <= conv_std_logic_vector(tail, M);
@@ -139,12 +152,16 @@ inst_barrel_shifter:
 
 -------------------------------------------------------------------------
 state_transition:
-   	process(clock, reset)
+   	process(clock, reset,op_reset)
    	begin
       	if reset = '1' then
         	state_now <= init;
       	elsif clock'event and clock = '1' then
-         	state_now <= state_next;
+      		if op_reset='1' then
+      			state_now <= init;
+      		else
+         			state_now <= state_next;
+         		end if;
       	end if;
    	end process;
 
@@ -169,11 +186,11 @@ sync_flags_proc:
 
 
 state_machine_comb:
-   	process(	state_now, wreq, tail, tail2, ovf, shift_result, word_ack,
+   	process(state_now, wreq, tail, tail2, ovf, shift_result, word_ack,
 				IR2, IB, OB, IR, this_is_last, BPS, last_input	)
 	
 	begin
-					
+
    		case state_now is
 
         	when init =>
@@ -268,7 +285,7 @@ state_machine_comb:
 				state_next <= finish;
 					
       	end case;
-
+	
 	end process;
 				
 end Behav;

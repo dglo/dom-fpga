@@ -1,3 +1,26 @@
+-------------------------------------------------------------------------------
+-- Title      : DOMAPP
+-- Project    : IceCube DOM main board
+-------------------------------------------------------------------------------
+-- File       : LC_slice.vhd
+-- Author     : thorsten
+-- Company    : LBNL
+-- Created    : 
+-- Last update: 2005-05-23
+-- Platform   : Altera Excalibur
+-- Standard   : VHDL'93
+-------------------------------------------------------------------------------
+-- Description: This module sends, receives and relays LC signals for one
+--              direction
+-------------------------------------------------------------------------------
+-- Copyright (c) 2005
+-------------------------------------------------------------------------------
+-- Revisions  :
+-- Date        Version     Author    Description
+--             V01-01-00   thorsten 
+-------------------------------------------------------------------------------
+
+
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.ALL;
 
@@ -37,6 +60,8 @@ ARCHITECTURE LC_slice_arch OF LC_slice IS
         PORT (
             CLK40    : IN  STD_LOGIC;
             RST      : IN  STD_LOGIC;
+			-- setup
+            rx_enable : IN  STD_LOGIC;
             -- LC edges
             edge_pos : OUT STD_LOGIC;
             edge_neg : OUT STD_LOGIC;
@@ -122,6 +147,8 @@ BEGIN  -- LC_slice_arch
         PORT MAP (
             CLK40    => CLK40,
             RST      => RST,
+			-- setup
+            rx_enable => rx_enable,
             -- LC edges
             edge_pos => edge_pos,
             edge_neg => edge_neg,

@@ -141,6 +141,7 @@ ARCHITECTURE daq_arch OF daq IS
 			enable_DAQ		: IN STD_LOGIC;
 			enable_AB		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			trigger_enable	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
+			heart_beat_mode	: IN STD_LOGIC;
 			-- trigger sources
 			cs_trigger		: IN STD_LOGIC_VECTOR (5 DOWNTO 0);	-- calibration sources
 			lc_trigger		: IN STD_LOGIC_VECTOR (1 DOWNTO 0); -- local coincidence
@@ -154,6 +155,8 @@ ARCHITECTURE daq_arch OF daq IS
 			ATWDTrigger_sig_A	: OUT STD_LOGIC;
 			ATWDTrigger_sig_B	: OUT STD_LOGIC;
 			trigger_word	: OUT STD_LOGIC_VECTOR (15 DOWNTO 0);
+			veto_LC_abort_A	: OUT STD_LOGIC;
+			veto_LC_abort_B	: OUT STD_LOGIC;
 			-- discriminator
 			MultiSPE		: IN STD_LOGIC;
 			OneSPE			: IN STD_LOGIC;
@@ -433,6 +436,7 @@ BEGIN
 			enable_DAQ		=> enable_DAQ,
 			enable_AB		=> enable_AB,
 			trigger_enable	=> trigger_enable,
+			heart_beat_mode	=> '1',
 			-- trigger sources
 			cs_trigger		=> CS_trigger,
 			lc_trigger		=> LC_trigger,
@@ -446,6 +450,8 @@ BEGIN
 			ATWDTrigger_sig_A	=> ATWDTrigger_sig_A,
 			ATWDTrigger_sig_B	=> ATWDTrigger_sig_B,
 			trigger_word	=> trigger_word,
+			veto_LC_abort_A	=> OPEN,
+			veto_LC_abort_B	=> OPEN,
 			-- discriminator
 			MultiSPE		=> MultiSPE,
 			OneSPE			=> OneSPE,

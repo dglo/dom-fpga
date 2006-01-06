@@ -1154,7 +1154,7 @@ BEGIN
 			xfer_eng   => DAQ_status.AHB_status.xfer_eng,
 			xfer_compr => DAQ_status.AHB_status.xfer_compr,
 			-- the xfer time
-			AHB_load   => debugging,
+			AHB_load   => OPEN, --debugging,
 			-- test comnnector
 			TC         => OPEN
 		);
@@ -1242,16 +1242,16 @@ BEGIN
 	--------------------------
 	-- LC debugging
 	--------------------------
---	process (CLK20, RST)
---	begin
---		if RST='1' THEN
---			debugging <= (others=>'0');
---		elsif CLK20'EVENT and CLK20='1' THEN
---			if lc_daq_trigger(0)='1' OR lc_daq_trigger(1)='1' THEN
---				debugging <= debugging + 1;
---			end if;
---		end if;
---	end process;
+	process (CLK20, RST)
+	begin
+		if RST='1' THEN
+			debugging <= (others=>'0');
+		elsif CLK20'EVENT and CLK20='1' THEN
+			if lc_daq_trigger(0)='1' OR lc_daq_trigger(1)='1' THEN
+				debugging <= debugging + 1;
+			end if;
+		end if;
+	end process;
 
 
 	------------------------------
