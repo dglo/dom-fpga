@@ -301,6 +301,7 @@ ARCHITECTURE arch_domapp OF domapp IS
 			trigger_enable	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
 			ATWD_mode		: IN STD_LOGIC_VECTOR (2 DOWNTO 0);
 			LC_mode			: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
+			LC_heart_beat	: IN STD_LOGIC;
 			DAQ_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			LBM_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			COMPR_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
@@ -863,6 +864,7 @@ BEGIN
 			ATWD_mode(1 DOWNTO 0)	=> DAQ_ctrl.ATWD_mode,
 			ATWD_mode(2)	=> '0', --DAQ_ctrl.ATWD_mode,
 			LC_mode			=> DAQ_ctrl.LC_mode,
+			LC_heart_beat	=> DAQ_ctrl.LC_heart_beat,
 			DAQ_mode		=> DAQ_ctrl.DAQ_mode,
 			LBM_mode		=> DAQ_ctrl.LBM_mode,
 			COMPR_mode		=> DAQ_ctrl.COMPR_mode,

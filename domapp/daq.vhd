@@ -46,6 +46,7 @@ ENTITY daq IS
 		trigger_enable	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
 		ATWD_mode		: IN STD_LOGIC_VECTOR (2 DOWNTO 0);
 		LC_mode			: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
+		LC_heart_beat	: IN STD_LOGIC;
 		DAQ_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		LBM_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		COMPR_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
@@ -402,6 +403,7 @@ ARCHITECTURE daq_arch OF daq IS
 	-- no required for calibration trigger in hard-LC
 	SIGNAL veto_LC_abort_A	: STD_LOGIC;
 	SIGNAL veto_LC_abort_B	: STD_LOGIC;
+	SIGNAL LC_abort_gated	: STD_LOGIC_VECTOR (1 DOWNTO 0);
 	
 	-- monitoring
 	SIGNAL xfer_eng		: STD_LOGIC;
@@ -425,12 +427,15 @@ BEGIN
 --	TC(6)			<= busy_B;
 --	TC(7)			<= enable_AB(1);
 	
-	
+	LC_abort_gated(0) <= LC_abort(0) AND NOT veto_LC_abort_A;
+	LC_abort_gated(1) <= LC_abort(1) AND NOT veto_LC_abort_B;
 
 	discSPEpulse	<= discSPEpulse_local;
 	discMPEpulse	<= discMPEpulse_local;
 	LC_disc		<= discMPEpulse_local & discSPEpulse_local;
 	LC_launch	<= busy_B & busy_A;
+	
+	
 
 	inst_trigger : trigger
 		PORT MAP (
@@ -440,7 +445,7 @@ BEGIN
 			enable_DAQ		=> enable_DAQ,
 			enable_AB		=> enable_AB,
 			trigger_enable	=> trigger_enable,
-			heart_beat_mode	=> '1',
+			heart_beat_mode	=> LC_heart_beat,
 			-- trigger sources
 			cs_trigger		=> CS_trigger,
 			lc_trigger		=> LC_trigger,
@@ -510,7 +515,7 @@ BEGIN
 			rst_trig		=> rst_trig_A,
 			trigger_word	=> trigger_word,
 			-- local coincidence
-			LC_abort		=> LC_abort(0) AND NOT veto_LC_abort_A,
+			LC_abort		=> LC_abort_gated(0),
 			LC				=> LC,
 			-- ATWD
 			ATWDTrigger		=> ATWDTrigger_sig_A,
@@ -572,7 +577,7 @@ BEGIN
 			rst_trig		=> rst_trig_B,
 			trigger_word	=> trigger_word,
 			-- local coincidence
-			LC_abort		=> LC_abort(1) AND NOT veto_LC_abort_B,
+			LC_abort		=> LC_abort_gated(1),
 			LC				=> LC,
 			-- ATWD
 			ATWDTrigger		=> ATWDTrigger_sig_B,

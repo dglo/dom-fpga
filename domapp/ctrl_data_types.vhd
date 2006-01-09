@@ -38,6 +38,7 @@ PACKAGE ctrl_data_types IS
             LBM_mode       : STD_LOGIC_VECTOR (1 DOWNTO 0);
             COMPR_mode     : STD_LOGIC_VECTOR (1 DOWNTO 0);
             LBM_ptr_RST    : STD_LOGIC;
+            LC_heart_beat  : STD_LOGIC;
         END RECORD;
 
     -- control data for the CalibrationSource module
