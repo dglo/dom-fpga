@@ -399,6 +399,10 @@ ARCHITECTURE daq_arch OF daq IS
 	SIGNAL discSPEpulse_local	: STD_LOGIC;
 	SIGNAL discMPEpulse_local	: STD_LOGIC;
 	
+	-- no required for calibration trigger in hard-LC
+	SIGNAL veto_LC_abort_A	: STD_LOGIC;
+	SIGNAL veto_LC_abort_B	: STD_LOGIC;
+	
 	-- monitoring
 	SIGNAL xfer_eng		: STD_LOGIC;
 	SIGNAL xfer_compr	: STD_LOGIC;
@@ -450,8 +454,8 @@ BEGIN
 			ATWDTrigger_sig_A	=> ATWDTrigger_sig_A,
 			ATWDTrigger_sig_B	=> ATWDTrigger_sig_B,
 			trigger_word	=> trigger_word,
-			veto_LC_abort_A	=> OPEN,
-			veto_LC_abort_B	=> OPEN,
+			veto_LC_abort_A	=> veto_LC_abort_A,
+			veto_LC_abort_B	=> veto_LC_abort_B,
 			-- discriminator
 			MultiSPE		=> MultiSPE,
 			OneSPE			=> OneSPE,
@@ -506,7 +510,7 @@ BEGIN
 			rst_trig		=> rst_trig_A,
 			trigger_word	=> trigger_word,
 			-- local coincidence
-			LC_abort		=> LC_abort(0),
+			LC_abort		=> LC_abort(0) AND NOT veto_LC_abort_A,
 			LC				=> LC,
 			-- ATWD
 			ATWDTrigger		=> ATWDTrigger_sig_A,
@@ -568,7 +572,7 @@ BEGIN
 			rst_trig		=> rst_trig_B,
 			trigger_word	=> trigger_word,
 			-- local coincidence
-			LC_abort		=> LC_abort(1),
+			LC_abort		=> LC_abort(1) AND NOT veto_LC_abort_B,
 			LC				=> LC,
 			-- ATWD
 			ATWDTrigger		=> ATWDTrigger_sig_B,
