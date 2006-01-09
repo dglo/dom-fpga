@@ -1,5 +1,5 @@
 Analysis & Synthesis report for domapp
-Fri Jan 06 10:33:22 2006
+Mon Jan 09 10:47:06 2006
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -68,11 +68,11 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                        ;
 +-----------------------------+---------------------------------------+
-; Analysis & Synthesis Status ; Successful - Fri Jan 06 10:33:22 2006 ;
+; Analysis & Synthesis Status ; Successful - Mon Jan 09 10:47:06 2006 ;
 ; Revision Name               ; domapp                                ;
 ; Top-level Entity Name       ; domapp                                ;
 ; Family                      ; EXCALIBUR_ARM                         ;
-; Total logic elements        ; 6,731                                 ;
+; Total logic elements        ; 6,726                                 ;
 ; Total pins                  ; 308                                   ;
 ; Total memory bits           ; 64,128                                ;
 ; Total PLLs                  ; 2                                     ;
@@ -955,7 +955,7 @@ domapp
 +-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Compilation Hierarchy Node                                        ; Logic Cells ; Registers ; Memory Bits ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Full Hierarchy Name                                                                                                                                                                                                                                                                              ;
 +-------------------------------------------------------------------+-------------+-----------+-------------+------+--------------+--------------+-------------------+------------------+-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; |domapp                                                           ; 6731 (22)   ; 2937      ; 64128       ; 308  ; 0            ; 3794 (4)     ; 1318 (17)         ; 1619 (1)         ; 1278 (0)        ; |domapp                                                                                                                                                                                                                                                                                          ;
+; |domapp                                                           ; 6726 (22)   ; 2932      ; 64128       ; 308  ; 0            ; 3794 (4)     ; 1313 (17)         ; 1619 (1)         ; 1278 (0)        ; |domapp                                                                                                                                                                                                                                                                                          ;
 ;    |DOMstatus:inst_DOMstatus|                                     ; 17 (13)     ; 16        ; 0           ; 0    ; 0            ; 1 (1)        ; 10 (10)           ; 6 (2)            ; 4 (0)           ; |domapp|DOMstatus:inst_DOMstatus                                                                                                                                                                                                                                                                 ;
 ;       |lpm_counter:didvide_rtl_11|                                ; 4 (0)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 4 (0)            ; 4 (0)           ; |domapp|DOMstatus:inst_DOMstatus|lpm_counter:didvide_rtl_11                                                                                                                                                                                                                                      ;
 ;          |alt_synch_counter:wysi_counter|                         ; 4 (4)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 4 (4)            ; 4 (4)           ; |domapp|DOMstatus:inst_DOMstatus|lpm_counter:didvide_rtl_11|alt_synch_counter:wysi_counter                                                                                                                                                                                                       ;
@@ -1184,7 +1184,7 @@ domapp
 ;                                        |cmpchain:cmp_end|         ; 1 (1)       ; 0         ; 0           ; 0    ; 0            ; 1 (1)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_Tx_chan_ap:inst4|tx_uart_ap:inst7|tx_uart_ct5:inst4|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter|lpm_compare:$00013|comptree:comparator|cmpchain:cmp_end|comptree:comp|comptree:sub_comptree|cmpchain:cmp_end ;
 ;                |tx_uart_shr10_sclr:inst1|                         ; 10 (0)      ; 10        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 10 (0)           ; 0 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_Tx_chan_ap:inst4|tx_uart_ap:inst7|tx_uart_shr10_sclr:inst1                                                                                                                                                                        ;
 ;                   |lpm_shiftreg:lpm_shiftreg_component|           ; 10 (10)     ; 10        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 10 (10)          ; 0 (0)           ; |domapp|comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_Tx_chan_ap:inst4|tx_uart_ap:inst7|tx_uart_shr10_sclr:inst1|lpm_shiftreg:lpm_shiftreg_component                                                                                                                                    ;
-;    |daq:inst_daq|                                                 ; 2031 (0)    ; 959       ; 49152       ; 0    ; 0            ; 1072 (0)     ; 511 (0)           ; 448 (0)          ; 288 (0)         ; |domapp|daq:inst_daq                                                                                                                                                                                                                                                                             ;
+;    |daq:inst_daq|                                                 ; 2024 (0)    ; 953       ; 49152       ; 0    ; 0            ; 1071 (0)     ; 505 (0)           ; 448 (0)          ; 288 (0)         ; |domapp|daq:inst_daq                                                                                                                                                                                                                                                                             ;
 ;       |FADC_input:inst_FADC_input|                                ; 11 (11)     ; 11        ; 0           ; 0    ; 0            ; 0 (0)        ; 11 (11)           ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|FADC_input:inst_FADC_input                                                                                                                                                                                                                                                  ;
 ;       |ahb_master:inst_ahb_master|                                ; 209 (209)   ; 98        ; 0           ; 0    ; 0            ; 111 (111)    ; 1 (1)             ; 97 (97)          ; 30 (30)         ; |domapp|daq:inst_daq|ahb_master:inst_ahb_master                                                                                                                                                                                                                                                  ;
 ;       |mem_interface:inst_mem_interface|                          ; 545 (545)   ; 51        ; 0           ; 0    ; 0            ; 494 (494)    ; 8 (8)             ; 43 (43)          ; 26 (26)         ; |domapp|daq:inst_daq|mem_interface:inst_mem_interface                                                                                                                                                                                                                                            ;
@@ -1231,7 +1231,7 @@ domapp
 ;                |altdpram:altdpram_component|                      ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|FADC_buffer:inst_FADC_buffer_even|altdpram:altdpram_component                                                                                                                                                                    ;
 ;             |FADC_buffer:inst_FADC_buffer_odd|                    ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|FADC_buffer:inst_FADC_buffer_odd                                                                                                                                                                                                 ;
 ;                |altdpram:altdpram_component|                      ; 0 (0)       ; 0         ; 4096        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|daq:inst_daq|pingpong:pong|data_buffer:inst_data_buffer|FADC_buffer:inst_FADC_buffer_odd|altdpram:altdpram_component                                                                                                                                                                     ;
-;       |trigger:inst_trigger|                                      ; 67 (67)     ; 41        ; 0           ; 0    ; 0            ; 26 (26)      ; 22 (22)           ; 19 (19)          ; 0 (0)           ; |domapp|daq:inst_daq|trigger:inst_trigger                                                                                                                                                                                                                                                        ;
+;       |trigger:inst_trigger|                                      ; 60 (60)     ; 35        ; 0           ; 0    ; 0            ; 25 (25)      ; 16 (16)           ; 19 (19)          ; 0 (0)           ; |domapp|daq:inst_daq|trigger:inst_trigger                                                                                                                                                                                                                                                        ;
 ;    |local_coincidence:inst_local_coincidence|                     ; 1022 (0)    ; 234       ; 0           ; 0    ; 0            ; 788 (0)      ; 28 (0)            ; 206 (0)          ; 342 (0)         ; |domapp|local_coincidence:inst_local_coincidence                                                                                                                                                                                                                                                 ;
 ;       |LC_abort:LC_abort_ARWD_A|                                  ; 392 (392)   ; 71        ; 0           ; 0    ; 0            ; 321 (321)    ; 1 (1)             ; 70 (70)          ; 148 (148)       ; |domapp|local_coincidence:inst_local_coincidence|LC_abort:LC_abort_ARWD_A                                                                                                                                                                                                                        ;
 ;       |LC_abort:LC_abort_ARWD_B|                                  ; 500 (500)   ; 71        ; 0           ; 0    ; 0            ; 429 (429)    ; 1 (1)             ; 70 (70)          ; 194 (194)       ; |domapp|local_coincidence:inst_local_coincidence|LC_abort:LC_abort_ARWD_B                                                                                                                                                                                                                        ;
@@ -1262,7 +1262,7 @@ domapp
 ;          |alt_synch_counter:wysi_counter|                         ; 32 (32)     ; 32        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 32 (32)          ; 32 (32)         ; |domapp|rate_meters:inst_rate_meters|lpm_counter:rate_SPE_int_rtl_8|alt_synch_counter:wysi_counter                                                                                                                                                                                               ;
 ;       |lpm_counter:sn_rate_rtl_10|                                ; 4 (0)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 4 (0)            ; 4 (0)           ; |domapp|rate_meters:inst_rate_meters|lpm_counter:sn_rate_rtl_10                                                                                                                                                                                                                                  ;
 ;          |alt_synch_counter:wysi_counter|                         ; 4 (4)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 4 (4)            ; 4 (4)           ; |domapp|rate_meters:inst_rate_meters|lpm_counter:sn_rate_rtl_10|alt_synch_counter:wysi_counter                                                                                                                                                                                                   ;
-;    |slaveregister:inst_slaveregister|                             ; 1457 (1403) ; 422       ; 14336       ; 0    ; 0            ; 1035 (1005)  ; 325 (325)         ; 97 (73)          ; 0 (0)           ; |domapp|slaveregister:inst_slaveregister                                                                                                                                                                                                                                                         ;
+;    |slaveregister:inst_slaveregister|                             ; 1459 (1405) ; 423       ; 14336       ; 0    ; 0            ; 1036 (1006)  ; 326 (326)         ; 97 (73)          ; 0 (0)           ; |domapp|slaveregister:inst_slaveregister                                                                                                                                                                                                                                                         ;
 ;       |ATWDped:inst_ATWDAped|                                     ; 0 (0)       ; 0         ; 5120        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|slaveregister:inst_slaveregister|ATWDped:inst_ATWDAped                                                                                                                                                                                                                                   ;
 ;          |altdpram:altdpram_component|                            ; 0 (0)       ; 0         ; 5120        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|slaveregister:inst_slaveregister|ATWDped:inst_ATWDAped|altdpram:altdpram_component                                                                                                                                                                                                       ;
 ;       |ATWDped:inst_ATWDBped|                                     ; 0 (0)       ; 0         ; 5120        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|slaveregister:inst_slaveregister|ATWDped:inst_ATWDBped                                                                                                                                                                                                                                   ;
@@ -1555,15 +1555,15 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.map
 +---------------------------------------------------------------------------------------------
 ; Resource                      ; Usage                                                      ;
 +-------------------------------+------------------------------------------------------------+
-; Logic cells                   ; 6,731                                                      ;
+; Logic cells                   ; 6,726                                                      ;
 ; Total combinational functions ; 5413                                                       ;
-; Total registers               ; 2937                                                       ;
+; Total registers               ; 2932                                                       ;
 ; I/O pins                      ; 308                                                        ;
 ; Total memory bits             ; 64128                                                      ;
 ; Total PLLs                    ; 2                                                          ;
 ; Maximum fan-out node          ; pll2x:inst_pll2x|altclklock:altclklock_component|outclock0 ;
-; Maximum fan-out               ; 3078                                                       ;
-; Total fan-out                 ; 30058                                                      ;
+; Maximum fan-out               ; 3073                                                       ;
+; Total fan-out                 ; 30044                                                      ;
 ; Average fan-out               ; 4.16                                                       ;
 +-------------------------------+------------------------------------------------------------+
 
@@ -1595,13 +1595,13 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.map
 ; Statistic                                              ; Value ;
 +--------------------------------------------------------+-------+
 ; Number of WYSIWYG cells                                ; 1249  ;
-; Number of synthesis-generated cells                    ; 5482  ;
+; Number of synthesis-generated cells                    ; 5477  ;
 ; Number of WYSIWYG LUTs                                 ; 1249  ;
 ; Number of synthesis-generated LUTs                     ; 4164  ;
 ; Number of WYSIWYG registers                            ; 479   ;
-; Number of synthesis-generated registers                ; 2458  ;
+; Number of synthesis-generated registers                ; 2453  ;
 ; Number of cells with combinational logic only          ; 3794  ;
-; Number of cells with registers only                    ; 1318  ;
+; Number of cells with registers only                    ; 1313  ;
 ; Number of cells with combinational logic and registers ; 1619  ;
 +--------------------------------------------------------+-------+
 
@@ -1613,9 +1613,9 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.map
 +--------------------------------------+-------+
 ; Number of registers using SCLR       ; 76    ;
 ; Number of registers using SLOAD      ; 221   ;
-; Number of registers using ACLR       ; 1728  ;
+; Number of registers using ACLR       ; 1723  ;
 ; Number of registers using ALOAD      ; 0     ;
-; Number of registers using CLK_ENABLE ; 1867  ;
+; Number of registers using CLK_ENABLE ; 1868  ;
 ; Number of registers using OE         ; 0     ;
 ; Number of registers using PRESET     ; 0     ;
 +--------------------------------------+-------+
@@ -1627,7 +1627,7 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.map
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Fri Jan 06 10:19:08 2006
+    Info: Processing started: Mon Jan 09 10:39:18 2006
 Info: Command: quartus_map --import_settings_files=on --export_settings_files=off domapp -c domapp
 Info: Found 1 design units and 1 entities in source file ../common/comDPM/dcom_ap.bdf
     Info: Found entity 1: dcom_ap
@@ -2815,17 +2815,17 @@ Warning: Design contains 15 input pin(s) that do not drive logic
     Warning: No output dependent on input pin COINC_UP_BBAR
     Warning: No output dependent on input pin PLD_FPGA_nOE
     Warning: No output dependent on input pin PLD_FPGA_nWE
-Info: Implemented 7226 device resources after synthesis - the final resource count might be different
+Info: Implemented 7221 device resources after synthesis - the final resource count might be different
     Info: Implemented 75 input pins
     Info: Implemented 170 output pins
     Info: Implemented 63 bidirectional pins
-    Info: Implemented 6731 logic cells
+    Info: Implemented 6726 logic cells
     Info: Implemented 182 RAM segments
     Info: Implemented 2 ClockLock PLLs
     Info: Implemented 2 dual-port RAM elements in Excalibur device
     Info: Implemented 1 microprocessor core elements in Excalibur device
 Info: Quartus II Analysis & Synthesis was successful. 0 errors, 326 warnings
-    Info: Processing ended: Fri Jan 06 10:33:21 2006
-    Info: Elapsed time: 00:14:13
+    Info: Processing ended: Mon Jan 09 10:47:05 2006
+    Info: Elapsed time: 00:07:47
 
 

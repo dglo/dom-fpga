@@ -326,13 +326,13 @@ BEGIN
 	
 	VETO_LC : PROCESS (CLK40, RST)
 		VARIABLE cs_trigger_hold : STD_LOGIC_VECTOR (5 DOWNTO 0);
-		VARIABLE cs_trigger_hold1 : STD_LOGIC_VECTOR (5 DOWNTO 0);
+		--VARIABLE cs_trigger_hold1 : STD_LOGIC_VECTOR (5 DOWNTO 0);
 	BEGIN
 		IF RST='1' THEN
 			veto_LC_abort_A <= '0';
 			veto_LC_abort_B <= '0';
 			cs_trigger_hold  := (OTHERS=>'0');
-			cs_trigger_hold1 := (OTHERS=>'0');
+			--cs_trigger_hold1 := (OTHERS=>'0');
 		ELSIF CLK40'EVENT AND CLK40='1' THEN
 			IF ATWDTrigger_A_sig='1' AND ATWDTrigger_A_shift(0)='0' AND heart_beat_mode='1' AND ((cs_trigger_hold AND trigger_enable(7 DOWNTO 2)) /= "000000") THEN
 				veto_LC_abort_A <= '1';
@@ -347,8 +347,9 @@ BEGIN
 				veto_LC_abort_B <= '0';
 			END IF;
 			
-			cs_trigger_hold  := cs_trigger_hold1;
-			cs_trigger_hold1 := cs_trigger;
+			cs_trigger_hold  := cs_trigger;
+			--cs_trigger_hold  := cs_trigger_hold1;
+			--cs_trigger_hold1 := cs_trigger;
 		END IF;
 	END PROCESS;
 

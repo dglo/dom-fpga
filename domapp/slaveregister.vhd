@@ -218,7 +218,7 @@ BEGIN
 		IF RST='1' THEN
 			DAQ_ctrl_local.LBM_ptr_RST	<= '0';
 			CS_ctrl_local.CS_CPU		<= '0';
-			DAQ_ctrl_local	<= ('0', "00", (OTHERS=>'0'), "00", "00", "00", "00", "00", '0');
+			DAQ_ctrl_local	<= ('0', "00", (OTHERS=>'0'), "00", "00", "00", "00", "00", '0', '1');
 			CS_ctrl_local	<= ((OTHERS=>'0'), "000", (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), '0', '0');
 			-- LC_ctrl_local	<= ('0', (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (1,2,3,4), (1,2,3,4));
 			LC_ctrl_local	<= ('0', (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (1,2,3,4), (1,2,3,4), (OTHERS=>'0'), (OTHERS=>'0'), '0');
@@ -257,6 +257,7 @@ BEGIN
 						DAQ_ctrl_local.DAQ_mode		<= reg_wdata(9 downto 8);
 						DAQ_ctrl_local.ATWD_mode	<= reg_wdata(13 downto 12);
 						DAQ_ctrl_local.LC_mode		<= reg_wdata(17 downto 16);
+						DAQ_ctrl_local.LC_heart_beat	<= NOT reg_wdata(19);
 						DAQ_ctrl_local.LBM_mode		<= reg_wdata(21 downto 20);
 						DAQ_ctrl_local.COMPR_mode	<= reg_wdata(25 downto 24);
 						COMPR_ctrl_local.COMPR_mode	<= reg_wdata(25 downto 24); -- Joshua needs this
@@ -268,6 +269,7 @@ BEGIN
 						reg_rdata(9 downto 8)	<= DAQ_ctrl_local.DAQ_mode;
 						reg_rdata(13 downto 12)	<= DAQ_ctrl_local.ATWD_mode;
 						reg_rdata(17 downto 16)	<= DAQ_ctrl_local.LC_mode;
+						reg_rdata(19)			<= NOT DAQ_ctrl_local.LC_heart_beat;
 						reg_rdata(21 downto 20)	<= DAQ_ctrl_local.LBM_mode;
 						reg_rdata(25 downto 24)	<= DAQ_ctrl_local.COMPR_mode;
 					ELSE
