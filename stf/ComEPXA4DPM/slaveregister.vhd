@@ -214,6 +214,16 @@ BEGIN
 										ELSE
 											reg_rdata		<= rx_addr;
 										END IF;
+									WHEN "001000" =>	-- com_clev
+										IF reg_write = '1' THEN
+											com_clev	<= reg_wdata;
+											com_clev_wr	<= '1';
+										END IF;
+									WHEN "001001" =>	-- com_clev
+										IF reg_write = '1' THEN
+											com_thr_del	<= reg_wdata;
+											com_thr_del_wr	<= '1';
+										END IF;
 									WHEN OTHERS =>
 										IF reg_write = '1' THEN
 										ELSE
