@@ -198,7 +198,7 @@ PROC_TCK                     : F24       :        :                   :         
 RESERVED_INPUT               : F25       :        :                   :         : 8         :                
 RESERVED_INPUT               : F26       :        :                   :         : 8         :                
 RESERVED_INPUT               : G1        :        :                   :         : 12        :                
-CLK3p                        : G2        : input  : LVTTL             :         : 12        : N              
+RESERVED_INPUT               : G2        :        :                   :         : 12        :                
 HDV_TxENA                    : G3        : output : LVTTL             :         : 13        : Y              
 HDV_RxENA                    : G4        : output : LVTTL             :         : 13        : Y              
 SDRAMADDR[9]                 : G5        : output : LVTTL             :         : 2         : N              
@@ -429,7 +429,7 @@ VCC_INT                      : R21       :        :                   :         
 RESERVED_INPUT               : R22       :        :                   :         : 9         :                
 CLK1p                        : R23       : input  : LVTTL             :         : 9         : Y              
 PGM[9]                       : R24       : output : LVTTL             :         : 8         : Y              
-RESERVED_INPUT               : R25       :        :                   :         : 8         :                
+CLK3p                        : R25       : input  : LVTTL             :         : 8         : N              
 RESERVED_INPUT               : R26       :        :                   :         : 8         :                
 COM_DB[12]                   : T1        : output : LVTTL             :         : 12        : Y              
 COM_DB[13]                   : T2        : output : LVTTL             :         : 12        : Y              
