@@ -11,6 +11,8 @@ ptn_Child3=Document-2
 ptn_Child4=Document-3
 ptn_Child5=Document-4
 ptn_Child6=Document-5
+ptn_Child7=Document-6
+ptn_Child8=Document-7
 [ProjectWorkspace.Frames.ChildFrames.Document-0]
 ptn_Child1=ViewFrame-0
 [ProjectWorkspace.Frames.ChildFrames.Document-0.ViewFrame-0]
@@ -70,7 +72,7 @@ InCompileMode=True
 InSimulateMode=False
 InFirmwareMode=False
 WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPOGAAAAAAOGAAAAAAFGEAAAAACGCAAAAA
-IsActiveChildFrame=True
+IsActiveChildFrame=False
 ptn_Child1=StateMap
 [ProjectWorkspace.Frames.ChildFrames.Document-4.ViewFrame-0.StateMap]
 AFC_IN_REPORT=False

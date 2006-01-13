@@ -1,5 +1,5 @@
 Analysis & Synthesis report for domapp
-Thu Jan 12 15:56:10 2006
+Fri Jan 13 10:26:41 2006
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -68,11 +68,11 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                        ;
 +-----------------------------+---------------------------------------+
-; Analysis & Synthesis Status ; Successful - Thu Jan 12 15:56:10 2006 ;
+; Analysis & Synthesis Status ; Successful - Fri Jan 13 10:26:41 2006 ;
 ; Revision Name               ; domapp                                ;
 ; Top-level Entity Name       ; domapp                                ;
 ; Family                      ; EXCALIBUR_ARM                         ;
-; Total logic elements        ; 6,957                                 ;
+; Total logic elements        ; 6,949                                 ;
 ; Total pins                  ; 308                                   ;
 ; Total memory bits           ; 64,128                                ;
 ; Total PLLs                  ; 2                                     ;
@@ -955,7 +955,7 @@ domapp
 +-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Compilation Hierarchy Node                                        ; Logic Cells ; Registers ; Memory Bits ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Full Hierarchy Name                                                                                                                                                                                                                                                                              ;
 +-------------------------------------------------------------------+-------------+-----------+-------------+------+--------------+--------------+-------------------+------------------+-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; |domapp                                                           ; 6957 (22)   ; 3033      ; 64128       ; 308  ; 0            ; 3924 (4)     ; 1405 (17)         ; 1628 (1)         ; 1324 (0)        ; |domapp                                                                                                                                                                                                                                                                                          ;
+; |domapp                                                           ; 6949 (14)   ; 3025      ; 64128       ; 308  ; 0            ; 3924 (4)     ; 1397 (9)          ; 1628 (1)         ; 1324 (0)        ; |domapp                                                                                                                                                                                                                                                                                          ;
 ;    |DOMstatus:inst_DOMstatus|                                     ; 17 (13)     ; 16        ; 0           ; 0    ; 0            ; 1 (1)        ; 10 (10)           ; 6 (2)            ; 4 (0)           ; |domapp|DOMstatus:inst_DOMstatus                                                                                                                                                                                                                                                                 ;
 ;       |lpm_counter:didvide_rtl_11|                                ; 4 (0)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 4 (0)            ; 4 (0)           ; |domapp|DOMstatus:inst_DOMstatus|lpm_counter:didvide_rtl_11                                                                                                                                                                                                                                      ;
 ;          |alt_synch_counter:wysi_counter|                         ; 4 (4)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 4 (4)            ; 4 (4)           ; |domapp|DOMstatus:inst_DOMstatus|lpm_counter:didvide_rtl_11|alt_synch_counter:wysi_counter                                                                                                                                                                                                       ;
@@ -1556,15 +1556,15 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.map
 +---------------------------------------------------------------------------------------------
 ; Resource                      ; Usage                                                      ;
 +-------------------------------+------------------------------------------------------------+
-; Logic cells                   ; 6,957                                                      ;
+; Logic cells                   ; 6,949                                                      ;
 ; Total combinational functions ; 5552                                                       ;
-; Total registers               ; 3033                                                       ;
+; Total registers               ; 3025                                                       ;
 ; I/O pins                      ; 308                                                        ;
 ; Total memory bits             ; 64128                                                      ;
 ; Total PLLs                    ; 2                                                          ;
 ; Maximum fan-out node          ; pll2x:inst_pll2x|altclklock:altclklock_component|outclock0 ;
 ; Maximum fan-out               ; 3174                                                       ;
-; Total fan-out                 ; 30870                                                      ;
+; Total fan-out                 ; 30846                                                      ;
 ; Average fan-out               ; 4.14                                                       ;
 +-------------------------------+------------------------------------------------------------+
 
@@ -1596,13 +1596,13 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.map
 ; Statistic                                              ; Value ;
 +--------------------------------------------------------+-------+
 ; Number of WYSIWYG cells                                ; 1294  ;
-; Number of synthesis-generated cells                    ; 5663  ;
+; Number of synthesis-generated cells                    ; 5655  ;
 ; Number of WYSIWYG LUTs                                 ; 1294  ;
 ; Number of synthesis-generated LUTs                     ; 4258  ;
 ; Number of WYSIWYG registers                            ; 479   ;
-; Number of synthesis-generated registers                ; 2554  ;
+; Number of synthesis-generated registers                ; 2546  ;
 ; Number of cells with combinational logic only          ; 3924  ;
-; Number of cells with registers only                    ; 1405  ;
+; Number of cells with registers only                    ; 1397  ;
 ; Number of cells with combinational logic and registers ; 1628  ;
 +--------------------------------------------------------+-------+
 
@@ -1628,7 +1628,7 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.map
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Thu Jan 12 15:46:15 2006
+    Info: Processing started: Fri Jan 13 10:16:39 2006
 Info: Command: quartus_map --import_settings_files=on --export_settings_files=off domapp -c domapp
 Info: Found 1 design units and 1 entities in source file ../common/comDPM/dcom_ap.bdf
     Info: Found entity 1: dcom_ap
@@ -2610,7 +2610,6 @@ Info: Duplicate registers merged to single register
     Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_Rx_chan_ap:inst1|dc_rapcal_lh:inst30|DCTC_FWR:inst7|sreg~38 merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_Rx_chan_ap:inst1|dc_rapcal_lh:inst30|DCTC_FWR:inst7|pulse_rcvd~reg
     Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_Rx_chan_ap:inst1|dc_adc_to_ser_2thr:inst11|GET_DUDT:get_dudt_stm|sreg~35 merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_Rx_chan_ap:inst1|dc_adc_to_ser_2thr:inst11|GET_DUDT:get_dudt_stm|rxd~reg
     Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_Rx_chan_ap:inst1|RX_UART_ap:inst|UA_RX_AP:inst|sreg~39 merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_Rx_chan_ap:inst1|RX_UART_ap:inst|UA_RX_AP:inst|shd~reg
-    Info: Duplicate register FPGA_D[0]~reg0 merged to single register FPGA_D[1]~reg0
 Info: Registers with preset signals will power-up high
 Info: DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Info: Duplicate registers merged to single register
@@ -2620,7 +2619,6 @@ Info: Duplicate registers merged to single register
     Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_Rx_chan_ap:inst1|dc_adc_to_ser_2thr:inst11|GET_DUDT:get_dudt_stm|max_ena~reg merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_Rx_chan_ap:inst1|dc_adc_to_ser_2thr:inst11|GET_DUDT:get_dudt_stm|sreg~32
 Warning: Reduced register daq:inst_daq|ahb_master:inst_ahb_master|haddr[0] with stuck data_in port to stuck value GND
 Warning: Reduced register daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[0]~reg0 with stuck data_in port to stuck value GND
-Warning: Reduced register FPGA_D[1]~reg0 with stuck data_in port to stuck value GND
 Info: Duplicate registers merged to single register
     Info: Duplicate register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_Tx_chan_ap:inst4|DC_SNAP:inst11|crc_init~reg merged to single register comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_Tx_chan_ap:inst4|DC_SNAP:inst11|STF
 Warning: TRI or OPNDRN buffers permanently disabled
@@ -2635,6 +2633,16 @@ Warning: TRI or OPNDRN buffers permanently disabled
     Warning: Node i93
     Warning: Node i103
     Warning: Node i104
+    Warning: Node i105
+    Warning: Node i106
+    Warning: Node i107
+    Warning: Node i108
+    Warning: Node i109
+    Warning: Node i110
+    Warning: Node i111
+    Warning: Node i112
+    Warning: Node i113
+    Warning: Node i114
     Warning: Node i95
     Warning: Node i96
     Warning: Node i97
@@ -2658,8 +2666,6 @@ Warning: Output pins are stuck at VCC or GND
     Warning: Pin COINC_DOWN_BLATCH stuck at GND
     Warning: Pin COINC_UP_ALATCH stuck at GND
     Warning: Pin COINC_UP_BLATCH stuck at GND
-    Warning: Pin FPGA_D[1] stuck at GND
-    Warning: Pin FPGA_D[0] stuck at GND
     Warning: Pin PGM[8] stuck at GND
     Warning: Pin PGM[7] stuck at GND
     Warning: Pin PGM[5] stuck at VCC
@@ -2694,17 +2700,17 @@ Warning: Design contains 15 input pin(s) that do not drive logic
     Warning: No output dependent on input pin COINC_UP_BBAR
     Warning: No output dependent on input pin PLD_FPGA_nOE
     Warning: No output dependent on input pin PLD_FPGA_nWE
-Info: Implemented 7452 device resources after synthesis - the final resource count might be different
+Info: Implemented 7444 device resources after synthesis - the final resource count might be different
     Info: Implemented 75 input pins
     Info: Implemented 170 output pins
     Info: Implemented 63 bidirectional pins
-    Info: Implemented 6957 logic cells
+    Info: Implemented 6949 logic cells
     Info: Implemented 182 RAM segments
     Info: Implemented 2 ClockLock PLLs
     Info: Implemented 2 dual-port RAM elements in Excalibur device
     Info: Implemented 1 microprocessor core elements in Excalibur device
-Info: Quartus II Analysis & Synthesis was successful. 0 errors, 227 warnings
-    Info: Processing ended: Thu Jan 12 15:56:10 2006
-    Info: Elapsed time: 00:09:55
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 234 warnings
+    Info: Processing ended: Fri Jan 13 10:26:41 2006
+    Info: Elapsed time: 00:10:01
 
 
