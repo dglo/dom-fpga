@@ -47,6 +47,11 @@
         <events>
           <level enabled="yes" type="basic">comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:inst2|REC_WT == high
             
+            
+            
+            
+            
+            
             <op_node/>
           </level>
         </events>
