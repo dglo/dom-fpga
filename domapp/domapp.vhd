@@ -1170,9 +1170,9 @@ BEGIN
 	PLD_FPGA		<= (OTHERS=>'Z');
 	PLD_FPGA_BUSY	<= 'Z';
 	-- Test connector (JP13) No defined use for it yet!
---	FPGA_D		<= (OTHERS=>'Z');
---	FPGA_DA		<= 'Z';
---	FPGA_CE		<= 'Z';
+	FPGA_D		<= (OTHERS=>'Z');
+	FPGA_DA		<= 'Z';
+	FPGA_CE		<= 'Z';
 	FPGA_RW		<= 'Z';
 	-- Test connector (JP19)
 --	PGM			<= (OTHERS=>'Z');
@@ -1210,10 +1210,11 @@ BEGIN
 			else
 				PGM(15) <= '1';
 			END IF;
-			FPGA_D(4 downto 0)	<= slavehaddr(4 downto 0);
-			FPGA_D(7 downto 5)	<= slavehwdata(2 downto 0);
-			FPGA_CE				<= slavehwdata(3);
-			FPGA_DA				<= slavehwdata(5);
+		-- messes up LC !!!!!!!!!!!!!!!!!!
+			--FPGA_D(4 downto 0)	<= slavehaddr(4 downto 0);
+			--FPGA_D(7 downto 5)	<= slavehwdata(2 downto 0);
+			--FPGA_CE				<= slavehwdata(3);
+			--FPGA_DA				<= slavehwdata(5);
 		end if;
 	end process;
 

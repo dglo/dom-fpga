@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2005-07-11
+-- Last update: 2006-01-12
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -70,7 +70,7 @@ PACKAGE ctrl_data_types IS
             lc_cable_length_down : CABLE_LENGTH_VECTOR;
             lc_self_mode         : STD_LOGIC_VECTOR (1 DOWNTO 0);
             lc_self_window       : STD_LOGIC_VECTOR (5 DOWNTO 0);
-			LC_up_and_down       : STD_LOGIC;
+            LC_up_and_down       : STD_LOGIC;
         END RECORD;
 
     -- control data for the RateMeter & Supernova module
@@ -117,6 +117,14 @@ PACKAGE ctrl_data_types IS
             rx_dpr_raddr_stb : STD_LOGIC;  -- rx_dpr_radr updated
             tx_head          : STD_LOGIC_VECTOR(15 DOWNTO 0);
             rx_tail          : STD_LOGIC_VECTOR(15 DOWNTO 0);
+            comm_threshold   : STD_LOGIC_VECTOR(7 DOWNTO 0);  -- Comm parameters
+            DAC_max          : STD_LOGIC_VECTOR(1 DOWNTO 0);
+            RX_delay         : STD_LOGIC_VECTOR(7 DOWNTO 0);
+            TX_delay         : STD_LOGIC_VECTOR(7 DOWNTO 0);
+            level_adapt_min  : STD_LOGIC_VECTOR(9 DOWNTO 0);
+            level_adapt_max  : STD_LOGIC_VECTOR(9 DOWNTO 0);
+            thres_delay_wr   : STD_LOGIC;
+            clev_wr          : STD_LOGIC;
         END RECORD;
 
     TYPE COMM_STAT_STRUCT IS
