@@ -509,7 +509,21 @@ BEGIN
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"051C") ) THEN	-- Communication Error
 					reg_rdata(15 downto 0)	<= COMM_stat.rx_error;
 					reg_rdata(31 downto 16)	<= COMM_stat.tx_error;
-				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0520") ) THEN	-- Communication Thresholds and Delays
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0520") ) THEN	-- Communication Level adaption limits
+					IF reg_write = '1' THEN
+						COMM_ctrl_local.clev_wr				<= '1';
+						COMM_ctrl_local.level_adapt_min	<= reg_wdata(9 DOWNTO 0);
+						COMM_ctrl_local.level_adapt_max	<= reg_wdata(25 DOWNTO 16);
+					END IF;
+					IF READBACK=1 THEN
+						reg_rdata(9 DOWNTO 0)	<= COMM_ctrl_local.level_adapt_min;
+						reg_rdata(25 DOWNTO 16)	<= COMM_ctrl_local.level_adapt_max;
+						reg_rdata(16 downto 10)	<= (OTHERS=>'0');
+						reg_rdata(31 downto 26)	<= (OTHERS=>'0');
+					ELSE
+						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+					END IF;
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0524") ) THEN	-- Communication Thresholds and Delays
 					IF reg_write = '1' THEN
 						COMM_ctrl_local.thres_delay_wr		<= '1';
 						COMM_ctrl_local.comm_threshold	<= reg_wdata(7 DOWNTO 0);
@@ -523,20 +537,6 @@ BEGIN
 						reg_rdata(23 DOWNTO 16)	<= COMM_ctrl_local.RX_delay;
 						reg_rdata(31 DOWNTO 24)	<= COMM_ctrl_local.TX_delay;
 						reg_rdata(15 downto 10)	<= (OTHERS=>'0');
-					ELSE
-						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
-					END IF;
-				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0524") ) THEN	-- Communication Level adaption limits
-					IF reg_write = '1' THEN
-						COMM_ctrl_local.clev_wr				<= '1';
-						COMM_ctrl_local.level_adapt_min	<= reg_wdata(9 DOWNTO 0);
-						COMM_ctrl_local.level_adapt_max	<= reg_wdata(25 DOWNTO 16);
-					END IF;
-					IF READBACK=1 THEN
-						reg_rdata(9 DOWNTO 0)	<= COMM_ctrl_local.level_adapt_min;
-						reg_rdata(25 DOWNTO 16)	<= COMM_ctrl_local.level_adapt_max;
-						reg_rdata(16 downto 10)	<= (OTHERS=>'0');
-						reg_rdata(31 downto 26)	<= (OTHERS=>'0');
 					ELSE
 						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
 					END IF;
