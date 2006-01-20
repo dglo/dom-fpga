@@ -1,5 +1,5 @@
 Flow report for domapp
-Fri Jan 13 16:03:10 2006
+Thu Jan 19 07:59:16 2006
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -42,12 +42,12 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------+
 ; Flow Summary                                                  ;
 +-----------------------+---------------------------------------+
-; Flow Status           ; Successful - Fri Jan 13 16:03:10 2006 ;
+; Flow Status           ; Successful - Thu Jan 19 07:59:16 2006 ;
 ; Revision Name         ; domapp                                ;
 ; Top-level Entity Name ; domapp                                ;
 ; Family                ; EXCALIBUR_ARM                         ;
 ; Device                ; EPXA4F672I2                           ;
-; Total logic elements  ; 6,951 / 16,640 ( 41 % )               ;
+; Total logic elements  ; 6,843 / 16,640 ( 41 % )               ;
 ; Total pins            ; 308 / 463 ( 66 % )                    ;
 ; Total memory bits     ; 64,128 / 212,992 ( 30 % )             ;
 ; Total PLLs            ; 2 / 4 ( 50 % )                        ;
@@ -59,7 +59,7 @@ party's intellectual property, are provided herein.
 +------------------------------------------
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 01/13/2006 15:37:55 ;
+; Start date & time ; 01/19/2006 07:33:25 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; domapp              ;
 +-------------------+---------------------+
@@ -71,11 +71,11 @@ party's intellectual property, are provided herein.
 ; Module Name          ; Elapsed Time ;
 +----------------------+--------------+
 ; Analysis & Synthesis ; 00:11:02     ;
-; Fitter               ; 00:13:18     ;
-; Assembler            ; 00:00:09     ;
+; Fitter               ; 00:13:52     ;
+; Assembler            ; 00:00:08     ;
 ; Timing Analyzer      ; 00:00:20     ;
-; EDA Netlist Writer   ; 00:00:14     ;
-; Total                ; 00:25:03     ;
+; EDA Netlist Writer   ; 00:00:15     ;
+; Total                ; 00:25:37     ;
 +----------------------+--------------+
 
 
