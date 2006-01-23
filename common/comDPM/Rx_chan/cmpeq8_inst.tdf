@@ -1,0 +1,9 @@
+(
+	AeB_sig
+) = cmpeq8	(
+	.dataa[] = dataa_sig[],
+	.datab[] = datab_sig[]
+)
+RETURNS (
+	.AeB
+);
