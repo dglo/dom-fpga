@@ -71,6 +71,7 @@ ENTITY slaveregister IS
 		com_clev_wr		: OUT	STD_LOGIC;
 		com_thr_del		: OUT	STD_LOGIC_VECTOR(31 downto 0);
 		com_thr_del_wr	: OUT	STD_LOGIC;
+		systime_1PPS	: IN	STD_LOGIC_VECTOR(47 DOWNTO 0);
 		-- COM ADC RX interface
 		com_adc_wdata		: OUT STD_LOGIC_VECTOR (15 downto 0);
 		com_adc_rdata		: IN STD_LOGIC_VECTOR (15 downto 0);
@@ -439,6 +440,17 @@ BEGIN
 									IF reg_write = '1' THEN
 										com_thr_del	<= reg_wdata;
 										com_thr_del_wr	<= '1';
+									END IF;
+								WHEN "100010" =>	-- time lower 32 bit systime1PPS
+									IF reg_write = '1' THEN
+									ELSE
+										reg_rdata <= systime_1PPS (31 DOWNTO 0);
+									END IF;
+								WHEN "100011" =>	-- time upper 16 bit systime1PPS
+									IF reg_write = '1' THEN
+									ELSE
+										reg_rdata (15 DOWNTO 0) <= systime_1PPS (47 DOWNTO 32);
+										reg_rdata (31 DOWNTO 16) <= (OTHERS=>'0');
 									END IF;
 								WHEN OTHERS =>
 									IF reg_write = '1' THEN
