@@ -1,5 +1,5 @@
 Flow report for domapp
-Mon Jan 23 08:10:18 2006
+Wed Nov 23 15:28:19 2005
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -42,14 +42,14 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------+
 ; Flow Summary                                                  ;
 +-----------------------+---------------------------------------+
-; Flow Status           ; Successful - Mon Jan 23 08:10:18 2006 ;
+; Flow Status           ; Successful - Wed Nov 23 15:27:55 2005 ;
 ; Revision Name         ; domapp                                ;
 ; Top-level Entity Name ; domapp                                ;
 ; Family                ; EXCALIBUR_ARM                         ;
 ; Device                ; EPXA4F672I2                           ;
-; Total logic elements  ; 6,930 / 16,640 ( 41 % )               ;
+; Total logic elements  ; 9,252 / 16,640 ( 55 % )               ;
 ; Total pins            ; 308 / 463 ( 66 % )                    ;
-; Total memory bits     ; 64,128 / 212,992 ( 30 % )             ;
+; Total memory bits     ; 96,896 / 212,992 ( 45 % )             ;
 ; Total PLLs            ; 2 / 4 ( 50 % )                        ;
 +-----------------------+---------------------------------------+
 
@@ -59,7 +59,7 @@ party's intellectual property, are provided herein.
 +------------------------------------------
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 01/23/2006 07:44:27 ;
+; Start date & time ; 11/23/2005 15:02:28 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; domapp              ;
 +-------------------+---------------------+
@@ -70,12 +70,11 @@ party's intellectual property, are provided herein.
 +--------------------------------------
 ; Module Name          ; Elapsed Time ;
 +----------------------+--------------+
-; Analysis & Synthesis ; 00:11:05     ;
-; Fitter               ; 00:13:44     ;
-; Assembler            ; 00:00:11     ;
-; Timing Analyzer      ; 00:00:20     ;
-; EDA Netlist Writer   ; 00:00:15     ;
-; Total                ; 00:25:35     ;
+; Analysis & Synthesis ; 00:09:15     ;
+; Fitter               ; 00:15:57     ;
+; Assembler            ; 00:00:09     ;
+; Timing Analyzer      ; 00:00:22     ;
+; Total                ; 00:25:43     ;
 +----------------------+--------------+
 
 
@@ -86,7 +85,6 @@ quartus_map --import_settings_files=on --export_settings_files=off domapp -c dom
 quartus_fit --import_settings_files=off --export_settings_files=off domapp -c domapp
 quartus_asm --import_settings_files=off --export_settings_files=off domapp -c domapp
 quartus_tan --import_settings_files=off --export_settings_files=off domapp -c domapp
-quartus_eda --import_settings_files=off --export_settings_files=off domapp -c domapp
 
 
 

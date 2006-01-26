@@ -19,7 +19,6 @@ use work.cw_data_types.all;
 entity word_counter is
     port ( 	clock		: in std_logic;
 			reset		: in std_logic;
-			op_reset		: in std_logic;
 			word_ready	: in std_logic;
 			word_ack	: out std_logic;
 			count_out	: out unsigned(8 downto 0);
@@ -31,7 +30,7 @@ architecture behave of word_counter is
 	signal count	: unsigned(8 downto 0);
 	signal word_was_ready : std_logic;
 begin
-	process (clock, reset,op_reset, word_ready)
+	process (clock, reset, word_ready)
 --		use std.textio.all;
 --		variable LL: line;
 	begin
@@ -40,11 +39,6 @@ begin
 			word_ack <= '0';
 			word_was_ready <= '0';
 		elsif clock'event and clock = '1' then
-			if op_reset='1' then
-				count <= (others => '0');
-				word_ack <= '0';
-				word_was_ready <= '0';
-			else
 			if word_ready = '1' and word_was_ready = '0' then
 				word_out <= word_in;
 				count <= count + 1;
@@ -60,7 +54,6 @@ begin
 				word_out <= (others => 'Z');
 				word_ack <= '0';
 				word_was_ready <= '0';
-			end if;
 			end if;
 		end if;
 	end process;

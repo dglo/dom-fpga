@@ -75,10 +75,8 @@ set_global_assignment -name SIGNALTAP_FILE LC_binary.stp
 set_global_assignment -name SIGNALTAP_FILE slavereg_log.stp
 set_global_assignment -name SIGNALTAP_FILE ping_compr_ram.stp
 set_global_assignment -name SIGNALTAP_FILE "fast-ahb-master.stp"
-set_global_assignment -name VHDL_FILE "compression-blank.vhd"
 set_global_assignment -name VHDL_FILE "compression_delta_1-2-3-6-11/cw_data_types.vhd"
-set_global_assignment -name SIGNALTAP_FILE delta_word_mapFSM.stp
-set_global_assignment -name SIGNALTAP_FILE "tcal-1.stp"
+set_global_assignment -name VHDL_FILE "compression_delta_1-2-3-6-11/compression.vhd"
 
 # Pin & Location Assignments
 # ==========================
@@ -495,10 +493,6 @@ set_instance_assignment -name IO_STANDARD LVTTL -to CLK4p
 # ===========================
 set_global_assignment -name MAX_SCC_SIZE 50
 
-# EDA Netlist Writer Assignments
-# ==============================
-set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim (Verilog HDL output from Quartus II)"
-
 # Assembler Assignments
 # =====================
 set_global_assignment -name STRATIX_CONFIGURATION_DEVICE EPC2
@@ -564,7 +558,7 @@ set_global_assignment -name DRC_REPORT_TOP_FANOUT ON
 # SignalTap II Assignments
 # ========================
 set_global_assignment -name ENABLE_SIGNALTAP off
-set_global_assignment -name USE_SIGNALTAP_FILE "tcal-1.stp"
+set_global_assignment -name USE_SIGNALTAP_FILE "fast-ahb-master.stp"
 
 # ------------------
 # start CLOCK(CLK1p)
@@ -606,21 +600,6 @@ set_global_assignment -name USE_SIGNALTAP_FILE "tcal-1.stp"
 
 # end CLOCK(CLK4p)
 # ----------------
-
-# ---------------------------------------
-# start EDA_TOOL_SETTINGS(eda_simulation)
-
-	# EDA Netlist Writer Assignments
-	# ==============================
-	set_global_assignment -name EDA_INCLUDE_VHDL_CONFIGURATION_DECLARATION OFF -section_id eda_simulation
-	set_global_assignment -name EDA_MAINTAIN_DESIGN_HIERARCHY OFF -section_id eda_simulation
-	set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST ON -section_id eda_simulation
-	set_global_assignment -name EDA_MAP_ILLEGAL_CHARACTERS ON -section_id eda_simulation
-	set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VERILOG -section_id eda_simulation
-	set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
-
-# end EDA_TOOL_SETTINGS(eda_simulation)
-# -------------------------------------
 
 # --------------------
 # start ENTITY(domapp)

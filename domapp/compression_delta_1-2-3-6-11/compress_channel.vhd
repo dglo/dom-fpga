@@ -166,7 +166,6 @@ entity compress_channel is
            size_in      : in unsigned(7 downto 0); -- size_in = N - 1, where N = No. of words to encode.
            clock        : in std_logic;
            reset        : in std_logic;
-           op_reset			: in std_logic;
            start        : in std_logic;
            addr_start_read  : in unsigned(7 downto 0);
            dout         : out word32;
@@ -206,7 +205,6 @@ architecture Behavioral of compress_channel is
 	component delta_encoder
 	    Port ( 	clock           : in std_logic;
 	          	reset_channel   : in std_logic;
-	          	op_reset 		: in std_logic;
 			   	convert			: in std_logic;
 	           	delta_in        : in signed(10 downto 0);
 				last_data		: in std_logic;
@@ -229,7 +227,6 @@ Inst_delta_encoder: delta_encoder
 	port map (
 			    clock       		=> clock,
 			    reset_channel       => reset,
-			    op_reset 	=> op_reset,
 			    convert      		=> enable_encode,
 			    delta_in       		=> delta,
 				last_data			=> last_data,
@@ -253,19 +250,15 @@ Inst_delta_encoder: delta_encoder
 
 output_ram_write_strobe:
 
-	process (clock, reset,op_reset, have_word)
+	process (clock, reset, have_word)
 	begin
 		if reset = '1' then
 			wren <= '0';
 		elsif rising_edge(clock) then
-			if op_reset='1' then
-				wren <= '0';
-			else
 			if have_word = '1' then
 				wren <= '1';
 			else
 				wren <= '0';
-			end if;
 			end if;
 		end if;
 	end process;
@@ -273,21 +266,17 @@ output_ram_write_strobe:
 
 comp_channel_state_machine:
 
-	process(clock, reset,op_reset)
+	process(clock, reset)
    	begin
     	if reset = '1' then
 			state_now <= IDLE;
       	elsif rising_edge(clock) then
-      		if op_reset='1' then
-      			state_now <= IDLE;
-      		else
-         			state_now <= state_next;
-         		end if;
+         	state_now <= state_next;
       	end if;
    	end process;
 
 
-	process( clock, reset,op_reset,state_now, start, read_counter, new_read_counter, 
+	process( clock, reset,state_now, start, read_counter, new_read_counter, 
 			 A, B, C, encoder_busy, have_word, stuff_done, size_in)
 			
 	begin		
@@ -295,9 +284,6 @@ comp_channel_state_machine:
 	if reset = '1' then
 			state_next <= IDLE;
       	elsif rising_edge(clock) then
-      		if op_reset='1' then
-      			state_next <= IDLE;
-      		else
 
 		case state_now is
 	
@@ -308,11 +294,8 @@ comp_channel_state_machine:
 				done <= '0';
 				delta <= (others => '0');
 				read_counter <= size_in;
-	           if start = '1' then
-	           
-	           		
+	            if start = '1' then
 	               	state_next <= ENCODE0;
-	               	
 	            else
 	               	state_next <= IDLE;
 	            end if;
@@ -469,7 +452,6 @@ comp_channel_state_machine:
 
 
 		end case;
-		end if;
 		end if;
 	end process;
 

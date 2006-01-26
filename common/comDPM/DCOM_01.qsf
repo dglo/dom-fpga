@@ -33,10 +33,8 @@
 # ========================
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 4.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "08:31:24  MARCH 03, 2004"
-set_global_assignment -name LAST_QUARTUS_VERSION 4.1
+set_global_assignment -name LAST_QUARTUS_VERSION 4.2
 set_global_assignment -name BDF_FILE dcom_ap.bdf
-set_global_assignment -name AHDL_FILE Rx_chan/edges/dc_adc_to_ser_2thr.tdf
-set_global_assignment -name AHDL_FILE Tx_chan/dc_com_dac_ctrl_var_sig.tdf
 
 # Timing Assignments
 # ==================
@@ -46,19 +44,18 @@ set_global_assignment -name INCLUDE_EXTERNAL_PIN_DELAYS_IN_FMAX_CALCULATIONS OFF
 # ================================
 set_global_assignment -name EDA_DESIGN_ENTRY_SYNTHESIS_TOOL "<None>"
 set_global_assignment -name COMPILATION_LEVEL "SYNTHESIS ONLY"
-set_global_assignment -name FAMILY Cyclone
+set_global_assignment -name FAMILY EXCALIBUR_ARM
 set_global_assignment -name REMOVE_REDUNDANT_LOGIC_CELLS ON
 set_global_assignment -name STRATIX_OPTIMIZATION_TECHNIQUE SPEED
 set_global_assignment -name MAX7000_OPTIMIZATION_TECHNIQUE AREA
 set_global_assignment -name APEX20K_OPTIMIZATION_TECHNIQUE AREA
 set_global_assignment -name CASCADE_CHAIN_LENGTH 16
 set_global_assignment -name TOP_LEVEL_ENTITY dcom_ap
-set_global_assignment -name USER_LIBRARIES "c:\\projects\\icecube\\dor\\fpga\\crc;c:\\projects\\icecube\\dor\\fpga\\dcom_01\\tcal;c:\\projects\\icecube\\dor\\fpga\\dcom_01\\rx_chan\\meanval;c:\\projects\\icecube\\dor\\fpga\\dcom_01\\rx_chan\\edges;c:\\projects\\icecube\\dor\\fpga\\dcom_01\\rx_chan\\uart;c:\\projects\\icecube\\dor\\fpga\\dcom_01\\parity;c:\\projects\\icecube\\dor\\fpga\\dcom_01\\mono_flop;c:\\projects\\icecube\\dor\\fpga\\dcom_01\\tx_chan;c:\\projects\\icecube\\dor\\fpga\\dcom_01\\rx_chan"
+set_global_assignment -name USER_LIBRARIES "c:\\projects\\icecube\\dor_rev1\\fpga\\crc;c:\\projects\\icecube\\dor_rev1\\fpga\\comDPM\\tcal;c:\\projects\\icecube\\dor_rev1\\fpga\\comDPM\\rx_chan\\meanval;c:\\projects\\icecube\\dor_rev1\\fpga\\comDPM\\rx_chan\\edges;c:\\projects\\icecube\\dor_rev1\\fpga\\comDPM\\rx_chan\\uart;c:\\projects\\icecube\\dor_rev1\\fpga\\comDPM\\parity;c:\\projects\\icecube\\dor_rev1\\fpga\\comDPM\\mono_flop;c:\\projects\\icecube\\dor_rev1\\fpga\\comDPM\\tx_chan;c:\\projects\\icecube\\dor_rev1\\fpga\\comDPM\\rx_chan"
 
 # Fitter Assignments
 # ==================
 set_global_assignment -name DEVICE AUTO
-set_global_assignment -name AUTO_RESTART_CONFIGURATION OFF
 set_global_assignment -name INC_PLC_MODE OFF
 set_global_assignment -name ROUTING_BACK_ANNOTATION_MODE OFF
 
@@ -71,7 +68,7 @@ set_global_assignment -name MAX_SCC_SIZE 50
 set_global_assignment -name EDA_SIMULATION_TOOL "<NONE>"
 set_global_assignment -name EDA_TIMING_ANALYSIS_TOOL "<NONE>"
 set_global_assignment -name EDA_BOARD_DESIGN_TOOL "<NONE>"
-set_global_assignment -name EDA_FORMAL_VERIFICATION_TOOL "<NONE>"
+set_global_assignment -name EDA_FORMAL_VERIFICATION_TOOL "<None>"
 set_global_assignment -name EDA_RESYNTHESIS_TOOL "<NONE>"
 
 # Assembler Assignments
@@ -82,6 +79,11 @@ set_global_assignment -name MERCURY_CONFIGURATION_DEVICE EPC2
 set_global_assignment -name FLEX6K_CONFIGURATION_DEVICE EPC1
 set_global_assignment -name FLEX10K_CONFIGURATION_DEVICE EPC2
 set_global_assignment -name STRATIX_CONFIGURATION_DEVICE EPC2
+set_global_assignment -name AUTO_RESTART_CONFIGURATION OFF
+
+# Simulator Assignments
+# =====================
+set_global_assignment -name GLITCH_INTERVAL 1
 
 # LogicLock Region Assignments
 # ============================

@@ -301,7 +301,6 @@ ARCHITECTURE arch_domapp OF domapp IS
 			trigger_enable	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
 			ATWD_mode		: IN STD_LOGIC_VECTOR (2 DOWNTO 0);
 			LC_mode			: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
-			LC_heart_beat	: IN STD_LOGIC;
 			DAQ_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			LBM_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			COMPR_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
@@ -864,7 +863,6 @@ BEGIN
 			ATWD_mode(1 DOWNTO 0)	=> DAQ_ctrl.ATWD_mode,
 			ATWD_mode(2)	=> '0', --DAQ_ctrl.ATWD_mode,
 			LC_mode			=> DAQ_ctrl.LC_mode,
-			LC_heart_beat	=> DAQ_ctrl.LC_heart_beat,
 			DAQ_mode		=> DAQ_ctrl.DAQ_mode,
 			LBM_mode		=> DAQ_ctrl.LBM_mode,
 			COMPR_mode		=> DAQ_ctrl.COMPR_mode,
@@ -1027,7 +1025,7 @@ BEGIN
 			dp0_portaaddr		=> dp0_portaaddr,
 			dp0_portadataout	=> dp0_portadataout,
 			-- TC
-			tc					=> PGM(7 downto 0)
+			tc					=> open
 		);
 
 	inst_rate_meters : rate_meters
@@ -1156,7 +1154,7 @@ BEGIN
 			xfer_eng   => DAQ_status.AHB_status.xfer_eng,
 			xfer_compr => DAQ_status.AHB_status.xfer_compr,
 			-- the xfer time
-			AHB_load   => OPEN, --debugging,
+			AHB_load   => debugging,
 			-- test comnnector
 			TC         => OPEN
 		);
@@ -1170,13 +1168,12 @@ BEGIN
 	PLD_FPGA		<= (OTHERS=>'Z');
 	PLD_FPGA_BUSY	<= 'Z';
 	-- Test connector (JP13) No defined use for it yet!
-	FPGA_D		<= (OTHERS=>'Z');
-	FPGA_DA		<= 'Z';
-	FPGA_CE		<= 'Z';
+--	FPGA_D		<= (OTHERS=>'Z');
+--	FPGA_DA		<= 'Z';
+--	FPGA_CE		<= 'Z';
 	FPGA_RW		<= 'Z';
 	-- Test connector (JP19)
 --	PGM			<= (OTHERS=>'Z');
-	PGM(15 downto 8)	<= (OTHERS=>'Z');
 --	PGM(15 downto 0)	<= TCslave(15 downto 0);
 --	PGM(7 downto 0)		<= TCslave(7 downto 0);
 --	PGM(9 downto 8)		<= TCdaq(1 downto 0);
@@ -1194,30 +1191,29 @@ BEGIN
 	--------------------------
 	-- AHB_master / missing 8 samples debugging
 	--------------------------
---	process (CLK80)
---	begin
---		if CLK80'EVENT and CLK80='1' then
---			PGM(0)				<= slavehwrite;
---			PGM(1)				<= slavehreadyi;
---			PGM(3 downto 2)		<= slavehtrans;
---			PGM(5 downto 4)		<= slavehsize;
---			PGM(8 downto 6)		<= slavehburst;
---			PGM(9)				<= slavebuserrint;
---			PGM(11 downto 10)	<= slavehresp;
---			PGM(12)				<= DAQ_status.AHB_status.AHB_ERROR;
---			PGM(14 downto 13)	<= TCslave(9 downto 8);
---			if slavehaddr(10 downto 5) = "000000" then
---				PGM(15) <= '0';
---			else
---				PGM(15) <= '1';
---			END IF;
-		-- messes up LC !!!!!!!!!!!!!!!!!!
-			--FPGA_D(4 downto 0)	<= slavehaddr(4 downto 0);
-			--FPGA_D(7 downto 5)	<= slavehwdata(2 downto 0);
-			--FPGA_CE				<= slavehwdata(3);
-			--FPGA_DA				<= slavehwdata(5);
---		end if;
---	end process;
+	process (CLK80)
+	begin
+		if CLK80'EVENT and CLK80='1' then
+			PGM(0)				<= slavehwrite;
+			PGM(1)				<= slavehreadyi;
+			PGM(3 downto 2)		<= slavehtrans;
+			PGM(5 downto 4)		<= slavehsize;
+			PGM(8 downto 6)		<= slavehburst;
+			PGM(9)				<= slavebuserrint;
+			PGM(11 downto 10)	<= slavehresp;
+			PGM(12)				<= DAQ_status.AHB_status.AHB_ERROR;
+			PGM(14 downto 13)	<= TCslave(9 downto 8);
+			if slavehaddr(10 downto 5) = "000000" then
+				PGM(15) <= '0';
+			else
+				PGM(15) <= '1';
+			END IF;
+			FPGA_D(4 downto 0)	<= slavehaddr(4 downto 0);
+			FPGA_D(7 downto 5)	<= slavehwdata(2 downto 0);
+			FPGA_CE				<= slavehwdata(3);
+			FPGA_DA				<= slavehwdata(5);
+		end if;
+	end process;
 
 
 	--------------------------
@@ -1246,16 +1242,16 @@ BEGIN
 	--------------------------
 	-- LC debugging
 	--------------------------
-	process (CLK20, RST)
-	begin
-		if RST='1' THEN
-			debugging <= (others=>'0');
-		elsif CLK20'EVENT and CLK20='1' THEN
-			if lc_daq_trigger(0)='1' OR lc_daq_trigger(1)='1' THEN
-				debugging <= debugging + 1;
-			end if;
-		end if;
-	end process;
+--	process (CLK20, RST)
+--	begin
+--		if RST='1' THEN
+--			debugging <= (others=>'0');
+--		elsif CLK20'EVENT and CLK20='1' THEN
+--			if lc_daq_trigger(0)='1' OR lc_daq_trigger(1)='1' THEN
+--				debugging <= debugging + 1;
+--			end if;
+--		end if;
+--	end process;
 
 
 	------------------------------

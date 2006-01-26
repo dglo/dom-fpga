@@ -181,14 +181,14 @@ BEGIN
             tx_addr         => tx_dpm,
             tx_dpr_radr     => tx_tail,
             tx_error        => COMM_STAT.tx_error,
-		com_thr_d		=> COMM_ctrl.comm_threshold, --x"40",
-		dac_max_d		=> COMM_ctrl.DAC_max, --"10",
-		rec_del_d		=> COMM_ctrl.RX_delay, --x"01",
-		send_del_d		=> COMM_ctrl.TX_delay, --x"01",
-		clev_min_d		=> COMM_ctrl.level_adapt_min, --"1100100000",
-		clev_max_d		=> COMM_ctrl.level_adapt_max, --"1100101010",
-		clev_wr			=> COMM_ctrl.clev_wr, --'0', --'1'
-		thr_del_wr		=> COMM_ctrl.thres_delay_wr --'0'
+		com_thr_d		=> x"40",
+		dac_max_d		=> "10",
+		rec_del_d		=> x"01",
+		send_del_d		=> x"01",
+		clev_min_d		=> "1100100000",
+		clev_max_d		=> "1100101010",
+		clev_wr			=> '0', --'1'
+		thr_del_wr		=> '0'
         );
 
     dp1_portaaddr <= rx_head (12 DOWNTO 0);

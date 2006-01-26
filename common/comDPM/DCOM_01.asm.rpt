@@ -1,6 +1,6 @@
 Assembler report for DCOM_01
-Tue Jun 08 19:16:15 2004
-Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
+Mon Sep 12 14:49:17 2005
+Version 4.2 Build 157 12/07/2004 SJ Full Version
 
 
 ---------------------
@@ -10,10 +10,12 @@ Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
   2. Assembler Summary
   3. Assembler Settings
   4. Assembler Generated Files
-  5. Assembler Device Options: C:/projects/IceCube/DOR/FPGA/DCOM_01/DCOM_01.sof
-  6. Assembler Device Options: C:/projects/IceCube/DOR/FPGA/DCOM_01/DCOM_01.pof
-  7. Assembler Device Options: C:/projects/IceCube/DOR/FPGA/DCOM_01/DCOM_01_1.pof
-  8. Assembler Messages
+  5. Assembler Device Options: C:/Projects/IceCube/DOR_rev1/FPGA/comDPM/DCOM_01.psof
+  6. Assembler Device Options: C:/Projects/IceCube/DOR_rev1/FPGA/comDPM/DCOM_01.sof
+  7. Assembler Device Options: C:/Projects/IceCube/DOR_rev1/FPGA/comDPM/DCOM_01.pof
+  8. Assembler Device Options: C:/Projects/IceCube/DOR_rev1/FPGA/comDPM/DCOM_01_1.pof
+  9. Assembler Device Options: C:/Projects/IceCube/DOR_rev1/FPGA/comDPM/DCOM_01_2.pof
+ 10. Assembler Messages
 
 
 
@@ -45,105 +47,135 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Tue Jun 08 19:16:15 2004 ;
+; Assembler Status      ; Successful - Mon Sep 12 14:49:17 2005 ;
 ; Revision Name         ; DCOM_01                               ;
 ; Top-level Entity Name ; dcom_ap                               ;
-; Family                ; APEX20KE                              ;
-; Device                ; EP20K200EFC484-2X                     ;
+; Family                ; EXCALIBUR_ARM                         ;
+; Device                ; EPXA4F672C1                           ;
 +-----------------------+---------------------------------------+
 
 
 +------------------------------------------------------------------------------------------------------------------+
 ; Assembler Settings                                                                                               ;
-+-------------------------------------------------------------------------------------------------------------------
++---------------------------------------------------------------------------------------+----------+---------------+
 ; Option                                                                                ; Setting  ; Default Value ;
 +---------------------------------------------------------------------------------------+----------+---------------+
 ; Configuration device                                                                  ; Epc2     ; Auto          ;
-; Generate Hexadecimal (Intel-format) Output File (.hexout) For Configuration Device    ; Off      ; Off           ;
-; Generate a compressed Jam STAPL Byte Code 2.0 File (.jbc) For Configuration Device    ; On       ; On            ;
-; Generate an uncompressed Jam STAPL Byte Code 2.0 File (.jbc) For Configuration Device ; Off      ; Off           ;
-; Generate a JEDEC STAPL Format File (.jam) For Configuration Device                    ; Off      ; Off           ;
-; Generate In System Configuration File (.isc) For Configuration Device                 ; Off      ; Off           ;
-; Generate Serial Vector Format File (.svf) For Configuration Device                    ; Off      ; Off           ;
-; Generate a compressed Jam STAPL Byte Code 2.0 File (.jbc) for Target Device           ; On       ; On            ;
-; Generate an uncompressed Jam STAPL Byte Code 2.0 File (.jbc) for Target Device        ; Off      ; Off           ;
-; Generate a JEDEC STAPL Format File (.jam) for Target Device                           ; Off      ; Off           ;
-; Generate In System Configuration File (.isc) for Target Device                        ; Off      ; Off           ;
+; Auto-restart configuration after error                                                ; Off      ; On            ;
+; Use smart compilation                                                                 ; Normal   ; Normal        ;
 ; Generate Serial Vector Format File (.svf) for Target Device                           ; Off      ; Off           ;
-; Hexadecimal Output File count direction                                               ; Up       ; Up            ;
-; Hexadecimal Output File start address                                                 ; 0        ; 0             ;
-; Generate Hexadecimal (Intel-Format) Output File (.hexout) for Target Device           ; Off      ; Off           ;
-; Generate Raw Binary File (.rbf) For Target Device                                     ; Off      ; Off           ;
-; Generate Tabular Text File (.ttf) For Target Device                                   ; Off      ; Off           ;
-; Disable CONF_DONE and nSTATUS pull-ups on configuration device                        ; Off      ; Off           ;
-; Auto-increment JTAG user code for multiple configuration devices                      ; On       ; On            ;
-; Configuration device auto user code                                                   ; off      ; off           ;
-; JTAG user code for configuration device                                               ; Ffffffff ; Ffffffff      ;
-; Use configuration device                                                              ; On       ; On            ;
-; Auto user code                                                                        ; off      ; off           ;
-; JTAG user code for target device                                                      ; Ffffffff ; Ffffffff      ;
-; Low-voltage mode                                                                      ; on       ; on            ;
-; Divide clock frequency by                                                             ; 1        ; 1             ;
-; Clock frequency of the configuration device                                           ; 10 MHz   ; 10 MHz        ;
-; Clock source for configuration device                                                 ; Internal ; Internal      ;
+; Generate In System Configuration File (.isc) for Target Device                        ; Off      ; Off           ;
+; Generate a JEDEC STAPL Format File (.jam) for Target Device                           ; Off      ; Off           ;
+; Generate an uncompressed Jam STAPL Byte Code 2.0 File (.jbc) for Target Device        ; Off      ; Off           ;
+; Generate a compressed Jam STAPL Byte Code 2.0 File (.jbc) for Target Device           ; On       ; On            ;
+; Generate Serial Vector Format File (.svf) For Configuration Device                    ; Off      ; Off           ;
+; Generate In System Configuration File (.isc) For Configuration Device                 ; Off      ; Off           ;
+; Generate a JEDEC STAPL Format File (.jam)For Configuration Device                     ; Off      ; Off           ;
+; Generate an uncompressed Jam STAPL Byte Code 2.0 File (.jbc) For Configuration Device ; Off      ; Off           ;
+; Generate a compressed Jam STAPL Byte Code 2.0 File (.jbc) For Configuration Device    ; On       ; On            ;
+; Generate Hexadecimal (Intel-format) Output File (.hexout) For Configuration Device    ; Off      ; Off           ;
 ; Compression mode                                                                      ; Off      ; Off           ;
+; Clock source for configuration device                                                 ; Internal ; Internal      ;
+; Clock frequency of the configuration device                                           ; 10 MHz   ; 10 MHz        ;
+; Divide clock frequency by                                                             ; 1        ; 1             ;
+; Low-voltage mode                                                                      ; on       ; on            ;
+; JTAG user code for target device                                                      ; Ffffffff ; Ffffffff      ;
+; Auto user code                                                                        ; off      ; off           ;
+; Use configuration device                                                              ; On       ; On            ;
+; JTAG user code for configuration device                                               ; Ffffffff ; Ffffffff      ;
+; Configuration device auto user code                                                   ; off      ; off           ;
+; Auto-increment JTAG user code for multiple configuration devices                      ; On       ; On            ;
+; Disable CONF_DONE and nSTATUS pull-ups on configuration device                        ; Off      ; Off           ;
+; Generate Tabular Text File (.ttf) For Target Device                                   ; Off      ; Off           ;
+; Generate Raw Binary File (.rbf) For Target Device                                     ; Off      ; Off           ;
+; Generate Hexadecimal (Intel-Format) Output File (.hexout) for Target Device           ; Off      ; Off           ;
+; Hexadecimal Output File start address                                                 ; 0        ; 0             ;
+; Hexadecimal Output File count direction                                               ; Up       ; Up            ;
+; Release clears before tri-states                                                      ; off      ; off           ;
 +---------------------------------------------------------------------------------------+----------+---------------+
 
 
-+----------------------------------------------------+
-; Assembler Generated Files                          ;
-+-----------------------------------------------------
-; File Name                                          ;
-+----------------------------------------------------+
-; C:/projects/IceCube/DOR/FPGA/DCOM_01/DCOM_01.sof   ;
-; C:/projects/IceCube/DOR/FPGA/DCOM_01/DCOM_01.pof   ;
-; C:/projects/IceCube/DOR/FPGA/DCOM_01/DCOM_01_1.pof ;
-+----------------------------------------------------+
++--------------------------------------------------------+
+; Assembler Generated Files                              ;
++--------------------------------------------------------+
+; File Name                                              ;
++--------------------------------------------------------+
+; C:/Projects/IceCube/DOR_rev1/FPGA/comDPM/DCOM_01.psof  ;
+; C:/Projects/IceCube/DOR_rev1/FPGA/comDPM/DCOM_01.sof   ;
+; C:/Projects/IceCube/DOR_rev1/FPGA/comDPM/DCOM_01.pof   ;
+; C:/Projects/IceCube/DOR_rev1/FPGA/comDPM/DCOM_01_1.pof ;
+; C:/Projects/IceCube/DOR_rev1/FPGA/comDPM/DCOM_01_2.pof ;
++--------------------------------------------------------+
 
 
-+----------------------------------------------------------------------------+
-; Assembler Device Options: C:/projects/IceCube/DOR/FPGA/DCOM_01/DCOM_01.sof ;
-+-----------------------------------------------------------------------------
-; Option         ; Setting                                                   ;
-+----------------+-----------------------------------------------------------+
-; Device         ; EP20K200EFC484-2X                                         ;
-; JTAG usercode  ; 0xFFFFFFFF                                                ;
-; Checksum       ; 0x00118646                                                ;
-+----------------+-----------------------------------------------------------+
++---------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Projects/IceCube/DOR_rev1/FPGA/comDPM/DCOM_01.psof ;
++----------------+----------------------------------------------------------------+
+; Option         ; Setting                                                        ;
++----------------+----------------------------------------------------------------+
+; Device         ; EPXA4F672C1                                                    ;
+; JTAG usercode  ; 0xFFFFFFFF                                                     ;
+; Checksum       ; 0x001302AE                                                     ;
++----------------+----------------------------------------------------------------+
 
 
-+----------------------------------------------------------------------------+
-; Assembler Device Options: C:/projects/IceCube/DOR/FPGA/DCOM_01/DCOM_01.pof ;
-+-----------------------------------------------------------------------------
-; Option         ; Setting                                                   ;
-+----------------+-----------------------------------------------------------+
-; Device         ; EPC2                                                      ;
-; JTAG usercode  ; 0xFFFFFFFF                                                ;
-; Checksum       ; 0x00174B6C                                                ;
-+----------------+-----------------------------------------------------------+
++--------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Projects/IceCube/DOR_rev1/FPGA/comDPM/DCOM_01.sof ;
++----------------+---------------------------------------------------------------+
+; Option         ; Setting                                                       ;
++----------------+---------------------------------------------------------------+
+; Device         ; EPXA4F672C1                                                   ;
+; JTAG usercode  ; 0xFFFFFFFF                                                    ;
+; Checksum       ; 0x001302AE                                                    ;
++----------------+---------------------------------------------------------------+
 
 
-+------------------------------------------------------------------------------+
-; Assembler Device Options: C:/projects/IceCube/DOR/FPGA/DCOM_01/DCOM_01_1.pof ;
-+-------------------------------------------------------------------------------
-; Option         ; Setting                                                     ;
-+----------------+-------------------------------------------------------------+
-; Device         ; EPC2                                                        ;
-; JTAG usercode  ; 0xFFFFFFFF                                                  ;
-; Checksum       ; 0x02B69686                                                  ;
-+----------------+-------------------------------------------------------------+
++--------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Projects/IceCube/DOR_rev1/FPGA/comDPM/DCOM_01.pof ;
++----------------+---------------------------------------------------------------+
+; Option         ; Setting                                                       ;
++----------------+---------------------------------------------------------------+
+; Device         ; EPC2                                                          ;
+; JTAG usercode  ; 0xFFFFFFFF                                                    ;
+; Checksum       ; 0x000AEDB4                                                    ;
++----------------+---------------------------------------------------------------+
 
 
-+---------------------+
-; Assembler Messages  ;
-+---------------------+
++----------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Projects/IceCube/DOR_rev1/FPGA/comDPM/DCOM_01_1.pof ;
++----------------+-----------------------------------------------------------------+
+; Option         ; Setting                                                         ;
++----------------+-----------------------------------------------------------------+
+; Device         ; EPC2                                                            ;
+; JTAG usercode  ; 0xFFFFFFFF                                                      ;
+; Checksum       ; 0x001070E2                                                      ;
++----------------+-----------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Projects/IceCube/DOR_rev1/FPGA/comDPM/DCOM_01_2.pof ;
++----------------+-----------------------------------------------------------------+
+; Option         ; Setting                                                         ;
++----------------+-----------------------------------------------------------------+
+; Device         ; EPC2                                                            ;
+; JTAG usercode  ; 0xFFFFFFFF                                                      ;
+; Checksum       ; 0x02375CFE                                                      ;
++----------------+-----------------------------------------------------------------+
+
+
++--------------------+
+; Assembler Messages ;
++--------------------+
 Info: *******************************************************************
 Info: Running Quartus II Assembler
-    Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Tue Jun 08 19:16:12 2004
-Info: Command: quartus_asm --lower_priority --import_settings_files=off --export_settings_files=off DCOM_01 -c DCOM_01
-Info: Quartus II Assembler was successful. 0 errors, 0 warnings
-    Info: Processing ended: Tue Jun 08 19:16:15 2004
-    Info: Elapsed time: 00:00:03
+    Info: Version 4.2 Build 157 12/07/2004 SJ Full Version
+    Info: Processing started: Mon Sep 12 14:49:13 2005
+Info: Command: quartus_asm --import_settings_files=off --export_settings_files=off DCOM_01 -c DCOM_01
+Warning: No System Build Description File is available. Programming files may still be produced, but contain no register settings and user data. No simulator initialization file will be produced.
+Warning: Passive programming files do not contain initialization data
+Warning: Passive programming files do not contain initialization data
+Info: Quartus II Assembler was successful. 0 errors, 3 warnings
+    Info: Processing ended: Mon Sep 12 14:49:17 2005
+    Info: Elapsed time: 00:00:04
 
 
