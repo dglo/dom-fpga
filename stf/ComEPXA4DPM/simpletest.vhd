@@ -161,6 +161,7 @@ ENTITY simpletest IS
 		A_nB				: IN STD_LOGIC;
 		-- CPDL FPGA interface    currently used to show FPGA is confugured
 		PDL_FPGA_D			: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+		FPGA_DA				: IN STD_LOGIC;
 		-- Test connector	THERE IS NO 11   I don't know why
 		PGM				: OUT STD_LOGIC_VECTOR (15 downto 0)
 	);
@@ -434,6 +435,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 
 	
 	SIGNAL systime			: STD_LOGIC_VECTOR (47 DOWNTO 0);
+	SIGNAL systime_1PPS		: STD_LOGIC_VECTOR (47 DOWNTO 0);
 	SIGNAL atwd0_timestamp  : STD_LOGIC_VECTOR (47 DOWNTO 0);
 	SIGNAL atwd1_timestamp  : STD_LOGIC_VECTOR (47 DOWNTO 0);
 	SIGNAL dom_id			: STD_LOGIC_VECTOR (63 DOWNTO 0);
@@ -640,6 +642,7 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			com_clev_wr		: OUT	STD_LOGIC;
 			com_thr_del		: OUT	STD_LOGIC_VECTOR(31 downto 0);
 			com_thr_del_wr	: OUT	STD_LOGIC;
+			systime_1PPS	: IN	STD_LOGIC_VECTOR(47 DOWNTO 0);
 			-- COM ADC RX interface
 			com_adc_wdata		: OUT STD_LOGIC_VECTOR (15 downto 0);
 			com_adc_rdata		: IN STD_LOGIC_VECTOR (15 downto 0);
@@ -1170,6 +1173,17 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			TC					: OUT STD_LOGIC_VECTOR(7 downto 0)
 		);
 	END COMPONENT;
+	
+	COMPONENT CommonClock
+    PORT (
+        CLK20        : IN  STD_LOGIC;
+        RST          : IN  STD_LOGIC;
+        systime      : IN  STD_LOGIC_VECTOR (47 DOWNTO 0);
+        PPS          : IN  STD_LOGIC;
+        systime_1PPS : OUT STD_LOGIC_VECTOR (47 DOWNTO 0);
+        TC           : OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
+        );
+	END COMPONENT;
 
 	
 BEGIN
@@ -1598,6 +1612,7 @@ BEGIN
 			com_clev_wr		=> com_clev_wr,
 			com_thr_del		=> com_thr_del,
 			com_thr_del_wr	=> com_thr_del_wr,
+			systime_1PPS	=> systime_1PPS,
 			-- COM ADC RX interface
 			com_adc_wdata		=> com_adc_wdata,
 			com_adc_rdata		=> com_adc_rdata,
@@ -2175,6 +2190,17 @@ BEGIN
 		);
 	com_rx_data(15 DOWNTO 0)	<= rx_error;
 	com_rx_data(31 DOWNTO 16)	<= tx_error;
+	
+	CommonClock_inst : CommonClock
+    PORT MAP (
+        CLK20        => CLK20,
+        RST          => RST,
+        systime      => systime,
+        PPS          => FPGA_DA,
+        systime_1PPS => systime_1PPS,
+        TC           => open
+        );
+	
 
 	-- arthur debugg
 --	dp0_portaaddr <= (OTHERS=>'0');
