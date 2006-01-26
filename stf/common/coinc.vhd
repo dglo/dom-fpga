@@ -115,10 +115,10 @@ ARCHITECTURE arch_coinc OF coinc IS
 	SIGNAL LC_down_b	: STD_LOGIC;
 	SIGNAL LC_up_a		: STD_LOGIC;
 	SIGNAL LC_up_b		: STD_LOGIC;
-	SIGNAL LC_down_a_rst	: STD_LOGIC_VECTOR (2 DOWNTO 0);
-	SIGNAL LC_down_b_rst	: STD_LOGIC_VECTOR (2 DOWNTO 0);
-	SIGNAL LC_up_a_rst		: STD_LOGIC_VECTOR (2 DOWNTO 0);
-	SIGNAL LC_up_b_rst		: STD_LOGIC_VECTOR (2 DOWNTO 0);
+	SIGNAL LC_down_a_rst	: STD_LOGIC_VECTOR (4 DOWNTO 0);
+	SIGNAL LC_down_b_rst	: STD_LOGIC_VECTOR (4 DOWNTO 0);
+	SIGNAL LC_up_a_rst		: STD_LOGIC_VECTOR (4 DOWNTO 0);
+	SIGNAL LC_up_b_rst		: STD_LOGIC_VECTOR (4 DOWNTO 0);
 	SIGNAL LC_RX_up			: STD_LOGIC;
 	SIGNAL LC_RX_up_old		: STD_LOGIC;
 	SIGNAL LC_RX_down		: STD_LOGIC;
@@ -394,26 +394,26 @@ BEGIN
 			LC_RX_down_old	<= '0';
 		ELSIF CLK'EVENT AND CLK='1' THEN
 			-- SRG
-			LC_down_a_rst(2)			<= LC_down_a;
-			LC_down_a_rst(1 DOWNTO 0)	<= LC_down_a_rst(2 DOWNTO 1);
+			LC_down_a_rst(4)			<= LC_down_a;
+			LC_down_a_rst(3 DOWNTO 0)	<= LC_down_a_rst(4 DOWNTO 1);
 			IF LC_down_a_rst(0)='1' THEN
-				LC_down_a_rst <= "000";
+				LC_down_a_rst <= "00000";
 			END IF;
-			LC_down_b_rst(2)			<= LC_down_b;
-			LC_down_b_rst(1 DOWNTO 0)	<= LC_down_b_rst(2 DOWNTO 1);
+			LC_down_b_rst(4)			<= LC_down_b;
+			LC_down_b_rst(3 DOWNTO 0)	<= LC_down_b_rst(4 DOWNTO 1);
 			IF LC_down_b_rst(0)='1' THEN
-				LC_down_b_rst <= "000";
+				LC_down_b_rst <= "00000";
 			END IF;
 			
-			LC_up_a_rst(2)			<= LC_up_a;
-			LC_up_a_rst(1 DOWNTO 0)	<= LC_up_a_rst(2 DOWNTO 1);
+			LC_up_a_rst(4)			<= LC_up_a;
+			LC_up_a_rst(3 DOWNTO 0)	<= LC_up_a_rst(4 DOWNTO 1);
 			IF LC_up_a_rst(0)='1' THEN
-				LC_up_a_rst <= "000";
+				LC_up_a_rst <= "00000";
 			END IF;
-			LC_up_b_rst(2)			<= LC_up_b;
-			LC_up_b_rst(1 DOWNTO 0)	<= LC_up_b_rst(2 DOWNTO 1);
+			LC_up_b_rst(4)			<= LC_up_b;
+			LC_up_b_rst(3 DOWNTO 0)	<= LC_up_b_rst(4 DOWNTO 1);
 			IF LC_up_b_rst(0)='1' THEN
-				LC_up_b_rst <= "000";
+				LC_up_b_rst <= "00000";
 			END IF;
 			
 			LC_RX_up_old	<= LC_RX_up;
@@ -421,8 +421,10 @@ BEGIN
 		END IF;
 	END PROCESS;
 	
-	LC_RX_up <= '1' WHEN (LC_up_a='1' AND LC_up_b='1') AND LC_RX_up_old ='0' ELSE '0';
-	LC_RX_down <= '1' WHEN (LC_down_a='1' AND LC_down_b='1') AND LC_RX_down_old ='0' ELSE '0';
+	--LC_RX_up <= '1' WHEN (LC_up_a='1' AND LC_up_b='1') AND LC_RX_up_old ='0' ELSE '0';
+	--LC_RX_down <= '1' WHEN (LC_down_a='1' AND LC_down_b='1') AND LC_RX_down_old ='0' ELSE '0';
+	LC_RX_up <= '1' WHEN (LC_up_a_rst(3)='1' AND LC_up_b_rst(3)='1') AND LC_RX_up_old ='0' ELSE '0';
+	LC_RX_down <= '1' WHEN (LC_down_a_rst(3)='1' AND LC_down_b_rst(3)='1') AND LC_RX_down_old ='0' ELSE '0';
 	
 
 	-- LC test

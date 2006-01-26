@@ -46,6 +46,7 @@ ENTITY daq IS
 		trigger_enable	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
 		ATWD_mode		: IN STD_LOGIC_VECTOR (2 DOWNTO 0);
 		LC_mode			: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
+		LC_heart_beat	: IN STD_LOGIC;
 		DAQ_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		LBM_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		COMPR_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
@@ -141,6 +142,7 @@ ARCHITECTURE daq_arch OF daq IS
 			enable_DAQ		: IN STD_LOGIC;
 			enable_AB		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			trigger_enable	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
+			heart_beat_mode	: IN STD_LOGIC;
 			-- trigger sources
 			cs_trigger		: IN STD_LOGIC_VECTOR (5 DOWNTO 0);	-- calibration sources
 			lc_trigger		: IN STD_LOGIC_VECTOR (1 DOWNTO 0); -- local coincidence
@@ -154,6 +156,8 @@ ARCHITECTURE daq_arch OF daq IS
 			ATWDTrigger_sig_A	: OUT STD_LOGIC;
 			ATWDTrigger_sig_B	: OUT STD_LOGIC;
 			trigger_word	: OUT STD_LOGIC_VECTOR (15 DOWNTO 0);
+			veto_LC_abort_A	: OUT STD_LOGIC;
+			veto_LC_abort_B	: OUT STD_LOGIC;
 			-- discriminator
 			MultiSPE		: IN STD_LOGIC;
 			OneSPE			: IN STD_LOGIC;
@@ -396,6 +400,11 @@ ARCHITECTURE daq_arch OF daq IS
 	SIGNAL discSPEpulse_local	: STD_LOGIC;
 	SIGNAL discMPEpulse_local	: STD_LOGIC;
 	
+	-- no required for calibration trigger in hard-LC
+	SIGNAL veto_LC_abort_A	: STD_LOGIC;
+	SIGNAL veto_LC_abort_B	: STD_LOGIC;
+	SIGNAL LC_abort_gated	: STD_LOGIC_VECTOR (1 DOWNTO 0);
+	
 	-- monitoring
 	SIGNAL xfer_eng		: STD_LOGIC;
 	SIGNAL xfer_compr	: STD_LOGIC;
@@ -418,12 +427,15 @@ BEGIN
 --	TC(6)			<= busy_B;
 --	TC(7)			<= enable_AB(1);
 	
-	
+	LC_abort_gated(0) <= LC_abort(0) AND NOT veto_LC_abort_A;
+	LC_abort_gated(1) <= LC_abort(1) AND NOT veto_LC_abort_B;
 
 	discSPEpulse	<= discSPEpulse_local;
 	discMPEpulse	<= discMPEpulse_local;
 	LC_disc		<= discMPEpulse_local & discSPEpulse_local;
 	LC_launch	<= busy_B & busy_A;
+	
+	
 
 	inst_trigger : trigger
 		PORT MAP (
@@ -433,6 +445,7 @@ BEGIN
 			enable_DAQ		=> enable_DAQ,
 			enable_AB		=> enable_AB,
 			trigger_enable	=> trigger_enable,
+			heart_beat_mode	=> LC_heart_beat,
 			-- trigger sources
 			cs_trigger		=> CS_trigger,
 			lc_trigger		=> LC_trigger,
@@ -446,6 +459,8 @@ BEGIN
 			ATWDTrigger_sig_A	=> ATWDTrigger_sig_A,
 			ATWDTrigger_sig_B	=> ATWDTrigger_sig_B,
 			trigger_word	=> trigger_word,
+			veto_LC_abort_A	=> veto_LC_abort_A,
+			veto_LC_abort_B	=> veto_LC_abort_B,
 			-- discriminator
 			MultiSPE		=> MultiSPE,
 			OneSPE			=> OneSPE,
@@ -500,7 +515,7 @@ BEGIN
 			rst_trig		=> rst_trig_A,
 			trigger_word	=> trigger_word,
 			-- local coincidence
-			LC_abort		=> LC_abort(0),
+			LC_abort		=> LC_abort_gated(0),
 			LC				=> LC,
 			-- ATWD
 			ATWDTrigger		=> ATWDTrigger_sig_A,
@@ -562,7 +577,7 @@ BEGIN
 			rst_trig		=> rst_trig_B,
 			trigger_word	=> trigger_word,
 			-- local coincidence
-			LC_abort		=> LC_abort(1),
+			LC_abort		=> LC_abort_gated(1),
 			LC				=> LC,
 			-- ATWD
 			ATWDTrigger		=> ATWDTrigger_sig_B,

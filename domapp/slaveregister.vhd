@@ -218,12 +218,12 @@ BEGIN
 		IF RST='1' THEN
 			DAQ_ctrl_local.LBM_ptr_RST	<= '0';
 			CS_ctrl_local.CS_CPU		<= '0';
-			DAQ_ctrl_local	<= ('0', "00", (OTHERS=>'0'), "00", "00", "00", "00", "00", '0');
+			DAQ_ctrl_local	<= ('0', "00", (OTHERS=>'0'), "00", "00", "00", "00", "00", '0', '1');
 			CS_ctrl_local	<= ((OTHERS=>'0'), "000", (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), '0', '0');
 			-- LC_ctrl_local	<= ('0', (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (1,2,3,4), (1,2,3,4));
 			LC_ctrl_local	<= ('0', (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (1,2,3,4), (1,2,3,4), (OTHERS=>'0'), (OTHERS=>'0'), '0');
 			RM_ctrl_local	<= ((OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'));
-			COMM_ctrl_local	<= ('0', (OTHERS=>'0'), 'X', '0', '0', (OTHERS=>'0'), (OTHERS=>'0'));
+			COMM_ctrl_local	<= ('0', (OTHERS=>'0'), 'X', '0', '0', (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), '0', '0');
 			id_set			<= "00";
 			COMPR_ctrl_local	<= ((OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), '0', '0');
 			int_clr			<= (OTHERS=>'0');
@@ -232,6 +232,8 @@ BEGIN
 			CS_ctrl_local.CS_CPU	<= '0';
 			COMM_ctrl_local.tx_packet_ready		<= '0';
 			COMM_ctrl_local.rx_dpr_raddr_stb	<= '0';
+			COMM_ctrl_local.thres_delay_wr			<= '0';
+			COMM_ctrl_local.clev_wr					<= '0';
 			int_clr			<= (OTHERS=>'0');
 			reg_rdata <= (others=>'X');	-- to make sur ewe don't create a latch
 			IF reg_enable = '1' THEN
@@ -257,6 +259,7 @@ BEGIN
 						DAQ_ctrl_local.DAQ_mode		<= reg_wdata(9 downto 8);
 						DAQ_ctrl_local.ATWD_mode	<= reg_wdata(13 downto 12);
 						DAQ_ctrl_local.LC_mode		<= reg_wdata(17 downto 16);
+						DAQ_ctrl_local.LC_heart_beat	<= NOT reg_wdata(19);
 						DAQ_ctrl_local.LBM_mode		<= reg_wdata(21 downto 20);
 						DAQ_ctrl_local.COMPR_mode	<= reg_wdata(25 downto 24);
 						COMPR_ctrl_local.COMPR_mode	<= reg_wdata(25 downto 24); -- Joshua needs this
@@ -268,6 +271,7 @@ BEGIN
 						reg_rdata(9 downto 8)	<= DAQ_ctrl_local.DAQ_mode;
 						reg_rdata(13 downto 12)	<= DAQ_ctrl_local.ATWD_mode;
 						reg_rdata(17 downto 16)	<= DAQ_ctrl_local.LC_mode;
+						reg_rdata(19)			<= NOT DAQ_ctrl_local.LC_heart_beat;
 						reg_rdata(21 downto 20)	<= DAQ_ctrl_local.LBM_mode;
 						reg_rdata(25 downto 24)	<= DAQ_ctrl_local.COMPR_mode;
 					ELSE
@@ -505,6 +509,37 @@ BEGIN
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"051C") ) THEN	-- Communication Error
 					reg_rdata(15 downto 0)	<= COMM_stat.rx_error;
 					reg_rdata(31 downto 16)	<= COMM_stat.tx_error;
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0520") ) THEN	-- Communication Level adaption limits
+					IF reg_write = '1' THEN
+						COMM_ctrl_local.clev_wr				<= '1';
+						COMM_ctrl_local.level_adapt_min	<= reg_wdata(9 DOWNTO 0);
+						COMM_ctrl_local.level_adapt_max	<= reg_wdata(25 DOWNTO 16);
+					END IF;
+					IF READBACK=1 THEN
+						reg_rdata(9 DOWNTO 0)	<= COMM_ctrl_local.level_adapt_min;
+						reg_rdata(25 DOWNTO 16)	<= COMM_ctrl_local.level_adapt_max;
+						reg_rdata(16 downto 10)	<= (OTHERS=>'0');
+						reg_rdata(31 downto 26)	<= (OTHERS=>'0');
+					ELSE
+						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+					END IF;
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0524") ) THEN	-- Communication Thresholds and Delays
+					IF reg_write = '1' THEN
+						COMM_ctrl_local.thres_delay_wr		<= '1';
+						COMM_ctrl_local.comm_threshold	<= reg_wdata(7 DOWNTO 0);
+						COMM_ctrl_local.DAC_max			<= reg_wdata(9 DOWNTO 8);
+						COMM_ctrl_local.RX_delay		<= reg_wdata(23 DOWNTO 16);
+						COMM_ctrl_local.TX_delay		<= reg_wdata(31 DOWNTO 24);
+					END IF;
+					IF READBACK=1 THEN
+						reg_rdata(7 DOWNTO 0)	<= COMM_ctrl_local.comm_threshold;
+						reg_rdata(9 DOWNTO 8)	<= COMM_ctrl_local.DAC_max;
+						reg_rdata(23 DOWNTO 16)	<= COMM_ctrl_local.RX_delay;
+						reg_rdata(31 DOWNTO 24)	<= COMM_ctrl_local.TX_delay;
+						reg_rdata(15 downto 10)	<= (OTHERS=>'0');
+					ELSE
+						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+					END IF;
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0530") ) THEN	-- DOM ID LSB
 					IF reg_write = '1' THEN
 						COMM_ctrl_local.id(31 DOWNTO 0)	<= reg_wdata(31 DOWNTO 0);

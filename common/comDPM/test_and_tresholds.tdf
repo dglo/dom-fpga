@@ -1,7 +1,7 @@
-TITLE "DCOM test signals and comm. thresholds, K.-H. Sulanke,DESY Zeuthen, 2005-09-12";
+TITLE "DCOM test signals and comm. thresholds, K.-H. Sulanke,DESY Zeuthen, 2004-12-15";
 -- plus comm. and DAC level control tresholds
 
-CONSTANT DCFREV		= 027;			-- DOM Communication module revision (dec.)
+CONSTANT DCFREV		= 025;			-- DOM Communication module revision (dec.)
 
 CONSTANT COM_THRESH		=  64;	-- HL-edge length after 4 clocks
 CONSTANT REC_DELAY		=  10;	-- x 50ns, receiver start up delay to deal with signal reflections from last send

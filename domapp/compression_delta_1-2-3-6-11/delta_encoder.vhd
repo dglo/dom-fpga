@@ -49,6 +49,7 @@ use work.cw_data_types.all;
 entity delta_encoder is
     Port ( 	clock           : in std_logic;
           	reset_channel   : in std_logic;
+          	op_reset		:in std_logic;
 		   	convert			: in std_logic;
            	delta_in        : in signed(10 downto 0);
 			last_data		: in std_logic;
@@ -66,6 +67,7 @@ architecture struct of delta_encoder is
 	component map_word
 	    port(   clock       : in std_logic;
 	            reset       : in std_logic;
+	            op_reset			: in std_logic;
 	            convert     : in std_logic;
 	            delta       : in signed(10 downto 0);
 				ready		: in std_logic;
@@ -83,6 +85,7 @@ architecture struct of delta_encoder is
 	           wreq         : in std_logic;
 	           clock        : in std_logic;
 	           reset        : in std_logic;
+	           op_reset			: in std_logic;
 			   word_ack		: in std_logic;
 			   last_input   : in std_logic;
 	           DY           : out word32;
@@ -94,6 +97,7 @@ architecture struct of delta_encoder is
 	component word_counter
 	    port ( 	clock		: in std_logic;
 				reset		: in std_logic;
+				op_reset			: in std_logic;
 				word_ready	: in std_logic;
 				word_ack	: out std_logic;
 				count_out	: out unsigned(8 downto 0);
@@ -114,6 +118,7 @@ begin
 inst_map_word: map_word
 	port map (	clock		=> clock,
 				reset		=> reset_channel,
+				op_reset => op_reset,
 				convert		=> convert,
 				delta		=> delta_in,
 				ready		=> n_stuff_busy,
@@ -192,6 +197,7 @@ inst_map_word: map_word
 inst_bit_stuff: bit_stuff
 	port map (	clock		=> clock,
 				reset		=> reset_channel,
+				op_reset => op_reset,
 				wreq		=> map_wreq,
 				DX			=> DX,
 				BPS			=> BPS,
@@ -207,6 +213,7 @@ inst_bit_stuff: bit_stuff
 inst_word_counter: word_counter
 	port map (	clock		=> clock,
 				reset		=> reset_channel,
+				op_reset => op_reset,
 				word_ready	=> word_ready,
 				word_in		=> DY,
 				count_out	=> count_out,

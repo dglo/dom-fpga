@@ -1,6 +1,6 @@
 Flow report for DCOM_01
-Mon Sep 12 14:49:24 2005
-Version 4.2 Build 157 12/07/2004 SJ Full Version
+Wed Dec 15 16:19:48 2004
+Version 4.1 Build 181 06/29/2004 SJ Full Version
 
 
 ---------------------
@@ -39,23 +39,19 @@ party's intellectual property, are provided herein.
 
 
 
-+--------------------------------------------------------------------+
-; Flow Summary                                                       ;
-+-------------------------+------------------------------------------+
-; Flow Status             ; Successful - Mon Sep 12 14:49:24 2005    ;
-; Quartus II Version      ; 4.2 Build 157 12/07/2004 SJ Full Version ;
-; Revision Name           ; DCOM_01                                  ;
-; Top-level Entity Name   ; dcom_ap                                  ;
-; Family                  ; EXCALIBUR_ARM                            ;
-; Met timing requirements ; Yes                                      ;
-; Total logic elements    ; 1,538 / 16,640 ( 9 % )                   ;
-; Total pins              ; 405 / 463 ( 87 % )                       ;
-; Total virtual pins      ; 0                                        ;
-; Total memory bits       ; 640 / 212,992 ( < 1 % )                  ;
-; Total PLLs              ; 0 / 4 ( 0 % )                            ;
-; Device                  ; EPXA4F672C1                              ;
-; Timing Models           ; Final                                    ;
-+-------------------------+------------------------------------------+
++------------------------------------------------------------------+
+; Flow Summary                                                     ;
++-----------------------+------------------------------------------+
+; Flow Status           ; Flow Failed - Wed Dec 15 16:19:48 2004   ;
+; Quartus II Version    ; 4.1 Build 181 06/29/2004 SJ Full Version ;
+; Revision Name         ; DCOM_01                                  ;
+; Top-level Entity Name ; dcom_ap                                  ;
+; Family                ; Cyclone                                  ;
+; Total logic elements  ; 1,568                                    ;
+; Total pins            ; 405                                      ;
+; Total memory bits     ; 640                                      ;
+; Total PLLs            ; 0                                        ;
++-----------------------+------------------------------------------+
 
 
 +-----------------------------------------+
@@ -63,7 +59,7 @@ party's intellectual property, are provided herein.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 09/12/2005 14:46:36 ;
+; Start date & time ; 12/15/2004 16:19:15 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; DCOM_01             ;
 +-------------------+---------------------+
@@ -74,11 +70,9 @@ party's intellectual property, are provided herein.
 +----------------------+--------------+
 ; Module Name          ; Elapsed Time ;
 +----------------------+--------------+
-; Analysis & Synthesis ; 00:00:33     ;
-; Fitter               ; 00:02:00     ;
-; Assembler            ; 00:00:04     ;
-; Timing Analyzer      ; 00:00:06     ;
-; Total                ; 00:02:43     ;
+; Analysis & Synthesis ; 00:00:32     ;
+; Fitter               ; 00:00:00     ;
+; Total                ; 00:00:32     ;
 +----------------------+--------------+
 
 
@@ -87,8 +81,6 @@ party's intellectual property, are provided herein.
 ------------
 quartus_map --import_settings_files=on --export_settings_files=off DCOM_01 -c DCOM_01
 quartus_fit --import_settings_files=off --export_settings_files=off DCOM_01 -c DCOM_01
-quartus_asm --import_settings_files=off --export_settings_files=off DCOM_01 -c DCOM_01
-quartus_tan --import_settings_files=off --export_settings_files=off DCOM_01 -c DCOM_01
 
 
 

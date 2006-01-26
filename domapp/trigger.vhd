@@ -32,6 +32,7 @@ ENTITY trigger IS
 		enable_DAQ		: IN STD_LOGIC;
 		enable_AB		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		trigger_enable	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
+		heart_beat_mode	: IN STD_LOGIC;
 		-- trigger sources
 		cs_trigger		: IN STD_LOGIC_VECTOR (5 DOWNTO 0);	-- calibration sources
 		lc_trigger		: IN STD_LOGIC_VECTOR (1 DOWNTO 0); -- local coincidence
@@ -45,6 +46,8 @@ ENTITY trigger IS
 		ATWDTrigger_sig_A	: OUT STD_LOGIC;
 		ATWDTrigger_sig_B	: OUT STD_LOGIC;
 		trigger_word	: OUT STD_LOGIC_VECTOR (15 DOWNTO 0);
+		veto_LC_abort_A	: OUT STD_LOGIC;
+		veto_LC_abort_B	: OUT STD_LOGIC;
 		-- discriminator
 		MultiSPE		: IN STD_LOGIC;
 		OneSPE			: IN STD_LOGIC;
@@ -318,6 +321,35 @@ BEGIN
 			trigger_word (9 DOWNTO 8)	<= LC_trigger;
 			trigger_word (7 DOWNTO 2)	<= CS_trigger;
 
+		END IF;
+	END PROCESS;
+	
+	VETO_LC : PROCESS (CLK40, RST)
+		VARIABLE cs_trigger_hold : STD_LOGIC_VECTOR (5 DOWNTO 0);
+		--VARIABLE cs_trigger_hold1 : STD_LOGIC_VECTOR (5 DOWNTO 0);
+	BEGIN
+		IF RST='1' THEN
+			veto_LC_abort_A <= '0';
+			veto_LC_abort_B <= '0';
+			cs_trigger_hold  := (OTHERS=>'0');
+			--cs_trigger_hold1 := (OTHERS=>'0');
+		ELSIF CLK40'EVENT AND CLK40='1' THEN
+			IF ATWDTrigger_A_sig='1' AND ATWDTrigger_A_shift(0)='0' AND heart_beat_mode='1' AND ((cs_trigger_hold AND trigger_enable(7 DOWNTO 2)) /= "000000") THEN
+				veto_LC_abort_A <= '1';
+			END IF;
+			IF rst_trg_A='1' THEN
+				veto_LC_abort_A <= '0';
+			END IF;
+			IF ATWDTrigger_B_sig='1' AND ATWDTrigger_B_shift(0)='0' AND heart_beat_mode='1' AND ((cs_trigger_hold AND trigger_enable(7 DOWNTO 2)) /= "000000") THEN
+				veto_LC_abort_B <= '1';
+			END IF;
+			IF rst_trg_A='1' THEN
+				veto_LC_abort_B <= '0';
+			END IF;
+			
+			cs_trigger_hold  := cs_trigger;
+			--cs_trigger_hold  := cs_trigger_hold1;
+			--cs_trigger_hold1 := cs_trigger;
 		END IF;
 	END PROCESS;
 
