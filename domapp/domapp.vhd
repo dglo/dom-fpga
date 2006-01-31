@@ -1027,7 +1027,7 @@ BEGIN
 			dp0_portaaddr		=> dp0_portaaddr,
 			dp0_portadataout	=> dp0_portadataout,
 			-- TC
-			tc					=> PGM(7 downto 0)
+			tc					=> OPEN --PGM(7 downto 0)
 		);
 
 	inst_rate_meters : rate_meters
@@ -1129,7 +1129,7 @@ BEGIN
 --			COINC_UP_BBAR        => COINC_UP_BBAR,
 --			COINC_UP_B           => COINC_UP_B,
 			-- test
-			TC                   => OPEN
+			TC                   => PGM(7 downto 0) --OPEN
 		);
 	
 	
@@ -1250,7 +1250,7 @@ BEGIN
 	begin
 		if RST='1' THEN
 			debugging <= (others=>'0');
-		elsif CLK20'EVENT and CLK20='1' THEN
+		elsif CLK40'EVENT and CLK40='1' THEN
 			if lc_daq_trigger(0)='1' OR lc_daq_trigger(1)='1' THEN
 				debugging <= debugging + 1;
 			end if;

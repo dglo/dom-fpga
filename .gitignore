@@ -1,8 +1,2 @@
-zip
-simpletest_sbi
-t.sh
-old
-dom
-
 # Ignore Subversion directory during Git transition
 .svn

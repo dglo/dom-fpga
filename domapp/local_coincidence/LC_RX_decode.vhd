@@ -1,3 +1,25 @@
+-------------------------------------------------------------------------------
+-- Title      : DOMAPP
+-- Project    : IceCube DOM main board
+-------------------------------------------------------------------------------
+-- File       : LC_RX_decode.vhd
+-- Author     : thorsten
+-- Company    : LBNL
+-- Created    : 
+-- Last update: 2005-05-23
+-- Platform   : Altera Excalibur
+-- Standard   : VHDL'93
+-------------------------------------------------------------------------------
+-- Description: This module decodes the information in a received LC message
+-------------------------------------------------------------------------------
+-- Copyright (c) 2005
+-------------------------------------------------------------------------------
+-- Revisions  :
+-- Date        Version     Author    Description
+--             V01-01-00   thorsten
+-------------------------------------------------------------------------------
+
+
 
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.ALL;
