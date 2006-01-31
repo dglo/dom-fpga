@@ -211,5 +211,9 @@ BEGIN  -- LC_slice_arch
             );
 
 
+	TC(0)	<= edge_pos;
+	TC(1)	<= edge_neg;
+	TC(2)	<= rx;
+	TC(4 DOWNTO 3)	<= n_rx;
 
 END LC_slice_arch;
