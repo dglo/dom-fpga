@@ -63,7 +63,8 @@ ENTITY daq IS
 		-- interface to local coincidence
 		LC_trigger		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		LC_abort		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
- 		LC				: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
+ 		LC_A			: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
+		LC_B			: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		LC_launch		: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
 		LC_disc			: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
 		-- discriminator
@@ -516,7 +517,7 @@ BEGIN
 			trigger_word	=> trigger_word,
 			-- local coincidence
 			LC_abort		=> LC_abort_gated(0),
-			LC				=> LC,
+			LC				=> LC_A,
 			-- ATWD
 			ATWDTrigger		=> ATWDTrigger_sig_A,
 			TriggerComplete	=> TriggerComplete_0,
@@ -578,7 +579,7 @@ BEGIN
 			trigger_word	=> trigger_word,
 			-- local coincidence
 			LC_abort		=> LC_abort_gated(1),
-			LC				=> LC,
+			LC				=> LC_B,
 			-- ATWD
 			ATWDTrigger		=> ATWDTrigger_sig_B,
 			TriggerComplete	=> TriggerComplete_1,

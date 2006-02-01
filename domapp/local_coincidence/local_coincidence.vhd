@@ -42,6 +42,8 @@ ENTITY local_coincidence IS
         lc_daq_abort         : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
         lc_daq_disc          : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
         lc_daq_launch        : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
+        lc_dac_got_lc_A      : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
+        lc_dac_got_lc_B      : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
         -- I/O
         COINCIDENCE_OUT_DOWN : OUT STD_LOGIC;
         COINC_DOWN_ALATCH    : OUT STD_LOGIC;
@@ -115,6 +117,7 @@ ARCHITECTURE ARCH_local_coincidence OF local_coincidence IS
             lc_update_down    : IN  STD_LOGIC;
             -- the result
             abort             : OUT STD_LOGIC;
+            LC                : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
             -- test signals
             TC                : OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
             );
@@ -215,6 +218,7 @@ BEGIN
             lc_update_down    => update_down,
             -- the result
             abort             => lc_daq_abort(0),
+            LC                => lc_dac_got_lc_A,
             -- test signals
             TC                => OPEN
             );
@@ -241,6 +245,7 @@ BEGIN
             lc_update_down    => update_down,
             -- the result
             abort             => lc_daq_abort(1),
+            LC                => lc_dac_got_lc_B,
             -- test signals
             TC                => OPEN
             );

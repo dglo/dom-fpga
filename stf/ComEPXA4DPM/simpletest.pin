@@ -56,7 +56,7 @@ SDRAMDQ[15]                  : A11       : bidir  : LVTTL             :         
 SDRAMDQ[11]                  : A12       : bidir  : LVTTL             :         : 2         : N              
 VCC_IO                       : A13       : power  :                   : 3.3V    :           :                
 GND                          : A14       : gnd    :                   :         :           :                
-GND+                         : A15       :        :                   :         : 3         :                
+auto_stp_external_clock_0    : A15       : input  : LVTTL             :         : 3         : N              
 GND+                         : A16       :        :                   :         : 3         :                
 GND                          : A17       : gnd    :                   :         :           :                
 PGM[4]                       : A18       : output : LVTTL             :         : 3         : Y              
@@ -197,7 +197,7 @@ GND_CKLK6                    : F23       : gnd    :                   :         
 PROC_TCK                     : F24       :        :                   :         :           :                
 RESERVED_INPUT               : F25       :        :                   :         : 8         :                
 RESERVED_INPUT               : F26       :        :                   :         : 8         :                
-RESERVED_INPUT               : G1        :        :                   :         : 12        :                
+CLK3p                        : G1        : input  : LVTTL             :         : 12        : N              
 RESERVED_INPUT               : G2        :        :                   :         : 12        :                
 HDV_TxENA                    : G3        : output : LVTTL             :         : 13        : Y              
 HDV_RxENA                    : G4        : output : LVTTL             :         : 13        : Y              
@@ -274,7 +274,7 @@ UARTDCDN                     : J22       : bidir  : LVTTL             :         
 EN_SELECT                    : J23       :        :                   :         :           :                
 NPOR                         : J24       : input  : LVTTL             :         :           : N              
 RESERVED_INPUT               : J25       :        :                   :         : 8         :                
-CLK3p                        : J26       : input  : LVTTL             :         : 8         : N              
+RESERVED_INPUT               : J26       :        :                   :         : 8         :                
 RESERVED_INPUT               : K1        :        :                   :         : 12        :                
 RESERVED_INPUT               : K2        :        :                   :         : 12        :                
 COM_AD_D[5]                  : K3        : input  : 2.5 V             :         : 13        : Y              

@@ -53,6 +53,7 @@ ENTITY LC_abort IS
         lc_update_down    : IN  STD_LOGIC;
         -- the result
         abort             : OUT STD_LOGIC;
+		LC                : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
         -- test signals
         TC                : OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
         );
@@ -187,6 +188,9 @@ BEGIN  -- arch_LC_abort
                 got_pre_lc_down  <= '0';
                 got_selfLC       <= '0';
                 abort_test       <= '1';
+
+                LC(0) <= got_pre_lc_down OR got_post_lc_down;
+                LC(1) <= got_pre_lc_up OR got_post_lc_up;
             ELSE
                 abort       <= '0';
                 abort_test  <= '0';
