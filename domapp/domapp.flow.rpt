@@ -1,5 +1,5 @@
 Flow report for domapp
-Tue Jan 31 08:49:10 2006
+Wed Feb 01 08:35:56 2006
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -42,12 +42,12 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------+
 ; Flow Summary                                                  ;
 +-----------------------+---------------------------------------+
-; Flow Status           ; Successful - Tue Jan 31 08:49:10 2006 ;
+; Flow Status           ; Successful - Wed Feb 01 08:35:56 2006 ;
 ; Revision Name         ; domapp                                ;
 ; Top-level Entity Name ; domapp                                ;
 ; Family                ; EXCALIBUR_ARM                         ;
 ; Device                ; EPXA4F672I2                           ;
-; Total logic elements  ; 6,960 / 16,640 ( 41 % )               ;
+; Total logic elements  ; 6,988 / 16,640 ( 41 % )               ;
 ; Total pins            ; 308 / 463 ( 66 % )                    ;
 ; Total memory bits     ; 64,128 / 212,992 ( 30 % )             ;
 ; Total PLLs            ; 2 / 4 ( 50 % )                        ;
@@ -59,7 +59,7 @@ party's intellectual property, are provided herein.
 +------------------------------------------
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 01/31/2006 08:18:57 ;
+; Start date & time ; 02/01/2006 08:16:49 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; domapp              ;
 +-------------------+---------------------+
@@ -70,12 +70,12 @@ party's intellectual property, are provided herein.
 +--------------------------------------
 ; Module Name          ; Elapsed Time ;
 +----------------------+--------------+
-; Analysis & Synthesis ; 00:19:59     ;
-; Fitter               ; 00:09:31     ;
-; Assembler            ; 00:00:06     ;
+; Analysis & Synthesis ; 00:08:32     ;
+; Fitter               ; 00:09:53     ;
+; Assembler            ; 00:00:05     ;
 ; Timing Analyzer      ; 00:00:16     ;
 ; EDA Netlist Writer   ; 00:00:11     ;
-; Total                ; 00:30:03     ;
+; Total                ; 00:18:57     ;
 +----------------------+--------------+
 
 
