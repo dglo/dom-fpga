@@ -3,9 +3,9 @@ Timing Analyzer Summary
 --------------------------------------------------------------------------------------
 
 Type           : Worst-case tsu
-Slack          : -2.266 ns
+Slack          : -2.324 ns
 Required Time  : 1.000 ns
-Actual Time    : 3.266 ns
+Actual Time    : 3.324 ns
 From           : OneSPE
 To             : hit_counter:inst_hit_counter|OneSPE0
 
@@ -31,16 +31,16 @@ From           : pll2x:inst_pll2x|altclklock:altclklock_component|outclock1
 To             : CLKLK_OUT2p
 
 Type           : Clock Setup: 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock1'
-Slack          : 5.385 ns
+Slack          : 5.279 ns
 Required Time  : 40.00 MHz ( period = 25.000 ns )
-Actual Time    : 70.27 MHz ( period = 14.230 ns )
-From           : atwd:atwd0|atwd_trigger:inst_atwd_trigger|launch_mode[1]
-To             : atwd:atwd0|atwd_trigger:inst_atwd_trigger|ATWDTrigger_sig
+Actual Time    : 69.24 MHz ( period = 14.442 ns )
+From           : atwd:atwd1|atwd_trigger:inst_atwd_trigger|launch_mode[0]
+To             : atwd:atwd1|atwd_trigger:inst_atwd_trigger|ATWDTrigger_sig
 
 Type           : Clock Setup: 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock0'
-Slack          : 8.401 ns
+Slack          : 9.701 ns
 Required Time  : 20.00 MHz ( period = 50.000 ns )
-Actual Time    : 30.12 MHz ( period = 33.198 ns )
+Actual Time    : 32.68 MHz ( period = 30.598 ns )
 From           : stripe:stripe_inst|alt_exc_stripe:lpm_instance|alt_exc_upcore:core|core~SLAVEHREADYO0
 To             : master_data_source:inst_master_data_source|data[31]
 

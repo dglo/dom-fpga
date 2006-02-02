@@ -446,6 +446,7 @@ set_location_assignment PIN_B16 -to nRESET
 set_location_assignment PIN_A23 -to ~INIT_DONE~
 set_instance_assignment -name RESERVE_PIN "AS INPUT TRI-STATED" -to dummy2
 set_location_assignment PIN_E3 -to FPGA_DA
+set_location_assignment PIN_F3 -to FPGA_CE
 
 # Timing Assignments
 # ==================
@@ -758,6 +759,7 @@ set_instance_assignment -name IO_STANDARD LVTTL -to dummy2
 set_instance_assignment -name IO_STANDARD LVTTL -to nPOR
 set_instance_assignment -name IO_STANDARD LVTTL -to nRESET
 set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_DA
+set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_CE
 
 # Timing Analysis Assignments
 # ===========================
