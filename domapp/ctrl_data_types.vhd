@@ -95,17 +95,17 @@ PACKAGE ctrl_data_types IS
     TYPE COMPR_STRUCT IS
         RECORD
             COMPR_mode  : STD_LOGIC_VECTOR (1 DOWNTO 0);
-            ATWDa0thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
-            ATWDa1thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
-            ATWDa2thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
-            ATWDa3thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
-            ATWDb0thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
-            ATWDb1thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
-            ATWDb2thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
-            ATWDb3thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
-            FADCthres   : STD_LOGIC_VECTOR (9 DOWNTO 0);
-            threshold0  : STD_LOGIC;
-            LASTonly    : STD_LOGIC;
+--            ATWDa0thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
+--            ATWDa1thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
+--            ATWDa2thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
+--            ATWDa3thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
+--            ATWDb0thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
+--            ATWDb1thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
+--            ATWDb2thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
+--            ATWDb3thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
+--            FADCthres   : STD_LOGIC_VECTOR (9 DOWNTO 0);
+--            threshold0  : STD_LOGIC;
+--            LASTonly    : STD_LOGIC;
         END RECORD;
     
     TYPE COMM_CTRL_STRUCT IS

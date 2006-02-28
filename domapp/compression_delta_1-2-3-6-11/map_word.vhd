@@ -53,11 +53,11 @@ USE IEEE.STD_LOGIC_UNSIGNED.ALL;
 --                        |    +-----------...|...---------------...|...--> (stuff_busy)
 --  clock--->....         |    |              |                     |
 --            [map_word]  v    | [bit_stuff]  v      [word_counter] v
---                +-------------+  | +--------------+    +----------------+
---  convert-->|convert      |  | |    word_ready|--->|word_ready      |
+--            +-------------+  | +--------------+    +----------------+
+--   onvert-->|convert      |  | |    word_ready|--->|word_ready      |
 --            |        ready|<-+-|~busy         |    |       count_out|---> count_out
---                |             |    |              |    |        word_out|---> word_out
---        delta-->|delta    dout|--->|DX            |    |                |
+--            |             |    |              |    |        word_out|---> word_out
+--    delta-->|delta    dout|--->|DX            |    |                |
 --            |          BPS|--->|BPS         DY|--->|word_in         |
 --         +--|busy     wreq|-+->|wreq  word_ack|<-+-|word_ack        |
 --         |  |             | |  |              |  | |                |
