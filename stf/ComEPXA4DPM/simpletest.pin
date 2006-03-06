@@ -562,7 +562,7 @@ RESERVED_INPUT               : Y24       :        :                   :         
 RESERVED_INPUT               : Y25       :        :                   :         : 8         :                
 RESERVED_INPUT               : Y26       :        :                   :         : 8         :                
 SingleLED_TRIGGER            : AA1       : output : LVTTL             :         : 12        : Y              
-CLK3p                        : AA2       : input  : LVTTL             :         : 12        : N              
+RESERVED_INPUT               : AA2       :        :                   :         : 12        :                
 RESERVED_INPUT               : AA3       :        :                   :         : 12        :                
 RESERVED_INPUT               : AA4       :        :                   :         : 12        :                
 RESERVED_INPUT               : AA5       :        :                   :         : 12        :                
@@ -681,7 +681,7 @@ GND                          : AE13      : gnd    :                   :         
 VCC_IO                       : AE14      : power  :                   : 3.3V    :           :                
 TMS                          : AE15      : input  :                   :         :           :                
 ATWD0_D[4]                   : AE16      : input  : LVTTL             :         : 10        : Y              
-RESERVED_INPUT               : AE17      :        :                   :         : 10        :                
+CLK3p                        : AE17      : input  : LVTTL             :         : 10        : N              
 RampSet_1                    : AE18      : output : LVTTL             :         : 10        : Y              
 VCC_INT                      : AE19      : power  :                   : 1.8V    :           :                
 ATWD1_D[9]                   : AE20      : input  : LVTTL             :         : 10        : Y              
