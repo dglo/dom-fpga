@@ -75,7 +75,7 @@ set_global_assignment -name SIGNALTAP_FILE LC_binary.stp
 set_global_assignment -name SIGNALTAP_FILE slavereg_log.stp
 set_global_assignment -name SIGNALTAP_FILE ping_compr_ram.stp
 set_global_assignment -name SIGNALTAP_FILE "fast-ahb-master.stp"
-set_global_assignment -name VHDL_FILE "compression-blank.vhd"
+set_global_assignment -name VHDL_FILE compression_delta_1_2_3_6_11/compression.vhd
 set_global_assignment -name VHDL_FILE "compression_delta_1-2-3-6-11/cw_data_types.vhd"
 set_global_assignment -name SIGNALTAP_FILE delta_word_mapFSM.stp
 set_global_assignment -name SIGNALTAP_FILE "tcal-1.stp"
@@ -407,7 +407,7 @@ set_global_assignment -name DEVICE_FILTER_PACKAGE FBGA
 set_global_assignment -name TOP_LEVEL_ENTITY domapp
 set_global_assignment -name VHDL_SHOW_LMF_MAPPING_MESSAGES OFF
 set_global_assignment -name AUTO_ENABLE_SMART_COMPILE on
-set_global_assignment -name USER_LIBRARIES "c:\\work_lbnl\\icecubecvs\\dom-fpga\\domapp;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\tx_chan;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\tcal;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\uart;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\meanval;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\edges;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\parity;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\mono_flop;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm;c:\\work_lbnl\\icecubecvs\\dom-fpga\\domapp\\compression_delta_1-2-3-6-11"
+set_global_assignment -name USER_LIBRARIES "c:\\work_lbnl\\icecubecvs\\dom-fpga\\domapp;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\tx_chan;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\tcal;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\uart;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\meanval;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\edges;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\parity;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\mono_flop;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm;c:\\work_lbnl\\icecubecvs\\dom-fpga\\domapp\\compression_delta_1_2_3_6_11"
 
 # Fitter Assignments
 # ==================
