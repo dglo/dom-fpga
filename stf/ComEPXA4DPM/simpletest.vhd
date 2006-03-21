@@ -162,7 +162,6 @@ ENTITY simpletest IS
 		-- CPDL FPGA interface    currently used to show FPGA is confugured
 		PDL_FPGA_D			: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
 		FPGA_DA				: IN STD_LOGIC;
-		FPGA_CE				: OUT STD_LOGIC;
 		-- Test connector	THERE IS NO 11   I don't know why
 		PGM				: OUT STD_LOGIC_VECTOR (15 downto 0)
 	);
@@ -183,7 +182,6 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	SIGNAL B_nA		: STD_LOGIC;
 	
 	SIGNAL TC		: STD_LOGIC_VECTOR (7 downto 0);
-	SIGNAL TC_1PPS	: STD_LOGIC_VECTOR (7 downto 0);
 	
 	-- PLD to STRIPE bridge
 	SIGNAL slavehclk		: STD_LOGIC;
@@ -2200,9 +2198,9 @@ BEGIN
         systime      => systime,
         PPS          => FPGA_DA,
         systime_1PPS => systime_1PPS,
-        TC           => TC_1PPS
+        TC           => open
         );
-	FPGA_CE <= TC_1PPS(0);
+	
 
 	-- arthur debugg
 --	dp0_portaaddr <= (OTHERS=>'0');

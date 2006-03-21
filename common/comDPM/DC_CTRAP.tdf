@@ -1,0 +1,225 @@
+% C:\PROJECTS\ICECUBE\DOR\FPGA\DCOM_01\DC_CTRAP.tdf %
+% AHDL code created by Visual Software Solution's StateCAD 4.11 %
+% Fri Aug 26 14:21:29 2005 %
+
+% This AHDL code was generated using: %
+%  one-hot state assignment with boolean code format. %
+%  Minimization is enabled,  implied else is enabled,  %
+%  and outputs are area optimized. %
+
+SUBDESIGN DC_CTRAP(
+	CLK :	INPUT;
+	bfstat_rcvd :	INPUT;
+	comres_rcvd :	INPUT;
+	data_rcvd :	INPUT;
+	del_15us :	INPUT;
+	dpr_rx_aff :	INPUT;
+	dpr_tx_ef :	INPUT;
+	drreq_rcvd :	INPUT;
+	id_data_avail :	INPUT;
+	idle_rcvd :	INPUT;
+	idreq_rcvd :	INPUT;
+	msg_sent :	INPUT;
+	pulse_rcvd :	INPUT;
+	pulse_sent :	INPUT;
+	reboot_req :	INPUT;
+	RES :	INPUT;
+	stf_stb :	INPUT;
+	sysres_rcvd :	INPUT;
+	tcal_rcvd :	INPUT;
+	time_bit_5 :	INPUT;
+	buf_res :	OUTPUT;
+	cmd_snd0 :	OUTPUT;
+	cmd_snd1 :	OUTPUT;
+	cmd_snd2 :	OUTPUT;
+	cmd_snd3 :	OUTPUT;
+	com_avail :	OUTPUT;
+	COMM_RESET :	OUTPUT;
+	reboot_gnt :	OUTPUT;
+	rec_ena :	OUTPUT;
+	send_ctrl :	OUTPUT;
+	send_data :	OUTPUT;
+	send_id :	OUTPUT;
+	send_tcal :	OUTPUT;
+	tcal_cyc :	OUTPUT;
+	tcal_data :	OUTPUT;
+	tcal_prec :	OUTPUT;
+	tcal_psnd :	OUTPUT;
+	timer_clrn :	OUTPUT;
+)
+
+
+VARIABLE
+	CLR_BUF :	DFF;
+	CMD_WAIT :	DFF;
+	COM_OFF :	DFF;
+	COM_ON :	DFF;
+	CRES_WAIT :	DFF;
+	DOM_REBOOT :	DFF;
+	DRREQ_WT :	DFF;
+	PON :	DFF;
+	REC_PULSE :	DFF;
+	REC_WT :	DFF;
+	SEND_WT :	DFF;
+	SND_DAT :	DFF;
+	SND_DRAND :	DFF;
+	SND_DRBT :	DFF;
+	SND_ID :	DFF;
+	SND_IDLE :	DFF;
+	SND_MRNB :	DFF;
+	SND_MRWB :	DFF;
+	SND_PULSE :	DFF;
+	SND_TC_DAT :	DFF;
+	SYS_RESET :	DFF;
+
+BEGIN
+
+% Clock setup %
+	CLR_BUF.clk=CLK;
+	CMD_WAIT.clk=CLK;
+	COM_OFF.clk=CLK;
+	COM_ON.clk=CLK;
+	CRES_WAIT.clk=CLK;
+	DOM_REBOOT.clk=CLK;
+	DRREQ_WT.clk=CLK;
+	PON.clk=CLK;
+	REC_PULSE.clk=CLK;
+	REC_WT.clk=CLK;
+	SEND_WT.clk=CLK;
+	SND_DAT.clk=CLK;
+	SND_DRAND.clk=CLK;
+	SND_DRBT.clk=CLK;
+	SND_ID.clk=CLK;
+	SND_IDLE.clk=CLK;
+	SND_MRNB.clk=CLK;
+	SND_MRWB.clk=CLK;
+	SND_PULSE.clk=CLK;
+	SND_TC_DAT.clk=CLK;
+	SYS_RESET.clk=CLK;
+
+CLR_BUF =  !RES & comres_rcvd & CMD_WAIT  #  !RES & comres_rcvd & CRES_WAIT ;
+
+CMD_WAIT =  !comres_rcvd & !id_data_avail & !data_rcvd & !bfstat_rcvd & !
+	drreq_rcvd & !sysres_rcvd & !idle_rcvd & !tcal_rcvd & !RES & CMD_WAIT  #  !
+	comres_rcvd & !idreq_rcvd & !data_rcvd & !bfstat_rcvd & !drreq_rcvd & !
+	sysres_rcvd & !idle_rcvd & !tcal_rcvd & !RES & CMD_WAIT  #  !RES & stf_stb & 
+	REC_PULSE  #  !RES & msg_sent & SND_DAT  #  !RES & msg_sent & SND_DRAND  #  !
+	RES & msg_sent & SND_ID  #  !RES & msg_sent & SND_IDLE  #  !RES & msg_sent & 
+	SND_MRNB  #  !RES & msg_sent & SND_MRWB  #  !RES & msg_sent & SND_TC_DAT ;
+
+CRES_WAIT =  !comres_rcvd & !RES & CRES_WAIT  #  !RES & time_bit_5 & PON ;
+
+DOM_REBOOT =  !RES & DOM_REBOOT  #  !RES & msg_sent & SND_DRBT ;
+
+DRREQ_WT =  !tcal_rcvd & !drreq_rcvd & !RES & DRREQ_WT  #  !RES & pulse_sent 
+	& SND_PULSE ;
+
+PON =  !time_bit_5 & PON  #  RES ;
+
+REC_PULSE =  !stf_stb & !pulse_rcvd & !RES & REC_PULSE  #  !RES & del_15us & 
+	REC_WT ;
+
+REC_WT =  !RES & tcal_rcvd & CMD_WAIT  #  !RES & tcal_rcvd & DRREQ_WT  #  !
+	del_15us & !RES & REC_WT ;
+
+SEND_WT =  !RES & pulse_rcvd & !stf_stb & REC_PULSE  #  !del_15us & !RES & 
+	SEND_WT ;
+
+SND_DAT =  !RES & drreq_rcvd & !dpr_tx_ef & CMD_WAIT  #  !msg_sent & !RES & 
+	SND_DAT ;
+
+SND_DRAND =  !RES & drreq_rcvd & dpr_tx_ef & !reboot_req & CMD_WAIT  #  !
+	msg_sent & !RES & SND_DRAND ;
+
+SND_DRBT =  !RES & drreq_rcvd & reboot_req & dpr_tx_ef & CMD_WAIT  #  !
+	msg_sent & !RES & SND_DRBT ;
+
+SND_ID =  !RES & idreq_rcvd & id_data_avail & CMD_WAIT  #  !msg_sent & !RES &
+	 SND_ID ;
+
+SND_IDLE =  !RES & CLR_BUF  #  !RES & idle_rcvd & CMD_WAIT  #  !msg_sent & !
+	RES & SND_IDLE ;
+
+SND_MRNB =  !RES & data_rcvd & dpr_rx_aff & CMD_WAIT  #  !RES & bfstat_rcvd &
+	 dpr_rx_aff & CMD_WAIT  #  !msg_sent & !RES & SND_MRNB ;
+
+SND_MRWB =  !RES & data_rcvd & !dpr_rx_aff & CMD_WAIT  #  !RES & bfstat_rcvd 
+	& !dpr_rx_aff & CMD_WAIT  #  !msg_sent & !RES & SND_MRWB ;
+
+SND_PULSE =  !RES & del_15us & SEND_WT  #  !pulse_sent & !RES & SND_PULSE ;
+
+SND_TC_DAT =  !RES & drreq_rcvd & DRREQ_WT  #  !msg_sent & !RES & SND_TC_DAT 
+	;
+
+SYS_RESET =  !RES & sysres_rcvd & CMD_WAIT  #  !RES & SYS_RESET ;
+
+
+COM_OFF =  !SND_IDLE & COM_OFF  #  !msg_sent & COM_OFF  #  SYS_RESET & COM_ON
+	  #  DOM_REBOOT & COM_ON  #  RES ;
+
+COM_ON =  !RES & SND_IDLE & msg_sent & COM_OFF  #  !SYS_RESET & !DOM_REBOOT &
+	 !RES & COM_ON ;
+
+
+
+com_avail= COM_ON ;
+
+(rec_ena,buf_res,timer_clrn,reboot_gnt,COMM_RESET,tcal_data,tcal_psnd,
+	tcal_prec,tcal_cyc,cmd_snd3,cmd_snd2,cmd_snd1,cmd_snd0,send_id,send_tcal,
+	send_data,send_ctrl)= (  ( CLR_BUF, CLR_BUF, CLR_BUF, CLR_BUF, CLR_BUF, 
+	CLR_BUF, CLR_BUF, CLR_BUF, CLR_BUF, CLR_BUF, CLR_BUF, CLR_BUF, CLR_BUF, 
+	CLR_BUF, CLR_BUF, CLR_BUF, CLR_BUF) & ((0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0) ) 
+	) # (  ( CMD_WAIT, CMD_WAIT, CMD_WAIT, CMD_WAIT, CMD_WAIT, CMD_WAIT, CMD_WAIT
+	, CMD_WAIT, CMD_WAIT, CMD_WAIT, CMD_WAIT, CMD_WAIT, CMD_WAIT, CMD_WAIT, 
+	CMD_WAIT, CMD_WAIT, CMD_WAIT) & ((1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0) ) ) # ( 
+	 ( CRES_WAIT, CRES_WAIT, CRES_WAIT, CRES_WAIT, CRES_WAIT, CRES_WAIT, 
+	CRES_WAIT, CRES_WAIT, CRES_WAIT, CRES_WAIT, CRES_WAIT, CRES_WAIT, CRES_WAIT, 
+	CRES_WAIT, CRES_WAIT, CRES_WAIT, CRES_WAIT) & ((1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+	,0,0) ) ) # (  ( DOM_REBOOT, DOM_REBOOT, DOM_REBOOT, DOM_REBOOT, DOM_REBOOT, 
+	DOM_REBOOT, DOM_REBOOT, DOM_REBOOT, DOM_REBOOT, DOM_REBOOT, DOM_REBOOT, 
+	DOM_REBOOT, DOM_REBOOT, DOM_REBOOT, DOM_REBOOT, DOM_REBOOT, DOM_REBOOT) & ((0
+	,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0) ) ) # (  ( DRREQ_WT, DRREQ_WT, DRREQ_WT, 
+	DRREQ_WT, DRREQ_WT, DRREQ_WT, DRREQ_WT, DRREQ_WT, DRREQ_WT, DRREQ_WT, 
+	DRREQ_WT, DRREQ_WT, DRREQ_WT, DRREQ_WT, DRREQ_WT, DRREQ_WT, DRREQ_WT) & ((1,0
+	,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0) ) ) # (  ( PON, PON, PON, PON, PON, PON, PON,
+	 PON, PON, PON, PON, PON, PON, PON, PON, PON, PON) & ((0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0) ) ) # (  ( REC_PULSE, REC_PULSE, REC_PULSE, REC_PULSE, REC_PULSE
+	, REC_PULSE, REC_PULSE, REC_PULSE, REC_PULSE, REC_PULSE, REC_PULSE, REC_PULSE
+	, REC_PULSE, REC_PULSE, REC_PULSE, REC_PULSE, REC_PULSE) & ((1,0,0,0,0,0,0,1,
+	1,0,0,0,0,0,0,0,0) ) ) # (  ( REC_WT, REC_WT, REC_WT, REC_WT, REC_WT, REC_WT,
+	 REC_WT, REC_WT, REC_WT, REC_WT, REC_WT, REC_WT, REC_WT, REC_WT, REC_WT, 
+	REC_WT, REC_WT) & ((1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0) ) ) # (  ( SEND_WT, 
+	SEND_WT, SEND_WT, SEND_WT, SEND_WT, SEND_WT, SEND_WT, SEND_WT, SEND_WT, 
+	SEND_WT, SEND_WT, SEND_WT, SEND_WT, SEND_WT, SEND_WT, SEND_WT, SEND_WT) & ((0
+	,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0) ) ) # (  ( SND_DAT, SND_DAT, SND_DAT, 
+	SND_DAT, SND_DAT, SND_DAT, SND_DAT, SND_DAT, SND_DAT, SND_DAT, SND_DAT, 
+	SND_DAT, SND_DAT, SND_DAT, SND_DAT, SND_DAT, SND_DAT) & ((0,0,0,0,0,0,0,0,0,0
+	,0,0,0,0,0,1,0) ) ) # (  ( SND_DRAND, SND_DRAND, SND_DRAND, SND_DRAND, 
+	SND_DRAND, SND_DRAND, SND_DRAND, SND_DRAND, SND_DRAND, SND_DRAND, SND_DRAND, 
+	SND_DRAND, SND_DRAND, SND_DRAND, SND_DRAND, SND_DRAND, SND_DRAND) & ((0,0,0,0
+	,0,0,0,0,0,0,1,1,0,0,0,0,1) ) ) # (  ( SND_DRBT, SND_DRBT, SND_DRBT, SND_DRBT
+	, SND_DRBT, SND_DRBT, SND_DRBT, SND_DRBT, SND_DRBT, SND_DRBT, SND_DRBT, 
+	SND_DRBT, SND_DRBT, SND_DRBT, SND_DRBT, SND_DRBT, SND_DRBT) & ((0,0,0,0,0,0,0
+	,0,0,0,1,1,1,0,0,0,1) ) ) # (  ( SND_ID, SND_ID, SND_ID, SND_ID, SND_ID, 
+	SND_ID, SND_ID, SND_ID, SND_ID, SND_ID, SND_ID, SND_ID, SND_ID, SND_ID, 
+	SND_ID, SND_ID, SND_ID) & ((0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0) ) ) # (  ( 
+	SND_IDLE, SND_IDLE, SND_IDLE, SND_IDLE, SND_IDLE, SND_IDLE, SND_IDLE, 
+	SND_IDLE, SND_IDLE, SND_IDLE, SND_IDLE, SND_IDLE, SND_IDLE, SND_IDLE, 
+	SND_IDLE, SND_IDLE, SND_IDLE) & ((0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,1) ) ) # ( 
+	 ( SND_MRNB, SND_MRNB, SND_MRNB, SND_MRNB, SND_MRNB, SND_MRNB, SND_MRNB, 
+	SND_MRNB, SND_MRNB, SND_MRNB, SND_MRNB, SND_MRNB, SND_MRNB, SND_MRNB, 
+	SND_MRNB, SND_MRNB, SND_MRNB) & ((0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,1) ) ) # ( 
+	 ( SND_MRWB, SND_MRWB, SND_MRWB, SND_MRWB, SND_MRWB, SND_MRWB, SND_MRWB, 
+	SND_MRWB, SND_MRWB, SND_MRWB, SND_MRWB, SND_MRWB, SND_MRWB, SND_MRWB, 
+	SND_MRWB, SND_MRWB, SND_MRWB) & ((0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1) ) ) # ( 
+	 ( SND_PULSE, SND_PULSE, SND_PULSE, SND_PULSE, SND_PULSE, SND_PULSE, 
+	SND_PULSE, SND_PULSE, SND_PULSE, SND_PULSE, SND_PULSE, SND_PULSE, SND_PULSE, 
+	SND_PULSE, SND_PULSE, SND_PULSE, SND_PULSE) & ((0,0,1,0,0,0,1,0,1,0,0,0,0,0,0
+	,0,0) ) ) # (  ( SND_TC_DAT, SND_TC_DAT, SND_TC_DAT, SND_TC_DAT, SND_TC_DAT, 
+	SND_TC_DAT, SND_TC_DAT, SND_TC_DAT, SND_TC_DAT, SND_TC_DAT, SND_TC_DAT, 
+	SND_TC_DAT, SND_TC_DAT, SND_TC_DAT, SND_TC_DAT, SND_TC_DAT, SND_TC_DAT) & ((0
+	,0,0,0,0,1,0,0,1,0,0,0,0,0,1,0,0) ) ) # (  ( SYS_RESET, SYS_RESET, SYS_RESET,
+	 SYS_RESET, SYS_RESET, SYS_RESET, SYS_RESET, SYS_RESET, SYS_RESET, SYS_RESET,
+	 SYS_RESET, SYS_RESET, SYS_RESET, SYS_RESET, SYS_RESET, SYS_RESET, SYS_RESET)
+	 & ((0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0) ) );
+END;

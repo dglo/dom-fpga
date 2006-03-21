@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2006-02-02
+-- Last update: 2006-01-25
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -126,19 +126,5 @@ BEGIN  -- CommonClock_arch
             time_shl_en_delay := time_shl_en;
         END IF;
     END PROCESS;
-
--------------------------------------------------------------------------------
--- Testpin for Jerry to compare DOM and DOR
--------------------------------------------------------------------------------
-
-    TC(0) <= time_shl_en;
     
 END CommonClock_arch;
-
-
-
-
-
-
-
-

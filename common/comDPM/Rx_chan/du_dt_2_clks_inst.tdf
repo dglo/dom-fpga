@@ -1,0 +1,8 @@
+(
+	result_sig[]
+) = du_dt_2_clks	(
+
+)
+RETURNS (
+	.result[]
+);

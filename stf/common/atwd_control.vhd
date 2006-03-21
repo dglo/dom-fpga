@@ -129,8 +129,6 @@ BEGIN
 						state	<= digitize;
 					END IF;
 					ReadWrite	<= '1';
-					counterclk_low	<= '0';
-					counterclk_high	<= '1';
 					settle_cnt	<= settle_cnt+1;
 				WHEN digitize =>
 					IF digitize_cnt=512 THEN
@@ -150,8 +148,8 @@ BEGIN
 					AnalogReset		<= '1';
 					OutputEnable	<= '1';
 					start_readout	<= '1';
-					counterclk_low	<= '1';
-					counterclk_high	<= '0';
+					counterclk_low	<= '0';
+					counterclk_high	<= '1';
 				WHEN readout_end =>
 					IF channel="11" THEN
 						state	<= restart_ATWD;

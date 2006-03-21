@@ -238,15 +238,3 @@ Quartus II Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version </full
 Unhandled exception detected
 Quartus II Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version </full_error>
 </internal_error>
-<internal_error>
-	<executable>quartus.exe</executable>
-	<sub_system>AFC</sub_system>
-	<file>./afc_app.cpp</file>
-	<line>2535</line>
-	<error>Unhandled exception detected</error>
-	<date>Fri Jan 27 08:29:23 2006</date>
-	<version>Quartus II Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version</version>
-	<full_error>Internal Error: Sub-system: AFC, File: ./afc_app.cpp, Line: 2535
-Unhandled exception detected
-Quartus II Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version </full_error>
-</internal_error>

@@ -318,8 +318,7 @@ ARCHITECTURE arch_domapp OF domapp IS
 			-- interface to local coincidence
 			LC_trigger		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			LC_abort		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
-	 		LC_A			: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
-			LC_B			: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
+	 		LC				: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			LC_launch		: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
 			LC_disc			: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
 			-- discriminator
@@ -537,8 +536,6 @@ ARCHITECTURE arch_domapp OF domapp IS
 			lc_daq_abort         : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
 			lc_daq_disc          : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
 			lc_daq_launch        : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
-			lc_dac_got_lc_A      : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
-			lc_dac_got_lc_B      : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
 			-- I/O
 			COINCIDENCE_OUT_DOWN : OUT STD_LOGIC;
 			COINC_DOWN_ALATCH    : OUT STD_LOGIC;
@@ -706,8 +703,6 @@ ARCHITECTURE arch_domapp OF domapp IS
 	SIGNAL lc_daq_abort		: STD_LOGIC_VECTOR (1 DOWNTO 0);
 	SIGNAL lc_daq_disc		: STD_LOGIC_VECTOR (1 DOWNTO 0);
 	SIGNAL lc_daq_launch	: STD_LOGIC_VECTOR (1 DOWNTO 0);
-	SIGNAL lc_dac_got_lc_A	: STD_LOGIC_VECTOR (1 DOWNTO 0);
-	SIGNAL lc_dac_got_lc_B	: STD_LOGIC_VECTOR (1 DOWNTO 0);
 	
 	-- Compression
 	SIGNAL COMPR_ctrl	: COMPR_STRUCT;
@@ -886,8 +881,7 @@ BEGIN
 			-- interface to local coincidence
 			LC_trigger		=> lc_daq_trigger,
 			LC_abort		=> lc_daq_abort,
-	 		LC_A			=> lc_dac_got_lc_A,
-			LC_B			=> lc_dac_got_lc_B,
+	 		LC				=> "00",
 			LC_launch		=> lc_daq_launch,
 			LC_disc			=> lc_daq_disc,
 			-- discriminator
@@ -1033,7 +1027,7 @@ BEGIN
 			dp0_portaaddr		=> dp0_portaaddr,
 			dp0_portadataout	=> dp0_portadataout,
 			-- TC
-			tc					=> OPEN --PGM(7 downto 0)
+			tc					=> PGM(7 downto 0)
 		);
 
 	inst_rate_meters : rate_meters
@@ -1104,8 +1098,6 @@ BEGIN
 			lc_daq_abort         => lc_daq_abort,
 			lc_daq_disc          => lc_daq_disc,
 			lc_daq_launch        => lc_daq_launch,
-			lc_dac_got_lc_A      => lc_dac_got_lc_A,
-			lc_dac_got_lc_B      => lc_dac_got_lc_B,
 			-- I/O
 			COINCIDENCE_OUT_DOWN => COINCIDENCE_OUT_UP,
 			COINC_DOWN_ALATCH    => COINC_UP_ALATCH,
@@ -1137,7 +1129,7 @@ BEGIN
 --			COINC_UP_BBAR        => COINC_UP_BBAR,
 --			COINC_UP_B           => COINC_UP_B,
 			-- test
-			TC                   => PGM(7 downto 0) --OPEN
+			TC                   => OPEN
 		);
 	
 	
@@ -1258,7 +1250,7 @@ BEGIN
 	begin
 		if RST='1' THEN
 			debugging <= (others=>'0');
-		elsif CLK40'EVENT and CLK40='1' THEN
+		elsif CLK20'EVENT and CLK20='1' THEN
 			if lc_daq_trigger(0)='1' OR lc_daq_trigger(1)='1' THEN
 				debugging <= debugging + 1;
 			end if;

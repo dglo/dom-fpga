@@ -66,7 +66,7 @@ END ATWD_control;
 
 ARCHITECTURE arch_ATWD_control OF ATWD_control IS
 	
-	TYPE ATWD_state_type is (pre_digitize, digitize, post_digitize, idle, init_digitize, next_channel, power_up_init1, power_up_init2, readout_L0, readout_L1, readout_H0, readout_H1, readout_end, settle, wait_trig_compl);
+	TYPE ATWD_state_type is (digitize, idle, init_digitize, next_channel, power_up_init1, power_up_init2, readout_L0, readout_L1, readout_H0, readout_H1, readout_end, settle, wait_trig_compl);
 	SIGNAL state	: ATWD_state_type;
 	
 	SIGNAL settle_cnt	: INTEGER;
@@ -138,16 +138,10 @@ BEGIN
 					digitize_cnt	<= 1; -- 0;
 				WHEN settle =>
 					IF settle_cnt=128 OR abort='1' THEN
-						state	<= pre_digitize;
+						state	<= digitize;
 					END IF;
 					ReadWrite	<= '1';
-					counterclk_low	<= '0';
-					counterclk_high	<= '1';
 					settle_cnt	<= settle_cnt+1;
-				WHEN pre_digitize =>
-					counterclk_low	<= '0';
-					counterclk_high	<= '1';
-					state	<= digitize;
 				WHEN digitize =>
 					DigitalReset	<= '0';
 					RampSet			<= '0';
@@ -155,13 +149,9 @@ BEGIN
 					counterclk_high	<= '0';
 					digitize_cnt	<= digitize_cnt + 1;
 					IF digitize_cnt=512 OR abort='1' THEN
-						state	<= post_digitize;
+						state	<= readout_L0;
 						counterclk_high	<= '1';
 					END IF;
-				WHEN post_digitize =>
-					counterclk_low	<= '1';
-					counterclk_high	<= '0';
-					state	<= readout_L0;
 				WHEN readout_L0 =>
 					state	<= readout_L1;
 					DigitalSet		<= '1';
@@ -169,8 +159,8 @@ BEGIN
 					AnalogReset		<= '1';
 					OutputEnable	<= '1';
 					ShiftClock		<= '0';
-					counterclk_low	<= '1';
-					counterclk_high	<= '0';
+					counterclk_low	<= '0';
+					counterclk_high	<= '1';
 					ATWD_D_we			<= '0';
 				WHEN readout_L1 =>
 					state	<= readout_H0;
@@ -191,8 +181,8 @@ BEGIN
 					AnalogReset		<= '1';
 					OutputEnable	<= '1';
 					ShiftClock		<= '1';
-					counterclk_low	<= '1';
-					counterclk_high	<= '0';
+					counterclk_low	<= '0';
+					counterclk_high	<= '1';
 					ATWD_D_we			<= '1';
 				WHEN readout_end =>
 					IF (ATWD_mode(1 DOWNTO 0)=ATWD_mode_ALL AND channel="11") OR	--we are done
