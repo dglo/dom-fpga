@@ -17,7 +17,9 @@
 -------------------------------------------------------------------------------
 -- Revisions  :
 -- Date        Version     Author    Description
--- 2003-07-17  V01-01-00   thorsten  
+-- 2003-07-17  V01-01-00   thorsten
+-- 2006-                   thorsten  Added Comm Threshold registers
+-- 2006-02-06              thorsten  commented out Roadgrader registers  
 -------------------------------------------------------------------------------
 
 
@@ -225,7 +227,7 @@ BEGIN
 			RM_ctrl_local	<= ((OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'));
 			COMM_ctrl_local	<= ('0', (OTHERS=>'0'), 'X', '0', '0', (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), '0', '0');
 			id_set			<= "00";
-			COMPR_ctrl_local	<= ((OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), '0', '0');
+	--		COMPR_ctrl_local	<= ((OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), '0', '0');
 			int_clr			<= (OTHERS=>'0');
 		ELSIF CLK'EVENT AND CLK='1' THEN
 			DAQ_ctrl_local.LBM_ptr_RST	<= '0';
@@ -235,7 +237,7 @@ BEGIN
 			COMM_ctrl_local.thres_delay_wr			<= '0';
 			COMM_ctrl_local.clev_wr					<= '0';
 			int_clr			<= (OTHERS=>'0');
-			reg_rdata <= (others=>'X');	-- to make sur ewe don't create a latch
+			reg_rdata <= (others=>'X');	-- to make sure we don't create a latch
 			IF reg_enable = '1' THEN
 				IF std_match( reg_address(13 downto 2) , "00000-------" ) THEN	-- version ROM
 					reg_rdata(15 downto 0)	<= rom_data;
@@ -563,78 +565,78 @@ BEGIN
 					END IF;
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0540") ) THEN	-- Compression Control
 					IF reg_write = '1' THEN
-						COMPR_ctrl_local.threshold0	<= reg_wdata(0);
-						COMPR_ctrl_local.LASTonly	<= reg_wdata(1);
+	--					COMPR_ctrl_local.threshold0	<= reg_wdata(0);
+	--					COMPR_ctrl_local.LASTonly	<= reg_wdata(1);
 					END IF;
 					IF READBACK=1 THEN
-						reg_rdata(0)			<= COMPR_ctrl_local.threshold0;
-						reg_rdata(0)			<= COMPR_ctrl_local.LASTonly;
+	--					reg_rdata(0)			<= COMPR_ctrl_local.threshold0;
+	--					reg_rdata(0)			<= COMPR_ctrl_local.LASTonly;
 						reg_rdata(31 downto 2)	<= (OTHERS=>'0');
 					ELSE
 						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
 					END IF;
-				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0544") ) THEN	-- Compression FADC
-					IF reg_write = '1' THEN
-						COMPR_ctrl_local.FADCthres	<= reg_wdata(9 DOWNTO 0);
-					END IF;
-					IF READBACK=1 THEN
-						reg_rdata(9 DOWNTO 0)	<= COMPR_ctrl_local.FADCthres;
-						reg_rdata(31 downto 10)	<= (OTHERS=>'0');
-					ELSE
-						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
-					END IF;
-				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0548") ) THEN	-- Compression ATWD A 1/0
-					IF reg_write = '1' THEN
-						COMPR_ctrl_local.ATWDa0thres	<= reg_wdata(9 DOWNTO 0);
-						COMPR_ctrl_local.ATWDa1thres	<= reg_wdata(25 DOWNTO 16);
-					END IF;
-					IF READBACK=1 THEN
-						reg_rdata(9 DOWNTO 0)	<= COMPR_ctrl_local.ATWDa0thres;
-						reg_rdata(25 DOWNTO 16)	<= COMPR_ctrl_local.ATWDa1thres;
-						reg_rdata(16 downto 10)	<= (OTHERS=>'0');
-						reg_rdata(31 downto 26)	<= (OTHERS=>'0');
-					ELSE
-						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
-					END IF;
-				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"054C") ) THEN	-- Compression ATWD A 3/2
-					IF reg_write = '1' THEN
-						COMPR_ctrl_local.ATWDa2thres	<= reg_wdata(9 DOWNTO 0);
-						COMPR_ctrl_local.ATWDa3thres	<= reg_wdata(25 DOWNTO 16);
-					END IF;
-					IF READBACK=1 THEN
-						reg_rdata(9 DOWNTO 0)	<= COMPR_ctrl_local.ATWDa2thres;
-						reg_rdata(25 DOWNTO 16)	<= COMPR_ctrl_local.ATWDa3thres;
-						reg_rdata(16 downto 10)	<= (OTHERS=>'0');
-						reg_rdata(31 downto 26)	<= (OTHERS=>'0');
-					ELSE
-						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
-					END IF;
-				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0550") ) THEN	-- Compression ATWD B 1/0
-					IF reg_write = '1' THEN
-						COMPR_ctrl_local.ATWDb0thres	<= reg_wdata(9 DOWNTO 0);
-						COMPR_ctrl_local.ATWDb1thres	<= reg_wdata(25 DOWNTO 16);
-					END IF;
-					IF READBACK=1 THEN
-						reg_rdata(9 DOWNTO 0)	<= COMPR_ctrl_local.ATWDb0thres;
-						reg_rdata(25 DOWNTO 16)	<= COMPR_ctrl_local.ATWDb1thres;
-						reg_rdata(16 downto 10)	<= (OTHERS=>'0');
-						reg_rdata(31 downto 26)	<= (OTHERS=>'0');
-					ELSE
-						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
-					END IF;
-				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0554") ) THEN	-- Compression ATWD B 3/2
-					IF reg_write = '1' THEN
-						COMPR_ctrl_local.ATWDb2thres	<= reg_wdata(9 DOWNTO 0);
-						COMPR_ctrl_local.ATWDb3thres	<= reg_wdata(25 DOWNTO 16);
-					END IF;
-					IF READBACK=1 THEN
-						reg_rdata(9 DOWNTO 0)	<= COMPR_ctrl_local.ATWDb2thres;
-						reg_rdata(25 DOWNTO 16)	<= COMPR_ctrl_local.ATWDb3thres;
-						reg_rdata(16 downto 10)	<= (OTHERS=>'0');
-						reg_rdata(31 downto 26)	<= (OTHERS=>'0');
-					ELSE
-						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
-					END IF;
+	--			ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0544") ) THEN	-- Compression FADC
+	--				IF reg_write = '1' THEN
+	--					COMPR_ctrl_local.FADCthres	<= reg_wdata(9 DOWNTO 0);
+	--				END IF;
+	--				IF READBACK=1 THEN
+	--					reg_rdata(9 DOWNTO 0)	<= COMPR_ctrl_local.FADCthres;
+	--					reg_rdata(31 downto 10)	<= (OTHERS=>'0');
+	--				ELSE
+	--					reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+	--				END IF;
+	--			ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0548") ) THEN	-- Compression ATWD A 1/0
+	--				IF reg_write = '1' THEN
+	--					COMPR_ctrl_local.ATWDa0thres	<= reg_wdata(9 DOWNTO 0);
+	--					COMPR_ctrl_local.ATWDa1thres	<= reg_wdata(25 DOWNTO 16);
+	--				END IF;
+	--				IF READBACK=1 THEN
+	--					reg_rdata(9 DOWNTO 0)	<= COMPR_ctrl_local.ATWDa0thres;
+	--					reg_rdata(25 DOWNTO 16)	<= COMPR_ctrl_local.ATWDa1thres;
+	--					reg_rdata(16 downto 10)	<= (OTHERS=>'0');
+	--					reg_rdata(31 downto 26)	<= (OTHERS=>'0');
+	--				ELSE
+	--					reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+	--				END IF;
+	--			ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"054C") ) THEN	-- Compression ATWD A 3/2
+	--				IF reg_write = '1' THEN
+	--					COMPR_ctrl_local.ATWDa2thres	<= reg_wdata(9 DOWNTO 0);
+	--					COMPR_ctrl_local.ATWDa3thres	<= reg_wdata(25 DOWNTO 16);
+	--				END IF;
+	--				IF READBACK=1 THEN
+	--					reg_rdata(9 DOWNTO 0)	<= COMPR_ctrl_local.ATWDa2thres;
+	--					reg_rdata(25 DOWNTO 16)	<= COMPR_ctrl_local.ATWDa3thres;
+	--					reg_rdata(16 downto 10)	<= (OTHERS=>'0');
+	--					reg_rdata(31 downto 26)	<= (OTHERS=>'0');
+	--				ELSE
+	--					reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+	--				END IF;
+	--			ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0550") ) THEN	-- Compression ATWD B 1/0
+	--				IF reg_write = '1' THEN
+	--					COMPR_ctrl_local.ATWDb0thres	<= reg_wdata(9 DOWNTO 0);
+	--					COMPR_ctrl_local.ATWDb1thres	<= reg_wdata(25 DOWNTO 16);
+	--				END IF;
+	--				IF READBACK=1 THEN
+	--					reg_rdata(9 DOWNTO 0)	<= COMPR_ctrl_local.ATWDb0thres;
+	--					reg_rdata(25 DOWNTO 16)	<= COMPR_ctrl_local.ATWDb1thres;
+	--					reg_rdata(16 downto 10)	<= (OTHERS=>'0');
+	--					reg_rdata(31 downto 26)	<= (OTHERS=>'0');
+	--				ELSE
+	--					reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+	--				END IF;
+	--			ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0554") ) THEN	-- Compression ATWD B 3/2
+	--				IF reg_write = '1' THEN
+	--					COMPR_ctrl_local.ATWDb2thres	<= reg_wdata(9 DOWNTO 0);
+	--					COMPR_ctrl_local.ATWDb3thres	<= reg_wdata(25 DOWNTO 16);
+	--				END IF;
+	--				IF READBACK=1 THEN
+	--					reg_rdata(9 DOWNTO 0)	<= COMPR_ctrl_local.ATWDb2thres;
+	--					reg_rdata(25 DOWNTO 16)	<= COMPR_ctrl_local.ATWDb3thres;
+	--					reg_rdata(16 downto 10)	<= (OTHERS=>'0');
+	--					reg_rdata(31 downto 26)	<= (OTHERS=>'0');
+	--				ELSE
+	--					reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+	--				END IF;
 			
 					
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"07F8") ) THEN	-- PONG (just in case we want to implement a 3D PONG game with IceCubeA) 

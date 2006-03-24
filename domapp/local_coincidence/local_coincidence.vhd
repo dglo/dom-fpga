@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2005-04-21
+-- Last update: 2005-07-12
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -42,6 +42,8 @@ ENTITY local_coincidence IS
         lc_daq_abort         : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
         lc_daq_disc          : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
         lc_daq_launch        : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
+        lc_dac_got_lc_A      : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
+        lc_dac_got_lc_B      : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
         -- I/O
         COINCIDENCE_OUT_DOWN : OUT STD_LOGIC;
         COINC_DOWN_ALATCH    : OUT STD_LOGIC;
@@ -103,14 +105,19 @@ ARCHITECTURE ARCH_local_coincidence OF local_coincidence IS
             cable_length_down : IN  CABLE_LENGTH_VECTOR;
             lc_pre_window     : IN  STD_LOGIC_VECTOR (5 DOWNTO 0);
             lc_post_window    : IN  STD_LOGIC_VECTOR (5 DOWNTO 0);
+            selfLCmode        : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
+            selfLC_window     : IN  STD_LOGIC_VECTOR (5 DOWNTO 0);
+            LC_up_and_down    : IN  STD_LOGIC;
             -- local LC interface
             launch            : IN  STD_LOGIC;
+            disc              : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
             up_n              : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
             lc_update_up      : IN  STD_LOGIC;
             down_n            : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
             lc_update_down    : IN  STD_LOGIC;
             -- the result
             abort             : OUT STD_LOGIC;
+            LC                : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
             -- test signals
             TC                : OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
             );
@@ -120,6 +127,8 @@ ARCHITECTURE ARCH_local_coincidence OF local_coincidence IS
     SIGNAL down_n      : STD_LOGIC_VECTOR (1 DOWNTO 0);
     SIGNAL update_up   : STD_LOGIC;
     SIGNAL update_down : STD_LOGIC;
+
+	SIGNAL disc        : STD_LOGIC;
     
 BEGIN
     -- for testing
@@ -129,17 +138,19 @@ BEGIN
     lc_daq_trigger(0) <= update_up;
     lc_daq_trigger(1) <= update_down;
 
+	disc <= lc_daq_disc(0) WHEN LC_ctrl.LC_disc_source='0' ELSE lc_daq_disc(0);
+
     LC_slice_up2down : LC_slice
         PORT MAP (
             CLK40           => CLK40,
             CLK80           => CLK80,
             rst             => RST,
             -- setup
-            rx_enable       => LC_ctrl.lc_rx_enable(1),
-            tx_enable       => LC_ctrl.lc_tx_enable(0),
+            rx_enable       => LC_ctrl.lc_rx_enable(0),
+            tx_enable       => LC_ctrl.lc_tx_enable(1),
             lc_length       => LC_ctrl.lc_length,
             -- from DAQ
-            disc            => lc_daq_disc(0),
+            disc            => disc,
             -- LC info
             n               => up_n,
             update          => update_up,
@@ -163,11 +174,11 @@ BEGIN
             CLK80           => CLK80,
             rst             => RST,
             -- setup
-            rx_enable       => LC_ctrl.lc_rx_enable(0),
-            tx_enable       => LC_ctrl.lc_tx_enable(1),
+            rx_enable       => LC_ctrl.lc_rx_enable(1),
+            tx_enable       => LC_ctrl.lc_tx_enable(0),
             lc_length       => LC_ctrl.lc_length,
             -- from DAQ
-            disc            => lc_daq_disc(0),
+            disc            => disc,
             -- LC info
             n               => down_n,
             update          => update_down,
@@ -182,7 +193,7 @@ BEGIN
             --TX
             COINCIDENCE_OUT => COINCIDENCE_OUT_UP,
             -- test
-            TC              => OPEN
+            TC              => TC --OPEN
             );
 
     LC_abort_ARWD_A : LC_abort
@@ -195,14 +206,19 @@ BEGIN
             cable_length_down => LC_ctrl.lc_cable_length_down,
             lc_pre_window     => LC_ctrl.lc_pre_window,
             lc_post_window    => LC_ctrl.lc_post_window,
+            selfLCmode        => LC_ctrl.lc_self_mode,
+            selfLC_window     => LC_ctrl.lc_self_window,
+            LC_up_and_down    => LC_ctrl.LC_up_and_down,
             -- local LC interface
             launch            => lc_daq_launch(0),
+            disc              => lc_daq_disc,
             up_n              => up_n,
             lc_update_up      => update_up,
             down_n            => down_n,
             lc_update_down    => update_down,
             -- the result
             abort             => lc_daq_abort(0),
+            LC                => lc_dac_got_lc_A,
             -- test signals
             TC                => OPEN
             );
@@ -217,14 +233,19 @@ BEGIN
             cable_length_down => LC_ctrl.lc_cable_length_down,
             lc_pre_window     => LC_ctrl.lc_pre_window,
             lc_post_window    => LC_ctrl.lc_post_window,
+            selfLCmode        => LC_ctrl.lc_self_mode,
+            selfLC_window     => LC_ctrl.lc_self_window,
+            LC_up_and_down    => LC_ctrl.LC_up_and_down,
             -- local LC interface
             launch            => lc_daq_launch(1),
+            disc              => lc_daq_disc,
             up_n              => up_n,
             lc_update_up      => update_up,
             down_n            => down_n,
             lc_update_down    => update_down,
             -- the result
             abort             => lc_daq_abort(1),
+            LC                => lc_dac_got_lc_B,
             -- test signals
             TC                => OPEN
             );
