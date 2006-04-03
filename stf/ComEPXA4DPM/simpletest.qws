@@ -19,7 +19,7 @@ InCompileMode=True
 InSimulateMode=False
 InFirmwareMode=False
 WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPOGAAAAAAOGAAAAAAGIEAAAAACGCAAAAA
-IsActiveChildFrame=True
+IsActiveChildFrame=False
 ptn_Child1=StateMap
 [ProjectWorkspace.Frames.ChildFrames.Document-0.ViewFrame-0.StateMap]
 AFC_IN_REPORT=False
@@ -58,7 +58,7 @@ InCompileMode=True
 InSimulateMode=False
 InFirmwareMode=False
 WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKJAAAAAAKJAAAAAABJEAAAAAOICAAAAA
-IsActiveChildFrame=False
+IsActiveChildFrame=True
 ptn_Child1=StateMap
 [ProjectWorkspace.Frames.ChildFrames.Document-3.ViewFrame-0.StateMap]
 AFC_IN_REPORT=False
