@@ -1,0 +1,434 @@
+-------------------------------------------------------------------------------
+-- Title      : DOMAPP
+-- Project    : IceCube DOM main board
+-------------------------------------------------------------------------------
+-- File       : compressor_top_synch.vhd
+-- Author     : joshua sopher
+-- Company    : LBNL
+-- Created    : 
+-- Last update: june 28 2004
+-- Platform   : Altera Excalibur
+-- Standard   : VHDL'93
+-------------------------------------------------------------------------------
+-- Description: This design is the interface between the compressor and the LBM controller
+--				It writes compressed data into RAM, which is read out by LbmRamAddrExt. 		 
+-------------------------------------------------------------------------------
+-- Revisions  :
+-- Date        Version     Author    Description
+-- 
+-----------------------------------------------------------------------------------------------------------
+LIBRARY ieee;
+
+USE ieee.std_logic_1164.ALL;
+USE ieee.std_logic_arith.ALL;
+USE ieee.std_logic_unsigned.ALL;  -- use to count std_logic_vectors
+USE WORK.icecube_data_types.all;
+USE WORK.ctrl_data_types.all;
+
+
+ENTITY compression IS
+GENERIC (
+			FADC_WIDTH	: INTEGER := 10
+		);
+	PORT(
+-- system signals
+-- reset 
+		clk40		 	: IN	STD_LOGIC;		
+		clk20			: IN	STD_LOGIC;		
+		rst				: IN	STD_LOGIC;
+-----------------
+-- CPU register signals
+		COMPR_ctrl		: IN COMPR_STRUCT;	
+------------------
+-- interface signals with the fadc and atwd buffers 
+-- BfrDav
+		 data_avail_in	: IN	STD_LOGIC;					   -- generated when the buffer is ready to read 
+-- BfrReadDone	
+		read_done_in   	: OUT	STD_LOGIC;					   -- read done handshake to the Atwd buffer   
+-- Header	
+		 Header_in 		: IN 	HEADER_VECTOR;
+-- AtwdBfrAddr	
+  		ATWD_addr_in	: OUT	STD_LOGIC_VECTOR (8 DOWNTO 0); 
+-- AtwdData 
+ 		ATWD_data_in	: IN	STD_LOGIC_VECTOR (9 DOWNTO 0); -- 128 words or 512 are read out from the ATWD buffer
+-- FadcBfrAddr	
+  		FADC_addr_in	: OUT	STD_LOGIC_VECTOR (7 DOWNTO 0);  		
+-- FadcData
+		Fadc_data_in	: IN	STD_LOGIC_VECTOR (9 DOWNTO 0); -- 256 words are read out from the FADC buffer
+
+------------------
+-- interface signals with Ram to LBM write module
+-- used to generate BfrReadDone. Ram must be readout before the next 
+-- buffer read can be done.
+-- BfrDavOut 	
+		data_avail_out 	: OUT STD_LOGIC  ;
+-- LbmReadDone	
+		read_done_out	: IN	STD_LOGIC;	
+-- RamDavOut 
+ 		compr_avail_out	: OUT STD_LOGIC  ;		-- assert only when RamDavOut is asserted 
+-- HitSize 
+		compr_size		: OUT STD_LOGIC_VECTOR (10 DOWNTO 0);
+-- LbmRamAddrExt 
+		compr_addr		: IN STD_LOGIC_VECTOR (8 DOWNTO 0);
+-- LBMDataOut	
+		compr_data	: OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
+-- UnCmprHeader 
+  		Header_out		: OUT	HEADER_VECTOR; 
+-- AtwdBfrAddrExt	
+  		ATWD_addr_out	: IN	STD_LOGIC_VECTOR (8 DOWNTO 0);  
+-- UnCmprAtwdData	
+  		ATWD_data_out	: OUT	STD_LOGIC_VECTOR (9 DOWNTO 0); 
+-- FadcBfrAddrExt 
+  		Fadc_addr_out	: IN	STD_LOGIC_VECTOR (7 DOWNTO 0);  
+-- UnCmprFadcData	
+  		Fadc_data_out	: OUT	STD_LOGIC_VECTOR (9 DOWNTO 0); 
+-- ComprData,  test connector signals
+		TC 				: OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
+
+
+------------------       
+
+-- test signals 
+-- 		RingData		: OUT	STD_LOGIC_VECTOR (17 DOWNTO 0); -- threshold value includes the baseline
+
+-- test signals for the input buffer interface
+--		FadcBfrClk	  	: OUT	STD_LOGIC;		-- data read out from FPGA memory, using clk20/2 
+--		AtwdBfrClk	 	: OUT	STD_LOGIC;		-- data valid 20ns after ShiftClk (equiv to clk20/2) low  
+--  	AtwdChNumber	: OUT	STD_LOGIC_VECTOR (2 DOWNTO 0); -- threshold value includes the baseline
+
+--       RingWriteClk	: OUT   STD_LOGIC;  
+--       BfrDavEdge		: OUT   STD_LOGIC;  
+
+
+--		RamAddr 		: OUT STD_LOGIC_VECTOR (10 DOWNTO 0);
+--		RamWe0 			: OUT STD_LOGIC  ;
+--		RamDataIn		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+
+--		RamDataOut0		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+--		RamDataOut1		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+--		RamDataOut2		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+--		RamDataOut3		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+	);
+
+
+
+END compression;
+
+----*************************************************************
+ARCHITECTURE rtl OF compression IS
+
+	SIGNAL  ch0a_th 		: STD_LOGIC_VECTOR (9 DOWNTO 0); 
+	SIGNAL  ch1a_th 		: STD_LOGIC_VECTOR (9 DOWNTO 0); 
+	SIGNAL  ch2a_th 		: STD_LOGIC_VECTOR (9 DOWNTO 0); 
+	SIGNAL  ch3a_th 		: STD_LOGIC_VECTOR (9 DOWNTO 0); 
+	SIGNAL  ch0b_th 		: STD_LOGIC_VECTOR (9 DOWNTO 0); 
+	SIGNAL  ch1b_th 		: STD_LOGIC_VECTOR (9 DOWNTO 0); 
+	SIGNAL  ch2b_th 		: STD_LOGIC_VECTOR (9 DOWNTO 0); 
+	SIGNAL  ch3b_th 		: STD_LOGIC_VECTOR (9 DOWNTO 0); 
+	SIGNAL  fadc_th 		: STD_LOGIC_VECTOR (9 DOWNTO 0); 
+	SIGNAL  compr_mode		: STD_LOGIC_VECTOR (1 DOWNTO 0); 
+	SIGNAL  atwd_size		: STD_LOGIC_VECTOR (1 DOWNTO 0); 
+	SIGNAL  l_c				: STD_LOGIC_VECTOR (1 DOWNTO 0); 
+  	SIGNAL  compressed_data	: STD_LOGIC_VECTOR (7 DOWNTO 0); 
+	SIGNAL  time_stamp		: STD_LOGIC_VECTOR (47 DOWNTO 0); 
+	SIGNAL  trig_word		: STD_LOGIC_VECTOR (15 DOWNTO 0); 
+	SIGNAL  atwd_avail 		: STD_LOGIC; 
+	SIGNAL  fadc_avail 		: STD_LOGIC; 
+	SIGNAL  atwd_a_b 		: STD_LOGIC; 
+	SIGNAL  ram_dav 		: STD_LOGIC; 
+	SIGNAL  compr_active 	: STD_LOGIC; 
+	SIGNAL  ring_read_en 	: STD_LOGIC; 
+	SIGNAL  bfr_dav_edge 	: STD_LOGIC; 
+	
+	SIGNAL  RamAddr 		: STD_LOGIC_VECTOR (10 DOWNTO 0);
+	SIGNAL  RamWe0 			: STD_LOGIC  ;
+	SIGNAL  RamDataIn		: STD_LOGIC_VECTOR (7 DOWNTO 0);
+	SIGNAL  RamDataOut0		: STD_LOGIC_VECTOR (7 DOWNTO 0);
+	SIGNAL  RamDataOut1		: STD_LOGIC_VECTOR (7 DOWNTO 0);
+	SIGNAL  RamDataOut2		: STD_LOGIC_VECTOR (7 DOWNTO 0);
+	SIGNAL  RamDataOut3		: STD_LOGIC_VECTOR (7 DOWNTO 0);
+
+
+
+	COMPONENT compressor_in
+	PORT (
+-- system signals
+		reset				: IN	STD_LOGIC;
+		clk20			   	: IN	STD_LOGIC;		
+		clk40		   		: IN	STD_LOGIC;		
+-----------------
+-- CPU register signals
+  		Ch0aLoTh			: IN	STD_LOGIC_VECTOR (9 DOWNTO 0); -- all threshold valuesinclude the baseline
+  		Ch1aLoTh			: IN	STD_LOGIC_VECTOR (9 DOWNTO 0); -- 
+  		Ch2aLoTh			: IN	STD_LOGIC_VECTOR (9 DOWNTO 0); -- 
+  		Ch3aLoTh			: IN	STD_LOGIC_VECTOR (9 DOWNTO 0); -- 
+   		Ch0bLoTh			: IN	STD_LOGIC_VECTOR (9 DOWNTO 0); -- 
+  		Ch1bLoTh			: IN	STD_LOGIC_VECTOR (9 DOWNTO 0); -- 
+  		Ch2bLoTh			: IN	STD_LOGIC_VECTOR (9 DOWNTO 0); -- 
+  		Ch3bLoTh			: IN	STD_LOGIC_VECTOR (9 DOWNTO 0); -- 
+   		FadcLoTh			: IN	STD_LOGIC_VECTOR (9 DOWNTO 0); -- 
+  		ComprMode			: IN	STD_LOGIC_VECTOR (1 DOWNTO 0); -- defines if compr and/or uncompr data is outputted
+------------------
+-- interface signals with the fadc and atwd buffers 
+		FadcData			: IN	STD_LOGIC_VECTOR (9 DOWNTO 0); -- 256 words are read out from the FADC buffer
+ 		AtwdData			: IN	STD_LOGIC_VECTOR (9 DOWNTO 0); -- 128 words or 512 are read out from the ATWD buffer
+		BfrDav				: IN	STD_LOGIC;					   -- generated when the buffer is ready to read 
+
+ 		AtwdAvail			: IN 	STD_LOGIC;
+		FadcAvail			: IN 	STD_LOGIC;
+		Atwd_AB 			: IN 	STD_LOGIC;
+		AtwdSize			: IN 	STD_LOGIC_VECTOR (1 DOWNTO 0);
+		Header				: IN 	HEADER_VECTOR;
+--		Header				: IN 	STD_LOGIC_VECTOR (88 DOWNTO 0);
+--
+		BfrReadDone	   		: OUT	STD_LOGIC;					   -- read done handshake to the Atwd buffer   
+  		FadcBfrAddr			: OUT	STD_LOGIC_VECTOR (7 DOWNTO 0);  
+  		AtwdBfrAddr			: OUT	STD_LOGIC_VECTOR (8 DOWNTO 0); 
+
+------------------
+-- interface signals with Ram to LBM write module
+-- used to generate BfrReadDone. Ram must be readout before the next 
+-- buffer read can be done.
+		LbmReadDone			: IN	STD_LOGIC;	
+		RamDav				: IN	STD_LOGIC;					   -- generated when the buffer is ready to read 
+  		FadcBfrAddrExt		: IN	STD_LOGIC_VECTOR (7 DOWNTO 0);  
+  		AtwdBfrAddrExt		: IN	STD_LOGIC_VECTOR (8 DOWNTO 0);  
+  		UnCmprFadcData		: OUT	STD_LOGIC_VECTOR (9 DOWNTO 0); 
+  		UnCmprAtwdData		: OUT	STD_LOGIC_VECTOR (9 DOWNTO 0); 
+  		UnCmprHeader		: OUT	HEADER_VECTOR; 
+--  	UnCmprHeader		: OUT	STD_LOGIC_VECTOR (88 DOWNTO 0); 
+
+------------------       
+-- interface signals with the compressor output module
+        ComprActive			: OUT   STD_LOGIC ;  
+        ComprDoneStrb		: OUT   STD_LOGIC ;   -- used by lb_st_mach_compress to read atwd and adc data from the fifo
+        ComprDataOut		: OUT   STD_LOGIC_VECTOR (7 DOWNTO 0) ;    -- Suppressed and Compressed data bytes
+		RingReadEn			: OUT	STD_LOGIC;		-- data valid 20ns after ShiftClk (equiv to clk20/2) low  
+
+-----------------
+-- test signals 
+--		RingData			: OUT	STD_LOGIC_VECTOR (17 DOWNTO 0); -- threshold value includes the baseline
+
+-- test signals for the input buffer interface
+		FadcBfrClk	   		: OUT	STD_LOGIC;		-- data read out from FPGA memory, using clk20/2 
+		AtwdBfrClk	   		: OUT	STD_LOGIC;		-- data valid 20ns after ShiftClk (equiv to clk20/2) low  
+  		AtwdChNumber		: OUT	STD_LOGIC_VECTOR (2 DOWNTO 0); -- threshold value includes the baseline
+
+        RingWriteClk		: OUT   STD_LOGIC;  
+        BfrDavEdge			: OUT   STD_LOGIC  
+		);
+
+	END COMPONENT;
+
+	COMPONENT compressor_out_synch
+	PORT (
+		Reset			: IN STD_LOGIC;
+		Clk20			: IN STD_LOGIC;
+		Clk40			: IN STD_LOGIC;
+--
+		ComprActive		: IN STD_LOGIC  ; 	-- compressor_in interface,
+		LbmReadDone		: IN STD_LOGIC  ;	-- external out interface
+		RingReadEn 		: IN STD_LOGIC  ; 	-- compressor_in interface
+		BfrDavEdge		: IN STD_LOGIC  ; 	-- compressor_in interface, bfr_dav_edge
+		ComprMode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0) ; -- from type_converter
+		LbmRamAddrExt	: IN STD_LOGIC_VECTOR (8 DOWNTO 0);	 -- external out interface
+		ComprData 		: IN STD_LOGIC_VECTOR (7 DOWNTO 0);
+--
+--		HeaderIn		: IN STD_LOGIC_VECTOR (55 DOWNTO 0) ;
+		Timestamp		: IN STD_LOGIC_VECTOR (47 DOWNTO 0); -- from type_converter	
+		TriggerWord		: IN STD_LOGIC_VECTOR (15 DOWNTO 0); -- from type_converter
+--		EventType 		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
+		Atwd_AB 		: IN STD_LOGIC;						 -- from type_converter
+		AtwdAvail		: IN STD_LOGIC;						 -- from type_converter
+		FadcAvail		: IN STD_LOGIC;						 -- from type_converter
+		AtwdSize		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);  -- from type_converter
+		LC				: IN STD_LOGIC_VECTOR (1 DOWNTO 0);	 -- from type_converter
+-- 		Deadtime		: IN STD_LOGIC_VECTOR (15 DOWNTO 0); 
+--
+		BfrDavOut	 	: OUT STD_LOGIC  ;			-- external out interface
+		RamDavOut 		: OUT STD_LOGIC  ;			-- assert only when data is compressed, 
+		HitSize 		: OUT STD_LOGIC_VECTOR (10 DOWNTO 0);
+		RamAddr 		: OUT STD_LOGIC_VECTOR (10 DOWNTO 0);
+		RamWe0 			: OUT STD_LOGIC  ;
+		RamDataIn		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+
+--		TimestampMsBy	: OUT STD_LOGIC_VECTOR (15 DOWNTO 0);
+--		TrigWordMsb		: OUT STD_LOGIC_VECTOR (2 DOWNTO 0);
+
+		RamDataOut0		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+		RamDataOut1		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+		RamDataOut2		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+		RamDataOut3		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+		LBMDataOut		: OUT STD_LOGIC_VECTOR (31 DOWNTO 0) -- external out interface
+	);
+	END COMPONENT;
+
+	COMPONENT type_analyzer 
+	PORT (
+		Header_in		: IN HEADER_VECTOR;
+		COMPR_ctrl		: IN COMPR_STRUCT;	
+
+		Timestamp 		: OUT STD_LOGIC_VECTOR (47 DOWNTO 0);
+		TriggerWord 	: OUT STD_LOGIC_VECTOR (15 DOWNTO 0);
+		EventType 		: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
+		Atwd_AB 		: OUT STD_LOGIC;
+		AtwdAvail		: OUT STD_LOGIC;
+		FadcAvail		: OUT STD_LOGIC;
+		AtwdSize		: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
+		LC				: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
+		Ch0aLoTh 		: OUT STD_LOGIC_VECTOR (9 DOWNTO 0);
+		Ch1aLoTh		: OUT STD_LOGIC_VECTOR (9 DOWNTO 0);
+		Ch2aLoTh		: OUT STD_LOGIC_VECTOR (9 DOWNTO 0);
+		Ch3aLoTh		: OUT STD_LOGIC_VECTOR (9 DOWNTO 0);
+		Ch0bLoTh		: OUT STD_LOGIC_VECTOR (9 DOWNTO 0);
+		Ch1bLoTh		: OUT STD_LOGIC_VECTOR (9 DOWNTO 0);
+		Ch2bLoTh		: OUT STD_LOGIC_VECTOR (9 DOWNTO 0);
+		Ch3bLoTh		: OUT STD_LOGIC_VECTOR (9 DOWNTO 0);
+		FadcLoTh		: OUT STD_LOGIC_VECTOR (9 DOWNTO 0);
+		ComprMode		: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
+		Threshold0		: OUT STD_LOGIC;
+		LastOnly		: OUT STD_LOGIC
+--   		Header  		: OUT HEADER_VECTOR
+	);
+	END COMPONENT;
+
+--------------------
+BEGIN
+
+compressor_in0 : compressor_in PORT MAP
+(
+-- system signals	
+		reset		=> 	rst,
+		clk20		=>	clk20,
+		clk40		=>  clk40, 	
+-----------------
+-- CPU register signals
+  		Ch0aLoTh	=>	ch0a_th,	
+  		Ch1aLoTh	=>	ch1a_th,	
+  		Ch2aLoTh	=>	ch2a_th,	
+  		Ch3aLoTh	=>	ch3a_th,	
+   		Ch0bLoTh	=>	ch0b_th,	
+  		Ch1bLoTh	=>	ch1b_th,	
+  		Ch2bLoTh	=>	ch2b_th,
+  		Ch3bLoTh	=>	ch3b_th,
+  		FadcLoTh	=>	fadc_th,	
+  		ComprMode	=>	compr_mode,
+------------------
+-- interface signals with external data buffer
+		FadcData	=>	Fadc_data_in,	
+ 		AtwdData	=>	ATWD_data_in,	
+		BfrDav		=>	data_avail_in,		
+ 		AtwdAvail	=>	atwd_avail,	
+		FadcAvail	=>	fadc_avail,	
+		Atwd_AB 	=>	atwd_A_B, 	
+		AtwdSize	=>	atwd_size,
+		Header		=>	Header_In,		
+--
+		BfrReadDone	=>  read_done_in, 	
+  		FadcBfrAddr	=>	FADC_addr_in,
+  		AtwdBfrAddr	=>	ATWD_addr_in,
+
+------------------
+-- interface signals with external lbm controller
+		LbmReadDone		=> read_done_out,	
+		RamDav			=> ram_dav,		
+  		FadcBfrAddrExt	=> Fadc_addr_out,	
+  		AtwdBfrAddrExt	=> ATWD_addr_out,	
+  		UnCmprFadcData	=> Fadc_data_out,
+  		UnCmprAtwdData	=> ATWD_data_out,	
+  		UnCmprHeader	=> Header_out,	
+
+------------------      
+-- interface signals with compressor_out_synch
+        ComprActive		=> compr_active,		
+--      ComprDoneStrb	=> ComprDoneStrb,  -- not used
+        ComprDataOut		=> compressed_data,	 
+		RingReadEn		=> ring_read_en,		
+
+-----------------
+-- test signals 
+-- 		RingData		=> RingData,	
+-- test signals for the 
+--		FadcBfrClk	   	=> FadcBfrClk,	
+--		AtwdBfrClk	   	=> AtwdBfrClk,
+--  	AtwdChNumber	=> AtwdChNumber,
+
+--      RingWriteClk	=> RingWriteClk,
+        BfrDavEdge		=> bfr_dav_edge	
+);
+
+compressor_out0 : compressor_out_synch PORT MAP
+(
+		Reset			=> 	rst,
+		Clk20			=>	clk20,	
+		Clk40			=>	Clk40, 
+--
+		ComprActive		=>	compr_active, 
+		LbmReadDone		=>	read_done_out, 	-- external out interface
+		RingReadEn		=>	ring_read_en, 
+ 		BfrDavEdge		=>	bfr_dav_edge, 	
+ 		ComprMode		=>	compr_mode, 	
+		LbmRamAddrExt	=>	compr_addr, 	-- external out interface
+		ComprData 		=>  compressed_data, 
+--
+--		HeaderIn		
+		Timestamp		=> time_stamp,
+		TriggerWord 	=> trig_word,
+--		EventType 		
+		Atwd_AB 		=> 	atwd_a_b,
+		AtwdAvail		=> 	atwd_avail,
+		FadcAvail		=> 	fadc_avail,
+		AtwdSize		=> 	atwd_size,
+		LC				=>	l_c,
+-- 		Deadtime		
+--
+		BfrDavOut 		=>  data_avail_out,
+		RamDavOut 			=> 	ram_dav,
+		HitSize 		=>  compr_size,
+		RamAddr 		=>  RamAddr,
+		RamWe0 			=>  RamWe0,
+		RamDataIn		=>  RamDataIn,
+
+--		TimestampMsBy	=> 
+--		TrigWordMsb		=> 
+
+		RamDataOut0		=>  RamDataOut0,
+		RamDataOut1		=>  RamDataOut1,
+		RamDataOut2		=>  RamDataOut2,
+		RamDataOut3		=>  RamDataOut3,
+		LBMDataOut		=>  compr_data
+	);
+
+type_analyzer0 : type_analyzer PORT MAP
+	(
+		Header_in		=>  Header_in,
+		COMPR_ctrl		=>  COMPR_ctrl,
+
+		Timestamp 		=>  time_stamp,
+		TriggerWord 	=>  trig_word,
+--		EventType 		=>  EventType,
+		Atwd_AB 		=>  atwd_a_b,
+		AtwdAvail		=>  atwd_avail,
+		FadcAvail		=>  fadc_avail,
+		AtwdSize		=>  atwd_size,
+		LC				=>  l_c,
+  		Ch0aLoTh		=>	ch0a_th,	
+  		Ch1aLoTh		=>	ch1a_th,	
+  		Ch2aLoTh		=>	ch2a_th,	
+  		Ch3aLoTh		=>	ch3a_th,	
+   		Ch0bLoTh		=>	ch0b_th,	
+  		Ch1bLoTh		=>	ch1b_th,	
+  		Ch2bLoTh		=>	ch2b_th,
+  		Ch3bLoTh		=>	ch3b_th,
+  		FadcLoTh		=>	fadc_th,	
+		ComprMode		=>  compr_mode
+--		Threshold0		=>  Threshold0,
+--		LastOnly		=>  LastOnly,
+--   	Header  		=>  Header
+	);
+
+compr_avail_out <= ram_dav;
+TC <= compressed_data;
+END  rtl;
+
+

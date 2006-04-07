@@ -1,0 +1,35 @@
+<HTML><HEAD><TITLE>PCI Testbench Log</TITLE></HEAD><BODY><CODE><FONT COLOR=green><I><CENTER>PCI Testbench v5.1.5 &copy PLD Applications 1998-2001 </CENTER><HR></I></FONT><BR>
+ <BR>
+465 ns  Config read @00<FONT COLOR=gray><I> (agent #1, func #0)</I></FONT><BR>
+&nbsp &nbsp &nbsp read 56781234<FONT COLOR=gray><I> (DeviceID/VendorID)</I></FONT><BR>
+<FONT COLOR=gray><I>&nbsp &nbsp &nbsp Device id = 5678<BR>
+&nbsp &nbsp &nbsp Vendor id = 1234</I></FONT><BR>
+ <BR>
+645 ns  Config write @10<FONT COLOR=gray><I> (agent #1, func #0)</I></FONT><BR>
+&nbsp &nbsp &nbsp write FFFFFFFF<FONT COLOR=gray><I> (BAR0)</I></FONT><BR>
+ <BR>
+795 ns  Config read @10<FONT COLOR=gray><I> (agent #1, func #0)</I></FONT><BR>
+&nbsp &nbsp &nbsp read FFFFFF81<FONT COLOR=gray><I> (BAR0)</I></FONT><BR>
+<FONT COLOR=gray><I>&nbsp &nbsp &nbsp BAR0 = FFFFFF81</I></FONT><BR>
+ <BR>
+975 ns  Config write @10<FONT COLOR=gray><I> (agent #1, func #0)</I></FONT><BR>
+&nbsp &nbsp &nbsp write 00002000<FONT COLOR=gray><I> (BAR0)</I></FONT><BR>
+ <BR>
+1125 ns  Config read @10<FONT COLOR=gray><I> (agent #1, func #0)</I></FONT><BR>
+&nbsp &nbsp &nbsp read 00002001<FONT COLOR=gray><I> (BAR0)</I></FONT><BR>
+<FONT COLOR=gray><I>&nbsp &nbsp &nbsp BAR0 = 00002001</I></FONT><BR>
+ <BR>
+1305 ns  Config write @04<FONT COLOR=gray><I> (agent #1, func #0)</I></FONT><BR>
+&nbsp &nbsp &nbsp write 00000005<FONT COLOR=gray><I> (Status/Command)</I></FONT><BR>
+ <BR>
+1635 ns  I/O write @00002000<BR>
+&nbsp &nbsp &nbsp write C0000000 @+0<BR>
+ <BR>
+12.645 us  I/O write @00002060<BR>
+&nbsp &nbsp &nbsp write 00000100 @+0<BR>
+ <BR>
+13.125 us  I/O read @00002060<BR>
+&nbsp &nbsp &nbsp read 00000100 @+0<BR>
+ <BR>
+313.335 us  I/O write @00002060<BR>
+&nbsp &nbsp &nbsp write 01000000 @+0<BR>

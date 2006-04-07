@@ -19,8 +19,7 @@
 -------------------------------------------------------------------------------
 -- Revisions  :
 -- Date        Version     Author    Description
--- 2003-10-23  V01-01-00   yaver/thorsten
--- 2006-04-20              thorsten  Moved timestamp to last timeslot (Arthur)
+-- 2003-10-23  V01-01-00   yaver/thorsten  
 -------------------------------------------------------------------------------
 LIBRARY IEEE;
 use IEEE.std_logic_1164.all;
@@ -204,8 +203,7 @@ begin
 			sn_t_cnt <= sn_t_cnt + '1';
 			--lockout_SN <= (others => '0');
 			if sn_t_cnt = 0 then
-				-- Moved timestamp to last timeslot after talking to Arthur
-				-- RM_sn_data_int(31 downto 16) <= systime(31 downto 16);
+				RM_sn_data_int(31 downto 16) <= systime(31 downto 16);
 				RM_sn_data_int(3 downto 0) <= sn_rate;
 				sn_rate <= (others => '0');
 			end if;
@@ -219,9 +217,7 @@ begin
 			end if;
 			if sn_t_cnt = 3 then
 				RM_sn_data(15 downto 12) <= sn_rate;
-				-- Moved timestamp to last timeslot after talking to Arthur
-				-- RM_sn_data(31 downto 16) <= RM_sn_data_int(31 downto 16);
-				RM_sn_data(31 downto 16) <= systime(31 downto 16);
+				RM_sn_data(31 downto 16) <= RM_sn_data_int(31 downto 16);
 				RM_sn_data(11 downto 0) <= RM_sn_data_int(11 downto 0);
 				sn_rate <= (others => '0');
 			end if;

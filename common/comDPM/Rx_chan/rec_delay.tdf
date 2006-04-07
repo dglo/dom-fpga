@@ -1,0 +1,43 @@
+TITLE "receiver start delay to fade out cable reflection, LAST CHANGE: 2004-12-13";
+
+
+--FUNCTION rec_delay_ctdn (	clock,	clk_en,	sload,	aclr,	data[7..0])
+--RETURNS (	q[7..0],	cout);
+
+INCLUDE	"rec_delay_ctdn";
+
+SUBDESIGN	rec_delay
+(
+	clk					: INPUT;
+	reset				: INPUT;
+	receive				: INPUT;
+	del_time[7..0]		: INPUT;	-- multiples of 50ns
+		
+	not_receive			: OUTPUT;
+)
+
+
+VARIABLE
+	rec[1..0]			: DFF;
+	not_receive			: DFFE;
+	timer				: rec_delay_ctdn;
+	
+BEGIN
+
+rec[].clk		= clk;
+rec[].clrn		= !reset;
+rec[0].d		= receive;
+rec[1].d		= rec[0].q;
+
+timer.clock		= clk;
+timer.clk_en	= !timer.cout # rec[0].q & !rec[1].q;
+timer.sload		= rec[0].q & !rec[1].q;
+timer.aclr		= reset;
+timer.data[]	= del_time[];
+
+not_receive.clk	= clk;
+not_receive.prn	= receive;
+not_receive.ena	= timer.q[]==1;
+not_receive.d	= gnd;
+
+END;

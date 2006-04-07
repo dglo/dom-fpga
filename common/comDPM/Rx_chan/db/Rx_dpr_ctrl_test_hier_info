@@ -1,0 +1,37 @@
+|Rx_dpr_ctrl_test
+rx_dpr_radr[0] => op_2.IN10
+rx_dpr_radr[0] => op_5.IN7
+rx_dpr_radr[1] => op_2.IN8
+rx_dpr_radr[1] => op_5.IN5
+rx_dpr_radr[2] => op_2.IN6
+rx_dpr_radr[2] => op_5.IN3
+rx_dpr_radr[3] => op_1.IN3
+rx_dpr_radr[3] => op_2.IN4
+rx_dpr_radr[3] => op_4.IN4
+rx_dpr_radr[3] => op_5.IN1
+rx_dpr_radr[4] => op_1.IN1
+rx_dpr_radr[4] => op_2.IN2
+rx_dpr_radr[4] => op_4.IN2
+rx_dpr_wadr[0] => op_2.IN9
+rx_dpr_wadr[0] => op_5.IN8
+rx_dpr_wadr[1] => op_2.IN7
+rx_dpr_wadr[1] => op_5.IN6
+rx_dpr_wadr[2] => op_2.IN5
+rx_dpr_wadr[2] => op_5.IN4
+rx_dpr_wadr[3] => op_1.IN4
+rx_dpr_wadr[3] => op_2.IN3
+rx_dpr_wadr[3] => op_4.IN3
+rx_dpr_wadr[3] => op_5.IN2
+rx_dpr_wadr[4] => op_1.IN2
+rx_dpr_wadr[4] => op_2.IN1
+rx_dpr_wadr[4] => op_4.IN1
+rx_dpr_ef <= rx_dpr_ef~1.DB_MAX_OUTPUT_PORT_TYPE
+rx_dpr_af <= rx_dpr_af~0.DB_MAX_OUTPUT_PORT_TYPE
+rx_dpr_ff <= rx_dpr_ff~1.DB_MAX_OUTPUT_PORT_TYPE
+rx_dpr_avail[0] <= rx_dpr_avail[0]~4.DB_MAX_OUTPUT_PORT_TYPE
+rx_dpr_avail[1] <= rx_dpr_avail[1]~3.DB_MAX_OUTPUT_PORT_TYPE
+rx_dpr_avail[2] <= rx_dpr_avail[2]~2.DB_MAX_OUTPUT_PORT_TYPE
+rx_dpr_avail[3] <= rx_dpr_avail[3]~1.DB_MAX_OUTPUT_PORT_TYPE
+rx_dpr_avail[4] <= rx_dpr_avail[4]~0.DB_MAX_OUTPUT_PORT_TYPE
+
+

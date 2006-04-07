@@ -1,0 +1,3 @@
+MASTER: trans=[    2]  addr=[90081060] WRITE data=[0000000C]   expected=[0000000C]         WORD  OKAY   
+MASTER: trans=[    4]  addr=[90081000] WRITE data=[00000002]   expected=[00000002]         WORD  OKAY   
+MASTER: trans=[    6]  addr=[90081018] WRITE data=[01000000]   expected=[01000000]         WORD  OKAY   

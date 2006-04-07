@@ -1,0 +1,631 @@
+Fitter report for Rx_dpr_ctrl_test
+Tue Mar 30 17:54:57 2004
+Version 4.0 Build 190 1/28/2004 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Fitter Summary
+  3. Fitter Settings
+  4. Fitter Device Options
+  5. Fitter Equations
+  6. Floorplan View
+  7. Input Pins
+  8. Output Pins
+  9. All Package Pins
+ 10. Carry Chains
+ 11. Non-Global High Fan-Out Signals
+ 12. Local Routing Interconnect
+ 13. MegaLAB Interconnect
+ 14. LAB External Interconnect
+ 15. MegaLAB Usage Summary
+ 16. Row Interconnect
+ 17. LAB Column Interconnect
+ 18. ESB Column Interconnect
+ 19. Fitter Resource Usage Summary
+ 20. Fitter Resource Utilization by Entity
+ 21. Delay Chain Summary
+ 22. I/O Bank Usage
+ 23. Pin-Out File
+ 24. Fitter Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2004 Altera Corporation
+Any  megafunction  design,  and related netlist (encrypted  or  decrypted),
+support information,  device programming or simulation file,  and any other
+associated  documentation or information  provided by  Altera  or a partner
+under  Altera's   Megafunction   Partnership   Program  may  be  used  only
+to program  PLD  devices (but not masked  PLD  devices) from  Altera.   Any
+other  use  of such  megafunction  design,  netlist,  support  information,
+device programming or simulation file,  or any other  related documentation
+or information  is prohibited  for  any  other purpose,  including, but not
+limited to  modification,  reverse engineering,  de-compiling, or use  with
+any other  silicon devices,  unless such use is  explicitly  licensed under
+a separate agreement with  Altera  or a megafunction partner.  Title to the
+intellectual property,  including patents,  copyrights,  trademarks,  trade
+secrets,  or maskworks,  embodied in any such megafunction design, netlist,
+support  information,  device programming or simulation file,  or any other
+related documentation or information provided by  Altera  or a megafunction
+partner, remains with Altera, the megafunction partner, or their respective
+licensors. No other licenses, including any licenses needed under any third
+party's intellectual property, are provided herein.
+
+
+
++---------------------------------------------------------------+
+; Fitter Summary                                                ;
++-----------------------+---------------------------------------+
+; Fitter Status         ; Successful - Tue Mar 30 17:54:57 2004 ;
+; Revision Name         ; Rx_dpr_ctrl_test                      ;
+; Top-level Entity Name ; Rx_dpr_ctrl_test                      ;
+; Family                ; APEX20KE                              ;
+; Device                ; EP20K30ETC144-1                       ;
+; Total logic elements  ; 25 / 1,200 ( 2 % )                    ;
+; Total pins            ; 18 / 92 ( 19 % )                      ;
+; Total memory bits     ; 0 / 24,576 ( 0 % )                    ;
+; Total PLLs            ; 0 / 2 ( 0 % )                         ;
++-----------------------+---------------------------------------+
+
+
++------------------------------------------------------------------------------------------------+
+; Fitter Settings                                                                                ;
++-------------------------------------------------------------------------------------------------
+; Option                                               ; Setting            ; Default Value      ;
++------------------------------------------------------+--------------------+--------------------+
+; Device                                               ; AUTO               ;                    ;
+; Auto Global Memory Control Signals                   ; Off                ; Off                ;
+; Turbo Bit                                            ; On                 ; On                 ;
+; PCI I/O                                              ; Off                ; Off                ;
+; Slow Slew Rate                                       ; Off                ; Off                ;
+; Fitter Initial Placement Seed                        ; 1                  ; 1                  ;
+; Final Placement Optimizations                        ; Automatically      ; Automatically      ;
+; SignalProbe signals routed during normal compilation ; Off                ; Off                ;
+; FIT_ONLY_ONE_ATTEMPT                                 ; Off                ; Off                ;
+; Optimize IOC Register Placement for Timing           ; On                 ; On                 ;
+; Optimize Timing                                      ; Normal Compilation ; Normal Compilation ;
++------------------------------------------------------+--------------------+--------------------+
+
+
++-------------------------------------------------------------------------+
+; Fitter Device Options                                                   ;
++--------------------------------------------------------------------------
+; Option                                       ; Setting                  ;
++----------------------------------------------+--------------------------+
+; Auto-restart configuration after error       ; On                       ;
+; Release clears before tri-states             ; Off                      ;
+; Enable user-supplied start-up clock (CLKUSR) ; Off                      ;
+; Enable device-wide reset (DEV_CLRn)          ; Off                      ;
+; Enable device-wide output enable (DEV_OE)    ; Off                      ;
+; Enable INIT_DONE output                      ; Off                      ;
+; Reserve all unused pins                      ; As output driving ground ;
+; Base pin-out file on sameframe device        ; Off                      ;
++----------------------------------------------+--------------------------+
+
+
++-------------------+
+; Fitter Equations  ;
++-------------------+
+The equations can be found in c:/projects/icecube/dor/fpga/dcom_01/rx_chan/Rx_dpr_ctrl_test.fit.eqn.
+
+
++-----------------+
+; Floorplan View  ;
++-----------------+
+Floorplan report data cannot be output to ASCII.
+Please use Quartus II to view the floorplan report data.
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Input Pins                                                                                                                                                                                                     ;
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+; Name           ; Pin # ; MegaLAB Row ; MegaLAB Col. ; Col. ; Fan-Out ; Global ; I/O Register ; Use Local Routing Input ; Power Up High ; PCI I/O Enabled ; Single-Pin CE ; FastRow Interconnect ; I/O Standard ;
++----------------+-------+-------------+--------------+------+---------+--------+--------------+-------------------------+---------------+-----------------+---------------+----------------------+--------------+
+; rx_dpr_radr[4] ; 8     ;  B          ; --           ; --   ; 2       ; no     ; no           ; no                      ; no            ; no              ; no            ; no                   ; LVTTL        ;
+; rx_dpr_radr[3] ; 26    ;  E          ; --           ; --   ; 3       ; no     ; no           ; no                      ; no            ; no              ; no            ; no                   ; LVTTL        ;
+; rx_dpr_wadr[3] ; 27    ;  E          ; --           ; --   ; 3       ; no     ; no           ; no                      ; no            ; no              ; no            ; no                   ; LVTTL        ;
+; rx_dpr_wadr[4] ; 29    ;  E          ; --           ; --   ; 2       ; no     ; no           ; no                      ; no            ; no              ; no            ; no                   ; LVTTL        ;
+; rx_dpr_wadr[2] ; 30    ;  E          ; --           ; --   ; 2       ; no     ; no           ; no                      ; no            ; no              ; no            ; no                   ; LVTTL        ;
+; rx_dpr_radr[2] ; 136   ; --          ; 2            ; 6    ; 2       ; no     ; no           ; no                      ; no            ; no              ; no            ; no                   ; LVTTL        ;
+; rx_dpr_wadr[1] ; 80    ;  E          ; --           ; --   ; 2       ; no     ; no           ; no                      ; no            ; no              ; no            ; no                   ; LVTTL        ;
+; rx_dpr_radr[1] ; 44    ; --          ; 2            ; 6    ; 2       ; no     ; no           ; no                      ; no            ; no              ; no            ; no                   ; LVTTL        ;
+; rx_dpr_wadr[0] ; 13    ;  C          ; --           ; --   ; 2       ; no     ; no           ; no                      ; no            ; no              ; no            ; no                   ; LVTTL        ;
+; rx_dpr_radr[0] ; 40    ; --          ; 2            ; 3    ; 2       ; no     ; no           ; no                      ; no            ; no              ; no            ; no                   ; LVTTL        ;
++----------------+-------+-------------+--------------+------+---------+--------+--------------+-------------------------+---------------+-----------------+---------------+----------------------+--------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Output Pins                                                                                                                                                                                                          ;
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+; Name            ; Pin # ; MegaLAB Row ; MegaLAB Col. ; Col. ; I/O Register ; Use Local Routing Output ; Power Up High ; Slow Slew Rate ; PCI I/O Enabled ; Single-Pin OE ; Single-Pin CE ; Open Drain ; I/O Standard ;
++-----------------+-------+-------------+--------------+------+--------------+--------------------------+---------------+----------------+-----------------+---------------+---------------+------------+--------------+
+; rx_dpr_ef       ; 76    ;  E          ; --           ; --   ; no           ; no                       ; no            ; no             ; no              ; no            ; no            ; no         ; LVTTL        ;
+; rx_dpr_af       ; 10    ;  B          ; --           ; --   ; no           ; no                       ; no            ; no             ; no              ; no            ; no            ; no         ; LVTTL        ;
+; rx_dpr_ff       ; 24    ;  D          ; --           ; --   ; no           ; no                       ; no            ; no             ; no              ; no            ; no            ; no         ; LVTTL        ;
+; rx_dpr_avail[0] ; 78    ;  E          ; --           ; --   ; no           ; no                       ; no            ; no             ; no              ; no            ; no            ; no         ; LVTTL        ;
+; rx_dpr_avail[1] ; 3     ;  A          ; --           ; --   ; no           ; no                       ; no            ; no             ; no              ; no            ; no            ; no         ; LVTTL        ;
+; rx_dpr_avail[2] ; 15    ;  C          ; --           ; --   ; no           ; no                       ; no            ; no             ; no              ; no            ; no            ; no         ; LVTTL        ;
+; rx_dpr_avail[3] ; 75    ;  E          ; --           ; --   ; no           ; no                       ; no            ; no             ; no              ; no            ; no            ; no         ; LVTTL        ;
+; rx_dpr_avail[4] ; 79    ;  E          ; --           ; --   ; no           ; no                       ; no            ; no             ; no              ; no            ; no            ; no         ; LVTTL        ;
++-----------------+-------+-------------+--------------+------+--------------+--------------------------+---------------+----------------+-----------------+---------------+---------------+------------+--------------+
+
+
++----------------------------------------+
+; All Package Pins                       ;
++-----------------------------------------
+; Pin # ; Usage           ; I/O Standard ;
++-------+-----------------+--------------+
+; 1     ; VCC_INT         ;              ;
+; 2     ; GND*            ;              ;
+; 3     ; rx_dpr_avail[1] ; LVTTL        ;
+; 4     ; GND             ;              ;
+; 5     ; VCC_IO          ;              ;
+; 6     ; GND*            ;              ;
+; 7     ; GND*            ;              ;
+; 8     ; rx_dpr_radr[4]  ; LVTTL        ;
+; 9     ; GND*            ;              ;
+; 10    ; rx_dpr_af       ; LVTTL        ;
+; 11    ; GND*            ;              ;
+; 12    ; GND_IO          ;              ;
+; 13    ; rx_dpr_wadr[0]  ; LVTTL        ;
+; 14    ; GND*            ;              ;
+; 15    ; rx_dpr_avail[2] ; LVTTL        ;
+; 16    ; VCC_INT         ;              ;
+; 17    ; GND             ;              ;
+; 18    ; ^MSEL0          ;              ;
+; 19    ; ^MSEL1          ;              ;
+; 20    ; GND+            ;              ;
+; 21    ; VCC_INT         ;              ;
+; 22    ; ^NCONFIG        ;              ;
+; 23    ; GND+            ;              ;
+; 24    ; rx_dpr_ff       ; LVTTL        ;
+; 25    ; GND*            ;              ;
+; 26    ; rx_dpr_radr[3]  ; LVTTL        ;
+; 27    ; rx_dpr_wadr[3]  ; LVTTL        ;
+; 28    ; VCC_IO          ;              ;
+; 29    ; rx_dpr_wadr[4]  ; LVTTL        ;
+; 30    ; rx_dpr_wadr[2]  ; LVTTL        ;
+; 31    ; GND*            ;              ;
+; 32    ; GND*            ;              ;
+; 33    ; GND*            ;              ;
+; 34    ; GND             ;              ;
+; 35    ; GND*            ;              ;
+; 36    ; VCC_INT         ;              ;
+; 37    ; GND*            ;              ;
+; 38    ; GND*            ;              ;
+; 39    ; GND*            ;              ;
+; 40    ; rx_dpr_radr[0]  ; LVTTL        ;
+; 41    ; GND*            ;              ;
+; 42    ; GND_IO          ;              ;
+; 43    ; GND*            ;              ;
+; 44    ; rx_dpr_radr[1]  ; LVTTL        ;
+; 45    ; VCC_IO          ;              ;
+; 46    ; GND*            ;              ;
+; 47    ; GND*            ;              ;
+; 48    ; GND*            ;              ;
+; 49    ; GND*            ;              ;
+; 50    ; GND*            ;              ;
+; 51    ; #TMS            ;              ;
+; 52    ; #TCK            ;              ;
+; 53    ; GND+            ;              ;
+; 54    ; GND             ;              ;
+; 55    ; VCC_INT         ;              ;
+; 56    ; GND+            ;              ;
+; 57    ; ^NSTATUS        ;              ;
+; 58    ; ^CONF_DONE      ;              ;
+; 59    ; GND*            ;              ;
+; 60    ; GND*            ;              ;
+; 61    ; VCC_IO          ;              ;
+; 62    ; GND*            ;              ;
+; 63    ; GND*            ;              ;
+; 64    ; GND*            ;              ;
+; 65    ; GND*            ;              ;
+; 66    ; GND*            ;              ;
+; 67    ; GND*            ;              ;
+; 68    ; GND*            ;              ;
+; 69    ; GND*            ;              ;
+; 70    ; GND*            ;              ;
+; 71    ; GND*            ;              ;
+; 72    ; GND_IO          ;              ;
+; 73    ; VCC_INT         ;              ;
+; 74    ; GND             ;              ;
+; 75    ; rx_dpr_avail[3] ; LVTTL        ;
+; 76    ; rx_dpr_ef       ; LVTTL        ;
+; 77    ; GND             ;              ;
+; 78    ; rx_dpr_avail[0] ; LVTTL        ;
+; 79    ; rx_dpr_avail[4] ; LVTTL        ;
+; 80    ; rx_dpr_wadr[1]  ; LVTTL        ;
+; 81    ; GND*            ;              ;
+; 82    ; GND_CKOUT2      ;              ;
+; 83    ; VCC_CKOUT2      ;              ;
+; 84    ; GND*            ;              ;
+; 85    ; VCC_CKLK2       ;              ;
+; 86    ; VCC_INT         ;              ;
+; 87    ; GND             ;              ;
+; 88    ; GND_CKLK2       ;              ;
+; 89    ; VCC_IO          ;              ;
+; 90    ; #TDI            ;              ;
+; 91    ; ^nCE            ;              ;
+; 92    ; GND+            ;              ;
+; 93    ; ^DCLK           ;              ;
+; 94    ; ^DATA0          ;              ;
+; 95    ; GND+            ;              ;
+; 96    ; GND+            ;              ;
+; 97    ; GND*            ;              ;
+; 98    ; GND*            ;              ;
+; 99    ; GND_CKLK4       ;              ;
+; 100   ; VCC_CKLK4       ;              ;
+; 101   ; GND*            ;              ;
+; 102   ; GND*            ;              ;
+; 103   ; GND*            ;              ;
+; 104   ; GND*            ;              ;
+; 105   ; GND*            ;              ;
+; 106   ; GND_IO          ;              ;
+; 107   ; VCC_IO          ;              ;
+; 108   ; VCC_INT         ;              ;
+; 109   ; GND*            ;              ;
+; 110   ; GND*            ;              ;
+; 111   ; GND*            ;              ;
+; 112   ; GND*            ;              ;
+; 113   ; GND*            ;              ;
+; 114   ; GND*            ;              ;
+; 115   ; GND*            ;              ;
+; 116   ; VCC_IO          ;              ;
+; 117   ; GND*            ;              ;
+; 118   ; GND*            ;              ;
+; 119   ; GND*            ;              ;
+; 120   ; GND*            ;              ;
+; 121   ; GND*            ;              ;
+; 122   ; GND*            ;              ;
+; 123   ; #TDO            ;              ;
+; 124   ; GND+            ;              ;
+; 125   ; VCC_INT         ;              ;
+; 126   ; GND             ;              ;
+; 127   ; GND+            ;              ;
+; 128   ; ^nCEO           ;              ;
+; 129   ; #TRST           ;              ;
+; 130   ; GND*            ;              ;
+; 131   ; GND*            ;              ;
+; 132   ; GND*            ;              ;
+; 133   ; GND*            ;              ;
+; 134   ; GND_IO          ;              ;
+; 135   ; GND*            ;              ;
+; 136   ; rx_dpr_radr[2]  ; LVTTL        ;
+; 137   ; GND*            ;              ;
+; 138   ; GND*            ;              ;
+; 139   ; GND*            ;              ;
+; 140   ; GND*            ;              ;
+; 141   ; GND*            ;              ;
+; 142   ; GND*            ;              ;
+; 143   ; GND*            ;              ;
+; 144   ; VCC_IO          ;              ;
++-------+-----------------+--------------+
+
+
++---------------------------------------------+
+; Carry Chains                                ;
++--------------------+------------------------+
+; Carry Chain Length ; Number of Carry Chains ;
++--------------------+------------------------+
+; 0                  ; 0                      ;
+; 1                  ; 0                      ;
+; 2                  ; 0                      ;
+; 3                  ; 0                      ;
+; 4                  ; 1                      ;
+; 5                  ; 2                      ;
++--------------------+------------------------+
+
+
++---------------------------------+
+; Non-Global High Fan-Out Signals ;
++----------------------------------
+; Name               ; Fan-Out    ;
++--------------------+------------+
+; op_4~5             ; 10         ;
+; op_3~5             ; 4          ;
+; rx_dpr_ef~56       ; 3          ;
+; rx_dpr_radr[3]     ; 3          ;
+; rx_dpr_wadr[3]     ; 3          ;
+; rx_dpr_radr[1]     ; 2          ;
+; op_5~3             ; 2          ;
+; rx_dpr_radr[2]     ; 2          ;
+; rx_dpr_wadr[1]     ; 2          ;
+; rx_dpr_radr[4]     ; 2          ;
+; op_5~4             ; 2          ;
+; rx_dpr_wadr[2]     ; 2          ;
+; op_3~3             ; 2          ;
+; op_3~2             ; 2          ;
+; rx_dpr_radr[0]     ; 2          ;
+; op_5~482           ; 2          ;
+; rx_dpr_ef~57       ; 2          ;
+; rx_dpr_wadr[4]     ; 2          ;
+; op_5~481           ; 2          ;
+; rx_dpr_wadr[0]     ; 2          ;
+; op_2~4             ; 1          ;
+; op_3~4COUT         ; 1          ;
+; op_2~3             ; 1          ;
+; rx_dpr_avail[4]~15 ; 1          ;
+; op_5~483           ; 1          ;
+; op_2~5             ; 1          ;
+; op_5~4COUT         ; 1          ;
+; op_2~2COUT         ; 1          ;
+; op_2~3COUT         ; 1          ;
+; op_5~2             ; 1          ;
+; op_5~2COUT         ; 1          ;
+; op_3~4             ; 1          ;
+; op_2~4COUT         ; 1          ;
+; op_5~3COUT         ; 1          ;
+; op_5~484           ; 1          ;
+; op_6~21            ; 1          ;
+; op_3~2COUT         ; 1          ;
+; rx_dpr_ff~2        ; 1          ;
+; op_2~1COUT         ; 1          ;
+; op_3~1             ; 1          ;
+; op_3~1COUT         ; 1          ;
+; op_2~2             ; 1          ;
+; op_5~5             ; 1          ;
+; op_3~3COUT         ; 1          ;
+; rx_dpr_ef~2        ; 1          ;
+; op_2~1             ; 1          ;
++--------------------+------------+
+
+
++--------------------------------------------------+
+; Local Routing Interconnect                       ;
++-----------------------------+--------------------+
+; Local Routing Interconnects ; Number of MegaLABs ;
++-----------------------------+--------------------+
+; 0                           ; 11                 ;
+; 1                           ; 0                  ;
+; 2                           ; 0                  ;
+; 3                           ; 0                  ;
+; 4                           ; 0                  ;
+; 5                           ; 0                  ;
+; 6                           ; 0                  ;
+; 7                           ; 0                  ;
+; 8                           ; 0                  ;
+; 9                           ; 0                  ;
+; 10                          ; 0                  ;
+; 11                          ; 0                  ;
+; 12                          ; 0                  ;
+; 13                          ; 0                  ;
+; 14                          ; 0                  ;
+; 15                          ; 1                  ;
++-----------------------------+--------------------+
+
+
++--------------------------------------------+
+; MegaLAB Interconnect                       ;
++-----------------------+--------------------+
+; MegaLAB Interconnects ; Number of MegaLABs ;
++-----------------------+--------------------+
+; 0                     ; 6                  ;
+; 1                     ; 4                  ;
+; 2                     ; 0                  ;
+; 3                     ; 0                  ;
+; 4                     ; 1                  ;
+; 5                     ; 0                  ;
+; 6                     ; 0                  ;
+; 7                     ; 0                  ;
+; 8                     ; 0                  ;
+; 9                     ; 0                  ;
+; 10                    ; 0                  ;
+; 11                    ; 0                  ;
+; 12                    ; 0                  ;
+; 13                    ; 0                  ;
+; 14                    ; 1                  ;
++-----------------------+--------------------+
+
+
++----------------------------------------------+
+; LAB External Interconnect                    ;
++----------------------------+-----------------+
+; LAB External Interconnects ; Number MegaLABs ;
++----------------------------+-----------------+
+; 0 - 1                      ; 10              ;
+; 2 - 3                      ; 0               ;
+; 4 - 5                      ; 1               ;
+; 6 - 7                      ; 0               ;
+; 8 - 9                      ; 0               ;
+; 10 - 11                    ; 0               ;
+; 12 - 13                    ; 0               ;
+; 14 - 15                    ; 0               ;
+; 16 - 17                    ; 0               ;
+; 18 - 19                    ; 1               ;
++----------------------------+-----------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; MegaLAB Usage Summary                                                                                                                                                                                                                                                                              ;
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+; MegaLAB Name ; Total Cells        ; MegaLAB Interconnect ; Column Fast Interconnect Driving In ; Column Fast Interconnect Driving Out ; Row Fast Interconnect Driving In ; Row Fast Interconnect Driving Out ; Fan-In ; Fan-Out ; Local Interconnect ; LAB External Interconnect ; Control Signals ;
++--------------+--------------------+----------------------+-------------------------------------+--------------------------------------+----------------------------------+-----------------------------------+--------+---------+--------------------+---------------------------+-----------------+
+;  A1          ;  0 / 100 ( 0 % )   ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
+;  A2          ;  0 / 100 ( 0 % )   ; 1                    ; 1                                   ; 0                                    ; 0                                ; 0                                 ; 1      ; 2       ; 0                  ; 1                         ; 0               ;
+;  B1          ;  0 / 100 ( 0 % )   ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
+;  B2          ;  0 / 100 ( 0 % )   ; 1                    ; 1                                   ; 0                                    ; 0                                ; 0                                 ; 1      ; 2       ; 0                  ; 1                         ; 0               ;
+;  C1          ;  0 / 100 ( 0 % )   ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
+;  C2          ;  0 / 100 ( 0 % )   ; 1                    ; 1                                   ; 0                                    ; 0                                ; 0                                 ; 1      ; 0       ; 0                  ; 1                         ; 0               ;
+;  D1          ;  0 / 100 ( 0 % )   ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
+;  D2          ;  0 / 100 ( 0 % )   ; 1                    ; 1                                   ; 0                                    ; 0                                ; 0                                 ; 4      ; 12      ; 0                  ; 1                         ; 0               ;
+;  E1          ;  0 / 100 ( 0 % )   ; 4                    ; 0                                   ; 0                                    ; 4                                ; 0                                 ; 0      ; 0       ; 0                  ; 4                         ; 0               ;
+;  E2          ;  25 / 100 ( 25 % ) ; 14                   ; 5                                   ; 4                                    ; 1                                ; 4                                 ; 10     ; 8       ; 15                 ; 19                        ; 0               ;
+;  F1          ;  0 / 100 ( 0 % )   ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
+;  F2          ;  0 / 100 ( 0 % )   ; 0                    ; 0                                   ; 0                                    ; 0                                ; 0                                 ; 0      ; 0       ; 0                  ; 0                         ; 0               ;
++--------------+--------------------+----------------------+-------------------------------------+--------------------------------------+----------------------------------+-----------------------------------+--------+---------+--------------------+---------------------------+-----------------+
+
+
++------------------------------------------------------------------------------+
+; Row Interconnect                                                             ;
++-------------------------------------------------------------------------------
+; Row   ; Interconnect Available ; Interconnect Used  ; Half Interconnect Used ;
++-------+------------------------+--------------------+------------------------+
+;  A    ; 100                    ;  0 / 100 ( 0 % )   ;  0 / 200 ( 0 % )       ;
+;  B    ; 100                    ;  0 / 100 ( 0 % )   ;  0 / 200 ( 0 % )       ;
+;  C    ; 100                    ;  0 / 100 ( 0 % )   ;  0 / 200 ( 0 % )       ;
+;  D    ; 100                    ;  0 / 100 ( 0 % )   ;  0 / 200 ( 0 % )       ;
+;  E    ; 100                    ;  5 / 100 ( 5 % )   ;  0 / 200 ( 0 % )       ;
+;  F    ; 100                    ;  0 / 100 ( 0 % )   ;  0 / 200 ( 0 % )       ;
+; Total ; 600                    ;  5 / 600 ( < 1 % ) ;  0 / 1200 ( 0 % )      ;
++-------+------------------------+--------------------+------------------------+
+
+
++-------------------------------------------------------------------------------------------+
+; LAB Column Interconnect                                                                   ;
++--------------------------------------------------------------------------------------------
+; MegaLAB Col. ; Col. ; Interconnect Available ; Interconnect Used ; Half Interconnect Used ;
++--------------+------+------------------------+-------------------+------------------------+
+; 1            ; 1    ; 80                     ;  0 / 80 ( 0 % )   ;  0 / 160 ( 0 % )       ;
+; 1            ; 2    ; 80                     ;  0 / 80 ( 0 % )   ;  0 / 160 ( 0 % )       ;
+; 1            ; 3    ; 80                     ;  0 / 80 ( 0 % )   ;  0 / 160 ( 0 % )       ;
+; 1            ; 4    ; 80                     ;  0 / 80 ( 0 % )   ;  0 / 160 ( 0 % )       ;
+; 1            ; 5    ; 80                     ;  0 / 80 ( 0 % )   ;  0 / 160 ( 0 % )       ;
+; 1            ; 6    ; 80                     ;  0 / 80 ( 0 % )   ;  0 / 160 ( 0 % )       ;
+; 1            ; 7    ; 80                     ;  0 / 80 ( 0 % )   ;  0 / 160 ( 0 % )       ;
+; 1            ; 8    ; 80                     ;  0 / 80 ( 0 % )   ;  0 / 160 ( 0 % )       ;
+; 1            ; 9    ; 80                     ;  0 / 80 ( 0 % )   ;  0 / 160 ( 0 % )       ;
+; 1            ; 10   ; 80                     ;  0 / 80 ( 0 % )   ;  0 / 160 ( 0 % )       ;
+; 1            ; 11   ; 80                     ;  0 / 80 ( 0 % )   ;  0 / 160 ( 0 % )       ;
+; 2            ; 1    ; 80                     ;  0 / 80 ( 0 % )   ;  2 / 160 ( 1 % )       ;
+; 2            ; 2    ; 80                     ;  0 / 80 ( 0 % )   ;  0 / 160 ( 0 % )       ;
+; 2            ; 3    ; 80                     ;  0 / 80 ( 0 % )   ;  1 / 160 ( < 1 % )     ;
+; 2            ; 4    ; 80                     ;  0 / 80 ( 0 % )   ;  4 / 160 ( 2 % )       ;
+; 2            ; 5    ; 80                     ;  0 / 80 ( 0 % )   ;  0 / 160 ( 0 % )       ;
+; 2            ; 6    ; 80                     ;  0 / 80 ( 0 % )   ;  2 / 160 ( 1 % )       ;
+; 2            ; 7    ; 80                     ;  0 / 80 ( 0 % )   ;  0 / 160 ( 0 % )       ;
+; 2            ; 8    ; 80                     ;  0 / 80 ( 0 % )   ;  0 / 160 ( 0 % )       ;
+; 2            ; 9    ; 80                     ;  0 / 80 ( 0 % )   ;  0 / 160 ( 0 % )       ;
+; 2            ; 10   ; 80                     ;  0 / 80 ( 0 % )   ;  0 / 160 ( 0 % )       ;
+; 2            ; 11   ; 80                     ;  0 / 80 ( 0 % )   ;  0 / 160 ( 0 % )       ;
+; Total        ;      ; 1760                   ;  0 / 1760 ( 0 % ) ;  9 / 3520 ( < 1 % )    ;
++--------------+------+------------------------+-------------------+------------------------+
+
+
++-----------------------------------------------------------------------------+
+; ESB Column Interconnect                                                     ;
++------------------------------------------------------------------------------
+; Col.  ; Interconnect Available ; Interconnect Used ; Half Interconnect Used ;
++-------+------------------------+-------------------+------------------------+
+; 0     ; 128                    ;  0 / 128 ( 0 % )  ;  0 / 256 ( 0 % )       ;
+; 1     ; 128                    ;  0 / 128 ( 0 % )  ;  0 / 256 ( 0 % )       ;
+; Total ; 256                    ;  0 / 256 ( 0 % )  ;  0 / 512 ( 0 % )       ;
++-------+------------------------+-------------------+------------------------+
+
+
++---------------------------------------------------+
+; Fitter Resource Usage Summary                     ;
++----------------------------------------------------
+; Resource                     ; Usage              ;
++------------------------------+--------------------+
+; Logic cells                  ; 25 / 1,200 ( 2 % ) ;
+; Registers                    ; 0 / 1,200 ( 0 % )  ;
+; Logic cells in carry chains  ; 14                 ;
+; User inserted logic cells    ; 0                  ;
+; I/O pins                     ; 18 / 92 ( 19 % )   ;
+;     -- Clock pins            ; 0                  ;
+;     -- Dedicated input pins  ; 0 / 4 ( 0 % )      ;
+; Global signals               ; 0                  ;
+; ESBs                         ; 0 / 12 ( 0 % )     ;
+; Macrocells                   ; 0 / 192 ( 0 % )    ;
+; ESB pterm bits used          ; 0 / 24,576 ( 0 % ) ;
+; ESB CAM bits used            ; 0 / 24,576 ( 0 % ) ;
+; Total memory bits            ; 0 / 24,576 ( 0 % ) ;
+; Total RAM block bits         ; 0 / 24,576 ( 0 % ) ;
+; FastRow interconnects        ; 0 / 120 ( 0 % )    ;
+; Maximum fan-out node         ; op_4~5             ;
+; Maximum fan-out              ; 10                 ;
+; Total fan-out                ; 79                 ;
+; Average fan-out              ; 1.84               ;
++------------------------------+--------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Fitter Resource Utilization by Entity                                                                                                                                                  ;
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+; Compilation Hierarchy Node ; Logic Cells ; Registers ; Memory Bits ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Full Hierarchy Name ;
++----------------------------+-------------+-----------+-------------+------+--------------+--------------+-------------------+------------------+-----------------+---------------------+
+; |Rx_dpr_ctrl_test          ; 25 (25)     ; 0         ; 0           ; 18   ; 0            ; 25 (25)      ; 0 (0)             ; 0 (0)            ; 14 (14)         ; |Rx_dpr_ctrl_test   ;
++----------------------------+-------------+-----------+-------------+------+--------------+--------------+-------------------+------------------+-----------------+---------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------+
+; Delay Chain Summary                                                                                                    ;
++-------------------------------------------------------------------------------------------------------------------------
+; Name            ; Pin Type ; Pad to Core ; Pad to Input Register ; Core to Output Register ; Core to CE Register ; TCO ;
++-----------------+----------+-------------+-----------------------+-------------------------+---------------------+-----+
+; rx_dpr_radr[4]  ; Input    ; ON          ; OFF                   ; OFF                     ; OFF                 ; OFF ;
+; rx_dpr_radr[3]  ; Input    ; ON          ; OFF                   ; OFF                     ; OFF                 ; OFF ;
+; rx_dpr_wadr[3]  ; Input    ; ON          ; OFF                   ; OFF                     ; OFF                 ; OFF ;
+; rx_dpr_wadr[4]  ; Input    ; ON          ; OFF                   ; OFF                     ; OFF                 ; OFF ;
+; rx_dpr_wadr[2]  ; Input    ; ON          ; OFF                   ; OFF                     ; OFF                 ; OFF ;
+; rx_dpr_radr[2]  ; Input    ; ON          ; OFF                   ; OFF                     ; OFF                 ; OFF ;
+; rx_dpr_wadr[1]  ; Input    ; ON          ; OFF                   ; OFF                     ; OFF                 ; OFF ;
+; rx_dpr_radr[1]  ; Input    ; ON          ; OFF                   ; OFF                     ; OFF                 ; OFF ;
+; rx_dpr_wadr[0]  ; Input    ; ON          ; OFF                   ; OFF                     ; OFF                 ; OFF ;
+; rx_dpr_radr[0]  ; Input    ; ON          ; OFF                   ; OFF                     ; OFF                 ; OFF ;
+; rx_dpr_ef       ; Output   ; OFF         ; OFF                   ; OFF                     ; OFF                 ; OFF ;
+; rx_dpr_af       ; Output   ; OFF         ; OFF                   ; OFF                     ; OFF                 ; OFF ;
+; rx_dpr_ff       ; Output   ; OFF         ; OFF                   ; OFF                     ; OFF                 ; OFF ;
+; rx_dpr_avail[0] ; Output   ; OFF         ; OFF                   ; OFF                     ; OFF                 ; OFF ;
+; rx_dpr_avail[1] ; Output   ; OFF         ; OFF                   ; OFF                     ; OFF                 ; OFF ;
+; rx_dpr_avail[2] ; Output   ; OFF         ; OFF                   ; OFF                     ; OFF                 ; OFF ;
+; rx_dpr_avail[3] ; Output   ; OFF         ; OFF                   ; OFF                     ; OFF                 ; OFF ;
+; rx_dpr_avail[4] ; Output   ; OFF         ; OFF                   ; OFF                     ; OFF                 ; OFF ;
++-----------------+----------+-------------+-----------------------+-------------------------+---------------------+-----+
+
+
++----------------------------+
+; I/O Bank Usage             ;
++-----------------------------
+; I/O Bank ; Usage           ;
++----------+-----------------+
+; 1        ; 0 / 15 ( 0 % )  ;
+; 2        ; 1 / 13 ( 7 % )  ;
+; 3        ; 5 / 11 ( 45 % ) ;
+; 4        ; 5 / 12 ( 41 % ) ;
+; 5        ; 2 / 14 ( 14 % ) ;
+; 6        ; 0 / 12 ( 0 % )  ;
+; 7        ; 5 / 6 ( 83 % )  ;
+; 8        ; 0 / 9 ( 0 % )   ;
++----------+-----------------+
+
+
++---------------+
+; Pin-Out File  ;
++---------------+
+The pin-out file can be found in c:/projects/icecube/dor/fpga/dcom_01/rx_chan/Rx_dpr_ctrl_test.pin.
+
+
++------------------+
+; Fitter Messages  ;
++------------------+
+Info: *******************************************************************
+Info: Running Quartus II Fitter
+    Info: Version 4.0 Build 190 1/28/2004 SJ Full Version
+    Info: Processing started: Tue Mar 30 17:54:54 2004
+Info: Command: quartus_fit --lower_priority --import_settings_files=off --export_settings_files=off Rx_dpr_ctrl_test -c Rx_dpr_ctrl_test
+Info: Automatically selected device EP20K30ETC144-1 for design Rx_dpr_ctrl_test
+Info: Timing requirements not specified -- optimizing all clocks equally to maximize operation frequency
+Info: Started fitting attempt 1 on Tue Mar 30 2004 at 17:54:55
+Info: Fitter placement preparation operations beginning
+Info: Fitter placement preparation operations ending: elapsed time = 0 seconds
+Info: Fitter placement operations beginning
+Info: Fitter placement was successful
+Info: Design requires the following device routing resources:
+    Info: Overall column FastTrack interconnect = 0%
+    Info: Overall row FastTrack interconnect = 1%
+    Info: Maximum column FastTrack interconnect = 1%
+    Info: Maximum row FastTrack interconnect = 5%
+Info: Fitter placement operations ending: elapsed time = 0 seconds
+Info: Fitter routing operations beginning
+Info: Fitter routing operations ending: elapsed time = 0 seconds
+Info: Quartus II Fitter was successful. 0 errors, 0 warnings
+    Info: Processing ended: Tue Mar 30 17:54:57 2004
+    Info: Elapsed time: 00:00:03
+
+

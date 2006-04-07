@@ -105,7 +105,7 @@ PACKAGE ctrl_data_types IS
 --            ATWDb3thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
 --            FADCthres   : STD_LOGIC_VECTOR (9 DOWNTO 0);
 --            threshold0  : STD_LOGIC;
-            LASTonly    : STD_LOGIC;
+--            LASTonly    : STD_LOGIC;
         END RECORD;
     
     TYPE COMM_CTRL_STRUCT IS
