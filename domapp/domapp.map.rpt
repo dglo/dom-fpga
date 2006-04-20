@@ -1,5 +1,5 @@
 Analysis & Synthesis report for domapp
-Thu Apr 20 09:52:59 2006
+Thu Apr 20 10:26:44 2006
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -72,7 +72,7 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                        ;
 +-----------------------------+---------------------------------------+
-; Analysis & Synthesis Status ; Successful - Thu Apr 20 09:52:59 2006 ;
+; Analysis & Synthesis Status ; Successful - Thu Apr 20 10:26:44 2006 ;
 ; Revision Name               ; domapp                                ;
 ; Top-level Entity Name       ; domapp                                ;
 ; Family                      ; EXCALIBUR_ARM                         ;
@@ -1816,7 +1816,7 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.map
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Thu Apr 20 09:41:48 2006
+    Info: Processing started: Thu Apr 20 10:17:15 2006
 Info: Command: quartus_map --import_settings_files=on --export_settings_files=off domapp -c domapp
 Info: Found 1 design units and 1 entities in source file ../common/comDPM/dcom_ap.bdf
     Info: Found entity 1: dcom_ap
@@ -3035,7 +3035,7 @@ Info: Implemented 8819 device resources after synthesis - the final resource cou
     Info: Implemented 2 dual-port RAM elements in Excalibur device
     Info: Implemented 1 microprocessor core elements in Excalibur device
 Info: Quartus II Analysis & Synthesis was successful. 0 errors, 235 warnings
-    Info: Processing ended: Thu Apr 20 09:52:59 2006
-    Info: Elapsed time: 00:11:10
+    Info: Processing ended: Thu Apr 20 10:26:44 2006
+    Info: Elapsed time: 00:09:28
 
 
