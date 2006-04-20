@@ -1,5 +1,5 @@
 Analysis & Synthesis report for domapp
-Tue Apr 18 08:16:16 2006
+Thu Apr 20 09:52:59 2006
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -72,11 +72,11 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                        ;
 +-----------------------------+---------------------------------------+
-; Analysis & Synthesis Status ; Successful - Tue Apr 18 08:16:16 2006 ;
+; Analysis & Synthesis Status ; Successful - Thu Apr 20 09:52:59 2006 ;
 ; Revision Name               ; domapp                                ;
 ; Top-level Entity Name       ; domapp                                ;
 ; Family                      ; EXCALIBUR_ARM                         ;
-; Total logic elements        ; 8,276                                 ;
+; Total logic elements        ; 8,260                                 ;
 ; Total pins                  ; 308                                   ;
 ; Total memory bits           ; 96,896                                ;
 ; Total PLLs                  ; 2                                     ;
@@ -1093,7 +1093,7 @@ domapp
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Compilation Hierarchy Node                                          ; Logic Cells ; Registers ; Memory Bits ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Full Hierarchy Name                                                                                                                                                                                                                                                                                            ;
 +---------------------------------------------------------------------+-------------+-----------+-------------+------+--------------+--------------+-------------------+------------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; |domapp                                                             ; 8276 (3)    ; 3507      ; 96896       ; 308  ; 0            ; 4769 (3)     ; 1485 (0)          ; 2022 (0)         ; 1466 (0)        ; |domapp                                                                                                                                                                                                                                                                                                        ;
+; |domapp                                                             ; 8260 (3)    ; 3491      ; 96896       ; 308  ; 0            ; 4769 (3)     ; 1469 (0)          ; 2022 (0)         ; 1466 (0)        ; |domapp                                                                                                                                                                                                                                                                                                        ;
 ;    |DOMstatus:inst_DOMstatus|                                       ; 17 (13)     ; 16        ; 0           ; 0    ; 0            ; 1 (1)        ; 10 (10)           ; 6 (2)            ; 4 (0)           ; |domapp|DOMstatus:inst_DOMstatus                                                                                                                                                                                                                                                                               ;
 ;       |lpm_counter:didvide_rtl_11|                                  ; 4 (0)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 4 (0)            ; 4 (0)           ; |domapp|DOMstatus:inst_DOMstatus|lpm_counter:didvide_rtl_11                                                                                                                                                                                                                                                    ;
 ;          |alt_synch_counter:wysi_counter|                           ; 4 (4)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 4 (4)            ; 4 (4)           ; |domapp|DOMstatus:inst_DOMstatus|lpm_counter:didvide_rtl_11|alt_synch_counter:wysi_counter                                                                                                                                                                                                                     ;
@@ -1427,7 +1427,7 @@ domapp
 ;       |altclklock:altclklock_component|                             ; 0 (0)       ; 0         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|pll2x:inst_pll2x|altclklock:altclklock_component                                                                                                                                                                                                                                                       ;
 ;    |pll4x:inst_pll4x|                                               ; 0 (0)       ; 0         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|pll4x:inst_pll4x                                                                                                                                                                                                                                                                                       ;
 ;       |altclklock:altclklock_component|                             ; 0 (0)       ; 0         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |domapp|pll4x:inst_pll4x|altclklock:altclklock_component                                                                                                                                                                                                                                                       ;
-;    |rate_meters:inst_rate_meters|                                   ; 409 (321)   ; 255       ; 0           ; 0    ; 0            ; 154 (154)    ; 128 (128)         ; 127 (39)         ; 142 (54)        ; |domapp|rate_meters:inst_rate_meters                                                                                                                                                                                                                                                                           ;
+;    |rate_meters:inst_rate_meters|                                   ; 393 (305)   ; 239       ; 0           ; 0    ; 0            ; 154 (154)    ; 112 (112)         ; 127 (39)         ; 142 (54)        ; |domapp|rate_meters:inst_rate_meters                                                                                                                                                                                                                                                                           ;
 ;       |lpm_counter:lockout_MPE_rtl_13|                              ; 10 (0)      ; 10        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 10 (0)           ; 10 (0)          ; |domapp|rate_meters:inst_rate_meters|lpm_counter:lockout_MPE_rtl_13                                                                                                                                                                                                                                            ;
 ;          |alt_synch_counter:wysi_counter|                           ; 10 (10)     ; 10        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 10 (10)          ; 10 (10)         ; |domapp|rate_meters:inst_rate_meters|lpm_counter:lockout_MPE_rtl_13|alt_synch_counter:wysi_counter                                                                                                                                                                                                             ;
 ;       |lpm_counter:lockout_SPE_rtl_12|                              ; 10 (0)      ; 10        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 10 (0)           ; 10 (0)          ; |domapp|rate_meters:inst_rate_meters|lpm_counter:lockout_SPE_rtl_12                                                                                                                                                                                                                                            ;
@@ -1736,15 +1736,15 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.map
 +---------------------------------------------------------------------------------------------
 ; Resource                      ; Usage                                                      ;
 +-------------------------------+------------------------------------------------------------+
-; Logic cells                   ; 8,276                                                      ;
+; Logic cells                   ; 8,260                                                      ;
 ; Total combinational functions ; 6791                                                       ;
-; Total registers               ; 3507                                                       ;
+; Total registers               ; 3491                                                       ;
 ; I/O pins                      ; 308                                                        ;
 ; Total memory bits             ; 96896                                                      ;
 ; Total PLLs                    ; 2                                                          ;
 ; Maximum fan-out node          ; pll2x:inst_pll2x|altclklock:altclklock_component|outclock0 ;
-; Maximum fan-out               ; 3730                                                       ;
-; Total fan-out                 ; 37536                                                      ;
+; Maximum fan-out               ; 3714                                                       ;
+; Total fan-out                 ; 37472                                                      ;
 ; Average fan-out               ; 4.25                                                       ;
 +-------------------------------+------------------------------------------------------------+
 
@@ -1784,13 +1784,13 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.map
 ; Statistic                                              ; Value ;
 +--------------------------------------------------------+-------+
 ; Number of WYSIWYG cells                                ; 1450  ;
-; Number of synthesis-generated cells                    ; 6826  ;
+; Number of synthesis-generated cells                    ; 6810  ;
 ; Number of WYSIWYG LUTs                                 ; 1450  ;
 ; Number of synthesis-generated LUTs                     ; 5341  ;
 ; Number of WYSIWYG registers                            ; 483   ;
-; Number of synthesis-generated registers                ; 3024  ;
+; Number of synthesis-generated registers                ; 3008  ;
 ; Number of cells with combinational logic only          ; 4769  ;
-; Number of cells with registers only                    ; 1485  ;
+; Number of cells with registers only                    ; 1469  ;
 ; Number of cells with combinational logic and registers ; 2022  ;
 +--------------------------------------------------------+-------+
 
@@ -1802,9 +1802,9 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.map
 +--------------------------------------+-------+
 ; Number of registers using SCLR       ; 61    ;
 ; Number of registers using SLOAD      ; 221   ;
-; Number of registers using ACLR       ; 1982  ;
+; Number of registers using ACLR       ; 1966  ;
 ; Number of registers using ALOAD      ; 0     ;
-; Number of registers using CLK_ENABLE ; 2318  ;
+; Number of registers using CLK_ENABLE ; 2302  ;
 ; Number of registers using OE         ; 0     ;
 ; Number of registers using PRESET     ; 0     ;
 +--------------------------------------+-------+
@@ -1816,7 +1816,7 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.map
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Tue Apr 18 08:07:21 2006
+    Info: Processing started: Thu Apr 20 09:41:48 2006
 Info: Command: quartus_map --import_settings_files=on --export_settings_files=off domapp -c domapp
 Info: Found 1 design units and 1 entities in source file ../common/comDPM/dcom_ap.bdf
     Info: Found entity 1: dcom_ap
@@ -3025,17 +3025,17 @@ Warning: Design contains 15 input pin(s) that do not drive logic
     Warning: No output dependent on input pin COINC_UP_BBAR
     Warning: No output dependent on input pin PLD_FPGA_nOE
     Warning: No output dependent on input pin PLD_FPGA_nWE
-Info: Implemented 8835 device resources after synthesis - the final resource count might be different
+Info: Implemented 8819 device resources after synthesis - the final resource count might be different
     Info: Implemented 75 input pins
     Info: Implemented 170 output pins
     Info: Implemented 63 bidirectional pins
-    Info: Implemented 8276 logic cells
+    Info: Implemented 8260 logic cells
     Info: Implemented 246 RAM segments
     Info: Implemented 2 ClockLock PLLs
     Info: Implemented 2 dual-port RAM elements in Excalibur device
     Info: Implemented 1 microprocessor core elements in Excalibur device
 Info: Quartus II Analysis & Synthesis was successful. 0 errors, 235 warnings
-    Info: Processing ended: Tue Apr 18 08:16:16 2006
-    Info: Elapsed time: 00:08:55
+    Info: Processing ended: Thu Apr 20 09:52:59 2006
+    Info: Elapsed time: 00:11:10
 
 
