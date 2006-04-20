@@ -1,5 +1,5 @@
 Flow report for domapp
-Thu Apr 20 10:10:16 2006
+Thu Apr 20 10:42:51 2006
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -42,7 +42,7 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------+
 ; Flow Summary                                                  ;
 +-----------------------+---------------------------------------+
-; Flow Status           ; Successful - Thu Apr 20 10:10:16 2006 ;
+; Flow Status           ; Successful - Thu Apr 20 10:42:51 2006 ;
 ; Revision Name         ; domapp                                ;
 ; Top-level Entity Name ; domapp                                ;
 ; Family                ; EXCALIBUR_ARM                         ;
@@ -59,7 +59,7 @@ party's intellectual property, are provided herein.
 +------------------------------------------
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/20/2006 09:41:50 ;
+; Start date & time ; 04/20/2006 10:17:16 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; domapp              ;
 +-------------------+---------------------+
@@ -70,12 +70,12 @@ party's intellectual property, are provided herein.
 +--------------------------------------
 ; Module Name          ; Elapsed Time ;
 +----------------------+--------------+
-; Analysis & Synthesis ; 00:11:10     ;
-; Fitter               ; 00:16:04     ;
-; Assembler            ; 00:00:10     ;
-; Timing Analyzer      ; 00:00:22     ;
-; EDA Netlist Writer   ; 00:00:16     ;
-; Total                ; 00:28:02     ;
+; Analysis & Synthesis ; 00:09:29     ;
+; Fitter               ; 00:15:05     ;
+; Assembler            ; 00:00:09     ;
+; Timing Analyzer      ; 00:00:20     ;
+; EDA Netlist Writer   ; 00:00:15     ;
+; Total                ; 00:25:18     ;
 +----------------------+--------------+
 
 
