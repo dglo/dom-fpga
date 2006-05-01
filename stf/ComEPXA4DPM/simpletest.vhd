@@ -164,6 +164,7 @@ ENTITY simpletest IS
 		FPGA_DA				: IN STD_LOGIC;
 		FPGA_CE				: OUT STD_LOGIC;
 		-- Test connector	THERE IS NO 11   I don't know why
+		FPGA_D			: OUT STD_LOGIC_VECTOR (1 DOWNTO 0); -- added for alternate LC pin test on 5.1 boards
 		PGM				: OUT STD_LOGIC_VECTOR (15 downto 0)
 	);
 END simpletest;
@@ -1751,7 +1752,9 @@ BEGIN
 			trigLED		=> trigLED_onboard
 		);
 	SingleLED_TRIGGER <= SingleLED_TRIGGER_sig;
-		
+	
+	COINCIDENCE_OUT_DOWN <= 'Z';
+	COINCIDENCE_OUT_UP <= 'Z';	
 	inst_coinc : coinc
 		PORT MAP (
 			CLK					=> CLK20,
@@ -1786,14 +1789,14 @@ BEGIN
 			coinc_latch			=> coinc_latch,
 			coinc_disc			=> coinc_disc,
 			-- local coincidence
-			COINCIDENCE_OUT_DOWN	=> COINCIDENCE_OUT_DOWN,
+			COINCIDENCE_OUT_DOWN	=> FPGA_D(0), --COINCIDENCE_OUT_DOWN,
 			COINC_DOWN_ALATCH	=> COINC_DOWN_ALATCH,
 			COINC_DOWN_ABAR		=> COINC_DOWN_ABAR,
 			COINC_DOWN_A		=> COINC_DOWN_A,
 			COINC_DOWN_BLATCH	=> COINC_DOWN_BLATCH,
 			COINC_DOWN_BBAR		=> COINC_DOWN_BBAR,
 			COINC_DOWN_B		=> COINC_DOWN_B,
-			COINCIDENCE_OUT_UP	=> COINCIDENCE_OUT_UP,
+			COINCIDENCE_OUT_UP	=> FPGA_D(1), --COINCIDENCE_OUT_UP,
 			COINC_UP_ALATCH		=> COINC_UP_ALATCH,
 			COINC_UP_ABAR		=> COINC_UP_ABAR,
 			COINC_UP_A			=> COINC_UP_A,
