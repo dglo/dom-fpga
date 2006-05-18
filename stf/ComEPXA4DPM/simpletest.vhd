@@ -1753,8 +1753,10 @@ BEGIN
 		);
 	SingleLED_TRIGGER <= SingleLED_TRIGGER_sig;
 	
-	COINCIDENCE_OUT_DOWN <= 'Z';
-	COINCIDENCE_OUT_UP <= 'Z';	
+	--COINCIDENCE_OUT_DOWN <= 'Z';
+	--COINCIDENCE_OUT_UP <= 'Z';
+	FPGA_D(0) <= 'Z';
+	FPGA_D(1) <= 'Z';	
 	inst_coinc : coinc
 		PORT MAP (
 			CLK					=> CLK20,
