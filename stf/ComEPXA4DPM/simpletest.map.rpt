@@ -1,5 +1,5 @@
 Analysis & Synthesis report for simpletest
-Thu May 18 07:59:23 2006
+Thu May 18 08:46:34 2006
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -65,7 +65,7 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                        ;
 +-----------------------------+---------------------------------------+
-; Analysis & Synthesis Status ; Successful - Thu May 18 07:59:23 2006 ;
+; Analysis & Synthesis Status ; Successful - Thu May 18 08:46:34 2006 ;
 ; Revision Name               ; simpletest                            ;
 ; Top-level Entity Name       ; simpletest                            ;
 ; Family                      ; EXCALIBUR_ARM                         ;
@@ -1468,7 +1468,7 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/s
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Thu May 18 07:56:21 2006
+    Info: Processing started: Thu May 18 08:43:43 2006
 Info: Command: quartus_map --import_settings_files=on --export_settings_files=off simpletest -c simpletest
 Info: Found 2 design units and 1 entities in source file ../common/CommonClock.vhd
     Info: Found design unit 1: CommonClock-CommonClock_arch
@@ -2253,6 +2253,7 @@ Warning: Reduced register ahb_master:inst_ahb_master|slavehwrite~reg0 with stuck
 Warning: Reduced register ahb_master:inst_ahb_master|slavehtrans[0]~reg0 with stuck data_in port to stuck value GND
 Info: Duplicate registers merged to single register
     Info: Duplicate register atwd:atwd0|atwd_control:inst_atwd_control|state~20 merged to single register atwd:atwd1|atwd_control:inst_atwd_control|state~20
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[19] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[18] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[17] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[16] merged to single register ahb_master:inst_ahb_master|haddr[0]
@@ -2263,8 +2264,6 @@ Info: Duplicate registers merged to single register
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[11] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[10] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[9] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[8] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[19] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[20] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[21] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[22] merged to single register ahb_master:inst_ahb_master|haddr[0]
@@ -2276,13 +2275,14 @@ Info: Duplicate registers merged to single register
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[28] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[29] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[30] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[31] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[8] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[7] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[6] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[5] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[4] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[3] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[2] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[31] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_01:inst1|RX_UART:inst6|UA_RX02:inst7|sreg~31 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_01:inst1|RX_UART:inst6|UA_RX02:inst7|data_stb~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_01:inst1|RX_UART:inst6|UA_RX02:inst7|sreg~42 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_01:inst1|RX_UART:inst6|UA_RX02:inst7|stf_stb~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_01:inst1|RX_UART:inst6|UA_RX02:inst7|sreg~33 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_01:inst1|RX_UART:inst6|UA_RX02:inst7|eof_stb~reg
@@ -2297,6 +2297,8 @@ Info: Duplicate registers merged to single register
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_01:inst1|DC_MRAP:inst10|CRC_ERR merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_01:inst1|DC_MRAP:inst10|first_wadr_rld~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:inst4|DC_SNAP:inst11|crc_init~reg merged to single register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:inst4|DC_SNAP:inst11|STF
 Warning: TRI or OPNDRN buffers permanently disabled
+    Warning: Node i593
+    Warning: Node i592
     Warning: Node i700
 Warning: Output pins are stuck at VCC or GND
     Warning: Pin FPGA_LOADED stuck at GND
@@ -2314,8 +2316,6 @@ Warning: Output pins are stuck at VCC or GND
     Warning: Pin PDL_FPGA_D[2] stuck at VCC
     Warning: Pin PDL_FPGA_D[1] stuck at GND
     Warning: Pin PDL_FPGA_D[0] stuck at VCC
-    Warning: Pin FPGA_D[1] stuck at GND
-    Warning: Pin FPGA_D[0] stuck at GND
     Warning: Pin PGM[15] stuck at VCC
     Warning: Pin PGM[14] stuck at GND
     Warning: Pin PGM[13] stuck at GND
@@ -2356,7 +2356,7 @@ Info: Implemented 5442 device resources after synthesis - the final resource cou
     Info: Implemented 2 dual-port RAM elements in Excalibur device
     Info: Implemented 1 microprocessor core elements in Excalibur device
 Info: Quartus II Analysis & Synthesis was successful. 0 errors, 143 warnings
-    Info: Processing ended: Thu May 18 07:59:23 2006
-    Info: Elapsed time: 00:03:01
+    Info: Processing ended: Thu May 18 08:46:34 2006
+    Info: Elapsed time: 00:02:50
 
 

@@ -1,5 +1,5 @@
 Fitter report for simpletest
-Thu May 18 08:08:33 2006
+Thu May 18 08:56:14 2006
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -69,7 +69,7 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------+
 ; Fitter Summary                                                ;
 +-----------------------+---------------------------------------+
-; Fitter Status         ; Successful - Thu May 18 08:08:32 2006 ;
+; Fitter Status         ; Successful - Thu May 18 08:56:14 2006 ;
 ; Revision Name         ; simpletest                            ;
 ; Top-level Entity Name ; simpletest                            ;
 ; Family                ; EXCALIBUR_ARM                         ;
@@ -2582,7 +2582,7 @@ The pin-out file can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DP
 Info: *******************************************************************
 Info: Running Quartus II Fitter
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Thu May 18 07:59:26 2006
+    Info: Processing started: Thu May 18 08:46:36 2006
 Info: Command: quartus_fit --import_settings_files=off --export_settings_files=off simpletest -c simpletest
 Info: Selected device EPXA4F672I2 for design simpletest
 Info: Implementing parameter values for PLL pll4x:inst_pll4x|altclklock:altclklock_component|pll
@@ -2601,7 +2601,7 @@ Info: Promoted cell ROC:inst_ROC|RST~reg0 to global signal automatically
 Info: Promoted cell dcom_ap:dcom_ap_inst|DC_CTR02:inst2|buf_res~reg to global signal automatically
 Info: Promoted cell OneSPE to global signal automatically
 Info: Promoted cell MultiSPE to global signal automatically
-Info: Started fitting attempt 1 on Thu May 18 2006 at 07:59:49
+Info: Started fitting attempt 1 on Thu May 18 2006 at 08:46:58
 Info: Fitter placement preparation operations beginning
 Info: Fitter placement preparation operations ending: elapsed time = 21 seconds
 Info: Fitter placement operations beginning
@@ -2615,11 +2615,11 @@ Info: Estimated most critical path is register to pin delay of 2.396 ns
     Info: 1: + IC(0.000 ns) + CELL(0.564 ns) = 0.564 ns; Loc. = Unassigned; Fanout = 14; REG Node = 'atwd:atwd1|atwd_trigger:inst_atwd_trigger|ATWDTrigger_sig'
     Info: 2: + IC(0.000 ns) + CELL(1.832 ns) = 2.396 ns; Loc. = Unassigned; Fanout = 0; PIN Node = 'ATWDTrigger_1'
     Info: Total cell delay = 2.396 ns ( 100.00 % )
-Info: Fitter placement operations ending: elapsed time = 458 seconds
+Info: Fitter placement operations ending: elapsed time = 483 seconds
 Info: Fitter routing operations beginning
-Info: Fitter routing operations ending: elapsed time = 29 seconds
+Info: Fitter routing operations ending: elapsed time = 32 seconds
 Info: Quartus II Fitter was successful. 0 errors, 0 warnings
-    Info: Processing ended: Thu May 18 08:08:32 2006
-    Info: Elapsed time: 00:09:05
+    Info: Processing ended: Thu May 18 08:56:14 2006
+    Info: Elapsed time: 00:09:37
 
 
