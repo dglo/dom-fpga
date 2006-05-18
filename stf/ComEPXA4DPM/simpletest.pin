@@ -430,7 +430,7 @@ RESERVED_INPUT               : R22       :        :                   :         
 CLK1p                        : R23       : input  : LVTTL             :         : 9         : Y              
 PGM[9]                       : R24       : output : LVTTL             :         : 8         : Y              
 RESERVED_INPUT               : R25       :        :                   :         : 8         :                
-CLK3p                        : R26       : input  : LVTTL             :         : 8         : N              
+RESERVED_INPUT               : R26       :        :                   :         : 8         :                
 COM_DB[12]                   : T1        : output : LVTTL             :         : 12        : Y              
 COM_DB[13]                   : T2        : output : LVTTL             :         : 12        : Y              
 RESERVED_INPUT               : T3        :        :                   :         : 13        :                
@@ -681,7 +681,7 @@ GND                          : AE13      : gnd    :                   :         
 VCC_IO                       : AE14      : power  :                   : 3.3V    :           :                
 TMS                          : AE15      : input  :                   :         :           :                
 ATWD0_D[4]                   : AE16      : input  : LVTTL             :         : 10        : Y              
-RESERVED_INPUT               : AE17      :        :                   :         : 10        :                
+CLK3p                        : AE17      : input  : LVTTL             :         : 10        : N              
 RampSet_1                    : AE18      : output : LVTTL             :         : 10        : Y              
 VCC_INT                      : AE19      : power  :                   : 1.8V    :           :                
 ATWD1_D[9]                   : AE20      : input  : LVTTL             :         : 10        : Y              
