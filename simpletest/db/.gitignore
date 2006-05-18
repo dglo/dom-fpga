@@ -1,8 +1,0 @@
-*.cnf.*
-*.csf.*
-simpletest_hier_info
-simpletest_syn_hier_info
-Debug.fsf.msg
-simpletest.db_info
-*.hdb
-simpletest.hif
