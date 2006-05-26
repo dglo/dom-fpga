@@ -1,0 +1,197 @@
+% C:\PROJECTS\ICECUBE\DOR\FPGA\DCOM_01\RX_CHAN\EDGES\HL_DSCR5.tdf %
+% AHDL code created by Visual Software Solution's StateCAD 4.11 %
+% Mon Jul 12 11:33:09 2004 %
+
+% This AHDL code was generated using: %
+%  binary encoded state assignment with structured code format. %
+%  Minimization is enabled,  implied else is enabled,  %
+%  and outputs are speed optimized. %
+
+SUBDESIGN HL_DSCR5(
+	CLK :	INPUT;
+	ct0 :	INPUT;
+	ct1 :	INPUT;
+	ct2 :	INPUT;
+	ct3 :	INPUT;
+	low_hl :	INPUT;
+	low_lev :	INPUT;
+	lrg_hl :	INPUT;
+	lrg_lev :	INPUT;
+	res :	INPUT;
+	uart_done :	INPUT;
+	ct_aclr :	OUTPUT;
+	hl_edge :	OUTPUT;
+	lowsig :	OUTPUT;
+	lrgsig :	OUTPUT;
+	maxen :	OUTPUT;
+	one :	OUTPUT;
+)
+
+
+VARIABLE
+	sreg : MACHINE OF BITS (SV0, SV1, SV2)
+		WITH STATES (
+			HL_WT =	B"001",
+			CNT1 =	B"000",
+			STB =	B"010",
+			WT1 =	B"011",
+			WT2 =	B"100",
+			WT3 =	B"101"
+		);
+
+	sreg1 : MACHINE OF BITS (SV3, SV4)
+		WITH STATES (
+			UADONE =	B"01",
+			STRONG =	B"00",
+			UAWT =	B"10"
+		);
+
+	ct_aclr :	DFF;
+	hl_edge :	DFF;
+	lowsig :	DFF;
+	lrgsig :	DFF;
+	maxen :	DFF;
+	one :	DFF;
+
+	cteq2 :	NODE;
+	cteq3 :	NODE;
+	cteq5 :	NODE;
+	cteq8 :	NODE;
+	cteq12 :	NODE;
+	cteq15 :	NODE;
+BEGIN
+
+% Clock setup %
+	ct_aclr.clk=CLK;
+	hl_edge.clk=CLK;
+	lowsig.clk=CLK;
+	lrgsig.clk=CLK;
+	maxen.clk=CLK;
+	one.clk=CLK;
+	sreg.clk=CLK;
+	sreg1.clk=CLK;
+
+	sreg.reset =  res ;
+
+	IF ( res ) THEN
+		ct_aclr.prn=GND;
+		maxen.prn=GND;
+		hl_edge.clrn=GND;
+		one.clrn=GND;
+	ELSE
+		ct_aclr.prn=VCC;
+		maxen.prn=VCC;
+		hl_edge.clrn=VCC;
+		one.clrn=VCC;
+	END IF;
+
+	CASE sreg IS
+		WHEN CNT1 =>
+			IF ( !cteq5 & !cteq3  #  !lowsig & !cteq3  #  !cteq5 & !lrgsig  #  !lowsig
+				 & !lrgsig ) THEN 
+				sreg = CNT1;
+				(ct_aclr,maxen,hl_edge,one)=(0,0,1,0);
+			END IF;
+			IF ( low_lev & cteq5 & lowsig  #  lrg_lev & cteq3 & lrgsig ) THEN 
+				sreg = WT1;
+				(ct_aclr,maxen,hl_edge,one)=(0,0,0,0);
+			END IF;
+			IF ( !low_lev & cteq5 & lowsig  #  !lrg_lev & cteq3 & lrgsig ) THEN 
+				sreg = HL_WT;
+				(ct_aclr,maxen,hl_edge,one)=(1,1,0,0);
+			END IF;
+		WHEN HL_WT =>
+			IF ( low_hl & lowsig  #  lrg_hl & lrgsig ) THEN 
+				sreg = CNT1;
+				(ct_aclr,maxen,hl_edge,one)=(0,0,1,0);
+			ELSE
+				sreg = HL_WT;
+				(ct_aclr,maxen,hl_edge,one)=(1,1,0,0);
+			END IF;
+		WHEN STB =>
+			sreg = WT2;
+			(ct_aclr,maxen,hl_edge,one)=(0,0,0,0);
+		WHEN WT1 =>
+			IF ( cteq8 ) THEN 
+				sreg = STB;
+				(ct_aclr,maxen,hl_edge,one)=(0,0,0,1);
+			ELSE
+				sreg = WT1;
+				(ct_aclr,maxen,hl_edge,one)=(0,0,0,0);
+			END IF;
+		WHEN WT2 =>
+			IF ( cteq12 ) THEN 
+				sreg = WT3;
+				(ct_aclr,maxen,hl_edge,one)=(0,1,0,0);
+			ELSE
+				sreg = WT2;
+				(ct_aclr,maxen,hl_edge,one)=(0,0,0,0);
+			END IF;
+		WHEN WT3 =>
+			IF ( cteq15 ) THEN 
+				sreg = HL_WT;
+				(ct_aclr,maxen,hl_edge,one)=(1,1,0,0);
+			ELSE
+				sreg = WT3;
+				(ct_aclr,maxen,hl_edge,one)=(0,1,0,0);
+			END IF;
+	END CASE;
+
+	sreg1.reset =  res ;
+
+	IF ( res ) THEN
+		lrgsig.clrn=GND;
+		lowsig.prn=GND;
+	ELSE
+		lrgsig.clrn=VCC;
+		lowsig.prn=VCC;
+	END IF;
+
+	CASE sreg1 IS
+		WHEN STRONG =>
+			IF ( uart_done ) THEN 
+				sreg1 = UADONE;
+				lrgsig=GND;
+				lowsig=VCC;
+			ELSE
+				sreg1 = STRONG;
+				lowsig=GND;
+				lrgsig=VCC;
+			END IF;
+		WHEN UADONE =>
+			IF ( cteq2 & lrg_lev ) THEN 
+				sreg1 = UAWT;
+				lowsig=GND;
+				lrgsig=VCC;
+			ELSE
+				sreg1 = UADONE;
+				lrgsig=GND;
+				lowsig=VCC;
+			END IF;
+		WHEN UAWT =>
+			IF ( cteq12 ) THEN 
+				sreg1 = STRONG;
+				lowsig=GND;
+				lrgsig=VCC;
+			ELSE
+				sreg1 = UAWT;
+				lowsig=GND;
+				lrgsig=VCC;
+			END IF;
+	END CASE;
+
+
+% Logic Equations %
+cteq2 =  !ct3 & !ct2 & ct1 & !ct0 ;
+
+cteq3 =  !ct3 & !ct2 & ct1 & ct0 ;
+
+cteq5 =  !ct3 & ct2 & !ct1 & ct0 ;
+
+cteq8 =  ct3 & !ct2 & !ct1 & !ct0 ;
+
+cteq12 =  ct3 & ct2 & !ct1 & !ct0 ;
+
+cteq15 =  ct3 & ct2 & ct1 & ct0 ;
+
+END;

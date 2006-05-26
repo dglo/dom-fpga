@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------------
+Timing Analyzer Summary
+--------------------------------------------------------------------------------------
+
+Type           : Worst-case tpd
+Slack          : N/A
+Required Time  : None
+Actual Time    : 16.440 ns
+From           : rx_dpr_wadr[1]
+To             : rx_dpr_ef
+
+Type           : Worst-case minimum tpd
+Slack          : N/A
+Required Time  : None
+Actual Time    : 10.309 ns
+From           : rx_dpr_wadr[2]
+To             : rx_dpr_avail[2]
+
+--------------------------------------------------------------------------------------
+
