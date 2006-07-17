@@ -414,12 +414,12 @@ BEGIN
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"04A0") ) THEN	-- Supernove Meter Control
 					IF reg_write = '1' THEN
 						RM_ctrl_local.RM_sn_enable	<= reg_wdata(1 downto 0);
-						RM_ctrl_local.RM_sn_dead		<= reg_wdata(18 downto 16);
+						RM_ctrl_local.RM_sn_dead		<= reg_wdata(22 downto 16);
 					END IF;
 					IF READBACK=1 THEN
 						reg_rdata(1 downto 0)	<= RM_ctrl_local.RM_sn_enable;
 						reg_rdata(15 downto 2)	<= (OTHERS=>'0');
-						reg_rdata(18 downto 16)	<= RM_ctrl_local.RM_sn_dead;
+						reg_rdata(22 downto 16)	<= RM_ctrl_local.RM_sn_dead;
 						reg_rdata(31 downto 19)	<= (OTHERS=>'0');
 					ELSE
 						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
