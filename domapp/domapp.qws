@@ -14,6 +14,7 @@ ptn_Child6=Document-5
 ptn_Child7=Document-6
 ptn_Child8=Document-7
 ptn_Child9=Document-8
+ptn_Child10=Document-9
 [ProjectWorkspace.Frames.ChildFrames.Document-0]
 ptn_Child1=ViewFrame-0
 [ProjectWorkspace.Frames.ChildFrames.Document-0.ViewFrame-0]
@@ -104,6 +105,19 @@ WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPALAAAAAA
 IsActiveChildFrame=False
 ptn_Child1=StateMap
 [ProjectWorkspace.Frames.ChildFrames.Document-6.ViewFrame-0.StateMap]
+AFC_IN_REPORT=False
+[ProjectWorkspace.Frames.ChildFrames.Document-7]
+ptn_Child1=ViewFrame-0
+[ProjectWorkspace.Frames.ChildFrames.Document-7.ViewFrame-0]
+DocPathName=slaveregister.vhd
+DocumentCLSID={ca385d57-a4c7-11d1-a098-0020affa43f2}
+InCompileMode=True
+InSimulateMode=False
+InFirmwareMode=False
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPGMAAAAAAGMAAAAAANLEAAAAALJCAAAAA
+IsActiveChildFrame=False
+ptn_Child1=StateMap
+[ProjectWorkspace.Frames.ChildFrames.Document-7.ViewFrame-0.StateMap]
 AFC_IN_REPORT=False
 [ProjectWorkspace.Workmode]
 CurrentWorkmode=0

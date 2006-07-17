@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2006-01-12
+-- Last update: 2006-07-17
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -79,7 +79,7 @@ PACKAGE ctrl_data_types IS
             rm_rate_enable : STD_LOGIC_VECTOR (1 DOWNTO 0);
             rm_rate_dead   : STD_LOGIC_VECTOR (9 DOWNTO 0);
             rm_sn_enable   : STD_LOGIC_VECTOR (1 DOWNTO 0);
-            rm_sn_dead     : STD_LOGIC_VECTOR (2 DOWNTO 0);
+            rm_sn_dead     : STD_LOGIC_VECTOR (6 DOWNTO 0);
         END RECORD;
     
     TYPE RM_STAT_STRUCT IS
