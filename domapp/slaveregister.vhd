@@ -420,7 +420,7 @@ BEGIN
 						reg_rdata(1 downto 0)	<= RM_ctrl_local.RM_sn_enable;
 						reg_rdata(15 downto 2)	<= (OTHERS=>'0');
 						reg_rdata(22 downto 16)	<= RM_ctrl_local.RM_sn_dead;
-						reg_rdata(31 downto 19)	<= (OTHERS=>'0');
+						reg_rdata(31 downto 23)	<= (OTHERS=>'0');
 					ELSE
 						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
 					END IF;
