@@ -33,6 +33,7 @@ set_global_assignment -name ORIGINAL_QUARTUS_VERSION "3.0 SP2"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "10:14:15  FEBRUARY 26, 2004"
 set_global_assignment -name LAST_QUARTUS_VERSION "4.0 SP1"
 set_parameter -name RESERVE_ALL_UNUSED_PINS_NO_OUTPUT_GND "AS OUTPUT DRIVING AN UNSPECIFIED SIGNAL"
+set_global_assignment -name VHDL_FILE icetop/icetop_atwd_charge.vhd
 set_global_assignment -name BDF_FILE ../common/comDPM/dcom_ap.bdf
 set_global_assignment -name VHDL_FILE icecube_data_types.vhd
 set_global_assignment -name VHDL_FILE constants.vhd
@@ -390,9 +391,15 @@ set_location_assignment PIN_P20 -to CLK1p
 set_location_assignment PIN_W6 -to CLK2p
 set_location_assignment PIN_R23 -to CLK3p
 set_location_assignment PIN_Y5 -to CLK4p
+set_location_assignment LC10_8_Z1 -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_A_sig"
+set_location_assignment LC10_1_Z3 -to "daq:inst_daq\|trigger:inst_trigger\|discSPE"
+set_location_assignment LC10_3_Z1 -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_B_sig"
+set_location_assignment LC9_1_Z3 -to "daq:inst_daq\|trigger:inst_trigger\|discMPE"
 
 # Timing Assignments
 # ==================
+set_global_assignment -name REPORT_IO_PATHS_SEPARATELY ON
+set_global_assignment -name CUT_OFF_PATHS_BETWEEN_CLOCK_DOMAINS OFF
 set_global_assignment -name INCLUDE_EXTERNAL_PIN_DELAYS_IN_FMAX_CALCULATIONS OFF
 
 # Analysis & Synthesis Assignments
@@ -573,6 +580,10 @@ set_global_assignment -name USE_SIGNALTAP_FILE "tcal-1.stp"
 	# ==================
 	set_global_assignment -name FMAX_REQUIREMENT "20.0 MHz" -section_id CLK1p
 	set_global_assignment -name INCLUDE_EXTERNAL_PIN_DELAYS_IN_FMAX_CALCULATIONS OFF -section_id CLK1p
+	set_global_assignment -name DUTY_CYCLE 50 -section_id CLK1p
+	set_global_assignment -name DIVIDE_BASE_CLOCK_PERIOD_BY 1 -section_id CLK1p
+	set_global_assignment -name MULTIPLY_BASE_CLOCK_PERIOD_BY 1 -section_id CLK1p
+	set_global_assignment -name INVERT_BASE_CLOCK OFF -section_id CLK1p
 
 # end CLOCK(CLK1p)
 # ----------------
@@ -583,6 +594,10 @@ set_global_assignment -name USE_SIGNALTAP_FILE "tcal-1.stp"
 	# Timing Assignments
 	# ==================
 	set_global_assignment -name BASED_ON_CLOCK_SETTINGS CLK1p -section_id CLK2p
+	set_global_assignment -name DUTY_CYCLE 50 -section_id CLK2p
+	set_global_assignment -name DIVIDE_BASE_CLOCK_PERIOD_BY 1 -section_id CLK2p
+	set_global_assignment -name MULTIPLY_BASE_CLOCK_PERIOD_BY 1 -section_id CLK2p
+	set_global_assignment -name INVERT_BASE_CLOCK OFF -section_id CLK2p
 
 # end CLOCK(CLK2p)
 # ----------------
@@ -593,6 +608,10 @@ set_global_assignment -name USE_SIGNALTAP_FILE "tcal-1.stp"
 	# Timing Assignments
 	# ==================
 	set_global_assignment -name BASED_ON_CLOCK_SETTINGS CLK1p -section_id CLK3p
+	set_global_assignment -name DUTY_CYCLE 50 -section_id CLK3p
+	set_global_assignment -name DIVIDE_BASE_CLOCK_PERIOD_BY 1 -section_id CLK3p
+	set_global_assignment -name MULTIPLY_BASE_CLOCK_PERIOD_BY 1 -section_id CLK3p
+	set_global_assignment -name INVERT_BASE_CLOCK OFF -section_id CLK3p
 
 # end CLOCK(CLK3p)
 # ----------------
@@ -603,6 +622,10 @@ set_global_assignment -name USE_SIGNALTAP_FILE "tcal-1.stp"
 	# Timing Assignments
 	# ==================
 	set_global_assignment -name BASED_ON_CLOCK_SETTINGS CLK1p -section_id CLK4p
+	set_global_assignment -name DUTY_CYCLE 50 -section_id CLK4p
+	set_global_assignment -name DIVIDE_BASE_CLOCK_PERIOD_BY 1 -section_id CLK4p
+	set_global_assignment -name MULTIPLY_BASE_CLOCK_PERIOD_BY 1 -section_id CLK4p
+	set_global_assignment -name INVERT_BASE_CLOCK OFF -section_id CLK4p
 
 # end CLOCK(CLK4p)
 # ----------------
@@ -631,6 +654,32 @@ set_global_assignment -name USE_SIGNALTAP_FILE "tcal-1.stp"
 	set_instance_assignment -name CLOCK_SETTINGS CLK2p -to CLK2p
 	set_instance_assignment -name CLOCK_SETTINGS CLK3p -to CLK3p
 	set_instance_assignment -name CLOCK_SETTINGS CLK4p -to CLK4p
+	set_instance_assignment -name TCO_REQUIREMENT 2ns -to ATWDTrigger_0
+	set_instance_assignment -name TCO_REQUIREMENT 2ns -to ATWDTrigger_1
+	set_instance_assignment -name TSU_REQUIREMENT 2ns -from OneSPE -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_B_sig"
+	set_instance_assignment -name TSU_REQUIREMENT 2ns -from MultiSPE -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_B_sig"
+	set_instance_assignment -name NOT_A_CLOCK OFF -to OneSPE
+	set_instance_assignment -name NOT_A_CLOCK OFF -to MultiSPE
+	set_instance_assignment -name INPUT_MAX_DELAY 2ns -from OneSPE -to "daq:inst_daq\|trigger:inst_trigger\|discSPE"
+	set_instance_assignment -name INPUT_MAX_DELAY 2ns -from MultiSPE -to "daq:inst_daq\|trigger:inst_trigger\|discMPE"
+	set_instance_assignment -name TSU_REQUIREMENT 10ps -from OneSPE -to "daq:inst_daq\|trigger:inst_trigger\|discSPE"
+	set_instance_assignment -name TSU_REQUIREMENT 10ps -from MultiSPE -to "daq:inst_daq\|trigger:inst_trigger\|discMPE"
+	set_instance_assignment -name REPORT_DELAY ON -from OneSPE -to *
+	set_instance_assignment -name REPORT_DELAY ON -from OneSPE -to "daq:inst_daq\|trigger:inst_trigger\|discSPE"
+	set_instance_assignment -name TPD_REQUIREMENT 2ns -from OneSPE -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_A_sig"
+	set_instance_assignment -name REPORT_DELAY ON -from "daq:inst_daq\|trigger:inst_trigger\|discSPE" -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_A_sig"
+	set_instance_assignment -name REPORT_DELAY ON -from "daq:inst_daq\|trigger:inst_trigger\|discMPE" -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_A_sig"
+	set_instance_assignment -name TSU_REQUIREMENT 2ns -from "daq:inst_daq\|trigger:inst_trigger\|discMPE" -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_A_sig"
+	set_instance_assignment -name TSU_REQUIREMENT 2ns -from "daq:inst_daq\|trigger:inst_trigger\|discSPE" -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_A_sig"
+	set_instance_assignment -name REPORT_DELAY ON -from "daq:inst_daq\|trigger:inst_trigger\|discSPE" -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_B_sig"
+	set_instance_assignment -name REPORT_DELAY ON -from "daq:inst_daq\|trigger:inst_trigger\|discMPE" -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_B_sig"
+	set_instance_assignment -name TSU_REQUIREMENT 2ns -from "daq:inst_daq\|trigger:inst_trigger\|discSPE" -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_B_sig"
+	set_instance_assignment -name TSU_REQUIREMENT 2ns -from "daq:inst_daq\|trigger:inst_trigger\|discMPE" -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_B_sig"
+
+	# Fitter Assignments
+	# ==================
+	set_instance_assignment -name DECREASE_INPUT_DELAY_TO_OUTPUT_REGISTER ON -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_A_sig"
+	set_instance_assignment -name DECREASE_INPUT_DELAY_TO_OUTPUT_REGISTER ON -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_B_sig"
 
 # end ENTITY(domapp)
 # ------------------

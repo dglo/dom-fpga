@@ -306,6 +306,7 @@ ARCHITECTURE arch_domapp OF domapp IS
 			LBM_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			COMPR_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			COMPR_ctrl		: IN COMPR_STRUCT;
+			ICETOP_ctrl		: IN ICETOP_CTRL_STRUCT;
 			-- monitor signals
 			-- Lookback Memory Pointer
 			LBM_ptr			: OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
@@ -423,6 +424,8 @@ ARCHITECTURE arch_domapp OF domapp IS
 			DOM_status		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 			COMPR_ctrl		: OUT COMPR_STRUCT;
 			debugging		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
+			ICETOP_ctrl		: OUT ICETOP_CTRL_STRUCT;
+			-- Flasher Board
 			CS_FL_aux_reset	: OUT STD_LOGIC;
 			CS_FL_attn		: IN STD_LOGIC;
 			-- pointers
@@ -720,6 +723,9 @@ ARCHITECTURE arch_domapp OF domapp IS
 	SIGNAL TCdaq			: STD_LOGIC_VECTOR (7 DOWNTO 0);
 	SIGNAL TCslave			: STD_LOGIC_VECTOR (15 DOWNTO 0);
 	
+	-- IceTop
+	SIGNAL ICETOP_ctrl		: ICETOP_CTRL_STRUCT;
+	
 BEGIN
 	-- general
 	low		<= '0';
@@ -874,6 +880,7 @@ BEGIN
 			LBM_mode		=> DAQ_ctrl.LBM_mode,
 			COMPR_mode		=> DAQ_ctrl.COMPR_mode,
 			COMPR_ctrl		=> COMPR_ctrl,
+			ICETOP_ctrl		=> ICETOP_ctrl,
 			-- monitor signals
 			-- Lookback Memory Pointer
 			LBM_ptr			=> LBM_ptr,
@@ -989,6 +996,8 @@ BEGIN
 			DOM_status		=> DOM_status,
 			COMPR_ctrl		=> COMPR_ctrl,
 			debugging		=> debugging,
+			ICETOP_ctrl		=> ICETOP_ctrl,
+			-- Flasher Board
 			CS_FL_aux_reset	=> CS_FL_aux_reset,
 			CS_FL_attn		=> CS_FL_attn,
 			-- pointers
