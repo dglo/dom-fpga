@@ -66,7 +66,7 @@ END ATWD_control;
 
 ARCHITECTURE arch_ATWD_control OF ATWD_control IS
 	
-	TYPE ATWD_state_type is (pre_digitize, digitize, post_digitize, idle, init_digitize, next_channel, power_up_init1, power_up_init2, readout_L0, readout_L1, readout_H0, readout_H1, readout_end, settle, wait_trig_compl);
+	TYPE ATWD_state_type is (pre_digitize, digitize, post_digitize, idle, init_digitize, next_channel, power_up_init1, power_up_init2, readout_L0, readout_L1, readout_H0, readout_H1, readout_end, settle, wait_trig_compl, chk_cycle, dummy_cycle);
 	SIGNAL state	: ATWD_state_type;
 	
 	SIGNAL settle_cnt	: INTEGER;
@@ -79,6 +79,10 @@ ARCHITECTURE arch_ATWD_control OF ATWD_control IS
 	SIGNAL overflow		: STD_LOGIC;
 	
 	SIGNAL status		: STD_LOGIC_VECTOR (7 DOWNTO 0);
+	
+	-- status bit: we acquiring data, now wr cycle through ATWD channels 
+	SIGNAL do_channel_cycle	: STD_LOGIC;
+	SIGNAL dummy_cycle_cnt	: INTEGER RANGE 0 TO 31;
 	
 BEGIN
 	
@@ -108,6 +112,7 @@ BEGIN
 					ATWD_D_we			<= '0';
 					readout_cnt		<= conv_std_logic_vector(-1,8); --(OTHERS=>'1'); -- -1
 					ATWD_n_chan		<= "00";
+					do_channel_cycle <= '0';
 				WHEN power_up_init2 =>
 					state	<= idle;
 					DigitalReset	<= '0';
@@ -124,6 +129,7 @@ BEGIN
 					counterclk_low	<= '1';
 					counterclk_high	<= '0';
 					readout_cnt		<= (OTHERS=>'1'); -- -1
+					do_channel_cycle <= '0';
 				WHEN wait_trig_compl =>
 					IF TriggerComplete='0' THEN
 						state	<= init_digitize;
@@ -137,7 +143,7 @@ BEGIN
 					settle_cnt		<= 0;
 					digitize_cnt	<= 1; -- 0;
 				WHEN settle =>
-					IF settle_cnt=128 OR abort='1' THEN
+					IF settle_cnt=128 OR abort='1' OR do_channel_cycle = '1' THEN
 						state	<= pre_digitize;
 					END IF;
 					ReadWrite	<= '1';
@@ -154,14 +160,19 @@ BEGIN
 					counterclk_low	<= '0';
 					counterclk_high	<= '0';
 					digitize_cnt	<= digitize_cnt + 1;
-					IF digitize_cnt=512 OR abort='1' THEN
+					IF digitize_cnt=512 OR abort='1' OR do_channel_cycle = '1' THEN
 						state	<= post_digitize;
 						counterclk_high	<= '1';
 					END IF;
 				WHEN post_digitize =>
 					counterclk_low	<= '1';
 					counterclk_high	<= '0';
-					state	<= readout_L0;
+					IF abort = '1' OR do_channel_cycle = '1' THEN
+						state <= dummy_cycle;
+					ELSE
+						state	<= readout_L0;
+					END IF;
+					dummy_cycle_cnt	<= 0;
 				WHEN readout_L0 =>
 					state	<= readout_L1;
 					DigitalSet		<= '1';
@@ -181,7 +192,7 @@ BEGIN
 					ATWD_D_gray	<= ATWD_D;
 					readout_cnt	<= readout_cnt + 1;
 				WHEN readout_H1 =>
-					IF readout_cnt=127 OR abort='1' THEN
+					IF readout_cnt=127 OR abort='1' OR do_channel_cycle = '1' THEN
 						state	<= readout_end;
 					ELSE
 						state	<= readout_L0;
@@ -198,8 +209,8 @@ BEGIN
 					IF (ATWD_mode(1 DOWNTO 0)=ATWD_mode_ALL AND channel="11") OR	--we are done
 					   (ATWD_mode(1 DOWNTO 0)=ATWD_mode_NORMAL AND overflow='0') OR
 					   (ATWD_mode(1 DOWNTO 0)=ATWD_mode_NORMAL AND channel="10") OR
-					   abort='1' THEN
-						state	<= idle; --restart_ATWD;
+					   abort='1' OR do_channel_cycle = '1' THEN
+						state	<= chk_cycle; --idle; --restart_ATWD;
 					ELSE
 						state	<= next_channel;
 					END IF;
@@ -220,6 +231,34 @@ BEGIN
 					AnalogReset		<= '1';
 					readout_cnt		<= conv_std_logic_vector(-1,8); --(OTHERS=>'1'); -- -1
 					channel			<= channel + 1;
+				WHEN chk_cycle => -- check if we finished cycling through all ATWD channels
+					IF channel = "11" THEN
+						state <= idle;
+					ELSE
+						state <= next_channel;
+					END IF;
+					DigitalSet		<= '1';
+					RampSet			<= '1';
+					AnalogReset		<= '1';
+					OutputEnable	<= '0';
+					ShiftClock		<= '0';
+					counterclk_low	<= '1';
+					counterclk_high	<= '0';
+					ATWD_D_we		<= '0';
+					do_channel_cycle <= '1';
+				WHEN dummy_cycle => -- dummy reset for channel cycle
+					IF dummy_cycle_cnt >= 30 THEN
+						state <= chk_cycle;
+					END IF;
+					dummy_cycle_cnt	<= dummy_cycle_cnt + 1;
+					DigitalSet		<= '1';
+					RampSet			<= '1';
+					AnalogReset		<= '1';
+					OutputEnable	<= '0';
+					ShiftClock		<= '0';
+					counterclk_low	<= '1';
+					counterclk_high	<= '0';
+					ATWD_D_we		<= '0';
 --				WHEN restart_ATWD =>
 --					IF TriggerComplete='1' THEN
 --						state	<= ATWDrecover;
