@@ -1,0 +1,8 @@
+(
+	result_sig[]
+) = DCREV	(
+
+)
+RETURNS (
+	.result[]
+);

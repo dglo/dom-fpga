@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2006-09-12
+-- Last update: 2004-03-25
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -69,9 +69,6 @@ ARCHITECTURE arch_atwd_control OF atwd_control IS
 	SIGNAL channel		: STD_LOGIC_VECTOR (1 downto 0);
 	SIGNAL counterclk_low	: STD_LOGIC;
 	SIGNAL counterclk_high	: STD_LOGIC;
-
-        -- clean abort
-        SIGNAL abort : STD_LOGIC;
 	
 BEGIN
 	
@@ -128,7 +125,7 @@ BEGIN
 					settle_cnt		<= 0;
 					digitize_cnt	<= 1;
 				WHEN settle =>
-					IF settle_cnt=128 OR abort='1' THEN
+					IF settle_cnt=128 THEN
 						state	<= digitize;
 					END IF;
 					ReadWrite	<= '1';
@@ -136,31 +133,23 @@ BEGIN
 					counterclk_high	<= '1';
 					settle_cnt	<= settle_cnt+1;
 				WHEN digitize =>
-					digitize_cnt	<= digitize_cnt + 1;
-					IF digitize_cnt=512 OR abort='1' THEN
+					IF digitize_cnt=512 THEN
 						state	<= readout;
-                                                digitize_cnt <= 0;
 					END IF;
 					DigitalReset	<= '0';
 					RampSet			<= '0';
-					if abort = '0' then 
 					counterclk_low	<= '0';
 					counterclk_high	<= '0';
-					else 
-					counterclk_low	<= '0';
-					counterclk_high	<= '1';
-					end if;
-					--digitize_cnt	<= digitize_cnt + 1;
-				WHEN readout =>
 					digitize_cnt	<= digitize_cnt + 1;
-					IF readout_done='1' OR (abort='1' AND digitize_cnt=30) THEN -- was 8
+				WHEN readout =>
+					IF readout_done='1' THEN
 						state	<= readout_end;
 					END IF;
 					DigitalSet		<= '1';
 					RampSet			<= '1';
 					AnalogReset		<= '1';
 					OutputEnable	<= '1';
-					start_readout	<= NOT abort; --'1';
+					start_readout	<= '1';
 					counterclk_low	<= '1';
 					counterclk_high	<= '0';
 				WHEN readout_end =>
@@ -201,7 +190,7 @@ BEGIN
 			
 			-- LC abort (goto restart ATWD)
 			IF LC_abort = '1' THEN
-			--	state	<= restart_ATWD;
+				state	<= restart_ATWD;
 			END IF;
 		END IF;
 	END PROCESS;
@@ -224,19 +213,5 @@ BEGIN
 			CounterClock	<= cclk;
 		END IF;
 	END PROCESS;
-
-        abort_latch: PROCESS (CLK40, RST)
-        BEGIN  -- PROCESS abort_latch
-            IF RST = '1' THEN           -- asynchronous reset (active high)
-                abort <= '0';
-            ELSIF CLK40'event AND CLK40 = '1' THEN  -- rising clock edge
-                IF state=IDLE THEN
-                    abort <= '0';
-                ELSIF LC_abort='1' THEN
-                    abort <= '1';
-                END IF;
-            END IF;
-        END PROCESS abort_latch;
 	
 END;
-

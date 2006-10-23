@@ -1,0 +1,48 @@
+TITLE "control message, header-bytes decoder, K.-H. Sulanke,DESY Zeuthen, 2004-04-08";
+-- according Arthur Jones protocol
+
+SUBDESIGN hdr_decoder
+(
+	clk				: INPUT;
+	reset			: INPUT;
+	data_stb		: INPUT;
+	data[7..0]		: INPUT;
+	msg_type_ena	: INPUT;
+	cmd_ena			: INPUT;
+	dom_A_sel	    : INPUT;
+	dom_B_sel	    : INPUT;
+	
+	ctrl_msg	    : OUTPUT;	
+	data_msg	    : OUTPUT;
+	cmd_rec[3..0]	: OUTPUT;
+	dorlev_up_rq    : OUTPUT;	-- request from DOM to increase the Tx signal
+	dorlev_dn_rq	: OUTPUT;
+)
+
+VARIABLE
+	ctrl_msg		: DFFE;
+	data_msg		: DFFE;
+	cmd_rec[3..0]	: DFFE;
+
+BEGIN
+
+	ctrl_msg.clk		= clk;
+	ctrl_msg.clrn		= !reset;
+	ctrl_msg.ena		= msg_type_ena & data_stb;
+	ctrl_msg.d			= (data[6..4]==6)  &
+							((dom_A_sel &  data[7]) #
+							 (dom_B_sel & !data[7]));
+	
+	data_msg.clk		= clk;
+	data_msg.clrn		= !reset;
+	data_msg.ena		= msg_type_ena & data_stb;	
+	data_msg.d			= !((data[6..4]==6) # (data[6..4]==7)) &
+							((dom_A_sel &  data[7]) #
+							 (dom_B_sel & !data[7]));
+	
+	cmd_rec[].clk		= clk;
+	cmd_rec[].clrn		= !reset;
+	cmd_rec[].ena		= cmd_ena & data_stb;
+	cmd_rec[3..0].d		= data[3..0];
+
+END;

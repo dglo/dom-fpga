@@ -1,0 +1,8 @@
+(
+	result_sig
+) = and16b	(
+	.data[][] = data_sig[][]
+)
+RETURNS (
+	.result
+);

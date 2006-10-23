@@ -143,12 +143,6 @@ PACKAGE ctrl_data_types IS
             rx_head         : STD_LOGIC_VECTOR(15 DOWNTO 0);
         END RECORD;
 
-	-- control data for IceTop modifications
-    TYPE ICETOP_CTRL_STRUCT IS
-        RECORD
-			IceTop_mode			: STD_LOGIC;
-            IT_atwd_charge_chan : STD_LOGIC_VECTOR (1 DOWNTO 0);
-        END RECORD;
     
 END ctrl_data_types;
 

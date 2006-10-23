@@ -3,18 +3,18 @@ Timing Analyzer Summary
 --------------------------------------------------------------------------------------
 
 Type           : Worst-case tsu
-Slack          : -2.521 ns
+Slack          : -2.238 ns
 Required Time  : 1.000 ns
-Actual Time    : 3.521 ns
+Actual Time    : 3.238 ns
 From           : OneSPE
 To             : hit_counter:inst_hit_counter|OneSPE0
 
 Type           : Worst-case tco
-Slack          : -2.798 ns
+Slack          : -1.738 ns
 Required Time  : 1.000 ns
-Actual Time    : 3.798 ns
-From           : atwd:atwd0|atwd_trigger:inst_atwd_trigger|ATWDTrigger_sig
-To             : ATWDTrigger_0
+Actual Time    : 2.738 ns
+From           : atwd:atwd1|atwd_trigger:inst_atwd_trigger|ATWDTrigger_sig
+To             : ATWDTrigger_1
 
 Type           : Worst-case th
 Slack          : N/A
@@ -31,18 +31,18 @@ From           : pll2x:inst_pll2x|altclklock:altclklock_component|outclock1
 To             : CLKLK_OUT2p
 
 Type           : Clock Setup: 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock1'
-Slack          : 5.189 ns
+Slack          : 3.597 ns
 Required Time  : 40.00 MHz ( period = 25.000 ns )
-Actual Time    : N/A
-From           : slaveregister:slaveregister_inst|command_4_local[0]
-To             : atwd:atwd0|atwd_trigger:inst_atwd_trigger|launch_mode[1]
+Actual Time    : 56.16 MHz ( period = 17.806 ns )
+From           : atwd:atwd0|atwd_trigger:inst_atwd_trigger|launch_mode[0]
+To             : atwd:atwd0|atwd_trigger:inst_atwd_trigger|ATWDTrigger_sig
 
 Type           : Clock Setup: 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock0'
-Slack          : 10.223 ns
+Slack          : 9.797 ns
 Required Time  : 20.00 MHz ( period = 50.000 ns )
 Actual Time    : N/A
-From           : atwd:atwd1|atwd_trigger:inst_atwd_trigger|ATWDTrigger_sig
-To             : coinc:inst_coinc|atwd1_LC_abort~reg0
+From           : atwd:atwd0|atwd_trigger:inst_atwd_trigger|ATWDTrigger_sig
+To             : coinc:inst_coinc|atwd0_LC_abort~reg0
 
 Type           : Clock Setup: 'pll4x:inst_pll4x|altclklock:altclklock_component|outclock1'
 Slack          : 10.887 ns

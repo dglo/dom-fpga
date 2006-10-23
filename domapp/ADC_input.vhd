@@ -25,7 +25,6 @@ USE IEEE.std_logic_1164.all;
 USE IEEE.std_logic_arith.all;
 USE IEEE.std_logic_unsigned.all;
 
-USE WORK.ctrl_data_types.all;
 USE WORK.icecube_data_types.all;
 
 
@@ -45,7 +44,6 @@ ENTITY ADC_input IS
 		LC_mode			: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		DAQ_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		ATWD_AB			: IN STD_LOGIC;	-- indicates if ping or pong
-		ICETOP_ctrl		: IN ICETOP_CTRL_STRUCT;
 		-- trigger
 		rst_trig		: OUT STD_LOGIC;
 		trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
@@ -212,24 +210,6 @@ ARCHITECTURE arch_ADC_input OF ADC_input IS
         );
 	END COMPONENT;
 	
-	-- ATWD chargestamp for IceTop
-	COMPONENT icetop_atwd_charge IS
-		PORT (
-			CLK         : IN  STD_LOGIC;
-			RST         : IN  STD_LOGIC;
-			-- setup
-			channel_sel : IN  STD_LOGIC_VECTOR(1 DOWNTO 0);
-			-- ATWD data
-			busy        : IN  STD_LOGIC;
-			ATWD_WE     : IN  STD_LOGIC;
-			ATWD_data   : IN  STD_LOGIC_VECTOR (9 DOWNTO 0);
-			ATWD_addr   : IN  STD_LOGIC_VECTOR (8 DOWNTO 0);
-			-- charge
-			charge      : OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
-			-- test connector
-			TC          : OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
-		);
-	END COMPONENT;
 	
 	SIGNAL ATWD_enable	: STD_LOGIC;
 	SIGNAL ATWD_busy	: STD_LOGIC;
@@ -245,12 +225,6 @@ ARCHITECTURE arch_ADC_input OF ADC_input IS
 	SIGNAL HEADER_data_int	: HEADER_VECTOR;
 	SIGNAL charge_stamp		: STD_LOGIC_VECTOR (31 DOWNTO 0);
 	SIGNAL FADC_addr_int	: STD_LOGIC_VECTOR (7 DOWNTO 0);
-	
-	-- ATWD chargestamp for IceTop
-	SIGNAL ATWD_addr_int	: STD_LOGIC_VECTOR (8 downto 0);
-	SIGNAL ATWD_data_int	: STD_LOGIC_VECTOR (9 downto 0);
-	SIGNAL ATWD_we_int		: STD_LOGIC;
-	SIGNAL icetop_charge	: STD_LOGIC_VECTOR (31 DOWNTO 0);
 	
 BEGIN
 
@@ -303,9 +277,9 @@ BEGIN
 			ATWD_ped_data	=> ATWD_ped_data,
 			ATWD_ped_addr	=> ATWD_ped_addr,
 			-- buffer interface
-			ATWD_data		=> ATWD_data_int,
-			ATWD_addr		=> ATWD_addr_int,
-			ATWD_we			=> ATWD_we_int,
+			ATWD_data		=> ATWD_data,
+			ATWD_addr		=> ATWD_addr,
+			ATWD_we			=> ATWD_we,
 			-- test connector
 			TC				=> open
 		);
@@ -392,36 +366,10 @@ BEGIN
         );
 	FADC_addr <= FADC_addr_int;
 	
-	-- ATWD chargestamp for IceTop
-	inst_icetop_atwd_charge : icetop_atwd_charge
-		PORT MAP (
-			CLK         => CLK40,
-			RST         => RST,
-			-- setup
-			channel_sel => ICETOP_ctrl.IT_atwd_charge_chan,
-			-- ATWD data
-			busy        => ATWD_busy,
-			ATWD_WE     => ATWD_we_int,
-			ATWD_data   => ATWD_data_int,
-			ATWD_addr   => ATWD_addr_int,
-			-- charge
-			charge      => icetop_charge,
-			-- test connector
-			TC          => OPEN
-		);
-		
-	ATWD_we		<= ATWD_we_int;
-	ATWD_data	<= ATWD_data_int;
-	ATWD_addr	<= ATWD_addr_int;
-	
 	PROCESS(HEADER_data_int,charge_stamp)
 	BEGIN
 		HEADER_data				<= HEADER_data_int;
-		IF ICETOP_ctrl.IceTop_mode = '0' THEN
-			HEADER_data.chargestamp	<= charge_stamp;
-		ELSE
-			HEADER_data.chargestamp	<= icetop_charge;
-		END IF;
+		HEADER_data.chargestamp	<= charge_stamp;
 	END PROCESS;
 		
 END;
