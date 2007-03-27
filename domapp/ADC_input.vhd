@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2003-08-26
+-- Last update: 2007-03-22
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -18,6 +18,7 @@
 -- Revisions  :
 -- Date        Version     Author    Description
 -- 2003-08-26  V01-01-00   thorsten  
+-- 2007-03-22              thorsten  added ATWD dead flag
 -------------------------------------------------------------------------------
 
 LIBRARY IEEE;
@@ -46,6 +47,7 @@ ENTITY ADC_input IS
 		DAQ_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		ATWD_AB			: IN STD_LOGIC;	-- indicates if ping or pong
 		ICETOP_ctrl		: IN ICETOP_CTRL_STRUCT;
+                dead_flag               : OUT STD_LOGIC;
 		-- trigger
 		rst_trig		: OUT STD_LOGIC;
 		trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
@@ -166,6 +168,7 @@ ARCHITECTURE arch_ADC_input OF ADC_input IS
 			ATWD_AB		: IN STD_LOGIC;	-- indicates if ping or pong
 			abort_ATWD	: OUT STD_LOGIC;
 			abort_FADC	: OUT STD_LOGIC;
+                        dead_flag       : OUT STD_LOGIC;
 			-- trigger
 			ATWDtrigger		: IN STD_LOGIC;
 			rst_trig		: OUT STD_LOGIC;
@@ -347,6 +350,7 @@ BEGIN
 			ATWD_AB		=> ATWD_AB,
 			abort_ATWD	=> abort_ATWD,
 			abort_FADC	=> abort_FADC,
+                        dead_flag       => dead_flag,
 			-- trigger
 			ATWDtrigger		=> ATWDTrigger,
 			rst_trig		=> rst_trig,

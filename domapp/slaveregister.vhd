@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2003-12-03
+-- Last update: 2007-03-23
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -227,7 +227,7 @@ BEGIN
 			CS_ctrl_local	<= ((OTHERS=>'0'), "000", (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), '0', '0');
 			-- LC_ctrl_local	<= ('0', (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (1,2,3,4), (1,2,3,4));
 			LC_ctrl_local	<= ('0', (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (1,2,3,4), (1,2,3,4), (OTHERS=>'0'), (OTHERS=>'0'), '0');
-			RM_ctrl_local	<= ((OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'));
+			RM_ctrl_local	<= ((OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'));
 			COMM_ctrl_local	<= ('0', (OTHERS=>'0'), 'X', '0', '0', (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), '0', '0');
 			id_set			<= "00";
 	--		COMPR_ctrl_local	<= ((OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), '0', '0');
@@ -402,11 +402,14 @@ BEGIN
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0480") ) THEN	-- Rate Monitor Control
 					IF reg_write = '1' THEN
 						RM_ctrl_local.RM_rate_enable	<= reg_wdata(1 downto 0);
+                                                RM_ctrl_local.dead_cnt_en       <= reg_wdata(9 DOWNTO 8);
 						RM_ctrl_local.RM_rate_dead		<= reg_wdata(25 downto 16);
 					END IF;
 					IF READBACK=1 THEN
 						reg_rdata(1 downto 0)	<= RM_ctrl_local.RM_rate_enable;
-						reg_rdata(15 downto 2)	<= (OTHERS=>'0');
+						reg_rdata(7 downto 2)	<= (OTHERS=>'0');
+                                                reg_rdata(9 DOWNTO 8)   <= RM_ctrl_local.dead_cnt_en;
+						reg_rdata(15 downto 10)	<= (OTHERS=>'0');
 						reg_rdata(25 downto 16)	<= RM_ctrl_local.RM_rate_dead;
 						reg_rdata(31 downto 26)	<= (OTHERS=>'0');
 					ELSE
@@ -416,6 +419,8 @@ BEGIN
 					reg_rdata(31 downto 0)	<= RM_stat.rm_rate_SPE;
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0488") ) THEN	-- Rate Monitor MPE
 					reg_rdata(31 downto 0)	<= RM_stat.rm_rate_MPE;
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0490") ) THEN    -- ATWD dead time count
+					reg_rdata(31 downto 0)	<= RM_stat.dead_cnt;
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"04A0") ) THEN	-- Supernove Meter Control
 					IF reg_write = '1' THEN
 						RM_ctrl_local.RM_sn_enable	<= reg_wdata(1 downto 0);
