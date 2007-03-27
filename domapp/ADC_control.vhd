@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2003-08-26
+-- Last update: 2007-03-22
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -19,6 +19,7 @@
 -- Date        Version     Author    Description
 -- 2003-08-26  V01-01-00   thorsten  
 -- 2004-11-09              thorsten  added flabby local coincidence
+-- 2007-03-22              thorsten  added ATWD dead flag
 -------------------------------------------------------------------------------
 
 LIBRARY IEEE;
@@ -42,6 +43,7 @@ ENTITY ADC_control IS
 		ATWD_AB		: IN STD_LOGIC;	-- indicates if ping or pong
 		abort_ATWD	: OUT STD_LOGIC;
 		abort_FADC	: OUT STD_LOGIC;
+                dead_flag       : OUT STD_LOGIC;
 		-- trigger
 		ATWDtrigger		: IN STD_LOGIC;
 		rst_trig	: OUT STD_LOGIC;
@@ -200,5 +202,11 @@ BEGIN
 	--!! add ATWD FADC available ----- !!!!!!!!!!!!!
 	HEADER_data.ATWDavail <= '1' WHEN eventtype=eventEngineering AND daq_mode=ATWD_FADC AND lc_mode/=LC_FLABBY ELSE '0';
 	HEADER_data.FADCavail <= '1' WHEN eventtype=eventEngineering AND (daq_mode=ATWD_FADC OR daq_mode=FADC_ONLY) ELSE '0';
-	
+
+	dead_flag <= '1' WHEN (state=WAIT_DONE AND FADC_busy='0')
+                     OR state=CLEAR_LC_HARD OR state=WAIT_LC_SOFT
+                     OR (state=WAIT_LC_FLABBY AND FADC_busy='0')
+                     OR (state=GOT_LC AND FADC_busy='0')
+                     OR state=WAIT_BUFFER OR state=WR_HEADER OR state=RESET_TRIG ELSE '0';
 END;
+

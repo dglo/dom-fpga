@@ -33,6 +33,7 @@ set_global_assignment -name ORIGINAL_QUARTUS_VERSION "3.0 SP2"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "10:14:15  FEBRUARY 26, 2004"
 set_global_assignment -name LAST_QUARTUS_VERSION "4.0 SP1"
 set_parameter -name RESERVE_ALL_UNUSED_PINS_NO_OUTPUT_GND "AS OUTPUT DRIVING AN UNSPECIFIED SIGNAL"
+set_global_assignment -name VHDL_FILE icetop/icetop_atwd_charge.vhd
 set_global_assignment -name BDF_FILE ../common/comDPM/dcom_ap.bdf
 set_global_assignment -name VHDL_FILE icecube_data_types.vhd
 set_global_assignment -name VHDL_FILE constants.vhd
@@ -83,32 +84,32 @@ set_global_assignment -name SIGNALTAP_FILE "tcal-1.stp"
 # Pin & Location Assignments
 # ==========================
 set_location_assignment PIN_AC26 -to ATWD0VDD_SUP
-set_location_assignment PIN_Y15 -to ATWD0_D\[0\]
-set_location_assignment PIN_V15 -to ATWD0_D\[1\]
-set_location_assignment PIN_AC15 -to ATWD0_D\[2\]
-set_location_assignment PIN_AA15 -to ATWD0_D\[3\]
-set_location_assignment PIN_AE16 -to ATWD0_D\[4\]
-set_location_assignment PIN_AB16 -to ATWD0_D\[5\]
-set_location_assignment PIN_AA16 -to ATWD0_D\[6\]
-set_location_assignment PIN_W16 -to ATWD0_D\[7\]
-set_location_assignment PIN_AF17 -to ATWD0_D\[8\]
-set_location_assignment PIN_AD17 -to ATWD0_D\[9\]
+set_location_assignment PIN_Y15 -to ATWD1_D\[0\]
+set_location_assignment PIN_V15 -to ATWD1_D\[1\]
+set_location_assignment PIN_AC15 -to ATWD1_D\[2\]
+set_location_assignment PIN_AA15 -to ATWD1_D\[3\]
+set_location_assignment PIN_AE16 -to ATWD1_D\[4\]
+set_location_assignment PIN_AB16 -to ATWD1_D\[5\]
+set_location_assignment PIN_AA16 -to ATWD1_D\[6\]
+set_location_assignment PIN_W16 -to ATWD1_D\[7\]
+set_location_assignment PIN_AF17 -to ATWD1_D\[8\]
+set_location_assignment PIN_AD17 -to ATWD1_D\[9\]
 set_location_assignment PIN_AC25 -to ATWD1VDD_SUP
-set_location_assignment PIN_AA17 -to ATWD1_D\[0\]
-set_location_assignment PIN_AF18 -to ATWD1_D\[1\]
-set_location_assignment PIN_AB18 -to ATWD1_D\[2\]
-set_location_assignment PIN_AD18 -to ATWD1_D\[3\]
-set_location_assignment PIN_AC20 -to ATWD1_D\[4\]
-set_location_assignment PIN_AC19 -to ATWD1_D\[5\]
-set_location_assignment PIN_AE22 -to ATWD1_D\[6\]
-set_location_assignment PIN_AA18 -to ATWD1_D\[7\]
-set_location_assignment PIN_AD21 -to ATWD1_D\[8\]
-set_location_assignment PIN_AE20 -to ATWD1_D\[9\]
-set_location_assignment PIN_AB8 -to ATWDTrigger_0
-set_location_assignment PIN_AD7 -to ATWDTrigger_1
+set_location_assignment PIN_AA17 -to ATWD0_D\[0\]
+set_location_assignment PIN_AF18 -to ATWD0_D\[1\]
+set_location_assignment PIN_AB18 -to ATWD0_D\[2\]
+set_location_assignment PIN_AD18 -to ATWD0_D\[3\]
+set_location_assignment PIN_AC20 -to ATWD0_D\[4\]
+set_location_assignment PIN_AC19 -to ATWD0_D\[5\]
+set_location_assignment PIN_AE22 -to ATWD0_D\[6\]
+set_location_assignment PIN_AA18 -to ATWD0_D\[7\]
+set_location_assignment PIN_AD21 -to ATWD0_D\[8\]
+set_location_assignment PIN_AE20 -to ATWD0_D\[9\]
+set_location_assignment PIN_AB8 -to ATWDTrigger_1
+set_location_assignment PIN_AD7 -to ATWDTrigger_0
 set_location_assignment PIN_E4 -to A_nB
-set_location_assignment PIN_AC16 -to AnalogReset_0
-set_location_assignment PIN_AC18 -to AnalogReset_1
+set_location_assignment PIN_AC16 -to AnalogReset_1
+set_location_assignment PIN_AC18 -to AnalogReset_0
 set_location_assignment PIN_AB2 -to COINCIDENCE_OUT_DOWN
 set_location_assignment PIN_AB1 -to COINCIDENCE_OUT_UP
 set_location_assignment PIN_AA10 -to COINC_DOWN_A
@@ -126,16 +127,16 @@ set_location_assignment PIN_AA11 -to COINC_UP_BLATCH
 set_location_assignment PIN_AA24 -to COMM_RESET
 set_location_assignment PIN_H4 -to COM_AD_OTR
 set_location_assignment PIN_U2 -to COM_TX_SLEEP
-set_location_assignment PIN_AF16 -to ChannelSelect_0\[0\]
-set_location_assignment PIN_AB15 -to ChannelSelect_0\[1\]
-set_location_assignment PIN_AD19 -to ChannelSelect_1\[0\]
-set_location_assignment PIN_Y18 -to ChannelSelect_1\[1\]
-set_location_assignment PIN_W15 -to CounterClock_0
-set_location_assignment PIN_AB17 -to CounterClock_1
-set_location_assignment PIN_V16 -to DigitalReset_0
-set_location_assignment PIN_W18 -to DigitalReset_1
-set_location_assignment PIN_Y16 -to DigitalSet_0
-set_location_assignment PIN_AE23 -to DigitalSet_1
+set_location_assignment PIN_AF16 -to ChannelSelect_1\[0\]
+set_location_assignment PIN_AB15 -to ChannelSelect_1\[1\]
+set_location_assignment PIN_AD19 -to ChannelSelect_0\[0\]
+set_location_assignment PIN_Y18 -to ChannelSelect_0\[1\]
+set_location_assignment PIN_W15 -to CounterClock_1
+set_location_assignment PIN_AB17 -to CounterClock_0
+set_location_assignment PIN_V16 -to DigitalReset_1
+set_location_assignment PIN_W18 -to DigitalReset_0
+set_location_assignment PIN_Y16 -to DigitalSet_1
+set_location_assignment PIN_AE23 -to DigitalSet_0
 set_location_assignment PIN_W23 -to FE_PULSER_N\[0\]
 set_location_assignment PIN_V24 -to FE_PULSER_N\[1\]
 set_location_assignment PIN_U23 -to FE_PULSER_N\[2\]
@@ -163,8 +164,8 @@ set_location_assignment PIN_AF12 -to MultiSPE
 set_location_assignment PIN_AD8 -to MultiSPE_nl
 set_location_assignment PIN_AF15 -to OneSPE
 set_location_assignment PIN_AB19 -to OneSPE_nl
-set_location_assignment PIN_W14 -to OutputEnable_0
-set_location_assignment PIN_W17 -to OutputEnable_1
+set_location_assignment PIN_W14 -to OutputEnable_1
+set_location_assignment PIN_W17 -to OutputEnable_0
 set_location_assignment PIN_B20 -to PGM\[0\]
 set_location_assignment PIN_AB4 -to PGM\[10\]
 set_location_assignment PIN_P21 -to PGM\[11\]
@@ -188,15 +189,15 @@ set_location_assignment PIN_AA20 -to R2BUS\[3\]
 set_location_assignment PIN_AA21 -to R2BUS\[4\]
 set_location_assignment PIN_Y20 -to R2BUS\[5\]
 set_location_assignment PIN_Y21 -to R2BUS\[6\]
-set_location_assignment PIN_AD15 -to RampSet_0
-set_location_assignment PIN_AE18 -to RampSet_1
-set_location_assignment PIN_AD16 -to ReadWrite_0
-set_location_assignment PIN_AD20 -to ReadWrite_1
-set_location_assignment PIN_AC14 -to ShiftClock_0
-set_location_assignment PIN_Y17 -to ShiftClock_1
+set_location_assignment PIN_AD15 -to RampSet_1
+set_location_assignment PIN_AE18 -to RampSet_0
+set_location_assignment PIN_AD16 -to ReadWrite_1
+set_location_assignment PIN_AD20 -to ReadWrite_0
+set_location_assignment PIN_AC14 -to ShiftClock_1
+set_location_assignment PIN_Y17 -to ShiftClock_0
 set_location_assignment PIN_AA1 -to SingleLED_TRIGGER
-set_location_assignment PIN_AA14 -to TriggerComplete_0
-set_location_assignment PIN_AC17 -to TriggerComplete_1
+set_location_assignment PIN_AA14 -to TriggerComplete_1
+set_location_assignment PIN_AC17 -to TriggerComplete_0
 set_location_assignment PIN_K16 -to EBIACK
 set_location_assignment PIN_F20 -to EBIADDR\[0\]
 set_location_assignment PIN_H17 -to EBIADDR\[10\]
@@ -390,9 +391,15 @@ set_location_assignment PIN_P20 -to CLK1p
 set_location_assignment PIN_W6 -to CLK2p
 set_location_assignment PIN_R23 -to CLK3p
 set_location_assignment PIN_Y5 -to CLK4p
+set_location_assignment LC10_8_Z1 -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_A_sig"
+set_location_assignment LC10_1_Z3 -to "daq:inst_daq\|trigger:inst_trigger\|discSPE"
+set_location_assignment LC10_3_Z1 -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_B_sig"
+set_location_assignment LC9_1_Z3 -to "daq:inst_daq\|trigger:inst_trigger\|discMPE"
 
 # Timing Assignments
 # ==================
+set_global_assignment -name REPORT_IO_PATHS_SEPARATELY ON
+set_global_assignment -name CUT_OFF_PATHS_BETWEEN_CLOCK_DOMAINS OFF
 set_global_assignment -name INCLUDE_EXTERNAL_PIN_DELAYS_IN_FMAX_CALCULATIONS OFF
 
 # Analysis & Synthesis Assignments
@@ -418,7 +425,7 @@ set_global_assignment -name AUTO_RESTART_CONFIGURATION OFF
 set_global_assignment -name CYCLONE_CONFIGURATION_SCHEME "PASSIVE SERIAL"
 set_global_assignment -name DEVICE EPXA4F672I2
 set_instance_assignment -name IO_STANDARD LVTTL -to CLK1p
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD0_D\[1\]
+set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[1\]
 set_instance_assignment -name IO_STANDARD LVTTL -to COM_DB\[13\]
 set_instance_assignment -name IO_STANDARD LVTTL -to COM_DB\[12\]
 set_instance_assignment -name IO_STANDARD LVTTL -to COM_DB\[11\]
@@ -446,18 +453,18 @@ set_instance_assignment -name IO_STANDARD LVTTL -to COM_AD_D\[9\]
 set_instance_assignment -name IO_STANDARD LVTTL -to COM_AD_D\[10\]
 set_instance_assignment -name IO_STANDARD LVTTL -to COM_AD_D\[11\]
 set_instance_assignment -name IO_STANDARD LVTTL -to R2BUS\[7\]
-set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_D\[11\]
-set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_D\[9\]
-set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_D\[10\]
-set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_D\[8\]
-set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_D\[7\]
-set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_D\[6\]
-set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_D\[5\]
-set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_D\[4\]
-set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_D\[3\]
-set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_D\[2\]
-set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_D\[1\]
-set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_D\[0\]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to FLASH_AD_D\[11\]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to FLASH_AD_D\[9\]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to FLASH_AD_D\[10\]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to FLASH_AD_D\[8\]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to FLASH_AD_D\[7\]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to FLASH_AD_D\[6\]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to FLASH_AD_D\[5\]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to FLASH_AD_D\[4\]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to FLASH_AD_D\[3\]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to FLASH_AD_D\[2\]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to FLASH_AD_D\[1\]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to FLASH_AD_D\[0\]
 set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_D\[7\]
 set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_D\[6\]
 set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_D\[5\]
@@ -490,6 +497,8 @@ set_instance_assignment -name IO_STANDARD LVTTL -to FL_AUX_RESET
 set_instance_assignment -name IO_STANDARD LVTTL -to CLK2p
 set_instance_assignment -name IO_STANDARD LVTTL -to CLK3p
 set_instance_assignment -name IO_STANDARD LVTTL -to CLK4p
+set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_STBY
+set_instance_assignment -name IO_STANDARD "2.5 V" -to FLASH_NCO
 
 # Timing Analysis Assignments
 # ===========================
@@ -573,6 +582,10 @@ set_global_assignment -name USE_SIGNALTAP_FILE "tcal-1.stp"
 	# ==================
 	set_global_assignment -name FMAX_REQUIREMENT "20.0 MHz" -section_id CLK1p
 	set_global_assignment -name INCLUDE_EXTERNAL_PIN_DELAYS_IN_FMAX_CALCULATIONS OFF -section_id CLK1p
+	set_global_assignment -name DUTY_CYCLE 50 -section_id CLK1p
+	set_global_assignment -name DIVIDE_BASE_CLOCK_PERIOD_BY 1 -section_id CLK1p
+	set_global_assignment -name MULTIPLY_BASE_CLOCK_PERIOD_BY 1 -section_id CLK1p
+	set_global_assignment -name INVERT_BASE_CLOCK OFF -section_id CLK1p
 
 # end CLOCK(CLK1p)
 # ----------------
@@ -583,6 +596,10 @@ set_global_assignment -name USE_SIGNALTAP_FILE "tcal-1.stp"
 	# Timing Assignments
 	# ==================
 	set_global_assignment -name BASED_ON_CLOCK_SETTINGS CLK1p -section_id CLK2p
+	set_global_assignment -name DUTY_CYCLE 50 -section_id CLK2p
+	set_global_assignment -name DIVIDE_BASE_CLOCK_PERIOD_BY 1 -section_id CLK2p
+	set_global_assignment -name MULTIPLY_BASE_CLOCK_PERIOD_BY 1 -section_id CLK2p
+	set_global_assignment -name INVERT_BASE_CLOCK OFF -section_id CLK2p
 
 # end CLOCK(CLK2p)
 # ----------------
@@ -593,6 +610,10 @@ set_global_assignment -name USE_SIGNALTAP_FILE "tcal-1.stp"
 	# Timing Assignments
 	# ==================
 	set_global_assignment -name BASED_ON_CLOCK_SETTINGS CLK1p -section_id CLK3p
+	set_global_assignment -name DUTY_CYCLE 50 -section_id CLK3p
+	set_global_assignment -name DIVIDE_BASE_CLOCK_PERIOD_BY 1 -section_id CLK3p
+	set_global_assignment -name MULTIPLY_BASE_CLOCK_PERIOD_BY 1 -section_id CLK3p
+	set_global_assignment -name INVERT_BASE_CLOCK OFF -section_id CLK3p
 
 # end CLOCK(CLK3p)
 # ----------------
@@ -603,6 +624,10 @@ set_global_assignment -name USE_SIGNALTAP_FILE "tcal-1.stp"
 	# Timing Assignments
 	# ==================
 	set_global_assignment -name BASED_ON_CLOCK_SETTINGS CLK1p -section_id CLK4p
+	set_global_assignment -name DUTY_CYCLE 50 -section_id CLK4p
+	set_global_assignment -name DIVIDE_BASE_CLOCK_PERIOD_BY 1 -section_id CLK4p
+	set_global_assignment -name MULTIPLY_BASE_CLOCK_PERIOD_BY 1 -section_id CLK4p
+	set_global_assignment -name INVERT_BASE_CLOCK OFF -section_id CLK4p
 
 # end CLOCK(CLK4p)
 # ----------------
@@ -631,6 +656,43 @@ set_global_assignment -name USE_SIGNALTAP_FILE "tcal-1.stp"
 	set_instance_assignment -name CLOCK_SETTINGS CLK2p -to CLK2p
 	set_instance_assignment -name CLOCK_SETTINGS CLK3p -to CLK3p
 	set_instance_assignment -name CLOCK_SETTINGS CLK4p -to CLK4p
+	set_instance_assignment -name TCO_REQUIREMENT 2ns -to ATWDTrigger_0
+	set_instance_assignment -name TCO_REQUIREMENT 2ns -to ATWDTrigger_1
+	set_instance_assignment -name TSU_REQUIREMENT 2ns -from OneSPE -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_B_sig"
+	set_instance_assignment -name TSU_REQUIREMENT 2ns -from MultiSPE -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_B_sig"
+	set_instance_assignment -name NOT_A_CLOCK OFF -to OneSPE
+	set_instance_assignment -name NOT_A_CLOCK OFF -to MultiSPE
+	set_instance_assignment -name INPUT_MAX_DELAY 2ns -from OneSPE -to "daq:inst_daq\|trigger:inst_trigger\|discSPE"
+	set_instance_assignment -name INPUT_MAX_DELAY 2ns -from MultiSPE -to "daq:inst_daq\|trigger:inst_trigger\|discMPE"
+	set_instance_assignment -name TSU_REQUIREMENT 10ps -from OneSPE -to "daq:inst_daq\|trigger:inst_trigger\|discSPE"
+	set_instance_assignment -name TSU_REQUIREMENT 10ps -from MultiSPE -to "daq:inst_daq\|trigger:inst_trigger\|discMPE"
+	set_instance_assignment -name REPORT_DELAY ON -from OneSPE -to *
+	set_instance_assignment -name REPORT_DELAY ON -from OneSPE -to "daq:inst_daq\|trigger:inst_trigger\|discSPE"
+	set_instance_assignment -name TPD_REQUIREMENT 2ns -from OneSPE -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_A_sig"
+	set_instance_assignment -name REPORT_DELAY ON -from "daq:inst_daq\|trigger:inst_trigger\|discSPE" -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_A_sig"
+	set_instance_assignment -name REPORT_DELAY ON -from "daq:inst_daq\|trigger:inst_trigger\|discMPE" -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_A_sig"
+	set_instance_assignment -name TSU_REQUIREMENT 2ns -from "daq:inst_daq\|trigger:inst_trigger\|discMPE" -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_A_sig"
+	set_instance_assignment -name TSU_REQUIREMENT 2ns -from "daq:inst_daq\|trigger:inst_trigger\|discSPE" -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_A_sig"
+	set_instance_assignment -name REPORT_DELAY ON -from "daq:inst_daq\|trigger:inst_trigger\|discSPE" -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_B_sig"
+	set_instance_assignment -name REPORT_DELAY ON -from "daq:inst_daq\|trigger:inst_trigger\|discMPE" -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_B_sig"
+	set_instance_assignment -name TSU_REQUIREMENT 2ns -from "daq:inst_daq\|trigger:inst_trigger\|discSPE" -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_B_sig"
+	set_instance_assignment -name TSU_REQUIREMENT 2ns -from "daq:inst_daq\|trigger:inst_trigger\|discMPE" -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_B_sig"
+	set_instance_assignment -name TSU_REQUIREMENT 5ns -to "daq:inst_daq\|FADC_input:inst_FADC_input\|FADC_D\[0\]~reg0"
+	set_instance_assignment -name TSU_REQUIREMENT 5ns -to "daq:inst_daq\|FADC_input:inst_FADC_input\|FADC_D\[1\]~reg0"
+	set_instance_assignment -name TSU_REQUIREMENT 5ns -to "daq:inst_daq\|FADC_input:inst_FADC_input\|FADC_D\[2\]~reg0"
+	set_instance_assignment -name TSU_REQUIREMENT 5ns -to "daq:inst_daq\|FADC_input:inst_FADC_input\|FADC_D\[3\]~reg0"
+	set_instance_assignment -name TSU_REQUIREMENT 5ns -to "daq:inst_daq\|FADC_input:inst_FADC_input\|FADC_D\[4\]~reg0"
+	set_instance_assignment -name TSU_REQUIREMENT 5ns -to "daq:inst_daq\|FADC_input:inst_FADC_input\|FADC_D\[5\]~reg0"
+	set_instance_assignment -name TSU_REQUIREMENT 5ns -to "daq:inst_daq\|FADC_input:inst_FADC_input\|FADC_D\[6\]~reg0"
+	set_instance_assignment -name TSU_REQUIREMENT 5ns -to "daq:inst_daq\|FADC_input:inst_FADC_input\|FADC_D\[7\]~reg0"
+	set_instance_assignment -name TSU_REQUIREMENT 5ns -to "daq:inst_daq\|FADC_input:inst_FADC_input\|FADC_D\[8\]~reg0"
+	set_instance_assignment -name TSU_REQUIREMENT 5ns -to "daq:inst_daq\|FADC_input:inst_FADC_input\|FADC_D\[9\]~reg0"
+	set_instance_assignment -name TSU_REQUIREMENT 5ns -to "daq:inst_daq\|FADC_input:inst_FADC_input\|FADC_NCO~reg0"
+
+	# Fitter Assignments
+	# ==================
+	set_instance_assignment -name DECREASE_INPUT_DELAY_TO_OUTPUT_REGISTER ON -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_A_sig"
+	set_instance_assignment -name DECREASE_INPUT_DELAY_TO_OUTPUT_REGISTER ON -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_B_sig"
 
 # end ENTITY(domapp)
 # ------------------

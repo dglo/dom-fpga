@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2003-12-03
+-- Last update: 2007-03-23
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -65,6 +65,7 @@ ENTITY slaveregister IS
 		DOM_status		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 		COMPR_ctrl		: OUT COMPR_STRUCT;
 		debugging		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
+		ICETOP_ctrl		: OUT ICETOP_CTRL_STRUCT;
 		-- Flasher Board
 		CS_FL_aux_reset	: OUT STD_LOGIC;
 		CS_FL_attn		: IN STD_LOGIC;
@@ -191,6 +192,8 @@ ARCHITECTURE arch_slaveregister OF slaveregister IS
 	SIGNAL RM_ctrl_local	: RM_CTRL_STRUCT;
 	SIGNAL COMM_ctrl_local	: COMM_CTRL_STRUCT;
 	SIGNAL COMPR_ctrl_local	: COMPR_STRUCT;
+	SIGNAL ICETOP_ctrl_local	: ICETOP_CTRL_STRUCT;
+	
 	
 	SIGNAL CS_FL_aux_reset_local : STD_LOGIC;
 	
@@ -224,7 +227,7 @@ BEGIN
 			CS_ctrl_local	<= ((OTHERS=>'0'), "000", (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), '0', '0');
 			-- LC_ctrl_local	<= ('0', (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (1,2,3,4), (1,2,3,4));
 			LC_ctrl_local	<= ('0', (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (1,2,3,4), (1,2,3,4), (OTHERS=>'0'), (OTHERS=>'0'), '0');
-			RM_ctrl_local	<= ((OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'));
+			RM_ctrl_local	<= ((OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'));
 			COMM_ctrl_local	<= ('0', (OTHERS=>'0'), 'X', '0', '0', (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), '0', '0');
 			id_set			<= "00";
 	--		COMPR_ctrl_local	<= ((OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), '0', '0');
@@ -265,6 +268,7 @@ BEGIN
 						DAQ_ctrl_local.LBM_mode		<= reg_wdata(21 downto 20);
 						DAQ_ctrl_local.COMPR_mode	<= reg_wdata(25 downto 24);
 						COMPR_ctrl_local.COMPR_mode	<= reg_wdata(25 downto 24); -- Joshua needs this
+						ICETOP_ctrl_local.IceTop_mode	<= reg_wdata(28);	-- for IceTop
 					END IF;
 					IF READBACK=1 THEN
 						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
@@ -276,6 +280,7 @@ BEGIN
 						reg_rdata(19)			<= NOT DAQ_ctrl_local.LC_heart_beat;
 						reg_rdata(21 downto 20)	<= DAQ_ctrl_local.LBM_mode;
 						reg_rdata(25 downto 24)	<= DAQ_ctrl_local.COMPR_mode;
+						reg_rdata(28)			<= ICETOP_ctrl_local.IceTop_mode;
 					ELSE
 						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
 					END IF;
@@ -397,11 +402,14 @@ BEGIN
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0480") ) THEN	-- Rate Monitor Control
 					IF reg_write = '1' THEN
 						RM_ctrl_local.RM_rate_enable	<= reg_wdata(1 downto 0);
+                                                RM_ctrl_local.dead_cnt_en       <= reg_wdata(9 DOWNTO 8);
 						RM_ctrl_local.RM_rate_dead		<= reg_wdata(25 downto 16);
 					END IF;
 					IF READBACK=1 THEN
 						reg_rdata(1 downto 0)	<= RM_ctrl_local.RM_rate_enable;
-						reg_rdata(15 downto 2)	<= (OTHERS=>'0');
+						reg_rdata(7 downto 2)	<= (OTHERS=>'0');
+                                                reg_rdata(9 DOWNTO 8)   <= RM_ctrl_local.dead_cnt_en;
+						reg_rdata(15 downto 10)	<= (OTHERS=>'0');
 						reg_rdata(25 downto 16)	<= RM_ctrl_local.RM_rate_dead;
 						reg_rdata(31 downto 26)	<= (OTHERS=>'0');
 					ELSE
@@ -411,6 +419,8 @@ BEGIN
 					reg_rdata(31 downto 0)	<= RM_stat.rm_rate_SPE;
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0488") ) THEN	-- Rate Monitor MPE
 					reg_rdata(31 downto 0)	<= RM_stat.rm_rate_MPE;
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0490") ) THEN    -- ATWD dead time count
+					reg_rdata(31 downto 0)	<= RM_stat.dead_cnt;
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"04A0") ) THEN	-- Supernove Meter Control
 					IF reg_write = '1' THEN
 						RM_ctrl_local.RM_sn_enable	<= reg_wdata(1 downto 0);
@@ -638,6 +648,16 @@ BEGIN
 	--					reg_rdata(31 downto 0)	<= (OTHERS=>'0');
 	--				END IF;
 			
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0560") ) THEN	-- IceTop specific
+					IF reg_write = '1' THEN
+						ICETOP_ctrl_local.IT_atwd_charge_chan	<= reg_wdata(1 DOWNTO 0);
+					END IF;
+					IF READBACK=1 THEN
+						reg_rdata(1 DOWNTO 0)	<= ICETOP_ctrl_local.IT_atwd_charge_chan;
+						reg_rdata(31 downto 2)	<= (OTHERS=>'0');
+					ELSE
+						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+					END IF;
 					
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"07F8") ) THEN	-- PONG (just in case we want to implement a 3D PONG game with IceCubeA) 
 					reg_rdata(31 downto 0) <= X"504F4E47";	-- ASCII PONG
@@ -677,7 +697,8 @@ BEGIN
 	COMM_ctrl	<= COMM_ctrl_local;
 	COMPR_ctrl	<= COMPR_ctrl_local;
 	-- COMPR_ctrl.COMPR_mode	<= DAQ_ctrl_local.COMPR_mode; moved to register
-	
+	ICETOP_ctrl	<= ICETOP_ctrl_local;
+		
 	CS_FL_aux_reset	<= CS_FL_aux_reset_local;
 	
 	

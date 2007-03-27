@@ -449,6 +449,10 @@ set_location_assignment PIN_E3 -to FPGA_DA
 set_location_assignment PIN_F3 -to FPGA_CE
 set_location_assignment PIN_W1 -to FPGA_D\[0\]
 set_location_assignment PIN_W2 -to FPGA_D\[1\]
+set_location_assignment LC10_8_Z1 -to "atwd:atwd0\|atwd_trigger:inst_atwd_trigger\|ATWDTrigger_sig"
+set_location_assignment LC10_3_Z1 -to "atwd:atwd1\|atwd_trigger:inst_atwd_trigger\|ATWDTrigger_sig"
+set_location_assignment LC10_1_Z3 -to "atwd:atwd0\|atwd_trigger:inst_atwd_trigger\|discFF"
+set_location_assignment LC9_1_Z3 -to "atwd:atwd1\|atwd_trigger:inst_atwd_trigger\|discFF"
 
 # Timing Assignments
 # ==================
@@ -868,22 +872,6 @@ set_global_assignment -name LOGICLOCK_INCREMENTAL_COMPILE_ASSIGNMENT off
 # end CLOCK(CLK4p)
 # ----------------
 
-# ---------------------------------------
-# start EDA_TOOL_SETTINGS(eda_simulation)
-
-	# EDA Netlist Writer Assignments
-	# ==============================
-	set_global_assignment -name EDA_GENERATE_SDF_OUTPUT_FILE ON -section_id eda_simulation
-	set_global_assignment -name EDA_INCLUDE_VHDL_CONFIGURATION_DECLARATION OFF -section_id eda_simulation
-	set_global_assignment -name EDA_MAP_ILLEGAL_CHARACTERS ON -section_id eda_simulation
-	set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VERILOG -section_id eda_simulation
-	set_global_assignment -name EDA_MAINTAIN_DESIGN_HIERARCHY OFF -section_id eda_simulation
-	set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST ON -section_id eda_simulation
-	set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
-
-# end EDA_TOOL_SETTINGS(eda_simulation)
-# -------------------------------------
-
 # -----------------------------------------
 # start EDA_TOOL_SETTINGS(eda_board_design)
 
@@ -913,6 +901,22 @@ set_global_assignment -name LOGICLOCK_INCREMENTAL_COMPILE_ASSIGNMENT off
 
 # end EDA_TOOL_SETTINGS(eda_palace)
 # ---------------------------------
+
+# ---------------------------------------
+# start EDA_TOOL_SETTINGS(eda_simulation)
+
+	# EDA Netlist Writer Assignments
+	# ==============================
+	set_global_assignment -name EDA_GENERATE_SDF_OUTPUT_FILE ON -section_id eda_simulation
+	set_global_assignment -name EDA_INCLUDE_VHDL_CONFIGURATION_DECLARATION OFF -section_id eda_simulation
+	set_global_assignment -name EDA_MAP_ILLEGAL_CHARACTERS ON -section_id eda_simulation
+	set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VERILOG -section_id eda_simulation
+	set_global_assignment -name EDA_MAINTAIN_DESIGN_HIERARCHY OFF -section_id eda_simulation
+	set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST ON -section_id eda_simulation
+	set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
+
+# end EDA_TOOL_SETTINGS(eda_simulation)
+# -------------------------------------
 
 # --------------------------------------------
 # start EDA_TOOL_SETTINGS(eda_timing_analysis)
