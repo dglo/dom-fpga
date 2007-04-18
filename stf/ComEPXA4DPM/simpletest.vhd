@@ -1144,15 +1144,15 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 			rx_error :  OUT  STD_LOGIC_VECTOR(15 downto 0);
 			tx_addr :  OUT  STD_LOGIC_VECTOR(15 downto 0);
 			tx_dpr_radr :  OUT  STD_LOGIC_VECTOR(15 downto 0);
-			tx_error :  OUT  STD_LOGIC_VECTOR(15 downto 0);
-			com_thr_d	: IN STD_LOGIC_VECTOR(7 downto 0);
-			dac_max_d	: IN STD_LOGIC_VECTOR(6 downto 5);
-			rec_del_d	: IN STD_LOGIC_VECTOR(7 downto 0);
-			send_del_d	: IN STD_LOGIC_VECTOR(7 downto 0);
-			clev_min_d	: IN STD_LOGIC_VECTOR(9 downto 0);
-			clev_max_d	: IN STD_LOGIC_VECTOR(9 downto 0);
-			thr_del_wr	: IN STD_LOGIC;
-			clev_wr		: IN STD_LOGIC
+			tx_error :  OUT  STD_LOGIC_VECTOR(15 downto 0)
+	--		com_thr_d	: IN STD_LOGIC_VECTOR(7 downto 0);
+	--		dac_max_d	: IN STD_LOGIC_VECTOR(6 downto 5);
+	--		rec_del_d	: IN STD_LOGIC_VECTOR(7 downto 0);
+	--		send_del_d	: IN STD_LOGIC_VECTOR(7 downto 0);
+	--		clev_min_d	: IN STD_LOGIC_VECTOR(9 downto 0);
+	--		clev_max_d	: IN STD_LOGIC_VECTOR(9 downto 0);
+	--		thr_del_wr	: IN STD_LOGIC;
+	--		clev_wr		: IN STD_LOGIC
 		);
 	END COMPONENT;
 
@@ -2187,15 +2187,15 @@ BEGIN
 			rx_error		=> rx_error,
 			tx_addr			=> dp0_portaaddr,
 			tx_dpr_radr		=> tx_dpr_radr(15 DOWNTO 0),
-			tx_error		=> tx_error,
-			com_thr_d	=> com_thr_del (7 DOWNTO 0),
-			dac_max_d	=> com_thr_del (9 DOWNTO 8),
-			rec_del_d	=> com_thr_del (23 DOWNTO 16),
-			send_del_d	=> com_thr_del (31 DOWNTO 24),
-			clev_min_d	=> com_clev (9 DOWNTO 0),
-			clev_max_d	=> com_clev (25 DOWNTO 16),
-			thr_del_wr	=> com_thr_del_wr,
-			clev_wr		=> com_clev_wr
+			tx_error		=> tx_error
+	--		com_thr_d	=> com_thr_del (7 DOWNTO 0),
+	--		dac_max_d	=> com_thr_del (9 DOWNTO 8),
+	--		rec_del_d	=> com_thr_del (23 DOWNTO 16),
+	--		send_del_d	=> com_thr_del (31 DOWNTO 24),
+	--		clev_min_d	=> com_clev (9 DOWNTO 0),
+	--		clev_max_d	=> com_clev (25 DOWNTO 16),
+	--		thr_del_wr	=> com_thr_del_wr,
+	--		clev_wr		=> com_clev_wr
 		);
 	com_rx_data(15 DOWNTO 0)	<= rx_error;
 	com_rx_data(31 DOWNTO 16)	<= tx_error;
