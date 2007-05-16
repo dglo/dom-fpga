@@ -104,6 +104,7 @@ ARCHITECTURE arch_ADC_input OF ADC_input IS
 			ATWD_n_chan		: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
 			ATWD_mode		: IN STD_LOGIC_VECTOR (2 DOWNTO 0);
 			abort			: IN STD_LOGIC;
+			trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
 			-- ATWD
 			ATWDTrigger		: IN STD_LOGIC;
 			TriggerComplete	: IN STD_LOGIC;
@@ -288,6 +289,7 @@ BEGIN
 			ATWD_n_chan		=> ATWD_n_chan,
 			ATWD_mode		=> ATWD_mode,
 			abort			=> abort_ATWD,
+			trigger_word	=> trigger_word,
 			-- ATWD
 			ATWDTrigger		=> ATWDTrigger,
 			TriggerComplete	=> TriggerComplete_sync,
