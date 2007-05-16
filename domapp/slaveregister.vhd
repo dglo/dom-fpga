@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2007-03-23
+-- Last update: 2007-05-15
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -577,10 +577,12 @@ BEGIN
 					IF reg_write = '1' THEN
 	--					COMPR_ctrl_local.threshold0	<= reg_wdata(0);
 						COMPR_ctrl_local.LASTonly	<= reg_wdata(0);
+						COMPR_ctrl_local.all_chan_for_forced_trig <= reg_wdata(1);
 					END IF;
 					IF READBACK=1 THEN
 	--					reg_rdata(0)			<= COMPR_ctrl_local.threshold0;
 						reg_rdata(0)			<= COMPR_ctrl_local.LASTonly;
+						reg_rdata(1)			<= COMPR_ctrl_local.all_chan_for_forced_trig;
 						reg_rdata(31 downto 2)	<= (OTHERS=>'0');
 					ELSE
 						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
