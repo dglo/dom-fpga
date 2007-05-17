@@ -51,7 +51,9 @@ ENTITY pingpong IS
 		ATWD_AB			: IN STD_LOGIC;	-- indicates if ping or pong
 		COMPR_ctrl		: IN COMPR_STRUCT;
 		ICETOP_ctrl		: IN ICETOP_CTRL_STRUCT;
+		-- some status bits
                 dead_flag               : OUT STD_LOGIC;
+		SPE_level_stretch	: IN STD_LOGIC_VECTOR (1 downto 0);
 		-- trigger
 		rst_trig		: OUT STD_LOGIC;
 		trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
@@ -118,7 +120,9 @@ ARCHITECTURE arch_pingpong OF pingpong IS
 			DAQ_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			ATWD_AB			: IN STD_LOGIC;	-- indicates if ping or pong
 			ICETOP_ctrl		: IN ICETOP_CTRL_STRUCT;
+			-- some status bits
                         dead_flag               : OUT STD_LOGIC;
+			SPE_level_stretch	: IN STD_LOGIC_VECTOR (1 downto 0);
 			-- trigger
 			rst_trig		: OUT STD_LOGIC;
 			trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
@@ -273,7 +277,9 @@ BEGIN
 			DAQ_mode		=> DAQ_mode,
 			ATWD_AB			=> ATWD_AB,
 			ICETOP_ctrl		=> ICETOP_ctrl,
+			-- some status bits
                         dead_flag               => dead_flag,
+			SPE_level_stretch	=> SPE_level_stretch,
 			-- trigger
 			rst_trig		=> rst_trig,
 			trigger_word	=> trigger_word,

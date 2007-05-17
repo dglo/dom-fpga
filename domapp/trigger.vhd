@@ -58,6 +58,7 @@ ENTITY trigger IS
 		ATWDTrigger_B	: OUT STD_LOGIC;
 		discSPEpulse	: OUT STD_LOGIC;
 		discMPEpulse	: OUT STD_LOGIC;
+		SPE_level_stretch	: OUT STD_LOGIC_VECTOR (1 downto 0);
 		-- test connector
 		TC				: OUT STD_LOGIC_VECTOR (7 downto 0)
 	);
@@ -350,6 +351,36 @@ BEGIN
 			cs_trigger_hold  := cs_trigger;
 			--cs_trigger_hold  := cs_trigger_hold1;
 			--cs_trigger_hold1 := cs_trigger;
+		END IF;
+	END PROCESS;
+	
+	-- synchronize and stretch the incomming discriminator signals
+	-- used to tag ATWD waveforms (PMT signal present in waveform)
+	PROCESS (CLK40, RST)
+		VARIABLE OneSPE_sync	: STD_LOGIC_VECTOR (1 DOWNTO 0);
+		VARIABLE MultiSPE_sync	: STD_LOGIC_VECTOR (1 DOWNTO 0);
+		VARIABLE OneSPE_stretch		: STD_LOGIC_VECTOR (2 DOWNTO 0);
+		VARIABLE MultiSPE_stretch	: STD_LOGIC_VECTOR (2 DOWNTO 0);
+	BEGIN
+		IF RST='1' THEN
+			OneSPE_sync		:= "00";
+			MultiSPE_sync	:= "00";
+			OneSPE_stretch		:= "000";
+			MultiSPE_stretch	:= "000";
+			SPE_level_stretch	<= "00";
+		ELSIF CLK40'EVENT AND CLK40='1' THEN
+			SPE_level_stretch(0)	<= OneSPE_sync(0) OR OneSPE_stretch(2) OR OneSPE_stretch(1) OR OneSPE_stretch(0);
+			SPE_level_stretch(1)	<= MultiSPE_sync(0) OR MultiSPE_stretch(2) OR MultiSPE_stretch(1) OR MultiSPE_stretch(0);
+			-- strech discriminator signals
+			OneSPE_stretch(1 DOWNTO 0)		:= OneSPE_stretch(2 DOWNTO 1);
+			OneSPE_stretch(2)				:= OneSPE_sync(0);
+			MultiSPE_stretch(1 DOWNTO 0)	:= MultiSPE_stretch(2 DOWNTO 1);
+			MultiSPE_stretch(2)				:= MultiSPE_sync(0);
+			-- synchronize inputs
+			OneSPE_sync(0)		:= OneSPE_sync(1);
+			OneSPE_sync(1)		:= OneSPE;
+			MultiSPE_sync(0)	:= MultiSPE_sync(1);
+			MultiSPE_sync(1)	:= MultiSPE;
 		END IF;
 	END PROCESS;
 

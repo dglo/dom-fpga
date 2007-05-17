@@ -47,7 +47,9 @@ ENTITY ADC_input IS
 		DAQ_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		ATWD_AB			: IN STD_LOGIC;	-- indicates if ping or pong
 		ICETOP_ctrl		: IN ICETOP_CTRL_STRUCT;
+		-- some status bits
                 dead_flag               : OUT STD_LOGIC;
+		SPE_level_stretch	: IN STD_LOGIC_VECTOR (1 downto 0);
 		-- trigger
 		rst_trig		: OUT STD_LOGIC;
 		trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
@@ -104,7 +106,9 @@ ARCHITECTURE arch_ADC_input OF ADC_input IS
 			ATWD_n_chan		: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
 			ATWD_mode		: IN STD_LOGIC_VECTOR (2 DOWNTO 0);
 			abort			: IN STD_LOGIC;
-			trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
+			-- some status bits
+			-- trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
+			forced_launch	: IN STD_LOGIC;
 			-- ATWD
 			ATWDTrigger		: IN STD_LOGIC;
 			TriggerComplete	: IN STD_LOGIC;
@@ -169,7 +173,9 @@ ARCHITECTURE arch_ADC_input OF ADC_input IS
 			ATWD_AB		: IN STD_LOGIC;	-- indicates if ping or pong
 			abort_ATWD	: OUT STD_LOGIC;
 			abort_FADC	: OUT STD_LOGIC;
+			-- some status bits
                         dead_flag       : OUT STD_LOGIC;
+			SPE_level_stretch	: IN STD_LOGIC_VECTOR (1 downto 0);
 			-- trigger
 			ATWDtrigger		: IN STD_LOGIC;
 			rst_trig		: OUT STD_LOGIC;
@@ -289,7 +295,9 @@ BEGIN
 			ATWD_n_chan		=> ATWD_n_chan,
 			ATWD_mode		=> ATWD_mode,
 			abort			=> abort_ATWD,
-			trigger_word	=> trigger_word,
+			-- some status bits
+			--trigger_word	=> trigger_word,
+			forced_launch	=> HEADER_data_int.forced_launch,
 			-- ATWD
 			ATWDTrigger		=> ATWDTrigger,
 			TriggerComplete	=> TriggerComplete_sync,
@@ -352,7 +360,9 @@ BEGIN
 			ATWD_AB		=> ATWD_AB,
 			abort_ATWD	=> abort_ATWD,
 			abort_FADC	=> abort_FADC,
+			-- some status bits
                         dead_flag       => dead_flag,
+			SPE_level_stretch	=> SPE_level_stretch,
 			-- trigger
 			ATWDtrigger		=> ATWDTrigger,
 			rst_trig		=> rst_trig,

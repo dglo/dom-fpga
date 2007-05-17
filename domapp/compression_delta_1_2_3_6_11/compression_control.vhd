@@ -83,7 +83,6 @@ ARCHITECTURE compression_control_arch OF compression_control IS
     SIGNAL hit_size    : STD_LOGIC_VECTOR (10 DOWNTO 0);
     SIGNAL wf_finished : STD_LOGIC;
 
-    SIGNAL forced_launch : STD_LOGIC;
 
 BEGIN  -- compression_control_arch
 
@@ -114,7 +113,7 @@ BEGIN  -- compression_control_arch
                     next_hit <= '0';
                     next_wf  <= '0';
                     IF LASTonly = '1' THEN
-                        IF COMPR_ctrl.all_chan_for_forced_trig = '1' THEN
+                        IF COMPR_ctrl.all_chan_for_forced_trig = '1' AND HEADER_in.forced_launch = '1' THEN
                             ATWD_chanel <= "00";
                         ELSE
                             ATWD_chanel <= HEADER_in.ATWDsize;
@@ -274,18 +273,5 @@ BEGIN  -- compression_control_arch
 
     ram_header_sel <= '1' WHEN state = HEADER0 OR state = HEADER1 OR state = HEADER2 OR state = HEADER3 ELSE '0';
     buffer2delta   <= '0' WHEN state = WAIT_2LBM_ACK                                                    ELSE '1';
-
-    PROCESS (CLK, RST)
-    BEGIN  -- PROCESS
-        IF RST = '1' THEN                   -- asynchronous reset (active high)
-            forced_launch <= '0';
-        ELSIF CLK'EVENT AND CLK = '1' THEN  -- rising clock edge
-            IF HEADER_in.trigger_word(12 DOWNTO 2) = "0000000000" THEN
-                forced_launch <= '0';
-            ELSE
-                forced_launch <= '1';
-            END IF;
-        END IF;
-    END PROCESS;
 
 END compression_control_arch;

@@ -172,6 +172,7 @@ ARCHITECTURE daq_arch OF daq IS
 			ATWDTrigger_B	: OUT STD_LOGIC;
 			discSPEpulse	: OUT STD_LOGIC;
 			discMPEpulse	: OUT STD_LOGIC;
+			SPE_level_stretch	: OUT STD_LOGIC_VECTOR (1 downto 0);
 			-- test connector
 			TC				: OUT STD_LOGIC_VECTOR (7 downto 0)
 		);
@@ -215,7 +216,9 @@ ARCHITECTURE daq_arch OF daq IS
 			ATWD_AB			: IN STD_LOGIC;	-- indicates if ping or pong
 			COMPR_ctrl		: IN COMPR_STRUCT;
 			ICETOP_ctrl		: IN ICETOP_CTRL_STRUCT;
+			-- some status bits
                         dead_flag               : OUT STD_LOGIC;
+			SPE_level_stretch	: IN STD_LOGIC_VECTOR (1 downto 0);
 			-- trigger
 			rst_trig		: OUT STD_LOGIC;
 			trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
@@ -421,6 +424,8 @@ ARCHITECTURE daq_arch OF daq IS
 	SIGNAL discSPEpulse_local	: STD_LOGIC;
 	SIGNAL discMPEpulse_local	: STD_LOGIC;
 	
+	SIGNAL SPE_level_stretch	: STD_LOGIC_VECTOR (1 downto 0);
+	
 	-- no required for calibration trigger in hard-LC
 	SIGNAL veto_LC_abort_A	: STD_LOGIC;
 	SIGNAL veto_LC_abort_B	: STD_LOGIC;
@@ -496,6 +501,7 @@ BEGIN
 			ATWDTrigger_B	=> ATWDTrigger_1,
 			discSPEpulse	=> discSPEpulse_local,
 			discMPEpulse	=> discMPEpulse_local,
+			SPE_level_stretch	=> SPE_level_stretch,
 			-- test connector
 			TC				=> open
 		);
@@ -537,7 +543,9 @@ BEGIN
 			ATWD_AB			=> ATWD_A,
 			COMPR_ctrl		=> COMPR_ctrl,
 			ICETOP_ctrl		=> ICETOP_ctrl,
+			-- some status bits
                         dead_flag               => dead_flag_A,
+			SPE_level_stretch	=> SPE_level_stretch,
 			-- trigger
 			rst_trig		=> rst_trig_A,
 			trigger_word	=> trigger_word,
@@ -601,7 +609,9 @@ BEGIN
 			ATWD_AB			=> ATWD_B,
 			COMPR_ctrl		=> COMPR_ctrl,
 			ICETOP_ctrl		=> ICETOP_ctrl,
+			-- some status bits
                         dead_flag               => dead_flag_B,
+			SPE_level_stretch	=> SPE_level_stretch,
 			-- trigger
 			rst_trig		=> rst_trig_B,
 			trigger_word	=> trigger_word,

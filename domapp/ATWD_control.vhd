@@ -39,7 +39,9 @@ ENTITY ATWD_control IS
 		ATWD_mode	: IN STD_LOGIC_VECTOR (2 DOWNTO 0);
 		ATWD_n_chan	: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
 		abort		: IN STD_LOGIC;
-		trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
+		-- some status bits
+		--trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
+		forced_launch	: IN STD_LOGIC;
 		-- atwd
 		ATWDTrigger		: IN STD_LOGIC;
 		TriggerComplete	: IN STD_LOGIC;
@@ -80,8 +82,6 @@ ARCHITECTURE arch_ATWD_control OF ATWD_control IS
 	SIGNAL overflow		: STD_LOGIC;
 	
 	SIGNAL status		: STD_LOGIC_VECTOR (7 DOWNTO 0);
-	
-	SIGNAL forced_launch	: STD_LOGIC;
 	
 	-- status bit: we acquiring data, now wr cycle through ATWD channels 
 	SIGNAL do_channel_cycle	: STD_LOGIC;
@@ -324,18 +324,5 @@ BEGIN
 	status(4)	<= '1' WHEN state=readout_L0 OR state=readout_L1 OR state=readout_H0 OR state=readout_H1 OR state=readout_end ELSE '0';	-- readout
 	status(5)	<= '1' WHEN state=power_up_init1 OR state=power_up_init2 OR state=next_channel ELSE '0';	-- misc
 	status(7 DOWNTO 6)	<= "00";
-	
-	PROCESS(CLK40, RST)
-	BEGIN
-		IF RST='1' THEN
-			forced_launch <= '0';
-		ELSIF CLK40'EVENT AND CLK40='1' THEN
-			IF trigger_word(12 DOWNTO 2)="0000000000" THEN
-				forced_launch <= '0';
-			ELSE
-				forced_launch <= '1';
-			END IF;
-		END IF;
-	END PROCESS;
 	
 END;

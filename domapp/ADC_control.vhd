@@ -43,7 +43,9 @@ ENTITY ADC_control IS
 		ATWD_AB		: IN STD_LOGIC;	-- indicates if ping or pong
 		abort_ATWD	: OUT STD_LOGIC;
 		abort_FADC	: OUT STD_LOGIC;
+		-- some status bits
                 dead_flag       : OUT STD_LOGIC;
+		SPE_level_stretch	: IN STD_LOGIC_VECTOR (1 downto 0);
 		-- trigger
 		ATWDtrigger		: IN STD_LOGIC;
 		rst_trig	: OUT STD_LOGIC;
@@ -71,6 +73,22 @@ END ADC_control;
 
 
 ARCHITECTURE arch_ADC_control OF ADC_control IS
+
+	COMPONENT disc_in_ATWD IS
+		PORT (
+			CLK					: IN  STD_LOGIC;
+			RST					: IN  STD_LOGIC;
+			-- ATWD status
+			ATWDtrigger			: IN  STD_LOGIC;
+			TriggerComplete		: IN  STD_LOGIC;
+			-- disc status
+			SPE_level_stretch	: IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
+			-- status OUT
+			ATWD_disc_status	: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
+			-- test connector
+			TC					: OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
+		);
+	END COMPONENT;
 
 	TYPE STATE_TYPE IS (IDLE, WAIT_DONE, WR_HEADER, RESET_TRIG, WAIT_LC_SOFT, WAIT_LC_FLABBY, CLEAR_LC_HARD, GOT_LC, WAIT_BUFFER);
 	SIGNAL state: STATE_TYPE;
@@ -104,11 +122,11 @@ BEGIN
 					eventtype	<= "XX";
 					flabby_LC_flag	<= '0';
 				WHEN WAIT_DONE =>
-					IF lc_mode=LC_HARD AND LC_abort='1' AND trigger_word(15 DOWNTO 2)="00000000000000" THEN
+					IF lc_mode=LC_HARD AND LC_abort='1' THEN --AND trigger_word(15 DOWNTO 2)="00000000000000" THEN
 						state <= CLEAR_LC_HARD;
-					ELSIF lc_mode=LC_SOFT AND LC_abort='1' AND trigger_word(15 DOWNTO 2)="00000000000000" THEN
+					ELSIF lc_mode=LC_SOFT AND LC_abort='1' THEN --AND trigger_word(15 DOWNTO 2)="00000000000000" THEN
 						state <= WAIT_LC_SOFT;
-					ELSIF lc_mode=LC_FLABBY AND LC_abort='1' AND trigger_word(15 DOWNTO 2)="00000000000000" THEN
+					ELSIF lc_mode=LC_FLABBY AND LC_abort='1' THEN --AND trigger_word(15 DOWNTO 2)="00000000000000" THEN
 						state <= WAIT_LC_FLABBY;
 					ELSIF LC_abort='1' THEN
 						state <= GOT_LC;
@@ -177,10 +195,16 @@ BEGIN
 	BEGIN
 		IF RST='1' THEN
 			deadtime_cnt	<= (OTHERS=>'0');
+			HEADER_data.forced_launch <='0';
 		ELSIF CLK40'EVENT AND CLK40='1' THEN
 			IF state=IDLE THEN
 				HEADER_data.timestamp		<= systime;
 				HEADER_data.trigger_word	<= trigger_word;
+				IF trigger_word(15 DOWNTO 2) = "00000000000000" THEN
+					HEADER_data.forced_launch <='0';
+				ELSE
+					HEADER_data.forced_launch <='1';
+				END IF;
 			END IF;
 			IF state=WAIT_DONE THEN
 				HEADER_data.LC	<= LC;
@@ -208,5 +232,22 @@ BEGIN
                      OR (state=WAIT_LC_FLABBY AND FADC_busy='0')
                      OR (state=GOT_LC AND FADC_busy='0')
                      OR state=WAIT_BUFFER OR state=WR_HEADER OR state=RESET_TRIG ELSE '0';
+
+
+	inst_disc_in_ATWD : disc_in_ATWD
+		PORT MAP (
+			CLK					=> CLK40,
+			RST					=> RST,
+			-- ATWD status
+			ATWDtrigger			=> ATWDtrigger,
+			TriggerComplete		=> TriggerComplete,
+			-- disc status
+			SPE_level_stretch	=> SPE_level_stretch,
+			-- status OUT
+			ATWD_disc_status	=> HEADER_data.ATWD_disc_status,
+			-- test connector
+			TC					=> OPEN
+		);
+
 END;
 
