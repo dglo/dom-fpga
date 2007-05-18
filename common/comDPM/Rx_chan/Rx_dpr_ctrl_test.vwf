@@ -1,0 +1,889 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+
+/*
+Copyright (C) 1991-2004 Altera Corporation
+Any  megafunction  design,  and related netlist (encrypted  or  decrypted),
+support information,  device programming or simulation file,  and any other
+associated  documentation or information  provided by  Altera  or a partner
+under  Altera's   Megafunction   Partnership   Program  may  be  used  only
+to program  PLD  devices (but not masked  PLD  devices) from  Altera.   Any
+other  use  of such  megafunction  design,  netlist,  support  information,
+device programming or simulation file,  or any other  related documentation
+or information  is prohibited  for  any  other purpose,  including, but not
+limited to  modification,  reverse engineering,  de-compiling, or use  with
+any other  silicon devices,  unless such use is  explicitly  licensed under
+a separate agreement with  Altera  or a megafunction partner.  Title to the
+intellectual property,  including patents,  copyrights,  trademarks,  trade
+secrets,  or maskworks,  embodied in any such megafunction design, netlist,
+support  information,  device programming or simulation file,  or any other
+related documentation or information provided by  Altera  or a megafunction
+partner, remains with Altera, the megafunction partner, or their respective
+licensors. No other licenses, including any licenses needed under any third
+party's intellectual property, are provided herein.
+*/
+
+HEADER
+{
+	VERSION = 1;
+	TIME_UNIT = ns;
+	PRINT_OPTIONS = "Print_options_version 6\
+range_start 0ps\
+range_end 1.0us\
+width 1\
+names_percentage 25\
+comments 1\
+grid_lines 1\
+time_bars 1\
+name_every_page 0\
+expand_groups 0\
+print_all 1";
+	SIMULATION_TIME = 1000.0;
+	GRID_PHASE = 0.0;
+	GRID_PERIOD = 10.0;
+	GRID_DUTY_CYCLE = 50;
+}
+
+SIGNAL("rx_dpr_radr")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 5;
+	LSB_INDEX = 0;
+	DIRECTION = INPUT;
+	PARENT = "";
+}
+
+SIGNAL("rx_dpr_radr[4]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "rx_dpr_radr";
+}
+
+SIGNAL("rx_dpr_radr[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "rx_dpr_radr";
+}
+
+SIGNAL("rx_dpr_radr[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "rx_dpr_radr";
+}
+
+SIGNAL("rx_dpr_radr[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "rx_dpr_radr";
+}
+
+SIGNAL("rx_dpr_radr[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "rx_dpr_radr";
+}
+
+SIGNAL("rx_dpr_af")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("rx_dpr_avail")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 5;
+	LSB_INDEX = 0;
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("rx_dpr_avail[4]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "rx_dpr_avail";
+}
+
+SIGNAL("rx_dpr_avail[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "rx_dpr_avail";
+}
+
+SIGNAL("rx_dpr_avail[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "rx_dpr_avail";
+}
+
+SIGNAL("rx_dpr_avail[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "rx_dpr_avail";
+}
+
+SIGNAL("rx_dpr_avail[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "rx_dpr_avail";
+}
+
+SIGNAL("rx_dpr_ef")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("rx_dpr_ff")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("rx_dpr_wadr")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 5;
+	LSB_INDEX = 0;
+	DIRECTION = INPUT;
+	PARENT = "";
+}
+
+SIGNAL("rx_dpr_wadr[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "rx_dpr_wadr";
+}
+
+SIGNAL("rx_dpr_wadr[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "rx_dpr_wadr";
+}
+
+SIGNAL("rx_dpr_wadr[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "rx_dpr_wadr";
+}
+
+SIGNAL("rx_dpr_wadr[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "rx_dpr_wadr";
+}
+
+SIGNAL("rx_dpr_wadr[4]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "rx_dpr_wadr";
+}
+
+TRANSITION_LIST("rx_dpr_radr[4]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 205.0;
+		LEVEL 1 FOR 345.0;
+		LEVEL 0 FOR 450.0;
+	}
+}
+
+TRANSITION_LIST("rx_dpr_radr[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 170.0;
+		LEVEL 1 FOR 35.0;
+		LEVEL 0 FOR 265.0;
+		LEVEL 1 FOR 80.0;
+		LEVEL 0 FOR 450.0;
+	}
+}
+
+TRANSITION_LIST("rx_dpr_radr[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 170.0;
+		LEVEL 1 FOR 35.0;
+		LEVEL 0 FOR 225.0;
+		LEVEL 1 FOR 40.0;
+		NODE
+		{
+			REPEAT = 1;
+			LEVEL 0 FOR 40.0;
+			LEVEL 1 FOR 40.0;
+		}
+		LEVEL 0 FOR 450.0;
+	}
+}
+
+TRANSITION_LIST("rx_dpr_radr[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 170.0;
+		LEVEL 1 FOR 35.0;
+		LEVEL 0 FOR 205.0;
+		LEVEL 1 FOR 20.0;
+		NODE
+		{
+			REPEAT = 3;
+			LEVEL 0 FOR 20.0;
+			LEVEL 1 FOR 20.0;
+		}
+		LEVEL 0 FOR 450.0;
+	}
+}
+
+TRANSITION_LIST("rx_dpr_radr[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 170.0;
+		LEVEL 1 FOR 35.0;
+		LEVEL 0 FOR 195.0;
+		LEVEL 1 FOR 10.0;
+		NODE
+		{
+			REPEAT = 7;
+			LEVEL 0 FOR 10.0;
+			LEVEL 1 FOR 10.0;
+		}
+		LEVEL 0 FOR 450.0;
+	}
+}
+
+TRANSITION_LIST("rx_dpr_af")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 22.301;
+		LEVEL 1 FOR 2.689;
+		LEVEL 0 FOR 8.207;
+		LEVEL 1 FOR 0.316;
+		LEVEL 0 FOR 1.477;
+		LEVEL 1 FOR 0.316;
+		LEVEL 0 FOR 18.995;
+		LEVEL 1 FOR 1.005;
+		LEVEL 0 FOR 9.684;
+		LEVEL 1 FOR 10.0;
+		LEVEL 0 FOR 0.316;
+		LEVEL 1 FOR 17.311;
+		LEVEL 0 FOR 0.073;
+		LEVEL 1 FOR 1.611;
+		LEVEL 0 FOR 1.005;
+		LEVEL 1 FOR 17.891;
+		LEVEL 0 FOR 0.316;
+		LEVEL 1 FOR 58.193;
+		LEVEL 0 FOR 0.984;
+		LEVEL 1 FOR 8.663;
+		LEVEL 0 FOR 0.549;
+		LEVEL 1 FOR 2.46;
+		LEVEL 0 FOR 33.679;
+		LEVEL 1 FOR 0.75;
+		LEVEL 0 FOR 27.414;
+		LEVEL 1 FOR 40.501;
+		LEVEL 0 FOR 713.294;
+	}
+}
+
+TRANSITION_LIST("rx_dpr_avail[4]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 1 FOR 21.539;
+		LEVEL 0 FOR 10.0;
+		LEVEL 1 FOR 0.316;
+		LEVEL 0 FOR 60.0;
+		LEVEL 1 FOR 0.073;
+		LEVEL 0 FOR 79.016;
+		LEVEL 1 FOR 0.984;
+		LEVEL 0 FOR 8.663;
+		LEVEL 1 FOR 0.549;
+		LEVEL 0 FOR 34.303;
+		LEVEL 1 FOR 1.836;
+		LEVEL 0 FOR 0.75;
+		LEVEL 1 FOR 27.414;
+		LEVEL 0 FOR 40.501;
+		LEVEL 1 FOR 714.056;
+	}
+}
+
+TRANSITION_LIST("rx_dpr_avail[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 22.134;
+		LEVEL 1 FOR 10.0;
+		LEVEL 0 FOR 0.316;
+		LEVEL 1 FOR 59.844;
+		LEVEL 0 FOR 0.156;
+		LEVEL 1 FOR 9.684;
+		LEVEL 0 FOR 10.0;
+		LEVEL 1 FOR 0.316;
+		LEVEL 0 FOR 59.844;
+		LEVEL 1 FOR 0.156;
+		LEVEL 0 FOR 9.213;
+		LEVEL 1 FOR 0.044;
+		LEVEL 0 FOR 0.028;
+		LEVEL 1 FOR 34.928;
+		LEVEL 0 FOR 1.732;
+		LEVEL 1 FOR 0.257;
+		LEVEL 0 FOR 781.348;
+	}
+}
+
+TRANSITION_LIST("rx_dpr_avail[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 22.64;
+		LEVEL 1 FOR 10.0;
+		LEVEL 0 FOR 0.316;
+		LEVEL 1 FOR 18.995;
+		LEVEL 0 FOR 1.005;
+		LEVEL 1 FOR 9.684;
+		LEVEL 0 FOR 10.0;
+		LEVEL 1 FOR 0.316;
+		LEVEL 0 FOR 18.995;
+		LEVEL 1 FOR 1.005;
+		LEVEL 0 FOR 9.684;
+		LEVEL 1 FOR 10.0;
+		LEVEL 0 FOR 0.316;
+		LEVEL 1 FOR 18.995;
+		LEVEL 0 FOR 1.005;
+		LEVEL 1 FOR 9.684;
+		LEVEL 0 FOR 10.0;
+		LEVEL 1 FOR 0.316;
+		LEVEL 0 FOR 18.995;
+		LEVEL 1 FOR 1.005;
+		LEVEL 0 FOR 9.056;
+		LEVEL 1 FOR 35.0;
+		LEVEL 0 FOR 1.162;
+		LEVEL 1 FOR 0.229;
+		LEVEL 0 FOR 0.085;
+		LEVEL 1 FOR 0.441;
+		LEVEL 0 FOR 781.071;
+	}
+}
+
+TRANSITION_LIST("rx_dpr_avail[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 21.626;
+		NODE
+		{
+			REPEAT = 3;
+			LEVEL 1 FOR 10.0;
+			LEVEL 0 FOR 0.087;
+			LEVEL 1 FOR 9.913;
+			LEVEL 0 FOR 10.0;
+			LEVEL 1 FOR 0.087;
+			LEVEL 0 FOR 9.913;
+		}
+		LEVEL 1 FOR 10.0;
+		LEVEL 0 FOR 0.087;
+		LEVEL 1 FOR 9.913;
+		LEVEL 0 FOR 10.0;
+		LEVEL 1 FOR 0.087;
+		LEVEL 0 FOR 10.532;
+		LEVEL 1 FOR 35.0;
+		LEVEL 0 FOR 782.755;
+	}
+}
+
+TRANSITION_LIST("rx_dpr_avail[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 20.391;
+		NODE
+		{
+			REPEAT = 7;
+			LEVEL 1 FOR 10.0;
+			LEVEL 0 FOR 10.0;
+		}
+		LEVEL 1 FOR 10.0;
+		LEVEL 0 FOR 10.534;
+		LEVEL 1 FOR 35.0;
+		LEVEL 0 FOR 784.075;
+	}
+}
+
+TRANSITION_LIST("rx_dpr_ef")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 1 FOR 22.299;
+		LEVEL 0 FOR 150.322;
+		LEVEL 1 FOR 0.067;
+		LEVEL 0 FOR 8.663;
+		LEVEL 1 FOR 0.549;
+		LEVEL 0 FOR 37.793;
+		LEVEL 1 FOR 0.905;
+		LEVEL 0 FOR 0.486;
+		LEVEL 1 FOR 0.085;
+		LEVEL 0 FOR 0.441;
+		LEVEL 1 FOR 24.593;
+		LEVEL 0 FOR 40.501;
+		LEVEL 1 FOR 713.296;
+	}
+}
+
+TRANSITION_LIST("rx_dpr_ff")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 21.525;
+		LEVEL 1 FOR 0.322;
+		LEVEL 0 FOR 71.876;
+		LEVEL 1 FOR 0.135;
+		LEVEL 0 FOR 40.0;
+		LEVEL 1 FOR 1.005;
+		LEVEL 0 FOR 17.108;
+		LEVEL 1 FOR 0.087;
+		LEVEL 0 FOR 19.856;
+		LEVEL 1 FOR 0.057;
+		LEVEL 0 FOR 0.087;
+		LEVEL 1 FOR 1.665;
+		LEVEL 0 FOR 1.14;
+		LEVEL 1 FOR 5.714;
+		LEVEL 0 FOR 0.549;
+		LEVEL 1 FOR 1.255;
+		LEVEL 0 FOR 63.048;
+		LEVEL 1 FOR 40.501;
+		LEVEL 0 FOR 714.07;
+	}
+}
+
+TRANSITION_LIST("rx_dpr_wadr[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 10.0;
+		LEVEL 1 FOR 10.0;
+		NODE
+		{
+			REPEAT = 7;
+			LEVEL 0 FOR 10.0;
+			LEVEL 1 FOR 10.0;
+		}
+		LEVEL 0 FOR 80.0;
+		LEVEL 1 FOR 10.0;
+		LEVEL 0 FOR 10.0;
+		NODE
+		{
+			REPEAT = 5;
+			LEVEL 1 FOR 10.0;
+			LEVEL 0 FOR 10.0;
+		}
+		LEVEL 1 FOR 10.0;
+		LEVEL 0 FOR 10.0;
+		LEVEL 1 FOR 10.0;
+		LEVEL 0 FOR 190.0;
+		LEVEL 1 FOR 10.0;
+		NODE
+		{
+			REPEAT = 3;
+			LEVEL 0 FOR 10.0;
+			LEVEL 1 FOR 10.0;
+		}
+		LEVEL 0 FOR 10.0;
+		LEVEL 1 FOR 10.0;
+		LEVEL 0 FOR 10.0;
+		LEVEL 1 FOR 10.0;
+		LEVEL 0 FOR 30.0;
+		LEVEL 1 FOR 280.0;
+	}
+}
+
+TRANSITION_LIST("rx_dpr_wadr[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 20.0;
+		NODE
+		{
+			REPEAT = 3;
+			LEVEL 1 FOR 20.0;
+			LEVEL 0 FOR 20.0;
+		}
+		LEVEL 1 FOR 20.0;
+		LEVEL 0 FOR 90.0;
+		LEVEL 1 FOR 20.0;
+		LEVEL 0 FOR 20.0;
+		NODE
+		{
+			REPEAT = 2;
+			LEVEL 1 FOR 20.0;
+			LEVEL 0 FOR 20.0;
+		}
+		LEVEL 1 FOR 20.0;
+		LEVEL 0 FOR 200.0;
+		LEVEL 1 FOR 20.0;
+		NODE
+		{
+			REPEAT = 1;
+			LEVEL 0 FOR 20.0;
+			LEVEL 1 FOR 20.0;
+		}
+		LEVEL 0 FOR 20.0;
+		LEVEL 1 FOR 20.0;
+		LEVEL 0 FOR 310.0;
+	}
+}
+
+TRANSITION_LIST("rx_dpr_wadr[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40.0;
+		LEVEL 1 FOR 40.0;
+		LEVEL 0 FOR 40.0;
+		LEVEL 1 FOR 40.0;
+		LEVEL 0 FOR 110.0;
+		LEVEL 1 FOR 40.0;
+		LEVEL 0 FOR 40.0;
+		LEVEL 1 FOR 40.0;
+		LEVEL 0 FOR 220.0;
+		LEVEL 1 FOR 40.0;
+		LEVEL 0 FOR 40.0;
+		LEVEL 1 FOR 310.0;
+	}
+}
+
+TRANSITION_LIST("rx_dpr_wadr[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 80.0;
+		LEVEL 1 FOR 80.0;
+		LEVEL 0 FOR 150.0;
+		LEVEL 1 FOR 80.0;
+		LEVEL 0 FOR 260.0;
+		LEVEL 1 FOR 350.0;
+	}
+}
+
+TRANSITION_LIST("rx_dpr_wadr[4]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 160.0;
+		LEVEL 1 FOR 230.0;
+		LEVEL 0 FOR 610.0;
+	}
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "rx_dpr_wadr";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 0;
+	TREE_LEVEL = 0;
+	CHILDREN = 1, 2, 3, 4, 5;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "rx_dpr_wadr[4]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 1;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "rx_dpr_wadr[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 2;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "rx_dpr_wadr[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 3;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "rx_dpr_wadr[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 4;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "rx_dpr_wadr[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 5;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "rx_dpr_radr";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 6;
+	TREE_LEVEL = 0;
+	CHILDREN = 7, 8, 9, 10, 11;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "rx_dpr_radr[4]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 7;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "rx_dpr_radr[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 8;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "rx_dpr_radr[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 9;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "rx_dpr_radr[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 10;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "rx_dpr_radr[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 11;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "rx_dpr_ef";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 12;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "rx_dpr_af";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 13;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "rx_dpr_ff";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 14;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "rx_dpr_avail";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 15;
+	TREE_LEVEL = 0;
+	CHILDREN = 16, 17, 18, 19, 20;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "rx_dpr_avail[4]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 16;
+	TREE_LEVEL = 1;
+	PARENT = 15;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "rx_dpr_avail[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 17;
+	TREE_LEVEL = 1;
+	PARENT = 15;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "rx_dpr_avail[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 18;
+	TREE_LEVEL = 1;
+	PARENT = 15;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "rx_dpr_avail[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 19;
+	TREE_LEVEL = 1;
+	PARENT = 15;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "rx_dpr_avail[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 20;
+	TREE_LEVEL = 1;
+	PARENT = 15;
+}
+
+TIME_BAR
+{
+	TIME = 21375;
+	MASTER = TRUE;
+}
+;

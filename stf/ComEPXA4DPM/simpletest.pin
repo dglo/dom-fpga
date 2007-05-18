@@ -497,8 +497,8 @@ RESERVED_INPUT               : V11       :        :                   :         
 RESERVED_INPUT               : V12       :        :                   :         : 11        :                
 RESERVED_INPUT               : V13       :        :                   :         : 11        :                
 RESERVED_INPUT               : V14       :        :                   :         : 11        :                
-ATWD1_D[1]                   : V15       : input  : LVTTL             :         : 10        : Y              
-DigitalReset_1               : V16       : output : LVTTL             :         : 10        : Y              
+ATWD0_D[1]                   : V15       : input  : LVTTL             :         : 10        : Y              
+DigitalReset_0               : V16       : output : LVTTL             :         : 10        : Y              
 VCC_IO                       : V17       : power  :                   : 3.3V    :           :                
 GND                          : V18       : gnd    :                   :         :           :                
 RESERVED_INPUT               : V19       :        :                   :         : 9         :                
@@ -518,15 +518,15 @@ CLK2p                        : W6        : input  : LVTTL             :         
 DATA0                        : W7        : input  :                   :         :           :                
 GND                          : W8        : gnd    :                   :         :           :                
 RESERVED_INPUT               : W9        :        :                   :         : 11        :                
-CLK3p                        : W10       : input  : LVTTL             :         : 11        : N              
+RESERVED_INPUT               : W10       :        :                   :         : 11        :                
 RESERVED_INPUT               : W11       :        :                   :         : 11        :                
 RESERVED_INPUT               : W12       :        :                   :         : 11        :                
 RESERVED_INPUT               : W13       :        :                   :         : 11        :                
-OutputEnable_1               : W14       : output : LVTTL             :         : 10        : Y              
-CounterClock_1               : W15       : output : LVTTL             :         : 10        : Y              
-ATWD1_D[7]                   : W16       : input  : LVTTL             :         : 10        : Y              
-OutputEnable_0               : W17       : output : LVTTL             :         : 10        : Y              
-DigitalReset_0               : W18       : output : LVTTL             :         : 10        : Y              
+OutputEnable_0               : W14       : output : LVTTL             :         : 10        : Y              
+CounterClock_0               : W15       : output : LVTTL             :         : 10        : Y              
+ATWD0_D[7]                   : W16       : input  : LVTTL             :         : 10        : Y              
+OutputEnable_1               : W17       : output : LVTTL             :         : 10        : Y              
+DigitalReset_1               : W18       : output : LVTTL             :         : 10        : Y              
 GND                          : W19       : gnd    :                   :         :           :                
 PGM[11]                      : W20       : output : LVTTL             :         : 9         : Y              
 RESERVED_INPUT               : W21       :        :                   :         : 9         :                
@@ -549,10 +549,10 @@ RESERVED_INPUT               : Y11       :        :                   :         
 RESERVED_INPUT               : Y12       :        :                   :         : 11        :                
 RESERVED_INPUT               : Y13       :        :                   :         : 11        :                
 RESERVED_INPUT               : Y14       :        :                   :         : 11        :                
-ATWD1_D[0]                   : Y15       : input  : LVTTL             :         : 10        : Y              
-DigitalSet_1                 : Y16       : output : LVTTL             :         : 10        : Y              
-ShiftClock_0                 : Y17       : output : LVTTL             :         : 10        : Y              
-ChannelSelect_0[1]           : Y18       : output : LVTTL             :         : 10        : Y              
+ATWD0_D[0]                   : Y15       : input  : LVTTL             :         : 10        : Y              
+DigitalSet_0                 : Y16       : output : LVTTL             :         : 10        : Y              
+ShiftClock_1                 : Y17       : output : LVTTL             :         : 10        : Y              
+ChannelSelect_1[1]           : Y18       : output : LVTTL             :         : 10        : Y              
 RESERVED_INPUT               : Y19       :        :                   :         : 9         :                
 R2BUS[5]                     : Y20       : output : LVTTL             :         : 9         : Y              
 R2BUS[6]                     : Y21       : output : LVTTL             :         : 9         : Y              
@@ -574,11 +574,11 @@ COINC_UP_A                   : AA10      : input  : LVTTL             :         
 COINC_DOWN_BLATCH            : AA11      : output : LVTTL             :         : 11        : Y              
 FLASH_AD_D[4]                : AA12      : input  : 2.5 V             :         : 11        : Y              
 RESERVED_INPUT               : AA13      :        :                   :         : 11        :                
-TriggerComplete_1            : AA14      : input  : LVTTL             :         : 10        : Y              
-ATWD1_D[3]                   : AA15      : input  : LVTTL             :         : 10        : Y              
-ATWD1_D[6]                   : AA16      : input  : LVTTL             :         : 10        : Y              
-ATWD0_D[0]                   : AA17      : input  : LVTTL             :         : 10        : Y              
-ATWD0_D[7]                   : AA18      : input  : LVTTL             :         : 10        : Y              
+TriggerComplete_0            : AA14      : input  : LVTTL             :         : 10        : Y              
+ATWD0_D[3]                   : AA15      : input  : LVTTL             :         : 10        : Y              
+ATWD0_D[6]                   : AA16      : input  : LVTTL             :         : 10        : Y              
+ATWD1_D[0]                   : AA17      : input  : LVTTL             :         : 10        : Y              
+ATWD1_D[7]                   : AA18      : input  : LVTTL             :         : 10        : Y              
 RESERVED_INPUT               : AA19      :        :                   :         : 9         :                
 R2BUS[3]                     : AA20      : output : LVTTL             :         : 9         : Y              
 R2BUS[4]                     : AA21      : output : LVTTL             :         : 9         : Y              
@@ -594,17 +594,17 @@ PGM[10]                      : AB4       : output : LVTTL             :         
 RESERVED_INPUT               : AB5       :        :                   :         : 12        :                
 RESERVED_INPUT               : AB6       :        :                   :         : 12        :                
 RESERVED_INPUT               : AB7       :        :                   :         : 12        :                
-ATWDTrigger_1                : AB8       : output : LVTTL             :         : 11        : Y              
+ATWDTrigger_0                : AB8       : output : LVTTL             :         : 11        : Y              
 COINC_UP_BBAR                : AB9       : input  : LVTTL             :         : 11        : Y              
 COINC_DOWN_A                 : AB10      : input  : LVTTL             :         : 11        : Y              
 FLASH_AD_D[0]                : AB11      : input  : 2.5 V             :         : 11        : Y              
 FLASH_AD_D[5]                : AB12      : input  : 2.5 V             :         : 11        : Y              
 FLASH_AD_STBY                : AB13      : output : LVTTL             :         : 11        : Y              
 FLASH_NCO                    : AB14      : input  : 2.5 V             :         : 11        : Y              
-ChannelSelect_1[1]           : AB15      : output : LVTTL             :         : 10        : Y              
-ATWD1_D[5]                   : AB16      : input  : LVTTL             :         : 10        : Y              
-CounterClock_0               : AB17      : output : LVTTL             :         : 10        : Y              
-ATWD0_D[2]                   : AB18      : input  : LVTTL             :         : 10        : Y              
+ChannelSelect_0[1]           : AB15      : output : LVTTL             :         : 10        : Y              
+ATWD0_D[5]                   : AB16      : input  : LVTTL             :         : 10        : Y              
+CounterClock_1               : AB17      : output : LVTTL             :         : 10        : Y              
+ATWD1_D[2]                   : AB18      : input  : LVTTL             :         : 10        : Y              
 OneSPE_nl                    : AB19      : output : LVTTL             :         : 9         : Y              
 R2BUS[2]                     : AB20      : output : LVTTL             :         : 9         : Y              
 R2BUS[1]                     : AB21      : output : LVTTL             :         : 9         : Y              
@@ -626,13 +626,13 @@ COINC_UP_B                   : AC10      : input  : LVTTL             :         
 FLASH_AD_D[1]                : AC11      : input  : 2.5 V             :         : 11        : Y              
 FLASH_AD_D[7]                : AC12      : input  : 2.5 V             :         : 11        : Y              
 FLASH_AD_D[9]                : AC13      : input  : 2.5 V             :         : 11        : Y              
-ShiftClock_1                 : AC14      : output : LVTTL             :         : 10        : Y              
-ATWD1_D[2]                   : AC15      : input  : LVTTL             :         : 10        : Y              
-AnalogReset_1                : AC16      : output : LVTTL             :         : 10        : Y              
-TriggerComplete_0            : AC17      : input  : LVTTL             :         : 10        : Y              
-AnalogReset_0                : AC18      : output : LVTTL             :         : 10        : Y              
-ATWD0_D[5]                   : AC19      : input  : LVTTL             :         : 10        : Y              
-ATWD0_D[4]                   : AC20      : input  : LVTTL             :         : 10        : Y              
+ShiftClock_0                 : AC14      : output : LVTTL             :         : 10        : Y              
+ATWD0_D[2]                   : AC15      : input  : LVTTL             :         : 10        : Y              
+AnalogReset_0                : AC16      : output : LVTTL             :         : 10        : Y              
+TriggerComplete_1            : AC17      : input  : LVTTL             :         : 10        : Y              
+AnalogReset_1                : AC18      : output : LVTTL             :         : 10        : Y              
+ATWD1_D[5]                   : AC19      : input  : LVTTL             :         : 10        : Y              
+ATWD1_D[4]                   : AC20      : input  : LVTTL             :         : 10        : Y              
 RESERVED_INPUT               : AC21      :        :                   :         : 10        :                
 FE_TEST_PULSE                : AC22      : output : LVTTL             :         : 9         : Y              
 GND                          : AC23      : gnd    :                   :         :           :                
@@ -645,7 +645,7 @@ GND                          : AD3       : gnd    :                   :         
 VCC_INT                      : AD4       : power  :                   : 1.8V    :           :                
 RESERVED_INPUT               : AD5       :        :                   :         : 12        :                
 RESERVED_INPUT               : AD6       :        :                   :         : 12        :                
-ATWDTrigger_0                : AD7       : output : LVTTL             :         : 11        : Y              
+ATWDTrigger_1                : AD7       : output : LVTTL             :         : 11        : Y              
 MultiSPE_nl                  : AD8       : output : LVTTL             :         : 11        : Y              
 COINC_UP_BLATCH              : AD9       : output : LVTTL             :         : 11        : Y              
 COINC_DOWN_B                 : AD10      : input  : LVTTL             :         : 11        : Y              
@@ -653,13 +653,13 @@ FLASH_AD_D[2]                : AD11      : input  : 2.5 V             :         
 FLASH_AD_D[8]                : AD12      : input  : 2.5 V             :         : 11        : Y              
 CONF_DONE                    : AD13      : bidir  :                   :         :           :                
 TCK                          : AD14      : input  :                   :         :           :                
-RampSet_1                    : AD15      : output : LVTTL             :         : 10        : Y              
-ReadWrite_1                  : AD16      : output : LVTTL             :         : 10        : Y              
-ATWD1_D[9]                   : AD17      : input  : LVTTL             :         : 10        : Y              
-ATWD0_D[3]                   : AD18      : input  : LVTTL             :         : 10        : Y              
-ChannelSelect_0[0]           : AD19      : output : LVTTL             :         : 10        : Y              
-ReadWrite_0                  : AD20      : output : LVTTL             :         : 10        : Y              
-ATWD0_D[8]                   : AD21      : input  : LVTTL             :         : 10        : Y              
+RampSet_0                    : AD15      : output : LVTTL             :         : 10        : Y              
+ReadWrite_0                  : AD16      : output : LVTTL             :         : 10        : Y              
+ATWD0_D[9]                   : AD17      : input  : LVTTL             :         : 10        : Y              
+ATWD1_D[3]                   : AD18      : input  : LVTTL             :         : 10        : Y              
+ChannelSelect_1[0]           : AD19      : output : LVTTL             :         : 10        : Y              
+ReadWrite_1                  : AD20      : output : LVTTL             :         : 10        : Y              
+ATWD1_D[8]                   : AD21      : input  : LVTTL             :         : 10        : Y              
 R2BUS[0]                     : AD22      : output : LVTTL             :         : 9         : Y              
 VCC_INT                      : AD23      : power  :                   : 1.8V    :           :                
 GND                          : AD24      : gnd    :                   :         :           :                
@@ -680,14 +680,14 @@ NSTATUS                      : AE12      : bidir  :                   :         
 GND                          : AE13      : gnd    :                   :         :           :                
 VCC_IO                       : AE14      : power  :                   : 3.3V    :           :                
 TMS                          : AE15      : input  :                   :         :           :                
-ATWD1_D[4]                   : AE16      : input  : LVTTL             :         : 10        : Y              
-RESERVED_INPUT               : AE17      :        :                   :         : 10        :                
-RampSet_0                    : AE18      : output : LVTTL             :         : 10        : Y              
+ATWD0_D[4]                   : AE16      : input  : LVTTL             :         : 10        : Y              
+CLK3p                        : AE17      : input  : LVTTL             :         : 10        : N              
+RampSet_1                    : AE18      : output : LVTTL             :         : 10        : Y              
 VCC_INT                      : AE19      : power  :                   : 1.8V    :           :                
-ATWD0_D[9]                   : AE20      : input  : LVTTL             :         : 10        : Y              
+ATWD1_D[9]                   : AE20      : input  : LVTTL             :         : 10        : Y              
 GND                          : AE21      : gnd    :                   :         :           :                
-ATWD0_D[6]                   : AE22      : input  : LVTTL             :         : 10        : Y              
-DigitalSet_0                 : AE23      : output : LVTTL             :         : 10        : Y              
+ATWD1_D[6]                   : AE22      : input  : LVTTL             :         : 10        : Y              
+DigitalSet_1                 : AE23      : output : LVTTL             :         : 10        : Y              
 VCC_INT                      : AE24      : power  :                   : 1.8V    :           :                
 GND                          : AE25      : gnd    :                   :         :           :                
 GND                          : AE26      : gnd    :                   :         :           :                
@@ -705,9 +705,9 @@ MultiSPE                     : AF12      : input  : LVTTL             :         
 VCC_IO                       : AF13      : power  :                   : 3.3V    :           :                
 GND                          : AF14      : gnd    :                   :         :           :                
 OneSPE                       : AF15      : input  : LVTTL             :         : 10        : Y              
-ChannelSelect_1[0]           : AF16      : output : LVTTL             :         : 10        : Y              
-ATWD1_D[8]                   : AF17      : input  : LVTTL             :         : 10        : Y              
-ATWD0_D[1]                   : AF18      : input  : LVTTL             :         : 10        : Y              
+ChannelSelect_0[0]           : AF16      : output : LVTTL             :         : 10        : Y              
+ATWD0_D[8]                   : AF17      : input  : LVTTL             :         : 10        : Y              
+ATWD1_D[1]                   : AF18      : input  : LVTTL             :         : 10        : Y              
 GND                          : AF19      : gnd    :                   :         :           :                
 RESERVED_INPUT               : AF20      :        :                   :         : 10        :                
 VCC_IO                       : AF21      : power  :                   : 3.3V    :           :                

@@ -1,0 +1,112 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 1991-2004 Altera Corporation
+Any  megafunction  design,  and related netlist (encrypted  or  decrypted),
+support information,  device programming or simulation file,  and any other
+associated  documentation or information  provided by  Altera  or a partner
+under  Altera's   Megafunction   Partnership   Program  may  be  used  only
+to program  PLD  devices (but not masked  PLD  devices) from  Altera.   Any
+other  use  of such  megafunction  design,  netlist,  support  information,
+device programming or simulation file,  or any other  related documentation
+or information  is prohibited  for  any  other purpose,  including, but not
+limited to  modification,  reverse engineering,  de-compiling, or use  with
+any other  silicon devices,  unless such use is  explicitly  licensed under
+a separate agreement with  Altera  or a megafunction partner.  Title to the
+intellectual property,  including patents,  copyrights,  trademarks,  trade
+secrets,  or maskworks,  embodied in any such megafunction design, netlist,
+support  information,  device programming or simulation file,  or any other
+related documentation or information provided by  Altera  or a megafunction
+partner, remains with Altera, the megafunction partner, or their respective
+licensors. No other licenses, including any licenses needed under any third
+party's intellectual property, are provided herein.
+*/
+(header "symbol" (version "1.1"))
+(symbol
+	(rect 16 16 176 176)
+	(text "DCOM_tcal_timer" (rect 5 0 92 12)(font "Arial" ))
+	(text "inst" (rect 8 144 25 156)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "CLK20" (rect 0 0 33 12)(font "Arial" ))
+		(text "CLK20" (rect 21 27 54 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32)(line_width 1))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "tcal_psnd" (rect 0 0 47 12)(font "Arial" ))
+		(text "tcal_psnd" (rect 21 43 68 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48)(line_width 1))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "timer_clrn" (rect 0 0 48 12)(font "Arial" ))
+		(text "timer_clrn" (rect 21 59 69 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64)(line_width 1))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "RST" (rect 0 0 21 12)(font "Arial" ))
+		(text "RST" (rect 21 75 42 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 1))
+	)
+	(port
+		(pt 160 32)
+		(output)
+		(text "del_15us" (rect 0 0 43 12)(font "Arial" ))
+		(text "del_15us" (rect 96 27 139 39)(font "Arial" ))
+		(line (pt 160 32)(pt 144 32)(line_width 1))
+	)
+	(port
+		(pt 160 48)
+		(output)
+		(text "del_30us" (rect 0 0 43 12)(font "Arial" ))
+		(text "del_30us" (rect 96 43 139 55)(font "Arial" ))
+		(line (pt 160 48)(pt 144 48)(line_width 1))
+	)
+	(port
+		(pt 160 64)
+		(output)
+		(text "h_pulse" (rect 0 0 37 12)(font "Arial" ))
+		(text "h_pulse" (rect 102 59 139 71)(font "Arial" ))
+		(line (pt 160 64)(pt 144 64)(line_width 1))
+	)
+	(port
+		(pt 160 80)
+		(output)
+		(text "l_pulse" (rect 0 0 34 12)(font "Arial" ))
+		(text "l_pulse" (rect 105 75 139 87)(font "Arial" ))
+		(line (pt 160 80)(pt 144 80)(line_width 1))
+	)
+	(port
+		(pt 160 96)
+		(output)
+		(text "pulse_sent" (rect 0 0 53 12)(font "Arial" ))
+		(text "pulse_sent" (rect 86 91 139 103)(font "Arial" ))
+		(line (pt 160 96)(pt 144 96)(line_width 1))
+	)
+	(port
+		(pt 160 112)
+		(output)
+		(text "tx_time_lat" (rect 0 0 54 12)(font "Arial" ))
+		(text "tx_time_lat" (rect 85 107 139 119)(font "Arial" ))
+		(line (pt 160 112)(pt 144 112)(line_width 1))
+	)
+	(port
+		(pt 160 128)
+		(output)
+		(text "RES" (rect 0 0 22 12)(font "Arial" ))
+		(text "RES" (rect 117 123 139 135)(font "Arial" ))
+		(line (pt 160 128)(pt 144 128)(line_width 1))
+	)
+	(drawing
+		(rectangle (rect 16 16 144 144)(line_width 1))
+	)
+)

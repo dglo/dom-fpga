@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2007-03-22
+-- Last update: 2003-10-23
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -19,7 +19,6 @@
 -- Revisions  :
 -- Date        Version     Author    Description
 -- 2003-10-23  V01-01-00   thorsten  
--- 2007-03-22              thorsten  added ATWD dead flag
 -------------------------------------------------------------------------------
 
 
@@ -52,7 +51,6 @@ ENTITY daq IS
 		LBM_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		COMPR_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		COMPR_ctrl		: IN COMPR_STRUCT;
-		ICETOP_ctrl		: IN ICETOP_CTRL_STRUCT;
 		-- monitor signals
 		-- Lookback Memory Pointer
 		LBM_ptr			: OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
@@ -62,7 +60,6 @@ ENTITY daq IS
 		-- interface to countrate meter
 		discSPEpulse	: OUT STD_LOGIC;
 		discMPEpulse	: OUT STD_LOGIC;
-                dead_status     : OUT DEAD_STATUS_STRUCT;
 		-- interface to local coincidence
 		LC_trigger		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		LC_abort		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
@@ -214,8 +211,6 @@ ARCHITECTURE daq_arch OF daq IS
 			DAQ_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			ATWD_AB			: IN STD_LOGIC;	-- indicates if ping or pong
 			COMPR_ctrl		: IN COMPR_STRUCT;
-			ICETOP_ctrl		: IN ICETOP_CTRL_STRUCT;
-                        dead_flag               : OUT STD_LOGIC;
 			-- trigger
 			rst_trig		: OUT STD_LOGIC;
 			trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
@@ -345,22 +340,7 @@ ARCHITECTURE daq_arch OF daq IS
 			bus_error		: OUT	STD_LOGIC
 		);
 	END COMPONENT;
-
-	COMPONENT dead_time
-    PORT (
-        CLK         : IN  STD_LOGIC;
-        RST         : IN  STD_LOGIC;
-        -- inputs
-        enable_AB   : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
-        dead_flag_A : IN  STD_LOGIC;
-        dead_flag_B : IN  STD_LOGIC;
-        -- status flags to rate meters
-        dead_status : OUT DEAD_STATUS_STRUCT;
-        -- test port
-        TC          : OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
-        );
-        END COMPONENT;
-
+	
 	SIGNAL CLK20n		: STD_LOGIC;
 	
 	-- local FADC signals
@@ -434,11 +414,7 @@ ARCHITECTURE daq_arch OF daq IS
 	SIGNAL PING_status	: PP_STRUCT;
 	SIGNAL PONG_status	: PP_STRUCT;
 	
-    -- dead TIME
-    SIGNAL dead_flag_A : STD_LOGIC;
-    SIGNAL dead_flag_B : STD_LOGIC;
-    
-    --debugging
+	--debugging
 	SIGNAL TCping	: STD_LOGIC_VECTOR (7 DOWNTO 0);
 	SIGNAL TCpong	: STD_LOGIC_VECTOR (7 DOWNTO 0);
 
@@ -536,8 +512,6 @@ BEGIN
 			DAQ_mode		=> DAQ_mode,
 			ATWD_AB			=> ATWD_A,
 			COMPR_ctrl		=> COMPR_ctrl,
-			ICETOP_ctrl		=> ICETOP_ctrl,
-                        dead_flag               => dead_flag_A,
 			-- trigger
 			rst_trig		=> rst_trig_A,
 			trigger_word	=> trigger_word,
@@ -600,8 +574,6 @@ BEGIN
 			DAQ_mode		=> DAQ_mode,
 			ATWD_AB			=> ATWD_B,
 			COMPR_ctrl		=> COMPR_ctrl,
-			ICETOP_ctrl		=> ICETOP_ctrl,
-                        dead_flag               => dead_flag_B,
 			-- trigger
 			rst_trig		=> rst_trig_B,
 			trigger_word	=> trigger_word,
@@ -732,21 +704,7 @@ BEGIN
 			bus_error		=> bus_error
 		);
 		
-dead_time_inst : dead_time
-    PORT map (
-        CLK         => CLK40,
-        RST         => RST,
-        -- inputs
-        enable_AB   => enable_AB,
-        dead_flag_A => dead_flag_A,
-        dead_flag_B => dead_flag_B,
-        -- status flags to rate meters
-        dead_status => dead_status,
-        -- test port
-        TC          =>open
-        );
-
---monitoring
+	--monitoring
 	DAQ_status.AHB_status.AHB_ERROR			<= bus_error;
 	DAQ_status.AHB_status.slavebuserrint	<= slavebuserrint;
 	DAQ_status.AHB_status.xfer_eng			<= xfer_eng;
