@@ -80,8 +80,8 @@ ARCHITECTURE trigger_arch OF trigger IS
 	SIGNAL trig_lut_A		: STD_LOGIC;
 	SIGNAL trig_lut_B		: STD_LOGIC;
 	
-	SIGNAL discSPE			: STD_LOGIC;
-	SIGNAL discMPE			: STD_LOGIC;
+	SIGNAL discSPE			: STD_LOGIC := '0';
+	SIGNAL discMPE			: STD_LOGIC := '0';
 	SIGNAL rst_trigger_spe	: STD_LOGIC;
 	SIGNAL rst_trigger_mpe	: STD_LOGIC;
 	
@@ -149,10 +149,11 @@ BEGIN
 		IF RST='1' THEN
 			discSPE_latch	<= '1';
 			discSPE_pulse	<= '0';
+			rst_trigger_spe	<= '0';
 		ELSIF CLK40'EVENT AND CLK40='1' THEN
 			discSPE_latch	<= discSPE;
-			discSPE_pulse	<= discSPE_latch; -- AND NOT rst_trigger_spe;
-			rst_trigger_spe	<= NOT discSPE_pulse AND discSPE_latch;
+			discSPE_pulse	<= discSPE_latch AND NOT rst_trigger_spe;
+			rst_trigger_spe	<= discSPE_pulse AND discSPE_latch AND NOT rst_trigger_spe;
 		END IF;
 	END PROCESS;
 	-- rst_trigger_spe	<= NOT discSPE_pulse AND discSPE_latch;
@@ -172,10 +173,11 @@ BEGIN
 		IF RST='1' THEN
 			discMPE_latch	<= '1';
 			discMPE_pulse	<= '0';
+			rst_trigger_mpe	<= '0';
 		ELSIF CLK40'EVENT AND CLK40='1' THEN
 			discMPE_latch	<= discMPE;
-			discMPE_pulse	<= discMPE_latch; -- AND NOT rst_trigger_mpe;
-			rst_trigger_mpe	<= NOT discMPE_pulse AND discMPE_latch;
+			discMPE_pulse	<= discMPE_latch AND NOT rst_trigger_mpe;
+			rst_trigger_mpe	<= discMPE_pulse AND discMPE_latch AND NOT rst_trigger_mpe;
 		END IF;
 	END PROCESS;
 	-- rst_trigger_mpe	<= NOT discMPE_pulse AND discMPE_latch;
@@ -373,14 +375,14 @@ BEGIN
 			SPE_level_stretch(1)	<= MultiSPE_sync(0) OR MultiSPE_stretch(2) OR MultiSPE_stretch(1) OR MultiSPE_stretch(0);
 			-- strech discriminator signals
 			OneSPE_stretch(1 DOWNTO 0)		:= OneSPE_stretch(2 DOWNTO 1);
-			OneSPE_stretch(2)				:= OneSPE_sync(0);
+			OneSPE_stretch(2)				:= OneSPE_sync(0); -- OR discSPE_latch;
 			MultiSPE_stretch(1 DOWNTO 0)	:= MultiSPE_stretch(2 DOWNTO 1);
-			MultiSPE_stretch(2)				:= MultiSPE_sync(0);
+			MultiSPE_stretch(2)				:= MultiSPE_sync(0); -- OR discMPE_latch;
 			-- synchronize inputs
 			OneSPE_sync(0)		:= OneSPE_sync(1);
-			OneSPE_sync(1)		:= OneSPE;
+			OneSPE_sync(1)		:= '0'; --OneSPE;
 			MultiSPE_sync(0)	:= MultiSPE_sync(1);
-			MultiSPE_sync(1)	:= MultiSPE;
+			MultiSPE_sync(1)	:= '0'; --MultiSPE;
 		END IF;
 	END PROCESS;
 
