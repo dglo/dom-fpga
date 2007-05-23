@@ -1,0 +1,182 @@
+% C:\PROJECTS\ICECUBE\DOR\FPGA\DCOM_01\RX_CHAN\EDGES\EDGE_DEC.tdf %
+% AHDL code created by Visual Software Solution's StateCAD 5.0 %
+% Mon Jun 02 16:58:25 2003 %
+
+% This AHDL code was generated using: %
+%  binary encoded state assignment with structured code format. %
+%  Minimization is enabled,  implied else is enabled,  %
+%  and outputs are speed optimized. %
+
+SUBDESIGN EDGE_DEC(
+	CLK :	INPUT;
+	ct[4..0] :	INPUT;
+	hl_edge :	INPUT;
+	lh_edge :	INPUT;
+	one_lev :	INPUT;
+	res :	INPUT;
+	ct_aclr :	OUTPUT;
+	end_en :	OUTPUT;
+	hl_en :	OUTPUT;
+	lh_en :	OUTPUT;
+	one :	OUTPUT;
+	start_en :	OUTPUT;
+)
+
+
+VARIABLE
+	sreg : MACHINE OF BITS (SV0, SV1, SV4, SV5)
+		WITH STATES (
+			IDLE =	B"0100",
+			HLCNT =	B"0000",
+			HLDEL =	B"0001",
+			HLSTB =	B"0010",
+			HLWT =	B"0011",
+			LHCNT =	B"0101",
+			LHDEL =	B"0110",
+			LHSTB =	B"0111",
+			LHWT =	B"1000"
+		);
+
+	ct_aclr :	DFF;
+	end_en :	DFF;
+	hl_en :	DFF;
+	lh_en :	DFF;
+	one :	DFF;
+	start_en :	DFF;
+
+	cteq4 :	NODE;
+	cteq10 :	NODE;
+BEGIN
+
+% Clock setup %
+	ct_aclr.clk=CLK;
+	end_en.clk=CLK;
+	hl_en.clk=CLK;
+	lh_en.clk=CLK;
+	one.clk=CLK;
+	start_en.clk=CLK;
+	sreg.clk=CLK;
+
+	sreg.reset =  res ;
+
+	IF ( res ) THEN
+		hl_en.clrn=GND;
+		lh_en.clrn=GND;
+		ct_aclr.prn=GND;
+		start_en.prn=GND;
+		end_en.clrn=GND;
+		one.clrn=GND;
+	ELSE
+		hl_en.clrn=VCC;
+		lh_en.clrn=VCC;
+		ct_aclr.prn=VCC;
+		start_en.prn=VCC;
+		end_en.clrn=VCC;
+		one.clrn=VCC;
+	END IF;
+
+	CASE sreg IS
+		WHEN HLCNT =>
+			IF ( !one_lev & !cteq4 & hl_edge ) THEN 
+				sreg = HLCNT;
+				(hl_en,lh_en,ct_aclr,start_en,end_en,one)=(1,0,0,0,1,0);
+			END IF;
+			IF ( one_lev ) THEN 
+				sreg = HLSTB;
+				(hl_en,lh_en,ct_aclr,start_en,end_en,one)=(0,0,0,1,0,1);
+			END IF;
+			IF ( cteq4 & !one_lev  #  !hl_edge & !one_lev ) THEN 
+				sreg = HLWT;
+				(hl_en,lh_en,ct_aclr,start_en,end_en,one)=(1,0,1,1,0,0);
+			END IF;
+		WHEN HLDEL =>
+			IF ( cteq10 ) THEN 
+				sreg = LHWT;
+				(hl_en,lh_en,ct_aclr,start_en,end_en,one)=(0,1,1,1,0,0);
+			ELSE
+				sreg = HLDEL;
+				(hl_en,lh_en,ct_aclr,start_en,end_en,one)=(0,0,0,1,0,0);
+			END IF;
+		WHEN HLSTB =>
+			sreg = HLDEL;
+			(hl_en,lh_en,ct_aclr,start_en,end_en,one)=(0,0,0,1,0,0);
+		WHEN HLWT =>
+			IF ( !one_lev & !hl_edge ) THEN 
+				sreg = HLWT;
+				(hl_en,lh_en,ct_aclr,start_en,end_en,one)=(1,0,1,1,0,0);
+			END IF;
+			IF ( one_lev ) THEN 
+				sreg = HLSTB;
+				(hl_en,lh_en,ct_aclr,start_en,end_en,one)=(0,0,0,1,0,1);
+			END IF;
+			IF ( hl_edge & !one_lev ) THEN 
+				sreg = HLCNT;
+				(hl_en,lh_en,ct_aclr,start_en,end_en,one)=(1,0,0,0,1,0);
+			END IF;
+		WHEN IDLE =>
+			IF ( !hl_edge & !lh_edge ) THEN 
+				sreg = IDLE;
+				(hl_en,lh_en,ct_aclr,start_en,end_en,one)=(0,0,1,1,0,0);
+			END IF;
+			IF ( hl_edge & !one_lev ) THEN 
+				sreg = HLCNT;
+				(hl_en,lh_en,ct_aclr,start_en,end_en,one)=(1,0,0,0,1,0);
+			END IF;
+			IF ( hl_edge & one_lev ) THEN 
+				sreg = HLSTB;
+				(hl_en,lh_en,ct_aclr,start_en,end_en,one)=(0,0,0,1,0,1);
+			END IF;
+			IF ( lh_edge & !one_lev ) THEN 
+				sreg = LHCNT;
+				(hl_en,lh_en,ct_aclr,start_en,end_en,one)=(0,1,0,0,1,0);
+			END IF;
+			IF ( lh_edge & one_lev ) THEN 
+				sreg = LHSTB;
+				(hl_en,lh_en,ct_aclr,start_en,end_en,one)=(0,0,0,1,0,1);
+			END IF;
+		WHEN LHCNT =>
+			IF ( !one_lev & !cteq4 & lh_edge ) THEN 
+				sreg = LHCNT;
+				(hl_en,lh_en,ct_aclr,start_en,end_en,one)=(0,1,0,0,1,0);
+			END IF;
+			IF ( one_lev ) THEN 
+				sreg = LHSTB;
+				(hl_en,lh_en,ct_aclr,start_en,end_en,one)=(0,0,0,1,0,1);
+			END IF;
+			IF ( cteq4 & !one_lev  #  !lh_edge & !one_lev ) THEN 
+				sreg = LHWT;
+				(hl_en,lh_en,ct_aclr,start_en,end_en,one)=(0,1,1,1,0,0);
+			END IF;
+		WHEN LHDEL =>
+			IF ( cteq10 ) THEN 
+				sreg = HLWT;
+				(hl_en,lh_en,ct_aclr,start_en,end_en,one)=(1,0,1,1,0,0);
+			ELSE
+				sreg = LHDEL;
+				(hl_en,lh_en,ct_aclr,start_en,end_en,one)=(0,0,0,1,0,0);
+			END IF;
+		WHEN LHSTB =>
+			sreg = LHDEL;
+			(hl_en,lh_en,ct_aclr,start_en,end_en,one)=(0,0,0,1,0,0);
+		WHEN LHWT =>
+			IF ( !one_lev & !lh_edge ) THEN 
+				sreg = LHWT;
+				(hl_en,lh_en,ct_aclr,start_en,end_en,one)=(0,1,1,1,0,0);
+			END IF;
+			IF ( one_lev ) THEN 
+				sreg = LHSTB;
+				(hl_en,lh_en,ct_aclr,start_en,end_en,one)=(0,0,0,1,0,1);
+			END IF;
+			IF ( lh_edge & !one_lev ) THEN 
+				sreg = LHCNT;
+				(hl_en,lh_en,ct_aclr,start_en,end_en,one)=(0,1,0,0,1,0);
+			END IF;
+	END CASE;
+
+
+% Logic Equations %
+cteq4 =  !ct4 & !ct3 & ct2 & !ct1 & !ct0 ;
+
+cteq10 =  !ct4 & ct3 & !ct2 & ct1 & !ct0 ;
+
+END;

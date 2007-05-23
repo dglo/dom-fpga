@@ -1,0 +1,93 @@
+TITLE "Tx Dual Port RAM control, LAST CHANGE: 2004-06-18";
+
+INCLUDE "tx_dpr_radr_ct";
+
+--FUNCTION tx_dpr_adr_ct 
+--(
+--	clock,
+--	clk_en,
+--	sload,
+--	aclr,
+--	data[12..0]
+--)
+--RETURNS (
+--	q[12..0]
+--);
+
+--CONSTANT MAX_PACKET_SIZE	= 256+2;			-- 32bit words, payload + header + CRC
+--CONSTANT DPR_ADR_RANGE	= 15;
+--CONSTANT DPR_ADR_USED		= 13;				-- 8Kx32bit words
+--CONSTANT DPR_SIZE			= 2^DPR_ADR_USED;	-- amount of 32bit words
+
+PARAMETERS
+(
+	MAX_PACKET_SIZE	= 256+2,			-- 32bit words, payload + header + CRC
+	DPR_ADR_RANGE	= 15,
+	DPR_ADR_USED	= 13,				-- 8Kx32bit words
+	DPR_SIZE		= 2^DPR_ADR_USED	-- amount of 32bit words
+);
+
+
+SUBDESIGN	Tx_dpr_ctrl_PAR_ap
+(
+	CLK20							: INPUT;	-- communication clock
+	buf_res							: INPUT;	-- buffer reset, duration=1 clock 
+	tx_dpr_wadr[DPR_ADR_RANGE..0]	: INPUT;	-- points to next write address, updated with tx_pack_ct_up
+	tx_pack_ct_up					: INPUT;
+	
+	tx_dpr_ren						: INPUT;	-- used to count up tx_dpr_radr[] only
+		
+	tx_dpr_radr[DPR_ADR_RANGE..0]	: OUTPUT;	-- Tx DPR read address
+	
+	tx_dpr_ef						: OUTPUT;	-- Tx DPR empty flag
+	tx_dpr_aef						: OUTPUT;	-- Tx DPR almost empty flag
+	tx_dpr_ff						: OUTPUT;	-- Tx DPR full flag
+	
+	tx_dpr_avail[DPR_ADR_USED..0]	: OUTPUT;	-- Rx DPR available memory space
+)
+
+VARIABLE
+	not_buf_res						: NODE;
+	tx_dpr_rad						: tx_dpr_radr_ct;	-- 16 bit up counter
+	tx_dpr_radr[DPR_ADR_RANGE..0]	: NODE;
+	tx_dpr_waddr[DPR_ADR_RANGE..0]	: DFFE;
+	
+BEGIN
+
+	not_buf_res		= !buf_res;
+	
+	tx_dpr_waddr[15..0].(clk,ena,clrn)	= (CLK20, tx_pack_ct_up, not_buf_res);
+	tx_dpr_waddr[15..0].d				= tx_dpr_wadr[15..0];
+	
+	tx_dpr_rad.				(	clock,	clk_en,		sload,	aclr		)
+						= 	(	CLK20,	tx_dpr_ren,	GND,	buf_res);
+	tx_dpr_rad.data[]	= 	H"0000";
+	
+	tx_dpr_radr[]		=	tx_dpr_rad.q[];
+
+
+	if (tx_dpr_waddr[DPR_ADR_RANGE..DPR_ADR_USED] >= tx_dpr_radr[DPR_ADR_RANGE..DPR_ADR_USED])
+	 	THEN	tx_dpr_avail[]		=	
+					DPR_SIZE - (tx_dpr_waddr[DPR_ADR_USED..0] - tx_dpr_radr[DPR_ADR_USED..0]);
+	END IF;
+
+	if (tx_dpr_waddr[DPR_ADR_RANGE..DPR_ADR_USED] < tx_dpr_radr[DPR_ADR_RANGE..DPR_ADR_USED])
+	 	THEN	tx_dpr_avail[]		=
+					(0,(tx_dpr_radr[DPR_ADR_USED-1..0] - tx_dpr_waddr[DPR_ADR_USED-1..0]));
+	END IF;
+		
+	if (tx_dpr_avail[]		== DPR_SIZE)
+	 	THEN	tx_dpr_ef	= VCC;
+		else	tx_dpr_ef	= GND;		END IF;
+		
+	if (tx_dpr_avail[]		> MAX_PACKET_SIZE)
+	 	THEN	tx_dpr_aef	= VCC;
+		else	tx_dpr_aef	= GND;		END IF;
+	
+	if (tx_dpr_avail[]		== 0)
+	 	THEN	tx_dpr_ff	= VCC;
+		else	tx_dpr_ff	= GND;		END IF;
+	
+	
+	
+END;
