@@ -1,5 +1,5 @@
 Assembler report for simpletest
-Thu Apr 27 12:05:26 2006
+Fri Apr 20 13:52:00 2007
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -45,7 +45,7 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Thu Apr 27 12:05:26 2006 ;
+; Assembler Status      ; Successful - Fri Apr 20 13:52:00 2007 ;
 ; Revision Name         ; simpletest                            ;
 ; Top-level Entity Name ; simpletest                            ;
 ; Family                ; EXCALIBUR_ARM                         ;
@@ -108,7 +108,7 @@ party's intellectual property, are provided herein.
 +----------------+---------------------------------------------------------------------------+
 ; Device         ; EPXA4F672I2                                                               ;
 ; JTAG usercode  ; 0xFFFFFFFF                                                                ;
-; Checksum       ; 0x0039C80E                                                                ;
+; Checksum       ; 0x00409CB8                                                                ;
 +----------------+---------------------------------------------------------------------------+
 
 
@@ -119,7 +119,7 @@ party's intellectual property, are provided herein.
 +----------------+--------------------------------------------------------------------------+
 ; Device         ; EPXA4F672I2                                                              ;
 ; JTAG usercode  ; 0xFFFFFFFF                                                               ;
-; Checksum       ; 0x0039C80E                                                               ;
+; Checksum       ; 0x00409CB8                                                               ;
 +----------------+--------------------------------------------------------------------------+
 
 
@@ -130,7 +130,7 @@ party's intellectual property, are provided herein.
 +----------------+--------------------------------------------------------------------------+
 ; Device         ; EPC8                                                                     ;
 ; JTAG usercode  ; 0xFFFFFFFF                                                               ;
-; Checksum       ; 0x08BC3E57                                                               ;
+; Checksum       ; 0x08C312A9                                                               ;
 +----------------+--------------------------------------------------------------------------+
 
 
@@ -140,13 +140,13 @@ party's intellectual property, are provided herein.
 Info: *******************************************************************
 Info: Running Quartus II Assembler
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Thu Apr 27 12:04:56 2006
+    Info: Processing started: Fri Apr 20 13:51:47 2007
 Info: Command: quartus_asm --import_settings_files=off --export_settings_files=off simpletest -c simpletest
 Warning: Data in Simulator initialization files holds embedded processor core in reset because Hexadecimal (Intel-Format) File(s) do not contain initialization data for entry point 0x0 or entry point is in memory external to Excalibur embedded processor stripe
 Warning: Data in passive programming files holds embedded processor core in reset because Hexadecimal (Intel-Format) Files do not contain initialization data for entry point 0x0
 Warning: Data in passive programming files holds embedded processor core in reset because Hexadecimal (Intel-Format) Files do not contain initialization data for entry point 0x0
 Info: Quartus II Assembler was successful. 0 errors, 3 warnings
-    Info: Processing ended: Thu Apr 27 12:05:26 2006
-    Info: Elapsed time: 00:00:30
+    Info: Processing ended: Fri Apr 20 13:52:00 2007
+    Info: Elapsed time: 00:00:12
 
 

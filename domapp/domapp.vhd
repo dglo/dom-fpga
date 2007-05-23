@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2003-10-23
+-- Last update: 2007-03-22
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -306,6 +306,7 @@ ARCHITECTURE arch_domapp OF domapp IS
 			LBM_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			COMPR_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			COMPR_ctrl		: IN COMPR_STRUCT;
+			ICETOP_ctrl		: IN ICETOP_CTRL_STRUCT;
 			-- monitor signals
 			-- Lookback Memory Pointer
 			LBM_ptr			: OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
@@ -315,6 +316,7 @@ ARCHITECTURE arch_domapp OF domapp IS
 			-- interface to countrate meter
 			discSPEpulse	: OUT STD_LOGIC;
 			discMPEpulse	: OUT STD_LOGIC;
+                        dead_status     : OUT DEAD_STATUS_STRUCT;
 			-- interface to local coincidence
 			LC_trigger		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			LC_abort		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
@@ -423,6 +425,8 @@ ARCHITECTURE arch_domapp OF domapp IS
 			DOM_status		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 			COMPR_ctrl		: OUT COMPR_STRUCT;
 			debugging		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
+			ICETOP_ctrl		: OUT ICETOP_CTRL_STRUCT;
+			-- Flasher Board
 			CS_FL_aux_reset	: OUT STD_LOGIC;
 			CS_FL_attn		: IN STD_LOGIC;
 			-- pointers
@@ -484,6 +488,7 @@ ARCHITECTURE arch_domapp OF domapp IS
 			RM_stat		: OUT RM_STAT_STRUCT;
 			-- DAQ interface
 			RM_daq_disc	: IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
+                        dead_status : IN  DEAD_STATUS_STRUCT;
 			-- test
 			TC			: OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
 		);
@@ -691,6 +696,7 @@ ARCHITECTURE arch_domapp OF domapp IS
 	SIGNAL RM_ctrl		: RM_CTRL_STRUCT;
 	SIGNAL RM_stat		: RM_STAT_STRUCT;
 	SIGNAL RM_daq_disc	: STD_LOGIC_VECTOR (1 DOWNTO 0); -- 0=SPE; 1=MPE
+        SIGNAL dead_status      : DEAD_STATUS_STRUCT;
 	
 	-- Calibration Sources
 	SIGNAL CS_ctrl		: CS_STRUCT;
@@ -719,6 +725,9 @@ ARCHITECTURE arch_domapp OF domapp IS
 	SIGNAL debugging		: STD_LOGIC_VECTOR (31 DOWNTO 0);
 	SIGNAL TCdaq			: STD_LOGIC_VECTOR (7 DOWNTO 0);
 	SIGNAL TCslave			: STD_LOGIC_VECTOR (15 DOWNTO 0);
+	
+	-- IceTop
+	SIGNAL ICETOP_ctrl		: ICETOP_CTRL_STRUCT;
 	
 BEGIN
 	-- general
@@ -874,6 +883,7 @@ BEGIN
 			LBM_mode		=> DAQ_ctrl.LBM_mode,
 			COMPR_mode		=> DAQ_ctrl.COMPR_mode,
 			COMPR_ctrl		=> COMPR_ctrl,
+			ICETOP_ctrl		=> ICETOP_ctrl,
 			-- monitor signals
 			-- Lookback Memory Pointer
 			LBM_ptr			=> LBM_ptr,
@@ -883,6 +893,7 @@ BEGIN
 			-- interface to countrate meter
 			discSPEpulse	=> RM_daq_disc(0),
 			discMPEpulse	=> RM_daq_disc(1),
+                        dead_status     => dead_status,
 			-- interface to local coincidence
 			LC_trigger		=> lc_daq_trigger,
 			LC_abort		=> lc_daq_abort,
@@ -989,6 +1000,8 @@ BEGIN
 			DOM_status		=> DOM_status,
 			COMPR_ctrl		=> COMPR_ctrl,
 			debugging		=> debugging,
+			ICETOP_ctrl		=> ICETOP_ctrl,
+			-- Flasher Board
 			CS_FL_aux_reset	=> CS_FL_aux_reset,
 			CS_FL_attn		=> CS_FL_attn,
 			-- pointers
@@ -1048,6 +1061,7 @@ BEGIN
 			RM_stat		=> RM_stat,
 			-- DAQ interface
 			RM_daq_disc	=> RM_daq_disc,
+                        dead_status     => dead_status,
 			-- test
 			TC			=> open
 		);
