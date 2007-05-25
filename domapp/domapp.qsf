@@ -397,6 +397,12 @@ set_location_assignment LC10_8_Z1 -to "daq:inst_daq\|trigger:inst_trigger\|ATWDT
 set_location_assignment LC10_1_Z3 -to "daq:inst_daq\|trigger:inst_trigger\|discSPE"
 set_location_assignment LC10_3_Z1 -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_B_sig"
 set_location_assignment LC9_1_Z3 -to "daq:inst_daq\|trigger:inst_trigger\|discMPE"
+set_location_assignment LC8_2_Z3 -to "daq:inst_daq\|trigger:inst_trigger\|discSPE_latch"
+set_location_assignment LC7_2_Z3 -to "daq:inst_daq\|trigger:inst_trigger\|discMPE_latch"
+set_location_assignment LC6_2_Z3 -to "daq:inst_daq\|trigger:inst_trigger\|discSPE_pulse"
+set_location_assignment LC5_2_Z3 -to "daq:inst_daq\|trigger:inst_trigger\|discMPE_pulse"
+set_location_assignment LC10_2_Z3 -to "daq:inst_daq\|trigger:inst_trigger\|trigger_word\[0\]~reg0"
+set_location_assignment LC9_2_Z3 -to "daq:inst_daq\|trigger:inst_trigger\|trigger_word\[1\]~reg0"
 
 # Timing Assignments
 # ==================
@@ -649,6 +655,29 @@ set_global_assignment -name USE_SIGNALTAP_FILE atwd_disc_flag.stp
 
 # --------------------
 # start ENTITY(domapp)
+
+	# Pin & Location Assignments
+	# ==========================
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to AnalogReset_0
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to AnalogReset_1
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ChannelSelect_0\[0\]
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ChannelSelect_0\[1\]
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ChannelSelect_1\[0\]
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ChannelSelect_1\[1\]
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to CounterClock_0
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to CounterClock_1
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to DigitalReset_0
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to DigitalReset_1
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to DigitalSet_0
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to DigitalSet_1
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to OutputEnable_0
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to OutputEnable_1
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to RampSet_0
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to RampSet_1
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ReadWrite_0
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ReadWrite_1
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ShiftClock_0
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ShiftClock_1
 
 	# Timing Assignments
 	# ==================

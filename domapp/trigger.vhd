@@ -375,14 +375,14 @@ BEGIN
 			SPE_level_stretch(1)	<= MultiSPE_sync(0) OR MultiSPE_stretch(2) OR MultiSPE_stretch(1) OR MultiSPE_stretch(0);
 			-- strech discriminator signals
 			OneSPE_stretch(1 DOWNTO 0)		:= OneSPE_stretch(2 DOWNTO 1);
-			OneSPE_stretch(2)				:= OneSPE_sync(0); -- OR discSPE_latch;
+			OneSPE_stretch(2)				:= OneSPE_sync(0) OR discSPE_pulse;
 			MultiSPE_stretch(1 DOWNTO 0)	:= MultiSPE_stretch(2 DOWNTO 1);
-			MultiSPE_stretch(2)				:= MultiSPE_sync(0); -- OR discMPE_latch;
+			MultiSPE_stretch(2)				:= MultiSPE_sync(0) OR discMPE_pulse;
 			-- synchronize inputs
 			OneSPE_sync(0)		:= OneSPE_sync(1);
-			OneSPE_sync(1)		:= '0'; --OneSPE;
+			OneSPE_sync(1)		:= OneSPE;
 			MultiSPE_sync(0)	:= MultiSPE_sync(1);
-			MultiSPE_sync(1)	:= '0'; --MultiSPE;
+			MultiSPE_sync(1)	:= MultiSPE;
 		END IF;
 	END PROCESS;
 
