@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2006-03-21
+-- Last update: 2007-05-15
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -18,7 +18,8 @@
 -------------------------------------------------------------------------------
 -- Revisions  :
 -- Date        Version     Author    Description
--- 2006-03-    V01-01-00   thorsten  
+-- 2006-03-    V01-01-00   thorsten
+-- 2007-05-15              thorsten  added compr all 4 chan for forced launch
 -------------------------------------------------------------------------------
 
 
@@ -82,11 +83,12 @@ ARCHITECTURE compression_control_arch OF compression_control IS
     SIGNAL hit_size    : STD_LOGIC_VECTOR (10 DOWNTO 0);
     SIGNAL wf_finished : STD_LOGIC;
 
+
 BEGIN  -- compression_control_arch
 
     ATWD_CH <= ATWD_chanel;
 
-	LASTonly <= COMPR_ctrl.LASTonly;
+    LASTonly <= COMPR_ctrl.LASTonly;
 
     PROCESS (CLK, RST)
     BEGIN  -- PROCESS
@@ -111,7 +113,11 @@ BEGIN  -- compression_control_arch
                     next_hit <= '0';
                     next_wf  <= '0';
                     IF LASTonly = '1' THEN
-                        ATWD_chanel <= HEADER_in.ATWDsize;
+                        IF COMPR_ctrl.all_chan_for_forced_trig = '1' AND HEADER_in.forced_launch = '1' THEN
+                            ATWD_chanel <= "00";
+                        ELSE
+                            ATWD_chanel <= HEADER_in.ATWDsize;
+                        END IF;
                     ELSE
                         ATWD_chanel <= "00";
                     END IF;
