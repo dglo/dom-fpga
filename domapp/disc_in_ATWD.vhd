@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2007-05-18
+-- Last update: 2007-05-25
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -20,12 +20,6 @@
 -- Date        Version     Author    Description
 -- 2007-05-17              thorsten  initial code
 -------------------------------------------------------------------------------
-
--------------------------------------------------------------------------------
--- HACK HACK
--------------------------------------------------------------------------------
-
-
 
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.ALL;
@@ -52,9 +46,7 @@ ARCHITECTURE disc_in_ATWD_arch OF disc_in_ATWD IS
 
     SIGNAL ATWDtrigger_old : STD_LOGIC;
 
-    TYPE cnt_type IS ARRAY (0 TO 1) OF INTEGER RANGE 0 TO 15;
-    SIGNAL cnt_disc : cnt_type;--ARRAY (0 TO 1) OF INTEGER RANGE 0 TO 15;
-    SIGNAL cnt_win  : cnt_type;--ARRAY (0 TO 1) OF INTEGER RANGE 0 TO 15;
+    SIGNAL cnt_win  : INTEGER RANGE 0 TO 3;
     
 BEGIN  -- disc_in_ATWD_arch
 
@@ -65,35 +57,29 @@ BEGIN  -- disc_in_ATWD_arch
         ELSIF CLK'EVENT AND CLK = '1' THEN  -- rising clock edge
             ATWDtrigger_old <= ATWDtrigger;
 
+            -- post acq window
+            IF ATWDtrigger = '1' AND TriggerComplete = '1' THEN
+                cnt_win <= 3;
+            ELSIF cnt_win = 0 THEN
+                cnt_win <= cnt_win;
+            ELSE
+                cnt_win <= cnt_win - 1;
+            END IF;
+
             -- bit 0: SPE; bit 1: MPE
             FOR disc IN 0 TO 1 LOOP
-                -- pre launch window
-                IF SPE_level_stretch(disc) = '1' THEN
-                    cnt_disc(disc) <= 15;
-                ELSIF cnt_disc(disc) = 0 THEN
-                    cnt_disc(disc) <= cnt_disc(disc);
-                ELSE
-                    cnt_disc(disc) <= cnt_disc(disc) - 1;
-                END IF;
-                -- post acq window
-                IF ATWDtrigger = '1' AND TriggerComplete = '1' THEN
-                    cnt_win(disc) <= 15;
-                ELSIF cnt_win(disc) = 0 THEN
-                    cnt_win(disc) <= cnt_win(disc);
-                ELSE
-                    cnt_win(disc) <= cnt_win(disc) - 1;
-                END IF;
-
-
                 IF ATWDtrigger = '1' AND ATWDtrigger_old = '0' THEN
                     -- clear status; we have a new launch
                     ATWD_disc_status(disc) <= '0';
-                ELSIF cnt_win(disc) /= 0 THEN
-                    -- ATWD is acquiring
-                    IF cnt_disc(disc) /= 0 THEN
+                    IF SPE_level_stretch(disc) = '1' THEN  --cnt_disc(disc) /= 0 THEN
                         ATWD_disc_status(disc) <= '1';
-                --    ELSE
-                --        ATWD_disc_status(disc) <= ATWD_disc_status(disc);
+                    ELSE
+                        ATWD_disc_status(disc) <= '0';
+                    END IF;
+                ELSIF cnt_win /= 0 THEN
+                    -- ATWD is acquiring
+                    IF SPE_level_stretch(disc) = '1' THEN  --cnt_disc(disc) /= 0 THEN
+                        ATWD_disc_status(disc) <= '1';
                     END IF;
                 END IF;
             END LOOP;  -- disc
@@ -101,3 +87,32 @@ BEGIN  -- disc_in_ATWD_arch
     END PROCESS;
 
 END disc_in_ATWD_arch;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
