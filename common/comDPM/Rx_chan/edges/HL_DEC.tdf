@@ -1,0 +1,224 @@
+% C:\PROJECTS\ICECUBE\DOR\FPGA\DCOM_01\RX_CHAN\EDGES\HL_DEC.tdf %
+% AHDL code created by Visual Software Solution's StateCAD 5.0 %
+% Tue Jun 17 13:29:31 2003 %
+
+% This AHDL code was generated using: %
+%  binary encoded state assignment with structured code format. %
+%  Minimization is enabled,  implied else is enabled,  %
+%  and outputs are speed optimized. %
+
+SUBDESIGN HL_DEC(
+	CLK :	INPUT;
+	ct0 :	INPUT;
+	ct1 :	INPUT;
+	ct2 :	INPUT;
+	ct3 :	INPUT;
+	ct4 :	INPUT;
+	diff_gt_2xthr :	INPUT;
+	hl_edge :	INPUT;
+	lh_edge :	INPUT;
+	one_lev :	INPUT;
+	res :	INPUT;
+	ct_aclr :	OUTPUT;
+	diffen :	OUTPUT;
+	maxen :	OUTPUT;
+	one :	OUTPUT;
+	threna :	OUTPUT;
+	thrinit :	OUTPUT;
+)
+
+
+VARIABLE
+	sreg : MACHINE OF BITS (SV0, SV1, SV2, SV3)
+		WITH STATES (
+			THR_INIT =	B"0111",
+			CNT =	B"0000",
+			COUNT_DN =	B"0001",
+			COUNT_UP =	B"0010",
+			IDLE =	B"0011",
+			LHWT =	B"0100",
+			MAXDIFF =	B"0101",
+			STB =	B"0110",
+			UPDATE_THR =	B"1000"
+		);
+
+	sreg1 : MACHINE OF BITS (SV4, SV5, SV6)
+		WITH STATES (
+			MIN_THR =	B"011",
+			DIFF_GT_THR1 =	B"000",
+			DIFF_GT_THR2 =	B"001",
+			DIFF_GT_THR3 =	B"010",
+			SET_NEW_THR =	B"100"
+		);
+
+	ct_aclr :	DFF;
+	diffen :	DFF;
+	maxen :	DFF;
+	one :	DFF;
+	threna :	DFF;
+	thrinit :	DFF;
+
+	cteq8 :	NODE;
+	cteq16 :	NODE;
+BEGIN
+
+% Clock setup %
+	ct_aclr.clk=CLK;
+	diffen.clk=CLK;
+	maxen.clk=CLK;
+	one.clk=CLK;
+	threna.clk=CLK;
+	thrinit.clk=CLK;
+	sreg.clk=CLK;
+	sreg1.clk=CLK;
+
+	sreg.reset =  res ;
+
+	IF ( res ) THEN
+		ct_aclr.prn=GND;
+		thrinit.prn=GND;
+		threna.prn=GND;
+		maxen.clrn=GND;
+		diffen.clrn=GND;
+		one.clrn=GND;
+	ELSE
+		ct_aclr.prn=VCC;
+		thrinit.prn=VCC;
+		threna.prn=VCC;
+		maxen.clrn=VCC;
+		diffen.clrn=VCC;
+		one.clrn=VCC;
+	END IF;
+
+	CASE sreg IS
+		WHEN CNT =>
+			IF ( !cteq8 & hl_edge & !one_lev ) THEN 
+				sreg = CNT;
+				(ct_aclr,thrinit,threna,maxen,diffen,one)=(0,0,0,0,1,0);
+			END IF;
+			IF ( cteq8 & !one_lev  #  !hl_edge & !one_lev ) THEN 
+				sreg = IDLE;
+				(ct_aclr,thrinit,threna,maxen,diffen,one)=(1,0,0,1,1,0);
+			END IF;
+			IF ( one_lev ) THEN 
+				sreg = STB;
+				(ct_aclr,thrinit,threna,maxen,diffen,one)=(0,0,0,0,1,1);
+			END IF;
+		WHEN COUNT_DN =>
+			sreg = LHWT;
+			(ct_aclr,thrinit,threna,maxen,diffen,one)=(0,0,0,1,1,0);
+		WHEN COUNT_UP =>
+			IF ( SV4 & !SV5 & !SV6 ) THEN 
+				sreg = UPDATE_THR;
+				(ct_aclr,thrinit,threna,maxen,diffen,one)=(0,0,1,0,0,0);
+			ELSE
+				sreg = LHWT;
+				(ct_aclr,thrinit,threna,maxen,diffen,one)=(0,0,0,1,1,0);
+			END IF;
+		WHEN IDLE =>
+			IF ( !hl_edge ) THEN 
+				sreg = IDLE;
+				(ct_aclr,thrinit,threna,maxen,diffen,one)=(1,0,0,1,1,0);
+			END IF;
+			IF ( hl_edge & one_lev ) THEN 
+				sreg = STB;
+				(ct_aclr,thrinit,threna,maxen,diffen,one)=(0,0,0,0,1,1);
+			END IF;
+			IF ( hl_edge & !one_lev ) THEN 
+				sreg = CNT;
+				(ct_aclr,thrinit,threna,maxen,diffen,one)=(0,0,0,0,1,0);
+			END IF;
+		WHEN LHWT =>
+			IF ( lh_edge  #  cteq16 ) THEN 
+				sreg = IDLE;
+				(ct_aclr,thrinit,threna,maxen,diffen,one)=(1,0,0,1,1,0);
+			ELSE
+				sreg = LHWT;
+				(ct_aclr,thrinit,threna,maxen,diffen,one)=(0,0,0,1,1,0);
+			END IF;
+		WHEN MAXDIFF =>
+			IF ( hl_edge & !cteq16 ) THEN 
+				sreg = MAXDIFF;
+				(ct_aclr,thrinit,threna,maxen,diffen,one)=(0,0,0,0,1,0);
+			END IF;
+			IF ( !hl_edge & !cteq16 & diff_gt_2xthr ) THEN 
+				sreg = COUNT_UP;
+				(ct_aclr,thrinit,threna,maxen,diffen,one)=(0,0,0,0,0,0);
+			END IF;
+			IF ( !hl_edge & !cteq16 & !diff_gt_2xthr ) THEN 
+				sreg = COUNT_DN;
+				(ct_aclr,thrinit,threna,maxen,diffen,one)=(0,0,0,0,0,0);
+			END IF;
+			IF ( cteq16 ) THEN 
+				sreg = IDLE;
+				(ct_aclr,thrinit,threna,maxen,diffen,one)=(1,0,0,1,1,0);
+			END IF;
+		WHEN STB =>
+			sreg = MAXDIFF;
+			(ct_aclr,thrinit,threna,maxen,diffen,one)=(0,0,0,0,1,0);
+		WHEN THR_INIT =>
+			sreg = IDLE;
+			(ct_aclr,thrinit,threna,maxen,diffen,one)=(1,0,0,1,1,0);
+		WHEN UPDATE_THR =>
+			sreg = LHWT;
+			(ct_aclr,thrinit,threna,maxen,diffen,one)=(0,0,0,1,1,0);
+	END CASE;
+
+	sreg1.reset =  res ;
+
+	CASE sreg1 IS
+		WHEN DIFF_GT_THR1 =>
+			IF ( SV0  #  SV1  #  SV3 & SV2  #  !SV2 & !SV3 ) THEN 
+				sreg1 = DIFF_GT_THR1;
+			END IF;
+			IF ( !SV0 & !SV1 & SV2 & !SV3 ) THEN 
+				sreg1 = DIFF_GT_THR2;
+			END IF;
+			IF ( !SV0 & !SV1 & !SV2 & SV3 ) THEN 
+				sreg1 = MIN_THR;
+			END IF;
+		WHEN DIFF_GT_THR2 =>
+			IF ( SV0  #  SV1  #  !SV3 & !SV2  #  SV2 & SV3 ) THEN 
+				sreg1 = DIFF_GT_THR2;
+			END IF;
+			IF ( !SV0 & !SV1 & !SV2 & SV3 ) THEN 
+				sreg1 = DIFF_GT_THR1;
+			END IF;
+			IF ( !SV0 & !SV1 & SV2 & !SV3 ) THEN 
+				sreg1 = DIFF_GT_THR3;
+			END IF;
+		WHEN DIFF_GT_THR3 =>
+			IF ( SV0  #  SV1  #  SV3 & SV2  #  !SV2 & !SV3 ) THEN 
+				sreg1 = DIFF_GT_THR3;
+			END IF;
+			IF ( !SV0 & !SV1 & SV2 & !SV3 ) THEN 
+				sreg1 = SET_NEW_THR;
+			END IF;
+			IF ( !SV0 & !SV1 & !SV2 & SV3 ) THEN 
+				sreg1 = DIFF_GT_THR2;
+			END IF;
+		WHEN MIN_THR =>
+			IF ( !SV0 & !SV1 & SV2 & !SV3 ) THEN 
+				sreg1 = DIFF_GT_THR1;
+			ELSE
+				sreg1 = MIN_THR;
+			END IF;
+		WHEN SET_NEW_THR =>
+			IF ( SV0  #  SV1  #  SV3 & SV2  #  !SV2 & !SV3 ) THEN 
+				sreg1 = SET_NEW_THR;
+			END IF;
+			IF ( !SV0 & !SV1 & SV2 & !SV3 ) THEN 
+				sreg1 = MIN_THR;
+			END IF;
+			IF ( !SV0 & !SV1 & !SV2 & SV3 ) THEN 
+				sreg1 = DIFF_GT_THR3;
+			END IF;
+	END CASE;
+
+
+% Logic Equations %
+cteq8 =  !ct4 & ct3 & !ct2 & !ct1 & !ct0 ;
+
+cteq16 =  ct4 & !ct3 & !ct2 & !ct1 & !ct0 ;
+
+END;

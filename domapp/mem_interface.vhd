@@ -343,9 +343,7 @@ BEGIN
 	header2(17)				<= header.FADCavail;
 	header2(18)				<= header.ATWDavail;
 	header2(20 DOWNTO 19)	<= header.ATWDsize;
-	--header2(23 DOWNTO 21)	<= "000";
-	header2(21)				<= '0';
-	header2(23 DOWNTO 22)	<= header.ATWD_disc_status;
+	header2(23 DOWNTO 21)	<= "000";
 	header2(25 DOWNTO 24)	<= header.LC;
 	header2(31 DOWNTO 26)	<= "000000";
 	header3(15 DOWNTO 0)	<= header.deadtime;

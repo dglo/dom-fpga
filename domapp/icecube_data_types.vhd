@@ -38,8 +38,6 @@ PACKAGE icecube_data_types IS
 			LC				: STD_LOGIC_VECTOR (1 DOWNTO 0);
 			deadtime		: STD_LOGIC_VECTOR (15 DOWNTO 0);
 			chargestamp		: STD_LOGIC_VECTOR (31 DOWNTO 0);
-			forced_launch	: STD_LOGIC;
-			ATWD_disc_status	: STD_LOGIC_VECTOR (1 DOWNTO 0);
 		END RECORD;
 	
 	

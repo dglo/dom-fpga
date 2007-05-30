@@ -1,0 +1,118 @@
+TITLE "ADC to serial decoder, LAST CHANGE: 2004-06-23";
+
+INCLUDE "hl_dscr";
+INCLUDE "ctup4b";
+
+--FUNCTION HL_DSCR (CLK, ct0, ct1, ct2, ct3, hl_edge, low_lh, low_lh_lev, lrg_lh_lev, one_lev, res, uart_done)
+--	RETURNS (ct_aclr, lowsig, lrgsig, adclat, dbg, one);
+
+
+--FUNCTION ctup4b (clock, aclr)
+--RETURNS (	q[3..0]);
+
+
+SUBDESIGN	adc_to_ser
+(
+	clk					: INPUT;
+	reset				: INPUT;
+	in[9..0]			: INPUT;	-- Communication ADC, meanvalue over 4 clocks
+	low_thr[7..0]		: INPUT;	-- Communication threshold, long cable 
+	lrg_thr[9..0]		: INPUT;	-- Communication threshold, short cable
+	low_stp[3..0]		: INPUT;	-- Communication threshold, between consecutive samples, long cable 
+	lrg_stp[7..0]		: INPUT;	-- Communication threshold, between consecutive samples,  short cable
+	uart_done			: INPUT;	-- 
+		
+	hl_edge				: OUTPUT;
+	rxd					: OUTPUT;	-- serial data, 1 clock lengths pulse if ==1
+	big_signal			: OUTPUT;
+	small_signal		: OUTPUT;
+)
+
+
+VARIABLE
+
+	ina[9..0]		: DFF;		-- I/O register
+	inb[9..0]		: DFF;
+
+	adc_old[9..0]	: DFFE;
+	hl_thr[9..0]	: DFFE;
+	hl_stp[7..0]	: DFFE;
+	
+	low_lh			: DFF;
+	low_lh_lev		: DFF;
+	lrg_lh_lev		: DFF;
+	one_lev			: DFF;
+	
+	hl_edge			: DFF;
+
+	ct				: ctup4b;	-- 3 bit up counter
+	hl_dec_stm		: hl_dscr;	-- state machine
+	
+BEGIN
+
+	ct.clock				= clk;
+	ct.aclr					= hl_dec_stm.ct_aclr;
+
+	ina[].clk				= clk;
+	inb[].clk				= clk;
+
+	ina[].d					= in[];
+	inb[].d					= ina[].q;
+
+	adc_old[].clk			= clk;
+	adc_old[].d				= ina[].q;
+	adc_old[].ena			= hl_dec_stm.adclat;
+
+	
+	low_lh.(clk,clrn)		= (clk, !reset);
+	
+	if( (0,ina[9..0]) > (0,inb[9..0])+(0,low_stp[3..0]))	-- difference between consecutive samples
+		THEN	low_lh.d		= VCC;	
+		else	low_lh.d		= GND;		END IF;				-- avoid negative numbers
+
+	lrg_lh_lev.(clk,clrn)		= (clk, !reset);
+				
+	if( (0,ina[9..0])	> (0,adc_old[9..0]) + (0,lrg_thr[9..0]))
+		THEN	lrg_lh_lev.d	= VCC;	
+		else	lrg_lh_lev.d	= GND;		END IF;	
+															-- when comparing !!!
+	low_lh_lev.(clk,clrn)		= (clk, !reset);
+				
+	if( (0,ina[9..0])	> (0,adc_old[9..0]) + (0,low_thr[7..0]))
+		THEN	low_lh_lev.d	= VCC;	
+		else	low_lh_lev.d	= GND;		END IF;	
+															-- when comparing !!!
+	hl_stp[].clk			= clk;
+	hl_stp[].d				= 	(0,low_stp[3..0]) & hl_dec_stm.lowsig #
+								(  lrg_stp[7..0]) & hl_dec_stm.lrgsig;	
+	hl_stp[].ena			= hl_dec_stm.lowsig # hl_dec_stm.lrgsig;
+
+
+	hl_edge.(clk,clrn)		= (clk, !reset);
+
+	if( (0,inb[9..0])	> (0,ina[9..0]) + (0,hl_stp[7..0]))
+		THEN	hl_edge.d	= VCC;	
+		else	hl_edge.d	= GND;		END IF;	
+	
+
+	hl_thr[].clk			= clk;
+	hl_thr[].d				= 	(0,low_thr[7..0]) & hl_dec_stm.lowsig #
+								(  lrg_thr[9..0]) & hl_dec_stm.lrgsig;	
+	hl_thr[].ena			= hl_dec_stm.lowsig # hl_dec_stm.lrgsig;
+
+
+	one_lev.(clk,clrn)		= (clk, !reset);
+				
+	if( (0,adc_old[9..0])	> (0,ina[9..0]) + (0,hl_thr[9..0]))
+		THEN	one_lev.d	= VCC;	
+		else	one_lev.d	= GND;		END IF;	
+		
+hl_dec_stm.(CLK, ct0, ct1, ct2, ct3, hl_edge, low_lh, low_lh_lev, lrg_lh_lev, one_lev, res, uart_done)
+	= (clk, ct.q0, ct.q1, ct.q2, ct.q3, hl_edge.q, low_lh.q, low_lh_lev.q, lrg_lh_lev.q, one_lev.q, reset, uart_done);
+
+	rxd						= hl_dec_stm.one;
+	
+	big_signal				= hl_dec_stm.lrgsig;
+	small_signal			= hl_dec_stm.lowsig;
+	
+END;

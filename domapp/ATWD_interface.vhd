@@ -41,9 +41,6 @@ ENTITY ATWD_interface IS
 		ATWD_n_chan		: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
 		ATWD_mode		: IN STD_LOGIC_VECTOR (2 DOWNTO 0);
 		abort			: IN STD_LOGIC;
-		-- some status bits
-		--trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
-		forced_launch	: IN STD_LOGIC;
 		-- ATWD
 		ATWDTrigger		: IN STD_LOGIC;
 		TriggerComplete	: IN STD_LOGIC;
@@ -84,9 +81,6 @@ ARCHITECTURE ATWD_interface_arch OF ATWD_interface IS
 			ATWD_mode	: IN STD_LOGIC_VECTOR (2 DOWNTO 0);
 			ATWD_n_chan	: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
 			abort		: IN STD_LOGIC;
-			-- some status bits
-			--trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
-			forced_launch	: IN STD_LOGIC;
 			-- atwd
 			ATWDTrigger		: IN STD_LOGIC;
 			TriggerComplete	: IN STD_LOGIC;
@@ -158,9 +152,6 @@ BEGIN
 			ATWD_mode	=> ATWD_mode,
 			ATWD_n_chan	=> ATWD_n_chan,
 			abort		=> abort,
-			-- some status bits
-			--trigger_word	=> trigger_word,
-			forced_launch	=> forced_launch,
 			-- atwd
 			ATWDTrigger		=> ATWDTrigger,
 			TriggerComplete	=> TriggerComplete,
