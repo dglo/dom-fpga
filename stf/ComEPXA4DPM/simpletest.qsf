@@ -162,32 +162,32 @@ set_global_assignment -name SIGNALTAP_FILE "tcal-break.stp"
 # Pin & Location Assignments
 # ==========================
 set_location_assignment PIN_AC26 -to ATWD0VDD_SUP
-set_location_assignment PIN_Y15 -to ATWD1_D\[0\]
-set_location_assignment PIN_V15 -to ATWD1_D\[1\]
-set_location_assignment PIN_AC15 -to ATWD1_D\[2\]
-set_location_assignment PIN_AA15 -to ATWD1_D\[3\]
-set_location_assignment PIN_AE16 -to ATWD1_D\[4\]
-set_location_assignment PIN_AB16 -to ATWD1_D\[5\]
-set_location_assignment PIN_AA16 -to ATWD1_D\[6\]
-set_location_assignment PIN_W16 -to ATWD1_D\[7\]
-set_location_assignment PIN_AF17 -to ATWD1_D\[8\]
-set_location_assignment PIN_AD17 -to ATWD1_D\[9\]
+set_location_assignment PIN_Y15 -to ATWD0_D\[0\]
+set_location_assignment PIN_V15 -to ATWD0_D\[1\]
+set_location_assignment PIN_AC15 -to ATWD0_D\[2\]
+set_location_assignment PIN_AA15 -to ATWD0_D\[3\]
+set_location_assignment PIN_AE16 -to ATWD0_D\[4\]
+set_location_assignment PIN_AB16 -to ATWD0_D\[5\]
+set_location_assignment PIN_AA16 -to ATWD0_D\[6\]
+set_location_assignment PIN_W16 -to ATWD0_D\[7\]
+set_location_assignment PIN_AF17 -to ATWD0_D\[8\]
+set_location_assignment PIN_AD17 -to ATWD0_D\[9\]
 set_location_assignment PIN_AC25 -to ATWD1VDD_SUP
-set_location_assignment PIN_AA17 -to ATWD0_D\[0\]
-set_location_assignment PIN_AF18 -to ATWD0_D\[1\]
-set_location_assignment PIN_AB18 -to ATWD0_D\[2\]
-set_location_assignment PIN_AD18 -to ATWD0_D\[3\]
-set_location_assignment PIN_AC20 -to ATWD0_D\[4\]
-set_location_assignment PIN_AC19 -to ATWD0_D\[5\]
-set_location_assignment PIN_AE22 -to ATWD0_D\[6\]
-set_location_assignment PIN_AA18 -to ATWD0_D\[7\]
-set_location_assignment PIN_AD21 -to ATWD0_D\[8\]
-set_location_assignment PIN_AE20 -to ATWD0_D\[9\]
-set_location_assignment PIN_AB8 -to ATWDTrigger_1
-set_location_assignment PIN_AD7 -to ATWDTrigger_0
+set_location_assignment PIN_AA17 -to ATWD1_D\[0\]
+set_location_assignment PIN_AF18 -to ATWD1_D\[1\]
+set_location_assignment PIN_AB18 -to ATWD1_D\[2\]
+set_location_assignment PIN_AD18 -to ATWD1_D\[3\]
+set_location_assignment PIN_AC20 -to ATWD1_D\[4\]
+set_location_assignment PIN_AC19 -to ATWD1_D\[5\]
+set_location_assignment PIN_AE22 -to ATWD1_D\[6\]
+set_location_assignment PIN_AA18 -to ATWD1_D\[7\]
+set_location_assignment PIN_AD21 -to ATWD1_D\[8\]
+set_location_assignment PIN_AE20 -to ATWD1_D\[9\]
+set_location_assignment PIN_AB8 -to ATWDTrigger_0
+set_location_assignment PIN_AD7 -to ATWDTrigger_1
 set_location_assignment PIN_E4 -to A_nB
-set_location_assignment PIN_AC16 -to AnalogReset_1
-set_location_assignment PIN_AC18 -to AnalogReset_0
+set_location_assignment PIN_AC16 -to AnalogReset_0
+set_location_assignment PIN_AC18 -to AnalogReset_1
 set_location_assignment PIN_R23 -to CLK1p
 set_location_assignment PIN_Y5 -to CLK4p
 set_location_assignment PIN_M4 -to CLKLK_OUT2p
@@ -227,16 +227,16 @@ set_location_assignment PIN_L2 -to COM_DB\[7\]
 set_location_assignment PIN_M1 -to COM_DB\[8\]
 set_location_assignment PIN_M2 -to COM_DB\[9\]
 set_location_assignment PIN_U2 -to COM_TX_SLEEP
-set_location_assignment PIN_AF16 -to ChannelSelect_1\[0\]
-set_location_assignment PIN_AB15 -to ChannelSelect_1\[1\]
-set_location_assignment PIN_AD19 -to ChannelSelect_0\[0\]
-set_location_assignment PIN_Y18 -to ChannelSelect_0\[1\]
-set_location_assignment PIN_W15 -to CounterClock_1
-set_location_assignment PIN_AB17 -to CounterClock_0
-set_location_assignment PIN_V16 -to DigitalReset_1
-set_location_assignment PIN_W18 -to DigitalReset_0
-set_location_assignment PIN_Y16 -to DigitalSet_1
-set_location_assignment PIN_AE23 -to DigitalSet_0
+set_location_assignment PIN_AF16 -to ChannelSelect_0\[0\]
+set_location_assignment PIN_AB15 -to ChannelSelect_0\[1\]
+set_location_assignment PIN_AD19 -to ChannelSelect_1\[0\]
+set_location_assignment PIN_Y18 -to ChannelSelect_1\[1\]
+set_location_assignment PIN_W15 -to CounterClock_0
+set_location_assignment PIN_AB17 -to CounterClock_1
+set_location_assignment PIN_V16 -to DigitalReset_0
+set_location_assignment PIN_W18 -to DigitalReset_1
+set_location_assignment PIN_Y16 -to DigitalSet_0
+set_location_assignment PIN_AE23 -to DigitalSet_1
 set_location_assignment PIN_K16 -to EBIACK
 set_location_assignment PIN_F20 -to EBIADDR\[0\]
 set_location_assignment PIN_H17 -to EBIADDR\[10\]
@@ -327,8 +327,8 @@ set_location_assignment PIN_AF12 -to MultiSPE
 set_location_assignment PIN_AD8 -to MultiSPE_nl
 set_location_assignment PIN_AF15 -to OneSPE
 set_location_assignment PIN_AB19 -to OneSPE_nl
-set_location_assignment PIN_W14 -to OutputEnable_1
-set_location_assignment PIN_W17 -to OutputEnable_0
+set_location_assignment PIN_W14 -to OutputEnable_0
+set_location_assignment PIN_W17 -to OutputEnable_1
 set_location_assignment PIN_R20 -to PDL_FPGA_D\[0\]
 set_location_assignment PIN_T21 -to PDL_FPGA_D\[1\]
 set_location_assignment PIN_T20 -to PDL_FPGA_D\[2\]
@@ -360,10 +360,10 @@ set_location_assignment PIN_AA20 -to R2BUS\[3\]
 set_location_assignment PIN_AA21 -to R2BUS\[4\]
 set_location_assignment PIN_Y20 -to R2BUS\[5\]
 set_location_assignment PIN_Y21 -to R2BUS\[6\]
-set_location_assignment PIN_AD15 -to RampSet_1
-set_location_assignment PIN_AE18 -to RampSet_0
-set_location_assignment PIN_AD16 -to ReadWrite_1
-set_location_assignment PIN_AD20 -to ReadWrite_0
+set_location_assignment PIN_AD15 -to RampSet_0
+set_location_assignment PIN_AE18 -to RampSet_1
+set_location_assignment PIN_AD16 -to ReadWrite_0
+set_location_assignment PIN_AD20 -to ReadWrite_1
 set_location_assignment PIN_K9 -to SDRAMADDR\[0\]
 set_location_assignment PIN_K11 -to SDRAMADDR\[10\]
 set_location_assignment PIN_E5 -to SDRAMADDR\[11\]
@@ -427,11 +427,11 @@ set_location_assignment PIN_E12 -to SDRAMDQ\[8\]
 set_location_assignment PIN_G12 -to SDRAMDQ\[9\]
 set_location_assignment PIN_J9 -to SDRAMRASN
 set_location_assignment PIN_A5 -to SDRAMWEN
-set_location_assignment PIN_AC14 -to ShiftClock_1
-set_location_assignment PIN_Y17 -to ShiftClock_0
+set_location_assignment PIN_AC14 -to ShiftClock_0
+set_location_assignment PIN_Y17 -to ShiftClock_1
 set_location_assignment PIN_AA1 -to SingleLED_TRIGGER
-set_location_assignment PIN_AA14 -to TriggerComplete_1
-set_location_assignment PIN_AC17 -to TriggerComplete_0
+set_location_assignment PIN_AA14 -to TriggerComplete_0
+set_location_assignment PIN_AC17 -to TriggerComplete_1
 set_location_assignment PIN_G22 -to UARTCTSN
 set_location_assignment PIN_J22 -to UARTDCDN
 set_location_assignment PIN_H22 -to UARTDSRN
@@ -483,17 +483,6 @@ set_global_assignment -name DEVICE EPXA4F672I2
 set_global_assignment -name ROUTING_BACK_ANNOTATION_MODE OFF
 set_global_assignment -name APEX20KE_DEVICE_IO_STANDARD LVTTL
 set_instance_assignment -name IO_STANDARD LVTTL -to ATWD0VDD_SUP
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[0\]
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[1\]
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[2\]
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[3\]
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[4\]
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[5\]
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[6\]
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[7\]
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[8\]
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[9\]
-set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1VDD_SUP
 set_instance_assignment -name IO_STANDARD LVTTL -to ATWD0_D\[0\]
 set_instance_assignment -name IO_STANDARD LVTTL -to ATWD0_D\[1\]
 set_instance_assignment -name IO_STANDARD LVTTL -to ATWD0_D\[2\]
@@ -504,6 +493,17 @@ set_instance_assignment -name IO_STANDARD LVTTL -to ATWD0_D\[6\]
 set_instance_assignment -name IO_STANDARD LVTTL -to ATWD0_D\[7\]
 set_instance_assignment -name IO_STANDARD LVTTL -to ATWD0_D\[8\]
 set_instance_assignment -name IO_STANDARD LVTTL -to ATWD0_D\[9\]
+set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1VDD_SUP
+set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[0\]
+set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[1\]
+set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[2\]
+set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[3\]
+set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[4\]
+set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[5\]
+set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[6\]
+set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[7\]
+set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[8\]
+set_instance_assignment -name IO_STANDARD LVTTL -to ATWD1_D\[9\]
 set_instance_assignment -name IO_STANDARD LVTTL -to ATWDTrigger_0
 set_instance_assignment -name IO_STANDARD LVTTL -to ATWDTrigger_1
 set_instance_assignment -name IO_STANDARD LVTTL -to A_nB
@@ -930,6 +930,29 @@ set_global_assignment -name LOGICLOCK_INCREMENTAL_COMPILE_ASSIGNMENT off
 
 # ------------------------
 # start ENTITY(simpletest)
+
+	# Pin & Location Assignments
+	# ==========================
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to AnalogReset_0
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to AnalogReset_1
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ChannelSelect_0\[0\]
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ChannelSelect_0\[1\]
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ChannelSelect_1\[0\]
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ChannelSelect_1\[1\]
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to CounterClock_0
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to CounterClock_1
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to DigitalReset_0
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to DigitalReset_1
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to DigitalSet_0
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to DigitalSet_1
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to OutputEnable_0
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to OutputEnable_1
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to RampSet_0
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to RampSet_1
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ReadWrite_0
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ReadWrite_1
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ShiftClock_0
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ShiftClock_1
 
 	# Timing Assignments
 	# ==================
