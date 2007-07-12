@@ -6,7 +6,7 @@
 -- Author     : yaver/thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2007-03-23
+-- Last update: 2006-07-17
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -21,7 +21,6 @@
 -- Date        Version     Author    Description
 -- 2003-10-23  V01-01-00   yaver/thorsten
 -- 2006-04-20              thorsten  Moved timestamp to last timeslot (Arthur)
--- 2007-03-22              thorsten  added ATWD dead time
 -------------------------------------------------------------------------------
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.ALL;
@@ -29,8 +28,6 @@ USE IEEE.std_logic_arith.ALL;
 USE IEEE.std_logic_unsigned.ALL;
 LIBRARY WORK;
 USE WORK.ctrl_data_types.ALL;
-USE WORK.monitor_data_type.ALL;
-
 
 
 ENTITY rate_meters IS
@@ -45,7 +42,6 @@ ENTITY rate_meters IS
         RM_stat     : OUT RM_STAT_STRUCT;
         -- DAQ interface
         RM_daq_disc : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
-        dead_status : IN  DEAD_STATUS_STRUCT;
         -- test
         TC          : OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
         );
@@ -87,10 +83,6 @@ ARCHITECTURE ARCH_rate_meters OF rate_meters IS
     SIGNAL RM_daq_disc_20MHz : STD_LOGIC_VECTOR (1 DOWNTO 0);
     SIGNAL RM_daq_disc_old   : STD_LOGIC_VECTOR (1 DOWNTO 0);
 
-    -- dead time counter
-    SIGNAL dead_cnt    : STD_LOGIC_VECTOR (25 DOWNTO 0);
-    SIGNAL dead_flag   : STD_LOGIC;
-
 BEGIN
 
     RM_stat.RM_rate_update <= RM_rate_update;
@@ -109,7 +101,7 @@ BEGIN
     sn_dead_int(14)          <= '0';
     --sn_dead_int(13 DOWNTO 7) <= "1111111";  ---&&& was (2 downto 0)
     sn_dead_int(13 DOWNTO 7) <= RM_ctrl.RM_sn_dead;
-    sn_dead_int(6 DOWNTO 0)  <= "1111111";  ---&&&
+    sn_dead_int(6 DOWNTO 0) <= "1111111";             ---&&&
     --sn_dead_int(6 DOWNTO 0) <= "0000000";             ---&&&
 
     PROCESS (CLK40, RST)
@@ -154,7 +146,7 @@ BEGIN
             --systime  <= systime + 1; --&&&
             delay_bit <= systime(15);   ---&&& was systime(4)
 
-            IF RM_ctrl.RM_rate_enable(0) = '1' OR RM_ctrl.RM_rate_enable(1) = '1' OR RM_ctrl.dead_cnt_en /= "00" THEN
+            IF RM_ctrl.RM_rate_enable(0) = '1' OR RM_ctrl.RM_rate_enable(1) = '1' THEN
                 second_cnt <= second_cnt + '1';
             ELSE
                 second_cnt <= conv_std_logic_vector (one_second, 27);
@@ -240,7 +232,7 @@ BEGIN
             ELSE
                 IF (RM_ctrl.RM_sn_enable = "01" AND (lockout_SN > 0 OR RM_daq_disc_20MHz(0) = '1') AND lockout_SN <= sn_dead_int) OR
                     (RM_ctrl.RM_sn_enable = "10" AND (lockout_SN > 0 OR RM_daq_disc_20MHz(1) = '1') AND lockout_SN <= sn_dead_int) THEN
-                    lockout_SN                                                                                     <= lockout_SN + '1';
+                    lockout_SN <= lockout_SN + '1';
                 ELSIF RM_ctrl.RM_sn_enable(0) = '0' OR RM_ctrl.RM_sn_enable(1) = '0' OR lockout_SN >= sn_dead_int THEN
                     lockout_SN <= (OTHERS => '0');
                 END IF;
@@ -253,30 +245,6 @@ BEGIN
             END IF;
         END IF;
         
-    END PROCESS;
-
-    dead_flag <= dead_status.dead_A WHEN RM_ctrl.dead_cnt_en = "01" ELSE
-                 dead_status.dead_B    WHEN RM_ctrl.dead_cnt_en = "10" ELSE
-                 dead_status.dead_both WHEN RM_ctrl.dead_cnt_en = "11" ELSE
-                 '0';
-    PROCESS (CLK40, RST)
-        VARIABLE edge_detect : STD_LOGIC;
-    BEGIN  -- PROCESS
-        IF RST = '1' THEN               -- asynchronous reset (active high)
-            RM_stat.dead_cnt <= (OTHERS => '0');
-            dead_cnt    <= (OTHERS => '0');
-            edge_detect := '0';
-        ELSIF CLK40'EVENT AND CLK40 = '1' THEN  -- rising clock edge
-            IF second_cnt(26) = '1' AND edge_detect = '0' THEN
-                RM_stat.dead_cnt <= "000000" & dead_cnt;
-                dead_cnt         <= (OTHERS => '0');
-            ELSE
-                IF dead_flag = '1' THEN
-                    dead_cnt <= dead_cnt + 1;
-                END IF;
-            END IF;
-            edge_detect := second_cnt(26);
-        END IF;
     END PROCESS;
 
     -- <statements>

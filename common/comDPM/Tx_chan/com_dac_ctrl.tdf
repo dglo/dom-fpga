@@ -1,0 +1,100 @@
+TITLE "Tx DAC, K.-H. Sulanke,DESY Zeuthen, 2004-07-08";
+-- DAC creating a rectangular waveform, period / bit time=1us
+
+INCLUDE	"dac_levct";
+
+CONSTANT COMDAC_MIN = 128+32;
+CONSTANT COMDAC_MAX = 128+127;
+
+--FUNCTION dac_levct (clock, updown, clk_en, aset)
+--RETURNS (	q[7..0],	cout);
+
+OPTIONS	BIT0=LSB;
+
+SUBDESIGN com_dac_ctrl
+(
+	reset			: INPUT;
+	clk				: INPUT;
+	txd				: INPUT;	-- serial data
+	tx_ct[4..0]		: INPUT;	-- UART counter
+	h_pulse			: INPUT;	-- time calibration high pulse
+	l_pulse			: INPUT;	-- time calibration low pulse
+	dorlev_up_rqa	: INPUT;	-- request from DOM_a, 1 clock length pulse
+	dorlev_dn_rqa	: INPUT;	-- request from DOM_a, 1 clock length pulse
+	dorlev_up_rqb	: INPUT;	-- request from DOM_b, 1 clock length pulse
+	dorlev_dn_rqb	: INPUT;	-- request from DOM_b, 1 clock length pulse
+	dom_A_sel		: INPUT;
+	dom_B_sel		: INPUT;
+	
+	dac_d[7..0]		: OUTPUT;	-- dac value,  0..ff
+	dac_leva[7..0]	: OUTPUT;	-- dac max. value, 196..255 for DOM_a
+	dac_levb[7..0]	: OUTPUT;	-- dac max. value, 196..255 for DOM_b
+)
+
+VARIABLE
+
+	dacleva			: dac_levct;
+	dacleva_up		: NODE;
+	dacleva_adj		: NODE;
+	
+	daclevb			: dac_levct;
+	daclevb_up		: NODE;
+	daclevb_adj		: NODE;
+
+BEGIN
+
+
+	IF	(dorlev_up_rqa & dom_A_sel & (dacleva.q[7..0] != COMDAC_MAX))	-- increase Tx signal if smaller 255
+		THEN	dacleva_up	= VCC;
+				dacleva_adj	= VCC;
+	END IF;
+	
+	IF	(dorlev_up_rqb & dom_B_sel & (daclevb.q[7..0] != COMDAC_MAX))	-- increase Tx signal if smaller 255
+		THEN	daclevb_up	= VCC;
+				daclevb_adj	= VCC;
+	END IF;
+				
+	IF	(dorlev_dn_rqa & dom_A_sel & (dacleva.q[7..0] > COMDAC_MIN))	-- decrease Tx signal if bigger 196
+		THEN	dacleva_up	= GND;
+				dacleva_adj	= VCC;
+	END IF;
+		
+	IF	(dorlev_dn_rqb & dom_B_sel & (daclevb.q[7..0] > COMDAC_MIN))	-- decrease Tx signal if bigger 196
+		THEN	daclevb_up	= GND;
+				daclevb_adj	= VCC;
+	END IF;
+
+		dacleva.(clock, updown,    clk_en,     aset) =
+		   ( clk,  dacleva_up, dacleva_adj, reset);
+		
+		daclevb.(clock, updown,    clk_en,     aset) =
+		   ( clk,  daclevb_up, daclevb_adj, reset); 
+
+	IF (!h_pulse & !l_pulse & !txd) THEN dac_d[] =  H"80"; 			 END IF;
+
+	IF (dom_A_sel & !h_pulse &  l_pulse	)		THEN dac_d[] = !dacleva.q[7..0]; END IF;
+	IF (dom_A_sel &  h_pulse & !l_pulse	)		THEN dac_d[] =  dacleva.q[7..0]; END IF;
+	
+	IF (dom_A_sel & !h_pulse & !l_pulse &  txd & tx_ct[]<10) THEN 
+			dac_d[] =  dacleva.q[7..0]; 
+	END IF;
+	
+	IF (dom_A_sel & !h_pulse & !l_pulse &  txd & tx_ct[]>=10) THEN 
+			dac_d[] = !dacleva.q[7..0]; 
+	END IF;
+	
+	IF (dom_B_sel & !h_pulse &  l_pulse	)		THEN dac_d[] = !daclevb.q[7..0]; END IF;
+	IF (dom_B_sel &  h_pulse & !l_pulse	)		THEN dac_d[] =  daclevb.q[7..0]; END IF;
+	
+	IF (dom_B_sel & !h_pulse & !l_pulse &  txd & tx_ct[]<10) THEN 
+			dac_d[] =  daclevb.q[7..0]; 
+	END IF;
+	
+	IF (dom_B_sel & !h_pulse & !l_pulse &  txd & tx_ct[]>=10) THEN 
+			dac_d[] = !daclevb.q[7..0]; 
+	END IF;
+		
+	dac_leva[]	= dacleva.q[];
+	dac_levb[]	= daclevb.q[];
+
+END;

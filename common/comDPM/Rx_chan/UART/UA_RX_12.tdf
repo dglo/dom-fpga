@@ -1,0 +1,167 @@
+% C:\PROJECTS\ICECUBE\DOR\FPGA\DOR_10\RX_CHAN\UART\UA_RX_12.tdf %
+% AHDL code created by Visual Software Solution's StateCAD 5.0 %
+% Thu May 08 10:44:44 2003 %
+
+% This AHDL code was generated using: %
+%  binary encoded state assignment with structured code format. %
+%  Minimization is enabled,  implied else is enabled,  %
+%  and outputs are speed optimized. %
+
+SUBDESIGN UA_RX_12(
+	CLK :	INPUT;
+	data7 :	INPUT;
+	par_err :	INPUT;
+	res :	INPUT;
+	rxct0 :	INPUT;
+	rxct1 :	INPUT;
+	rxct2 :	INPUT;
+	rxct3 :	INPUT;
+	rxct4 :	INPUT;
+	rxd :	INPUT;
+	rxlast :	INPUT;
+	cerr :	OUTPUT;
+	cstb :	OUTPUT;
+	ctclr :	OUTPUT;
+	dstb :	OUTPUT;
+	shd :	OUTPUT;
+	shen :	OUTPUT;
+)
+
+
+VARIABLE
+	sreg : MACHINE OF BITS (SV0, SV1, SV3, SV4)
+		WITH STATES (
+			RXIDLE =	B"0100",
+			CTRLERR =	B"0000",
+			CTRLSTB =	B"0001",
+			DATASTB =	B"0010",
+			RXDAT =	B"0011",
+			RXSTART =	B"0101",
+			RXSTOP =	B"0110",
+			SHFT0 =	B"0111",
+			SHFT1 =	B"1000",
+			WT =	B"1001"
+		);
+
+	cerr :	DFF;
+	cstb :	DFF;
+	ctclr :	DFF;
+	dstb :	DFF;
+	shd :	DFF;
+	shen :	DFF;
+
+	rxcteq5 :	NODE;
+	rxcteq9 :	NODE;
+BEGIN
+
+% Clock setup %
+	cerr.clk=CLK;
+	cstb.clk=CLK;
+	ctclr.clk=CLK;
+	dstb.clk=CLK;
+	shd.clk=CLK;
+	shen.clk=CLK;
+	sreg.clk=CLK;
+
+	sreg.reset =  res ;
+
+	IF ( res ) THEN
+		cerr.clrn=GND;
+		cstb.clrn=GND;
+		dstb.clrn=GND;
+		shen.clrn=GND;
+		shd.clrn=GND;
+		ctclr.prn=GND;
+	ELSE
+		cerr.clrn=VCC;
+		cstb.clrn=VCC;
+		dstb.clrn=VCC;
+		shen.clrn=VCC;
+		shd.clrn=VCC;
+		ctclr.prn=VCC;
+	END IF;
+
+	CASE sreg IS
+		WHEN CTRLERR =>
+			sreg = RXIDLE;
+			(cerr,cstb,dstb,shen,shd,ctclr)=(0,0,0,0,0,1);
+		WHEN CTRLSTB =>
+			sreg = RXIDLE;
+			(cerr,cstb,dstb,shen,shd,ctclr)=(0,0,0,0,0,1);
+		WHEN DATASTB =>
+			sreg = RXIDLE;
+			(cerr,cstb,dstb,shen,shd,ctclr)=(0,0,0,0,0,1);
+		WHEN RXDAT =>
+			IF ( !rxcteq5 & !rxd ) THEN 
+				sreg = RXDAT;
+				(cerr,cstb,dstb,shen,shd,ctclr)=(0,0,0,0,0,0);
+			END IF;
+			IF ( rxcteq5 & !rxd ) THEN 
+				sreg = SHFT0;
+				(cerr,cstb,dstb,shen,shd,ctclr)=(0,0,0,1,0,0);
+			END IF;
+			IF ( rxd ) THEN 
+				sreg = SHFT1;
+				(cerr,cstb,dstb,shen,shd,ctclr)=(0,0,0,1,1,0);
+			END IF;
+		WHEN RXIDLE =>
+			IF ( rxd ) THEN 
+				sreg = RXSTART;
+				(cerr,cstb,dstb,shen,shd,ctclr)=(0,0,0,0,0,0);
+			ELSE
+				sreg = RXIDLE;
+				(cerr,cstb,dstb,shen,shd,ctclr)=(0,0,0,0,0,1);
+			END IF;
+		WHEN RXSTART =>
+			IF ( rxcteq9 ) THEN 
+				sreg = RXDAT;
+				(cerr,cstb,dstb,shen,shd,ctclr)=(0,0,0,0,0,0);
+			ELSE
+				sreg = RXSTART;
+				(cerr,cstb,dstb,shen,shd,ctclr)=(0,0,0,0,0,0);
+			END IF;
+		WHEN RXSTOP =>
+			IF ( !rxd & !rxcteq5 ) THEN 
+				sreg = RXSTOP;
+				(cerr,cstb,dstb,shen,shd,ctclr)=(0,0,0,0,0,0);
+			END IF;
+			IF ( rxcteq5 & !rxd & data7 & !par_err ) THEN 
+				sreg = CTRLSTB;
+				(cerr,cstb,dstb,shen,shd,ctclr)=(0,1,0,0,0,0);
+			END IF;
+			IF ( rxd ) THEN 
+				sreg = DATASTB;
+				(cerr,cstb,dstb,shen,shd,ctclr)=(0,0,1,0,0,0);
+			END IF;
+			IF ( par_err & rxcteq5 & !rxd  #  !data7 & rxcteq5 & !rxd ) THEN 
+				sreg = CTRLERR;
+				(cerr,cstb,dstb,shen,shd,ctclr)=(1,0,0,0,0,0);
+			END IF;
+		WHEN SHFT0 =>
+			sreg = WT;
+			(cerr,cstb,dstb,shen,shd,ctclr)=(0,0,0,0,0,0);
+		WHEN SHFT1 =>
+			sreg = WT;
+			(cerr,cstb,dstb,shen,shd,ctclr)=(0,0,0,0,0,0);
+		WHEN WT =>
+			IF ( !rxcteq9 ) THEN 
+				sreg = WT;
+				(cerr,cstb,dstb,shen,shd,ctclr)=(0,0,0,0,0,0);
+			END IF;
+			IF ( rxlast & rxcteq9 ) THEN 
+				sreg = RXSTOP;
+				(cerr,cstb,dstb,shen,shd,ctclr)=(0,0,0,0,0,0);
+			END IF;
+			IF ( !rxlast & rxcteq9 ) THEN 
+				sreg = RXDAT;
+				(cerr,cstb,dstb,shen,shd,ctclr)=(0,0,0,0,0,0);
+			END IF;
+	END CASE;
+
+
+% Logic Equations %
+rxcteq5 =  !rxct4 & !rxct3 & rxct2 & !rxct1 & rxct0 ;
+
+rxcteq9 =  !rxct4 & rxct3 & !rxct2 & !rxct1 & rxct0 ;
+
+END;
