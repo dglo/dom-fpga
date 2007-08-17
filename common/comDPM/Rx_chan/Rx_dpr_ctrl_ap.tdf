@@ -1,0 +1,60 @@
+TITLE "Rx Dual Port RAM control, LAST CHANGE: 2004-06-18";
+
+CONSTANT MAX_PACKET_SIZE	= 256+2;			-- 32bit words, payload + header + CRC
+CONSTANT DPR_ADR_RANGE		= 15;
+CONSTANT DPR_ADR_USED		= 13;				-- 8Kx32bit words
+CONSTANT DPR_SIZE			= 2^DPR_ADR_USED;	-- amount of 32bit words
+
+SUBDESIGN	Rx_dpr_ctrl_ap
+(
+	clk								: INPUT;
+	reset							: INPUT;
+	rx_dpr_radr[DPR_ADR_RANGE..0]	: INPUT;	-- points to next read address
+	rx_dpr_wadr[DPR_ADR_RANGE..0]	: INPUT;	-- Rx DPR write address
+	rx_dpr_radr_stb					: INPUT;	-- read address latch enable
+	rx_dpr_wadr_stb					: INPUT;	-- write address latch enable
+	
+	
+	rx_dpr_ef						: OUTPUT;	-- Rx DPR empty flag
+	rx_dpr_aff						: OUTPUT;	-- Rx DPR almost full flag
+	rx_dpr_ff						: OUTPUT;	-- Rx DPR full flag
+	
+	rx_dpr_avail[DPR_ADR_USED..0]	: OUTPUT;	-- Rx DPR available memory space
+)
+
+VARIABLE
+
+	dpr_radr[DPR_ADR_RANGE..0]		: DFFE;
+	dpr_wadr[DPR_ADR_RANGE..0]		: DFFE;
+
+BEGIN
+
+	dpr_radr[DPR_ADR_RANGE..0].(clk, ena, clrn)	= (clk, rx_dpr_radr_stb, !reset);
+	dpr_radr[DPR_ADR_RANGE..0].d				= rx_dpr_radr[DPR_ADR_RANGE..0];
+	
+	dpr_wadr[DPR_ADR_RANGE..0].(clk, ena, clrn)	= (clk, rx_dpr_wadr_stb,!reset);
+	dpr_wadr[DPR_ADR_RANGE..0].d				= rx_dpr_wadr[DPR_ADR_RANGE..0];
+
+	if (dpr_wadr[DPR_ADR_RANGE..DPR_ADR_USED] >= dpr_radr[DPR_ADR_RANGE..DPR_ADR_USED])
+	 	THEN	rx_dpr_avail[]		=	
+					DPR_SIZE - (dpr_wadr[DPR_ADR_USED..0] - dpr_radr[DPR_ADR_USED..0]);
+	END IF;
+
+	if (dpr_wadr[DPR_ADR_RANGE..DPR_ADR_USED] < dpr_radr[DPR_ADR_RANGE..DPR_ADR_USED])
+	 	THEN	rx_dpr_avail[]		=
+					(0,(dpr_radr[DPR_ADR_USED-1..0] - dpr_wadr[DPR_ADR_USED-1..0]));
+	END IF;
+		
+	if (rx_dpr_avail[]		== DPR_SIZE)
+	 	THEN	rx_dpr_ef	= VCC;
+		else	rx_dpr_ef	= GND;		END IF;
+		
+	if (rx_dpr_avail[]		< MAX_PACKET_SIZE)
+	 	THEN	rx_dpr_aff	= VCC;
+		else	rx_dpr_aff	= GND;		END IF;
+	
+	if (rx_dpr_avail[]		== 0)
+	 	THEN	rx_dpr_ff	= VCC;
+		else	rx_dpr_ff	= GND;		END IF;
+	
+	END;

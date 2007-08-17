@@ -1,0 +1,10 @@
+(
+	result_sig[]
+) = tx_fifo_mux	(
+	.data1x[] = data1x_sig[],
+	.data0x[] = data0x_sig[],
+	.sel = sel_sig
+)
+RETURNS (
+	.result[]
+);

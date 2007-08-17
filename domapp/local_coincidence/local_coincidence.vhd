@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2007-08-16
+-- Last update: 2005-07-12
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -138,7 +138,7 @@ BEGIN
     lc_daq_trigger(0) <= update_up;
     lc_daq_trigger(1) <= update_down;
 
-	disc <= lc_daq_disc(0) WHEN LC_ctrl.LC_disc_source='0' ELSE lc_daq_disc(1);
+	disc <= lc_daq_disc(0) WHEN LC_ctrl.LC_disc_source='0' ELSE lc_daq_disc(0);
 
     LC_slice_up2down : LC_slice
         PORT MAP (

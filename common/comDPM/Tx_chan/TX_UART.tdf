@@ -1,0 +1,106 @@
+% C:\PROJECTS\ICECUBE\DOR\FPGA\DCOM_01\TX_CHAN\TX_UART.tdf %
+% AHDL code created by Visual Software Solution's StateCAD 4.11 %
+% Wed Jul 14 15:31:32 2004 %
+
+% This AHDL code was generated using: %
+%  one-hot state assignment with boolean code format. %
+%  Minimization is enabled,  implied else is enabled,  %
+%  and outputs are speed optimized. %
+
+SUBDESIGN TX_UART(
+	CLK :	INPUT;
+	res :	INPUT;
+	txct[4..0] :	INPUT;
+
+	txdval :	INPUT;
+	txlast :	INPUT;
+	ct_clk_en :	OUTPUT;
+	ct_sclr :	OUTPUT;
+	shr_ena :	OUTPUT;
+	shr_load :	OUTPUT;
+	txidle :	OUTPUT;
+	txrdreq :	OUTPUT;
+)
+
+
+VARIABLE
+	ct_clk_en :	DFF;
+	ct_sclr :	DFF;
+	shr_ena :	DFF;
+	shr_load :	DFF;
+	TXCNT :	DFF;
+	TXIDL :	DFF;
+	txidle :	DFF;
+	txrdreq :	DFF;
+	TXSHFT :	DFF;
+	TXSLD :	DFF;
+
+	txcteq18 :	NODE;
+BEGIN
+
+% Clock setup %
+	ct_clk_en.clk=CLK;
+	ct_sclr.clk=CLK;
+	shr_ena.clk=CLK;
+	shr_load.clk=CLK;
+	TXCNT.clk=CLK;
+	TXIDL.clk=CLK;
+	txidle.clk=CLK;
+	txrdreq.clk=CLK;
+	TXSHFT.clk=CLK;
+	TXSLD.clk=CLK;
+
+	IF ( res ) THEN
+		TXCNT.clrn=GND;
+		TXIDL.prn=GND;
+		TXSHFT.clrn=GND;
+		TXSLD.clrn=GND;
+		txidle.prn=GND;
+		ct_clk_en.prn=GND;
+		txrdreq.clrn=GND;
+		shr_load.clrn=GND;
+		shr_ena.clrn=GND;
+		ct_sclr.prn=GND;
+	ELSE
+		TXCNT.clrn=VCC;
+		TXIDL.prn=VCC;
+		TXSHFT.clrn=VCC;
+		TXSLD.clrn=VCC;
+		txidle.prn=VCC;
+		ct_clk_en.prn=VCC;
+		txrdreq.clrn=VCC;
+		shr_load.clrn=VCC;
+		shr_ena.clrn=VCC;
+		ct_sclr.prn=VCC;
+	END IF;
+TXCNT =  !txcteq18 & TXCNT  #  !txlast & TXSHFT  #  TXSLD ;
+
+TXIDL =  !txdval & TXIDL  #  txlast & !txdval & TXSHFT ;
+
+TXSHFT =  txcteq18 & TXCNT ;
+
+TXSLD =  txdval & TXIDL  #  txlast & txdval & TXSHFT ;
+
+
+
+(txidle,ct_clk_en,txrdreq,shr_load,shr_ena,ct_sclr) = (  ( TXCNT, TXCNT, 
+	TXCNT, TXCNT, TXCNT, TXCNT) & ( ! ( txcteq18, txcteq18, txcteq18, txcteq18, 
+	txcteq18, txcteq18) ) & ((0,1,0,0,0,0) ) ) # (  ( TXSHFT, TXSHFT, TXSHFT, 
+	TXSHFT, TXSHFT, TXSHFT) & ( ! ( txlast, txlast, txlast, txlast, txlast, 
+	txlast) ) & ((0,1,0,0,0,0) ) ) # (  ( TXSLD, TXSLD, TXSLD, TXSLD, TXSLD, 
+	TXSLD) & ((1,1,1,1,1,1) ) & ((0,1,0,0,0,0) ) ) # (  ( TXIDL, TXIDL, TXIDL, 
+	TXIDL, TXIDL, TXIDL) & ( ! ( txdval, txdval, txdval, txdval, txdval, txdval) 
+	) & ((1,1,0,0,0,1) ) ) # (  ( TXSHFT, TXSHFT, TXSHFT, TXSHFT, TXSHFT, TXSHFT)
+	 & (  ( txlast, txlast, txlast, txlast, txlast, txlast)& ! ( txdval, txdval, 
+	txdval, txdval, txdval, txdval) ) & ((1,1,0,0,0,1) ) ) # (  ( TXCNT, TXCNT, 
+	TXCNT, TXCNT, TXCNT, TXCNT) & (  ( txcteq18, txcteq18, txcteq18, txcteq18, 
+	txcteq18, txcteq18) ) & ((0,1,0,0,1,0) ) ) # (  ( TXIDL, TXIDL, TXIDL, TXIDL,
+	 TXIDL, TXIDL) & (  ( txdval, txdval, txdval, txdval, txdval, txdval) ) & ((0
+	,0,1,1,1,0) ) ) # (  ( TXSHFT, TXSHFT, TXSHFT, TXSHFT, TXSHFT, TXSHFT) & (  (
+	 txlast, txlast, txlast, txlast, txlast, txlast)&  ( txdval, txdval, txdval, 
+	txdval, txdval, txdval) ) & ((0,0,1,1,1,0) ) );
+
+% Logic Equations %
+txcteq18 =  txct4 & !txct3 & !txct2 & txct1 & !txct0 ;
+
+END;

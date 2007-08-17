@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2007-03-22
+-- Last update: 2005-7-12
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -18,7 +18,6 @@
 -- Revisions  :
 -- Date        Version     Author    Description
 --             V01-01-00   thorsten
--- 2007-03-22              thorsten  added ATWD dead flag
 -------------------------------------------------------------------------------
 
 
@@ -51,11 +50,5 @@ PACKAGE monitor_data_type IS
             PONG_status : PP_STRUCT;
             AHB_status  : AHB_STATUS_STRUCT;
         END RECORD;
-
-    TYPE DEAD_STATUS_STRUCT IS
-        RECORD
-            dead_A    : STD_LOGIC;
-            dead_B    : STD_LOGIC;
-            dead_both : STD_LOGIC;
-        END RECORD;
+    
 END monitor_data_type;

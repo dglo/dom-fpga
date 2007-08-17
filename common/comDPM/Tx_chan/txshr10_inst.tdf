@@ -1,0 +1,12 @@
+(
+	shiftout_sig
+) = txshr10	(
+	.clock = clock_sig,
+	.enable = enable_sig,
+	.load = load_sig,
+	.aclr = aclr_sig,
+	.data[] = data_sig[]
+)
+RETURNS (
+	.shiftout
+);

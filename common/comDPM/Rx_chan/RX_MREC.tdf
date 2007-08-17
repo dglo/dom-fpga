@@ -1,0 +1,238 @@
+% C:\PROJECTS\ICECUBE\DOR\FPGA\DOR_10\RX_CHAN\RX_MREC.tdf %
+% AHDL code created by Visual Software Solution's StateCAD 5.0 %
+% Sun May 04 14:59:40 2003 %
+
+% This AHDL code was generated using: %
+%  binary encoded state assignment with structured code format. %
+%  Minimization is enabled,  implied else is enabled,  %
+%  and outputs are speed optimized. %
+
+SUBDESIGN RX_MREC(
+	CLK :	INPUT;
+	data_stb :	INPUT;
+	last_byte :	INPUT;
+	rec_data :	INPUT;
+	RESET :	INPUT;
+	byte_clr :	OUTPUT;
+	byte_ena0 :	OUTPUT;
+	byte_ena1 :	OUTPUT;
+	byte_ena2 :	OUTPUT;
+	byte_ena3 :	OUTPUT;
+	fifo_wrreq :	OUTPUT;
+	msg_rcvd :	OUTPUT;
+	plct_aclr :	OUTPUT;
+	plct_clk_en :	OUTPUT;
+	plct_sload :	OUTPUT;
+)
+
+
+VARIABLE
+	sreg : MACHINE OF BITS (SV2, SV3, SV4, SV5)
+		WITH STATES (
+			PIDL =	B"1000",
+			BCLR =	B"0000",
+			BYT0 =	B"0001",
+			BYT1 =	B"0010",
+			BYT2 =	B"0011",
+			BYT3 =	B"0100",
+			MSTH =	B"0101",
+			MSTL =	B"0110",
+			PCT =	B"0111",
+			PLD =	B"1001",
+			PLH =	B"1010",
+			PLL =	B"1011",
+			PRVD =	B"1100",
+			W2F =	B"1101"
+		);
+
+	byte_clr :	DFF;
+	byte_ena0 :	DFF;
+	byte_ena1 :	DFF;
+	byte_ena2 :	DFF;
+	byte_ena3 :	DFF;
+	fifo_wrreq :	DFF;
+	msg_rcvd :	DFF;
+	plct_aclr :	DFF;
+	plct_clk_en :	DFF;
+	plct_sload :	DFF;
+
+BEGIN
+
+% Clock setup %
+	byte_clr.clk=CLK;
+	byte_ena0.clk=CLK;
+	byte_ena1.clk=CLK;
+	byte_ena2.clk=CLK;
+	byte_ena3.clk=CLK;
+	fifo_wrreq.clk=CLK;
+	msg_rcvd.clk=CLK;
+	plct_aclr.clk=CLK;
+	plct_clk_en.clk=CLK;
+	plct_sload.clk=CLK;
+	sreg.clk=CLK;
+
+	sreg.reset =  RESET ;
+
+	IF ( RESET ) THEN
+		msg_rcvd.clrn=GND;
+		byte_clr.prn=GND;
+		fifo_wrreq.clrn=GND;
+		plct_aclr.prn=GND;
+		plct_sload.clrn=GND;
+		plct_clk_en.clrn=GND;
+		byte_ena3.clrn=GND;
+		byte_ena2.clrn=GND;
+		byte_ena1.clrn=GND;
+		byte_ena0.clrn=GND;
+	ELSE
+		msg_rcvd.clrn=VCC;
+		byte_clr.prn=VCC;
+		fifo_wrreq.clrn=VCC;
+		plct_aclr.prn=VCC;
+		plct_sload.clrn=VCC;
+		plct_clk_en.clrn=VCC;
+		byte_ena3.clrn=VCC;
+		byte_ena2.clrn=VCC;
+		byte_ena1.clrn=VCC;
+		byte_ena0.clrn=VCC;
+	END IF;
+
+	CASE sreg IS
+		WHEN BCLR =>
+			sreg = BYT0;
+			(msg_rcvd,byte_clr,fifo_wrreq,plct_aclr,plct_sload,plct_clk_en,byte_ena3,
+				byte_ena2,byte_ena1,byte_ena0)=(0,0,0,0,0,1,0,0,0,1);
+		WHEN BYT0 =>
+			IF ( data_stb ) THEN 
+				sreg = BYT1;
+				(msg_rcvd,byte_clr,fifo_wrreq,plct_aclr,plct_sload,plct_clk_en,byte_ena3,
+					byte_ena2,byte_ena1,byte_ena0)=(0,0,0,0,0,1,0,0,1,0);
+			ELSE
+				sreg = BYT0;
+				(msg_rcvd,byte_clr,fifo_wrreq,plct_aclr,plct_sload,plct_clk_en,byte_ena3,
+					byte_ena2,byte_ena1,byte_ena0)=(0,0,0,0,0,1,0,0,0,1);
+			END IF;
+		WHEN BYT1 =>
+			IF ( !data_stb & !last_byte ) THEN 
+				sreg = BYT1;
+				(msg_rcvd,byte_clr,fifo_wrreq,plct_aclr,plct_sload,plct_clk_en,byte_ena3,
+					byte_ena2,byte_ena1,byte_ena0)=(0,0,0,0,0,1,0,0,1,0);
+			END IF;
+			IF ( data_stb & !last_byte ) THEN 
+				sreg = BYT2;
+				(msg_rcvd,byte_clr,fifo_wrreq,plct_aclr,plct_sload,plct_clk_en,byte_ena3,
+					byte_ena2,byte_ena1,byte_ena0)=(0,0,0,0,0,1,0,1,0,0);
+			END IF;
+			IF ( last_byte ) THEN 
+				sreg = W2F;
+				(msg_rcvd,byte_clr,fifo_wrreq,plct_aclr,plct_sload,plct_clk_en,byte_ena3,
+					byte_ena2,byte_ena1,byte_ena0)=(0,0,1,0,0,0,0,0,0,0);
+			END IF;
+		WHEN BYT2 =>
+			IF ( !data_stb & !last_byte ) THEN 
+				sreg = BYT2;
+				(msg_rcvd,byte_clr,fifo_wrreq,plct_aclr,plct_sload,plct_clk_en,byte_ena3,
+					byte_ena2,byte_ena1,byte_ena0)=(0,0,0,0,0,1,0,1,0,0);
+			END IF;
+			IF ( data_stb & !last_byte ) THEN 
+				sreg = BYT3;
+				(msg_rcvd,byte_clr,fifo_wrreq,plct_aclr,plct_sload,plct_clk_en,byte_ena3,
+					byte_ena2,byte_ena1,byte_ena0)=(0,0,0,0,0,1,1,0,0,0);
+			END IF;
+			IF ( last_byte ) THEN 
+				sreg = W2F;
+				(msg_rcvd,byte_clr,fifo_wrreq,plct_aclr,plct_sload,plct_clk_en,byte_ena3,
+					byte_ena2,byte_ena1,byte_ena0)=(0,0,1,0,0,0,0,0,0,0);
+			END IF;
+		WHEN BYT3 =>
+			IF ( last_byte  #  data_stb ) THEN 
+				sreg = W2F;
+				(msg_rcvd,byte_clr,fifo_wrreq,plct_aclr,plct_sload,plct_clk_en,byte_ena3,
+					byte_ena2,byte_ena1,byte_ena0)=(0,0,1,0,0,0,0,0,0,0);
+			ELSE
+				sreg = BYT3;
+				(msg_rcvd,byte_clr,fifo_wrreq,plct_aclr,plct_sload,plct_clk_en,byte_ena3,
+					byte_ena2,byte_ena1,byte_ena0)=(0,0,0,0,0,1,1,0,0,0);
+			END IF;
+		WHEN MSTH =>
+			IF ( data_stb ) THEN 
+				sreg = PLL;
+				(msg_rcvd,byte_clr,fifo_wrreq,plct_aclr,plct_sload,plct_clk_en,byte_ena3,
+					byte_ena2,byte_ena1,byte_ena0)=(0,0,0,1,0,0,0,0,0,1);
+			ELSE
+				sreg = MSTH;
+				(msg_rcvd,byte_clr,fifo_wrreq,plct_aclr,plct_sload,plct_clk_en,byte_ena3,
+					byte_ena2,byte_ena1,byte_ena0)=(0,0,0,1,0,0,1,0,0,0);
+			END IF;
+		WHEN MSTL =>
+			IF ( data_stb ) THEN 
+				sreg = MSTH;
+				(msg_rcvd,byte_clr,fifo_wrreq,plct_aclr,plct_sload,plct_clk_en,byte_ena3,
+					byte_ena2,byte_ena1,byte_ena0)=(0,0,0,1,0,0,1,0,0,0);
+			ELSE
+				sreg = MSTL;
+				(msg_rcvd,byte_clr,fifo_wrreq,plct_aclr,plct_sload,plct_clk_en,byte_ena3,
+					byte_ena2,byte_ena1,byte_ena0)=(0,0,0,1,0,0,0,1,0,0);
+			END IF;
+		WHEN PCT =>
+			IF ( data_stb ) THEN 
+				sreg = PRVD;
+				(msg_rcvd,byte_clr,fifo_wrreq,plct_aclr,plct_sload,plct_clk_en,byte_ena3,
+					byte_ena2,byte_ena1,byte_ena0)=(1,0,0,0,0,0,0,0,0,0);
+			ELSE
+				sreg = PCT;
+				(msg_rcvd,byte_clr,fifo_wrreq,plct_aclr,plct_sload,plct_clk_en,byte_ena3,
+					byte_ena2,byte_ena1,byte_ena0)=(0,0,0,0,0,0,0,0,0,0);
+			END IF;
+		WHEN PIDL =>
+			IF ( rec_data ) THEN 
+				sreg = MSTL;
+				(msg_rcvd,byte_clr,fifo_wrreq,plct_aclr,plct_sload,plct_clk_en,byte_ena3,
+					byte_ena2,byte_ena1,byte_ena0)=(0,0,0,1,0,0,0,1,0,0);
+			ELSE
+				sreg = PIDL;
+				(msg_rcvd,byte_clr,fifo_wrreq,plct_aclr,plct_sload,plct_clk_en,byte_ena3,
+					byte_ena2,byte_ena1,byte_ena0)=(0,1,0,1,0,0,0,0,0,0);
+			END IF;
+		WHEN PLD =>
+			sreg = W2F;
+			(msg_rcvd,byte_clr,fifo_wrreq,plct_aclr,plct_sload,plct_clk_en,byte_ena3,
+				byte_ena2,byte_ena1,byte_ena0)=(0,0,1,0,0,0,0,0,0,0);
+		WHEN PLH =>
+			IF ( data_stb ) THEN 
+				sreg = PLD;
+				(msg_rcvd,byte_clr,fifo_wrreq,plct_aclr,plct_sload,plct_clk_en,byte_ena3,
+					byte_ena2,byte_ena1,byte_ena0)=(0,0,0,0,1,1,0,0,0,0);
+			ELSE
+				sreg = PLH;
+				(msg_rcvd,byte_clr,fifo_wrreq,plct_aclr,plct_sload,plct_clk_en,byte_ena3,
+					byte_ena2,byte_ena1,byte_ena0)=(0,0,0,0,0,0,0,0,1,0);
+			END IF;
+		WHEN PLL =>
+			IF ( data_stb ) THEN 
+				sreg = PLH;
+				(msg_rcvd,byte_clr,fifo_wrreq,plct_aclr,plct_sload,plct_clk_en,byte_ena3,
+					byte_ena2,byte_ena1,byte_ena0)=(0,0,0,0,0,0,0,0,1,0);
+			ELSE
+				sreg = PLL;
+				(msg_rcvd,byte_clr,fifo_wrreq,plct_aclr,plct_sload,plct_clk_en,byte_ena3,
+					byte_ena2,byte_ena1,byte_ena0)=(0,0,0,1,0,0,0,0,0,1);
+			END IF;
+		WHEN PRVD =>
+			sreg = PIDL;
+			(msg_rcvd,byte_clr,fifo_wrreq,plct_aclr,plct_sload,plct_clk_en,byte_ena3,
+				byte_ena2,byte_ena1,byte_ena0)=(0,1,0,1,0,0,0,0,0,0);
+		WHEN W2F =>
+			IF ( !last_byte ) THEN 
+				sreg = BCLR;
+				(msg_rcvd,byte_clr,fifo_wrreq,plct_aclr,plct_sload,plct_clk_en,byte_ena3,
+					byte_ena2,byte_ena1,byte_ena0)=(0,1,0,0,0,0,0,0,0,0);
+			END IF;
+			IF ( last_byte ) THEN 
+				sreg = PCT;
+				(msg_rcvd,byte_clr,fifo_wrreq,plct_aclr,plct_sload,plct_clk_en,byte_ena3,
+					byte_ena2,byte_ena1,byte_ena0)=(0,0,0,0,0,0,0,0,0,0);
+			END IF;
+	END CASE;
+
+END;
