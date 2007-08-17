@@ -1,0 +1,358 @@
+<session jtag_chain="ByteBlasterII [LPT1]" jtag_device="@1: EPXA4 (0x084010DD)" sof_file="">
+  <display_tree gui_logging_enabled="0">
+    <display_branch instance="auto_signaltap_0" signal_set="USE_GLOBAL_TEMP" trigger="USE_GLOBAL_TEMP"/>
+  </display_tree>
+  <instance entity_name="sld_signaltap" is_auto_node="yes" is_expanded="true" name="auto_signaltap_0" source_file="sld_signaltap.vhd">
+    <node_ip_info instance_id="0" mfg_id="110" node_id="0" version="3"/>
+    <signal_set global_temp="1" is_expanded="true" name="signal_set: 2004/11/02 17:00:10  #0">
+      <clock name="daq:inst_daq|CLK20" polarity="posedge"/>
+      <config ram_type="M4K" reserved_data_nodes="0" reserved_trigger_nodes="0" sample_depth="1024" trigger_in_enable="no" trigger_out_enable="no"/>
+      <top_entity/>
+      <signal_vec>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|abort_trans" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|ready" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[0]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[10]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[11]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[12]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[13]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[14]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[15]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[16]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[17]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[18]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[19]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[1]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[20]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[21]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[22]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[23]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[24]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[25]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[26]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[27]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[28]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[29]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[2]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[30]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[31]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[3]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[4]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[5]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[6]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[7]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[8]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[9]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehreadyi" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehreadyo" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[0]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[10]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[11]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[12]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[13]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[14]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[15]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[16]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[17]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[18]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[19]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[1]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[20]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[21]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[22]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[23]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[24]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[25]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[26]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[27]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[28]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[29]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[2]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[30]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[31]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[3]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[4]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[5]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[6]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[7]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[8]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[9]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|ahb_master:inst_ahb_master|start_trans" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[0]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[1]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[2]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[3]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[4]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[5]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[6]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[7]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[8]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|mem_interface:inst_mem_interface|state.comp_end" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|mem_interface:inst_mem_interface|state.comp_start" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|mem_interface:inst_mem_interface|state.comp_xfer" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|mem_interface:inst_mem_interface|state.done" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|mem_interface:inst_mem_interface|state.eng_atwd" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|mem_interface:inst_mem_interface|state.eng_end" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|mem_interface:inst_mem_interface|state.eng_fadc" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|mem_interface:inst_mem_interface|state.eng_hdr0" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|mem_interface:inst_mem_interface|state.eng_hdr1" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|mem_interface:inst_mem_interface|state.eng_hdr2" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|mem_interface:inst_mem_interface|state.eng_hdr3" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|mem_interface:inst_mem_interface|state.idle" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|mem_interface:inst_mem_interface|state.set_mux" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|mem_interface:inst_mem_interface|state.what_next" tap_mode="classic" type="combinatorial"/>
+      </signal_vec>
+      <presentation>
+        <setup_view>
+          <bus link="all" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[31]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[30]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[29]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[28]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[27]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[26]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[25]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[24]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[23]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[22]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[21]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[20]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[19]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[18]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[17]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[16]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[15]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[14]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[13]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[12]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[11]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[10]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[9]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[8]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[7]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[6]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[5]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[4]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[3]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[2]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[1]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[0]"/>
+          </bus>
+          <bus link="all" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[31]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[30]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[29]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[28]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[27]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[26]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[25]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[24]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[23]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[22]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[21]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[20]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[19]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[18]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[17]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[16]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[15]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[14]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[13]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[12]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[11]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[10]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[9]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[8]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[7]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[6]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[5]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[4]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[3]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[2]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[1]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[0]"/>
+          </bus>
+          <net name="daq:inst_daq|ahb_master:inst_ahb_master|ready"/>
+          <net name="daq:inst_daq|ahb_master:inst_ahb_master|start_trans"/>
+          <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehreadyi"/>
+          <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehreadyo"/>
+          <net name="daq:inst_daq|ahb_master:inst_ahb_master|abort_trans"/>
+          <bus link="all" name="daq:inst_daq|mem_interface:inst_mem_interface|rdaddr" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net name="daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[8]"/>
+            <net name="daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[7]"/>
+            <net name="daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[6]"/>
+            <net name="daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[5]"/>
+            <net name="daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[4]"/>
+            <net name="daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[3]"/>
+            <net name="daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[2]"/>
+            <net name="daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[1]"/>
+            <net name="daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[0]"/>
+          </bus>
+          <net name="daq:inst_daq|mem_interface:inst_mem_interface|state.comp_end"/>
+          <net name="daq:inst_daq|mem_interface:inst_mem_interface|state.comp_start"/>
+          <net name="daq:inst_daq|mem_interface:inst_mem_interface|state.comp_xfer"/>
+          <net name="daq:inst_daq|mem_interface:inst_mem_interface|state.done"/>
+          <net name="daq:inst_daq|mem_interface:inst_mem_interface|state.eng_atwd"/>
+          <net name="daq:inst_daq|mem_interface:inst_mem_interface|state.eng_end"/>
+          <net name="daq:inst_daq|mem_interface:inst_mem_interface|state.eng_fadc"/>
+          <net name="daq:inst_daq|mem_interface:inst_mem_interface|state.eng_hdr0"/>
+          <net name="daq:inst_daq|mem_interface:inst_mem_interface|state.eng_hdr1"/>
+          <net name="daq:inst_daq|mem_interface:inst_mem_interface|state.eng_hdr2"/>
+          <net name="daq:inst_daq|mem_interface:inst_mem_interface|state.eng_hdr3"/>
+          <net name="daq:inst_daq|mem_interface:inst_mem_interface|state.idle"/>
+          <net name="daq:inst_daq|mem_interface:inst_mem_interface|state.set_mux"/>
+          <net name="daq:inst_daq|mem_interface:inst_mem_interface|state.what_next"/>
+        </setup_view>
+        <data_view>
+          <bus link="all" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[31]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[30]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[29]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[28]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[27]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[26]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[25]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[24]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[23]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[22]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[21]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[20]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[19]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[18]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[17]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[16]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[15]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[14]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[13]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[12]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[11]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[10]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[9]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[8]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[7]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[6]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[5]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[4]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[3]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[2]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[1]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehaddr[0]"/>
+          </bus>
+          <bus link="all" name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[31]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[30]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[29]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[28]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[27]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[26]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[25]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[24]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[23]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[22]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[21]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[20]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[19]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[18]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[17]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[16]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[15]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[14]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[13]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[12]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[11]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[10]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[9]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[8]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[7]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[6]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[5]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[4]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[3]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[2]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[1]"/>
+            <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehwdata[0]"/>
+          </bus>
+          <net name="daq:inst_daq|ahb_master:inst_ahb_master|ready"/>
+          <net name="daq:inst_daq|ahb_master:inst_ahb_master|start_trans"/>
+          <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehreadyi"/>
+          <net name="daq:inst_daq|ahb_master:inst_ahb_master|slavehreadyo"/>
+          <net name="daq:inst_daq|ahb_master:inst_ahb_master|abort_trans"/>
+          <bus link="all" name="daq:inst_daq|mem_interface:inst_mem_interface|rdaddr" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net name="daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[8]"/>
+            <net name="daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[7]"/>
+            <net name="daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[6]"/>
+            <net name="daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[5]"/>
+            <net name="daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[4]"/>
+            <net name="daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[3]"/>
+            <net name="daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[2]"/>
+            <net name="daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[1]"/>
+            <net name="daq:inst_daq|mem_interface:inst_mem_interface|rdaddr[0]"/>
+          </bus>
+          <net name="daq:inst_daq|mem_interface:inst_mem_interface|state.comp_end"/>
+          <net name="daq:inst_daq|mem_interface:inst_mem_interface|state.comp_start"/>
+          <net name="daq:inst_daq|mem_interface:inst_mem_interface|state.comp_xfer"/>
+          <net name="daq:inst_daq|mem_interface:inst_mem_interface|state.done"/>
+          <net name="daq:inst_daq|mem_interface:inst_mem_interface|state.eng_atwd"/>
+          <net name="daq:inst_daq|mem_interface:inst_mem_interface|state.eng_end"/>
+          <net name="daq:inst_daq|mem_interface:inst_mem_interface|state.eng_fadc"/>
+          <net name="daq:inst_daq|mem_interface:inst_mem_interface|state.eng_hdr0"/>
+          <net name="daq:inst_daq|mem_interface:inst_mem_interface|state.eng_hdr1"/>
+          <net name="daq:inst_daq|mem_interface:inst_mem_interface|state.eng_hdr2"/>
+          <net name="daq:inst_daq|mem_interface:inst_mem_interface|state.eng_hdr3"/>
+          <net name="daq:inst_daq|mem_interface:inst_mem_interface|state.idle"/>
+          <net name="daq:inst_daq|mem_interface:inst_mem_interface|state.set_mux"/>
+          <net name="daq:inst_daq|mem_interface:inst_mem_interface|state.what_next"/>
+        </data_view>
+      </presentation>
+      <trigger global_temp="1" is_expanded="true" name="trigger: 2004/11/02 17:00:10  #1" position="center" segment_size="1" trigger_in="dont_care" trigger_out="active high" trigger_type="circular">
+        <events>
+          <level enabled="yes" type="basic">daq:inst_daq|ahb_master:inst_ahb_master|ready == falling edge
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <op_node>
+              <op_node left="321" top="179" type="Advanced Trigger Level Result"/>
+            </op_node>
+          </level>
+          <level enabled="yes" type="basic">daq:inst_daq|ahb_master:inst_ahb_master|start_trans == rising edge
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <op_node/>
+          </level>
+        </events>
+      </trigger>
+    </signal_set>
+    <position_info>
+      <single attribute="active tab" value="1"/>
+      <single attribute="data horizontal scroll position" value="2032"/>
+      <single attribute="data vertical scroll position" value="0"/>
+      <single attribute="setup horizontal scroll position" value="84"/>
+      <single attribute="setup vertical scroll position" value="0"/>
+      <single attribute="zoom level denominator" value="1"/>
+      <single attribute="zoom level numerator" value="128"/>
+      <single attribute="zoom offset denominator" value="1"/>
+      <single attribute="zoom offset numerator" value="1008"/>
+    </position_info>
+  </instance>
+  <global_info>
+    <single attribute="active instance" value="0"/>
+    <multi attribute="window position" size="7" value="1032,746,374,125,347,50,125"/>
+  </global_info>
+</session>

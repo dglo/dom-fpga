@@ -1,0 +1,219 @@
+Analysis & Synthesis report for Rx_dpr_ctrl_test
+Tue Mar 30 17:54:53 2004
+Version 4.0 Build 190 1/28/2004 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Analysis & Synthesis Default Parameter Settings
+  5. Hierarchy
+  6. Analysis & Synthesis Resource Utilization by Entity
+  7. Analysis & Synthesis Equations
+  8. Analysis & Synthesis Files Read
+  9. Analysis & Synthesis Resource Usage Summary
+ 10. WYSIWYG Cells
+ 11. General Register Statistics
+ 12. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2004 Altera Corporation
+Any  megafunction  design,  and related netlist (encrypted  or  decrypted),
+support information,  device programming or simulation file,  and any other
+associated  documentation or information  provided by  Altera  or a partner
+under  Altera's   Megafunction   Partnership   Program  may  be  used  only
+to program  PLD  devices (but not masked  PLD  devices) from  Altera.   Any
+other  use  of such  megafunction  design,  netlist,  support  information,
+device programming or simulation file,  or any other  related documentation
+or information  is prohibited  for  any  other purpose,  including, but not
+limited to  modification,  reverse engineering,  de-compiling, or use  with
+any other  silicon devices,  unless such use is  explicitly  licensed under
+a separate agreement with  Altera  or a megafunction partner.  Title to the
+intellectual property,  including patents,  copyrights,  trademarks,  trade
+secrets,  or maskworks,  embodied in any such megafunction design, netlist,
+support  information,  device programming or simulation file,  or any other
+related documentation or information provided by  Altera  or a megafunction
+partner, remains with Altera, the megafunction partner, or their respective
+licensors. No other licenses, including any licenses needed under any third
+party's intellectual property, are provided herein.
+
+
+
++---------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                        ;
++-----------------------------+---------------------------------------+
+; Analysis & Synthesis Status ; Successful - Tue Mar 30 17:54:53 2004 ;
+; Revision Name               ; Rx_dpr_ctrl_test                      ;
+; Top-level Entity Name       ; Rx_dpr_ctrl_test                      ;
+; Family                      ; APEX20KE                              ;
+; Total logic elements        ; 25                                    ;
+; Total pins                  ; 18                                    ;
+; Total memory bits           ; 0                                     ;
+; Total PLLs                  ; 0                                     ;
++-----------------------------+---------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                                 ;
++--------------------------------------------------------------------------------------------------------------------------------
+; Option                                                                                     ; Setting          ; Default Value ;
++--------------------------------------------------------------------------------------------+------------------+---------------+
+; Top-level entity name                                                                      ; Rx_dpr_ctrl_test ;               ;
+; Family name                                                                                ; APEX20KE         ; Stratix       ;
+; Auto Resource Sharing                                                                      ; Off              ; Off           ;
+; Auto Shift Register Replacement                                                            ; On               ; On            ;
+; Auto RAM Replacement                                                                       ; On               ; On            ;
+; Auto ROM Replacement                                                                       ; On               ; On            ;
+; Allow register retiming to trade off Tsu/Tco with Fmax                                     ; On               ; On            ;
+; Perform gate-level register retiming                                                       ; Off              ; Off           ;
+; Perform WYSIWYG Primitive Resynthesis                                                      ; Off              ; Off           ;
+; Remove Duplicate Logic                                                                     ; On               ; On            ;
+; Auto Open-Drain Pins                                                                       ; On               ; On            ;
+; Auto Parallel Expanders                                                                    ; On               ; On            ;
+; Auto Carry Chains                                                                          ; On               ; On            ;
+; Parallel Expander Chain Length -- APEX 20K/APEX 20KE/APEX 20KC/APEX II/ARM-based Excalibur ; 16               ; 16            ;
+; Cascade Chain Length                                                                       ; 2                ; 2             ;
+; Carry Chain Length                                                                         ; 48               ; 48            ;
+; Allow XOR Gate Usage                                                                       ; On               ; On            ;
+; Auto Packed Registers                                                                      ; Off              ; Off           ;
+; Optimization Technique -- APEX 20K/APEX 20KE/APEX 20KC/APEX II/ARM-based Excalibur         ; Balanced         ; Balanced      ;
+; Technology Mapper -- APEX 20K/APEX 20KE/APEX 20KC/APEX II/ARM-based Excalibur              ; LUT              ; LUT           ;
+; Auto Implement in ROM                                                                      ; Off              ; Off           ;
+; Auto Global Register Control Signals                                                       ; On               ; On            ;
+; Auto Global Output Enable                                                                  ; On               ; On            ;
+; Auto Global Clock                                                                          ; On               ; On            ;
+; Limit AHDL Integers to 32 Bits                                                             ; Off              ; Off           ;
+; Ignore SOFT Buffers                                                                        ; On               ; On            ;
+; Ignore LCELL Buffers                                                                       ; Off              ; Off           ;
+; Ignore ROW GLOBAL Buffers                                                                  ; Off              ; Off           ;
+; Ignore GLOBAL Buffers                                                                      ; Off              ; Off           ;
+; Ignore CASCADE Buffers                                                                     ; Off              ; Off           ;
+; Ignore CARRY Buffers                                                                       ; Off              ; Off           ;
+; Remove Duplicate Registers                                                                 ; On               ; On            ;
+; Remove Redundant Logic Cells                                                               ; Off              ; Off           ;
+; Power-Up Don't Care                                                                        ; On               ; On            ;
+; NOT Gate Push-Back                                                                         ; On               ; On            ;
+; State Machine Processing                                                                   ; Auto             ; Auto          ;
+; VHDL Version                                                                               ; VHDL93           ; VHDL93        ;
+; Verilog Version                                                                            ; Verilog_2001     ; Verilog_2001  ;
+; Preserve fewer node names                                                                  ; On               ; On            ;
+; Disk space/compilation speed tradeoff                                                      ; Normal           ; Normal        ;
+; Create Debugging Nodes for IP Cores                                                        ; off              ; off           ;
++--------------------------------------------------------------------------------------------+------------------+---------------+
+
+
++-------------------------------------------------+
+; Analysis & Synthesis Default Parameter Settings ;
++--------------------------------------------------
+; Name               ; Setting                    ;
++--------------------+----------------------------+
+; CARRY_CHAIN        ; MANUAL                     ;
+; CASCADE_CHAIN      ; MANUAL                     ;
+; OPTIMIZE_FOR_SPEED ; 5                          ;
+; STYLE              ; FAST                       ;
++--------------------+----------------------------+
+
+
++------------+
+; Hierarchy  ;
++------------+
+Rx_dpr_ctrl_test
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                    ;
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+; Compilation Hierarchy Node ; Logic Cells ; Registers ; Memory Bits ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Full Hierarchy Name ;
++----------------------------+-------------+-----------+-------------+------+--------------+--------------+-------------------+------------------+-----------------+---------------------+
+; |Rx_dpr_ctrl_test          ; 25 (25)     ; 0         ; 0           ; 18   ; 0            ; 25 (25)      ; 0 (0)             ; 0 (0)            ; 14 (14)         ; |Rx_dpr_ctrl_test   ;
++----------------------------+-------------+-----------+-------------+------+--------------+--------------+-------------------+------------------+-----------------+---------------------+
+
+
++---------------------------------+
+; Analysis & Synthesis Equations  ;
++---------------------------------+
+The equations can be found in c:/projects/icecube/dor/fpga/dcom_01/rx_chan/Rx_dpr_ctrl_test.map.eqn.
+
+
++---------------------------------+
+; Analysis & Synthesis Files Read ;
++----------------------------------
+; File Name            ; Read     ;
++----------------------+----------+
+; Rx_dpr_ctrl_test.tdf ; Read     ;
++----------------------+----------+
+
+
++---------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary ;
++----------------------------------------------
+; Resource                      ; Usage       ;
++-------------------------------+-------------+
+; Logic cells                   ; 25          ;
+; Total combinational functions ; 25          ;
+; I/O pins                      ; 18          ;
+; Maximum fan-out node          ; op_4~5      ;
+; Maximum fan-out               ; 10          ;
+; Total fan-out                 ; 79          ;
+; Average fan-out               ; 1.84        ;
++-------------------------------+-------------+
+
+
++----------------------------------------------------------------+
+; WYSIWYG Cells                                                  ;
++-----------------------------------------------------------------
+; Statistic                                              ; Value ;
++--------------------------------------------------------+-------+
+; Number of WYSIWYG cells                                ; 14    ;
+; Number of synthesis-generated cells                    ; 11    ;
+; Number of WYSIWYG LUTs                                 ; 14    ;
+; Number of synthesis-generated LUTs                     ; 11    ;
+; Number of WYSIWYG registers                            ; 0     ;
+; Number of synthesis-generated registers                ; 0     ;
+; Number of cells with combinational logic only          ; 25    ;
+; Number of cells with registers only                    ; 0     ;
+; Number of cells with combinational logic and registers ; 0     ;
++--------------------------------------------------------+-------+
+
+
++----------------------------------------------+
+; General Register Statistics                  ;
++-----------------------------------------------
+; Statistic                            ; Value ;
++--------------------------------------+-------+
+; Number of registers using SCLR       ; 0     ;
+; Number of registers using SLOAD      ; 0     ;
+; Number of registers using ACLR       ; 0     ;
+; Number of registers using ALOAD      ; 0     ;
+; Number of registers using CLK_ENABLE ; 0     ;
+; Number of registers using OE         ; 0     ;
+; Number of registers using PRESET     ; 0     ;
++--------------------------------------+-------+
+
+
++--------------------------------+
+; Analysis & Synthesis Messages  ;
++--------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II Analysis & Synthesis
+    Info: Version 4.0 Build 190 1/28/2004 SJ Full Version
+    Info: Processing started: Tue Mar 30 17:54:51 2004
+Info: Command: quartus_map --lower_priority --import_settings_files=on --export_settings_files=off Rx_dpr_ctrl_test -c Rx_dpr_ctrl_test
+Info: Found 1 design units and 1 entities in source file Rx_dpr_ctrl_test.tdf
+    Info: Found entity 1: Rx_dpr_ctrl_test
+Info: Implemented 43 device resources after synthesis - the final resource count might be different
+    Info: Implemented 10 input pins
+    Info: Implemented 8 output pins
+    Info: Implemented 25 logic cells
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 0 warnings
+    Info: Processing ended: Tue Mar 30 17:54:52 2004
+    Info: Elapsed time: 00:00:01
+
+

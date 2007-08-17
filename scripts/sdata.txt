@@ -1,0 +1,10 @@
+3 com_fifo
+4 com_dp
+5 daq
+6 pulsers
+7 discriminator_rate
+8 local_coinc
+9 flasher_board
+10 trigger
+11 local_clock
+12 supernova
