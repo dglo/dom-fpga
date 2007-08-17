@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2003-10-23
+-- Last update: 2007-08-16
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -346,7 +346,7 @@ BEGIN
 			IF ATWDTrigger_B_sig='1' AND ATWDTrigger_B_shift(0)='0' AND heart_beat_mode='1' AND ((cs_trigger_hold AND trigger_enable(7 DOWNTO 2)) /= "000000") THEN
 				veto_LC_abort_B <= '1';
 			END IF;
-			IF rst_trg_A='1' THEN
+			IF rst_trg_B='1' THEN
 				veto_LC_abort_B <= '0';
 			END IF;
 			
