@@ -1,0 +1,63 @@
+<session jtag_chain="ByteBlasterII [LPT1]" jtag_device="@1: EPXA4 (0x084010DD)" sof_file="">
+  <display_tree gui_logging_enabled="0">
+    <display_branch instance="auto_signaltap_0" signal_set="USE_GLOBAL_TEMP" trigger="USE_GLOBAL_TEMP"/>
+  </display_tree>
+  <instance entity_name="sld_signaltap" is_auto_node="yes" is_expanded="true" name="auto_signaltap_0" source_file="sld_signaltap.vhd">
+    <node_ip_info instance_id="0" mfg_id="110" node_id="0" version="3"/>
+    <signal_set global_temp="1" is_expanded="true" name="signal_set: 2006/01/18 08:14:09  #0">
+      <clock name="comm_wrapper:inst_comm_wrapper|CLK20" polarity="posedge"/>
+      <config ram_type="M4K" reserved_data_nodes="0" reserved_trigger_nodes="0" sample_depth="4096" trigger_in_enable="no" trigger_out_enable="no"/>
+      <top_entity/>
+      <signal_vec>
+        <wire connection_mode="both" connection_status="true" name="comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:inst2|CLR_TIMER_1" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:inst2|CLR_TIMER_2" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:inst2|CMD_WAIT" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:inst2|REC_PULSE" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:inst2|REC_WT" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:inst2|SEND_WT_1" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:inst2|SEND_WT_2" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:inst2|SND_PULSE" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:inst2|SND_TC_DAT" tap_mode="classic" type="register"/>
+      </signal_vec>
+      <presentation>
+        <setup_view>
+          <net name="comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:inst2|REC_WT"/>
+          <net name="comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:inst2|REC_PULSE"/>
+          <net name="comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:inst2|CLR_TIMER_1"/>
+          <net name="comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:inst2|CLR_TIMER_2"/>
+          <net name="comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:inst2|SEND_WT_1"/>
+          <net name="comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:inst2|SEND_WT_2"/>
+          <net name="comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:inst2|SND_PULSE"/>
+          <net name="comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:inst2|SND_TC_DAT"/>
+          <net name="comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:inst2|CMD_WAIT"/>
+        </setup_view>
+        <data_view>
+          <net name="comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:inst2|REC_WT"/>
+          <net name="comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:inst2|REC_PULSE"/>
+          <net name="comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:inst2|CLR_TIMER_1"/>
+          <net name="comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:inst2|CLR_TIMER_2"/>
+          <net name="comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:inst2|SEND_WT_1"/>
+          <net name="comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:inst2|SEND_WT_2"/>
+          <net name="comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:inst2|SND_PULSE"/>
+          <net name="comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:inst2|SND_TC_DAT"/>
+          <net name="comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:inst2|CMD_WAIT"/>
+        </data_view>
+      </presentation>
+      <trigger global_temp="1" is_expanded="true" name="trigger: 2006/01/18 08:14:09  #1" position="pre" segment_size="1" trigger_in="dont_care" trigger_out="active high" trigger_type="circular">
+        <events>
+          <level enabled="yes" type="basic">comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_CTRAP:inst2|REC_WT == high
+            
+            <op_node/>
+          </level>
+        </events>
+      </trigger>
+    </signal_set>
+    <position_info>
+      <single attribute="active tab" value="1"/>
+    </position_info>
+  </instance>
+  <global_info>
+    <single attribute="active instance" value="0"/>
+    <multi attribute="window position" size="7" value="1015,500,318,125,347,50,125"/>
+  </global_info>
+</session>

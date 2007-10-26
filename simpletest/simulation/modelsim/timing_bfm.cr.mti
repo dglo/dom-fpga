@@ -1,0 +1,10 @@
+C:/IceCube/FPGAcode/HardWareTest/simpletest/ahb_slave.vhd {1 {vcom -work work -87 -explicit C:/IceCube/FPGAcode/HardWareTest/simpletest/ahb_slave.vhd
+Model Technology ModelSim SE vcom 5.6a Compiler 2002.04 Apr 24 2002
+-- Loading package standard
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package std_logic_unsigned
+-- Compiling entity ahb_slave
+-- Compiling architecture ahb_slave_arch of ahb_slave
+
+} {} {}}

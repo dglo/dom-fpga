@@ -1,0 +1,39 @@
+TITLE "Control Byte generation, K.-H. Sulanke,DESY Zeuthen, 05.05.2003";
+INCLUDE	"Par_74180";
+
+--FUNCTION Par_74180 (B, EVNI, ODDI, H, G, F, E, D, C, A)
+--	RETURNS (EVNS, ODDS);
+
+
+SUBDESIGN control_byte
+(
+	dom_B_sel		: INPUT;	-- 
+	cmd_snd0		: INPUT; 
+	cmd_snd1		: INPUT; 
+	cmd_snd2		: INPUT; 
+	cmd_snd3		: INPUT; 
+	
+	tx_cntrl_[7..0]	: OUTPUT;	-- Control byte
+)
+VARIABLE
+	par		: Par_74180;
+	
+BEGIN
+	tx_cntrl_[0]	= dom_B_sel;
+	tx_cntrl_[1]	= gnd;
+	
+	tx_cntrl_[2]	= cmd_snd0;
+	tx_cntrl_[3]	= cmd_snd1;
+	tx_cntrl_[4]	= cmd_snd2;
+	tx_cntrl_[5]	= cmd_snd3;
+	
+	tx_cntrl_[6]	= par.ODDS;
+	
+	tx_cntrl_[7]	= vcc;
+	
+	par.(B, EVNI, ODDI, H, G, F) =
+		(gnd,vcc,gnd,gnd, gnd, dom_B_sel);
+	
+	par.(E, D, C, A) = (cmd_snd3, cmd_snd2, cmd_snd1, cmd_snd0);
+	
+END;
