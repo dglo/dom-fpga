@@ -151,6 +151,7 @@ PACKAGE ctrl_data_types IS
         RECORD
             IceTop_mode         : STD_LOGIC;
             IT_atwd_charge_chan : STD_LOGIC_VECTOR (1 DOWNTO 0);
+			IT_scan_mode		: STD_LOGIC;
         END RECORD;
     
 END ctrl_data_types;

@@ -653,9 +653,12 @@ BEGIN
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0560") ) THEN	-- IceTop specific
 					IF reg_write = '1' THEN
 						ICETOP_ctrl_local.IT_atwd_charge_chan	<= reg_wdata(1 DOWNTO 0);
+						ICETOP_ctrl_local.IT_scan_mode			<= reg_wdata(4);
 					END IF;
 					IF READBACK=1 THEN
 						reg_rdata(1 DOWNTO 0)	<= ICETOP_ctrl_local.IT_atwd_charge_chan;
+						reg_rdata(3 downto 2)	<= (OTHERS=>'0');
+						reg_rdata(4)			<= ICETOP_ctrl_local.IT_scan_mode;
 						reg_rdata(31 downto 2)	<= (OTHERS=>'0');
 					ELSE
 						reg_rdata(31 downto 0)	<= (OTHERS=>'0');

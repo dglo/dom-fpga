@@ -1,5 +1,5 @@
 Flow report for domapp
-Thu Aug 16 16:38:56 2007
+Tue Oct 16 18:53:51 2007
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -42,12 +42,12 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------+
 ; Flow Summary                                                  ;
 +-----------------------+---------------------------------------+
-; Flow Status           ; Successful - Thu Aug 16 16:38:56 2007 ;
+; Flow Status           ; Successful - Tue Oct 16 18:53:50 2007 ;
 ; Revision Name         ; domapp                                ;
 ; Top-level Entity Name ; domapp                                ;
 ; Family                ; EXCALIBUR_ARM                         ;
 ; Device                ; EPXA4F672I2                           ;
-; Total logic elements  ; 8,593 / 16,640 ( 51 % )               ;
+; Total logic elements  ; 8,630 / 16,640 ( 51 % )               ;
 ; Total pins            ; 308 / 463 ( 66 % )                    ;
 ; Total memory bits     ; 96,896 / 212,992 ( 45 % )             ;
 ; Total PLLs            ; 2 / 4 ( 50 % )                        ;
@@ -59,7 +59,7 @@ party's intellectual property, are provided herein.
 +------------------------------------------
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 08/16/2007 15:58:56 ;
+; Start date & time ; 10/16/2007 18:12:18 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; domapp              ;
 +-------------------+---------------------+
@@ -70,12 +70,12 @@ party's intellectual property, are provided herein.
 +--------------------------------------
 ; Module Name          ; Elapsed Time ;
 +----------------------+--------------+
-; Analysis & Synthesis ; 00:14:30     ;
-; Fitter               ; 00:24:07     ;
-; Assembler            ; 00:00:11     ;
-; Timing Analyzer      ; 00:00:36     ;
-; EDA Netlist Writer   ; 00:00:21     ;
-; Total                ; 00:39:45     ;
+; Analysis & Synthesis ; 00:14:34     ;
+; Fitter               ; 00:25:16     ;
+; Assembler            ; 00:00:15     ;
+; Timing Analyzer      ; 00:00:34     ;
+; EDA Netlist Writer   ; 00:00:27     ;
+; Total                ; 00:41:06     ;
 +----------------------+--------------+
 
 

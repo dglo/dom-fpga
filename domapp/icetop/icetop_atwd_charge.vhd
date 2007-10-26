@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2006-10-16
+-- Last update: 2007-09-24
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -18,7 +18,8 @@
 -------------------------------------------------------------------------------
 -- Revisions  :
 -- Date        Version     Author    Description
--- 2006-10-16  V01-01-00   thorsten  
+-- 2006-10-16  V01-01-00   thorsten
+-- 2007-09-14              thorsten  updated to real requirements
 -------------------------------------------------------------------------------
 
 
@@ -34,7 +35,6 @@ ENTITY icetop_atwd_charge IS
         -- setup
         channel_sel : IN  STD_LOGIC_VECTOR(1 DOWNTO 0);
         -- ATWD data
-        busy        : IN  STD_LOGIC;
         ATWD_WE     : IN  STD_LOGIC;
         ATWD_data   : IN  STD_LOGIC_VECTOR (9 DOWNTO 0);
         ATWD_addr   : IN  STD_LOGIC_VECTOR (8 DOWNTO 0);
@@ -47,31 +47,52 @@ END icetop_atwd_charge;
 
 ARCHITECTURE icetop_atwd_charge_arch OF icetop_atwd_charge IS
 
-    SIGNAL charg    : STD_LOGIC_VECTOR (16 DOWNTO 0);
-    SIGNAL busy_old : STD_LOGIC;
+    SIGNAL charg            : STD_LOGIC_VECTOR (16 DOWNTO 0);
+    SIGNAL chan             : STD_LOGIC_VECTOR (1 DOWNTO 0);
+    SIGNAL chan_old         : STD_LOGIC_VECTOR (1 DOWNTO 0);
+    SIGNAL channel          : STD_LOGIC_VECTOR (1 DOWNTO 0);
+    SIGNAL chan_change_flag : STD_LOGIC;
     
 BEGIN  -- icetop_atwd_charge_arch
+
+    chan <= ATWD_addr(8 DOWNTO 7);
 
     PROCESS (CLK, RST)
     BEGIN  -- PROCESS
         IF RST = '1' THEN                   -- asynchronous reset (active high)
-            charg    <= (OTHERS => '0');
-            busy_old <= '0';
+            charg            <= (OTHERS => '0');
+            chan_old         <= "00";
+            channel          <= "00";
+            chan_change_flag <= '0';
         ELSIF CLK'EVENT AND CLK = '1' THEN  -- rising clock edge
-            busy_old <= busy;
-            IF busy = '1' AND busy_old = '0' THEN
-                charg <= (OTHERS => '0');
-            ELSE
-                IF ATWD_WE = '1' THEN
-                    IF ATWD_addr(8 DOWNTO 7) = channel_sel THEN
-                        charg <= charg + ATWD_data;
-                    END IF;
+            IF ATWD_WE = '1' AND chan <= channel_sel THEN
+                IF chan_change_flag = '1' THEN
+                    charg <= "0000000" & ATWD_data;
+                ELSE
+                    charg <= charg + ATWD_data;
                 END IF;
+                channel          <= chan;
+                chan_change_flag <= '0';
             END IF;
+
+            IF chan /= chan_old THEN
+                chan_change_flag <= '1';
+            END IF;
+            chan_old <= chan;
         END IF;
     END PROCESS;
 
     charge(16 DOWNTO 0)  <= charg;
-    charge(31 DOWNTO 17) <= (OTHERS => '0');
+    charge(18 DOWNTO 17) <= channel;
+    charge(31 DOWNTO 19) <= (OTHERS => '0');
 
 END icetop_atwd_charge_arch;
+
+
+
+
+
+
+
+
+

@@ -34,6 +34,7 @@ set_global_assignment -name PROJECT_CREATION_TIME_DATE "10:14:15  FEBRUARY 26, 2
 set_global_assignment -name LAST_QUARTUS_VERSION "4.0 SP1"
 set_parameter -name RESERVE_ALL_UNUSED_PINS_NO_OUTPUT_GND "AS OUTPUT DRIVING AN UNSPECIFIED SIGNAL"
 set_global_assignment -name VHDL_FILE disc_in_ATWD.vhd
+set_global_assignment -name VHDL_FILE icetop/icetop_get_atwd_chan.vhd
 set_global_assignment -name VHDL_FILE icetop/icetop_atwd_charge.vhd
 set_global_assignment -name BDF_FILE ../common/comDPM/dcom_ap.bdf
 set_global_assignment -name VHDL_FILE icecube_data_types.vhd

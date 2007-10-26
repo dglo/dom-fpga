@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2007-03-22
+-- Last update: 2007-09-14
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -106,6 +106,7 @@ ARCHITECTURE arch_ADC_input OF ADC_input IS
 			ATWD_n_chan		: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
 			ATWD_mode		: IN STD_LOGIC_VECTOR (2 DOWNTO 0);
 			abort			: IN STD_LOGIC;
+			ICETOP_ctrl		: IN ICETOP_CTRL_STRUCT;
 			-- some status bits
 			-- trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
 			forced_launch	: IN STD_LOGIC;
@@ -230,7 +231,6 @@ ARCHITECTURE arch_ADC_input OF ADC_input IS
 			-- setup
 			channel_sel : IN  STD_LOGIC_VECTOR(1 DOWNTO 0);
 			-- ATWD data
-			busy        : IN  STD_LOGIC;
 			ATWD_WE     : IN  STD_LOGIC;
 			ATWD_data   : IN  STD_LOGIC_VECTOR (9 DOWNTO 0);
 			ATWD_addr   : IN  STD_LOGIC_VECTOR (8 DOWNTO 0);
@@ -295,6 +295,7 @@ BEGIN
 			ATWD_n_chan		=> ATWD_n_chan,
 			ATWD_mode		=> ATWD_mode,
 			abort			=> abort_ATWD,
+			ICETOP_ctrl		=> ICETOP_ctrl,
 			-- some status bits
 			--trigger_word	=> trigger_word,
 			forced_launch	=> HEADER_data_int.forced_launch,
@@ -416,7 +417,6 @@ BEGIN
 			-- setup
 			channel_sel => ICETOP_ctrl.IT_atwd_charge_chan,
 			-- ATWD data
-			busy        => ATWD_busy,
 			ATWD_WE     => ATWD_we_int,
 			ATWD_data   => ATWD_data_int,
 			ATWD_addr   => ATWD_addr_int,
