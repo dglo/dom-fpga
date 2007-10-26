@@ -1,7 +1,0 @@
-[Web SPR Info]
-Version=2.1
-Product=Quartus II
-Authorization Method=Guard
-Host ID=T000044226
-Part Number=EP20K200EFC484-2
-Logic Cell Usage=553
