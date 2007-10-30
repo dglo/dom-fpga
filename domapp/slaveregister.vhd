@@ -659,7 +659,7 @@ BEGIN
 						reg_rdata(1 DOWNTO 0)	<= ICETOP_ctrl_local.IT_atwd_charge_chan;
 						reg_rdata(3 downto 2)	<= (OTHERS=>'0');
 						reg_rdata(4)			<= ICETOP_ctrl_local.IT_scan_mode;
-						reg_rdata(31 downto 2)	<= (OTHERS=>'0');
+						reg_rdata(31 downto 5)	<= (OTHERS=>'0');
 					ELSE
 						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
 					END IF;
