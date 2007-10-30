@@ -1,0 +1,55 @@
+--------------------------------------------------------------------------------------
+Timing Analyzer Summary
+--------------------------------------------------------------------------------------
+
+Type           : Worst-case tsu
+Slack          : N/A
+Required Time  : None
+Actual Time    : 21.254 ns
+From           : A_nB
+To             : comm_wrapper:inst_comm_wrapper|dcom_ap:inst_dcom_ap|DC_Tx_chan_ap:inst4|crc_tx:inst3|srg[7]
+
+Type           : Worst-case tco
+Slack          : -1.822 ns
+Required Time  : 2.000 ns
+Actual Time    : 3.822 ns
+From           : daq:inst_daq|trigger:inst_trigger|ATWDTrigger_B_sig
+To             : ATWDTrigger_1
+
+Type           : Worst-case th
+Slack          : N/A
+Required Time  : None
+Actual Time    : -6.628 ns
+From           : FLASH_NCO
+To             : daq:inst_daq|FADC_input:inst_FADC_input|FADC_NCO~reg0
+
+Type           : Worst-case minimum tco
+Slack          : N/A
+Required Time  : None
+Actual Time    : 1.189 ns
+From           : pll2x:inst_pll2x|altclklock:altclklock_component|outclock1
+To             : CLKLK_OUT2p
+
+Type           : Clock Setup: 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock1'
+Slack          : 1.625 ns
+Required Time  : 40.00 MHz ( period = 25.000 ns )
+Actual Time    : 45.98 MHz ( period = 21.750 ns )
+From           : daq:inst_daq|pingpong:pong|compression:inst_compression|delta_calc:delta_calc_inst|delta[0]~reg0
+To             : daq:inst_daq|pingpong:pong|compression:inst_compression|delta_encoder:delta_encoder_inst|next_delta_in~reg0
+
+Type           : Clock Setup: 'pll4x:inst_pll4x|altclklock:altclklock_component|outclock1'
+Slack          : 5.512 ns
+Required Time  : 80.00 MHz ( period = 12.500 ns )
+Actual Time    : N/A
+From           : ROC:inst_ROC|RST~reg0
+To             : daq:inst_daq|pingpong:pong|ADC_input:inst_ADC_input|ATWD_interface:inst_ATWD_interface|ATWD_control:inst_ATWD_control|counter_clock_cclk
+
+Type           : Clock Setup: 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock0'
+Slack          : 5.580 ns
+Required Time  : 20.00 MHz ( period = 50.000 ns )
+Actual Time    : N/A
+From           : daq:inst_daq|pingpong:ping|ADC_input:inst_ADC_input|FADC_interface:inst_FADC_interface|FADC_we~reg0
+To             : slaveregister:inst_slaveregister|reg_rdata[1]
+
+--------------------------------------------------------------------------------------
+

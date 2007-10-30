@@ -1,0 +1,11 @@
+Flow Status : Successful - Sat Jan 15 13:02:06 2005
+Quartus II Version : 4.1 Build 208 09/10/2004 SP 2 SJ Full Version
+Revision Name : simpletest
+Top-level Entity Name : simpletest
+Family : EXCALIBUR_ARM
+Device : EPXA4F672I2
+Timing Models : Production
+Total logic elements : 5,042 / 16,640 ( 30 % )
+Total pins : 284 / 463 ( 61 % )
+Total memory bits : 27,264 / 212,992 ( 12 % )
+Total PLLs : 2 / 4 ( 50 % )

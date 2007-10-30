@@ -1,0 +1,29 @@
+TITLE "SEQ1-byte generation, K.-H. Sulanke,DESY Zeuthen, 2004-04-02";
+INCLUDE	"Par_74180";
+
+--FUNCTION Par_74180 (B, EVNI, ODDI, H, G, F, E, D, C, A)
+--	RETURNS (EVNS, ODDS);
+
+
+SUBDESIGN SEQ1_byte
+(
+	dom_B_sel		: INPUT;	-- 
+	cmd_snd0		: INPUT; 
+	cmd_snd1		: INPUT; 
+	cmd_snd2		: INPUT; 
+	cmd_snd3		: INPUT; 
+	
+	seq1_[7..0]	: OUTPUT;	-- SEQ1 byte
+)
+VARIABLE
+		
+BEGIN
+		
+	seq1_[0]	= cmd_snd0;
+	seq1_[1]	= cmd_snd1;
+	seq1_[2]	= cmd_snd2;
+	seq1_[3]	= cmd_snd3;
+	
+	seq1_[7..4]	= 0;
+	
+END;
