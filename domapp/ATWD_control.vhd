@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2003-10-23
+-- Last update: 2008-02-08
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -17,6 +17,7 @@
 -- Revisions  :
 -- Date        Version     Author    Description
 --             V01-01-00   thorsten
+-- 2008-02-08              thorsten  chagned end of cclk timing (better for ATWD)
 -------------------------------------------------------------------------------
 
 
@@ -186,7 +187,7 @@ BEGIN
 					digitize_cnt	<= digitize_cnt + 1;
 					IF digitize_cnt=512 OR ((abort='1' OR do_channel_cycle = '1') AND icetop_get_chan = '0') THEN
 						state	<= post_digitize;
-						counterclk_high	<= '1';
+						counterclk_low	<= '1';
 					END IF;
 				WHEN post_digitize =>
 					counterclk_low	<= '1';
