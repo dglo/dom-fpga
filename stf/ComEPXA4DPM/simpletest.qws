@@ -16,6 +16,7 @@ ptn_Child8=Document-7
 ptn_Child9=Document-8
 ptn_Child10=Document-9
 ptn_Child11=Document-10
+ptn_Child12=Document-11
 [ProjectWorkspace.Frames.ChildFrames.Document-0]
 ptn_Child1=ViewFrame-0
 [ProjectWorkspace.Frames.ChildFrames.Document-0.ViewFrame-0]
@@ -132,6 +133,19 @@ WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPGBAAAAAA
 IsActiveChildFrame=False
 ptn_Child1=StateMap
 [ProjectWorkspace.Frames.ChildFrames.Document-8.ViewFrame-0.StateMap]
+AFC_IN_REPORT=False
+[ProjectWorkspace.Frames.ChildFrames.Document-9]
+ptn_Child1=ViewFrame-0
+[ProjectWorkspace.Frames.ChildFrames.Document-9.ViewFrame-0]
+DocPathName=../common/flasher_board.vhd
+DocumentCLSID={ca385d57-a4c7-11d1-a098-0020affa43f2}
+InCompileMode=True
+InSimulateMode=False
+InFirmwareMode=False
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPAAAAAAAAAAAAAAAAHNDAAAAAENBAAAAA
+IsActiveChildFrame=False
+ptn_Child1=StateMap
+[ProjectWorkspace.Frames.ChildFrames.Document-9.ViewFrame-0.StateMap]
 AFC_IN_REPORT=False
 [ProjectWorkspace.Workmode]
 CurrentWorkmode=0

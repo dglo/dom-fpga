@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2006-09-12
+-- Last update: 2008-02-08
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -61,7 +61,7 @@ END atwd_control;
 
 ARCHITECTURE arch_atwd_control OF atwd_control IS
 	
-	TYPE ATWD_state_type is (ATWDrecover, digitize, idle, init_digitize, next_channel, power_up_init1, power_up_init2, readout, readout_end, restart_ATWD, settle, wait_trig_compl);
+	TYPE ATWD_state_type is (ATWDrecover, digitize, post_digitize_0, post_digitize_1, idle, init_digitize, next_channel, power_up_init1, power_up_init2, readout, readout_end, restart_ATWD, settle, wait_trig_compl);
 	SIGNAL state	: ATWD_state_type;
 	
 	SIGNAL settle_cnt	: INTEGER;
@@ -137,8 +137,10 @@ BEGIN
 					settle_cnt	<= settle_cnt+1;
 				WHEN digitize =>
 					digitize_cnt	<= digitize_cnt + 1;
-					IF digitize_cnt=512 OR abort='1' THEN
-						state	<= readout;
+					--IF digitize_cnt=512 OR abort='1' THEN
+					IF digitize_cnt=511 OR abort='1' THEN
+						--state	<= readout;
+                                                state <= post_digitize_0;
                                                 digitize_cnt <= 0;
 					END IF;
 					DigitalReset	<= '0';
@@ -151,6 +153,12 @@ BEGIN
 					counterclk_high	<= '1';
 					end if;
 					--digitize_cnt	<= digitize_cnt + 1;
+                                        WHEN post_digitize_0 =>
+					counterclk_low	<= '1';
+					counterclk_high	<= '0';
+                                        state <= post_digitize_1;
+                                        WHEN post_digitize_1 =>
+                                    state <= readout;
 				WHEN readout =>
 					digitize_cnt	<= digitize_cnt + 1;
 					IF readout_done='1' OR (abort='1' AND digitize_cnt=30) THEN -- was 8

@@ -204,7 +204,8 @@ BEGIN
 					WHEN idle =>
 						COINCIDENCE_OUT_DOWN	<= 'Z';
 						COINCIDENCE_OUT_UP		<= 'Z';
-						IF cnt=2000 THEN -- 10kHz
+						--IF cnt=2000 THEN -- 10kHz
+						IF cnt=40 THEN -- .5MHz
 							state <= pos;
 							wait_cnt := 0;
 						ELSE

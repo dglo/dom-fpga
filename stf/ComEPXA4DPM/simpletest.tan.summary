@@ -3,25 +3,25 @@ Timing Analyzer Summary
 --------------------------------------------------------------------------------------
 
 Type           : Worst-case tsu
-Slack          : -2.211 ns
+Slack          : -2.295 ns
 Required Time  : 1.000 ns
-Actual Time    : 3.211 ns
+Actual Time    : 3.295 ns
 From           : OneSPE
 To             : hit_counter:inst_hit_counter|OneSPE0
 
 Type           : Worst-case tco
-Slack          : -2.813 ns
+Slack          : -2.786 ns
 Required Time  : 1.000 ns
-Actual Time    : 3.813 ns
-From           : atwd:atwd1|atwd_trigger:inst_atwd_trigger|ATWDTrigger_sig
-To             : ATWDTrigger_1
+Actual Time    : 3.786 ns
+From           : atwd:atwd0|atwd_trigger:inst_atwd_trigger|ATWDTrigger_sig
+To             : ATWDTrigger_0
 
 Type           : Worst-case th
 Slack          : N/A
 Required Time  : None
 Actual Time    : -5.601 ns
-From           : COM_AD_D[4]
-To             : dcom_ap:dcom_ap_inst|DC_Rx_chan_01:inst1|inst7[4]
+From           : COM_AD_D[8]
+To             : dcom_ap:dcom_ap_inst|DC_Rx_chan_01:inst1|inst7[8]
 
 Type           : Worst-case minimum tco
 Slack          : N/A
@@ -31,25 +31,25 @@ From           : pll2x:inst_pll2x|altclklock:altclklock_component|outclock1
 To             : CLKLK_OUT2p
 
 Type           : Clock Setup: 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock1'
-Slack          : 2.444 ns
+Slack          : 4.225 ns
 Required Time  : 40.00 MHz ( period = 25.000 ns )
 Actual Time    : N/A
-From           : slaveregister:slaveregister_inst|command_4_local[0]
+From           : slaveregister:slaveregister_inst|command_4_local[3]
 To             : atwd:atwd1|atwd_trigger:inst_atwd_trigger|launch_mode[0]
 
 Type           : Clock Setup: 'pll4x:inst_pll4x|altclklock:altclklock_component|outclock1'
-Slack          : 7.003 ns
+Slack          : 5.515 ns
 Required Time  : 80.00 MHz ( period = 12.500 ns )
-Actual Time    : 181.92 MHz ( period = 5.497 ns )
+Actual Time    : 143.16 MHz ( period = 6.985 ns )
 From           : atwd:atwd1|atwd_control:inst_atwd_control|cclk
 To             : atwd:atwd1|atwd_control:inst_atwd_control|CounterClock~reg0
 
 Type           : Clock Setup: 'pll2x:inst_pll2x|altclklock:altclklock_component|outclock0'
-Slack          : 8.939 ns
+Slack          : 9.114 ns
 Required Time  : 20.00 MHz ( period = 50.000 ns )
 Actual Time    : N/A
-From           : atwd:atwd0|atwd_trigger:inst_atwd_trigger|ATWDTrigger_sig
-To             : coinc:inst_coinc|atwd0_LC_abort~reg0
+From           : atwd:atwd1|atwd_trigger:inst_atwd_trigger|ATWDTrigger_sig
+To             : coinc:inst_coinc|LCATWD_ATWD_B_down_post_cnt[5]
 
 --------------------------------------------------------------------------------------
 
