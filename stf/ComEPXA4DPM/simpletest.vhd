@@ -130,7 +130,7 @@ ENTITY simpletest IS
 		FE_PULSER_P		: OUT STD_LOGIC_VECTOR (3 downto 0);
 		FE_PULSER_N		: OUT STD_LOGIC_VECTOR (3 downto 0);
 		-- frontend testpulser (R2R ladder ATWD ch3 MUX)
-		R2BUS			: OUT STD_LOGIC_VECTOR (6 downto 0);
+		R2BUS			: OUT STD_LOGIC_VECTOR (7 downto 0);
 		-- on board single LED flasher
 		SingleLED_TRIGGER	: OUT STD_LOGIC;
 		-- local coincidence
@@ -2027,10 +2027,11 @@ BEGIN
 			-- enable for TX
 			enable		=> enable_r2r,
 			-- communications DAC connections
-			R2BUS		=> R2BUS,
+			R2BUS		=> R2BUS (6 downto 0),
 			-- test connector
 			TC			=> open
 		);
+	R2BUS(7) <= '0';
 		
 	inst_fe_r2r : fe_r2r
 		PORT MAP (
