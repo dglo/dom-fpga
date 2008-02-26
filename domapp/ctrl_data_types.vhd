@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2007-03-23
+-- Last update: 2006-07-17
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -80,7 +80,6 @@ PACKAGE ctrl_data_types IS
             rm_rate_dead   : STD_LOGIC_VECTOR (9 DOWNTO 0);
             rm_sn_enable   : STD_LOGIC_VECTOR (1 DOWNTO 0);
             rm_sn_dead     : STD_LOGIC_VECTOR (6 DOWNTO 0);
-            dead_cnt_en    : STD_LOGIC_VECTOR (1 DOWNTO 0);
         END RECORD;
     
     TYPE RM_STAT_STRUCT IS
@@ -89,14 +88,13 @@ PACKAGE ctrl_data_types IS
             RM_rate_MPE    : STD_LOGIC_VECTOR (31 DOWNTO 0);
             RM_rate_update : STD_LOGIC;
             RM_sn_data     : STD_LOGIC_VECTOR (31 DOWNTO 0);
-            dead_cnt       : STD_LOGIC_VECTOR (31 DOWNTO 0);
             sn_rate_update : STD_LOGIC;
         END RECORD;
 
     -- control data for the data compression module
     TYPE COMPR_STRUCT IS
         RECORD
-            COMPR_mode : STD_LOGIC_VECTOR (1 DOWNTO 0);
+            COMPR_mode  : STD_LOGIC_VECTOR (1 DOWNTO 0);
 --            ATWDa0thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
 --            ATWDa1thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
 --            ATWDa2thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
@@ -107,8 +105,7 @@ PACKAGE ctrl_data_types IS
 --            ATWDb3thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
 --            FADCthres   : STD_LOGIC_VECTOR (9 DOWNTO 0);
 --            threshold0  : STD_LOGIC;
-			all_chan_for_forced_trig	: STD_LOGIC;
-            LASTonly   : STD_LOGIC;
+            LASTonly    : STD_LOGIC;
         END RECORD;
     
     TYPE COMM_CTRL_STRUCT IS
@@ -146,13 +143,6 @@ PACKAGE ctrl_data_types IS
             rx_head         : STD_LOGIC_VECTOR(15 DOWNTO 0);
         END RECORD;
 
-    -- control data for IceTop modifications
-    TYPE ICETOP_CTRL_STRUCT IS
-        RECORD
-            IceTop_mode         : STD_LOGIC;
-            IT_atwd_charge_chan : STD_LOGIC_VECTOR (1 DOWNTO 0);
-			IT_scan_mode		: STD_LOGIC;
-        END RECORD;
     
 END ctrl_data_types;
 
