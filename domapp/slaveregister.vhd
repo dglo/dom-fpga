@@ -269,6 +269,7 @@ BEGIN
 						DAQ_ctrl_local.COMPR_mode	<= reg_wdata(25 downto 24);
 						COMPR_ctrl_local.COMPR_mode	<= reg_wdata(25 downto 24); -- Joshua needs this
 						ICETOP_ctrl_local.IceTop_mode	<= reg_wdata(28);	-- for IceTop
+						ICETOP_ctrl_local.minimum_bias	<= reg_wdata(29);	-- for IceTop
 					END IF;
 					IF READBACK=1 THEN
 						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
@@ -281,6 +282,7 @@ BEGIN
 						reg_rdata(21 downto 20)	<= DAQ_ctrl_local.LBM_mode;
 						reg_rdata(25 downto 24)	<= DAQ_ctrl_local.COMPR_mode;
 						reg_rdata(28)			<= ICETOP_ctrl_local.IceTop_mode;
+						reg_rdata(29)			<= ICETOP_ctrl_local.minimum_bias;
 					ELSE
 						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
 					END IF;
