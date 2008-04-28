@@ -1046,7 +1046,7 @@ BEGIN
 			dp0_portaaddr		=> dp0_portaaddr,
 			dp0_portadataout	=> dp0_portadataout,
 			-- TC
-			tc					=> OPEN --PGM(7 downto 0)
+			tc					=> PGM(7 downto 0)
 		);
 
 	inst_rate_meters : rate_meters
@@ -1151,7 +1151,7 @@ BEGIN
 --			COINC_UP_BBAR        => COINC_UP_BBAR,
 --			COINC_UP_B           => COINC_UP_B,
 			-- test
-			TC                   => PGM(7 downto 0) --OPEN
+			TC                   => OPEN --PGM(7 downto 0) --OPEN
 		);
 	
 	
@@ -1197,8 +1197,26 @@ BEGIN
 	FPGA_CE		<= 'Z';
 	FPGA_RW		<= 'Z';
 	-- Test connector (JP19)
+	PGM(15 downto 12)	<= "1100";
+	PGM(11 downto 10)	<= "ZZ";
+	PROCESS (CLK20)
+		variable tmp : std_logic := '1';
+	BEGIN
+		if CLK20'EVENT and CLK20='1' THEN
+			tmp := NOT tmp;
+			PGM(8) <= tmp;
+		end if;
+	END PROCESS;
+	PROCESS (CLK80)
+		variable tmp : std_logic := '1';
+	BEGIN
+		if CLK80'EVENT and CLK80='1' THEN
+			tmp := NOT tmp;
+			PGM(9) <= tmp;
+		end if;
+	END PROCESS;
 --	PGM			<= (OTHERS=>'Z');
-	PGM(15 downto 8)	<= (OTHERS=>'Z');
+--	PGM(15 downto 8)	<= (OTHERS=>'Z');
 --	PGM(15 downto 0)	<= TCslave(15 downto 0);
 --	PGM(7 downto 0)		<= TCslave(7 downto 0);
 --	PGM(9 downto 8)		<= TCdaq(1 downto 0);

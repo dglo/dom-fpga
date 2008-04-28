@@ -1,5 +1,5 @@
 Analysis & Synthesis report for simpletest
-Thu Apr 27 11:45:27 2006
+Fri Feb 08 09:18:35 2008
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -65,12 +65,12 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                        ;
 +-----------------------------+---------------------------------------+
-; Analysis & Synthesis Status ; Successful - Thu Apr 27 11:45:26 2006 ;
+; Analysis & Synthesis Status ; Successful - Fri Feb 08 09:18:35 2008 ;
 ; Revision Name               ; simpletest                            ;
 ; Top-level Entity Name       ; simpletest                            ;
 ; Family                      ; EXCALIBUR_ARM                         ;
-; Total logic elements        ; 5,074                                 ;
-; Total pins                  ; 287                                   ;
+; Total logic elements        ; 5,102                                 ;
+; Total pins                  ; 288                                   ;
 ; Total memory bits           ; 27,264                                ;
 ; Total PLLs                  ; 2                                     ;
 +-----------------------------+---------------------------------------+
@@ -710,24 +710,26 @@ simpletest
 +-------------------------+----------+----------+----------+----------+----------+----------+----------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
-; State Machine - atwd:atwd1|atwd_control:inst_atwd_control|state                                                                                           ;
-+------------------------------------------------------------------------------------------------------------------------------------------------------------
-; Name                  ; state~31 ; state~30 ; state~29 ; state~28 ; state~27 ; state~26 ; state~25 ; state~24 ; state~23 ; state~22 ; state~21 ; state~20 ;
-+-----------------------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+
-; state.power_up_init1  ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ;
-; state.digitize        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 1        ;
-; state.idle            ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 1        ;
-; state.init_digitize   ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 1        ;
-; state.next_channel    ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 1        ;
-; state.atwdrecover     ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 1        ;
-; state.power_up_init2  ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
-; state.readout         ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
-; state.readout_end     ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
-; state.restart_atwd    ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
-; state.settle          ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
-; state.wait_trig_compl ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
-+-----------------------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - atwd:atwd1|atwd_control:inst_atwd_control|state                                                                                                                 ;
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+; Name                  ; state~33 ; state~32 ; state~31 ; state~30 ; state~29 ; state~28 ; state~27 ; state~26 ; state~25 ; state~24 ; state~23 ; state~22 ; state~21 ; state~20 ;
++-----------------------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+
+; state.power_up_init1  ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ;
+; state.digitize        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 1        ;
+; state.post_digitize_0 ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 1        ;
+; state.post_digitize_1 ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 1        ;
+; state.idle            ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 1        ;
+; state.init_digitize   ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.next_channel    ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.atwdrecover     ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.power_up_init2  ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.readout         ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.readout_end     ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.restart_atwd    ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.settle          ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.wait_trig_compl ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
++-----------------------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+
 
 
 +------------------------------------------------------------------------------------------------------+
@@ -745,24 +747,26 @@ simpletest
 +-------------------------+----------+----------+----------+----------+----------+----------+----------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
-; State Machine - atwd:atwd0|atwd_control:inst_atwd_control|state                                                                                           ;
-+------------------------------------------------------------------------------------------------------------------------------------------------------------
-; Name                  ; state~31 ; state~30 ; state~29 ; state~28 ; state~27 ; state~26 ; state~25 ; state~24 ; state~23 ; state~22 ; state~21 ; state~20 ;
-+-----------------------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+
-; state.power_up_init1  ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ;
-; state.digitize        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 1        ;
-; state.idle            ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 1        ;
-; state.init_digitize   ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 1        ;
-; state.next_channel    ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 1        ;
-; state.atwdrecover     ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 1        ;
-; state.power_up_init2  ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
-; state.readout         ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
-; state.readout_end     ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
-; state.restart_atwd    ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
-; state.settle          ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
-; state.wait_trig_compl ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
-+-----------------------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - atwd:atwd0|atwd_control:inst_atwd_control|state                                                                                                                 ;
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+; Name                  ; state~33 ; state~32 ; state~31 ; state~30 ; state~29 ; state~28 ; state~27 ; state~26 ; state~25 ; state~24 ; state~23 ; state~22 ; state~21 ; state~20 ;
++-----------------------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+
+; state.power_up_init1  ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ;
+; state.digitize        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 1        ;
+; state.post_digitize_0 ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 1        ;
+; state.post_digitize_1 ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 1        ;
+; state.idle            ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 1        ;
+; state.init_digitize   ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.next_channel    ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.atwdrecover     ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.power_up_init2  ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.readout         ; 0        ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.readout_end     ; 0        ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.restart_atwd    ; 0        ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.settle          ; 0        ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
+; state.wait_trig_compl ; 1        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 0        ; 1        ;
++-----------------------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+----------+
 
 
 +----------------------------------------------------------------------------------------------+
@@ -851,22 +855,22 @@ simpletest
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Compilation Hierarchy Node                                     ; Logic Cells ; Registers ; Memory Bits ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Full Hierarchy Name                                                                                                                                                                                                                                                                 ;
 +----------------------------------------------------------------+-------------+-----------+-------------+------+--------------+--------------+-------------------+------------------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; |simpletest                                                    ; 5074 (13)   ; 2679      ; 27264       ; 287  ; 0            ; 2395 (9)     ; 1085 (2)          ; 1594 (2)         ; 1135 (0)        ; |simpletest                                                                                                                                                                                                                                                                         ;
+; |simpletest                                                    ; 5102 (11)   ; 2684      ; 27264       ; 288  ; 0            ; 2418 (7)     ; 1088 (2)          ; 1596 (2)         ; 1135 (0)        ; |simpletest                                                                                                                                                                                                                                                                         ;
 ;    |CommonClock:CommonClock_inst|                              ; 103 (103)   ; 103       ; 0           ; 0    ; 0            ; 0 (0)        ; 102 (102)         ; 1 (1)            ; 0 (0)           ; |simpletest|CommonClock:CommonClock_inst                                                                                                                                                                                                                                            ;
 ;    |LED2ATWDdelay:LED2ATWDdelay_inst|                          ; 30 (30)     ; 16        ; 0           ; 0    ; 0            ; 14 (14)      ; 15 (15)           ; 1 (1)            ; 0 (0)           ; |simpletest|LED2ATWDdelay:LED2ATWDdelay_inst                                                                                                                                                                                                                                        ;
 ;    |ROC:inst_ROC|                                              ; 4 (4)       ; 4         ; 0           ; 0    ; 0            ; 0 (0)        ; 2 (2)             ; 2 (2)            ; 0 (0)           ; |simpletest|ROC:inst_ROC                                                                                                                                                                                                                                                            ;
 ;    |ahb_master:inst_ahb_master|                                ; 32 (32)     ; 32        ; 0           ; 0    ; 0            ; 0 (0)        ; 32 (32)           ; 0 (0)            ; 0 (0)           ; |simpletest|ahb_master:inst_ahb_master                                                                                                                                                                                                                                              ;
 ;    |ahb_slave:ahb_slave_inst|                                  ; 55 (55)     ; 25        ; 0           ; 0    ; 0            ; 30 (30)      ; 0 (0)             ; 25 (25)          ; 0 (0)           ; |simpletest|ahb_slave:ahb_slave_inst                                                                                                                                                                                                                                                ;
-;    |atwd:atwd0|                                                ; 423 (28)    ; 187       ; 8192        ; 0    ; 0            ; 236 (27)     ; 19 (0)            ; 168 (1)          ; 122 (0)         ; |simpletest|atwd:atwd0                                                                                                                                                                                                                                                              ;
-;       |atwd_control:inst_atwd_control|                         ; 203 (203)   ; 90        ; 0           ; 0    ; 0            ; 113 (113)    ; 0 (0)             ; 90 (90)          ; 64 (64)         ; |simpletest|atwd:atwd0|atwd_control:inst_atwd_control                                                                                                                                                                                                                               ;
+;    |atwd:atwd0|                                                ; 435 (28)    ; 190       ; 8192        ; 0    ; 0            ; 245 (27)     ; 21 (0)            ; 169 (1)          ; 122 (0)         ; |simpletest|atwd:atwd0                                                                                                                                                                                                                                                              ;
+;       |atwd_control:inst_atwd_control|                         ; 215 (215)   ; 93        ; 0           ; 0    ; 0            ; 122 (122)    ; 2 (2)             ; 91 (91)          ; 64 (64)         ; |simpletest|atwd:atwd0|atwd_control:inst_atwd_control                                                                                                                                                                                                                               ;
 ;       |atwd_readout:inst_atwd_readout|                         ; 140 (140)   ; 64        ; 0           ; 0    ; 0            ; 76 (76)      ; 12 (12)           ; 52 (52)          ; 41 (41)         ; |simpletest|atwd:atwd0|atwd_readout:inst_atwd_readout                                                                                                                                                                                                                               ;
 ;       |atwd_trigger:inst_atwd_trigger|                         ; 47 (47)     ; 32        ; 0           ; 0    ; 0            ; 15 (15)      ; 7 (7)             ; 25 (25)          ; 17 (17)         ; |simpletest|atwd:atwd0|atwd_trigger:inst_atwd_trigger                                                                                                                                                                                                                               ;
 ;       |com_adc_mem:inst_com_adc_mem|                           ; 0 (0)       ; 0         ; 8192        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |simpletest|atwd:atwd0|com_adc_mem:inst_com_adc_mem                                                                                                                                                                                                                                 ;
 ;          |lpm_ram_dp:lpm_ram_dp_component|                     ; 0 (0)       ; 0         ; 8192        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |simpletest|atwd:atwd0|com_adc_mem:inst_com_adc_mem|lpm_ram_dp:lpm_ram_dp_component                                                                                                                                                                                                 ;
 ;             |altdpram:sram|                                    ; 0 (0)       ; 0         ; 8192        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |simpletest|atwd:atwd0|com_adc_mem:inst_com_adc_mem|lpm_ram_dp:lpm_ram_dp_component|altdpram:sram                                                                                                                                                                                   ;
 ;       |gray2bin:inst_gray2bin|                                 ; 5 (5)       ; 0         ; 0           ; 0    ; 0            ; 5 (5)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |simpletest|atwd:atwd0|gray2bin:inst_gray2bin                                                                                                                                                                                                                                       ;
-;    |atwd:atwd1|                                                ; 423 (28)    ; 188       ; 8192        ; 0    ; 0            ; 235 (27)     ; 19 (0)            ; 169 (1)          ; 122 (0)         ; |simpletest|atwd:atwd1                                                                                                                                                                                                                                                              ;
-;       |atwd_control:inst_atwd_control|                         ; 204 (204)   ; 91        ; 0           ; 0    ; 0            ; 113 (113)    ; 0 (0)             ; 91 (91)          ; 64 (64)         ; |simpletest|atwd:atwd1|atwd_control:inst_atwd_control                                                                                                                                                                                                                               ;
+;    |atwd:atwd1|                                                ; 434 (28)    ; 190       ; 8192        ; 0    ; 0            ; 244 (27)     ; 20 (0)            ; 170 (1)          ; 122 (0)         ; |simpletest|atwd:atwd1                                                                                                                                                                                                                                                              ;
+;       |atwd_control:inst_atwd_control|                         ; 215 (215)   ; 93        ; 0           ; 0    ; 0            ; 122 (122)    ; 1 (1)             ; 92 (92)          ; 64 (64)         ; |simpletest|atwd:atwd1|atwd_control:inst_atwd_control                                                                                                                                                                                                                               ;
 ;       |atwd_readout:inst_atwd_readout|                         ; 140 (140)   ; 64        ; 0           ; 0    ; 0            ; 76 (76)      ; 12 (12)           ; 52 (52)          ; 41 (41)         ; |simpletest|atwd:atwd1|atwd_readout:inst_atwd_readout                                                                                                                                                                                                                               ;
 ;       |atwd_trigger:inst_atwd_trigger|                         ; 46 (46)     ; 32        ; 0           ; 0    ; 0            ; 14 (14)      ; 7 (7)             ; 25 (25)          ; 17 (17)         ; |simpletest|atwd:atwd1|atwd_trigger:inst_atwd_trigger                                                                                                                                                                                                                               ;
 ;       |com_adc_mem:inst_com_adc_mem|                           ; 0 (0)       ; 0         ; 8192        ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |simpletest|atwd:atwd1|com_adc_mem:inst_com_adc_mem                                                                                                                                                                                                                                 ;
@@ -875,8 +879,8 @@ simpletest
 ;       |gray2bin:inst_gray2bin|                                 ; 5 (5)       ; 0         ; 0           ; 0    ; 0            ; 5 (5)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; |simpletest|atwd:atwd1|gray2bin:inst_gray2bin                                                                                                                                                                                                                                       ;
 ;    |atwd_ping_pong:inst_atwd_ping_pong|                        ; 21 (21)     ; 11        ; 0           ; 0    ; 0            ; 10 (10)      ; 3 (3)             ; 8 (8)            ; 0 (0)           ; |simpletest|atwd_ping_pong:inst_atwd_ping_pong                                                                                                                                                                                                                                      ;
 ;    |atwd_timestamp:inst_atwd_timestamp|                        ; 96 (96)     ; 96        ; 0           ; 0    ; 0            ; 0 (0)        ; 96 (96)           ; 0 (0)            ; 0 (0)           ; |simpletest|atwd_timestamp:inst_atwd_timestamp                                                                                                                                                                                                                                      ;
-;    |coinc:inst_coinc|                                          ; 451 (451)   ; 181       ; 0           ; 0    ; 0            ; 270 (270)    ; 56 (56)           ; 125 (125)        ; 160 (160)       ; |simpletest|coinc:inst_coinc                                                                                                                                                                                                                                                        ;
-;    |dcom_ap:dcom_ap_inst|                                      ; 1553 (0)    ; 899       ; 640         ; 0    ; 0            ; 654 (0)      ; 288 (0)           ; 611 (0)          ; 392 (0)         ; |simpletest|dcom_ap:dcom_ap_inst                                                                                                                                                                                                                                                    ;
+;    |coinc:inst_coinc|                                          ; 455 (455)   ; 181       ; 0           ; 0    ; 0            ; 274 (274)    ; 56 (56)           ; 125 (125)        ; 160 (160)       ; |simpletest|coinc:inst_coinc                                                                                                                                                                                                                                                        ;
+;    |dcom_ap:dcom_ap_inst|                                      ; 1556 (0)    ; 899       ; 640         ; 0    ; 0            ; 657 (0)      ; 288 (0)           ; 611 (0)          ; 392 (0)         ; |simpletest|dcom_ap:dcom_ap_inst                                                                                                                                                                                                                                                    ;
 ;       |DCOM_tcal_timer:inst3|                                  ; 40 (21)     ; 25        ; 0           ; 0    ; 0            ; 15 (14)      ; 0 (0)             ; 25 (7)           ; 19 (0)          ; |simpletest|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:inst3                                                                                                                                                                                                                              ;
 ;          |ponres_ct:ponres|                                    ; 9 (0)       ; 8         ; 0           ; 0    ; 0            ; 1 (0)        ; 0 (0)             ; 8 (0)            ; 9 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:inst3|ponres_ct:ponres                                                                                                                                                                                                             ;
 ;             |lpm_counter:lpm_counter_component|                ; 9 (0)       ; 8         ; 0           ; 0    ; 0            ; 1 (0)        ; 0 (0)             ; 8 (0)            ; 9 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DCOM_tcal_timer:inst3|ponres_ct:ponres|lpm_counter:lpm_counter_component                                                                                                                                                                           ;
@@ -967,13 +971,13 @@ simpletest
 ;          |rx_packet_ct:inst23|                                 ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_01:inst1|rx_packet_ct:inst23                                                                                                                                                                                                            ;
 ;             |lpm_counter:lpm_counter_component|                ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_01:inst1|rx_packet_ct:inst23|lpm_counter:lpm_counter_component                                                                                                                                                                          ;
 ;                |alt_synch_counter:wysi_counter|                ; 16 (16)     ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; 16 (16)         ; |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_01:inst1|rx_packet_ct:inst23|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter                                                                                                                                           ;
-;       |DC_Tx_chan_ap:inst4|                                    ; 700 (33)    ; 379       ; 0           ; 0    ; 0            ; 321 (7)      ; 45 (18)           ; 334 (8)          ; 137 (0)         ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:inst4                                                                                                                                                                                                                                ;
+;       |DC_Tx_chan_ap:inst4|                                    ; 703 (33)    ; 379       ; 0           ; 0    ; 0            ; 324 (7)      ; 45 (18)           ; 334 (8)          ; 137 (0)         ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:inst4                                                                                                                                                                                                                                ;
 ;          |DC_SNAP:inst11|                                      ; 117 (117)   ; 43        ; 0           ; 0    ; 0            ; 74 (74)      ; 9 (9)             ; 34 (34)          ; 0 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:inst4|DC_SNAP:inst11                                                                                                                                                                                                                 ;
 ;          |Tx_dpr_ctrl_PAR_ap:inst10|                           ; 88 (72)     ; 32        ; 0           ; 0    ; 0            ; 56 (56)      ; 16 (16)           ; 16 (0)           ; 57 (41)         ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:inst4|Tx_dpr_ctrl_PAR_ap:inst10                                                                                                                                                                                                      ;
 ;             |tx_dpr_radr_ct:tx_dpr_rad|                        ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:inst4|Tx_dpr_ctrl_PAR_ap:inst10|tx_dpr_radr_ct:tx_dpr_rad                                                                                                                                                                            ;
 ;                |lpm_counter:lpm_counter_component|             ; 16 (0)      ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (0)           ; 16 (0)          ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:inst4|Tx_dpr_ctrl_PAR_ap:inst10|tx_dpr_radr_ct:tx_dpr_rad|lpm_counter:lpm_counter_component                                                                                                                                          ;
 ;                   |alt_synch_counter:wysi_counter|             ; 16 (16)     ; 16        ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; 16 (16)         ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:inst4|Tx_dpr_ctrl_PAR_ap:inst10|tx_dpr_radr_ct:tx_dpr_rad|lpm_counter:lpm_counter_component|alt_synch_counter:wysi_counter                                                                                                           ;
-;          |crc_tx:inst3|                                        ; 94 (48)     ; 55        ; 0           ; 0    ; 0            ; 39 (25)      ; 1 (1)             ; 54 (22)          ; 6 (6)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:inst4|crc_tx:inst3                                                                                                                                                                                                                   ;
+;          |crc_tx:inst3|                                        ; 97 (51)     ; 55        ; 0           ; 0    ; 0            ; 42 (28)      ; 1 (1)             ; 54 (22)          ; 6 (6)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:inst4|crc_tx:inst3                                                                                                                                                                                                                   ;
 ;             |crc32:inst_crc32|                                 ; 46 (46)     ; 32        ; 0           ; 0    ; 0            ; 14 (14)      ; 0 (0)             ; 32 (32)          ; 0 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:inst4|crc_tx:inst3|crc32:inst_crc32                                                                                                                                                                                                  ;
 ;          |dc_com_dac_ctrl_var_sig:inst2|                       ; 22 (14)     ; 8         ; 0           ; 0    ; 0            ; 14 (14)      ; 0 (0)             ; 8 (0)            ; 8 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:inst4|dc_com_dac_ctrl_var_sig:inst2                                                                                                                                                                                                  ;
 ;             |dac_levct_sld:daclev|                             ; 8 (0)       ; 8         ; 0           ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 8 (0)            ; 8 (0)           ; |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:inst4|dc_com_dac_ctrl_var_sig:inst2|dac_levct_sld:daclev                                                                                                                                                                             ;
@@ -1404,16 +1408,16 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/s
 +---------------------------------------------------------------------------------------------
 ; Resource                      ; Usage                                                      ;
 +-------------------------------+------------------------------------------------------------+
-; Logic cells                   ; 5,074                                                      ;
-; Total combinational functions ; 3989                                                       ;
-; Total registers               ; 2679                                                       ;
-; I/O pins                      ; 287                                                        ;
+; Logic cells                   ; 5,102                                                      ;
+; Total combinational functions ; 4014                                                       ;
+; Total registers               ; 2684                                                       ;
+; I/O pins                      ; 288                                                        ;
 ; Total memory bits             ; 27264                                                      ;
 ; Total PLLs                    ; 2                                                          ;
 ; Maximum fan-out node          ; pll2x:inst_pll2x|altclklock:altclklock_component|outclock0 ;
-; Maximum fan-out               ; 2718                                                       ;
-; Total fan-out                 ; 22005                                                      ;
-; Average fan-out               ; 4.05                                                       ;
+; Maximum fan-out               ; 2723                                                       ;
+; Total fan-out                 ; 22108                                                      ;
+; Average fan-out               ; 4.04                                                       ;
 +-------------------------------+------------------------------------------------------------+
 
 
@@ -1436,14 +1440,14 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/s
 ; Statistic                                              ; Value ;
 +--------------------------------------------------------+-------+
 ; Number of WYSIWYG cells                                ; 1118  ;
-; Number of synthesis-generated cells                    ; 3956  ;
+; Number of synthesis-generated cells                    ; 3984  ;
 ; Number of WYSIWYG LUTs                                 ; 1118  ;
-; Number of synthesis-generated LUTs                     ; 2871  ;
+; Number of synthesis-generated LUTs                     ; 2896  ;
 ; Number of WYSIWYG registers                            ; 527   ;
-; Number of synthesis-generated registers                ; 2152  ;
-; Number of cells with combinational logic only          ; 2395  ;
-; Number of cells with registers only                    ; 1085  ;
-; Number of cells with combinational logic and registers ; 1594  ;
+; Number of synthesis-generated registers                ; 2157  ;
+; Number of cells with combinational logic only          ; 2418  ;
+; Number of cells with registers only                    ; 1088  ;
+; Number of cells with combinational logic and registers ; 1596  ;
 +--------------------------------------------------------+-------+
 
 
@@ -1454,7 +1458,7 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/s
 +--------------------------------------+-------+
 ; Number of registers using SCLR       ; 141   ;
 ; Number of registers using SLOAD      ; 200   ;
-; Number of registers using ACLR       ; 1635  ;
+; Number of registers using ACLR       ; 1640  ;
 ; Number of registers using ALOAD      ; 0     ;
 ; Number of registers using CLK_ENABLE ; 1683  ;
 ; Number of registers using OE         ; 0     ;
@@ -1468,7 +1472,7 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/s
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Thu Apr 27 11:42:48 2006
+    Info: Processing started: Fri Feb 08 09:16:03 2008
 Info: Command: quartus_map --import_settings_files=on --export_settings_files=off simpletest -c simpletest
 Info: Found 2 design units and 1 entities in source file ../common/CommonClock.vhd
     Info: Found design unit 1: CommonClock-CommonClock_arch
@@ -1918,6 +1922,7 @@ Info: Found 1 design units and 1 entities in source file db/a_fefifo_vve.tdf
     Info: Found entity 1: a_fefifo_vve
 Info: Found 1 design units and 1 entities in source file ../../../../../fpgatools/quartus/libraries/megafunctions/lpm_and.tdf
     Info: Found entity 1: lpm_and
+Warning: Variable or input pin pulse_rcvd is defined but never used
 Info: Using design file ../../common/comdpm/tcal/tcal_delay_ct.tdf, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info: Found entity 1: tcal_delay_ct
 Info: Power-up level of register dcom_ap:dcom_ap_inst|test_and_tresholds:inst5|dac_max[7]~reg is not specified -- using unspecified power-up level
@@ -1998,9 +2003,9 @@ Info: State machine |simpletest|dcom_ap:dcom_ap_inst|DC_Rx_chan_01:inst1|RX_UART
 Info: State machine |simpletest|dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:inst4|crc_tx:inst3|state contains 5 states and 0 state bits
 Info: State machine |simpletest|fe_r2r:inst_fe_r2r|state contains 4 states and 0 state bits
 Info: State machine |simpletest|atwd:atwd1|atwd_readout:inst_atwd_readout|state contains 7 states and 0 state bits
-Info: State machine |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state contains 12 states and 0 state bits
+Info: State machine |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state contains 14 states and 0 state bits
 Info: State machine |simpletest|atwd:atwd0|atwd_readout:inst_atwd_readout|state contains 7 states and 0 state bits
-Info: State machine |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state contains 12 states and 0 state bits
+Info: State machine |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state contains 14 states and 0 state bits
 Info: State machine |simpletest|atwd_ping_pong:inst_atwd_ping_pong|atwd0_state contains 4 states and 0 state bits
 Info: State machine |simpletest|atwd_ping_pong:inst_atwd_ping_pong|atwd1_state contains 4 states and 0 state bits
 Info: State machine |simpletest|coinc:inst_coinc|state contains 3 states and 0 state bits
@@ -2089,7 +2094,9 @@ Info: Encoding result for state machine |simpletest|atwd:atwd1|atwd_readout:inst
     Info: State |simpletest|atwd:atwd1|atwd_readout:inst_atwd_readout|state.done_delay_2 uses code string 1000001
 Info: Selected Auto state machine encoding method for state machine |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state
 Info: Encoding result for state machine |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state
-    Info: Completed encoding using 12 state bits
+    Info: Completed encoding using 14 state bits
+        Info: Encoded state bit atwd:atwd1|atwd_control:inst_atwd_control|state~33
+        Info: Encoded state bit atwd:atwd1|atwd_control:inst_atwd_control|state~32
         Info: Encoded state bit atwd:atwd1|atwd_control:inst_atwd_control|state~31
         Info: Encoded state bit atwd:atwd1|atwd_control:inst_atwd_control|state~30
         Info: Encoded state bit atwd:atwd1|atwd_control:inst_atwd_control|state~29
@@ -2102,18 +2109,20 @@ Info: Encoding result for state machine |simpletest|atwd:atwd1|atwd_control:inst
         Info: Encoded state bit atwd:atwd1|atwd_control:inst_atwd_control|state~22
         Info: Encoded state bit atwd:atwd1|atwd_control:inst_atwd_control|state~21
         Info: Encoded state bit atwd:atwd1|atwd_control:inst_atwd_control|state~20
-    Info: State |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state.power_up_init1 uses code string 000000000000
-    Info: State |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state.digitize uses code string 000000000011
-    Info: State |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state.idle uses code string 000000000101
-    Info: State |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state.init_digitize uses code string 000000001001
-    Info: State |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state.next_channel uses code string 000000010001
-    Info: State |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state.atwdrecover uses code string 000000100001
-    Info: State |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state.power_up_init2 uses code string 000001000001
-    Info: State |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state.readout uses code string 000010000001
-    Info: State |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state.readout_end uses code string 000100000001
-    Info: State |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state.restart_atwd uses code string 001000000001
-    Info: State |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state.settle uses code string 010000000001
-    Info: State |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state.wait_trig_compl uses code string 100000000001
+    Info: State |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state.power_up_init1 uses code string 00000000000000
+    Info: State |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state.digitize uses code string 00000000000011
+    Info: State |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state.post_digitize_0 uses code string 00000000000101
+    Info: State |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state.post_digitize_1 uses code string 00000000001001
+    Info: State |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state.idle uses code string 00000000010001
+    Info: State |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state.init_digitize uses code string 00000000100001
+    Info: State |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state.next_channel uses code string 00000001000001
+    Info: State |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state.atwdrecover uses code string 00000010000001
+    Info: State |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state.power_up_init2 uses code string 00000100000001
+    Info: State |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state.readout uses code string 00001000000001
+    Info: State |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state.readout_end uses code string 00010000000001
+    Info: State |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state.restart_atwd uses code string 00100000000001
+    Info: State |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state.settle uses code string 01000000000001
+    Info: State |simpletest|atwd:atwd1|atwd_control:inst_atwd_control|state.wait_trig_compl uses code string 10000000000001
 Info: Selected Auto state machine encoding method for state machine |simpletest|atwd:atwd0|atwd_readout:inst_atwd_readout|state
 Info: Encoding result for state machine |simpletest|atwd:atwd0|atwd_readout:inst_atwd_readout|state
     Info: Completed encoding using 7 state bits
@@ -2133,7 +2142,9 @@ Info: Encoding result for state machine |simpletest|atwd:atwd0|atwd_readout:inst
     Info: State |simpletest|atwd:atwd0|atwd_readout:inst_atwd_readout|state.done_delay_2 uses code string 1000001
 Info: Selected Auto state machine encoding method for state machine |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state
 Info: Encoding result for state machine |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state
-    Info: Completed encoding using 12 state bits
+    Info: Completed encoding using 14 state bits
+        Info: Encoded state bit atwd:atwd0|atwd_control:inst_atwd_control|state~33
+        Info: Encoded state bit atwd:atwd0|atwd_control:inst_atwd_control|state~32
         Info: Encoded state bit atwd:atwd0|atwd_control:inst_atwd_control|state~31
         Info: Encoded state bit atwd:atwd0|atwd_control:inst_atwd_control|state~30
         Info: Encoded state bit atwd:atwd0|atwd_control:inst_atwd_control|state~29
@@ -2146,18 +2157,20 @@ Info: Encoding result for state machine |simpletest|atwd:atwd0|atwd_control:inst
         Info: Encoded state bit atwd:atwd0|atwd_control:inst_atwd_control|state~22
         Info: Encoded state bit atwd:atwd0|atwd_control:inst_atwd_control|state~21
         Info: Encoded state bit atwd:atwd0|atwd_control:inst_atwd_control|state~20
-    Info: State |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state.power_up_init1 uses code string 000000000000
-    Info: State |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state.digitize uses code string 000000000011
-    Info: State |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state.idle uses code string 000000000101
-    Info: State |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state.init_digitize uses code string 000000001001
-    Info: State |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state.next_channel uses code string 000000010001
-    Info: State |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state.atwdrecover uses code string 000000100001
-    Info: State |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state.power_up_init2 uses code string 000001000001
-    Info: State |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state.readout uses code string 000010000001
-    Info: State |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state.readout_end uses code string 000100000001
-    Info: State |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state.restart_atwd uses code string 001000000001
-    Info: State |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state.settle uses code string 010000000001
-    Info: State |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state.wait_trig_compl uses code string 100000000001
+    Info: State |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state.power_up_init1 uses code string 00000000000000
+    Info: State |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state.digitize uses code string 00000000000011
+    Info: State |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state.post_digitize_0 uses code string 00000000000101
+    Info: State |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state.post_digitize_1 uses code string 00000000001001
+    Info: State |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state.idle uses code string 00000000010001
+    Info: State |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state.init_digitize uses code string 00000000100001
+    Info: State |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state.next_channel uses code string 00000001000001
+    Info: State |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state.atwdrecover uses code string 00000010000001
+    Info: State |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state.power_up_init2 uses code string 00000100000001
+    Info: State |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state.readout uses code string 00001000000001
+    Info: State |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state.readout_end uses code string 00010000000001
+    Info: State |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state.restart_atwd uses code string 00100000000001
+    Info: State |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state.settle uses code string 01000000000001
+    Info: State |simpletest|atwd:atwd0|atwd_control:inst_atwd_control|state.wait_trig_compl uses code string 10000000000001
 Info: Selected Auto state machine encoding method for state machine |simpletest|atwd_ping_pong:inst_atwd_ping_pong|atwd0_state
 Info: Encoding result for state machine |simpletest|atwd_ping_pong:inst_atwd_ping_pong|atwd0_state
     Info: Completed encoding using 4 state bits
@@ -2253,6 +2266,7 @@ Warning: Reduced register ahb_master:inst_ahb_master|slavehwrite~reg0 with stuck
 Warning: Reduced register ahb_master:inst_ahb_master|slavehtrans[0]~reg0 with stuck data_in port to stuck value GND
 Info: Duplicate registers merged to single register
     Info: Duplicate register atwd:atwd0|atwd_control:inst_atwd_control|state~20 merged to single register atwd:atwd1|atwd_control:inst_atwd_control|state~20
+    Info: Duplicate register ahb_master:inst_ahb_master|haddr[20] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[19] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[18] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[17] merged to single register ahb_master:inst_ahb_master|haddr[0]
@@ -2264,7 +2278,6 @@ Info: Duplicate registers merged to single register
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[11] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[10] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[9] merged to single register ahb_master:inst_ahb_master|haddr[0]
-    Info: Duplicate register ahb_master:inst_ahb_master|haddr[20] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[21] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[22] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[23] merged to single register ahb_master:inst_ahb_master|haddr[0]
@@ -2283,6 +2296,7 @@ Info: Duplicate registers merged to single register
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[4] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[3] merged to single register ahb_master:inst_ahb_master|haddr[0]
     Info: Duplicate register ahb_master:inst_ahb_master|haddr[2] merged to single register ahb_master:inst_ahb_master|haddr[0]
+    Info: Duplicate register atwd:atwd1|atwd_control:inst_atwd_control|state~28 merged to single register atwd:atwd0|atwd_control:inst_atwd_control|state~28
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_01:inst1|RX_UART:inst6|UA_RX02:inst7|sreg~31 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_01:inst1|RX_UART:inst6|UA_RX02:inst7|data_stb~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_01:inst1|RX_UART:inst6|UA_RX02:inst7|sreg~42 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_01:inst1|RX_UART:inst6|UA_RX02:inst7|stf_stb~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_01:inst1|RX_UART:inst6|UA_RX02:inst7|sreg~33 merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_01:inst1|RX_UART:inst6|UA_RX02:inst7|eof_stb~reg
@@ -2297,9 +2311,9 @@ Info: Duplicate registers merged to single register
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Rx_chan_01:inst1|DC_MRAP:inst10|CRC_ERR merged to single register dcom_ap:dcom_ap_inst|DC_Rx_chan_01:inst1|DC_MRAP:inst10|first_wadr_rld~reg
     Info: Duplicate register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:inst4|DC_SNAP:inst11|crc_init~reg merged to single register dcom_ap:dcom_ap_inst|DC_Tx_chan_ap:inst4|DC_SNAP:inst11|STF
 Warning: TRI or OPNDRN buffers permanently disabled
-    Warning: Node i592
     Warning: Node i593
-    Warning: Node i700
+    Warning: Node i592
+    Warning: Node i701
 Warning: Output pins are stuck at VCC or GND
     Warning: Pin FPGA_LOADED stuck at GND
     Warning: Pin COM_TX_SLEEP stuck at GND
@@ -2309,6 +2323,7 @@ Warning: Output pins are stuck at VCC or GND
     Warning: Pin FLASH_AD_STBY stuck at GND
     Warning: Pin ATWD0VDD_SUP stuck at VCC
     Warning: Pin ATWD1VDD_SUP stuck at VCC
+    Warning: Pin R2BUS[7] stuck at GND
     Warning: Pin PDL_FPGA_D[7] stuck at GND
     Warning: Pin PDL_FPGA_D[5] stuck at GND
     Warning: Pin PDL_FPGA_D[4] stuck at VCC
@@ -2346,17 +2361,17 @@ Warning: Design contains 5 input pin(s) that do not drive logic
     Warning: No output dependent on input pin COM_AD_OTR
     Warning: No output dependent on input pin HDV_Rx
     Warning: No output dependent on input pin FLASH_NCO
-Info: Implemented 5440 device resources after synthesis - the final resource count might be different
+Info: Implemented 5469 device resources after synthesis - the final resource count might be different
     Info: Implemented 70 input pins
-    Info: Implemented 162 output pins
+    Info: Implemented 163 output pins
     Info: Implemented 55 bidirectional pins
-    Info: Implemented 5074 logic cells
+    Info: Implemented 5102 logic cells
     Info: Implemented 74 RAM segments
     Info: Implemented 2 ClockLock PLLs
     Info: Implemented 2 dual-port RAM elements in Excalibur device
     Info: Implemented 1 microprocessor core elements in Excalibur device
-Info: Quartus II Analysis & Synthesis was successful. 0 errors, 143 warnings
-    Info: Processing ended: Thu Apr 27 11:45:26 2006
-    Info: Elapsed time: 00:02:38
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 145 warnings
+    Info: Processing ended: Fri Feb 08 09:18:35 2008
+    Info: Elapsed time: 00:02:31
 
 

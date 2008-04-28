@@ -350,19 +350,41 @@ ARCHITECTURE daq_arch OF daq IS
 	END COMPONENT;
 
 	COMPONENT dead_time
-    PORT (
-        CLK         : IN  STD_LOGIC;
-        RST         : IN  STD_LOGIC;
-        -- inputs
-        enable_AB   : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
-        dead_flag_A : IN  STD_LOGIC;
-        dead_flag_B : IN  STD_LOGIC;
-        -- status flags to rate meters
-        dead_status : OUT DEAD_STATUS_STRUCT;
-        -- test port
-        TC          : OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
+	    PORT (
+	        CLK         : IN  STD_LOGIC;
+	        RST         : IN  STD_LOGIC;
+	        -- inputs
+	        enable_AB   : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
+	        dead_flag_A : IN  STD_LOGIC;
+	        dead_flag_B : IN  STD_LOGIC;
+	        -- status flags to rate meters
+	        dead_status : OUT DEAD_STATUS_STRUCT;
+	        -- test port
+	        TC          : OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
         );
-        END COMPONENT;
+    END COMPONENT;
+
+	COMPONENT minimum_bias
+	    PORT (
+	        CLK               : IN  STD_LOGIC;
+	        RST               : IN  STD_LOGIC;
+	        -- enable
+	        enable            : IN  STD_LOGIC;
+	        -- ATWD launch link
+	        ATWDTrigger_A_sig : IN  STD_LOGIC;
+	        rst_trig_A        : IN  STD_LOGIC;
+	        LC_abort_A        : IN  STD_LOGIC;
+	        ATWDTrigger_B_sig : IN  STD_LOGIC;
+	        rst_trig_B        : IN  STD_LOGIC;
+	        LC_abort_B        : IN  STD_LOGIC;
+	        -- LC veto
+	        veto_LC_A         : OUT STD_LOGIC;
+	        veto_LC_B         : OUT STD_LOGIC;
+	        -- test connector
+	        TC                : OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
+	        );
+	END COMPONENT;
+
 
 	SIGNAL CLK20n		: STD_LOGIC;
 	
@@ -446,6 +468,10 @@ ARCHITECTURE daq_arch OF daq IS
     --debugging
 	SIGNAL TCping	: STD_LOGIC_VECTOR (7 DOWNTO 0);
 	SIGNAL TCpong	: STD_LOGIC_VECTOR (7 DOWNTO 0);
+	
+	-- minimum bias LC veto
+	SIGNAL veto_LC_minbias	: STD_LOGIC_VECTOR (1 DOWNTO 0);
+	SIGNAL LC_abort_minbias	: STD_LOGIC_VECTOR (1 DOWNTO 0);
 
 BEGIN
 	
@@ -459,6 +485,9 @@ BEGIN
 	
 	LC_abort_gated(0) <= LC_abort(0) AND NOT veto_LC_abort_A;
 	LC_abort_gated(1) <= LC_abort(1) AND NOT veto_LC_abort_B;
+	
+	LC_abort_minbias(0)	<= LC_abort_gated(0) AND NOT veto_LC_minbias(0);
+	LC_abort_minbias(1)	<= LC_abort_gated(1) AND NOT veto_LC_minbias(1);
 
 	discSPEpulse	<= discSPEpulse_local;
 	discMPEpulse	<= discMPEpulse_local;
@@ -550,7 +579,7 @@ BEGIN
 			rst_trig		=> rst_trig_A,
 			trigger_word	=> trigger_word,
 			-- local coincidence
-			LC_abort		=> LC_abort_gated(0),
+			LC_abort		=> LC_abort_minbias(0), --LC_abort_gated(0),
 			LC				=> LC_A,
 			-- ATWD
 			ATWDTrigger		=> ATWDTrigger_sig_A,
@@ -616,7 +645,7 @@ BEGIN
 			rst_trig		=> rst_trig_B,
 			trigger_word	=> trigger_word,
 			-- local coincidence
-			LC_abort		=> LC_abort_gated(1),
+			LC_abort		=> LC_abort_minbias(1), --LC_abort_gated(1),
 			LC				=> LC_B,
 			-- ATWD
 			ATWDTrigger		=> ATWDTrigger_sig_B,
@@ -742,19 +771,40 @@ BEGIN
 			bus_error		=> bus_error
 		);
 		
-dead_time_inst : dead_time
-    PORT map (
-        CLK         => CLK40,
-        RST         => RST,
-        -- inputs
-        enable_AB   => enable_AB,
-        dead_flag_A => dead_flag_A,
-        dead_flag_B => dead_flag_B,
-        -- status flags to rate meters
-        dead_status => dead_status,
-        -- test port
-        TC          =>open
+	dead_time_inst : dead_time
+	    PORT map (
+	        CLK         => CLK40,
+	        RST         => RST,
+	        -- inputs
+	        enable_AB   => enable_AB,
+	        dead_flag_A => dead_flag_A,
+	        dead_flag_B => dead_flag_B,
+	        -- status flags to rate meters
+	        dead_status => dead_status,
+	        -- test port
+	        TC          =>open
         );
+
+	minimum_bias_inst : minimum_bias
+	    PORT MAP (
+	        CLK               => CLK40,
+	        RST               => RST,
+	        -- enable
+	        enable            => ICETOP_ctrl.minimum_bias,
+	        -- ATWD launch link
+	        ATWDTrigger_A_sig => ATWDTrigger_sig_A,
+	        rst_trig_A        => rst_trig_A,
+	        LC_abort_A        => LC_abort_gated(0),
+	        ATWDTrigger_B_sig => ATWDTrigger_sig_B,
+	        rst_trig_B        => rst_trig_B,
+	        LC_abort_B        => LC_abort_gated(1),
+	        -- LC veto
+	        veto_LC_A         => veto_LC_minbias(0),
+	        veto_LC_B         => veto_LC_minbias(1),
+	        -- test connector
+	        TC                => OPEN
+        );
+
 
 --monitoring
 	DAQ_status.AHB_status.AHB_ERROR			<= bus_error;

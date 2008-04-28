@@ -300,7 +300,7 @@ RESERVED_INPUT               : K22       :        :                   :         
 GND                          : K23       : gnd    :                   :         :           :                
 RESERVED_INPUT               : K24       :        :                   :         : 8         :                
 RESERVED_INPUT               : K25       :        :                   :         : 8         :                
-RESERVED_INPUT               : K26       :        :                   :         : 8         :                
+R2BUS[7]                     : K26       : output : LVTTL             :         : 8         : N              
 COM_DB[6]                    : L1        : output : LVTTL             :         : 12        : Y              
 COM_DB[7]                    : L2        : output : LVTTL             :         : 12        : Y              
 COM_AD_D[2]                  : L3        : input  : 2.5 V             :         : 13        : Y              
