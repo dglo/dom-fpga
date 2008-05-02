@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2008-04-17
+-- Last update: 2008-04-30
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -41,6 +41,8 @@ ENTITY minimum_bias IS
         ATWDTrigger_B_sig : IN  STD_LOGIC;
         rst_trig_B        : IN  STD_LOGIC;
         LC_abort_B        : IN  STD_LOGIC;
+        -- min bias hit tag
+        minimum_bias_hit  : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
         -- LC veto
         veto_LC_A         : OUT STD_LOGIC;
         veto_LC_B         : OUT STD_LOGIC;
@@ -56,20 +58,26 @@ ARCHITECTURE minimum_bias_arch OF minimum_bias IS
     SIGNAL   last_A  : STD_LOGIC := '0';
     SIGNAL   do_next : STD_LOGIC := '0';
 
+    SIGNAL veto_LC_A_int : STD_LOGIC;
+    SIGNAL veto_LC_B_int : STD_LOGIC;
+
     SIGNAL ATWDTrigger_A_shift : STD_LOGIC;
     SIGNAL ATWDTrigger_B_shift : STD_LOGIC;
 
     
 BEGIN  -- minimum_bias_arch
 
+    veto_LC_A <= veto_LC_A_int;
+    veto_LC_B <= veto_LC_B_int;
+
     PROCESS (CLK, RST)
     BEGIN  -- PROCESS
         IF RST = '1' THEN                   -- asynchronous reset (active high)
-            last_A    <= '0';
-            hit_cnt   <= CNT_RST;
-            do_next   <= '0';
-            veto_LC_A <= '0';
-            veto_LC_B <= '0';
+            last_A        <= '0';
+            hit_cnt       <= CNT_RST;
+            do_next       <= '0';
+            veto_LC_A_int <= '0';
+            veto_LC_B_int <= '0';
         ELSIF CLK'EVENT AND CLK = '1' THEN  -- rising clock edge
             ATWDTrigger_A_shift <= ATWDTrigger_A_sig;
             ATWDTrigger_B_shift <= ATWDTrigger_B_sig;
@@ -87,7 +95,7 @@ BEGIN  -- minimum_bias_arch
                 -- alternating veto the LC abort for A and B
                 IF do_next = '1' AND last_A = '0' THEN
                     IF ATWDTrigger_A_sig = '1' THEN
-                        veto_LC_A <= '1';
+                        veto_LC_A_int <= '1';
                         -- if no LC abort, wait for the next hit
                         IF LC_abort_A = '1' THEN
                             last_A  <= '1';
@@ -97,7 +105,7 @@ BEGIN  -- minimum_bias_arch
                 END IF;
                 IF do_next = '1' AND last_A = '1' THEN
                     IF ATWDTrigger_B_sig = '1' THEN
-                        veto_LC_B <= '1';
+                        veto_LC_B_int <= '1';
                         -- if no LC abort, wait for the next hit
                         IF LC_abort_B = '1' THEN
                             last_A  <= '0';
@@ -107,17 +115,35 @@ BEGIN  -- minimum_bias_arch
                 END IF;
                 -- reset the veto flag when we reset the ATWD
                 IF rst_trig_A = '1' THEN
-                    veto_LC_A <= '0';
+                    veto_LC_A_int <= '0';
                 END IF;
                 IF rst_trig_B = '1' THEN
-                    veto_LC_B <= '0';
+                    veto_LC_B_int <= '0';
                 END IF;
             ELSE
                 -- enable = 0
-                hit_cnt   <= CNT_RST;
-                do_next   <= '0';
-                veto_LC_A <= '0';
-                veto_LC_A <= '0';
+                hit_cnt       <= CNT_RST;
+                do_next       <= '0';
+                veto_LC_A_int <= '0';
+                veto_LC_A_int <= '0';
+            END IF;
+        END IF;
+    END PROCESS;
+
+    PROCESS (CLK, RST)
+    BEGIN  -- PROCESS
+        IF RST = '1' THEN                   -- asynchronous reset (active high)
+            minimum_bias_hit <= "00";
+        ELSIF CLK'EVENT AND CLK = '1' THEN  -- rising clock edge
+            IF veto_LC_A_int = '1' AND LC_abort_A = '1' THEN
+                minimum_bias_hit(0) <= '1';
+            ELSIF rst_trig_A = '1' THEN
+                minimum_bias_hit(0) <= '0';
+            END IF;
+            IF veto_LC_B_int = '1' AND LC_abort_B = '1' THEN
+                minimum_bias_hit(1) <= '1';
+            ELSIF rst_trig_B = '1' THEN
+                minimum_bias_hit(1) <= '0';
             END IF;
         END IF;
     END PROCESS;
