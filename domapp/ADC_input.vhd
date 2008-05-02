@@ -53,6 +53,7 @@ ENTITY ADC_input IS
 		-- trigger
 		rst_trig		: OUT STD_LOGIC;
 		trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
+		minimum_bias_hit	: IN STD_LOGIC;
 		-- local coincidence
 		LC_abort		: IN STD_LOGIC;
 		LC				: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
@@ -182,6 +183,7 @@ ARCHITECTURE arch_ADC_input OF ADC_input IS
 			rst_trig		: OUT STD_LOGIC;
 			TriggerComplete	: IN STD_LOGIC;
 			trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
+			minimum_bias_hit	: IN STD_LOGIC;
 			-- local coincidence
 			LC_abort		: IN STD_LOGIC;
 			LC				: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
@@ -369,6 +371,7 @@ BEGIN
 			rst_trig		=> rst_trig,
 			TriggerComplete	=> TriggerComplete_sync,
 			trigger_word	=> trigger_word,
+			minimum_bias_hit	=> minimum_bias_hit,
 			-- local coincidence
 			LC_abort		=> LC_abort,
 			LC				=> LC,	

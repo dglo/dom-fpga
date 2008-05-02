@@ -253,7 +253,7 @@ BEGIN  -- compression_control_arch
 
     -- assemble header
     HEADER_0 <= "1001" & x"000" & HEADER_in.timestamp (47 DOWNTO 32);
-    HEADER_1 <= '1' & HEADER_in.trigger_word(12 DOWNTO 0) & HEADER_in.LC & HEADER_in.FADCavail
+    HEADER_1 <= '1' & HEADER_in.minimum_bias_hit & HEADER_in.trigger_word(11 DOWNTO 0) & HEADER_in.LC & HEADER_in.FADCavail
                 & HEADER_in.ATWDavail & HEADER_in.ATWDsize & HEADER_in.ATWD_AB & hit_size;
     HEADER_2 <= HEADER_in.timestamp (31 DOWNTO 0);
     HEADER_3 <= HEADER_in.chargestamp;

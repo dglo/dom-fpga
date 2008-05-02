@@ -51,6 +51,7 @@ ENTITY ADC_control IS
 		rst_trig	: OUT STD_LOGIC;
 		TriggerComplete	: IN STD_LOGIC;
 		trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
+		minimum_bias_hit	: IN STD_LOGIC;
 		-- local coincidence
 		LC_abort		: IN STD_LOGIC;
 		LC				: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
@@ -219,6 +220,7 @@ BEGIN
 	HEADER_data.ATWD_AB	<= ATWD_AB;
 	HEADER_data.deadtime	<= deadtime_cnt;
 	HEADER_data.ATWDsize	<= ATWD_n_chan;
+	HEADER_data.minimum_bias_hit	<= minimum_bias_hit;
 	
 	HEADER_we	<= '1' WHEN state=WR_HEADER else '0';
 

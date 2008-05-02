@@ -222,6 +222,7 @@ ARCHITECTURE daq_arch OF daq IS
 			-- trigger
 			rst_trig		: OUT STD_LOGIC;
 			trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
+			minimum_bias_hit	: IN STD_LOGIC;
 			-- local coincidence
 			LC_abort		: IN STD_LOGIC;
 			LC				: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
@@ -377,6 +378,8 @@ ARCHITECTURE daq_arch OF daq IS
 	        ATWDTrigger_B_sig : IN  STD_LOGIC;
 	        rst_trig_B        : IN  STD_LOGIC;
 	        LC_abort_B        : IN  STD_LOGIC;
+			-- min bias hit tag
+			minimum_bias_hit  : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
 	        -- LC veto
 	        veto_LC_A         : OUT STD_LOGIC;
 	        veto_LC_B         : OUT STD_LOGIC;
@@ -472,6 +475,8 @@ ARCHITECTURE daq_arch OF daq IS
 	-- minimum bias LC veto
 	SIGNAL veto_LC_minbias	: STD_LOGIC_VECTOR (1 DOWNTO 0);
 	SIGNAL LC_abort_minbias	: STD_LOGIC_VECTOR (1 DOWNTO 0);
+	
+	SIGNAL minimum_bias_hit	: STD_LOGIC_VECTOR (1 DOWNTO 0);
 
 BEGIN
 	
@@ -578,6 +583,7 @@ BEGIN
 			-- trigger
 			rst_trig		=> rst_trig_A,
 			trigger_word	=> trigger_word,
+			minimum_bias_hit	=> minimum_bias_hit(0),
 			-- local coincidence
 			LC_abort		=> LC_abort_minbias(0), --LC_abort_gated(0),
 			LC				=> LC_A,
@@ -644,6 +650,7 @@ BEGIN
 			-- trigger
 			rst_trig		=> rst_trig_B,
 			trigger_word	=> trigger_word,
+			minimum_bias_hit	=> minimum_bias_hit(1),
 			-- local coincidence
 			LC_abort		=> LC_abort_minbias(1), --LC_abort_gated(1),
 			LC				=> LC_B,
@@ -798,6 +805,8 @@ BEGIN
 	        ATWDTrigger_B_sig => ATWDTrigger_sig_B,
 	        rst_trig_B        => rst_trig_B,
 	        LC_abort_B        => LC_abort_gated(1),
+			-- min bias hit tag
+			minimum_bias_hit  => minimum_bias_hit,
 	        -- LC veto
 	        veto_LC_A         => veto_LC_minbias(0),
 	        veto_LC_B         => veto_LC_minbias(1),
