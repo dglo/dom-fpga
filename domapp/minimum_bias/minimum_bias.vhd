@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2008-04-30
+-- Last update: 2008-06-06
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -18,7 +18,8 @@
 -------------------------------------------------------------------------------
 -- Revisions  :
 -- Date        Version     Author    Description
---             V01-01-00   thorsten 
+--             V01-01-00   thorsten
+-- 2008-06-06              thorsten  chagned rate to 8192
 -------------------------------------------------------------------------------
 
 
@@ -53,8 +54,9 @@ END minimum_bias;
 
 ARCHITECTURE minimum_bias_arch OF minimum_bias IS
 
+    CONSTANT RATE    : INTEGER   := 8192;  -- sets the min bias rate
     CONSTANT CNT_RST : INTEGER   := 1;
-    SIGNAL   hit_cnt : INTEGER RANGE 0 TO 1024;
+    SIGNAL   hit_cnt : INTEGER RANGE 0 TO RATE;
     SIGNAL   last_A  : STD_LOGIC := '0';
     SIGNAL   do_next : STD_LOGIC := '0';
 
@@ -85,7 +87,7 @@ BEGIN  -- minimum_bias_arch
                 -- count launches 
                 IF (ATWDTrigger_A_sig = '1' AND ATWDTrigger_A_shift = '0') OR
                     (ATWDTrigger_B_sig = '1' AND ATWDTrigger_B_shift = '0') THEN
-                    IF hit_cnt >= 1024 THEN
+                    IF hit_cnt >= RATE THEN
                         do_next <= '1';
                         hit_cnt <= CNT_RST;
                     ELSE
