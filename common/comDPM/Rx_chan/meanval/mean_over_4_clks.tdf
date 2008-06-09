@@ -1,0 +1,39 @@
+TITLE "Comm. ADC-mean value over 4 clocks, LAST CHANGE: 2004-10-11";
+
+SUBDESIGN	mean_over_4_clks
+(
+	clk					: INPUT;
+	reset				: INPUT;
+	fc_adc[9..2]		: INPUT;
+		
+	mean_val[9..0]		: OUTPUT;
+)
+
+
+VARIABLE
+	fc_adc_irg[9..2]		: DFF;
+	adc_pipe[7..0][3..0]	: DFF;
+	mean_val[9..0]			: DFF;
+	
+BEGIN
+
+fc_adc_irg[].clk	= clk;
+fc_adc_irg[].d		= fc_adc[];
+
+mean_val[].clk		= clk;
+mean_val[].clrn		= !reset;
+
+adc_pipe[][].clk	= clk;
+adc_pipe[][].clrn	= !reset;
+
+adc_pipe[][0].d		= fc_adc_irg[9..2].q;
+adc_pipe[][1].d		= adc_pipe[][0].q;
+adc_pipe[][2].d		= adc_pipe[][1].q;
+adc_pipe[][3].d		= adc_pipe[][2].q;
+
+mean_val[].d		= (0,adc_pipe[][0].q)
+					+ (0,adc_pipe[][1].q)
+					+ (0,adc_pipe[][2].q)
+					+ (0,adc_pipe[][3].q);
+	
+END;
