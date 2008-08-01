@@ -1046,7 +1046,7 @@ BEGIN
 			dp0_portaaddr		=> dp0_portaaddr,
 			dp0_portadataout	=> dp0_portadataout,
 			-- TC
-			tc					=> PGM(7 downto 0)
+			tc					=> open --PGM(7 downto 0)
 		);
 
 	inst_rate_meters : rate_meters
@@ -1204,7 +1204,7 @@ BEGIN
 	BEGIN
 		if CLK20'EVENT and CLK20='1' THEN
 			tmp := NOT tmp;
-			PGM(8) <= tmp;
+	--		PGM(8) <= tmp;
 		end if;
 	END PROCESS;
 	PROCESS (CLK80)
@@ -1212,9 +1212,11 @@ BEGIN
 	BEGIN
 		if CLK80'EVENT and CLK80='1' THEN
 			tmp := NOT tmp;
-			PGM(9) <= tmp;
+--			PGM(9) <= tmp;
 		end if;
 	END PROCESS;
+	
+	PGM(9 downto 0)		<= (OTHERS=>'Z');
 --	PGM			<= (OTHERS=>'Z');
 --	PGM(15 downto 8)	<= (OTHERS=>'Z');
 --	PGM(15 downto 0)	<= TCslave(15 downto 0);
