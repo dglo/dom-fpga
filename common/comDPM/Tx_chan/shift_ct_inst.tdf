@@ -1,0 +1,13 @@
+(
+	q_sig[],
+	cout_sig
+) = shift_ct	(
+	.clock = clock_sig,
+	.clk_en = clk_en_sig,
+	.cin = cin_sig,
+	.aclr = aclr_sig
+)
+RETURNS (
+	.q[],
+	.cout
+);

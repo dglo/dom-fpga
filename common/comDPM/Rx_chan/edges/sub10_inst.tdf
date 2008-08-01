@@ -1,0 +1,9 @@
+(
+	result_sig[]
+) = sub10	(
+	.dataa[] = dataa_sig[],
+	.datab[] = datab_sig[]
+)
+RETURNS (
+	.result[]
+);
