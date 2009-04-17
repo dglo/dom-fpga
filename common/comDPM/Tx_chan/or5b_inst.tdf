@@ -1,8 +1,0 @@
-(
-	result_sig
-) = or5b	(
-	.data[][] = data_sig[][]
-)
-RETURNS (
-	.result
-);

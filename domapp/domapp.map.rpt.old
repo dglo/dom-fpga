@@ -1,0 +1,147 @@
+Analysis & Synthesis report for domapp compilation.
+Thu Feb 26 10:14:17 2004
+Version 3.0 Build 245 10/09/2003 Service Pack 2 SJ Full Version
+
+Command: quartus_map --family=EXCALIBUR_ARM domapp
+
+
+
+---------------------
+; Table of Contents ;
+---------------------
+   1. Legal Notice
+   2. Flow Summary
+   3. Flow Settings
+   4. Flow Elapsed Time
+   5. Analysis & Synthesis Summary
+   6. Analysis & Synthesis Settings
+   7. Analysis & Synthesis Messages
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2003 Altera Corporation
+Any  megafunction  design,  and related netlist (encrypted  or  decrypted),
+support information,  device programming or simulation file,  and any other
+associated  documentation or information  provided by  Altera  or a partner
+under  Altera's   Megafunction   Partnership   Program  may  be  used  only
+to program  PLD  devices (but not masked  PLD  devices) from  Altera.   Any
+other  use  of such  megafunction  design,  netlist,  support  information,
+device programming or simulation file,  or any other  related documentation
+or information  is prohibited  for  any  other purpose,  including, but not
+limited to  modification,  reverse engineering,  de-compiling, or use  with
+any other  silicon devices,  unless such use is  explicitly  licensed under
+a separate agreement with  Altera  or a megafunction partner.  Title to the
+intellectual property,  including patents,  copyrights,  trademarks,  trade
+secrets,  or maskworks,  embodied in any such megafunction design, netlist,
+support  information,  device programming or simulation file,  or any other
+related documentation or information provided by  Altera  or a megafunction
+partner, remains with Altera, the megafunction partner, or their respective
+licensors. No other licenses, including any licenses needed under any third
+party's intellectual property, are provided herein.
+
+
+
+------------------------------------------------------------------
+; Flow Summary                                                   ;
+------------------------------------------------------------------
+; Flow Status           ; Flow Failed - Thu Feb 26 10:14:17 2004 ;
+; Compiler Setting Name ; domapp                                 ;
+; Top-level Entity Name ; domapp                                 ;
+; Family                ; EXCALIBUR_ARM                          ;
+------------------------------------------------------------------
+
+
+-----------------------------------------------
+; Flow Settings                               ;
+-----------------------------------------------
+; Option                ; Setting             ;
+-----------------------------------------------
+; Start date & time     ; 02/26/2004 10:14:16 ;
+; Main task             ; Compilation         ;
+; Compiler Setting Name ; domapp              ;
+-----------------------------------------------
+
+
+---------------------------------------
+; Flow Elapsed Time                   ;
+---------------------------------------
+; Module Name          ; Elapsed Time ;
+---------------------------------------
+; Analysis & Synthesis ; 00:00:00     ;
+; Total                ; 00:00:00     ;
+---------------------------------------
+
+
+-------------------------------------------------------------------
+; Analysis & Synthesis Summary                                    ;
+-------------------------------------------------------------------
+; Analysis & Synthesis Status ; Failed - Thu Feb 26 10:14:17 2004 ;
+; Compiler Setting Name       ; domapp                            ;
+; Top-level Entity Name       ; domapp                            ;
+; Family                      ; EXCALIBUR_ARM                     ;
+-------------------------------------------------------------------
+
+
+---------------------------------------------------------
+; Analysis & Synthesis Settings                         ;
+---------------------------------------------------------
+; Option                                ; Setting       ;
+---------------------------------------------------------
+; Perform gate-level register retiming  ; Off           ;
+; Perform WYSIWYG primitive resynthesis ; Off           ;
+; Focus entity name                     ; |domapp       ;
+; Family name                           ; EXCALIBUR_ARM ;
+; Preserve fewer node names             ; On            ;
+; Disk space/compilation speed tradeoff ; Normal        ;
+---------------------------------------------------------
+
+
+----------------------------------
+; Analysis & Synthesis Messages  ;
+----------------------------------
+Info: *******************************************************************
+Info: Running Quartus II Analysis & Synthesis
+  Info: Version 3.0 Build 245 10/09/2003 Service Pack 2 SJ Full Version
+  Info: Copyright (C) 1991-2003 Altera Corporation. All rights reserved.
+  Info: Quartus is a registered trademark of Altera Corporation in the 
+  Info: US and other countries.  Portions of the Quartus II software   
+  Info: code, and other portions of the code included in this download 
+  Info: or on this CD, are licensed to Altera Corporation and are the  
+  Info: copyrighted property of third parties who may include, without 
+  Info: limitation, Sun Microsystems, The Regents of the University of 
+  Info: California, Softel vdm., and Verific Design Automation Inc. 
+  Info: Warning:  This computer program is protected by copyright law  
+  Info: and international treaties. Unauthorized reproduction or       
+  Info: distribution of this program, or any portion of it, may result 
+  Info: in severe civil and criminal penalties, and will be prosecuted 
+  Info: to the maximum extent possible under the law.
+  Info: Processing started: Thu Feb 26 10:14:16 2004
+Info: Command: quartus_map --family=EXCALIBUR_ARM domapp
+Error: VHDL Use Clause error at domapp.vhd(28): design library work does not contain primary unit ctrl_data_types
+Error: Ignored construct domapp at domapp.vhd(172) because of previous errors
+Error: VHDL error at domapp.vhd(175): entity domapp is used but not declared
+Error: VHDL error at domapp.vhd(179): object std_logic is used but not declared
+Error: VHDL error at domapp.vhd(180): object std_logic is used but not declared
+Error: VHDL error at domapp.vhd(186): object std_logic is used but not declared
+Error: VHDL error at domapp.vhd(187): object std_logic is used but not declared
+Error: VHDL error at domapp.vhd(188): object std_logic is used but not declared
+Error: VHDL error at domapp.vhd(189): object std_logic is used but not declared
+Error: VHDL error at domapp.vhd(195): object std_logic is used but not declared
+Error: VHDL error at domapp.vhd(196): object std_logic is used but not declared
+Error: VHDL error at domapp.vhd(197): object std_logic is used but not declared
+Error: VHDL error at domapp.vhd(203): object std_logic is used but not declared
+Error: VHDL error at domapp.vhd(204): object std_logic is used but not declared
+Error: VHDL error at domapp.vhd(205): object std_logic_vector is used but not declared
+Error: VHDL error at domapp.vhd(211): object std_logic is used but not declared
+Error: VHDL error at domapp.vhd(212): object std_logic is used but not declared
+Error: VHDL error at domapp.vhd(213): object std_logic is used but not declared
+Error: VHDL error at domapp.vhd(214): object std_logic is used but not declared
+Error: Node instance  instantiates undefined entity domapp
+Error: Quartus II Analysis & Synthesis was unsuccessful. 20 errors, 0 warnings
+  Error: Processing ended: Thu Feb 26 10:14:17 2004
+  Error: Elapsed time: 00:00:00
+Info: Writing report file domapp.map.rpt
+
+

@@ -2185,7 +2185,7 @@ party's intellectual property, are provided herein.
 	(rotate270)
 )
 (symbol
-	(rect 104 -663 152 -631)
+	(rect 104 -639 152 -607)
 	(text "WIRE" (rect 1 0 29 13)(font "Arial" (font_size 6)))
 	(text "inst65" (rect 3 21 40 36)(font "Arial" ))
 	(port
@@ -2209,7 +2209,7 @@ party's intellectual property, are provided herein.
 	)
 )
 (symbol
-	(rect 104 -695 152 -663)
+	(rect 104 -671 152 -639)
 	(text "WIRE" (rect 1 0 29 13)(font "Arial" (font_size 6)))
 	(text "inst66" (rect 3 21 40 36)(font "Arial" ))
 	(port
@@ -2233,7 +2233,7 @@ party's intellectual property, are provided herein.
 	)
 )
 (symbol
-	(rect 104 -631 152 -599)
+	(rect 104 -607 152 -575)
 	(text "WIRE" (rect 1 0 29 13)(font "Arial" (font_size 6)))
 	(text "inst67" (rect 3 21 40 36)(font "Arial" ))
 	(port
@@ -2257,7 +2257,7 @@ party's intellectual property, are provided herein.
 	)
 )
 (symbol
-	(rect 104 -598 152 -566)
+	(rect 104 -574 152 -542)
 	(text "WIRE" (rect 1 0 29 13)(font "Arial" (font_size 6)))
 	(text "inst75" (rect 3 21 40 36)(font "Arial" ))
 	(port
@@ -2281,7 +2281,7 @@ party's intellectual property, are provided herein.
 	)
 )
 (symbol
-	(rect 24 -496 136 -448)
+	(rect 24 -472 136 -424)
 	(text "LPM_CONSTANT" (rect 4 0 144 19)(font "Arial" (font_size 10)))
 	(text "LOW_THRESHOLD" (rect 3 37 122 52)(font "Arial" ))
 	(port
@@ -2309,7 +2309,7 @@ party's intellectual property, are provided herein.
 		(line (pt 64 40)(pt 64 24)(line_width 1))
 		(line (pt 16 40)(pt 16 24)(line_width 1))
 	)
-	(annotation_block (parameter)(rect 136 -544 272 -496))
+	(annotation_block (parameter)(rect 136 -520 272 -472))
 )
 (symbol
 	(rect 392 320 632 512)
@@ -2417,7 +2417,7 @@ party's intellectual property, are provided herein.
 	(annotation_block (parameter)(rect 624 288 736 320))
 )
 (symbol
-	(rect 24 -392 136 -344)
+	(rect 24 -416 136 -368)
 	(text "LPM_CONSTANT" (rect 4 0 144 19)(font "Arial" (font_size 10)))
 	(text "LRG_THRESHOLD" (rect 3 37 120 52)(font "Arial" ))
 	(port
@@ -2445,7 +2445,7 @@ party's intellectual property, are provided herein.
 		(line (pt 64 40)(pt 64 24)(line_width 1))
 		(line (pt 16 40)(pt 16 24)(line_width 1))
 	)
-	(annotation_block (parameter)(rect 136 -440 272 -392))
+	(annotation_block (parameter)(rect 136 -464 272 -416))
 )
 (block
 	(rect 512 -592 688 -464)
@@ -3223,9 +3223,63 @@ party's intellectual property, are provided herein.
 	(pt 1800 -360)
 )
 (connector
+	(text "GND" (rect 72 -639 101 -624)(font "Arial" ))
+	(pt 64 -623)
+	(pt 104 -623)
+)
+(connector
+	(text "low_thr[0]" (rect 176 -672 234 -657)(font "Arial" ))
+	(pt 152 -655)
+	(pt 272 -655)
+)
+(connector
+	(text "VCC" (rect 72 -671 99 -656)(font "Arial" ))
+	(pt 64 -655)
+	(pt 104 -655)
+)
+(connector
+	(text "VCC" (rect 72 -607 99 -592)(font "Arial" ))
+	(pt 64 -591)
+	(pt 104 -591)
+)
+(connector
+	(text "low_thr[9..6]" (rect 176 -639 248 -624)(font "Arial" ))
+	(pt 152 -623)
+	(pt 288 -623)
+	(bus)
+)
+(connector
+	(text "GND" (rect 72 -574 101 -559)(font "Arial" ))
+	(pt 64 -558)
+	(pt 104 -558)
+)
+(connector
+	(text "lrg_thr[9]" (rect 176 -576 228 -561)(font "Arial" ))
+	(pt 152 -558)
+	(pt 272 -558)
+)
+(connector
+	(text "const_low_thr[9..0]" (rect 160 -456 273 -441)(font "Arial" ))
+	(pt 136 -440)
+	(pt 272 -440)
+	(bus)
+)
+(connector
+	(text "const_lrg_thr[9..0]" (rect 160 -400 267 -385)(font "Arial" ))
+	(pt 136 -384)
+	(pt 272 -384)
+	(bus)
+)
+(connector
 	(text "fc_adc[11..2]" (rect 288 367 363 382)(font "Arial" ))
 	(pt 280 384)
 	(pt 392 384)
+	(bus)
+)
+(connector
+	(text "lrg_thr[5..0]" (rect 176 -607 243 -592)(font "Arial" ))
+	(pt 152 -591)
+	(pt 288 -591)
 	(bus)
 )
 (connector
@@ -3238,60 +3292,6 @@ party's intellectual property, are provided herein.
 	(text "const_lrg_thr[9..0]" (rect 368 -232 475 -217)(font "Arial" ))
 	(pt 320 -216)
 	(pt 504 -216)
-	(bus)
-)
-(connector
-	(text "const_lrg_thr[9..0]" (rect 160 -376 267 -361)(font "Arial" ))
-	(pt 136 -360)
-	(pt 272 -360)
-	(bus)
-)
-(connector
-	(text "GND" (rect 72 -663 101 -648)(font "Arial" ))
-	(pt 64 -647)
-	(pt 104 -647)
-)
-(connector
-	(text "low_thr[0]" (rect 176 -696 234 -681)(font "Arial" ))
-	(pt 152 -679)
-	(pt 272 -679)
-)
-(connector
-	(text "VCC" (rect 72 -695 99 -680)(font "Arial" ))
-	(pt 64 -679)
-	(pt 104 -679)
-)
-(connector
-	(text "VCC" (rect 72 -631 99 -616)(font "Arial" ))
-	(pt 64 -615)
-	(pt 104 -615)
-)
-(connector
-	(text "low_thr[9..6]" (rect 176 -663 248 -648)(font "Arial" ))
-	(pt 152 -647)
-	(pt 288 -647)
-	(bus)
-)
-(connector
-	(text "GND" (rect 72 -598 101 -583)(font "Arial" ))
-	(pt 64 -582)
-	(pt 104 -582)
-)
-(connector
-	(text "lrg_thr[9]" (rect 176 -600 228 -585)(font "Arial" ))
-	(pt 152 -582)
-	(pt 272 -582)
-)
-(connector
-	(text "lrg_thr[5..0]" (rect 176 -631 243 -616)(font "Arial" ))
-	(pt 152 -615)
-	(pt 288 -615)
-	(bus)
-)
-(connector
-	(text "const_low_thr[9..0]" (rect 160 -480 273 -465)(font "Arial" ))
-	(pt 136 -464)
-	(pt 272 -464)
 	(bus)
 )
 (junction (pt 1464 376))
@@ -3307,7 +3307,7 @@ party's intellectual property, are provided herein.
 	(section (rect 0 48 368 72)(text "DESIGNER" (rect 2 0 71 15)(font "Arial" ))(text "Karl-Heinz Sulanke" (rect 56 2 236 25)(font "Arial" (font_size 12)))(border))
 	(section (rect 0 72 280 96)(text "NUMBER" (rect 2 0 59 15)(font "Arial" ))(text "1.00" (rect 56 1 91 20)(font "Arial" (font_size 10)))(border))
 	(section (rect 280 72 368 96)(text "REV" (rect 2 1 28 16)(font "Arial" ))(text "B" (rect 43 1 55 20)(font "Arial" (font_size 10)))(border))
-	(section (rect 0 96 240 120)(text "DATE" (rect 2 0 36 15)(font "Arial" ))(text "Thu Nov 13 11:24:20 2003" (rect 56 3 267 22)(font "Arial" (font_size 10)))(date)(border))
+	(section (rect 0 96 240 120)(text "DATE" (rect 2 0 36 15)(font "Arial" ))(text "Wed Nov 12 13:32:08 2003" (rect 56 3 276 22)(font "Arial" (font_size 10)))(date)(border))
 	(section (rect 240 96 310 120)(text "SHEET" (rect 2 0 46 15)(font "Arial" ))(text "1" (rect 55 5 64 24)(font "Arial" (font_size 10))))
 	(section (rect 310 96 368 120)(text "OF" (rect 10 0 27 15)(font "Arial" ))(text "1" (rect 34 4 43 23)(font "Arial" (font_size 10))))
 	(drawing
