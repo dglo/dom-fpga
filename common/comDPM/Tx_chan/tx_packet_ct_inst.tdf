@@ -1,0 +1,11 @@
+(
+	q_sig[]
+) = tx_packet_ct	(
+	.clock = clock_sig,
+	.updown = updown_sig,
+	.clk_en = clk_en_sig,
+	.aclr = aclr_sig
+)
+RETURNS (
+	.q[]
+);
