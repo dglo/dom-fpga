@@ -445,12 +445,11 @@ ARCHITECTURE simpletest_arch OF simpletest IS
 	
 	COMPONENT ROC
 		PORT (
-			CLK_EXT		: IN  STD_LOGIC;
-        	CLK_PLL		: IN  STD_LOGIC;
+			CLK			: IN STD_LOGIC;
 			RST			: OUT STD_LOGIC
 		);
 	END COMPONENT;
-	
+
 	COMPONENT pll2x
 		PORT (
 			inclock		: IN STD_LOGIC;
@@ -1421,8 +1420,7 @@ BEGIN
 	
 	inst_ROC : ROC
 		PORT MAP (
-			CLK_EXT		=> CLK3p,
-        	CLK_PLL		=> CLK20,
+			CLK			=> CLK20,
 			RST			=> RST
 		);
 		
@@ -1810,7 +1808,7 @@ BEGIN
 			COINC_UP_BBAR		=> COINC_UP_BBAR,
 			COINC_UP_B			=> COINC_UP_B,
 			-- test connector
-			TC					=> open --TC
+			TC					=> TC
 		);
 	-- for simple local coincidence FADC launch
 	--flash_adc_enable_disc_lc	<= flash_adc_enable_disc WHEN enable_coinc_atwd='0' ELSE flash_adc_enable_disc AND NOT (atwd0_LC_abort OR atwd1_LC_abort);
@@ -2165,7 +2163,7 @@ BEGIN
 			id				=> dom_id(47 DOWNTO 0),
 			rx_dpr_radr		=> rx_dpr_radr(15 DOWNTO 0),
 			systime			=> systime,
-			tc				=> open, --TC, --open,
+			tc				=> open,
 			tx_dataout		=> dp0_portadataout,
 			tx_dpr_wadr		=> tx_dpr_wadr(15 DOWNTO 0),
 			tx_pack_sent	=> tx_pack_sent,
