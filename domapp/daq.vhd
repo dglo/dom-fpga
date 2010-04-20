@@ -63,6 +63,7 @@ ENTITY daq IS
 		discSPEpulse	: OUT STD_LOGIC;
 		discMPEpulse	: OUT STD_LOGIC;
                 dead_status     : OUT DEAD_STATUS_STRUCT;
+		got_ATWD_WF		: OUT STD_LOGIC;
 		-- interface to local coincidence
 		LC_trigger		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 		LC_abort		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
@@ -219,6 +220,7 @@ ARCHITECTURE daq_arch OF daq IS
 			-- some status bits
                         dead_flag               : OUT STD_LOGIC;
 			SPE_level_stretch	: IN STD_LOGIC_VECTOR (1 downto 0);
+			got_ATWD_WF		: OUT STD_LOGIC;
 			-- trigger
 			rst_trig		: OUT STD_LOGIC;
 			trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
@@ -477,6 +479,10 @@ ARCHITECTURE daq_arch OF daq IS
 	SIGNAL LC_abort_minbias	: STD_LOGIC_VECTOR (1 DOWNTO 0);
 	
 	SIGNAL minimum_bias_hit	: STD_LOGIC_VECTOR (1 DOWNTO 0);
+	
+	-- ATWD waveform aquisition count flag
+	SIGNAL got_ATWD_WF_A	: STD_LOGIC;
+	SIGNAL got_ATWD_WF_B	: STD_LOGIC;
 
 BEGIN
 	
@@ -499,7 +505,9 @@ BEGIN
 	LC_disc		<= discMPEpulse_local & discSPEpulse_local;
 	LC_launch	<= busy_B & busy_A;
 	
-	
+	-- we can OR the pulses as they should not happen at the same time
+	-- for ATWD waveform acq counter
+	got_ATWD_WF	<= got_ATWD_WF_A OR got_ATWD_WF_B;
 
 	inst_trigger : trigger
 		PORT MAP (
@@ -580,6 +588,7 @@ BEGIN
 			-- some status bits
                         dead_flag               => dead_flag_A,
 			SPE_level_stretch	=> SPE_level_stretch,
+			got_ATWD_WF		=> got_ATWD_WF_A,
 			-- trigger
 			rst_trig		=> rst_trig_A,
 			trigger_word	=> trigger_word,
@@ -647,6 +656,7 @@ BEGIN
 			-- some status bits
                         dead_flag               => dead_flag_B,
 			SPE_level_stretch	=> SPE_level_stretch,
+			got_ATWD_WF		=> got_ATWD_WF_B,
 			-- trigger
 			rst_trig		=> rst_trig_B,
 			trigger_word	=> trigger_word,

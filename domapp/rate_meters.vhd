@@ -6,7 +6,7 @@
 -- Author     : yaver/thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2007-03-23
+-- Last update: 2010-04-16
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -46,6 +46,7 @@ ENTITY rate_meters IS
         -- DAQ interface
         RM_daq_disc : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
         dead_status : IN  DEAD_STATUS_STRUCT;
+        got_ATWD_WF : IN  STD_LOGIC;
         -- test
         TC          : OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
         );
@@ -88,8 +89,13 @@ ARCHITECTURE ARCH_rate_meters OF rate_meters IS
     SIGNAL RM_daq_disc_old   : STD_LOGIC_VECTOR (1 DOWNTO 0);
 
     -- dead time counter
-    SIGNAL dead_cnt    : STD_LOGIC_VECTOR (25 DOWNTO 0);
-    SIGNAL dead_flag   : STD_LOGIC;
+    SIGNAL dead_cnt  : STD_LOGIC_VECTOR (25 DOWNTO 0);
+    SIGNAL dead_flag : STD_LOGIC;
+
+    -- atwd acq count
+    SIGNAL atwd_acq_cnt      : STD_LOGIC_VECTOR (15 DOWNTO 0);
+    SIGNAL got_ATWD_WF_20MHz : STD_LOGIC;
+    SIGNAL got_ATWD_WF_old   : STD_LOGIC;
 
 BEGIN
 
@@ -116,12 +122,14 @@ BEGIN
     BEGIN
         IF RST = '1' THEN
             RM_daq_disc_old <= "00";
+            got_ATWD_WF_old <= '0';
         ELSIF CLK40'EVENT AND CLK40 = '1' THEN
             RM_daq_disc_old <= RM_daq_disc;
+            got_ATWD_WF_old <= got_ATWD_WF;
         END IF;
     END PROCESS;
     RM_daq_disc_20MHz <= RM_daq_disc OR RM_daq_disc_old;
-
+    got_ATWD_WF_20MHz <= got_ATWD_WF OR got_ATWD_WF_old;
 
     rate_meters_machine : PROCESS (CLK20, RST)
     BEGIN
@@ -147,14 +155,16 @@ BEGIN
             sn_t_cnt       <= (OTHERS => '0');
             RM_sn_data_int <= (OTHERS => '0');
             --systime  <= (others => '0'); --&&&
-            
+
+            -- atwd acq cnt
+            atwd_acq_cnt <= (OTHERS => '0');
             
         ELSIF CLK20'EVENT AND CLK20 = '1' THEN
 
             --systime  <= systime + 1; --&&&
             delay_bit <= systime(15);   ---&&& was systime(4)
 
-            IF RM_ctrl.RM_rate_enable(0) = '1' OR RM_ctrl.RM_rate_enable(1) = '1' OR RM_ctrl.dead_cnt_en /= "00" THEN
+            IF RM_ctrl.RM_rate_enable(0) = '1' OR RM_ctrl.RM_rate_enable(1) = '1' OR RM_ctrl.dead_cnt_en /= "00" OR RM_ctrl.atwd_acq_cnt_en = '1' THEN
                 second_cnt <= second_cnt + '1';
             ELSE
                 second_cnt <= conv_std_logic_vector (one_second, 27);
@@ -177,7 +187,12 @@ BEGIN
                     --lockout_SPE <= (others => '0'); good for simulation stops odd/even effect
                     rate_SPE_int <= (OTHERS => '0');
                 END IF;
-                
+
+                IF RM_ctrl.atwd_acq_cnt_en = '1' THEN
+                    RM_stat.atwd_acq_cnt (15 DOWNTO 0)  <= atwd_acq_cnt;
+                    RM_stat.atwd_acq_cnt (31 DOWNTO 16) <= (OTHERS => '0');
+                    atwd_acq_cnt                        <= (OTHERS => '0');
+                END IF;
             ELSE
                 RM_rate_update <= '0';
 
@@ -206,8 +221,10 @@ BEGIN
                 ELSIF RM_ctrl.RM_rate_enable(0) = '0' OR lockout_SPE >= rate_dead_int THEN
                     lockout_SPE <= (OTHERS => '0');
                 END IF;
-                
-                
+
+                IF RM_ctrl.atwd_acq_cnt_en = '1' AND got_ATWD_WF_20MHz = '1' THEN
+                    atwd_acq_cnt <= atwd_acq_cnt + '1';
+                END IF;
             END IF;
 
             sn_rate_update <= NOT systime(15) AND delay_bit AND sn_t_cnt(0) AND sn_t_cnt(1);  ---&&& was systime(15)
@@ -264,8 +281,8 @@ BEGIN
     BEGIN  -- PROCESS
         IF RST = '1' THEN               -- asynchronous reset (active high)
             RM_stat.dead_cnt <= (OTHERS => '0');
-            dead_cnt    <= (OTHERS => '0');
-            edge_detect := '0';
+            dead_cnt         <= (OTHERS => '0');
+            edge_detect      := '0';
         ELSIF CLK40'EVENT AND CLK40 = '1' THEN  -- rising clock edge
             IF second_cnt(26) = '1' AND edge_detect = '0' THEN
                 RM_stat.dead_cnt <= "000000" & dead_cnt;
