@@ -81,6 +81,7 @@ PACKAGE ctrl_data_types IS
             rm_sn_enable   : STD_LOGIC_VECTOR (1 DOWNTO 0);
             rm_sn_dead     : STD_LOGIC_VECTOR (6 DOWNTO 0);
             dead_cnt_en    : STD_LOGIC_VECTOR (1 DOWNTO 0);
+            atwd_acq_cnt_en : STD_LOGIC;
         END RECORD;
     
     TYPE RM_STAT_STRUCT IS
@@ -90,6 +91,7 @@ PACKAGE ctrl_data_types IS
             RM_rate_update : STD_LOGIC;
             RM_sn_data     : STD_LOGIC_VECTOR (31 DOWNTO 0);
             dead_cnt       : STD_LOGIC_VECTOR (31 DOWNTO 0);
+            atwd_acq_cnt   : STD_LOGIC_VECTOR (31 DOWNTO 0);
             sn_rate_update : STD_LOGIC;
         END RECORD;
 

@@ -54,6 +54,7 @@ ENTITY pingpong IS
 		-- some status bits
                 dead_flag               : OUT STD_LOGIC;
 		SPE_level_stretch	: IN STD_LOGIC_VECTOR (1 downto 0);
+		got_ATWD_WF		: OUT STD_LOGIC;
 		-- trigger
 		rst_trig		: OUT STD_LOGIC;
 		trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
@@ -124,6 +125,7 @@ ARCHITECTURE arch_pingpong OF pingpong IS
 			-- some status bits
                         dead_flag               : OUT STD_LOGIC;
 			SPE_level_stretch	: IN STD_LOGIC_VECTOR (1 downto 0);
+			got_ATWD_WF		: OUT STD_LOGIC;
 			-- trigger
 			rst_trig		: OUT STD_LOGIC;
 			trigger_word	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
@@ -282,6 +284,7 @@ BEGIN
 			-- some status bits
                         dead_flag               => dead_flag,
 			SPE_level_stretch	=> SPE_level_stretch,
+			got_ATWD_WF		=> got_ATWD_WF,
 			-- trigger
 			rst_trig		=> rst_trig,
 			trigger_word	=> trigger_word,

@@ -85,6 +85,7 @@ set_global_assignment -name SIGNALTAP_FILE "tcal-1.stp"
 set_global_assignment -name SIGNALTAP_FILE beacon_mode.stp
 set_global_assignment -name SIGNALTAP_FILE atwd_disc_flag.stp
 set_global_assignment -name SIGNALTAP_FILE SLC.stp
+set_global_assignment -name SIGNALTAP_FILE softboot_nosync.stp
 
 # Pin & Location Assignments
 # ==========================
@@ -582,7 +583,7 @@ set_global_assignment -name DRC_REPORT_TOP_FANOUT ON
 # SignalTap II Assignments
 # ========================
 set_global_assignment -name ENABLE_SIGNALTAP off
-set_global_assignment -name USE_SIGNALTAP_FILE SLC.stp
+set_global_assignment -name USE_SIGNALTAP_FILE softboot_nosync.stp
 
 # ------------------
 # start CLOCK(CLK1p)

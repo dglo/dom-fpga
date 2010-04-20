@@ -317,6 +317,7 @@ ARCHITECTURE arch_domapp OF domapp IS
 			discSPEpulse	: OUT STD_LOGIC;
 			discMPEpulse	: OUT STD_LOGIC;
                         dead_status     : OUT DEAD_STATUS_STRUCT;
+			got_ATWD_WF		: OUT STD_LOGIC;
 			-- interface to local coincidence
 			LC_trigger		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			LC_abort		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
@@ -489,6 +490,7 @@ ARCHITECTURE arch_domapp OF domapp IS
 			-- DAQ interface
 			RM_daq_disc	: IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
                         dead_status : IN  DEAD_STATUS_STRUCT;
+			got_ATWD_WF	: IN  STD_LOGIC;
 			-- test
 			TC			: OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
 		);
@@ -697,6 +699,7 @@ ARCHITECTURE arch_domapp OF domapp IS
 	SIGNAL RM_stat		: RM_STAT_STRUCT;
 	SIGNAL RM_daq_disc	: STD_LOGIC_VECTOR (1 DOWNTO 0); -- 0=SPE; 1=MPE
         SIGNAL dead_status      : DEAD_STATUS_STRUCT;
+	SIGNAL got_ATWD_WF	: STD_LOGIC;
 	
 	-- Calibration Sources
 	SIGNAL CS_ctrl		: CS_STRUCT;
@@ -894,6 +897,7 @@ BEGIN
 			discSPEpulse	=> RM_daq_disc(0),
 			discMPEpulse	=> RM_daq_disc(1),
                         dead_status     => dead_status,
+			got_ATWD_WF		=> got_ATWD_WF,
 			-- interface to local coincidence
 			LC_trigger		=> lc_daq_trigger,
 			LC_abort		=> lc_daq_abort,
@@ -1062,6 +1066,7 @@ BEGIN
 			-- DAQ interface
 			RM_daq_disc	=> RM_daq_disc,
                         dead_status     => dead_status,
+			got_ATWD_WF	=> got_ATWD_WF,
 			-- test
 			TC			=> open
 		);
