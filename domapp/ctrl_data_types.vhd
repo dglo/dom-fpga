@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2007-03-23
+-- Last update: 2010-04-20
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -76,11 +76,11 @@ PACKAGE ctrl_data_types IS
     -- control data for the RateMeter & Supernova module
     TYPE RM_CTRL_STRUCT IS
         RECORD
-            rm_rate_enable : STD_LOGIC_VECTOR (1 DOWNTO 0);
-            rm_rate_dead   : STD_LOGIC_VECTOR (9 DOWNTO 0);
-            rm_sn_enable   : STD_LOGIC_VECTOR (1 DOWNTO 0);
-            rm_sn_dead     : STD_LOGIC_VECTOR (6 DOWNTO 0);
-            dead_cnt_en    : STD_LOGIC_VECTOR (1 DOWNTO 0);
+            rm_rate_enable  : STD_LOGIC_VECTOR (1 DOWNTO 0);
+            rm_rate_dead    : STD_LOGIC_VECTOR (9 DOWNTO 0);
+            rm_sn_enable    : STD_LOGIC_VECTOR (1 DOWNTO 0);
+            rm_sn_dead      : STD_LOGIC_VECTOR (6 DOWNTO 0);
+            dead_cnt_en     : STD_LOGIC_VECTOR (1 DOWNTO 0);
             atwd_acq_cnt_en : STD_LOGIC;
         END RECORD;
     
@@ -98,7 +98,7 @@ PACKAGE ctrl_data_types IS
     -- control data for the data compression module
     TYPE COMPR_STRUCT IS
         RECORD
-            COMPR_mode : STD_LOGIC_VECTOR (1 DOWNTO 0);
+            COMPR_mode               : STD_LOGIC_VECTOR (1 DOWNTO 0);
 --            ATWDa0thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
 --            ATWDa1thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
 --            ATWDa2thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
@@ -109,8 +109,8 @@ PACKAGE ctrl_data_types IS
 --            ATWDb3thres : STD_LOGIC_VECTOR (9 DOWNTO 0);
 --            FADCthres   : STD_LOGIC_VECTOR (9 DOWNTO 0);
 --            threshold0  : STD_LOGIC;
-			all_chan_for_forced_trig	: STD_LOGIC;
-            LASTonly   : STD_LOGIC;
+            all_chan_for_forced_trig : STD_LOGIC;
+            LASTonly                 : STD_LOGIC;
         END RECORD;
     
     TYPE COMM_CTRL_STRUCT IS
@@ -153,8 +153,24 @@ PACKAGE ctrl_data_types IS
         RECORD
             IceTop_mode         : STD_LOGIC;
             IT_atwd_charge_chan : STD_LOGIC_VECTOR (1 DOWNTO 0);
-			IT_scan_mode		: STD_LOGIC;
-			minimum_bias		: STD_LOGIC;
+            IT_scan_mode        : STD_LOGIC;
+            minimum_bias        : STD_LOGIC;
+        END RECORD;
+
+
+    -- data type for the SPI inclinometer
+    TYPE INCLINOMETER_CTRL_STRUCT IS
+        RECORD
+            incl_en             : STD_LOGIC;
+            incl_data_tx        : STD_LOGIC_VECTOR (15 DOWNTO 0);
+            incl_data_tx_update : STD_LOGIC;
+        END RECORD;
+
+    TYPE INCLINOMETER_STAT_STRUCT IS
+        RECORD
+            incl_data_rx : STD_LOGIC_VECTOR (15 DOWNTO 0);
+            incl_busy    : STD_LOGIC;
+            incl_DIO     : STD_LOGIC_VECTOR (1 DOWNTO 0);
         END RECORD;
     
 END ctrl_data_types;

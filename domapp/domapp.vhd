@@ -163,10 +163,19 @@ ENTITY domapp IS
 		PLD_FPGA_nOE	: IN STD_LOGIC;
 		PLD_FPGA_nWE	: IN STD_LOGIC;
 		PLD_FPGA_BUSY	: OUT STD_LOGIC;
+		-- inclinometer SPI
+		adis16209_RST  : OUT STD_LOGIC;  -- V1
+        adis16209_nCS  : OUT STD_LOGIC;  -- Y2
+        adis16209_SCLK : OUT STD_LOGIC;  -- F3
+        adis16209_DOUT : IN  STD_LOGIC;  -- AC2
+        adis16209_DIN  : OUT STD_LOGIC;  -- AA2
+        adis16209_PWR  : OUT STD_LOGIC;  -- E3
 		-- Test connector (JP13) No defined use for it yet!
-		FPGA_D			: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
-		FPGA_DA			: OUT STD_LOGIC;
-		FPGA_CE			: OUT STD_LOGIC;
+		FPGA_D0			: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
+		FPGA_D3			: OUT STD_LOGIC_VECTOR (4 DOWNTO 3);
+		--FPGA_D			: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+		--FPGA_DA			: OUT STD_LOGIC;
+		--FPGA_CE			: OUT STD_LOGIC;
 		FPGA_RW			: OUT STD_LOGIC;
 		-- Test connector (JP19)	THERE IS NO 11   11 is CLK1n
 		PGM				: OUT STD_LOGIC_VECTOR (15 downto 0)
@@ -427,6 +436,8 @@ ARCHITECTURE arch_domapp OF domapp IS
 			COMPR_ctrl		: OUT COMPR_STRUCT;
 			debugging		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 			ICETOP_ctrl		: OUT ICETOP_CTRL_STRUCT;
+			INCL_ctrl		: OUT INCLINOMETER_CTRL_STRUCT;
+			INCL_stat		: IN INCLINOMETER_STAT_STRUCT;
 			-- Flasher Board
 			CS_FL_aux_reset	: OUT STD_LOGIC;
 			CS_FL_attn		: IN STD_LOGIC;
@@ -596,6 +607,26 @@ ARCHITECTURE arch_domapp OF domapp IS
 		);
 	END COMPONENT;
 
+	COMPONENT adis16209_spi
+	    PORT (
+	        CLK40          : IN  STD_LOGIC;
+	        RST            : IN  STD_LOGIC;
+	        -- internal
+	        INCL_ctrl      : IN  INCLINOMETER_CTRL_STRUCT;
+	        INCL_stat      : OUT INCLINOMETER_STAT_STRUCT;
+	        -- SPI
+	        adis16209_RST  : OUT STD_LOGIC;  -- V1
+	        adis16209_nCS  : OUT STD_LOGIC;  -- Y2
+	        adis16209_SCLK : OUT STD_LOGIC;  -- F3
+	        adis16209_DOUT : IN  STD_LOGIC;  -- AC2
+	        adis16209_DIN  : OUT STD_LOGIC;  -- AA2
+	        adis16209_PWR  : OUT STD_LOGIC;  -- E3
+	        -- adis16209_DIO1 : IN  STD_LOGIC;  -- Y1
+	        -- adis16209_DIO2 : IN  STD_LOGIC;  -- V2
+	        -- TC
+	        TC             : OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
+	        );
+	END COMPONENT;
 
 	-- gerneal siganls
 	SIGNAL low		: STD_LOGIC;
@@ -693,6 +724,8 @@ ARCHITECTURE arch_domapp OF domapp IS
 	SIGNAL ATWD_ped_data_B	: STD_LOGIC_VECTOR (9 DOWNTO 0);
 	SIGNAL ATWD_ped_addr_B	: STD_LOGIC_VECTOR (8 DOWNTO 0);
 	
+	SIGNAL INCL_ctrl	: INCLINOMETER_CTRL_STRUCT;
+	SIGNAL INCL_stat	: INCLINOMETER_STAT_STRUCT;
 	
 	-- Rate Meter
 	SIGNAL RM_ctrl		: RM_CTRL_STRUCT;
@@ -1005,6 +1038,8 @@ BEGIN
 			COMPR_ctrl		=> COMPR_ctrl,
 			debugging		=> debugging,
 			ICETOP_ctrl		=> ICETOP_ctrl,
+			INCL_ctrl		=> INCL_ctrl, --open,
+			INCL_stat		=> INCL_stat, --((OTHERS=>'0'), '0', (OTHERS=>'0')),
 			-- Flasher Board
 			CS_FL_aux_reset	=> CS_FL_aux_reset,
 			CS_FL_attn		=> CS_FL_attn,
@@ -1187,7 +1222,26 @@ BEGIN
 			-- test comnnector
 			TC         => OPEN
 		);
-	
+
+	inst_adis16209_spi : adis16209_spi
+	    PORT MAP (
+	        CLK40          => CLK40,
+	        RST            => RST,
+	        -- internal
+	        INCL_ctrl      => INCL_ctrl,
+	        INCL_stat      => INCL_stat,
+	        -- SPI
+	        adis16209_RST  => adis16209_RST,   -- V1
+	        adis16209_nCS  => adis16209_nCS,   -- Y2
+	        adis16209_SCLK => adis16209_SCLK,  -- F3
+	        adis16209_DOUT => adis16209_DOUT,  -- AC2
+	        adis16209_DIN  => adis16209_DIN,   -- AA2
+	        adis16209_PWR  => adis16209_PWR,   -- E3
+	        -- adis16209_DIO1 : IN  STD_LOGIC;  -- Y1
+	        -- adis16209_DIO2 : IN  STD_LOGIC;  -- V2
+	        -- TC
+	        TC             => OPEN
+	        );	
 	
 	-- FPGA loaded output to be read by the CPU through the CPLD
 	FPGA_LOADED	<= '0';
@@ -1197,9 +1251,11 @@ BEGIN
 	PLD_FPGA		<= (OTHERS=>'Z');
 	PLD_FPGA_BUSY	<= 'Z';
 	-- Test connector (JP13) No defined use for it yet!
-	FPGA_D		<= (OTHERS=>'Z');
-	FPGA_DA		<= 'Z';
-	FPGA_CE		<= 'Z';
+	--FPGA_D		<= (OTHERS=>'Z');
+	FPGA_D0		<= (OTHERS=>'Z');
+	FPGA_D3		<= (OTHERS=>'Z');
+	--FPGA_DA		<= 'Z';
+	--FPGA_CE		<= 'Z';
 	FPGA_RW		<= 'Z';
 	-- Test connector (JP19)
 	PGM(15 downto 12)	<= "1100";

@@ -43,6 +43,7 @@ set_global_assignment -name VHDL_FILE constants.vhd
 set_global_assignment -name VHDL_FILE ctrl_data_types.vhd
 set_global_assignment -name VHDL_FILE ahb_slave.vhd
 set_global_assignment -name VHDL_FILE monitor_data_type.vhd
+set_global_assignment -name VHDL_FILE "SPI/adis16209-spi.vhd"
 set_global_assignment -name VHDL_FILE ROC.vhd
 set_global_assignment -name VHDL_FILE FADC_input.vhd
 set_global_assignment -name VHDL_FILE calibration_sources.vhd
@@ -365,14 +366,6 @@ set_location_assignment PIN_AC11 -to FLASH_AD_D\[3\]
 set_location_assignment PIN_AB11 -to FLASH_AD_D\[2\]
 set_location_assignment PIN_AA13 -to FLASH_AD_D\[1\]
 set_location_assignment PIN_AA22 -to FLASH_AD_D\[0\]
-set_location_assignment PIN_AC2 -to FPGA_D\[7\]
-set_location_assignment PIN_AA2 -to FPGA_D\[6\]
-set_location_assignment PIN_Y2 -to FPGA_D\[5\]
-set_location_assignment PIN_Y1 -to FPGA_D\[4\]
-set_location_assignment PIN_V2 -to FPGA_D\[3\]
-set_location_assignment PIN_V1 -to FPGA_D\[2\]
-set_location_assignment PIN_W2 -to FPGA_D\[1\]
-set_location_assignment PIN_W1 -to FPGA_D\[0\]
 set_location_assignment PIN_V20 -to PLD_FPGA\[7\]
 set_location_assignment PIN_V21 -to PLD_FPGA\[6\]
 set_location_assignment PIN_V22 -to PLD_FPGA\[5\]
@@ -390,8 +383,6 @@ set_location_assignment PIN_B16 -to nRESET
 set_location_assignment PIN_M4 -to CLKLK_OUT2p
 set_location_assignment PIN_H24 -to CLK_REF
 set_location_assignment PIN_W21 -to FPGA_RW
-set_location_assignment PIN_F3 -to FPGA_CE
-set_location_assignment PIN_E3 -to FPGA_DA
 set_location_assignment PIN_N25 -to FL_AUX_RESET
 set_location_assignment PIN_P20 -to CLK1p
 set_location_assignment PIN_W6 -to CLK2p
@@ -407,6 +398,16 @@ set_location_assignment LC6_2_Z3 -to "daq:inst_daq\|trigger:inst_trigger\|discSP
 set_location_assignment LC5_2_Z3 -to "daq:inst_daq\|trigger:inst_trigger\|discMPE_pulse"
 set_location_assignment LC10_2_Z3 -to "daq:inst_daq\|trigger:inst_trigger\|trigger_word\[0\]~reg0"
 set_location_assignment LC9_2_Z3 -to "daq:inst_daq\|trigger:inst_trigger\|trigger_word\[1\]~reg0"
+set_location_assignment PIN_AC2 -to adis16209_DOUT
+set_location_assignment PIN_AA2 -to adis16209_DIN
+set_location_assignment PIN_Y2 -to adis16209_nCS
+set_location_assignment PIN_Y1 -to FPGA_D3\[3\]
+set_location_assignment PIN_V2 -to FPGA_D3\[4\]
+set_location_assignment PIN_V1 -to adis16209_RST
+set_location_assignment PIN_W2 -to FPGA_D0\[1\]
+set_location_assignment PIN_W1 -to FPGA_D0\[0\]
+set_location_assignment PIN_F3 -to adis16209_SCLK
+set_location_assignment PIN_E3 -to adis16209_PWR
 
 # Timing Assignments
 # ==================
@@ -477,14 +478,6 @@ set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_D\[3\]
 set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_D\[2\]
 set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_D\[1\]
 set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_D\[0\]
-set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_D\[7\]
-set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_D\[6\]
-set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_D\[5\]
-set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_D\[4\]
-set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_D\[3\]
-set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_D\[2\]
-set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_D\[1\]
-set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_D\[0\]
 set_instance_assignment -name IO_STANDARD LVTTL -to PLD_FPGA\[7\]
 set_instance_assignment -name IO_STANDARD LVTTL -to PLD_FPGA\[6\]
 set_instance_assignment -name IO_STANDARD LVTTL -to PLD_FPGA\[5\]
@@ -503,12 +496,20 @@ set_instance_assignment -name IO_STANDARD LVTTL -to CLKLK_OUT2p
 set_instance_assignment -name IO_STANDARD LVTTL -to CLK_REF
 set_instance_assignment -name IO_STANDARD LVTTL -to PGM\[11\]
 set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_RW
-set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_CE
-set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_DA
 set_instance_assignment -name IO_STANDARD LVTTL -to FL_AUX_RESET
 set_instance_assignment -name IO_STANDARD LVTTL -to CLK2p
 set_instance_assignment -name IO_STANDARD LVTTL -to CLK3p
 set_instance_assignment -name IO_STANDARD LVTTL -to CLK4p
+set_instance_assignment -name IO_STANDARD LVTTL -to adis16209_DOUT
+set_instance_assignment -name IO_STANDARD LVTTL -to adis16209_DIN
+set_instance_assignment -name IO_STANDARD LVTTL -to adis16209_nCS
+set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_D3\[3\]
+set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_D3\[4\]
+set_instance_assignment -name IO_STANDARD LVTTL -to adis16209_RST
+set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_D0\[1\]
+set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_D0\[0\]
+set_instance_assignment -name IO_STANDARD LVTTL -to adis16209_SCLK
+set_instance_assignment -name IO_STANDARD LVTTL -to adis16209_PWR
 
 # Timing Analysis Assignments
 # ===========================
