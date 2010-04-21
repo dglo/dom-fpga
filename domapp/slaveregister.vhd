@@ -66,6 +66,8 @@ ENTITY slaveregister IS
 		COMPR_ctrl		: OUT COMPR_STRUCT;
 		debugging		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 		ICETOP_ctrl		: OUT ICETOP_CTRL_STRUCT;
+		INCL_ctrl		: OUT INCLINOMETER_CTRL_STRUCT;
+		INCL_stat		: IN INCLINOMETER_STAT_STRUCT;
 		-- Flasher Board
 		CS_FL_aux_reset	: OUT STD_LOGIC;
 		CS_FL_attn		: IN STD_LOGIC;
@@ -193,7 +195,7 @@ ARCHITECTURE arch_slaveregister OF slaveregister IS
 	SIGNAL COMM_ctrl_local	: COMM_CTRL_STRUCT;
 	SIGNAL COMPR_ctrl_local	: COMPR_STRUCT;
 	SIGNAL ICETOP_ctrl_local	: ICETOP_CTRL_STRUCT;
-	
+	SIGNAL INCL_ctrl_local	: INCLINOMETER_CTRL_STRUCT;
 	
 	SIGNAL CS_FL_aux_reset_local : STD_LOGIC;
 	
@@ -231,6 +233,7 @@ BEGIN
 			COMM_ctrl_local	<= ('0', (OTHERS=>'0'), 'X', '0', '0', (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), '0', '0');
 			id_set			<= "00";
 	--		COMPR_ctrl_local	<= ((OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), (OTHERS=>'0'), '0', '0');
+			INCL_ctrl_local	<= ('0', (OTHERS=>'0'), '0');
 			int_clr			<= (OTHERS=>'0');
 		ELSIF CLK'EVENT AND CLK='1' THEN
 			DAQ_ctrl_local.LBM_ptr_RST	<= '0';
@@ -239,6 +242,7 @@ BEGIN
 			COMM_ctrl_local.rx_dpr_raddr_stb	<= '0';
 			COMM_ctrl_local.thres_delay_wr			<= '0';
 			COMM_ctrl_local.clev_wr					<= '0';
+			INCL_ctrl_local.incl_data_tx_update		<= '0';
 			int_clr			<= (OTHERS=>'0');
 			reg_rdata <= (others=>'X');	-- to make sure we don't create a latch
 			IF reg_enable = '1' THEN
@@ -669,7 +673,25 @@ BEGIN
 					ELSE
 						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
 					END IF;
-					
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0580") ) THEN	-- Inclinometer specific
+					IF reg_write = '1' THEN
+						INCL_ctrl_local.incl_data_tx_update <= '1';
+						INCL_ctrl_local.incl_data_tx	<= reg_wdata(15 DOWNTO 0);
+						INCL_ctrl_local.incl_en			<= reg_wdata(31);
+					END IF;
+					IF READBACK=1 THEN
+						reg_rdata(15 DOWNTO 0)	<= INCL_ctrl_local.incl_data_tx;
+						reg_rdata(15 downto 30)	<= (OTHERS=>'0');
+						reg_rdata(31)			<= INCL_ctrl_local.incl_en;
+					ELSE
+						reg_rdata(31 downto 0)	<= (OTHERS=>'0');
+					END IF;
+				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"0584") ) THEN	-- Inclinometer specific
+					reg_rdata(15 downto 0)	<= INCL_stat.incl_data_rx;
+					reg_rdata(27 downto 16)	<= (OTHERS=>'0');
+					reg_rdata(29 downto 28)	<= INCL_stat.incl_DIO;
+					reg_rdata(30)			<= '0';
+					reg_rdata(31)			<= INCL_stat.incl_busy;
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"07F8") ) THEN	-- PONG (just in case we want to implement a 3D PONG game with IceCubeA) 
 					reg_rdata(31 downto 0) <= X"504F4E47";	-- ASCII PONG
 				ELSIF std_match( reg_address(13 downto 2) , hex2addr(x"07FC") ) THEN	-- Firmware Debugging
@@ -709,6 +731,7 @@ BEGIN
 	COMPR_ctrl	<= COMPR_ctrl_local;
 	-- COMPR_ctrl.COMPR_mode	<= DAQ_ctrl_local.COMPR_mode; moved to register
 	ICETOP_ctrl	<= ICETOP_ctrl_local;
+	INCL_ctrl	<= INCL_ctrl_local;
 		
 	CS_FL_aux_reset	<= CS_FL_aux_reset_local;
 	
