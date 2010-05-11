@@ -1,0 +1,271 @@
+Timing Analyzer report for Rx_dpr_ctrl_test
+Tue Mar 30 17:55:03 2004
+Version 4.0 Build 190 1/28/2004 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Timing Analyzer Settings
+  3. Timing Analyzer Summary
+  4. tpd
+  5. Minimum tpd
+  6. Timing Analyzer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2004 Altera Corporation
+Any  megafunction  design,  and related netlist (encrypted  or  decrypted),
+support information,  device programming or simulation file,  and any other
+associated  documentation or information  provided by  Altera  or a partner
+under  Altera's   Megafunction   Partnership   Program  may  be  used  only
+to program  PLD  devices (but not masked  PLD  devices) from  Altera.   Any
+other  use  of such  megafunction  design,  netlist,  support  information,
+device programming or simulation file,  or any other  related documentation
+or information  is prohibited  for  any  other purpose,  including, but not
+limited to  modification,  reverse engineering,  de-compiling, or use  with
+any other  silicon devices,  unless such use is  explicitly  licensed under
+a separate agreement with  Altera  or a megafunction partner.  Title to the
+intellectual property,  including patents,  copyrights,  trademarks,  trade
+secrets,  or maskworks,  embodied in any such megafunction design, netlist,
+support  information,  device programming or simulation file,  or any other
+related documentation or information provided by  Altera  or a megafunction
+partner, remains with Altera, the megafunction partner, or their respective
+licensors. No other licenses, including any licenses needed under any third
+party's intellectual property, are provided herein.
+
+
+
++----------------------------------------------------------------------------------------+
+; Timing Analyzer Settings                                                               ;
++-----------------------------------------------------------------------------------------
+; Option                                                ; Setting            ; From ; To ;
++-------------------------------------------------------+--------------------+------+----+
+; Device name                                           ; EP20K30ETC144-1    ;      ;    ;
+; Report IO Paths Separately                            ; Off                ;      ;    ;
+; Ignore user-defined clock settings                    ; Off                ;      ;    ;
+; Default hold multicycle                               ; Same as Multicycle ;      ;    ;
+; Cut off feedback from I/O pins                        ; On                 ;      ;    ;
+; Cut off clear and preset signal paths                 ; On                 ;      ;    ;
+; Cut off read during write signal paths                ; On                 ;      ;    ;
+; Cut paths between unrelated clock domains             ; On                 ;      ;    ;
+; Run Minimum Analysis                                  ; On                 ;      ;    ;
+; Use Minimum Timing Models                             ; Off                ;      ;    ;
+; Number of paths to report                             ; 200                ;      ;    ;
+; Number of destination nodes to report                 ; 10                 ;      ;    ;
+; Number of source nodes to report per destination node ; 10                 ;      ;    ;
++-------------------------------------------------------+--------------------+------+----+
+
+
++-------------------------------------------------------------------------------------------------+
+; Timing Analyzer Summary                                                                         ;
++--------------------------------------------------------------------------------------------------
+; Type                   ; Slack ; Required Time ; Actual Time ; From           ; To              ;
++------------------------+-------+---------------+-------------+----------------+-----------------+
+; Worst-case tpd         ; N/A   ; None          ; 16.440 ns   ; rx_dpr_wadr[1] ; rx_dpr_ef       ;
+; Worst-case minimum tpd ; N/A   ; None          ; 10.309 ns   ; rx_dpr_wadr[2] ; rx_dpr_avail[2] ;
++------------------------+-------+---------------+-------------+----------------+-----------------+
+
+
++--------------------------------------------------------------------------------+
+; tpd                                                                            ;
++---------------------------------------------------------------------------------
+; Slack ; Required P2P Time ; Actual P2P Time ; From           ; To              ;
++-------+-------------------+-----------------+----------------+-----------------+
+; N/A   ; None              ; 16.440 ns       ; rx_dpr_wadr[1] ; rx_dpr_ef       ;
+; N/A   ; None              ; 16.269 ns       ; rx_dpr_radr[1] ; rx_dpr_ef       ;
+; N/A   ; None              ; 16.192 ns       ; rx_dpr_wadr[0] ; rx_dpr_ef       ;
+; N/A   ; None              ; 15.872 ns       ; rx_dpr_radr[0] ; rx_dpr_ef       ;
+; N/A   ; None              ; 15.715 ns       ; rx_dpr_wadr[1] ; rx_dpr_af       ;
+; N/A   ; None              ; 15.695 ns       ; rx_dpr_wadr[1] ; rx_dpr_ff       ;
+; N/A   ; None              ; 15.544 ns       ; rx_dpr_radr[1] ; rx_dpr_af       ;
+; N/A   ; None              ; 15.524 ns       ; rx_dpr_radr[1] ; rx_dpr_ff       ;
+; N/A   ; None              ; 15.467 ns       ; rx_dpr_wadr[0] ; rx_dpr_af       ;
+; N/A   ; None              ; 15.447 ns       ; rx_dpr_wadr[0] ; rx_dpr_ff       ;
+; N/A   ; None              ; 15.416 ns       ; rx_dpr_radr[2] ; rx_dpr_ef       ;
+; N/A   ; None              ; 15.147 ns       ; rx_dpr_radr[0] ; rx_dpr_af       ;
+; N/A   ; None              ; 15.127 ns       ; rx_dpr_radr[0] ; rx_dpr_ff       ;
+; N/A   ; None              ; 15.087 ns       ; rx_dpr_wadr[1] ; rx_dpr_avail[3] ;
+; N/A   ; None              ; 14.987 ns       ; rx_dpr_wadr[1] ; rx_dpr_avail[4] ;
+; N/A   ; None              ; 14.916 ns       ; rx_dpr_radr[1] ; rx_dpr_avail[3] ;
+; N/A   ; None              ; 14.839 ns       ; rx_dpr_wadr[0] ; rx_dpr_avail[3] ;
+; N/A   ; None              ; 14.816 ns       ; rx_dpr_radr[1] ; rx_dpr_avail[4] ;
+; N/A   ; None              ; 14.748 ns       ; rx_dpr_radr[2] ; rx_dpr_avail[4] ;
+; N/A   ; None              ; 14.739 ns       ; rx_dpr_wadr[0] ; rx_dpr_avail[4] ;
+; N/A   ; None              ; 14.723 ns       ; rx_dpr_wadr[2] ; rx_dpr_ef       ;
+; N/A   ; None              ; 14.691 ns       ; rx_dpr_radr[2] ; rx_dpr_af       ;
+; N/A   ; None              ; 14.671 ns       ; rx_dpr_radr[2] ; rx_dpr_ff       ;
+; N/A   ; None              ; 14.519 ns       ; rx_dpr_radr[0] ; rx_dpr_avail[3] ;
+; N/A   ; None              ; 14.419 ns       ; rx_dpr_radr[0] ; rx_dpr_avail[4] ;
+; N/A   ; None              ; 14.063 ns       ; rx_dpr_radr[2] ; rx_dpr_avail[3] ;
+; N/A   ; None              ; 14.057 ns       ; rx_dpr_wadr[0] ; rx_dpr_avail[2] ;
+; N/A   ; None              ; 13.998 ns       ; rx_dpr_wadr[2] ; rx_dpr_af       ;
+; N/A   ; None              ; 13.978 ns       ; rx_dpr_wadr[2] ; rx_dpr_ff       ;
+; N/A   ; None              ; 13.961 ns       ; rx_dpr_wadr[1] ; rx_dpr_avail[2] ;
+; N/A   ; None              ; 13.849 ns       ; rx_dpr_radr[3] ; rx_dpr_ef       ;
+; N/A   ; None              ; 13.796 ns       ; rx_dpr_wadr[3] ; rx_dpr_ef       ;
+; N/A   ; None              ; 13.737 ns       ; rx_dpr_radr[0] ; rx_dpr_avail[2] ;
+; N/A   ; None              ; 13.614 ns       ; rx_dpr_wadr[2] ; rx_dpr_avail[4] ;
+; N/A   ; None              ; 13.370 ns       ; rx_dpr_wadr[2] ; rx_dpr_avail[3] ;
+; N/A   ; None              ; 13.349 ns       ; rx_dpr_radr[1] ; rx_dpr_avail[2] ;
+; N/A   ; None              ; 13.304 ns       ; rx_dpr_radr[0] ; rx_dpr_avail[1] ;
+; N/A   ; None              ; 13.183 ns       ; rx_dpr_wadr[0] ; rx_dpr_avail[1] ;
+; N/A   ; None              ; 13.181 ns       ; rx_dpr_radr[3] ; rx_dpr_avail[4] ;
+; N/A   ; None              ; 13.128 ns       ; rx_dpr_wadr[3] ; rx_dpr_avail[4] ;
+; N/A   ; None              ; 13.124 ns       ; rx_dpr_radr[3] ; rx_dpr_af       ;
+; N/A   ; None              ; 13.115 ns       ; rx_dpr_radr[4] ; rx_dpr_ef       ;
+; N/A   ; None              ; 13.104 ns       ; rx_dpr_radr[3] ; rx_dpr_ff       ;
+; N/A   ; None              ; 13.087 ns       ; rx_dpr_wadr[1] ; rx_dpr_avail[1] ;
+; N/A   ; None              ; 13.082 ns       ; rx_dpr_wadr[4] ; rx_dpr_ef       ;
+; N/A   ; None              ; 13.071 ns       ; rx_dpr_wadr[3] ; rx_dpr_af       ;
+; N/A   ; None              ; 13.051 ns       ; rx_dpr_wadr[3] ; rx_dpr_ff       ;
+; N/A   ; None              ; 12.683 ns       ; rx_dpr_radr[0] ; rx_dpr_avail[0] ;
+; N/A   ; None              ; 12.562 ns       ; rx_dpr_wadr[0] ; rx_dpr_avail[0] ;
+; N/A   ; None              ; 12.496 ns       ; rx_dpr_radr[3] ; rx_dpr_avail[3] ;
+; N/A   ; None              ; 12.496 ns       ; rx_dpr_radr[2] ; rx_dpr_avail[2] ;
+; N/A   ; None              ; 12.475 ns       ; rx_dpr_radr[1] ; rx_dpr_avail[1] ;
+; N/A   ; None              ; 12.443 ns       ; rx_dpr_wadr[3] ; rx_dpr_avail[3] ;
+; N/A   ; None              ; 12.370 ns       ; rx_dpr_radr[4] ; rx_dpr_ff       ;
+; N/A   ; None              ; 12.337 ns       ; rx_dpr_wadr[4] ; rx_dpr_ff       ;
+; N/A   ; None              ; 12.260 ns       ; rx_dpr_radr[4] ; rx_dpr_avail[4] ;
+; N/A   ; None              ; 12.243 ns       ; rx_dpr_wadr[4] ; rx_dpr_avail[4] ;
+; N/A   ; None              ; 11.914 ns       ; rx_dpr_radr[4] ; rx_dpr_af       ;
+; N/A   ; None              ; 11.881 ns       ; rx_dpr_wadr[4] ; rx_dpr_af       ;
+; N/A   ; None              ; 11.803 ns       ; rx_dpr_wadr[2] ; rx_dpr_avail[2] ;
+; N/A   ; None              ; 11.293 ns       ; rx_dpr_wadr[3] ; rx_dpr_avail[0] ;
+; N/A   ; None              ; 11.291 ns       ; rx_dpr_radr[4] ; rx_dpr_avail[0] ;
+; N/A   ; None              ; 11.286 ns       ; rx_dpr_radr[4] ; rx_dpr_avail[3] ;
+; N/A   ; None              ; 11.258 ns       ; rx_dpr_wadr[4] ; rx_dpr_avail[0] ;
+; N/A   ; None              ; 11.253 ns       ; rx_dpr_wadr[4] ; rx_dpr_avail[3] ;
+; N/A   ; None              ; 11.217 ns       ; rx_dpr_radr[3] ; rx_dpr_avail[0] ;
+; N/A   ; None              ; 10.626 ns       ; rx_dpr_wadr[3] ; rx_dpr_avail[1] ;
+; N/A   ; None              ; 10.624 ns       ; rx_dpr_radr[4] ; rx_dpr_avail[1] ;
+; N/A   ; None              ; 10.609 ns       ; rx_dpr_wadr[3] ; rx_dpr_avail[2] ;
+; N/A   ; None              ; 10.607 ns       ; rx_dpr_radr[4] ; rx_dpr_avail[2] ;
+; N/A   ; None              ; 10.591 ns       ; rx_dpr_wadr[4] ; rx_dpr_avail[1] ;
+; N/A   ; None              ; 10.574 ns       ; rx_dpr_wadr[4] ; rx_dpr_avail[2] ;
+; N/A   ; None              ; 10.550 ns       ; rx_dpr_radr[3] ; rx_dpr_avail[1] ;
+; N/A   ; None              ; 10.533 ns       ; rx_dpr_radr[3] ; rx_dpr_avail[2] ;
++-------+-------------------+-----------------+----------------+-----------------+
+
+
++----------------------------------------------------------------------------------------+
+; Minimum tpd                                                                            ;
++-----------------------------------------------------------------------------------------
+; Minimum Slack ; Required P2P Time ; Actual P2P Time ; From           ; To              ;
++---------------+-------------------+-----------------+----------------+-----------------+
+; N/A           ; None              ; 10.309 ns       ; rx_dpr_wadr[2] ; rx_dpr_avail[2] ;
+; N/A           ; None              ; 10.522 ns       ; rx_dpr_radr[3] ; rx_dpr_ff       ;
+; N/A           ; None              ; 10.533 ns       ; rx_dpr_radr[3] ; rx_dpr_avail[2] ;
+; N/A           ; None              ; 10.536 ns       ; rx_dpr_wadr[3] ; rx_dpr_avail[3] ;
+; N/A           ; None              ; 10.542 ns       ; rx_dpr_radr[3] ; rx_dpr_af       ;
+; N/A           ; None              ; 10.550 ns       ; rx_dpr_radr[3] ; rx_dpr_avail[1] ;
+; N/A           ; None              ; 10.563 ns       ; rx_dpr_wadr[4] ; rx_dpr_ff       ;
+; N/A           ; None              ; 10.574 ns       ; rx_dpr_wadr[4] ; rx_dpr_avail[2] ;
+; N/A           ; None              ; 10.583 ns       ; rx_dpr_wadr[4] ; rx_dpr_af       ;
+; N/A           ; None              ; 10.591 ns       ; rx_dpr_wadr[4] ; rx_dpr_avail[1] ;
+; N/A           ; None              ; 10.596 ns       ; rx_dpr_radr[4] ; rx_dpr_ff       ;
+; N/A           ; None              ; 10.598 ns       ; rx_dpr_wadr[3] ; rx_dpr_ff       ;
+; N/A           ; None              ; 10.607 ns       ; rx_dpr_radr[4] ; rx_dpr_avail[2] ;
+; N/A           ; None              ; 10.609 ns       ; rx_dpr_wadr[3] ; rx_dpr_avail[2] ;
+; N/A           ; None              ; 10.616 ns       ; rx_dpr_radr[4] ; rx_dpr_af       ;
+; N/A           ; None              ; 10.618 ns       ; rx_dpr_wadr[3] ; rx_dpr_af       ;
+; N/A           ; None              ; 10.624 ns       ; rx_dpr_radr[4] ; rx_dpr_avail[1] ;
+; N/A           ; None              ; 10.626 ns       ; rx_dpr_wadr[3] ; rx_dpr_avail[1] ;
+; N/A           ; None              ; 10.957 ns       ; rx_dpr_wadr[2] ; rx_dpr_ff       ;
+; N/A           ; None              ; 10.969 ns       ; rx_dpr_radr[2] ; rx_dpr_avail[2] ;
+; N/A           ; None              ; 10.977 ns       ; rx_dpr_wadr[2] ; rx_dpr_af       ;
+; N/A           ; None              ; 11.002 ns       ; rx_dpr_radr[3] ; rx_dpr_avail[3] ;
+; N/A           ; None              ; 11.024 ns       ; rx_dpr_radr[1] ; rx_dpr_avail[1] ;
+; N/A           ; None              ; 11.217 ns       ; rx_dpr_radr[3] ; rx_dpr_avail[0] ;
+; N/A           ; None              ; 11.229 ns       ; rx_dpr_radr[3] ; rx_dpr_avail[4] ;
+; N/A           ; None              ; 11.253 ns       ; rx_dpr_wadr[4] ; rx_dpr_avail[3] ;
+; N/A           ; None              ; 11.258 ns       ; rx_dpr_wadr[4] ; rx_dpr_avail[0] ;
+; N/A           ; None              ; 11.267 ns       ; rx_dpr_radr[3] ; rx_dpr_ef       ;
+; N/A           ; None              ; 11.270 ns       ; rx_dpr_wadr[4] ; rx_dpr_avail[4] ;
+; N/A           ; None              ; 11.286 ns       ; rx_dpr_radr[4] ; rx_dpr_avail[3] ;
+; N/A           ; None              ; 11.291 ns       ; rx_dpr_radr[4] ; rx_dpr_avail[0] ;
+; N/A           ; None              ; 11.293 ns       ; rx_dpr_wadr[3] ; rx_dpr_avail[0] ;
+; N/A           ; None              ; 11.303 ns       ; rx_dpr_radr[4] ; rx_dpr_avail[4] ;
+; N/A           ; None              ; 11.305 ns       ; rx_dpr_wadr[3] ; rx_dpr_avail[4] ;
+; N/A           ; None              ; 11.308 ns       ; rx_dpr_wadr[4] ; rx_dpr_ef       ;
+; N/A           ; None              ; 11.341 ns       ; rx_dpr_radr[4] ; rx_dpr_ef       ;
+; N/A           ; None              ; 11.343 ns       ; rx_dpr_wadr[3] ; rx_dpr_ef       ;
+; N/A           ; None              ; 11.382 ns       ; rx_dpr_radr[1] ; rx_dpr_avail[2] ;
+; N/A           ; None              ; 11.399 ns       ; rx_dpr_wadr[0] ; rx_dpr_avail[1] ;
+; N/A           ; None              ; 11.413 ns       ; rx_dpr_wadr[0] ; rx_dpr_avail[2] ;
+; N/A           ; None              ; 11.617 ns       ; rx_dpr_radr[2] ; rx_dpr_ff       ;
+; N/A           ; None              ; 11.637 ns       ; rx_dpr_radr[2] ; rx_dpr_af       ;
+; N/A           ; None              ; 11.668 ns       ; rx_dpr_wadr[1] ; rx_dpr_avail[1] ;
+; N/A           ; None              ; 11.702 ns       ; rx_dpr_wadr[2] ; rx_dpr_ef       ;
+; N/A           ; None              ; 11.859 ns       ; rx_dpr_wadr[0] ; rx_dpr_avail[0] ;
+; N/A           ; None              ; 11.878 ns       ; rx_dpr_wadr[2] ; rx_dpr_avail[3] ;
+; N/A           ; None              ; 11.887 ns       ; rx_dpr_radr[0] ; rx_dpr_avail[1] ;
+; N/A           ; None              ; 11.901 ns       ; rx_dpr_radr[0] ; rx_dpr_avail[2] ;
+; N/A           ; None              ; 11.906 ns       ; rx_dpr_radr[0] ; rx_dpr_avail[0] ;
+; N/A           ; None              ; 12.030 ns       ; rx_dpr_radr[1] ; rx_dpr_ff       ;
+; N/A           ; None              ; 12.050 ns       ; rx_dpr_radr[1] ; rx_dpr_af       ;
+; N/A           ; None              ; 12.061 ns       ; rx_dpr_wadr[0] ; rx_dpr_ff       ;
+; N/A           ; None              ; 12.081 ns       ; rx_dpr_wadr[0] ; rx_dpr_af       ;
+; N/A           ; None              ; 12.097 ns       ; rx_dpr_radr[2] ; rx_dpr_avail[3] ;
+; N/A           ; None              ; 12.166 ns       ; rx_dpr_radr[1] ; rx_dpr_avail[3] ;
+; N/A           ; None              ; 12.197 ns       ; rx_dpr_wadr[0] ; rx_dpr_avail[3] ;
+; N/A           ; None              ; 12.362 ns       ; rx_dpr_radr[2] ; rx_dpr_ef       ;
+; N/A           ; None              ; 12.467 ns       ; rx_dpr_wadr[1] ; rx_dpr_avail[2] ;
+; N/A           ; None              ; 12.549 ns       ; rx_dpr_radr[0] ; rx_dpr_ff       ;
+; N/A           ; None              ; 12.569 ns       ; rx_dpr_radr[0] ; rx_dpr_af       ;
+; N/A           ; None              ; 12.685 ns       ; rx_dpr_radr[0] ; rx_dpr_avail[3] ;
+; N/A           ; None              ; 12.775 ns       ; rx_dpr_radr[1] ; rx_dpr_ef       ;
+; N/A           ; None              ; 12.806 ns       ; rx_dpr_wadr[0] ; rx_dpr_ef       ;
+; N/A           ; None              ; 12.808 ns       ; rx_dpr_wadr[2] ; rx_dpr_avail[4] ;
+; N/A           ; None              ; 12.810 ns       ; rx_dpr_wadr[1] ; rx_dpr_ff       ;
+; N/A           ; None              ; 13.135 ns       ; rx_dpr_wadr[1] ; rx_dpr_af       ;
+; N/A           ; None              ; 13.251 ns       ; rx_dpr_wadr[1] ; rx_dpr_avail[3] ;
+; N/A           ; None              ; 13.294 ns       ; rx_dpr_radr[0] ; rx_dpr_ef       ;
+; N/A           ; None              ; 13.555 ns       ; rx_dpr_wadr[1] ; rx_dpr_ef       ;
+; N/A           ; None              ; 13.613 ns       ; rx_dpr_radr[0] ; rx_dpr_avail[4] ;
+; N/A           ; None              ; 13.933 ns       ; rx_dpr_wadr[0] ; rx_dpr_avail[4] ;
+; N/A           ; None              ; 13.942 ns       ; rx_dpr_radr[2] ; rx_dpr_avail[4] ;
+; N/A           ; None              ; 14.010 ns       ; rx_dpr_radr[1] ; rx_dpr_avail[4] ;
+; N/A           ; None              ; 14.181 ns       ; rx_dpr_wadr[1] ; rx_dpr_avail[4] ;
++---------------+-------------------+-----------------+----------------+-----------------+
+
+
++---------------------------+
+; Timing Analyzer Messages  ;
++---------------------------+
+Info: *******************************************************************
+Info: Running Quartus II Timing Analyzer
+    Info: Version 4.0 Build 190 1/28/2004 SJ Full Version
+    Info: Processing started: Tue Mar 30 17:55:01 2004
+Info: Command: quartus_tan --lower_priority --import_settings_files=off --export_settings_files=off Rx_dpr_ctrl_test -c Rx_dpr_ctrl_test
+Info: Started post-fitting delay annotation
+Info: Delay annotation completed successfully
+Info: Longest tpd from source pin rx_dpr_wadr[1] to destination pin rx_dpr_ef is 16.440 ns
+    Info: 1: + IC(0.000 ns) + CELL(1.240 ns) = 1.240 ns; Loc. = Pin_80; Fanout = 4; PIN Node = 'rx_dpr_wadr[1]'
+    Info: 2: + IC(4.341 ns) + CELL(0.670 ns) = 6.251 ns; Loc. = LC6_2_E2; Fanout = 2; COMB Node = 'op_2~2COUT'
+    Info: 3: + IC(0.000 ns) + CELL(0.668 ns) = 6.919 ns; Loc. = LC7_2_E2; Fanout = 2; COMB Node = 'op_2~3'
+    Info: 4: + IC(0.267 ns) + CELL(1.122 ns) = 8.308 ns; Loc. = LC3_3_E2; Fanout = 2; COMB Node = 'op_3~3COUT'
+    Info: 5: + IC(0.000 ns) + CELL(0.668 ns) = 8.976 ns; Loc. = LC4_3_E2; Fanout = 1; COMB Node = 'op_3~4'
+    Info: 6: + IC(1.053 ns) + CELL(0.358 ns) = 10.387 ns; Loc. = LC2_4_E2; Fanout = 2; COMB Node = 'op_5~481'
+    Info: 7: + IC(0.281 ns) + CELL(0.358 ns) = 11.026 ns; Loc. = LC3_4_E2; Fanout = 3; COMB Node = 'rx_dpr_ef~56'
+    Info: 8: + IC(0.301 ns) + CELL(0.358 ns) = 11.685 ns; Loc. = LC10_4_E2; Fanout = 1; COMB Node = 'rx_dpr_ef~2'
+    Info: 9: + IC(2.345 ns) + CELL(2.410 ns) = 16.440 ns; Loc. = Pin_76; Fanout = 0; PIN Node = 'rx_dpr_ef'
+    Info: Total cell delay = 7.852 ns ( 47.76 % )
+    Info: Total interconnect delay = 8.588 ns ( 52.24 % )
+Info: Shortest tpd from source pin rx_dpr_wadr[2] to destination pin rx_dpr_avail[2] is 10.309 ns
+    Info: 1: + IC(0.000 ns) + CELL(1.240 ns) = 1.240 ns; Loc. = Pin_30; Fanout = 4; PIN Node = 'rx_dpr_wadr[2]'
+    Info: 2: + IC(3.083 ns) + CELL(0.890 ns) = 5.213 ns; Loc. = LC9_3_E2; Fanout = 2; COMB Node = 'op_5~4'
+    Info: 3: + IC(0.277 ns) + CELL(0.798 ns) = 6.288 ns; Loc. = LC9_4_E2; Fanout = 1; COMB Node = 'op_5~484'
+    Info: 4: + IC(1.611 ns) + CELL(2.410 ns) = 10.309 ns; Loc. = Pin_15; Fanout = 0; PIN Node = 'rx_dpr_avail[2]'
+    Info: Total cell delay = 5.338 ns ( 51.78 % )
+    Info: Total interconnect delay = 4.971 ns ( 48.22 % )
+Info: Quartus II Timing Analyzer was successful. 0 errors, 0 warnings
+    Info: Processing ended: Tue Mar 30 17:55:03 2004
+    Info: Elapsed time: 00:00:01
+
+
