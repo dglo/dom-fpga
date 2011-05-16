@@ -1,3 +1,5 @@
+-- 05/15/2011 fixed IceTop charge stamp scanning enable
+
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.ALL;
 USE IEEE.std_logic_arith.ALL;
@@ -34,7 +36,7 @@ BEGIN  -- icetop_get_atwd_chan_arch
             get_chan    <= '0';
             channel_old <= "00";
         ELSIF CLK'EVENT AND CLK = '1' THEN  -- rising clock edge
-            IF abort = '1' THEN
+            IF abort = '1' AND icetop_mode_en = '1' THEN
                 IF icetop_scan = '1' THEN
                     IF (channel <= icetop_channel AND overflow_int = '1') OR channel = "00" THEN
                         get_chan <= '1';
