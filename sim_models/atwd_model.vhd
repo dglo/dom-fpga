@@ -5,7 +5,7 @@
 -- File       : atwd_model.vhd
 -- Author     : Thorsten
 -- Company    : 
--- Last update: 2007-09-25
+-- Last update: 2003-12-12
 -- Platform   : 
 -------------------------------------------------------------------------------
 -- Description: This is a testbench model for the ATWD
@@ -114,7 +114,7 @@ BEGIN  -- atwd_model_arch
 
                 IF ShiftClock'EVENT AND ShiftClock = '0' THEN
                     D_bin(7 DOWNTO 0) := conv_std_logic_vector(ShiftClockCounter, 8);
-                    D_bin(9 DOWNTO 8) := NOT Channel;
+                    D_bin(9 DOWNTO 8) := Channel;
                     D                 <= BIN2GRAY (D_bin) AFTER 20 ns;
                 ELSIF ShiftClock'EVENT AND ShiftClock = '1' THEN
                     D <= (OTHERS => 'Z') AFTER 5 ns;
