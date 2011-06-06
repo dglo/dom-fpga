@@ -1,0 +1,12 @@
+(
+	q_sig[],
+	cout_sig
+) = rxct5	(
+	.clock = clock_sig,
+	.clk_en = clk_en_sig,
+	.aclr = aclr_sig
+)
+RETURNS (
+	.q[],
+	.cout
+);
