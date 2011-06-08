@@ -1,8 +1,0 @@
-(
-	result_sig[]
-) = TCAL_SAMPLES	(
-
-)
-RETURNS (
-	.result[]
-);
