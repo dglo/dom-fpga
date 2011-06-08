@@ -1,0 +1,404 @@
+% C:\PROJECTS\ICECUBE\DOR_REV1\FPGA\DCOM\RX_CHAN\DC_MRAP.tdf %
+% AHDL code created by Visual Software Solution's StateCAD 4.11 %
+% Fri Feb 03 14:38:08 2006 %
+
+% This AHDL code was generated using: %
+%  one-hot state assignment with boolean code format. %
+%  Minimization is enabled,  implied else is enabled,  %
+%  and outputs are speed optimized. %
+
+SUBDESIGN DC_MRAP(
+	CLK :	INPUT;
+	crc_zero :	INPUT;
+	ctrl_msg :	INPUT;
+	data_msg :	INPUT;
+	data_stb :	INPUT;
+	eof_stb :	INPUT;
+	RESET :	INPUT;
+	stf_stb :	INPUT;
+	byte_ena0a :	OUTPUT;
+	byte_ena0b :	OUTPUT;
+	byte_ena1 :	OUTPUT;
+	byte_ena2 :	OUTPUT;
+	byte_ena3 :	OUTPUT;
+	cmd_ena :	OUTPUT;
+	crc_init :	OUTPUT;
+	ctrl_error :	OUTPUT;
+	ctrl_rcvd :	OUTPUT;
+	data_error :	OUTPUT;
+	data_rcvd :	OUTPUT;
+	first_wadr_ena :	OUTPUT;
+	first_wadr_rld :	OUTPUT;
+	msg_type_ena :	OUTPUT;
+	rx_we :	OUTPUT;
+	seq0_byte :	OUTPUT;
+	seq1_byte :	OUTPUT;
+)
+
+
+VARIABLE
+	BYTE0 :	DFF;
+	BYTE1 :	DFF;
+	BYTE2 :	DFF;
+	BYTE3 :	DFF;
+	byte_ena0a :	DFF;
+	byte_ena0b :	DFF;
+	byte_ena1 :	DFF;
+	byte_ena2 :	DFF;
+	byte_ena3 :	DFF;
+	cmd_ena :	DFF;
+	CRC_ERR :	DFF;
+	crc_init :	DFF;
+	CTR_ERR :	DFF;
+	CTR_MSG :	DFF;
+	ctrl_error :	DFF;
+	CTRL_OK :	DFF;
+	ctrl_rcvd :	DFF;
+	DAT_MSG :	DFF;
+	data_error :	DFF;
+	DATA_OK :	DFF;
+	data_rcvd :	DFF;
+	DCMD_SEQ1 :	DFF;
+	DPR_DAT_WR :	DFF;
+	EOF_WAIT :	DFF;
+	first_wadr_ena :	DFF;
+	first_wadr_rld :	DFF;
+	IDLE :	DFF;
+	LEN0 :	DFF;
+	msg_type_ena :	DFF;
+	MTYPE_LEN1 :	DFF;
+	PTYPE_SEQ0 :	DFF;
+	rx_we :	DFF;
+	seq0_byte :	DFF;
+	seq1_byte :	DFF;
+	START :	DFF;
+	STF_WAIT :	DFF;
+
+BEGIN
+
+% Clock setup %
+	BYTE0.clk=CLK;
+	BYTE1.clk=CLK;
+	BYTE2.clk=CLK;
+	BYTE3.clk=CLK;
+	byte_ena0a.clk=CLK;
+	byte_ena0b.clk=CLK;
+	byte_ena1.clk=CLK;
+	byte_ena2.clk=CLK;
+	byte_ena3.clk=CLK;
+	cmd_ena.clk=CLK;
+	CRC_ERR.clk=CLK;
+	crc_init.clk=CLK;
+	CTR_ERR.clk=CLK;
+	CTR_MSG.clk=CLK;
+	ctrl_error.clk=CLK;
+	CTRL_OK.clk=CLK;
+	ctrl_rcvd.clk=CLK;
+	DAT_MSG.clk=CLK;
+	data_error.clk=CLK;
+	DATA_OK.clk=CLK;
+	data_rcvd.clk=CLK;
+	DCMD_SEQ1.clk=CLK;
+	DPR_DAT_WR.clk=CLK;
+	EOF_WAIT.clk=CLK;
+	first_wadr_ena.clk=CLK;
+	first_wadr_rld.clk=CLK;
+	IDLE.clk=CLK;
+	LEN0.clk=CLK;
+	msg_type_ena.clk=CLK;
+	MTYPE_LEN1.clk=CLK;
+	PTYPE_SEQ0.clk=CLK;
+	rx_we.clk=CLK;
+	seq0_byte.clk=CLK;
+	seq1_byte.clk=CLK;
+	START.clk=CLK;
+	STF_WAIT.clk=CLK;
+
+BYTE0 =  !eof_stb & !DAT_MSG & !stf_stb & BYTE0  #  !eof_stb & !data_stb & !
+	stf_stb & BYTE0  #  !stf_stb & data_stb & BYTE3  #  !stf_stb & data_stb & 
+	data_msg & DCMD_SEQ1 ;
+
+BYTE1 =  !data_stb & !stf_stb & BYTE1  #  !stf_stb & DPR_DAT_WR ;
+
+BYTE2 =  !stf_stb & data_stb & BYTE1  #  !data_stb & !stf_stb & BYTE2 ;
+
+BYTE3 =  !stf_stb & data_stb & BYTE2  #  !data_stb & !stf_stb & BYTE3 ;
+
+CTRL_OK =  !stf_stb & eof_stb & crc_zero & EOF_WAIT ;
+
+DATA_OK =  !stf_stb & eof_stb & crc_zero & BYTE0 ;
+
+DCMD_SEQ1 =  !data_stb & !stf_stb & DCMD_SEQ1  #  !stf_stb & data_stb & 
+	PTYPE_SEQ0 ;
+
+DPR_DAT_WR =  !stf_stb & data_stb & DAT_MSG & BYTE0 ;
+
+EOF_WAIT =  !stf_stb & data_stb & ctrl_msg & DCMD_SEQ1  #  !eof_stb & !
+	stf_stb & EOF_WAIT ;
+
+LEN0 =  !data_stb & !stf_stb & LEN0  #  !stf_stb & START ;
+
+MTYPE_LEN1 =  !stf_stb & data_stb & LEN0  #  !data_stb & !stf_stb & 
+	MTYPE_LEN1 ;
+
+PTYPE_SEQ0 =  !stf_stb & data_stb & MTYPE_LEN1  #  !data_stb & !stf_stb & 
+	PTYPE_SEQ0 ;
+
+START =  stf_stb ;
+
+STF_WAIT =  !stf_stb & eof_stb & !crc_zero & BYTE0  #  !stf_stb & CTRL_OK  # 
+	 !stf_stb & DATA_OK  #  !stf_stb & data_stb & !ctrl_msg & !data_msg & 
+	DCMD_SEQ1  #  !stf_stb & eof_stb & !crc_zero & EOF_WAIT  #  !stf_stb & 
+	STF_WAIT ;
+
+
+	IF ( RESET ) THEN
+		CRC_ERR.clrn=GND;
+		CTR_ERR.clrn=GND;
+		CTR_MSG.clrn=GND;
+		DAT_MSG.clrn=GND;
+		IDLE.prn=GND;
+		first_wadr_rld.clrn=GND;
+		data_error.clrn=GND;
+		ctrl_error.clrn=GND;
+	ELSE
+		CRC_ERR.clrn=VCC;
+		CTR_ERR.clrn=VCC;
+		CTR_MSG.clrn=VCC;
+		DAT_MSG.clrn=VCC;
+		IDLE.prn=VCC;
+		first_wadr_rld.clrn=VCC;
+		data_error.clrn=VCC;
+		ctrl_error.clrn=VCC;
+	END IF;
+CRC_ERR =  stf_stb & DAT_MSG  #  eof_stb & !BYTE0 & DAT_MSG  #  eof_stb & !
+	crc_zero & DAT_MSG ;
+
+CTR_ERR =  stf_stb & CTR_MSG  #  eof_stb & !EOF_WAIT & CTR_MSG  #  eof_stb & 
+	!crc_zero & CTR_MSG ;
+
+CTR_MSG =  !eof_stb & !stf_stb & CTR_MSG  #  DCMD_SEQ1 & data_stb & ctrl_msg 
+	& IDLE ;
+
+DAT_MSG =  !eof_stb & !stf_stb & DAT_MSG  #  DCMD_SEQ1 & data_stb & data_msg 
+	& IDLE ;
+
+IDLE =  CRC_ERR  #  CTR_ERR  #  EOF_WAIT & eof_stb & crc_zero & CTR_MSG  #  
+	BYTE0 & eof_stb & crc_zero & DAT_MSG  #  !data_msg & !ctrl_msg & IDLE  #  !
+	data_stb & IDLE  #  !DCMD_SEQ1 & IDLE ;
+
+
+
+(seq1_byte,seq0_byte,ctrl_rcvd,data_rcvd,first_wadr_ena,rx_we,byte_ena0b,
+	cmd_ena,msg_type_ena,crc_init,byte_ena3,byte_ena2,byte_ena1,byte_ena0a) = (  
+	( BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, BYTE0
+	, BYTE0, BYTE0, BYTE0) & ( ! ( eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, 
+	eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, 
+	eof_stb)& ! ( data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, 
+	data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, 
+	data_stb)& ! ( stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb,
+	 stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb) #  ! ( 
+	eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, 
+	eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, eof_stb)& ! ( DAT_MSG, DAT_MSG, 
+	DAT_MSG, DAT_MSG, DAT_MSG, DAT_MSG, DAT_MSG, DAT_MSG, DAT_MSG, DAT_MSG, 
+	DAT_MSG, DAT_MSG, DAT_MSG, DAT_MSG)& ! ( stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb) ) & ((0,0,0,0,0,0,0,0,0,0,0,0,0,1) ) ) # (  ( BYTE3, BYTE3,
+	 BYTE3, BYTE3, BYTE3, BYTE3, BYTE3, BYTE3, BYTE3, BYTE3, BYTE3, BYTE3, BYTE3,
+	 BYTE3) & ( ! ( stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb
+	, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb)&  ( data_stb
+	, data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, 
+	data_stb, data_stb, data_stb, data_stb, data_stb, data_stb) ) & ((0,0,0,0,0,0
+	,0,0,0,0,0,0,0,1) ) ) # (  ( DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, 
+	DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, 
+	DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1) & ( ! ( stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb)&  ( data_stb, data_stb, data_stb, data_stb, data_stb, 
+	data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, 
+	data_stb, data_stb)&  ( data_msg, data_msg, data_msg, data_msg, data_msg, 
+	data_msg, data_msg, data_msg, data_msg, data_msg, data_msg, data_msg, 
+	data_msg, data_msg) ) & ((0,0,0,0,0,0,0,0,0,0,0,0,0,1) ) ) # (  ( BYTE1, 
+	BYTE1, BYTE1, BYTE1, BYTE1, BYTE1, BYTE1, BYTE1, BYTE1, BYTE1, BYTE1, BYTE1, 
+	BYTE1, BYTE1) & ( ! ( data_stb, data_stb, data_stb, data_stb, data_stb, 
+	data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, 
+	data_stb, data_stb)& ! ( stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb
+	, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb) ) &
+	 ((0,0,0,0,0,0,1,0,0,0,0,0,1,0) ) ) # (  ( DPR_DAT_WR, DPR_DAT_WR, DPR_DAT_WR
+	, DPR_DAT_WR, DPR_DAT_WR, DPR_DAT_WR, DPR_DAT_WR, DPR_DAT_WR, DPR_DAT_WR, 
+	DPR_DAT_WR, DPR_DAT_WR, DPR_DAT_WR, DPR_DAT_WR, DPR_DAT_WR) & ( ! ( stf_stb, 
+	stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb, stf_stb, stf_stb, stf_stb) ) & ((0,0,0,0,0,0,1,0,0,0,0,0,1,
+	0) ) ) # (  ( BYTE1, BYTE1, BYTE1, BYTE1, BYTE1, BYTE1, BYTE1, BYTE1, BYTE1, 
+	BYTE1, BYTE1, BYTE1, BYTE1, BYTE1) & ( ! ( stf_stb, stf_stb, stf_stb, stf_stb
+	, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb)&  ( data_stb, data_stb, data_stb, data_stb, data_stb, 
+	data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, 
+	data_stb, data_stb) ) & ((0,0,0,0,0,0,0,0,0,0,0,1,0,0) ) ) # (  ( BYTE2, 
+	BYTE2, BYTE2, BYTE2, BYTE2, BYTE2, BYTE2, BYTE2, BYTE2, BYTE2, BYTE2, BYTE2, 
+	BYTE2, BYTE2) & ( ! ( data_stb, data_stb, data_stb, data_stb, data_stb, 
+	data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, 
+	data_stb, data_stb)& ! ( stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb
+	, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb) ) &
+	 ((0,0,0,0,0,0,0,0,0,0,0,1,0,0) ) ) # (  ( BYTE2, BYTE2, BYTE2, BYTE2, BYTE2,
+	 BYTE2, BYTE2, BYTE2, BYTE2, BYTE2, BYTE2, BYTE2, BYTE2, BYTE2) & ( ! ( 
+	stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb)&  ( data_stb, data_stb,
+	 data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, 
+	data_stb, data_stb, data_stb, data_stb, data_stb) ) & ((0,0,0,0,0,0,0,0,0,0,1
+	,0,0,0) ) ) # (  ( BYTE3, BYTE3, BYTE3, BYTE3, BYTE3, BYTE3, BYTE3, BYTE3, 
+	BYTE3, BYTE3, BYTE3, BYTE3, BYTE3, BYTE3) & ( ! ( data_stb, data_stb, 
+	data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, 
+	data_stb, data_stb, data_stb, data_stb, data_stb)& ! ( stf_stb, stf_stb, 
+	stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb, stf_stb, stf_stb) ) & ((0,0,0,0,0,0,0,0,0,0,1,0,0,0) ) ) # 
+	(  ( EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, 
+	EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT) & ( ! (
+	 stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb)&  ( eof_stb, eof_stb, 
+	eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, 
+	eof_stb, eof_stb, eof_stb, eof_stb)&  ( crc_zero, crc_zero, crc_zero, 
+	crc_zero, crc_zero, crc_zero, crc_zero, crc_zero, crc_zero, crc_zero, 
+	crc_zero, crc_zero, crc_zero, crc_zero) ) & ((0,0,1,0,0,0,0,0,0,0,0,0,0,0) ) 
+	) # (  ( BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, BYTE0
+	, BYTE0, BYTE0, BYTE0, BYTE0) & ( ! ( stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb)&  ( eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, 
+	eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, eof_stb)&  ( 
+	crc_zero, crc_zero, crc_zero, crc_zero, crc_zero, crc_zero, crc_zero, 
+	crc_zero, crc_zero, crc_zero, crc_zero, crc_zero, crc_zero, crc_zero) ) & ((0
+	,0,0,1,0,0,0,0,0,0,0,0,0,0) ) ) # (  ( DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, 
+	DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, 
+	DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1) & ( ! ( data_stb, data_stb, 
+	data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, 
+	data_stb, data_stb, data_stb, data_stb, data_stb)& ! ( stf_stb, stf_stb, 
+	stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb, stf_stb, stf_stb) ) & ((1,0,0,0,1,0,0,1,0,0,1,0,0,0) ) ) # 
+	(  ( PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, 
+	PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, 
+	PTYPE_SEQ0, PTYPE_SEQ0) & ( ! ( stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb)&  ( data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, 
+	data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, 
+	data_stb) ) & ((1,0,0,0,1,0,0,1,0,0,1,0,0,0) ) ) # (  ( BYTE0, BYTE0, BYTE0, 
+	BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, BYTE0) 
+	& ( ! ( stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb)&  ( data_stb, 
+	data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, 
+	data_stb, data_stb, data_stb, data_stb, data_stb, data_stb)&  ( DAT_MSG, 
+	DAT_MSG, DAT_MSG, DAT_MSG, DAT_MSG, DAT_MSG, DAT_MSG, DAT_MSG, DAT_MSG, 
+	DAT_MSG, DAT_MSG, DAT_MSG, DAT_MSG, DAT_MSG) ) & ((0,0,0,0,0,1,0,0,0,0,0,0,0,
+	0) ) ) # (  ( DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, 
+	DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, 
+	DCMD_SEQ1, DCMD_SEQ1) & ( ! ( stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb)&  ( data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, 
+	data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, 
+	data_stb)&  ( ctrl_msg, ctrl_msg, ctrl_msg, ctrl_msg, ctrl_msg, ctrl_msg, 
+	ctrl_msg, ctrl_msg, ctrl_msg, ctrl_msg, ctrl_msg, ctrl_msg, ctrl_msg, 
+	ctrl_msg) ) & ((0,0,0,0,0,0,0,0,0,0,0,0,0,0) ) ) # (  ( EOF_WAIT, EOF_WAIT, 
+	EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, 
+	EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT) & ( ! ( eof_stb, eof_stb, 
+	eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, 
+	eof_stb, eof_stb, eof_stb, eof_stb)& ! ( stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb) ) & ((0,0,0,0,0,0,0,0,0,0,0,0,0,0) ) ) # (  ( LEN0, LEN0, 
+	LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0) & ( !
+	 ( data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, 
+	data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, data_stb)& ! ( 
+	stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb) ) & ((0,0,0,0,0,0,0,0,0
+	,0,0,0,0,1) ) ) # (  ( START, START, START, START, START, START, START, START
+	, START, START, START, START, START, START) & ( ! ( stf_stb, stf_stb, stf_stb
+	, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb, stf_stb) ) & ((0,0,0,0,0,0,0,0,0,0,0,0,0,1) ) ) # (  ( LEN0
+	, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, LEN0, 
+	LEN0) & ( ! ( stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb)&  ( data_stb, 
+	data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, 
+	data_stb, data_stb, data_stb, data_stb, data_stb, data_stb) ) & ((0,0,0,0,0,0
+	,1,0,1,0,0,0,1,0) ) ) # (  ( MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, 
+	MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, 
+	MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1) & ( ! ( data_stb, data_stb, 
+	data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, 
+	data_stb, data_stb, data_stb, data_stb, data_stb)& ! ( stf_stb, stf_stb, 
+	stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb, stf_stb, stf_stb) ) & ((0,0,0,0,0,0,1,0,1,0,0,0,1,0) ) ) # 
+	(  ( MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, 
+	MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, MTYPE_LEN1, 
+	MTYPE_LEN1, MTYPE_LEN1) & ( ! ( stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb)&  ( data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, 
+	data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, 
+	data_stb) ) & ((0,1,0,0,0,0,0,0,0,0,0,1,0,0) ) ) # (  ( PTYPE_SEQ0, 
+	PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, 
+	PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, PTYPE_SEQ0, 
+	PTYPE_SEQ0) & ( ! ( data_stb, data_stb, data_stb, data_stb, data_stb, 
+	data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, 
+	data_stb, data_stb)& ! ( stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb
+	, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb) ) &
+	 ((0,1,0,0,0,0,0,0,0,0,0,1,0,0) ) ) # ( (  ( stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb, stf_stb) ) & ((0,0,0,0,0,0,0,0,0,1,0,0,0,1) ) ) # (  ( 
+	BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, BYTE0, 
+	BYTE0, BYTE0, BYTE0) & ( ! ( stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb)&  ( eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, 
+	eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, eof_stb)& ! ( crc_zero,
+	 crc_zero, crc_zero, crc_zero, crc_zero, crc_zero, crc_zero, crc_zero, 
+	crc_zero, crc_zero, crc_zero, crc_zero, crc_zero, crc_zero) ) & ((0,0,0,0,0,0
+	,0,0,0,1,0,0,0,1) ) ) # (  ( CTRL_OK, CTRL_OK, CTRL_OK, CTRL_OK, CTRL_OK, 
+	CTRL_OK, CTRL_OK, CTRL_OK, CTRL_OK, CTRL_OK, CTRL_OK, CTRL_OK, CTRL_OK, 
+	CTRL_OK) & ( ! ( stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb) ) & (
+	(0,0,0,0,0,0,0,0,0,1,0,0,0,1) ) ) # (  ( DATA_OK, DATA_OK, DATA_OK, DATA_OK, 
+	DATA_OK, DATA_OK, DATA_OK, DATA_OK, DATA_OK, DATA_OK, DATA_OK, DATA_OK, 
+	DATA_OK, DATA_OK) & ( ! ( stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb) ) & ((0,0,0,0,0,0,0,0,0,1,0,0,0,1) ) ) # (  ( DCMD_SEQ1, DCMD_SEQ1, 
+	DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, 
+	DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1) & ( ! ( stf_stb, 
+	stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb, stf_stb, stf_stb, stf_stb)&  ( data_stb, data_stb, data_stb
+	, data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, data_stb, 
+	data_stb, data_stb, data_stb, data_stb)& ! ( ctrl_msg, ctrl_msg, ctrl_msg, 
+	ctrl_msg, ctrl_msg, ctrl_msg, ctrl_msg, ctrl_msg, ctrl_msg, ctrl_msg, 
+	ctrl_msg, ctrl_msg, ctrl_msg, ctrl_msg)& ! ( data_msg, data_msg, data_msg, 
+	data_msg, data_msg, data_msg, data_msg, data_msg, data_msg, data_msg, 
+	data_msg, data_msg, data_msg, data_msg) ) & ((0,0,0,0,0,0,0,0,0,1,0,0,0,1) ) 
+	) # (  ( EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT
+	, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT, EOF_WAIT) & ( !
+	 ( stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb)&  ( eof_stb, eof_stb, 
+	eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, eof_stb, 
+	eof_stb, eof_stb, eof_stb, eof_stb)& ! ( crc_zero, crc_zero, crc_zero, 
+	crc_zero, crc_zero, crc_zero, crc_zero, crc_zero, crc_zero, crc_zero, 
+	crc_zero, crc_zero, crc_zero, crc_zero) ) & ((0,0,0,0,0,0,0,0,0,1,0,0,0,1) ) 
+	) # (  ( STF_WAIT, STF_WAIT, STF_WAIT, STF_WAIT, STF_WAIT, STF_WAIT, STF_WAIT
+	, STF_WAIT, STF_WAIT, STF_WAIT, STF_WAIT, STF_WAIT, STF_WAIT, STF_WAIT) & ( !
+	 ( stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, 
+	stf_stb, stf_stb, stf_stb, stf_stb, stf_stb, stf_stb) ) & ((0,0,0,0,0,0,0,0,0
+	,1,0,0,0,1) ) );
+
+(first_wadr_rld,data_error,ctrl_error) = (  ( DAT_MSG, DAT_MSG, DAT_MSG) & ( 
+	 ( eof_stb, eof_stb, eof_stb)& ! ( crc_zero, crc_zero, crc_zero) #   ( 
+	eof_stb, eof_stb, eof_stb)& ! ( BYTE0, BYTE0, BYTE0) #   ( stf_stb, stf_stb, 
+	stf_stb) ) & ((1,1,0) ) ) # (  ( CTR_MSG, CTR_MSG, CTR_MSG) & (  ( eof_stb, 
+	eof_stb, eof_stb)& ! ( crc_zero, crc_zero, crc_zero) #   ( eof_stb, eof_stb, 
+	eof_stb)& ! ( EOF_WAIT, EOF_WAIT, EOF_WAIT) #   ( stf_stb, stf_stb, stf_stb) 
+	) & ((0,0,1) ) ) # (  ( CTR_MSG, CTR_MSG, CTR_MSG) & ( ! ( eof_stb, eof_stb, 
+	eof_stb)& ! ( stf_stb, stf_stb, stf_stb) ) & ((0,0,0) ) ) # (  ( IDLE, IDLE, 
+	IDLE) & (  ( DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1)&  ( data_stb, data_stb, 
+	data_stb)&  ( ctrl_msg, ctrl_msg, ctrl_msg) ) & ((0,0,0) ) ) # (  ( DAT_MSG, 
+	DAT_MSG, DAT_MSG) & ( ! ( eof_stb, eof_stb, eof_stb)& ! ( stf_stb, stf_stb, 
+	stf_stb) ) & ((0,0,0) ) ) # (  ( IDLE, IDLE, IDLE) & (  ( DCMD_SEQ1, 
+	DCMD_SEQ1, DCMD_SEQ1)&  ( data_stb, data_stb, data_stb)&  ( data_msg, 
+	data_msg, data_msg) ) & ((0,0,0) ) ) # (  ( CRC_ERR, CRC_ERR, CRC_ERR) & ((1,
+	1,1) ) & ((0,0,0) ) ) # (  ( CTR_ERR, CTR_ERR, CTR_ERR) & ((1,1,1) ) & ((0,0,
+	0) ) ) # (  ( CTR_MSG, CTR_MSG, CTR_MSG) & (  ( EOF_WAIT, EOF_WAIT, EOF_WAIT)
+	&  ( eof_stb, eof_stb, eof_stb)&  ( crc_zero, crc_zero, crc_zero) ) & ((0,0,0
+	) ) ) # (  ( DAT_MSG, DAT_MSG, DAT_MSG) & (  ( BYTE0, BYTE0, BYTE0)&  ( 
+	eof_stb, eof_stb, eof_stb)&  ( crc_zero, crc_zero, crc_zero) ) & ((0,0,0) ) )
+	 # (  ( IDLE, IDLE, IDLE) & ( ! ( DCMD_SEQ1, DCMD_SEQ1, DCMD_SEQ1) #  ! ( 
+	data_stb, data_stb, data_stb) #  ! ( data_msg, data_msg, data_msg)& ! ( 
+	ctrl_msg, ctrl_msg, ctrl_msg) ) & ((0,0,0) ) );
+END;

@@ -1,0 +1,63 @@
+TITLE "control command decoder, K.-H. Sulanke,DESY Zeuthen, 04-09-2003";
+
+-- NOT YET READY !!!!!
+
+OPTIONS	BIT0=LSB;
+
+SUBDESIGN ctrl_cmd_dec
+(
+	ctrl_stb		: INPUT;	-- control byte strobe received
+	ctrl_err		: INPUT;	-- control byte with error received
+	ctrl_cmd[5..2]	: INPUT;	-- UART counter
+	stf_rcvd		: OUTPUT;	-- Start of Frame
+	eof_rcvd		: OUTPUT;	-- Start of Frame
+	drand_rcvd		: OUTPUT;	-- Start of Frame
+	mrwb_rcvd		: OUTPUT;	-- Start of Frame
+	mrnb_rcvd		: OUTPUT;	-- Start of Frame
+	mrwe_rcvd		: OUTPUT;	-- Start of Frame
+	stf_rcvd		: OUTPUT;	-- Start of Frame
+	stf_rcvd		: OUTPUT;	-- Start of Frame
+	stf_rcvd		: OUTPUT;	-- Start of Frame
+	
+)
+BEGIN
+
+	TABLE
+	hpuls, lpuls, txd,	tx_ct[]	=>	dac_d[];
+
+		0,	0,		0,	B"xxxxx"=>	H"80";
+		
+		0,	0,		1,		0	=>	H"80";
+				
+		0,	0,		1,		1	=>	H"A7";	
+		0,	0,		1,		2	=>	H"CB";		
+		0,	0,		1,		3	=>	H"E7";	
+		0,	0,		1,		4	=>	H"F9";
+				
+		0,	0,		1,		5	=>	H"FF";
+			
+		0,	0,		1,		6	=>	H"F9";		
+		0,	0,		1,		7	=>	H"E7";	
+		0,	0,		1,		8	=>	H"CB";
+		0,	0,		1,		9	=>	H"A7";
+		
+		0,	0,		1,		10	=>	H"80";
+				
+		0,	0,		1,		11	=>	H"58";	
+		0,	0,		1,		12	=>	H"34";		
+		0,	0,		1,		13	=>	H"18";	
+		0,	0,		1,		14	=>	H"06";
+				
+		0,	0,		1,		15	=>	H"00";
+				
+		0,	0,		1,		16	=>	H"06";	
+		0,	0,		1,		17	=>	H"18";		
+		0,	0,		1,		18	=>	H"34";	
+		0,	0,		1,		19	=>	H"58";		
+		
+		0,	1,		x,	B"xxxxx"=>	H"01";
+		1,	0,		x,	B"xxxxx"=>	H"ff";
+
+	END TABLE;
+
+END;

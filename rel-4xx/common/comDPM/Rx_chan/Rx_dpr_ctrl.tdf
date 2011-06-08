@@ -1,0 +1,60 @@
+TITLE "Rx Dual Port RAM control, LAST CHANGE: 2003/11/18";
+
+-- rx_dpr_aff (almost full) flag calculation on the base of 
+-- mem_avail = read_pointer - write_pointer 
+-- (unsigned sub, pointer=0..mem_size-1)
+
+INCLUDE "rx_dpr_adr_ct";
+
+--FUNCTION rx_dpr_adr_ct 
+--(
+--	clock,
+--	clk_en,
+--	sload,
+--	aclr,
+--	data[15..0]
+--)
+--RETURNS (
+--	q[15..0]
+--);
+
+CONSTANT MAX_PACKET_SIZE	= 4096+4;	-- 4KB payload + 4 byte header
+CONSTANT RX_DPR_SIZE 		= 16*1024;	-- 16KB
+
+--PARAMETERS
+--(
+--	RX_DPR_ADR_WIDTH	= 13,	-- must be concistent with rx_dpr_adr_ct !!!
+--	RX_DPR_SIZE			= 2^DPR_ADR_WIDTH
+--);
+
+SUBDESIGN	Rx_dpr_ctrl
+(
+	CCLK				: INPUT;	-- communication clock
+	comres_rcvd			: INPUT;	-- communication reset received, duration=1 clock 
+	rx_dpr_wen			: INPUT;
+	rx_dpr_radr[15..0]	: INPUT;	-- points to next read address
+	
+	rx_dpr_wadr[15..0]	: OUTPUT;	-- Rx DPR write address
+	rx_dpr_aff			: OUTPUT;	-- Rx DPR almost full flag
+)
+
+VARIABLE
+	not_comres_rcvd		: NODE;
+	rx_dpr_wad			: rx_dpr_adr_ct;	-- 16 bit up counter
+	rx_dpr_wadr[15..0]	: NODE;
+	
+BEGIN
+
+	not_comres_rcvd		= !comres_rcvd;
+	
+	rx_dpr_wad.				(	clock,	clk_en,		sload,	aclr		)
+						= 	(	CCLK,	rx_dpr_wen,	GND,	comres_rcvd);
+	rx_dpr_wad.data[]	= 	H"0000";
+	
+	rx_dpr_wadr[]		=	rx_dpr_wad.q[];
+
+	if( rx_dpr_radr[13..0]- rx_dpr_wadr[13..0] < MAX_PACKET_SIZE )
+		THEN	rx_dpr_aff	= VCC;
+		else	rx_dpr_aff	= GND;		END IF;
+		
+END;

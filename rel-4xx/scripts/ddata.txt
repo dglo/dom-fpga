@@ -1,0 +1,5 @@
+stf_Com ../stf/ComEPXA4DPM
+domapp ../domapp
+configboot ../configboot/epxa4DPM
+iceboot ../stf/ComEPXA4DPM
+stf_NoCom ../stf/NoComEPXA4

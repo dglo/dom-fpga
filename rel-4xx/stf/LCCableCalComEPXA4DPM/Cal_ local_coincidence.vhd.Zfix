@@ -1,0 +1,639 @@
+-------------------------------------------------------------------------------
+-- Title      : DOMAPP
+-- Project    : IceCube DOM main board
+-------------------------------------------------------------------------------
+-- File       : cal_local_coincidence.vhd
+-- Author     : yaver/thorsten
+-- Company    : LBNL
+-- Created    : 
+-- Last update: 2004-11-09
+-- Platform   : Altera Excalibur
+-- Standard   : VHDL'93
+-------------------------------------------------------------------------------
+-- Description: This module measures the cable lengths between DOMs. 
+--              The measurement is in 40MHz clock cycles. This is done by 
+--              sending a local coincidence out to the neighbor DOM and the  
+--              neighbor sending a coincidence back. A counter is started when  
+--              the intiating DOM sends out a coincidence to its neighbor and 
+--              the counter stops when it receives the coincidence back from 
+--              the neighbor. The count minus a fix delay of 11 count represents 
+--              twice the cable length.
+-------------------------------------------------------------------------------
+-- Copyright (c) 2004 
+-------------------------------------------------------------------------------
+-- Revisions  :
+-- Date        Version     Author    Description
+-- 2004-03-22  V01-01-00   yaver/thorsten  
+-------------------------------------------------------------------------------
+LIBRARY IEEE;
+USE IEEE.std_logic_1164.ALL;
+USE IEEE.std_logic_arith.ALL;
+USE IEEE.std_logic_unsigned.ALL;
+LIBRARY WORK;
+
+ENTITY cal_local_coincidence IS
+    PORT (
+        -- Common Inputs
+        CLK20                : IN  STD_LOGIC;
+        CLK40                : IN  STD_LOGIC;
+        CLK80                : IN  STD_LOGIC;
+        RST                  : IN  STD_LOGIC;
+        systime              : IN  STD_LOGIC_VECTOR (47 DOWNTO 0);
+        -- DAQ interface
+        DO_CAL               : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);  --0 is up , 1 is down
+        CAL_TIME_UP          : OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+        CAL_TIME_DOWN        : OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+        -- I/O
+        COINCIDENCE_OUT_DOWN : OUT STD_LOGIC;  -- '1' for positve, '0' for negative, 'Z' for nothing
+        COINC_DOWN_ALATCH    : OUT STD_LOGIC;  --
+        COINC_DOWN_ABAR      : IN  STD_LOGIC;
+        COINC_DOWN_A         : IN  STD_LOGIC;  -- _A is positve discriminator 
+        COINC_DOWN_BLATCH    : OUT STD_LOGIC;
+        COINC_DOWN_BBAR      : IN  STD_LOGIC;
+        COINC_DOWN_B         : IN  STD_LOGIC;  -- _B is negative discriminator
+        COINCIDENCE_OUT_UP   : OUT STD_LOGIC;
+        COINC_UP_ALATCH      : OUT STD_LOGIC;  --
+        COINC_UP_ABAR        : IN  STD_LOGIC;
+        COINC_UP_A           : IN  STD_LOGIC;  -- _A is positve discriminator 
+        COINC_UP_BLATCH      : OUT STD_LOGIC;
+        COINC_UP_BBAR        : IN  STD_LOGIC;
+        COINC_UP_B           : IN  STD_LOGIC;  -- _B is negative discriminator
+        -- test
+        TC                   : OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
+        );
+END cal_local_coincidence;
+
+ARCHITECTURE ARCH_cal_local_coincidence OF cal_local_coincidence IS
+
+--CONSTANT one_second  : INTEGER := (67108864 - 20000000 + 1); -- Counting up from this value 26th bit changes to 1
+
+    SIGNAL got_n_down          : STD_LOGIC;
+    SIGNAL got_p_down          : STD_LOGIC;
+    SIGNAL got_extinguish_down : STD_LOGIC;
+    SIGNAL n_down              : STD_LOGIC;
+    SIGNAL p_down              : STD_LOGIC;
+    SIGNAL extinguish_down     : STD_LOGIC;
+
+    SIGNAL push_cnt_up : STD_LOGIC_VECTOR(3 DOWNTO 0);
+
+    SIGNAL once_up   : STD_LOGIC_VECTOR(3 DOWNTO 0);
+    SIGNAL once_down : STD_LOGIC_VECTOR(3 DOWNTO 0);
+
+    SIGNAL got_n_up          : STD_LOGIC;
+    SIGNAL got_p_up          : STD_LOGIC;
+    SIGNAL got_extinguish_up : STD_LOGIC;
+    SIGNAL p_up              : STD_LOGIC;
+    SIGNAL n_up              : STD_LOGIC;
+    SIGNAL extinguish_up     : STD_LOGIC;
+
+    SIGNAL push_cnt_down : STD_LOGIC_VECTOR(3 DOWNTO 0);
+
+    SIGNAL push_length : STD_LOGIC_VECTOR(3 DOWNTO 0);  --this is the number of DOMs used for con
+    SIGNAL temp_length : STD_LOGIC_VECTOR(2 DOWNTO 0);
+
+    SIGNAL watch_cnt_up   : STD_LOGIC_VECTOR(2 DOWNTO 0);  --Watch dog, if start coin is received but no stop then when this times out stop is sent
+    SIGNAL watch_cnt_down : STD_LOGIC_VECTOR(2 DOWNTO 0);
+
+    SIGNAL lc_wave_up_pos   : STD_LOGIC_VECTOR(15 DOWNTO 0);  --Captures output of positive  up comparator in shift reg
+    SIGNAL lc_wave_up_neg   : STD_LOGIC_VECTOR(15 DOWNTO 0);  --Captures output of negative up comparator in shift reg
+    SIGNAL lc_wave_down_pos : STD_LOGIC_VECTOR(15 DOWNTO 0);  --Captures output of positive down comparator in shift reg
+    SIGNAL lc_wave_down_neg : STD_LOGIC_VECTOR(15 DOWNTO 0);  --Captures output of negative down comparator in shift reg
+
+-- SYMBOLIC ENCODED state machine: S_cal_local_coincidence
+
+    TYPE S_cal_local_coincidence_type IS (idle,      --01
+                                          drop_1,    --02
+                                          out_end,   --04
+                                          hit_coin,  --08
+                                          finish,
+                                          wait_10    --~~~~
+                                          );
+
+    SIGNAL S_lc_up   : S_cal_local_coincidence_type;
+    SIGNAL S_lc_down : S_cal_local_coincidence_type;
+
+    SIGNAL cal_max_time_up   : INTEGER RANGE 0 TO 255;  --!!CAL maybe use bit 7 and get rid of this signal
+    SIGNAL cal_max_time_down : INTEGER RANGE 0 TO 255;
+
+    SIGNAL cal_cnt_down    : STD_LOGIC_VECTOR(7 DOWNTO 0);  --timer that starts at launch for down coinc
+    SIGNAL cal_cnt_en_down : STD_LOGIC;
+    SIGNAL do_cal_down     : STD_LOGIC;
+
+    SIGNAL cal_cnt_up    : STD_LOGIC_VECTOR(7 DOWNTO 0);  --timer that starts at launch for up coinc
+    SIGNAL cal_cnt_en_up : STD_LOGIC;
+    SIGNAL do_cal_up     : STD_LOGIC;
+
+    SIGNAL DO_CAL_shift : STD_LOGIC_VECTOR(1 DOWNTO 0);
+
+--signals converted from STD_LOGIC_VECTORS;
+    SIGNAL length : INTEGER RANGE 0 TO 3;  --set coin length, number of DOMs in coin, 0=1DOM, 1=2DOM, 2=3DOM, 3=4DOM
+
+    SIGNAL coin_ss_up   : INTEGER RANGE 0 TO 3;
+    SIGNAL coin_ss_down : INTEGER RANGE 0 TO 3;
+
+    SIGNAL wait_cnt_up   : STD_LOGIC_VECTOR(7 DOWNTO 0);
+    SIGNAL wait_cnt_down : STD_LOGIC_VECTOR(7 DOWNTO 0);
+
+    SIGNAL lock_out_up   : STD_LOGIC_VECTOR(15 DOWNTO 0);
+    SIGNAL lock_out_down : STD_LOGIC_VECTOR(15 DOWNTO 0);
+
+    SIGNAL wup_1 : INTEGER RANGE 0 TO 1;
+    SIGNAL wup_2 : INTEGER RANGE 0 TO 1;
+    SIGNAL wup_3 : INTEGER RANGE 0 TO 1;
+    SIGNAL wup_4 : INTEGER RANGE 0 TO 1;
+    SIGNAL wup_5 : INTEGER RANGE 0 TO 1;
+    SIGNAL wup_6 : INTEGER RANGE 0 TO 1;
+    SIGNAL wup_7 : INTEGER RANGE 0 TO 1;
+    SIGNAL wup_8 : INTEGER RANGE 0 TO 1;
+
+    SIGNAL wun_1 : INTEGER RANGE 0 TO 1;
+    SIGNAL wun_2 : INTEGER RANGE 0 TO 1;
+    SIGNAL wun_3 : INTEGER RANGE 0 TO 1;
+    SIGNAL wun_4 : INTEGER RANGE 0 TO 1;
+    SIGNAL wun_5 : INTEGER RANGE 0 TO 1;
+    SIGNAL wun_6 : INTEGER RANGE 0 TO 1;
+    SIGNAL wun_7 : INTEGER RANGE 0 TO 1;
+    SIGNAL wun_8 : INTEGER RANGE 0 TO 1;
+
+    SIGNAL wdp_1 : INTEGER RANGE 0 TO 1;
+    SIGNAL wdp_2 : INTEGER RANGE 0 TO 1;
+    SIGNAL wdp_3 : INTEGER RANGE 0 TO 1;
+    SIGNAL wdp_4 : INTEGER RANGE 0 TO 1;
+    SIGNAL wdp_5 : INTEGER RANGE 0 TO 1;
+    SIGNAL wdp_6 : INTEGER RANGE 0 TO 1;
+    SIGNAL wdp_7 : INTEGER RANGE 0 TO 1;
+    SIGNAL wdp_8 : INTEGER RANGE 0 TO 1;
+
+    SIGNAL wdn_1 : INTEGER RANGE 0 TO 1;
+    SIGNAL wdn_2 : INTEGER RANGE 0 TO 1;
+    SIGNAL wdn_3 : INTEGER RANGE 0 TO 1;
+    SIGNAL wdn_4 : INTEGER RANGE 0 TO 1;
+    SIGNAL wdn_5 : INTEGER RANGE 0 TO 1;
+    SIGNAL wdn_6 : INTEGER RANGE 0 TO 1;
+    SIGNAL wdn_7 : INTEGER RANGE 0 TO 1;
+    SIGNAL wdn_8 : INTEGER RANGE 0 TO 1;
+
+BEGIN
+--second_cnt <= conv_std_logic_vector (one_second,27);
+
+--length <= CONV_INTEGER(LC_ctrl.LC_length);
+
+    do_cal_up   <= DO_CAL(0) AND NOT DO_CAL_shift(0);
+    do_cal_down <= DO_CAL(1) AND NOT DO_CAL_shift(1);
+
+    CAL_TIME_UP   <= cal_cnt_up;
+    CAL_TIME_DOWN <= cal_cnt_down;
+
+    cal_max_time_up   <= 128;
+    cal_max_time_down <= 128;
+
+--got_p_down <= ((lc_wave_down_pos(5) and lc_wave_down_pos(4)) and lc_wave_down_neg(3) and lc_wave_down_neg(2)) or p_down;
+--got_n_down <= ((lc_wave_down_pos(2) and lc_wave_down_pos(3)) and lc_wave_down_neg(4) and lc_wave_down_neg(5)) or n_down;
+    got_extinguish_down <= (lc_wave_down_neg(5) AND lc_wave_down_neg(4) AND lc_wave_down_neg(3) AND lc_wave_down_neg(2)) OR extinguish_down;
+
+--got_p_up <= ((lc_wave_up_pos(5) and lc_wave_up_pos(4)) and lc_wave_up_neg(3) and lc_wave_up_neg(2)) or p_up;
+--got_n_up <= ((lc_wave_up_pos(2) and lc_wave_up_pos(3)) and lc_wave_up_neg(4) and lc_wave_up_neg(5)) or n_up;
+    got_extinguish_up <= (lc_wave_up_neg(5) AND lc_wave_up_neg(4) AND lc_wave_up_neg(3) AND lc_wave_up_neg(2)) OR extinguish_up;
+
+    got_p_up <= '1' WHEN (((wup_8 + wup_7 + wup_6 + wup_5) > 2) AND ((wun_4 + wun_3 + wun_2 + wun_1) > 2)) OR p_up = '1' ELSE
+                '0';
+    got_n_up <= '1' WHEN (((wun_8 + wun_7 + wun_6 + wun_5) > 2) AND ((wup_4 + wup_3 + wup_2 + wup_1) > 2)) OR n_up = '1' ELSE
+                '0';
+    
+    got_p_down <= '1' WHEN (((wdp_8 + wdp_7 + wdp_6 + wdp_5) > 2) AND ((wdn_4 + wdn_3 + wdn_2 + wdn_1) > 2)) OR p_down = '1' ELSE
+                  '0';
+    got_n_down <= '1' WHEN (((wdn_8 + wdn_7 + wdn_6 + wdn_5) > 2) AND ((wdp_4 + wdp_3 + wdp_2 + wdp_1) > 2)) OR n_down = '1' ELSE
+                  '0';
+
+
+    wup_1 <= CONV_INTEGER (lc_wave_up_pos(2));
+    wup_2 <= CONV_INTEGER (lc_wave_up_pos(3));
+    wup_3 <= CONV_INTEGER (lc_wave_up_pos(4));
+    wup_4 <= CONV_INTEGER (lc_wave_up_pos(5));
+    wup_5 <= CONV_INTEGER (lc_wave_up_pos(6));
+    wup_6 <= CONV_INTEGER (lc_wave_up_pos(7));
+    wup_7 <= CONV_INTEGER (lc_wave_up_pos(8));
+    wup_8 <= CONV_INTEGER (lc_wave_up_pos(9));
+
+    wun_1 <= CONV_INTEGER (lc_wave_up_neg(2));
+    wun_2 <= CONV_INTEGER (lc_wave_up_neg(3));
+    wun_3 <= CONV_INTEGER (lc_wave_up_neg(4));
+    wun_4 <= CONV_INTEGER (lc_wave_up_neg(5));
+    wun_5 <= CONV_INTEGER (lc_wave_up_neg(6));
+    wun_6 <= CONV_INTEGER (lc_wave_up_neg(7));
+    wun_7 <= CONV_INTEGER (lc_wave_up_neg(8));
+    wun_8 <= CONV_INTEGER (lc_wave_up_neg(9));
+
+    wdp_1 <= CONV_INTEGER (lc_wave_down_pos(2));
+    wdp_2 <= CONV_INTEGER (lc_wave_down_pos(3));
+    wdp_3 <= CONV_INTEGER (lc_wave_down_pos(4));
+    wdp_4 <= CONV_INTEGER (lc_wave_down_pos(5));
+    wdp_5 <= CONV_INTEGER (lc_wave_down_pos(6));
+    wdp_6 <= CONV_INTEGER (lc_wave_down_pos(7));
+    wdp_7 <= CONV_INTEGER (lc_wave_down_pos(8));
+    wdp_8 <= CONV_INTEGER (lc_wave_down_pos(9));
+
+    wdn_1 <= CONV_INTEGER (lc_wave_down_neg(2));
+    wdn_2 <= CONV_INTEGER (lc_wave_down_neg(3));
+    wdn_3 <= CONV_INTEGER (lc_wave_down_neg(4));
+    wdn_4 <= CONV_INTEGER (lc_wave_down_neg(5));
+    wdn_5 <= CONV_INTEGER (lc_wave_down_neg(6));
+    wdn_6 <= CONV_INTEGER (lc_wave_down_neg(7));
+    wdn_7 <= CONV_INTEGER (lc_wave_down_neg(8));
+    wdn_8 <= CONV_INTEGER (lc_wave_down_neg(9));
+
+-- disable comparators (transparent)
+    COINC_DOWN_ALATCH <= '0';
+    COINC_DOWN_BLATCH <= '0';
+    COINC_UP_ALATCH   <= '0';
+    COINC_UP_BLATCH   <= '0';
+
+    temp_length(2) <= '0';
+--!!CAL_CHANGE!!--push_length <= temp_length + 1;
+    push_length    <= "1000";
+
+    TC(0) <= got_p_up;
+    TC(1) <= got_n_up;
+    TC(2) <= got_p_down;
+    TC(3) <= got_n_down;
+    TC(4) <= lc_wave_up_pos(7);
+    TC(5) <= lc_wave_up_neg(7);
+    TC(6) <= lc_wave_down_pos(7);
+    TC(7) <= lc_wave_down_neg(7);
+
+    cal_local_coincidence_up : PROCESS (CLK40, RST)
+    BEGIN
+        IF RST = '1' THEN
+            COINCIDENCE_OUT_UP <= 'Z';
+            once_up            <= (OTHERS => '0');
+            push_cnt_up        <= (OTHERS => '0');
+            watch_cnt_up       <= (OTHERS => '0');
+            wait_cnt_up        <= (OTHERS => '0');      --~~~~
+            lock_out_up        <= "0100000000000000";   --~~~~
+            S_lc_up            <= idle;
+        ELSIF CLK40'EVENT AND CLK40 = '1' THEN
+            CASE S_lc_up IS
+                WHEN idle =>
+                    push_cnt_up  <= (OTHERS => '0');
+                    watch_cnt_up <= (OTHERS => '0');
+                    once_up      <= (OTHERS => '0');
+                    wait_cnt_up  <= (OTHERS => '0');    --~~~~
+                    IF lock_out_up < 512 THEN           --~~~~
+                        lock_out_up <= lock_out_up + '1';       --~~~~
+                    END IF;
+                    IF do_cal_up = '1' THEN  --!!CAL_CHANGE!!--
+                        --if LC_ctrl.LC_tx_enable(0) = '1' then
+                        lock_out_up        <= (OTHERS => '0');  --~~~~
+                        COINCIDENCE_OUT_UP <= '1';      --Beginning of start
+                        --end if;
+                        push_cnt_up        <= push_cnt_up + '1';
+                        S_lc_up            <= hit_coin;
+                    ELSIF got_p_up = '1' AND lock_out_up > 256 THEN  --~~~~ --!!CAL_CHANGE!!--
+                        push_cnt_up        <= push_cnt_up + '1';
+                        S_lc_up            <= wait_10;  --~~~~ was "S_lc_up <= drop_1;"
+                        COINCIDENCE_OUT_UP <= 'Z';
+                    ELSE
+                        COINCIDENCE_OUT_UP <= 'Z';
+                        S_lc_up            <= idle;
+                    END IF;
+                    
+                WHEN drop_1 =>          --goes here when local coin comes in 
+                    IF do_cal_up = '1' THEN  --!!CAL_CHANGE OK to delete!!--
+                        --if LC_ctrl.LC_tx_enable(0) = '1' then                 --!!CAL_CHANGE OK to delete!!--
+                        COINCIDENCE_OUT_UP <= '1';  --!!CAL_CHANGE OK to delete!!--
+                        --end if;                                       --!!CAL_CHANGE OK to delete!!--
+                        push_cnt_up        <= push_cnt_up + '1';  --!!CAL_CHANGE OK to delete!!--
+                        S_lc_up            <= hit_coin;  --!!CAL_CHANGE OK to delete!!--
+                    ELSIF got_n_up = '1' OR got_extinguish_up = '1' THEN  --!!CAL_CHANGE!!--
+                        S_lc_up <= idle;
+                    ELSE
+                        --if LC_ctrl.LC_tx_enable(0) = '1' then
+                        COINCIDENCE_OUT_UP <= '1';
+                        --end if;   
+                        watch_cnt_up       <= watch_cnt_up + '1';
+                        S_lc_up            <= out_end;
+                    END IF;
+                    
+                WHEN out_end =>
+                    once_up <= once_up + '1';
+                    IF once_up < 1 THEN  --was "if LC_ctrl.LC_tx_enable(0) = '1' and once_up = '0' then"
+                        COINCIDENCE_OUT_UP <= '1';  -- End of start
+                    ELSIF once_up < 3 THEN
+                        COINCIDENCE_OUT_UP <= '0';  -- End of start
+                    ELSE
+                        COINCIDENCE_OUT_UP <= 'Z';
+                    END IF;
+                    watch_cnt_up <= watch_cnt_up + '1';
+                    push_cnt_up  <= push_cnt_up + '1';
+                    IF do_cal_up = '1' THEN
+                        S_lc_up <= hit_coin;
+                    ELSIF got_n_up = '1'THEN  --!!CAL_CHANGE!!--
+                        --if LC_ctrl.LC_tx_enable(0) = '1' then
+                        COINCIDENCE_OUT_UP <= '0';  -- Normal begining of stop for coin pass
+                        S_lc_up            <= finish;
+                        --end if;
+                    ELSIF watch_cnt_up > 5 THEN
+                        --if LC_ctrl.LC_tx_enable(0) = '1' then
+                        COINCIDENCE_OUT_UP <= '0';  -- Forced stop is signal gets lost
+                        S_lc_up            <= finish;
+                        --end if;
+                        --S_lc_up <= finish;
+                    ELSE
+                        S_lc_up <= out_end;
+                    END IF;  --##                                    
+                    
+                WHEN hit_coin =>        -- goes here when PMT got hit
+                    once_up <= once_up + '1';
+                    IF once_up < 1 THEN  --was "if LC_ctrl.LC_tx_enable(0) = '1' and once_up = '0' then"
+                        COINCIDENCE_OUT_UP <= '1';  -- End of start
+                    ELSIF once_up < 3 THEN
+                        COINCIDENCE_OUT_UP <= '0';  -- End of start
+                    ELSIF push_cnt_up <= push_length THEN
+                        COINCIDENCE_OUT_UP <= 'Z';
+                    ELSE
+                        COINCIDENCE_OUT_UP <= '0';  -- Normal begining of stop for hit pass
+                        once_up            <= (OTHERS => '0');
+                        S_lc_up            <= finish;
+                    END IF;
+                    --MISTAKE!!!!!!!!!! check lc_coincidene
+                    --! else                      !add to fix
+                    --!         S_lc_up <= finish !add to fix
+                    --end if;
+                    push_cnt_up <= push_cnt_up + '1';
+                WHEN finish =>
+                    once_up <= once_up + '1';
+                    IF once_up < 1 THEN  --was "if LC_ctrl.LC_tx_enable(0) = '1' and once_up = '0' then"
+                        COINCIDENCE_OUT_UP <= '0';  -- End of start
+                    ELSIF once_up < 3 THEN
+                        COINCIDENCE_OUT_UP <= '1';  --End of Stop
+                    ELSE
+                        COINCIDENCE_OUT_UP <= 'Z';
+                        S_lc_up            <= idle;
+                    END IF;
+                WHEN wait_10 =>         --~~~~
+                    wait_cnt_up <= wait_cnt_up + '1';  --~~~~
+                    IF wait_cnt_up = 40 THEN        --~~~~
+                        COINCIDENCE_OUT_UP <= '1';  --~~~~
+                    ELSIF wait_cnt_up = 42 OR wait_cnt_up = 43 OR wait_cnt_up = 44 OR wait_cnt_up = 45 THEN  --~~~~
+                        COINCIDENCE_OUT_UP <= '0';  --~~~~
+                    ELSIF wait_cnt_up = 46 THEN     --~~~~
+                        COINCIDENCE_OUT_UP <= '1';  --~~~~  
+                    ELSIF wait_cnt_up > 47 THEN     --~~~~  
+                        COINCIDENCE_OUT_UP <= 'Z';  --~~~~
+                        S_lc_up            <= idle;    --~~~~
+                    ELSE
+                        COINCIDENCE_OUT_UP <= 'Z';
+                    END IF;  --~~~~
+            END CASE;
+        END IF;
+    END PROCESS;
+
+    cal_local_coincidence_down : PROCESS (CLK40, RST)
+    BEGIN
+        IF RST = '1' THEN
+            COINCIDENCE_OUT_DOWN <= 'Z';
+            once_down            <= (OTHERS => '0');
+            push_cnt_down        <= (OTHERS => '0');
+            watch_cnt_down       <= (OTHERS => '0');
+            wait_cnt_down        <= (OTHERS => '0');     --~~~~
+            lock_out_down        <= "0100000000000000";  --~~~~
+            S_lc_down            <= idle;
+        ELSIF CLK40'EVENT AND CLK40 = '1' THEN
+            
+            CASE S_lc_down IS
+                WHEN idle =>
+                    push_cnt_down  <= (OTHERS => '0');
+                    watch_cnt_down <= (OTHERS => '0');
+                    once_down      <= (OTHERS => '0');
+                    wait_cnt_down  <= (OTHERS => '0');    --~~~~
+                    IF lock_out_down < 512 THEN           --~~~~
+                        lock_out_down <= lock_out_down + '1';     --~~~~
+                    END IF;
+                    IF do_cal_down = '1' THEN  --!!CAL_CHANGE!!--
+                        lock_out_down        <= (OTHERS => '0');  --~~~~
+                        --if LC_ctrl.LC_tx_enable(1) = '1' then
+                        COINCIDENCE_OUT_DOWN <= '1';      --Beginning of start
+                        --end if;
+                        push_cnt_down        <= push_cnt_down + '1';
+                        S_lc_down            <= hit_coin;
+                    ELSIF got_p_down = '1' AND lock_out_down > 256 THEN  --~~~~ --!!CAL_CHANGE!!-- 
+                        push_cnt_down        <= push_cnt_down + '1';
+                        S_lc_down            <= wait_10;  --~~~~ was "S_lc_down <= drop_1;"
+                        COINCIDENCE_OUT_DOWN <= 'Z';
+                    ELSE
+                        COINCIDENCE_OUT_DOWN <= 'Z';
+                        S_lc_down            <= idle;
+                    END IF;
+                    
+                WHEN drop_1 =>          --goes here when local coin comes in 
+                    IF do_cal_down = '1' THEN  --!!CAL_CHANGE OK to delete!!--
+                        --if LC_ctrl.LC_tx_enable(1) = '1' then         --!!CAL_CHANGE OK to delete!!--
+                        COINCIDENCE_OUT_DOWN <= '1';  --!!CAL_CHANGE OK to delete!!--
+                        --end if;                                       --!!CAL_CHANGE OK to delete!!--
+                        push_cnt_down        <= push_cnt_down + '1';  --!!CAL_CHANGE OK to delete!!--
+                        S_lc_down            <= hit_coin;  --!!CAL_CHANGE OK to delete!!--
+                    ELSIF got_n_down = '1' OR got_extinguish_down = '1' THEN  --!!CAL_CHANGE!!--
+                        S_lc_down <= idle;
+                    ELSE
+                        --if LC_ctrl.LC_tx_enable(1) = '1' then
+                        COINCIDENCE_OUT_DOWN <= '1';
+                        --end if;   
+                        watch_cnt_down       <= watch_cnt_down + '1';
+                        S_lc_down            <= out_end;
+                    END IF;
+                    
+                WHEN out_end =>
+                    once_down <= once_down + '1';
+                    IF once_down < 1 THEN  --was "if LC_ctrl.LC_tx_enable(0) = '1' and once_up = '0' then"
+                        COINCIDENCE_OUT_DOWN <= '1';  -- End of start
+                    ELSIF once_down < 3 THEN
+                        COINCIDENCE_OUT_DOWN <= '0';  -- End of start
+                    ELSE
+                        COINCIDENCE_OUT_DOWN <= 'Z';
+                    END IF;
+                    watch_cnt_down <= watch_cnt_down + '1';
+                    push_cnt_down  <= push_cnt_down + '1';
+                    IF do_cal_down = '1' THEN  --!!CAL_CHANGE!!--
+                        S_lc_down <= hit_coin;
+                    ELSIF got_n_down = '1'THEN  --!!CAL_CHANGE!!--
+                        --if LC_ctrl.LC_tx_enable(1) = '1' then
+                        COINCIDENCE_OUT_DOWN <= '0';  -- Normal begining of stop for coin pass
+                        S_lc_down            <= finish;
+                        --end if;
+                    ELSIF watch_cnt_down > 5 THEN
+                        --if LC_ctrl.LC_tx_enable(1) = '1' then
+                        COINCIDENCE_OUT_DOWN <= '0';  -- Forced stop is signal gets lost
+                        S_lc_down            <= finish;
+                        --end if;
+                        --S_lc_down <= finish;
+                    ELSE
+                        S_lc_down <= out_end;
+                    END IF;
+                    
+                WHEN hit_coin =>        -- goes here when PMT got hit
+                    once_down <= once_down + '1';
+                    IF once_down < 1 THEN  --was "if LC_ctrl.LC_tx_enable(0) = '1' and once_up = '0' then"
+                        COINCIDENCE_OUT_DOWN <= '1';  -- End of start
+                    ELSIF once_down < 3 THEN
+                        COINCIDENCE_OUT_DOWN <= '0';  -- End of start
+                    ELSIF push_cnt_down <= push_length THEN
+                        COINCIDENCE_OUT_DOWN <= 'Z';
+                    ELSE
+                        COINCIDENCE_OUT_DOWN <= '0';
+                        once_down            <= (OTHERS => '0');
+                        S_lc_down            <= finish;
+                        
+                    END IF;
+                    push_cnt_down <= push_cnt_down + '1';
+                WHEN finish =>
+                    
+                    once_down <= once_down + '1';
+                    IF once_down < 1 THEN  --was "if LC_ctrl.LC_tx_enable(0) = '1' and once_up = '0' then"
+                        COINCIDENCE_OUT_DOWN <= '0';       -- End of start
+                    ELSIF once_down < 3 THEN
+                        COINCIDENCE_OUT_DOWN <= '1';       --End of Stop
+                    ELSE
+                        COINCIDENCE_OUT_DOWN <= 'Z';
+                        S_lc_down            <= idle;
+                    END IF;
+                WHEN wait_10 =>         --~~~~
+                    wait_cnt_down <= wait_cnt_down + '1';  --~~~~
+                    IF wait_cnt_down = 40 THEN             --~~~~
+                        COINCIDENCE_OUT_DOWN <= '1';       --~~~~
+                    ELSIF wait_cnt_down = 42 OR wait_cnt_down = 43 OR wait_cnt_down = 44 OR wait_cnt_down = 45 THEN  --~~~~
+                        COINCIDENCE_OUT_DOWN <= '0';       --~~~~
+                    ELSIF wait_cnt_down = 46 THEN          --~~~~
+                        COINCIDENCE_OUT_DOWN <= '1';       --~~~~  
+                    ELSIF wait_cnt_down > 47 THEN          --~~~~
+                        COINCIDENCE_OUT_DOWN <= 'Z';       --~~~~
+                        S_lc_down            <= idle;      --~~~~ 
+                    ELSE
+                        COINCIDENCE_OUT_DOWN <= 'Z';
+                    END IF;  --~~~~
+            END CASE;
+        END IF;
+    END PROCESS;
+
+    lc_wave_down : PROCESS (CLK80, RST)  --use clock 80MHz
+    BEGIN
+        IF RST = '1' THEN
+            lc_wave_down_pos <= (OTHERS => '0');
+            lc_wave_down_neg <= (OTHERS => '0');
+        ELSIF CLK80'EVENT AND CLK80 = '1' THEN
+            
+            
+            IF ((wdp_8 + wdp_7 + wdp_6 + wdp_5) > 2) AND ((wdn_4 + wdn_3 + wdn_2 + wdn_1) > 2) THEN
+                p_down <= '1';
+            ELSE
+                p_down <= '0';
+            END IF;
+
+            IF ((wdn_8 + wdn_7 + wdn_6 + wdn_5) > 2) AND ((wdp_4 + wdp_3 + wdp_2 + wdp_1) > 2) THEN
+                n_down <= '1';
+            ELSE
+                n_down <= '0';
+            END IF;
+
+
+            --!!CAL_CHANGE!!--if LC_ctrl.LC_rx_enable(1)='1' then 
+            lc_wave_down_pos(0)           <= COINC_DOWN_A;
+            lc_wave_down_pos(15 DOWNTO 1) <= lc_wave_down_pos(14 DOWNTO 0);
+            lc_wave_down_neg(0)           <= COINC_DOWN_B;
+            lc_wave_down_neg(15 DOWNTO 1) <= lc_wave_down_neg(14 DOWNTO 0);
+            --!!CAL_CHANGE!!--end if;
+            --used to stretch got_p_down and got_n_down signals so they are one 40MHz cycle wide
+            --p_down <= (lc_wave_down_pos(5) and lc_wave_down_pos(4)) and lc_wave_down_neg(3) and lc_wave_down_neg(2);
+            --n_down <= (lc_wave_down_pos(2) and lc_wave_down_pos(3)) and lc_wave_down_neg(4) and lc_wave_down_neg(5);
+            extinguish_down               <= lc_wave_down_neg(5) AND lc_wave_down_neg(4) AND lc_wave_down_neg(3) AND lc_wave_down_neg(2);
+        END IF;
+    END PROCESS;
+
+    lc_wave_up : PROCESS (CLK80, RST)   --use clock 80MHz
+    BEGIN
+        IF RST = '1' THEN
+            lc_wave_up_pos <= (OTHERS => '0');
+            lc_wave_up_neg <= (OTHERS => '0');
+        ELSIF CLK80'EVENT AND CLK80 = '1' THEN
+            
+            IF ((wup_8 + wup_7 + wup_6 + wup_5) > 2) AND ((wun_4 + wun_3 + wun_2 + wun_1) > 2) THEN
+                p_up <= '1';
+            ELSE
+                p_up <= '0';
+            END IF;
+
+            IF ((wun_8 + wun_7 + wun_6 + wun_5) > 2) AND ((wup_4 + wup_3 + wup_2 + wup_1) > 2) THEN
+                n_up <= '1';
+            ELSE
+                n_up <= '0';
+            END IF;
+
+
+            --!!CAL_CHANGE!!--if LC_ctrl.LC_rx_enable(0)='1' then  
+            lc_wave_up_pos(0)           <= COINC_UP_A;
+            lc_wave_up_pos(15 DOWNTO 1) <= lc_wave_up_pos(14 DOWNTO 0);
+            lc_wave_up_neg(0)           <= COINC_UP_B;
+            lc_wave_up_neg(15 DOWNTO 1) <= lc_wave_up_neg(14 DOWNTO 0);
+            --!!CAL_CHANGE!!--end if;
+            --used to stretch got_p_up and got_n_up signals so they are one 40MHz cycle wide
+            --p_up <= (lc_wave_up_pos(5) and lc_wave_up_pos(4)) and lc_wave_up_neg(3) and lc_wave_up_neg(2);
+            --n_up <= (lc_wave_up_pos(2) and lc_wave_up_pos(3)) and lc_wave_up_neg(4) and lc_wave_up_neg(5);
+            extinguish_up               <= lc_wave_up_neg(5) AND lc_wave_up_neg(4) AND lc_wave_up_neg(3) AND lc_wave_up_neg(2);
+        END IF;
+        
+    END PROCESS;
+
+
+
+    cal_timer_up : PROCESS (CLK40, RST)
+    BEGIN
+        IF RST = '1' THEN
+            cal_cnt_up    <= (OTHERS => '0');
+            cal_cnt_en_up <= '0';
+        ELSIF CLK40'EVENT AND CLK40 = '1' THEN
+            IF do_cal_up = '1' THEN
+                cal_cnt_en_up <= '1';
+                cal_cnt_up    <= (OTHERS => '0');
+            ELSIF got_n_up = '1' THEN
+                cal_cnt_en_up <= '0';
+            END IF;
+            IF cal_cnt_up < cal_max_time_up AND cal_cnt_en_up = '1' THEN
+                cal_cnt_up <= cal_cnt_up + '1';
+            ELSIF cal_cnt_up >= cal_max_time_up OR got_n_up = '1' THEN
+                cal_cnt_en_up <= '0';
+            END IF;
+        END IF;
+    END PROCESS cal_timer_up;
+
+    cal_timer_down : PROCESS (CLK40, RST)
+    BEGIN
+        IF RST = '1' THEN
+            cal_cnt_down    <= (OTHERS => '0');
+            cal_cnt_en_down <= '0';
+        ELSIF CLK40'EVENT AND CLK40 = '1' THEN
+            IF do_cal_down = '1' THEN
+                cal_cnt_en_down <= '1';
+                cal_cnt_down    <= (OTHERS => '0');
+            ELSIF got_n_down = '1' THEN
+                cal_cnt_en_down <= '0';
+            END IF;
+            IF cal_cnt_down < cal_max_time_down AND cal_cnt_en_down = '1' THEN
+                cal_cnt_down <= cal_cnt_down + '1';
+            ELSIF cal_cnt_down >= cal_max_time_down OR got_n_down = '1' THEN
+                cal_cnt_en_down <= '0';
+            END IF;
+        END IF;
+    END PROCESS cal_timer_down;
+
+    DO_CAL_edge : PROCESS (CLK40, RST)
+    BEGIN
+        IF RST = '1' THEN
+            DO_CAL_shift <= "00";
+        ELSIF CLK40'EVENT AND CLK40 = '1' THEN
+            DO_CAL_shift <= DO_CAL;
+        END IF;
+    END PROCESS DO_CAL_edge;
+
+    
+END ARCH_cal_local_coincidence;
+
+
