@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2003-10-23
+-- Last update: 2007-03-22
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -163,10 +163,19 @@ ENTITY domapp IS
 		PLD_FPGA_nOE	: IN STD_LOGIC;
 		PLD_FPGA_nWE	: IN STD_LOGIC;
 		PLD_FPGA_BUSY	: OUT STD_LOGIC;
+		-- inclinometer SPI
+		adis16209_RST  : OUT STD_LOGIC;  -- V1
+        adis16209_nCS  : OUT STD_LOGIC;  -- Y2
+        adis16209_SCLK : OUT STD_LOGIC;  -- F3
+        adis16209_DOUT : IN  STD_LOGIC;  -- AC2
+        adis16209_DIN  : OUT STD_LOGIC;  -- AA2
+        adis16209_PWR  : OUT STD_LOGIC;  -- E3
 		-- Test connector (JP13) No defined use for it yet!
-		FPGA_D			: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
-		FPGA_DA			: OUT STD_LOGIC;
-		FPGA_CE			: OUT STD_LOGIC;
+		FPGA_D0			: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
+		FPGA_D3			: OUT STD_LOGIC_VECTOR (4 DOWNTO 3);
+		--FPGA_D			: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+		--FPGA_DA			: OUT STD_LOGIC;
+		--FPGA_CE			: OUT STD_LOGIC;
 		FPGA_RW			: OUT STD_LOGIC;
 		-- Test connector (JP19)	THERE IS NO 11   11 is CLK1n
 		PGM				: OUT STD_LOGIC_VECTOR (15 downto 0)
@@ -301,10 +310,12 @@ ARCHITECTURE arch_domapp OF domapp IS
 			trigger_enable	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
 			ATWD_mode		: IN STD_LOGIC_VECTOR (2 DOWNTO 0);
 			LC_mode			: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
+			LC_heart_beat	: IN STD_LOGIC;
 			DAQ_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			LBM_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			COMPR_mode		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			COMPR_ctrl		: IN COMPR_STRUCT;
+			ICETOP_ctrl		: IN ICETOP_CTRL_STRUCT;
 			-- monitor signals
 			-- Lookback Memory Pointer
 			LBM_ptr			: OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
@@ -314,10 +325,13 @@ ARCHITECTURE arch_domapp OF domapp IS
 			-- interface to countrate meter
 			discSPEpulse	: OUT STD_LOGIC;
 			discMPEpulse	: OUT STD_LOGIC;
+                        dead_status     : OUT DEAD_STATUS_STRUCT;
+			got_ATWD_WF		: OUT STD_LOGIC;
 			-- interface to local coincidence
 			LC_trigger		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			LC_abort		: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
-	 		LC				: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
+	 		LC_A			: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
+			LC_B			: IN STD_LOGIC_VECTOR (1 DOWNTO 0);
 			LC_launch		: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
 			LC_disc			: OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
 			-- discriminator
@@ -421,6 +435,10 @@ ARCHITECTURE arch_domapp OF domapp IS
 			DOM_status		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 			COMPR_ctrl		: OUT COMPR_STRUCT;
 			debugging		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
+			ICETOP_ctrl		: OUT ICETOP_CTRL_STRUCT;
+			INCL_ctrl		: OUT INCLINOMETER_CTRL_STRUCT;
+			INCL_stat		: IN INCLINOMETER_STAT_STRUCT;
+			-- Flasher Board
 			CS_FL_aux_reset	: OUT STD_LOGIC;
 			CS_FL_attn		: IN STD_LOGIC;
 			-- pointers
@@ -482,6 +500,8 @@ ARCHITECTURE arch_domapp OF domapp IS
 			RM_stat		: OUT RM_STAT_STRUCT;
 			-- DAQ interface
 			RM_daq_disc	: IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
+                        dead_status : IN  DEAD_STATUS_STRUCT;
+			got_ATWD_WF	: IN  STD_LOGIC;
 			-- test
 			TC			: OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
 		);
@@ -535,6 +555,8 @@ ARCHITECTURE arch_domapp OF domapp IS
 			lc_daq_abort         : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
 			lc_daq_disc          : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
 			lc_daq_launch        : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
+			lc_dac_got_lc_A      : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
+			lc_dac_got_lc_B      : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
 			-- I/O
 			COINCIDENCE_OUT_DOWN : OUT STD_LOGIC;
 			COINC_DOWN_ALATCH    : OUT STD_LOGIC;
@@ -585,6 +607,26 @@ ARCHITECTURE arch_domapp OF domapp IS
 		);
 	END COMPONENT;
 
+	COMPONENT adis16209_spi
+	    PORT (
+	        CLK40          : IN  STD_LOGIC;
+	        RST            : IN  STD_LOGIC;
+	        -- internal
+	        INCL_ctrl      : IN  INCLINOMETER_CTRL_STRUCT;
+	        INCL_stat      : OUT INCLINOMETER_STAT_STRUCT;
+	        -- SPI
+	        adis16209_RST  : OUT STD_LOGIC;  -- V1
+	        adis16209_nCS  : OUT STD_LOGIC;  -- Y2
+	        adis16209_SCLK : OUT STD_LOGIC;  -- F3
+	        adis16209_DOUT : IN  STD_LOGIC;  -- AC2
+	        adis16209_DIN  : OUT STD_LOGIC;  -- AA2
+	        adis16209_PWR  : OUT STD_LOGIC;  -- E3
+	        -- adis16209_DIO1 : IN  STD_LOGIC;  -- Y1
+	        -- adis16209_DIO2 : IN  STD_LOGIC;  -- V2
+	        -- TC
+	        TC             : OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
+	        );
+	END COMPONENT;
 
 	-- gerneal siganls
 	SIGNAL low		: STD_LOGIC;
@@ -682,11 +724,15 @@ ARCHITECTURE arch_domapp OF domapp IS
 	SIGNAL ATWD_ped_data_B	: STD_LOGIC_VECTOR (9 DOWNTO 0);
 	SIGNAL ATWD_ped_addr_B	: STD_LOGIC_VECTOR (8 DOWNTO 0);
 	
+	SIGNAL INCL_ctrl	: INCLINOMETER_CTRL_STRUCT;
+	SIGNAL INCL_stat	: INCLINOMETER_STAT_STRUCT;
 	
 	-- Rate Meter
 	SIGNAL RM_ctrl		: RM_CTRL_STRUCT;
 	SIGNAL RM_stat		: RM_STAT_STRUCT;
 	SIGNAL RM_daq_disc	: STD_LOGIC_VECTOR (1 DOWNTO 0); -- 0=SPE; 1=MPE
+        SIGNAL dead_status      : DEAD_STATUS_STRUCT;
+	SIGNAL got_ATWD_WF	: STD_LOGIC;
 	
 	-- Calibration Sources
 	SIGNAL CS_ctrl		: CS_STRUCT;
@@ -702,6 +748,8 @@ ARCHITECTURE arch_domapp OF domapp IS
 	SIGNAL lc_daq_abort		: STD_LOGIC_VECTOR (1 DOWNTO 0);
 	SIGNAL lc_daq_disc		: STD_LOGIC_VECTOR (1 DOWNTO 0);
 	SIGNAL lc_daq_launch	: STD_LOGIC_VECTOR (1 DOWNTO 0);
+	SIGNAL lc_dac_got_lc_A	: STD_LOGIC_VECTOR (1 DOWNTO 0);
+	SIGNAL lc_dac_got_lc_B	: STD_LOGIC_VECTOR (1 DOWNTO 0);
 	
 	-- Compression
 	SIGNAL COMPR_ctrl	: COMPR_STRUCT;
@@ -713,6 +761,9 @@ ARCHITECTURE arch_domapp OF domapp IS
 	SIGNAL debugging		: STD_LOGIC_VECTOR (31 DOWNTO 0);
 	SIGNAL TCdaq			: STD_LOGIC_VECTOR (7 DOWNTO 0);
 	SIGNAL TCslave			: STD_LOGIC_VECTOR (15 DOWNTO 0);
+	
+	-- IceTop
+	SIGNAL ICETOP_ctrl		: ICETOP_CTRL_STRUCT;
 	
 BEGIN
 	-- general
@@ -863,10 +914,12 @@ BEGIN
 			ATWD_mode(1 DOWNTO 0)	=> DAQ_ctrl.ATWD_mode,
 			ATWD_mode(2)	=> '0', --DAQ_ctrl.ATWD_mode,
 			LC_mode			=> DAQ_ctrl.LC_mode,
+			LC_heart_beat	=> DAQ_ctrl.LC_heart_beat,
 			DAQ_mode		=> DAQ_ctrl.DAQ_mode,
 			LBM_mode		=> DAQ_ctrl.LBM_mode,
 			COMPR_mode		=> DAQ_ctrl.COMPR_mode,
 			COMPR_ctrl		=> COMPR_ctrl,
+			ICETOP_ctrl		=> ICETOP_ctrl,
 			-- monitor signals
 			-- Lookback Memory Pointer
 			LBM_ptr			=> LBM_ptr,
@@ -876,10 +929,13 @@ BEGIN
 			-- interface to countrate meter
 			discSPEpulse	=> RM_daq_disc(0),
 			discMPEpulse	=> RM_daq_disc(1),
+                        dead_status     => dead_status,
+			got_ATWD_WF		=> got_ATWD_WF,
 			-- interface to local coincidence
 			LC_trigger		=> lc_daq_trigger,
 			LC_abort		=> lc_daq_abort,
-	 		LC				=> "00",
+	 		LC_A			=> lc_dac_got_lc_A,
+			LC_B			=> lc_dac_got_lc_B,
 			LC_launch		=> lc_daq_launch,
 			LC_disc			=> lc_daq_disc,
 			-- discriminator
@@ -981,6 +1037,10 @@ BEGIN
 			DOM_status		=> DOM_status,
 			COMPR_ctrl		=> COMPR_ctrl,
 			debugging		=> debugging,
+			ICETOP_ctrl		=> ICETOP_ctrl,
+			INCL_ctrl		=> INCL_ctrl, --open,
+			INCL_stat		=> INCL_stat, --((OTHERS=>'0'), '0', (OTHERS=>'0')),
+			-- Flasher Board
 			CS_FL_aux_reset	=> CS_FL_aux_reset,
 			CS_FL_attn		=> CS_FL_attn,
 			-- pointers
@@ -1025,7 +1085,7 @@ BEGIN
 			dp0_portaaddr		=> dp0_portaaddr,
 			dp0_portadataout	=> dp0_portadataout,
 			-- TC
-			tc					=> open
+			tc					=> open --PGM(7 downto 0)
 		);
 
 	inst_rate_meters : rate_meters
@@ -1040,6 +1100,8 @@ BEGIN
 			RM_stat		=> RM_stat,
 			-- DAQ interface
 			RM_daq_disc	=> RM_daq_disc,
+                        dead_status     => dead_status,
+			got_ATWD_WF	=> got_ATWD_WF,
 			-- test
 			TC			=> open
 		);
@@ -1096,6 +1158,8 @@ BEGIN
 			lc_daq_abort         => lc_daq_abort,
 			lc_daq_disc          => lc_daq_disc,
 			lc_daq_launch        => lc_daq_launch,
+			lc_dac_got_lc_A      => lc_dac_got_lc_A,
+			lc_dac_got_lc_B      => lc_dac_got_lc_B,
 			-- I/O
 			COINCIDENCE_OUT_DOWN => COINCIDENCE_OUT_UP,
 			COINC_DOWN_ALATCH    => COINC_UP_ALATCH,
@@ -1127,7 +1191,7 @@ BEGIN
 --			COINC_UP_BBAR        => COINC_UP_BBAR,
 --			COINC_UP_B           => COINC_UP_B,
 			-- test
-			TC                   => OPEN
+			TC                   => OPEN --PGM(7 downto 0) --OPEN
 		);
 	
 	
@@ -1154,11 +1218,30 @@ BEGIN
 			xfer_eng   => DAQ_status.AHB_status.xfer_eng,
 			xfer_compr => DAQ_status.AHB_status.xfer_compr,
 			-- the xfer time
-			AHB_load   => debugging,
+			AHB_load   => OPEN, --debugging,
 			-- test comnnector
 			TC         => OPEN
 		);
-	
+
+	inst_adis16209_spi : adis16209_spi
+	    PORT MAP (
+	        CLK40          => CLK40,
+	        RST            => RST,
+	        -- internal
+	        INCL_ctrl      => INCL_ctrl,
+	        INCL_stat      => INCL_stat,
+	        -- SPI
+	        adis16209_RST  => adis16209_RST,   -- V1
+	        adis16209_nCS  => adis16209_nCS,   -- Y2
+	        adis16209_SCLK => adis16209_SCLK,  -- F3
+	        adis16209_DOUT => adis16209_DOUT,  -- AC2
+	        adis16209_DIN  => adis16209_DIN,   -- AA2
+	        adis16209_PWR  => adis16209_PWR,   -- E3
+	        -- adis16209_DIO1 : IN  STD_LOGIC;  -- Y1
+	        -- adis16209_DIO2 : IN  STD_LOGIC;  -- V2
+	        -- TC
+	        TC             => OPEN
+	        );	
 	
 	-- FPGA loaded output to be read by the CPU through the CPLD
 	FPGA_LOADED	<= '0';
@@ -1168,12 +1251,35 @@ BEGIN
 	PLD_FPGA		<= (OTHERS=>'Z');
 	PLD_FPGA_BUSY	<= 'Z';
 	-- Test connector (JP13) No defined use for it yet!
---	FPGA_D		<= (OTHERS=>'Z');
---	FPGA_DA		<= 'Z';
---	FPGA_CE		<= 'Z';
+	--FPGA_D		<= (OTHERS=>'Z');
+	FPGA_D0		<= (OTHERS=>'Z');
+	FPGA_D3		<= (OTHERS=>'Z');
+	--FPGA_DA		<= 'Z';
+	--FPGA_CE		<= 'Z';
 	FPGA_RW		<= 'Z';
 	-- Test connector (JP19)
+	PGM(15 downto 12)	<= "1100";
+	PGM(11 downto 10)	<= "ZZ";
+	PROCESS (CLK20)
+		variable tmp : std_logic := '1';
+	BEGIN
+		if CLK20'EVENT and CLK20='1' THEN
+			tmp := NOT tmp;
+	--		PGM(8) <= tmp;
+		end if;
+	END PROCESS;
+	PROCESS (CLK80)
+		variable tmp : std_logic := '1';
+	BEGIN
+		if CLK80'EVENT and CLK80='1' THEN
+			tmp := NOT tmp;
+--			PGM(9) <= tmp;
+		end if;
+	END PROCESS;
+	
+	PGM(9 downto 0)		<= (OTHERS=>'Z');
 --	PGM			<= (OTHERS=>'Z');
+--	PGM(15 downto 8)	<= (OTHERS=>'Z');
 --	PGM(15 downto 0)	<= TCslave(15 downto 0);
 --	PGM(7 downto 0)		<= TCslave(7 downto 0);
 --	PGM(9 downto 8)		<= TCdaq(1 downto 0);
@@ -1191,29 +1297,30 @@ BEGIN
 	--------------------------
 	-- AHB_master / missing 8 samples debugging
 	--------------------------
-	process (CLK80)
-	begin
-		if CLK80'EVENT and CLK80='1' then
-			PGM(0)				<= slavehwrite;
-			PGM(1)				<= slavehreadyi;
-			PGM(3 downto 2)		<= slavehtrans;
-			PGM(5 downto 4)		<= slavehsize;
-			PGM(8 downto 6)		<= slavehburst;
-			PGM(9)				<= slavebuserrint;
-			PGM(11 downto 10)	<= slavehresp;
-			PGM(12)				<= DAQ_status.AHB_status.AHB_ERROR;
-			PGM(14 downto 13)	<= TCslave(9 downto 8);
-			if slavehaddr(10 downto 5) = "000000" then
-				PGM(15) <= '0';
-			else
-				PGM(15) <= '1';
-			END IF;
-			FPGA_D(4 downto 0)	<= slavehaddr(4 downto 0);
-			FPGA_D(7 downto 5)	<= slavehwdata(2 downto 0);
-			FPGA_CE				<= slavehwdata(3);
-			FPGA_DA				<= slavehwdata(5);
-		end if;
-	end process;
+--	process (CLK80)
+--	begin
+--		if CLK80'EVENT and CLK80='1' then
+--			PGM(0)				<= slavehwrite;
+--			PGM(1)				<= slavehreadyi;
+--			PGM(3 downto 2)		<= slavehtrans;
+--			PGM(5 downto 4)		<= slavehsize;
+--			PGM(8 downto 6)		<= slavehburst;
+--			PGM(9)				<= slavebuserrint;
+--			PGM(11 downto 10)	<= slavehresp;
+--			PGM(12)				<= DAQ_status.AHB_status.AHB_ERROR;
+--			PGM(14 downto 13)	<= TCslave(9 downto 8);
+--			if slavehaddr(10 downto 5) = "000000" then
+--				PGM(15) <= '0';
+--			else
+--				PGM(15) <= '1';
+--			END IF;
+		-- messes up LC !!!!!!!!!!!!!!!!!!
+			--FPGA_D(4 downto 0)	<= slavehaddr(4 downto 0);
+			--FPGA_D(7 downto 5)	<= slavehwdata(2 downto 0);
+			--FPGA_CE				<= slavehwdata(3);
+			--FPGA_DA				<= slavehwdata(5);
+--		end if;
+--	end process;
 
 
 	--------------------------
@@ -1242,16 +1349,16 @@ BEGIN
 	--------------------------
 	-- LC debugging
 	--------------------------
---	process (CLK20, RST)
---	begin
---		if RST='1' THEN
---			debugging <= (others=>'0');
---		elsif CLK20'EVENT and CLK20='1' THEN
---			if lc_daq_trigger(0)='1' OR lc_daq_trigger(1)='1' THEN
---				debugging <= debugging + 1;
---			end if;
---		end if;
---	end process;
+	process (CLK20, RST)
+	begin
+		if RST='1' THEN
+			debugging <= (others=>'0');
+		elsif CLK40'EVENT and CLK40='1' THEN
+			if lc_daq_trigger(0)='1' OR lc_daq_trigger(1)='1' THEN
+				debugging <= debugging + 1;
+			end if;
+		end if;
+	end process;
 
 
 	------------------------------

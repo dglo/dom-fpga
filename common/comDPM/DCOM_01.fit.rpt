@@ -1,6 +1,6 @@
 Fitter report for DCOM_01
-Wed Dec 15 16:19:48 2004
-Version 4.1 Build 181 06/29/2004 SJ Full Version
+Tue Mar 21 12:27:20 2006
+Version 5.0 Build 171 11/03/2005 Service Pack 2 SJ Full Version
 
 
 ---------------------
@@ -17,41 +17,36 @@ Version 4.1 Build 181 06/29/2004 SJ Full Version
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 1991-2004 Altera Corporation
-Any  megafunction  design,  and related netlist (encrypted  or  decrypted),
-support information,  device programming or simulation file,  and any other
-associated  documentation or information  provided by  Altera  or a partner
-under  Altera's   Megafunction   Partnership   Program  may  be  used  only
-to program  PLD  devices (but not masked  PLD  devices) from  Altera.   Any
-other  use  of such  megafunction  design,  netlist,  support  information,
-device programming or simulation file,  or any other  related documentation
-or information  is prohibited  for  any  other purpose,  including, but not
-limited to  modification,  reverse engineering,  de-compiling, or use  with
-any other  silicon devices,  unless such use is  explicitly  licensed under
-a separate agreement with  Altera  or a megafunction partner.  Title to the
-intellectual property,  including patents,  copyrights,  trademarks,  trade
-secrets,  or maskworks,  embodied in any such megafunction design, netlist,
-support  information,  device programming or simulation file,  or any other
-related documentation or information provided by  Altera  or a megafunction
-partner, remains with Altera, the megafunction partner, or their respective
-licensors. No other licenses, including any licenses needed under any third
-party's intellectual property, are provided herein.
+Copyright (C) 1991-2005 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic       
+functions, and any output files any of the foregoing           
+(including device programming or simulation files), and any    
+associated documentation or information are expressly subject  
+to the terms and conditions of the Altera Program License      
+Subscription Agreement, Altera MegaCore Function License       
+Agreement, or other applicable license agreement, including,   
+without limitation, that your use is for the sole purpose of   
+programming logic devices manufactured by Altera and sold by   
+Altera or its authorized distributors.  Please refer to the    
+applicable agreement for further details.
 
 
 
-+------------------------------------------------------------------+
-; Fitter Summary                                                   ;
-+-----------------------+------------------------------------------+
-; Fitter Status         ; Failed - Wed Dec 15 16:19:48 2004        ;
-; Quartus II Version    ; 4.1 Build 181 06/29/2004 SJ Full Version ;
-; Revision Name         ; DCOM_01                                  ;
-; Top-level Entity Name ; dcom_ap                                  ;
-; Family                ; Cyclone                                  ;
-; Total logic elements  ; 1,568                                    ;
-; Total pins            ; 405                                      ;
-; Total memory bits     ; 640                                      ;
-; Total PLLs            ; 0                                        ;
-+-----------------------+------------------------------------------+
++-----------------------------------------------------------------------+
+; Fitter Summary                                                        ;
++-----------------------+-----------------------------------------------+
+; Fitter Status         ; Failed - Tue Mar 21 12:27:20 2006             ;
+; Quartus II Version    ; 5.0 Build 171 11/03/2005 SP 2 SJ Full Version ;
+; Revision Name         ; DCOM_01                                       ;
+; Top-level Entity Name ; dcom_ap                                       ;
+; Family                ; Cyclone                                       ;
+; Total logic elements  ; 1,467                                         ;
+; Total pins            ; 405                                           ;
+; Total virtual pins    ; 0                                             ;
+; Total memory bits     ; 640                                           ;
+; Total PLLs            ; 0                                             ;
++-----------------------+-----------------------------------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------+
@@ -60,7 +55,12 @@ party's intellectual property, are provided herein.
 ; Option                                             ; Setting                        ; Default Value                  ;
 +----------------------------------------------------+--------------------------------+--------------------------------+
 ; Device                                             ; AUTO                           ;                                ;
+; Fitter Effort                                      ; Standard Fit                   ; Auto Fit                       ;
+; Use smart compilation                              ; Off                            ; Off                            ;
+; Placement Effort Multiplier                        ; 1.0                            ; 1.0                            ;
+; Router Effort Multiplier                           ; 1.0                            ; 1.0                            ;
 ; Optimize Hold Timing                               ; IO Paths and Minimum TPD Paths ; IO Paths and Minimum TPD Paths ;
+; Optimize Fast-Corner Timing                        ; Off                            ; Off                            ;
 ; Optimize Timing                                    ; Normal compilation             ; Normal compilation             ;
 ; Optimize IOC Register Placement for Timing         ; On                             ; On                             ;
 ; Limit to One Fitting Attempt                       ; Off                            ; Off                            ;
@@ -78,7 +78,7 @@ party's intellectual property, are provided herein.
 ; Perform Register Duplication                       ; Off                            ; Off                            ;
 ; Perform Register Retiming                          ; Off                            ; Off                            ;
 ; Physical Synthesis Effort Level                    ; Normal                         ; Normal                         ;
-; Logic Cell Insertion -- Logic Duplication          ; Auto                           ; Auto                           ;
+; Logic Cell Insertion - Logic Duplication           ; Auto                           ; Auto                           ;
 ; Auto Register Duplication                          ; Off                            ; Off                            ;
 ; Auto Global Clock                                  ; On                             ; On                             ;
 ; Auto Global Register Control Signals               ; On                             ; On                             ;
@@ -90,13 +90,12 @@ party's intellectual property, are provided herein.
 +----------------------------------------------+----------------+
 ; Option                                       ; Setting        ;
 +----------------------------------------------+----------------+
-; Auto-restart configuration after error       ; Off            ;
-; Release clears before tri-states             ; Off            ;
 ; Enable user-supplied start-up clock (CLKUSR) ; Off            ;
 ; Enable device-wide reset (DEV_CLRn)          ; Off            ;
 ; Enable device-wide output enable (DEV_OE)    ; Off            ;
 ; Enable INIT_DONE output                      ; Off            ;
 ; Configuration scheme                         ; Passive Serial ;
+; Error detection CRC                          ; Off            ;
 ; Base pin-out file on sameframe device        ; Off            ;
 +----------------------------------------------+----------------+
 
@@ -106,13 +105,13 @@ party's intellectual property, are provided herein.
 +-----------------+
 Info: *******************************************************************
 Info: Running Quartus II Fitter
-    Info: Version 4.1 Build 181 06/29/2004 SJ Full Version
-    Info: Processing started: Wed Dec 15 16:19:48 2004
-Info: Command: quartus_fit --import_settings_files=off --export_settings_files=off DCOM_01 -c DCOM_01
+    Info: Version 5.0 Build 171 11/03/2005 Service Pack 2 SJ Full Version
+    Info: Processing started: Tue Mar 21 12:27:20 2006
+Info: Command: quartus_fit --read_settings_files=off --write_settings_files=off DCOM_01 -c DCOM_01
 Error: Design requires 405 I/O resources -- too many to fit in 314 available in the selected device or any device in the device family
 Error: Can't find device that meets Compiler settings specifications
 Error: Quartus II Fitter was unsuccessful. 2 errors, 0 warnings
-    Error: Processing ended: Wed Dec 15 16:19:48 2004
-    Error: Elapsed time: 00:00:00
+    Error: Processing ended: Tue Mar 21 12:27:20 2006
+    Error: Elapsed time: 00:00:01
 
 

@@ -1,6 +1,6 @@
 Flow report for DCOM_01
-Mon Sep 12 14:49:24 2005
-Version 4.2 Build 157 12/07/2004 SJ Full Version
+Tue Mar 21 12:27:20 2006
+Version 5.0 Build 171 11/03/2005 Service Pack 2 SJ Full Version
 
 
 ---------------------
@@ -17,45 +17,37 @@ Version 4.2 Build 157 12/07/2004 SJ Full Version
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 1991-2004 Altera Corporation
-Any  megafunction  design,  and related netlist (encrypted  or  decrypted),
-support information,  device programming or simulation file,  and any other
-associated  documentation or information  provided by  Altera  or a partner
-under  Altera's   Megafunction   Partnership   Program  may  be  used  only
-to program  PLD  devices (but not masked  PLD  devices) from  Altera.   Any
-other  use  of such  megafunction  design,  netlist,  support  information,
-device programming or simulation file,  or any other  related documentation
-or information  is prohibited  for  any  other purpose,  including, but not
-limited to  modification,  reverse engineering,  de-compiling, or use  with
-any other  silicon devices,  unless such use is  explicitly  licensed under
-a separate agreement with  Altera  or a megafunction partner.  Title to the
-intellectual property,  including patents,  copyrights,  trademarks,  trade
-secrets,  or maskworks,  embodied in any such megafunction design, netlist,
-support  information,  device programming or simulation file,  or any other
-related documentation or information provided by  Altera  or a megafunction
-partner, remains with Altera, the megafunction partner, or their respective
-licensors. No other licenses, including any licenses needed under any third
-party's intellectual property, are provided herein.
+Copyright (C) 1991-2005 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic       
+functions, and any output files any of the foregoing           
+(including device programming or simulation files), and any    
+associated documentation or information are expressly subject  
+to the terms and conditions of the Altera Program License      
+Subscription Agreement, Altera MegaCore Function License       
+Agreement, or other applicable license agreement, including,   
+without limitation, that your use is for the sole purpose of   
+programming logic devices manufactured by Altera and sold by   
+Altera or its authorized distributors.  Please refer to the    
+applicable agreement for further details.
 
 
 
-+--------------------------------------------------------------------+
-; Flow Summary                                                       ;
-+-------------------------+------------------------------------------+
-; Flow Status             ; Successful - Mon Sep 12 14:49:24 2005    ;
-; Quartus II Version      ; 4.2 Build 157 12/07/2004 SJ Full Version ;
-; Revision Name           ; DCOM_01                                  ;
-; Top-level Entity Name   ; dcom_ap                                  ;
-; Family                  ; EXCALIBUR_ARM                            ;
-; Met timing requirements ; Yes                                      ;
-; Total logic elements    ; 1,538 / 16,640 ( 9 % )                   ;
-; Total pins              ; 405 / 463 ( 87 % )                       ;
-; Total virtual pins      ; 0                                        ;
-; Total memory bits       ; 640 / 212,992 ( < 1 % )                  ;
-; Total PLLs              ; 0 / 4 ( 0 % )                            ;
-; Device                  ; EPXA4F672C1                              ;
-; Timing Models           ; Final                                    ;
-+-------------------------+------------------------------------------+
++-------------------------------------------------------------------------+
+; Flow Summary                                                            ;
++-------------------------+-----------------------------------------------+
+; Flow Status             ; Flow Failed - Tue Mar 21 12:27:20 2006        ;
+; Quartus II Version      ; 5.0 Build 171 11/03/2005 SP 2 SJ Full Version ;
+; Revision Name           ; DCOM_01                                       ;
+; Top-level Entity Name   ; dcom_ap                                       ;
+; Family                  ; Cyclone                                       ;
+; Met timing requirements ; N/A                                           ;
+; Total logic elements    ; 1,467                                         ;
+; Total pins              ; 405                                           ;
+; Total virtual pins      ; 0                                             ;
+; Total memory bits       ; 640                                           ;
+; Total PLLs              ; 0                                             ;
++-------------------------+-----------------------------------------------+
 
 
 +-----------------------------------------+
@@ -63,7 +55,7 @@ party's intellectual property, are provided herein.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 09/12/2005 14:46:36 ;
+; Start date & time ; 03/21/2006 12:26:37 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; DCOM_01             ;
 +-------------------+---------------------+
@@ -74,21 +66,17 @@ party's intellectual property, are provided herein.
 +----------------------+--------------+
 ; Module Name          ; Elapsed Time ;
 +----------------------+--------------+
-; Analysis & Synthesis ; 00:00:33     ;
-; Fitter               ; 00:02:00     ;
-; Assembler            ; 00:00:04     ;
-; Timing Analyzer      ; 00:00:06     ;
-; Total                ; 00:02:43     ;
+; Analysis & Synthesis ; 00:00:41     ;
+; Fitter               ; 00:00:01     ;
+; Total                ; 00:00:42     ;
 +----------------------+--------------+
 
 
 ------------
 ; Flow Log ;
 ------------
-quartus_map --import_settings_files=on --export_settings_files=off DCOM_01 -c DCOM_01
-quartus_fit --import_settings_files=off --export_settings_files=off DCOM_01 -c DCOM_01
-quartus_asm --import_settings_files=off --export_settings_files=off DCOM_01 -c DCOM_01
-quartus_tan --import_settings_files=off --export_settings_files=off DCOM_01 -c DCOM_01
+quartus_map --read_settings_files=on --write_settings_files=off DCOM_01 -c DCOM_01
+quartus_fit --read_settings_files=off --write_settings_files=off DCOM_01 -c DCOM_01
 
 
 

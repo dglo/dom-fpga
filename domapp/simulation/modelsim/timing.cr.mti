@@ -86,6 +86,15 @@ Model Technology ModelSim SE vcom 5.8b Compiler 2004.01 Jan 26 2004
 -- Compiling entity atwd_model
 -- Compiling architecture atwd_model_arch of atwd_model
 
+} {} {}} C:/FPGAtools/quartus/eda/sim_lib/apex20ke_components.vhd {1 {vcom -work work -2002 -explicit C:/FPGAtools/quartus/eda/sim_lib/apex20ke_components.vhd
+Model Technology ModelSim SE vcom 5.8b Compiler 2004.01 Jan 26 2004
+-- Loading package standard
+-- Loading package std_logic_1164
+-- Loading package vital_timing
+-- Loading package vital_primitives
+-- Loading package atom_pack
+-- Compiling package apex20ke_components
+
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/simulation/modelsim/dom.vho {1 {vcom -work work -2002 -explicit C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/simulation/modelsim/dom.vho
 Model Technology ModelSim SE vcom 5.8b Compiler 2004.01 Jan 26 2004
 -- Loading package standard
@@ -107,24 +116,6 @@ Model Technology ModelSim SE vcom 5.8b Compiler 2004.01 Jan 26 2004
 -- Loading entity apex20ke_lcell
 -- Loading entity apex20ke_ram_slice
 
-} {} {}} C:/FPGAtools/quartus/eda/sim_lib/apex20ke_components.vhd {1 {vcom -work work -2002 -explicit C:/FPGAtools/quartus/eda/sim_lib/apex20ke_components.vhd
-Model Technology ModelSim SE vcom 5.8b Compiler 2004.01 Jan 26 2004
--- Loading package standard
--- Loading package std_logic_1164
--- Loading package vital_timing
--- Loading package vital_primitives
--- Loading package atom_pack
--- Compiling package apex20ke_components
-
-} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/sim_models/FADC_model.vhd {1 {vcom -work work -2002 -explicit C:/work_lbnl/IceCubeCVS/dom-fpga/sim_models/FADC_model.vhd
-Model Technology ModelSim SE vcom 5.8b Compiler 2004.01 Jan 26 2004
--- Loading package standard
--- Loading package std_logic_1164
--- Loading package std_logic_arith
--- Loading package std_logic_unsigned
--- Compiling entity fadc_model
--- Compiling architecture fadc_arch of fadc_model
-
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/simulation/modelsim/testbench.vht {1 {vcom -work work -2002 -explicit C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/simulation/modelsim/testbench.vht
 Model Technology ModelSim SE vcom 5.8b Compiler 2004.01 Jan 26 2004
 -- Loading package standard
@@ -140,5 +131,14 @@ Model Technology ModelSim SE vcom 5.8b Compiler 2004.01 Jan 26 2004
 -- Loading package std_logic_unsigned
 -- Loading entity atwd_model
 -- Loading entity fadc_model
+
+} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/sim_models/FADC_model.vhd {1 {vcom -work work -2002 -explicit C:/work_lbnl/IceCubeCVS/dom-fpga/sim_models/FADC_model.vhd
+Model Technology ModelSim SE vcom 5.8b Compiler 2004.01 Jan 26 2004
+-- Loading package standard
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package std_logic_unsigned
+-- Compiling entity fadc_model
+-- Compiling architecture fadc_arch of fadc_model
 
 } {} {}}

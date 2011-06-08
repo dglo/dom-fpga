@@ -17,6 +17,7 @@
 -- Revisions  :
 -- Date        Version     Author    Description
 -- 2003-08-28  V01-01-00   thorsten  
+-- 2006-02-28              thorsten  changed from unsigned to signed pedestal
 -------------------------------------------------------------------------------
 
 LIBRARY IEEE;
@@ -50,7 +51,10 @@ BEGIN
 
 	-- subtract pedestal
 	-- ATWD_data	<= ATWD_bin_data - ATWD_ped_data;
-	ATWD_data	<= ATWD_bin_data - ATWD_ped_data WHEN ATWD_bin_data > ATWD_ped_data ELSE (OTHERS=>'0');
+	-- ATWD_data	<= ATWD_bin_data - ATWD_ped_data WHEN ATWD_bin_data > ATWD_ped_data ELSE (OTHERS=>'0');
+	ATWD_data <= (OTHERS=>'0') WHEN ('0'&ATWD_bin_data) < (ATWD_ped_data(9)&ATWD_ped_data) AND ATWD_ped_data(9)='0' ELSE
+				(OTHERS=>'1') WHEN (('0'&ATWD_bin_data) - (ATWD_ped_data(9)&ATWD_ped_data)) >= 1024 AND ATWD_ped_data(9)='1' ELSE
+				ATWD_bin_data - ATWD_ped_data;
 	-- route address out
 	ATWD_ped_addr	<= ATWD_bin_addr;
 	ATWD_addr		<= ATWD_bin_addr;

@@ -1,3 +1,25 @@
+-------------------------------------------------------------------------------
+-- Title      : DOMAPP
+-- Project    : IceCube DOM main board
+-------------------------------------------------------------------------------
+-- File       : LC_RX_edge.vhd
+-- Author     : thorsten
+-- Company    : LBNL
+-- Created    : 
+-- Last update: 2005-10-23
+-- Platform   : Altera Excalibur
+-- Standard   : VHDL'93
+-------------------------------------------------------------------------------
+-- Description: This module receives the LC signals from the hardware
+--              comparators and finds the signal edges
+-------------------------------------------------------------------------------
+-- Copyright (c) 2005
+-------------------------------------------------------------------------------
+-- Revisions  :
+-- Date        Version     Author    Description
+--             V01-01-00   thorsten 
+-------------------------------------------------------------------------------
+
 
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.ALL;
@@ -7,6 +29,8 @@ ENTITY LC_RX_edge IS
     PORT (
         CLK40    : IN  STD_LOGIC;
         RST      : IN  STD_LOGIC;
+		-- setup
+        rx_enable : IN  STD_LOGIC;
         -- LC edges
         edge_pos : OUT STD_LOGIC;
         edge_neg : OUT STD_LOGIC;
@@ -47,10 +71,15 @@ BEGIN  -- LC_RX_arch
             pos       := (OTHERS => '0');
             pos_delay := '0';
         ELSIF CLK40'EVENT AND CLK40 = '1' THEN  -- rising clock edge
-            A_srg (4 DOWNTO 0) <= A_srg (5 DOWNTO 1);
-            A_srg (5)          <= A;
-            B_srg (4 DOWNTO 0) <= B_srg (5 DOWNTO 1);
-            B_srg (5)          <= B;
+			IF rx_enable = '1' THEN
+	            A_srg (4 DOWNTO 0) <= A_srg (5 DOWNTO 1);
+    	        A_srg (5)          <= A;
+        	    B_srg (4 DOWNTO 0) <= B_srg (5 DOWNTO 1);
+            	B_srg (5)          <= B;
+			ELSE
+				A_srg <= (OTHERS => '0');
+				B_srg <= (OTHERS => '0');
+			END IF;
 
             neg_delay := neg(0) OR neg(1) OR neg(2);
             neg(0)    := A_srg(1) AND B_srg(2) AND (NOT A_srg(2) AND NOT B_srg(1));

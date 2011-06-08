@@ -4,25 +4,19 @@ editor if you plan to continue editing the block that represents it in
 the Block Editor! File corruption is VERY likely to occur.
 */
 /*
-Copyright (C) 1991-2004 Altera Corporation
-Any  megafunction  design,  and related netlist (encrypted  or  decrypted),
-support information,  device programming or simulation file,  and any other
-associated  documentation or information  provided by  Altera  or a partner
-under  Altera's   Megafunction   Partnership   Program  may  be  used  only
-to program  PLD  devices (but not masked  PLD  devices) from  Altera.   Any
-other  use  of such  megafunction  design,  netlist,  support  information,
-device programming or simulation file,  or any other  related documentation
-or information  is prohibited  for  any  other purpose,  including, but not
-limited to  modification,  reverse engineering,  de-compiling, or use  with
-any other  silicon devices,  unless such use is  explicitly  licensed under
-a separate agreement with  Altera  or a megafunction partner.  Title to the
-intellectual property,  including patents,  copyrights,  trademarks,  trade
-secrets,  or maskworks,  embodied in any such megafunction design, netlist,
-support  information,  device programming or simulation file,  or any other
-related documentation or information provided by  Altera  or a megafunction
-partner, remains with Altera, the megafunction partner, or their respective
-licensors. No other licenses, including any licenses needed under any third
-party's intellectual property, are provided herein.
+Copyright (C) 1991-2005 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic       
+functions, and any output files any of the foregoing           
+(including device programming or simulation files), and any    
+associated documentation or information are expressly subject  
+to the terms and conditions of the Altera Program License      
+Subscription Agreement, Altera MegaCore Function License       
+Agreement, or other applicable license agreement, including,   
+without limitation, that your use is for the sole purpose of   
+programming logic devices manufactured by Altera and sold by   
+Altera or its authorized distributors.  Please refer to the    
+applicable agreement for further details.
 */
 (header "symbol" (version "1.1"))
 (symbol
@@ -375,65 +369,72 @@ party's intellectual property, are provided herein.
 	(port
 		(pt 256 560)
 		(output)
-		(text "rxd" (rect 0 0 18 14)(font "Arial" (font_size 8)))
-		(text "rxd" (rect 217 555 235 569)(font "Arial" (font_size 8)))
+		(text "edge_end" (rect 0 0 56 14)(font "Arial" (font_size 8)))
+		(text "edge_end" (rect 179 555 235 569)(font "Arial" (font_size 8)))
 		(line (pt 256 560)(pt 240 560)(line_width 1))
 	)
 	(port
 		(pt 256 576)
 		(output)
-		(text "crc_init" (rect 0 0 41 14)(font "Arial" (font_size 8)))
-		(text "crc_init" (rect 194 571 235 585)(font "Arial" (font_size 8)))
+		(text "rxd" (rect 0 0 18 14)(font "Arial" (font_size 8)))
+		(text "rxd" (rect 217 571 235 585)(font "Arial" (font_size 8)))
 		(line (pt 256 576)(pt 240 576)(line_width 1))
 	)
 	(port
 		(pt 256 592)
 		(output)
-		(text "crc_zero" (rect 0 0 51 14)(font "Arial" (font_size 8)))
-		(text "crc_zero" (rect 184 587 235 601)(font "Arial" (font_size 8)))
+		(text "crc_init" (rect 0 0 41 14)(font "Arial" (font_size 8)))
+		(text "crc_init" (rect 194 587 235 601)(font "Arial" (font_size 8)))
 		(line (pt 256 592)(pt 240 592)(line_width 1))
 	)
 	(port
 		(pt 256 608)
 		(output)
-		(text "ctrl_msg" (rect 0 0 48 14)(font "Arial" (font_size 8)))
-		(text "ctrl_msg" (rect 187 603 235 617)(font "Arial" (font_size 8)))
+		(text "crc_zero" (rect 0 0 51 14)(font "Arial" (font_size 8)))
+		(text "crc_zero" (rect 184 603 235 617)(font "Arial" (font_size 8)))
 		(line (pt 256 608)(pt 240 608)(line_width 1))
 	)
 	(port
 		(pt 256 624)
 		(output)
-		(text "data_msg" (rect 0 0 55 14)(font "Arial" (font_size 8)))
-		(text "data_msg" (rect 180 619 235 633)(font "Arial" (font_size 8)))
+		(text "ctrl_msg" (rect 0 0 48 14)(font "Arial" (font_size 8)))
+		(text "ctrl_msg" (rect 187 619 235 633)(font "Arial" (font_size 8)))
 		(line (pt 256 624)(pt 240 624)(line_width 1))
 	)
 	(port
 		(pt 256 640)
 		(output)
-		(text "domlev_up_rq" (rect 0 0 80 14)(font "Arial" (font_size 8)))
-		(text "domlev_up_rq" (rect 155 635 235 649)(font "Arial" (font_size 8)))
+		(text "data_msg" (rect 0 0 55 14)(font "Arial" (font_size 8)))
+		(text "data_msg" (rect 180 635 235 649)(font "Arial" (font_size 8)))
 		(line (pt 256 640)(pt 240 640)(line_width 1))
 	)
 	(port
 		(pt 256 656)
 		(output)
-		(text "domlev_dn_rq" (rect 0 0 80 14)(font "Arial" (font_size 8)))
-		(text "domlev_dn_rq" (rect 155 651 235 665)(font "Arial" (font_size 8)))
+		(text "domlev_up_rq" (rect 0 0 80 14)(font "Arial" (font_size 8)))
+		(text "domlev_up_rq" (rect 155 651 235 665)(font "Arial" (font_size 8)))
 		(line (pt 256 656)(pt 240 656)(line_width 1))
 	)
 	(port
 		(pt 256 672)
 		(output)
-		(text "dorlev_up_rq" (rect 0 0 75 14)(font "Arial" (font_size 8)))
-		(text "dorlev_up_rq" (rect 160 667 235 681)(font "Arial" (font_size 8)))
+		(text "domlev_dn_rq" (rect 0 0 80 14)(font "Arial" (font_size 8)))
+		(text "domlev_dn_rq" (rect 155 667 235 681)(font "Arial" (font_size 8)))
 		(line (pt 256 672)(pt 240 672)(line_width 1))
 	)
 	(port
 		(pt 256 688)
 		(output)
-		(text "dorlev_dn_rq" (rect 0 0 75 14)(font "Arial" (font_size 8)))
-		(text "dorlev_dn_rq" (rect 160 683 235 697)(font "Arial" (font_size 8)))
+		(text "dorlev_up_rq" (rect 0 0 75 14)(font "Arial" (font_size 8)))
+		(text "dorlev_up_rq" (rect 160 683 235 697)(font "Arial" (font_size 8)))
 		(line (pt 256 688)(pt 240 688)(line_width 1))
+	)
+	(port
+		(pt 256 704)
+		(output)
+		(text "dorlev_dn_rq" (rect 0 0 75 14)(font "Arial" (font_size 8)))
+		(text "dorlev_dn_rq" (rect 160 699 235 713)(font "Arial" (font_size 8)))
+		(line (pt 256 704)(pt 240 704)(line_width 1))
 	)
 	(drawing
 		(rectangle (rect 16 16 240 720)(line_width 1))

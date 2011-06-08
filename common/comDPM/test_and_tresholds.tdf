@@ -1,11 +1,18 @@
-TITLE "DCOM test signals and comm. thresholds, K.-H. Sulanke,DESY Zeuthen, 2005-09-12";
+TITLE "DCOM test signals and comm. thresholds, K.-H. Sulanke,DESY Zeuthen, 2006-03-21";
 -- plus comm. and DAC level control tresholds
+-- see tx_uart_ap.bdf, asymmetry (550ns) for first high pulse of every byte removed
+-- TCAL test signals added
+-- 032, see DCOM_tcal_timer.tdf, tcal_delay_ct introduced, DC_Rx_chan_01 instead of .._ap now
+--      see dc_adc_diff_to_ser.tdf, RX_UART.bdf, comm. ADC input register,
+-- 034, see see DC_adc_diff_to_ser.tdf, UA_RX02.dia,
+-- 035, see dc_rapcal_lh.bdf, symmetric to the DOR rapcal_lh.bdf now
+-- 036, see Tx_chan_ap, not_cfg_boot bit (sequence-number-bit12) added
 
-CONSTANT DCFREV		= 027;			-- DOM Communication module revision (dec.)
+CONSTANT DCFREV			= 036;	-- DOM Communication module revision (dec.)
 
-CONSTANT COM_THRESH		=  64;	-- HL-edge length after 4 clocks
+CONSTANT COM_THRESH		=  80;	-- accumulated (4 clocks) HL-edge height after substracting the baseline
 CONSTANT REC_DELAY		=  10;	-- x 50ns, receiver start up delay to deal with signal reflections from last send
-							-- = 30; recommended for 100m... cable
+-- you may add cable_length(m)/5
 CONSTANT SEND_DELAY		= 255;	-- x 50ns, send delay to deal with signal reflections
 
 CONSTANT DAC_MAX_LEVEL	= 255;	-- comm. DAC max. level
@@ -18,7 +25,7 @@ SUBDESIGN test_and_tresholds
 --	stf_stb			: INPUT;
 --	data_stb		: INPUT;
 --	eof_stb			: INPUT;
---	comres_rcvd		: INPUT;	
+comres_rcvd		: INPUT;	
 --	lh_edge			: INPUT;
 --	data_error		: INPUT;
 --	ctrl_msg		: INPUT;
@@ -35,40 +42,55 @@ SUBDESIGN test_and_tresholds
 --	send_data		: INPUT;
 --	tx_pack_rdy		: INPUT;
 
-	CLK20			: INPUT;	
-	reboot_req		: INPUT;
-	drreq_rcvd		: INPUT;
-	idle_rcvd		: INPUT;	
+tx_data[7..0]	: INPUT;
+data_val		: INPUT;
+ctrl_val		: INPUT;
+
+rec_ena			: INPUT;
+COMM_RESET		: INPUT;
+com_avail		: INPUT;
+DC_CTRAP_res	: INPUT;
+stf_stb			: INPUT;
+eof_stb			: INPUT;
+
+CLK20			: INPUT;
+reboot_now		: INPUT;
+sysres_rcvd		: INPUT;
+idle_rcvd		: INPUT;	
 --	reboot_gnt		: INPUT;
 --	com_avail		: INPUT;
-	buf_res			: INPUT;
+buf_res			: INPUT;	-- from DC_CTRAP, one clock length pulse after RST
 --	data_error		: INPUT;
-	ctrl_error		: INPUT;
-	tcal_rcvd		: INPUT;
-	pulse_rcvd		: INPUT;
-	pulse_sent		: INPUT;
-	
-	com_thr_d[7..0]	: INPUT;	-- HL-edge length after 6 clocks
-	dac_max_d[6..5]	: INPUT;
-	rec_del_d[7..0]	: INPUT;
-	send_del_d[7..0]: INPUT;
-			
-	clev_min_d[9..0]: INPUT;	-- needed for comm. DAC level adaption
-	clev_max_d[9..0]: INPUT;	-- needed for comm. DAC level adaption
-	
-	thr_del_wr		: INPUT;	-- write strobe, at least one clock length
-	clev_wr			: INPUT;	-- write strobe, at least one clock length
-	
-	com_thr[7..0]	: OUTPUT;	-- HL-edge length after 6 clocks
-	dac_max[7..0]	: OUTPUT;	
-	rec_del[7..0]	: OUTPUT;
-	send_del[7..0]	: OUTPUT;
-		
-	clev_min[9..0]	: OUTPUT;	-- needed for comm. DAC level adaption
-	clev_max[9..0]	: OUTPUT;	-- needed for comm. DAC level adaption
-		
-	rev[15..0]		: OUTPUT;	-- DOM comm. module revision
-	tc[7..0]		: OUTPUT;	-- DOM test connector
+--	ctrl_error		: INPUT;
+tcal_rcvd		: INPUT;
+hl_edge			: INPUT;
+--	edge_end		: INPUT;
+pulse_rcvd		: INPUT;
+pulse_sent		: INPUT;
+--	del_15us		: INPUT;
+--	del_30us		: INPUT;	-- VDOM debug
+
+com_thr_d[7..0]	: INPUT;	-- HL-edge length after 6 clocks
+dac_max_d[6..5]	: INPUT;
+rec_del_d[7..0]	: INPUT;
+send_del_d[7..0]: INPUT;
+
+clev_min_d[9..0]: INPUT;	-- needed for comm. DAC level adaption
+clev_max_d[9..0]: INPUT;	-- needed for comm. DAC level adaption
+
+thr_del_wr		: INPUT;	-- write strobe, at least one clock length
+clev_wr			: INPUT;	-- write strobe, at least one clock length
+
+com_thr[7..0]	: OUTPUT;	-- HL-edge length after 6 clocks
+dac_max[7..0]	: OUTPUT;	
+rec_del[7..0]	: OUTPUT;
+send_del[7..0]	: OUTPUT;
+
+clev_min[9..0]	: OUTPUT;	-- needed for comm. DAC level adaption
+clev_max[9..0]	: OUTPUT;	-- needed for comm. DAC level adaption
+
+rev[15..0]		: OUTPUT;	-- DOM comm. module revision
+tc[7..0]		: OUTPUT;	-- DOM test connector
 )
 
 VARIABLE
@@ -84,17 +106,32 @@ clev_max[9..0]		: DFFE;
 
 BEGIN
 
-	rev[]	= DCFREV;
+rev[]	= DCFREV;
 
-	tc[0]	= reboot_req;
-	tc[1]	= drreq_rcvd;
-	tc[2]	= idle_rcvd;
-	tc[3]	= ctrl_error;
-	tc[4]	= buf_res;
-	tc[5]	= tcal_rcvd;
-	tc[6]	= pulse_rcvd;
-	tc[7]	= pulse_sent;
---	tc[0]	= comres_rcvd;
+--tc[6..0] = tx_data[6..0];
+IF tx_data > 126 THEN tc[6..0]=126; ELSE tc[6..0] = tx_data[6..0]; END IF;
+tc[7] = data_val; -- or ctrl_val;
+
+--tc[0]	= rec_ena;
+--tc[1]	= COMM_RESET;
+--tc[2]	= sysres_rcvd;
+--tc[3]	= com_avail;
+--tc[4]	= DC_CTRAP_res;
+--tc[5]	= hl_edge;
+--tc[6]	= stf_stb;
+--tc[7]	= eof_stb;
+
+
+--	tc[0]	= tcal_rcvd;	--reboot_req;
+--	tc[1]	= sysres_rcvd;
+--	tc[2]	= idle_rcvd;
+--	tc[3]	= hl_edge;		--edge_end;		--ctrl_error;
+--	
+--	tc[4]	= buf_res; --pulse_rcvd;	--buf_res;
+--	tc[5]	= pulse_sent;
+--	tc[6]	= comres_rcvd;
+--	tc[7]	= reboot_now;
+--	tc[0]	= ;
 --	tc[1]	= drreq_rcvd;
 --	tc[2]	= data_msg;
 --	tc[3]	= send_data;

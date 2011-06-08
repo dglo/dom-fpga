@@ -6,7 +6,7 @@
 -- Author     : thorsten
 -- Company    : LBNL
 -- Created    : 
--- Last update: 2005-11-02
+-- Last update: 2005-12-02
 -- Platform   : Altera Excalibur
 -- Standard   : VHDL'93
 -------------------------------------------------------------------------------
@@ -341,7 +341,16 @@ ARCHITECTURE arch_domapp OF domapp IS
             );
     END COMPONENT;
 
-
+    COMPONENT tx_wave
+        PORT (
+            data      : IN  STD_LOGIC_VECTOR (7 DOWNTO 0);
+            wraddress : IN  STD_LOGIC_VECTOR (7 DOWNTO 0);
+            rdaddress : IN  STD_LOGIC_VECTOR (7 DOWNTO 0);
+            wren      : IN  STD_LOGIC;
+            clock     : IN  STD_LOGIC;
+            q         : OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
+            );
+    END COMPONENT;
 
 
 
@@ -414,8 +423,19 @@ ARCHITECTURE arch_domapp OF domapp IS
     SIGNAL fifo_almost_full : STD_LOGIC;
 
     SIGNAL adc_launch : STD_LOGIC;
+    SIGNAL dac_launch : STD_LOGIC;
 
+    SIGNAL tx_buff_we   : STD_LOGIC;
+    SIGNAL tx_buff_addr : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    SIGNAL tx_buff_data : STD_LOGIC_VECTOR (7 DOWNTO 0);
 
+    SIGNAL tx_addr : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    SIGNAL tx_data : STD_LOGIC_VECTOR (7 DOWNTO 0);
+
+    SIGNAL reg_wdata   : STD_LOGIC_VECTOR (31 DOWNTO 0);
+    SIGNAL reg_address : STD_LOGIC_VECTOR (31 DOWNTO 0);
+    SIGNAL reg_enable  : STD_LOGIC;
+    SIGNAL reg_write   : STD_LOGIC;
     
 BEGIN
     -- general
@@ -552,15 +572,63 @@ BEGIN
             masterhtrans  => masterhtrans,
             masterhwdata  => masterhwdata,
             -- local bus signals
-            reg_write     => OPEN,
-            reg_address   => OPEN,
-            reg_wdata     => OPEN,
-            reg_rdata     => (OTHERS => '0'),
-            reg_enable    => OPEN,
-            reg_wait_sig  => '0'
+            reg_write     => reg_write,
+            reg_address   => reg_address,
+            reg_wdata     => reg_wdata,
+            reg_rdata     => (OTHERS => '1'),
+            reg_enable    => reg_enable,
+            reg_wait_sig  => '1'
             );
 
-    
+    slavereg : PROCESS (CLK20, RST)
+    BEGIN  -- PROCESS slavereg
+        IF RST = '1' THEN               -- asynchronous reset (active high)
+            adc_launch <= '0';
+            dac_launch <= '0';
+        ELSIF CLK20'EVENT AND CLK20 = '1' THEN  -- rising clock edge
+            tx_buff_we <= '0';
+
+            IF reg_enable = '1' THEN
+                IF reg_address(10) = '0' THEN  -- registers
+                    IF reg_write = '1' THEN
+                        IF reg_address (9 DOWNTO 2) = "00000000" THEN
+                            IF reg_wdata(0) = '1' THEN
+                                adc_launch <= '1';
+                            END IF;
+                            IF reg_wdata(1) = '1' THEN
+                                dac_launch <= '1';
+                            END IF;
+                        END IF;
+                    END IF;
+                ELSE
+                    IF reg_write = '1' THEN
+                        -- write to tx BUFFER
+                        tx_buff_data <= reg_wdata (7 DOWNTO 0);
+                        tx_buff_addr <= reg_address (9 DOWNTO 2);
+                        tx_buff_we   <= '1';
+                    END IF;
+                END IF;
+            END IF;
+        END IF;
+    END PROCESS slavereg;
+
+    PROCESS (CLK20, RST)
+    BEGIN  -- PROCESS
+        IF RST = '1' THEN               -- asynchronous reset (active high)
+            tx_addr <= "00000000";
+        ELSIF CLK20'EVENT AND CLK20 = '1' THEN  -- rising clock edge
+            IF dac_launch = '1' THEN
+                IF tx_addr = "11111111" THEN
+                    NULL;
+                ELSE
+                    tx_addr <= tx_addr + 1;
+                END IF;
+            END IF;
+            COM_DB(13 DOWNTO 6) <= tx_data;
+        END IF;
+    END PROCESS;
+    COM_TX_SLEEP <= '0';
+
     mem_interface_nst : mem_interface
         PORT MAP (
             CLK20        => CLK20,
@@ -635,10 +703,21 @@ BEGIN
             fifo_rd          => fifo_rd,
             fifo_almost_full => fifo_almost_full
             );
-    adc_launch <= '1' WHEN gpo = x"a5" ELSE '0';
+    -- adc_launch <= '1' WHEN gpo = x"a5" ELSE '0';
+
+    tx_wave_inst : tx_wave
+        PORT MAP (
+            data      => tx_buff_data,
+            wraddress => tx_buff_addr,
+            rdaddress => tx_addr,
+            wren      => tx_buff_we,
+            clock     => CLK20,
+            q         => tx_data
+            );
 
 
-    COM_DB <= (OTHERS => 'Z');
+
+    --COM_DB <= (OTHERS => 'Z');
 
     -- FPGA loaded output to be read by the CPU through the CPLD
     FPGA_LOADED <= '0';

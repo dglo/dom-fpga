@@ -147,7 +147,7 @@ RESERVED_INPUT               : D25       :        :                   :         
 RESERVED_INPUT               : D26       :        :                   :         : 8         :                
 RESERVED_INPUT               : E1        :        :                   :         : 12        :                
 RESERVED_INPUT               : E2        :        :                   :         : 12        :                
-RESERVED_INPUT               : E3        :        :                   :         : 13        :                
+FPGA_DA                      : E3        : input  : LVTTL             :         : 13        : Y              
 A_nB                         : E4        : input  : LVTTL             :         : 13        : Y              
 SDRAMADDR[11]                : E5        : output : LVTTL             :         : 2         : N              
 SDRAMADDR[2]                 : E6        : output : LVTTL             :         : 2         : N              
@@ -173,7 +173,7 @@ RESERVED_INPUT               : E25       :        :                   :         
 RESERVED_INPUT               : E26       :        :                   :         : 8         :                
 RESERVED_INPUT               : F1        :        :                   :         : 12        :                
 RESERVED_INPUT               : F2        :        :                   :         : 12        :                
-RESERVED_INPUT               : F3        :        :                   :         : 13        :                
+FPGA_CE                      : F3        : output : LVTTL             :         : 13        : Y              
 HDV_IN                       : F4        : output : LVTTL             :         : 13        : Y              
 SDRAMADDR[7]                 : F5        : output : LVTTL             :         : 2         : N              
 SDRAMADDR[14]                : F6        : output : LVTTL             :         : 2         : N              
@@ -398,7 +398,7 @@ GND                          : P16       : gnd    :                   :         
 VCC_IO                       : P17       : power  :                   : 3.3V    :           :                
 VCC_INT                      : P18       : power  :                   : 1.8V    :           :                
 GND_CKOUT1                   : P19       : gnd    :                   :         :           :                
-GND+                         : P20       :        :                   :         : 9         :                
+CLK3p                        : P20       : input  : LVTTL             :         : 9         : Y              
 dummy2                       : P21       : input  : LVTTL             :         : 8         : Y              
 GND*                         : P22       :        :                   :         :           :                
 GND                          : P23       : gnd    :                   :         :           :                
@@ -461,7 +461,7 @@ RESERVED_INPUT               : U1        :        :                   :         
 COM_TX_SLEEP                 : U2        : output : LVTTL             :         : 12        : Y              
 RESERVED_INPUT               : U3        :        :                   :         : 13        :                
 RESERVED_INPUT               : U4        :        :                   :         : 13        :                
-CLK3p                        : U5        : input  : LVTTL             :         : 13        : N              
+RESERVED_INPUT               : U5        :        :                   :         : 13        :                
 RESERVED_INPUT               : U6        :        :                   :         : 13        :                
 RESERVED_INPUT               : U7        :        :                   :         : 13        :                
 VCC_CKOUT2                   : U8        : power  :                   : 3.3V    :           :                
@@ -509,12 +509,12 @@ FE_PULSER_P[1]               : V23       : output : LVTTL             :         
 FE_PULSER_N[1]               : V24       : output : LVTTL             :         : 9         : Y              
 RESERVED_INPUT               : V25       :        :                   :         : 8         :                
 RESERVED_INPUT               : V26       :        :                   :         : 8         :                
-RESERVED_INPUT               : W1        :        :                   :         : 12        :                
-RESERVED_INPUT               : W2        :        :                   :         : 12        :                
+FPGA_D[0]                    : W1        : output : LVTTL             :         : 12        : Y              
+FPGA_D[1]                    : W2        : output : LVTTL             :         : 12        : Y              
 RESERVED_INPUT               : W3        :        :                   :         : 13        :                
 RESERVED_INPUT               : W4        :        :                   :         : 13        :                
 RESERVED_INPUT               : W5        :        :                   :         : 13        :                
-CLK2p                        : W6        : input  : LVTTL             :         : 13        : N              
+CLK2p                        : W6        : input  : LVTTL             :         : 13        : Y              
 DATA0                        : W7        : input  :                   :         :           :                
 GND                          : W8        : gnd    :                   :         :           :                
 RESERVED_INPUT               : W9        :        :                   :         : 11        :                
@@ -567,7 +567,7 @@ RESERVED_INPUT               : AA3       :        :                   :         
 RESERVED_INPUT               : AA4       :        :                   :         : 12        :                
 RESERVED_INPUT               : AA5       :        :                   :         : 12        :                
 RESERVED_INPUT               : AA6       :        :                   :         : 12        :                
-RESERVED_INPUT               : AA7       :        :                   :         : 12        :                
+R2BUS[7]                     : AA7       : output : LVTTL             :         : 12        : N              
 RESERVED_INPUT               : AA8       :        :                   :         : 11        :                
 RESERVED_INPUT               : AA9       :        :                   :         : 11        :                
 COINC_UP_A                   : AA10      : input  : LVTTL             :         : 11        : Y              
