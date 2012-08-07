@@ -213,6 +213,8 @@ BEGIN
             END IF;
             IF state = WAIT_DONE THEN
                 HEADER_data.LC <= LC;
+                -- for dim pole flag
+                HEADER_data.trigger_word(11 DOWNTO 10) <= trigger_word(11 DOWNTO 10);
             END IF;
             IF state = IDLE THEN
                 deadtime_cnt <= (OTHERS => '0');
