@@ -1,5 +1,5 @@
 Timing Analyzer report for simpletest
-Fri Apr 17 09:41:16 2009
+Tue Jul 12 12:54:02 2011
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -944,7 +944,7 @@ party's intellectual property, are provided herein.
 Info: *******************************************************************
 Info: Running Quartus II Timing Analyzer
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Fri Apr 17 09:41:01 2009
+    Info: Processing started: Tue Jul 12 12:53:57 2011
 Info: Command: quartus_tan --import_settings_files=off --export_settings_files=off simpletest -c simpletest
 Info: Started post-fitting delay annotation
 Info: Delay annotation completed successfully
@@ -1133,7 +1133,7 @@ Info: Minimum tco from clock CLK2p to destination pin CLKLK_OUT2p through clock 
         Info: Total cell delay = 2.566 ns ( 100.00 % )
 Critical Warning: Timing requirements were not met. See Report window for details.
 Info: Quartus II Timing Analyzer was successful. 0 errors, 6 warnings
-    Info: Processing ended: Fri Apr 17 09:41:16 2009
-    Info: Elapsed time: 00:00:14
+    Info: Processing ended: Tue Jul 12 12:54:02 2011
+    Info: Elapsed time: 00:00:04
 
 

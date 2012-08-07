@@ -26,8 +26,8 @@ component tx_dpr_radr_ct
 		clk_en		: IN STD_LOGIC ;
 		sload		: IN STD_LOGIC ;
 		aclr		: IN STD_LOGIC ;
-		data		: IN STD_LOGIC_VECTOR (12 DOWNTO 0);
-		q		: OUT STD_LOGIC_VECTOR (12 DOWNTO 0);
+		data		: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
+		q		: OUT STD_LOGIC_VECTOR (15 DOWNTO 0);
 		cout		: OUT STD_LOGIC 
 	);
 end component;

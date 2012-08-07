@@ -1,0 +1,469 @@
+<session jtag_chain="EthernetBlaster on aceb01da.dhcp.lbl.gov [/dev/ebhwip]" jtag_device="@1: EPXA4 (0x084010DD)" sof_file="">
+  <display_tree gui_logging_enabled="0">
+    <display_branch instance="auto_signaltap_0" log="USE_GLOBAL_TEMP" signal_set="USE_GLOBAL_TEMP" trigger="USE_GLOBAL_TEMP"/>
+  </display_tree>
+  <global_info>
+    <multi attribute="window position" size="7" value="1350,686,318,125,0,50,125"/>
+    <single attribute="active instance" value="0"/>
+  </global_info>
+  <instance entity_name="sld_signaltap" is_auto_node="yes" name="auto_signaltap_0" source_file="sld_signaltap.vhd">
+    <node_ip_info instance_id="0" mfg_id="110" node_id="0" version="3"/>
+    <position_info>
+      <single attribute="setup vertical scroll position" value="11"/>
+      <single attribute="setup horizontal scroll position" value="0"/>
+      <single attribute="active tab" value="0"/>
+      <single attribute="data vertical scroll position" value="0"/>
+      <single attribute="data horizontal scroll position" value="0"/>
+      <single attribute="zoom level numerator" value="8"/>
+      <single attribute="zoom level denominator" value="1"/>
+      <single attribute="zoom offset numerator" value="16256"/>
+      <single attribute="zoom offset denominator" value="1"/>
+    </position_info>
+    <signal_set global_temp="1" name="signal_set: 2012/07/30 16:30:44  #0">
+      <clock name="daq:inst_daq|CLK40" polarity="posedge"/>
+      <config ram_type="M4K" reserved_data_nodes="0" reserved_trigger_nodes="0" sample_depth="256" trigger_in_enable="no" trigger_out_enable="no"/>
+      <top_entity/>
+      <signal_vec>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_flag[0]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_flag[1]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n0[0]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n0[1]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n0[2]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n0[3]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n0[4]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n0[5]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n1[0]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n1[1]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n1[2]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n1[3]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n1[4]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n1[5]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_status[0]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_status[1]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[0]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[10]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[11]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[12]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[13]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[14]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[1]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[2]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[3]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[4]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[5]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[6]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[7]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[8]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[9]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[0]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[10]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[11]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[12]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[13]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[14]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[1]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[2]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[3]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[4]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[5]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[6]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[7]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[8]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[9]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|disc" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|drop0_last" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|drop1_last" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr0[0]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr0[1]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr0[2]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr0[3]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr0[4]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr0[5]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr0[6]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr1[0]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr1[1]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr1[2]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr1[3]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr1[4]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr1[5]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr1[6]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|state_rd.rd_flag0" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|state_rd.rd_flag1" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|state_rd.reset" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|state_wr.clr_mem" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|state_wr.clr_start" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|state_wr.idle" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|state_wr.wr_flag0" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|state_wr.wr_flag1" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|triggered_A" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|triggered_A_old" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|triggered_B" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|triggered_B_old" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|wr_ptr_del[0]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|wr_ptr_del[1]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|wr_ptr_del[2]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|wr_ptr_del[3]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|wr_ptr_del[4]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|wr_ptr_del[5]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|wr_ptr_del[6]" tap_mode="classic" type="register"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n0[0]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n0[1]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n0[2]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n0[3]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n0[4]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n0[5]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n1[0]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n1[1]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n1[2]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n1[3]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n1[4]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n1[5]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[0]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[10]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[11]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[12]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[13]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[14]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[1]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[2]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[3]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[4]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[5]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[6]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[7]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[8]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[9]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[0]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[10]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[11]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[12]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[13]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[14]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[1]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[2]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[3]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[4]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[5]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[6]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[7]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[8]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[9]" tap_mode="classic" type="combinatorial"/>
+      </signal_vec>
+      <presentation>
+        <data_view>
+          <bus link="all" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_flag" order="msb_to_lsb" radix="hex" state="expand" type="register">
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_flag[1]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_flag[0]"/>
+          </bus>
+          <bus link="all" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_status" order="msb_to_lsb" radix="hex" state="expand" type="combinatorial">
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_status[1]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_status[0]"/>
+          </bus>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|disc"/>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|drop0_last"/>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|drop1_last"/>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|state_rd.rd_flag0"/>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|state_rd.rd_flag1"/>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|state_rd.reset"/>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|state_wr.clr_mem"/>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|state_wr.clr_start"/>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|state_wr.idle"/>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|state_wr.wr_flag0"/>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|state_wr.wr_flag1"/>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|triggered_A"/>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|triggered_A_old"/>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|triggered_B"/>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|triggered_B_old"/>
+          <bus link="all" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|wr_ptr_del" order="msb_to_lsb" radix="unsigned_dec" state="collapse" type="register">
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|wr_ptr_del[6]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|wr_ptr_del[5]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|wr_ptr_del[4]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|wr_ptr_del[3]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|wr_ptr_del[2]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|wr_ptr_del[1]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|wr_ptr_del[0]"/>
+          </bus>
+          <bus link="all" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr0" order="msb_to_lsb" radix="unsigned_dec" state="collapse" type="register">
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr0[6]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr0[5]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr0[4]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr0[3]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr0[2]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr0[1]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr0[0]"/>
+          </bus>
+          <bus link="all" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr1" order="msb_to_lsb" radix="unsigned_dec" state="collapse" type="register">
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr1[6]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr1[5]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr1[4]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr1[3]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr1[2]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr1[1]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr1[0]"/>
+          </bus>
+          <bus link="all" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n0" order="msb_to_lsb" radix="unsigned_dec" state="collapse" type="combinatorial">
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n0[5]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n0[4]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n0[3]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n0[2]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n0[1]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n0[0]"/>
+          </bus>
+          <bus link="all" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n1" order="msb_to_lsb" radix="unsigned_dec" state="collapse" type="combinatorial">
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n1[5]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n1[4]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n1[3]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n1[2]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n1[1]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n1[0]"/>
+          </bus>
+          <bus link="all" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0" order="msb_to_lsb" radix="unsigned_dec" state="collapse" type="combinatorial">
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[14]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[13]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[12]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[11]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[10]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[9]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[8]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[7]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[6]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[5]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[4]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[3]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[2]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[1]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[0]"/>
+          </bus>
+          <bus link="all" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1" order="msb_to_lsb" radix="unsigned_dec" state="collapse" type="combinatorial">
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[14]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[13]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[12]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[11]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[10]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[9]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[8]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[7]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[6]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[5]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[4]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[3]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[2]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[1]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[0]"/>
+          </bus>
+          <bus link="all" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n0[0..5]" order="lsb_to_msb" radix="hex" state="collapse" type="combinatorial">
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n0[0]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n0[1]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n0[2]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n0[3]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n0[4]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n0[5]"/>
+          </bus>
+          <bus link="all" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n1[0..5]" order="lsb_to_msb" radix="hex" state="collapse" type="combinatorial">
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n1[0]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n1[1]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n1[2]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n1[3]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n1[4]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n1[5]"/>
+          </bus>
+          <bus link="all" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[0..14]" order="lsb_to_msb" radix="hex" state="collapse" type="combinatorial">
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[0]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[1]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[2]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[3]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[4]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[5]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[6]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[7]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[8]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[9]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[10]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[11]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[12]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[13]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[14]"/>
+          </bus>
+          <bus link="all" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[0..14]" order="lsb_to_msb" radix="hex" state="collapse" type="combinatorial">
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[0]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[1]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[2]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[3]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[4]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[5]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[6]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[7]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[8]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[9]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[10]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[11]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[12]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[13]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[14]"/>
+          </bus>
+        </data_view>
+        <setup_view>
+          <bus link="all" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_flag" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_flag[1]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_flag[0]"/>
+          </bus>
+          <bus link="all" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_status" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_status[1]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_status[0]"/>
+          </bus>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|disc"/>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|drop0_last"/>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|drop1_last"/>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|state_rd.rd_flag0"/>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|state_rd.rd_flag1"/>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|state_rd.reset"/>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|state_wr.clr_mem"/>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|state_wr.clr_start"/>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|state_wr.idle"/>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|state_wr.wr_flag0"/>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|state_wr.wr_flag1"/>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|triggered_A"/>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|triggered_A_old"/>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|triggered_B"/>
+          <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|triggered_B_old"/>
+          <bus link="all" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|wr_ptr_del" order="msb_to_lsb" radix="unsigned_dec" state="collapse" type="register">
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|wr_ptr_del[6]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|wr_ptr_del[5]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|wr_ptr_del[4]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|wr_ptr_del[3]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|wr_ptr_del[2]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|wr_ptr_del[1]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|wr_ptr_del[0]"/>
+          </bus>
+          <bus link="all" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr0" order="msb_to_lsb" radix="unsigned_dec" state="collapse" type="register">
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr0[6]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr0[5]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr0[4]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr0[3]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr0[2]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr0[1]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr0[0]"/>
+          </bus>
+          <bus link="all" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr1" order="msb_to_lsb" radix="unsigned_dec" state="collapse" type="register">
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr1[6]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr1[5]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr1[4]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr1[3]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr1[2]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr1[1]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|rd_ptr1[0]"/>
+          </bus>
+          <bus link="all" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n0" order="msb_to_lsb" radix="unsigned_dec" state="collapse" type="combinatorial">
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n0[5]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n0[4]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n0[3]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n0[2]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n0[1]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n0[0]"/>
+          </bus>
+          <bus link="all" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n1" order="msb_to_lsb" radix="unsigned_dec" state="collapse" type="combinatorial">
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n1[5]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n1[4]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n1[3]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n1[2]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n1[1]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_n1[0]"/>
+          </bus>
+          <bus link="all" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0" order="msb_to_lsb" radix="unsigned_dec" state="collapse" type="combinatorial">
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[14]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[13]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[12]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[11]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[10]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[9]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[8]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[7]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[6]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[5]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[4]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[3]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[2]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[1]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t0[0]"/>
+          </bus>
+          <bus link="all" name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1" order="msb_to_lsb" radix="unsigned_dec" state="collapse" type="combinatorial">
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[14]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[13]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[12]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[11]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[10]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[9]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[8]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[7]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[6]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[5]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[4]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[3]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[2]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[1]"/>
+            <net name="daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|dim_pole_t1[0]"/>
+          </bus>
+          <bus link="all" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n0[0..5]" order="lsb_to_msb" radix="hex" state="collapse" type="combinatorial">
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n0[0]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n0[1]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n0[2]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n0[3]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n0[4]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n0[5]"/>
+          </bus>
+          <bus link="all" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n1[0..5]" order="lsb_to_msb" radix="hex" state="collapse" type="combinatorial">
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n1[0]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n1[1]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n1[2]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n1[3]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n1[4]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_n1[5]"/>
+          </bus>
+          <bus link="all" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[0..14]" order="lsb_to_msb" radix="hex" state="collapse" type="combinatorial">
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[0]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[1]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[2]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[3]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[4]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[5]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[6]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[7]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[8]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[9]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[10]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[11]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[12]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[13]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t0[14]"/>
+          </bus>
+          <bus link="all" name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[0..14]" order="lsb_to_msb" radix="hex" state="collapse" type="combinatorial">
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[0]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[1]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[2]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[3]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[4]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[5]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[6]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[7]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[8]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[9]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[10]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[11]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[12]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[13]"/>
+            <net name="slaveregister:inst_slaveregister|DIM_POLE_ctrl.dim_pole_t1[14]"/>
+          </bus>
+        </setup_view>
+      </presentation>
+      <trigger CRC="2D4B89DB" global_temp="1" name="trigger: 2012/07/30 16:30:44  #1" position="pre" segment_size="128" trigger_in="dont_care" trigger_out="active high" trigger_type="segmented">
+        <events>
+          <level enabled="yes" type="basic">daq:inst_daq|trigger:inst_trigger|dim_pole_flag:dim_pole_flag_inst|disc == rising edge
+            <op_node/>
+          </level>
+        </events>
+        <data global_temp="1" name="log: 2012/07/30 16:51:59  #0"/>
+      </trigger>
+    </signal_set>
+  </instance>
+  <mnemonics/>
+</session>

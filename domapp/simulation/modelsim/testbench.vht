@@ -242,9 +242,9 @@ ARCHITECTURE dom_arch OF dom_vhd_tst IS
             COINC_UP_ALATCH      : OUT   STD_LOGIC;
             COINC_UP_BLATCH      : OUT   STD_LOGIC;
             PLD_FPGA_BUSY        : OUT   STD_LOGIC;
-            FPGA_D               : OUT   STD_LOGIC_VECTOR(7 DOWNTO 0);
-            FPGA_DA              : OUT   STD_LOGIC;
-            FPGA_CE              : OUT   STD_LOGIC;
+            --FPGA_D               : OUT   STD_LOGIC_VECTOR(7 DOWNTO 0);
+            --FPGA_DA              : OUT   STD_LOGIC;
+            --FPGA_CE              : OUT   STD_LOGIC;
             FPGA_RW              : OUT   STD_LOGIC;
             PGM                  : OUT   STD_LOGIC_VECTOR(15 DOWNTO 0);
             UARTDTRN             : OUT   STD_LOGIC;
@@ -271,6 +271,13 @@ ARCHITECTURE dom_arch OF dom_vhd_tst IS
             EBIDQ                : INOUT STD_LOGIC_VECTOR(15 DOWNTO 0);
             UARTRIN              : INOUT STD_LOGIC;
             UARTDCDN             : INOUT STD_LOGIC;
+            -- inclinometer SPI
+      adis16209_RST        : OUT   STD_LOGIC;  -- V1
+      adis16209_nCS        : OUT   STD_LOGIC;  -- Y2
+      adis16209_SCLK       : OUT   STD_LOGIC;  -- F3
+      adis16209_DOUT       : IN    STD_LOGIC;  -- AC2
+      adis16209_DIN        : OUT   STD_LOGIC;  -- AA2
+      adis16209_PWR        : OUT   STD_LOGIC;  -- E3
             nRESET               : INOUT STD_LOGIC);
     END COMPONENT;
 
@@ -391,9 +398,9 @@ BEGIN
         COINC_UP_ALATCH      => t_sig_COINC_UP_ALATCH,
         COINC_UP_BLATCH      => t_sig_COINC_UP_BLATCH,
         PLD_FPGA_BUSY        => t_sig_PLD_FPGA_BUSY,
-        FPGA_D               => t_sig_FPGA_D,
-        FPGA_DA              => t_sig_FPGA_DA,
-        FPGA_CE              => t_sig_FPGA_CE,
+        --FPGA_D               => t_sig_FPGA_D,
+        --FPGA_DA              => t_sig_FPGA_DA,
+        --FPGA_CE              => t_sig_FPGA_CE,
         FPGA_RW              => t_sig_FPGA_RW,
         PGM                  => t_sig_PGM,
         UARTDTRN             => t_sig_UARTDTRN,
@@ -420,6 +427,13 @@ BEGIN
         EBIDQ                => t_sig_EBIDQ,
         UARTRIN              => t_sig_UARTRIN,
         UARTDCDN             => t_sig_UARTDCDN,
+        -- inclinometer SPI
+      adis16209_RST        => open,
+      adis16209_nCS        => open,
+      adis16209_SCLK       => open,
+      adis16209_DOUT       => '0',
+      adis16209_DIN        => open,
+      adis16209_PWR        => open,
         nRESET               => t_sig_nRESET
         );
 
@@ -433,7 +447,15 @@ BEGIN
     t_sig_CLK_REF <= CLK;
 
 
-    t_sig_OneSPE   <= '0', '1' AFTER 500 ns, '0' AFTER 510 ns, '1' AFTER 5500 ns, '0' AFTER 5505 ns, '1' AFTER 150000 ns, '0' AFTER 150005 ns, '1' AFTER 200000 ns, '0' AFTER 200005 ns, '1' AFTER 300000 ns, '0' AFTER 300005 ns, '1' AFTER 350000 ns, '0' AFTER 350010 ns, '1' AFTER 500000 ns, '0' AFTER 500010 ns, '1' AFTER 501000 ns, '0' AFTER 501010 ns;
+--    t_sig_OneSPE   <= '0', '1' AFTER 500 ns, '0' AFTER 510 ns, '1' AFTER 5500 ns, '0' AFTER 5505 ns, '1' AFTER 150000 ns, '0' AFTER 150005 ns, '1' AFTER 200000 ns, '0' AFTER 200005 ns, '1' AFTER 300000 ns, '0' AFTER 300005 ns, '1' AFTER 350000 ns, '0' AFTER 350010 ns, '1' AFTER 500000 ns, '0' AFTER 500010 ns, '1' AFTER 501000 ns, '0' AFTER 501010 ns;
+process
+  begin
+    wait for 1000 ns;
+    t_sig_OneSPE <= '1';
+    wait for 10 ns;
+    t_sig_OneSPE <= '0';
+  end process;
+
     t_sig_MultiSPE <= '0';
 
 
