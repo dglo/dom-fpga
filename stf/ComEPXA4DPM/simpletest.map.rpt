@@ -1,5 +1,5 @@
 Analysis & Synthesis report for simpletest
-Tue Jul 12 12:51:34 2011
+Fri Apr 17 09:32:28 2009
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -64,7 +64,7 @@ party's intellectual property, are provided herein.
 +---------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                        ;
 +-----------------------------+---------------------------------------+
-; Analysis & Synthesis Status ; Successful - Tue Jul 12 12:51:34 2011 ;
+; Analysis & Synthesis Status ; Successful - Fri Apr 17 09:32:28 2009 ;
 ; Revision Name               ; simpletest                            ;
 ; Top-level Entity Name       ; simpletest                            ;
 ; Family                      ; EXCALIBUR_ARM                         ;
@@ -1460,7 +1460,7 @@ The equations can be found in C:/work_lbnl/IceCubeCVS/dom-fpga/stf/ComEPXA4DPM/s
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Tue Jul 12 12:50:39 2011
+    Info: Processing started: Fri Apr 17 09:29:39 2009
 Info: Command: quartus_map --import_settings_files=on --export_settings_files=off simpletest -c simpletest
 Info: Found 2 design units and 1 entities in source file ../common/CommonClock.vhd
     Info: Found design unit 1: CommonClock-CommonClock_arch
@@ -1912,6 +1912,12 @@ Info: Found 1 design units and 1 entities in source file db/a_fefifo_vve.tdf
     Info: Found entity 1: a_fefifo_vve
 Info: Found 1 design units and 1 entities in source file ../../../../../fpgatools/quartus/libraries/megafunctions/lpm_and.tdf
     Info: Found entity 1: lpm_and
+Warning: Variable or input pin comres_rcvd is defined but never used
+Warning: Variable or input pin reboot_now is defined but never used
+Warning: Variable or input pin idle_rcvd is defined but never used
+Warning: Variable or input pin tcal_rcvd is defined but never used
+Warning: Variable or input pin pulse_rcvd is defined but never used
+Warning: Variable or input pin pulse_sent is defined but never used
 Info: Using design file ../../common/comdpm/tcal/tcal_delay_ct.tdf, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info: Found entity 1: tcal_delay_ct
 Info: Power-up level of register dcom_ap:dcom_ap_inst|test_and_tresholds:inst5|dac_max[7]~reg is not specified -- using unspecified power-up level
@@ -2352,8 +2358,8 @@ Info: Implemented 5504 device resources after synthesis - the final resource cou
     Info: Implemented 2 ClockLock PLLs
     Info: Implemented 2 dual-port RAM elements in Excalibur device
     Info: Implemented 1 microprocessor core elements in Excalibur device
-Info: Quartus II Analysis & Synthesis was successful. 0 errors, 149 warnings
-    Info: Processing ended: Tue Jul 12 12:51:34 2011
-    Info: Elapsed time: 00:00:55
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 155 warnings
+    Info: Processing ended: Fri Apr 17 09:32:28 2009
+    Info: Elapsed time: 00:02:48
 
 

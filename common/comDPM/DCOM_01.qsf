@@ -1,0 +1,86 @@
+# Copyright (C) 1991-2005 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic       
+# functions, and any output files any of the foregoing           
+# (including device programming or simulation files), and any    
+# associated documentation or information are expressly subject  
+# to the terms and conditions of the Altera Program License      
+# Subscription Agreement, Altera MegaCore Function License       
+# Agreement, or other applicable license agreement, including,   
+# without limitation, that your use is for the sole purpose of   
+# programming logic devices manufactured by Altera and sold by   
+# Altera or its authorized distributors.  Please refer to the    
+# applicable agreement for further details.
+
+
+# The default values for assignments are stored in the file
+#		DCOM_01_assignment_defaults.qdf
+# If this file doesn't exist, and for assignments not listed, see file
+#		assignment_defaults.qdf
+
+# Altera recommends that you do not modify this file. This
+# file is updated automatically by the Quartus II software
+# and any changes you make may be lost or overwritten.
+
+
+# Project-Wide Assignments
+# ========================
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 4.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "08:31:24  MARCH 03, 2004"
+set_global_assignment -name LAST_QUARTUS_VERSION "5.0 SP2"
+set_global_assignment -name BDF_FILE dcom_ap.bdf
+set_global_assignment -name AHDL_FILE Rx_chan/dc_hdr_dec_01.tdf
+
+# Timing Assignments
+# ==================
+set_global_assignment -name INCLUDE_EXTERNAL_PIN_DELAYS_IN_FMAX_CALCULATIONS OFF
+
+# Analysis & Synthesis Assignments
+# ================================
+set_global_assignment -name EDA_DESIGN_ENTRY_SYNTHESIS_TOOL "<None>"
+set_global_assignment -name COMPILATION_LEVEL "SYNTHESIS ONLY"
+set_global_assignment -name FAMILY Cyclone
+set_global_assignment -name REMOVE_REDUNDANT_LOGIC_CELLS ON
+set_global_assignment -name STRATIX_OPTIMIZATION_TECHNIQUE SPEED
+set_global_assignment -name MAX7000_OPTIMIZATION_TECHNIQUE AREA
+set_global_assignment -name APEX20K_OPTIMIZATION_TECHNIQUE AREA
+set_global_assignment -name CASCADE_CHAIN_LENGTH 16
+set_global_assignment -name TOP_LEVEL_ENTITY dcom_ap
+set_global_assignment -name USER_LIBRARIES "c:\\projects\\icecube\\dor_rev1\\fpga\\DCOM\\tcal;c:\\projects\\icecube\\dor_rev1\\fpga\\DCOM\\rx_chan\\meanval;c:\\projects\\icecube\\dor_rev1\\fpga\\DCOM\\rx_chan\\edges;c:\\projects\\icecube\\dor_rev1\\fpga\\DCOM\\rx_chan\\uart;c:\\projects\\icecube\\dor_rev1\\fpga\\DCOM\\parity;c:\\projects\\icecube\\dor_rev1\\fpga\\DCOM\\mono_flop;c:\\projects\\icecube\\dor_rev1\\fpga\\DCOM\\tx_chan;c:\\projects\\icecube\\dor_rev1\\fpga\\DCOM\\rx_chan"
+
+# Fitter Assignments
+# ==================
+set_global_assignment -name DEVICE AUTO
+set_global_assignment -name INC_PLC_MODE OFF
+set_global_assignment -name ROUTING_BACK_ANNOTATION_MODE OFF
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
+
+# Timing Analysis Assignments
+# ===========================
+set_global_assignment -name MAX_SCC_SIZE 50
+
+# EDA Netlist Writer Assignments
+# ==============================
+set_global_assignment -name EDA_SIMULATION_TOOL "<NONE>"
+set_global_assignment -name EDA_TIMING_ANALYSIS_TOOL "<NONE>"
+set_global_assignment -name EDA_BOARD_DESIGN_TOOL "<NONE>"
+set_global_assignment -name EDA_FORMAL_VERIFICATION_TOOL "<None>"
+set_global_assignment -name EDA_RESYNTHESIS_TOOL "<NONE>"
+
+# Assembler Assignments
+# =====================
+set_global_assignment -name APEX20K_CONFIGURATION_DEVICE EPC2
+set_global_assignment -name EXCALIBUR_CONFIGURATION_DEVICE EPC2
+set_global_assignment -name MERCURY_CONFIGURATION_DEVICE EPC2
+set_global_assignment -name FLEX6K_CONFIGURATION_DEVICE EPC1
+set_global_assignment -name FLEX10K_CONFIGURATION_DEVICE EPC2
+set_global_assignment -name STRATIX_CONFIGURATION_DEVICE EPC2
+set_global_assignment -name AUTO_RESTART_CONFIGURATION OFF
+
+# Simulator Assignments
+# =====================
+set_global_assignment -name GLITCH_INTERVAL 1
+
+# LogicLock Region Assignments
+# ============================
+set_global_assignment -name LOGICLOCK_INCREMENTAL_COMPILE_ASSIGNMENT OFF
