@@ -1,0 +1,11 @@
+(
+	q_sig[]
+) = dec_shrg	(
+	.clock = clock_sig,
+	.enable = enable_sig,
+	.load = load_sig,
+	.data[] = data_sig[]
+)
+RETURNS (
+	.q[]
+);

@@ -1,0 +1,8 @@
+(
+	result_sig
+) = or10	(
+	.data[][] = data_sig[][]
+)
+RETURNS (
+	.result
+);

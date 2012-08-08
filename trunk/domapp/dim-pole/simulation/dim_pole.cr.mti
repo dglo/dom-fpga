@@ -1,0 +1,174 @@
+C:/FPGAtools/quartus/eda/sim_lib/altera_mf.vhd {2 {vcom -work altera_mf -2002 -explicit -vopt C:/FPGAtools/quartus/eda/sim_lib/altera_mf.vhd
+Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
+-- Loading package standard
+-- Loading package std_logic_1164
+-- Compiling entity lcell
+-- Compiling architecture behavior of lcell
+-- Compiling entity global
+-- Compiling architecture behavior of global
+-- Compiling entity carry
+-- Compiling architecture behavior of carry
+-- Compiling entity cascade
+-- Compiling architecture behavior of cascade
+-- Compiling entity carry_sum
+-- Compiling architecture behavior of carry_sum
+-- Compiling entity exp
+-- Compiling architecture behavior of exp
+-- Compiling package altera_device_families
+-- Compiling package body altera_device_families
+-- Loading package altera_device_families
+-- Loading package textio
+-- Compiling package altera_common_conversion
+-- Compiling package body altera_common_conversion
+-- Loading package altera_common_conversion
+-- Loading package std_logic_arith
+-- Compiling entity altaccumulate
+-- Compiling architecture behaviour of altaccumulate
+-- Loading package altera_device_families
+-- Compiling entity altmult_accum
+-- Compiling architecture behaviour of altmult_accum
+-- Compiling entity altmult_add
+-- Compiling architecture behaviour of altmult_add
+-- Loading package altera_common_conversion
+-- Compiling entity altfp_mult
+-- Compiling architecture behavior of altfp_mult
+-- Compiling entity altsqrt
+-- Compiling architecture behavior of altsqrt
+-- Compiling entity altclklock
+-- Compiling architecture behavior of altclklock
+-- Compiling entity altddio_in
+-- Compiling architecture behave of altddio_in
+-- Compiling entity altddio_out
+-- Compiling architecture behave of altddio_out
+-- Compiling entity altddio_bidir
+-- Compiling architecture struct of altddio_bidir
+-- Compiling package pllpack
+-- Compiling package body pllpack
+-- Loading package pllpack
+-- Compiling entity dffp
+-- Compiling architecture behave of dffp
+-- Compiling entity mf_mn_cntr
+-- Compiling architecture behave of mf_mn_cntr
+-- Compiling entity stx_scale_cntr
+-- Compiling architecture behave of stx_scale_cntr
+-- Compiling entity arm_scale_cntr
+-- Compiling architecture behave of arm_scale_cntr
+-- Compiling entity mf_pll_reg
+-- Compiling architecture behave of mf_pll_reg
+-- Loading package pllpack
+-- Loading package altera_mf_components
+-- Compiling entity mf_stratix_pll
+-- Compiling architecture vital_pll of mf_stratix_pll
+-- Compiling entity mf_stratixii_pll
+-- Compiling architecture vital_pll of mf_stratixii_pll
+-- Compiling entity altpll
+-- Compiling architecture behavior of altpll
+-- Compiling entity hssi_pll
+-- Compiling architecture behavior of hssi_pll
+-- Compiling entity mf_ram7x20_syn
+-- Compiling architecture hssi_ram7x20_syn of mf_ram7x20_syn
+-- Compiling entity hssi_fifo
+-- Compiling architecture synchronizer of hssi_fifo
+-- Compiling entity hssi_rx
+-- Compiling architecture hssi_receiver of hssi_rx
+-- Compiling entity hssi_tx
+-- Compiling architecture transmitter of hssi_tx
+-- Compiling entity altcdr_rx
+-- Compiling architecture struct of altcdr_rx
+-- Compiling entity altcdr_tx
+-- Compiling architecture struct of altcdr_tx
+-- Compiling entity stratixii_lvds_rx
+-- Compiling architecture behavior of stratixii_lvds_rx
+-- Compiling entity altlvds_rx
+-- Compiling architecture behavior of altlvds_rx
+-- Compiling entity stratix_tx_outclk
+-- Compiling architecture behavior of stratix_tx_outclk
+-- Compiling entity stratixii_tx_outclk
+-- Compiling architecture behavior of stratixii_tx_outclk
+-- Compiling entity altlvds_tx
+-- Compiling architecture behavior of altlvds_tx
+-- Compiling entity altcam
+** Warning: C:/FPGAtools/quartus/eda/sim_lib/altera_mf.vhd(17572): (vcom-1283) Cannot reference file "mem_data_file" inside pure function "hex_to_stdlogicarray".
+** Warning: C:/FPGAtools/quartus/eda/sim_lib/altera_mf.vhd(17574): (vcom-1283) Cannot reference file "mem_data_file" inside pure function "hex_to_stdlogicarray".
+** Warning: C:/FPGAtools/quartus/eda/sim_lib/altera_mf.vhd(17576): (vcom-1283) Cannot reference file "mem_data_file" inside pure function "hex_to_stdlogicarray".
+** Warning: C:/FPGAtools/quartus/eda/sim_lib/altera_mf.vhd(17685): (vcom-1283) Cannot reference file "mem_data_file" inside pure function "hex_to_stdlogicarray".
+-- Compiling architecture behave of altcam
+-- Loading package std_logic_unsigned
+-- Compiling entity altdpram
+-- Compiling architecture behavior of altdpram
+-- Compiling entity altsyncram
+-- Compiling architecture translated of altsyncram
+-- Compiling entity alt3pram
+-- Compiling architecture behavior of alt3pram
+-- Compiling entity altqpram
+-- Compiling architecture behavior of altqpram
+-- Compiling entity parallel_add
+-- Compiling architecture behaviour of parallel_add
+-- Compiling entity scfifo
+-- Compiling architecture behavior of scfifo
+-- Compiling entity dcfifo_dffpipe
+-- Compiling architecture behavior of dcfifo_dffpipe
+-- Compiling entity dcfifo_fefifo
+-- Compiling architecture behavior of dcfifo_fefifo
+-- Compiling entity dcfifo_async
+-- Compiling architecture behavior of dcfifo_async
+-- Compiling entity dcfifo_sync
+-- Compiling architecture behavior of dcfifo_sync
+-- Compiling entity dcfifo
+-- Compiling architecture behavior of dcfifo
+-- Compiling entity altshift_taps
+-- Compiling architecture behavioural of altshift_taps
+-- Compiling entity a_graycounter
+-- Compiling architecture behavior of a_graycounter
+-- Loading package std_logic_textio
+-- Compiling entity alt_exc_dpram
+-- Compiling architecture behaviour of alt_exc_dpram
+** Warning: C:/FPGAtools/quartus/eda/sim_lib/altera_mf.vhd(26355): (vcom-1283) Cannot reference file "memory_file" inside pure function "dpram_loadmem".
+** Warning: C:/FPGAtools/quartus/eda/sim_lib/altera_mf.vhd(26356): (vcom-1283) Cannot reference file "memory_file" inside pure function "dpram_loadmem".
+** Warning: C:/FPGAtools/quartus/eda/sim_lib/altera_mf.vhd(26360): (vcom-1283) Cannot reference file "memory_file" inside pure function "dpram_loadmem".
+** Warning: C:/FPGAtools/quartus/eda/sim_lib/altera_mf.vhd(26371): (vcom-1283) Cannot reference file "memory_file" inside pure function "dpram_loadmem".
+** Warning: C:/FPGAtools/quartus/eda/sim_lib/altera_mf.vhd(26383): (vcom-1284) Cannot call side-effect function "dpram_loadmem" from pure function "dpram_checkmem".
+-- Compiling entity alt_exc_upcore
+-- Compiling architecture behaviour of alt_exc_upcore
+** Warning: C:/FPGAtools/quartus/eda/sim_lib/altera_mf.vhd(27022): (vcom-1283) Cannot reference file "slavememory_cfg" inside pure function "upcore_loadcfg".
+** Warning: C:/FPGAtools/quartus/eda/sim_lib/altera_mf.vhd(27023): (vcom-1283) Cannot reference file "slavememory_cfg" inside pure function "upcore_loadcfg".
+** Warning: C:/FPGAtools/quartus/eda/sim_lib/altera_mf.vhd(27026): (vcom-1283) Cannot reference file "slavememory_cfg" inside pure function "upcore_loadcfg".
+** Warning: C:/FPGAtools/quartus/eda/sim_lib/altera_mf.vhd(27037): (vcom-1283) Cannot reference file "slavememory_cfg" inside pure function "upcore_loadcfg".
+** Warning: C:/FPGAtools/quartus/eda/sim_lib/altera_mf.vhd(27058): (vcom-1283) Cannot reference file "memory_file" inside pure function "upcore_loadbank".
+** Warning: C:/FPGAtools/quartus/eda/sim_lib/altera_mf.vhd(27059): (vcom-1283) Cannot reference file "memory_file" inside pure function "upcore_loadbank".
+** Warning: C:/FPGAtools/quartus/eda/sim_lib/altera_mf.vhd(27061): (vcom-1283) Cannot reference file "memory_file" inside pure function "upcore_loadbank".
+** Warning: C:/FPGAtools/quartus/eda/sim_lib/altera_mf.vhd(27071): (vcom-1283) Cannot reference file "memory_file" inside pure function "upcore_loadbank".
+** Warning: C:/FPGAtools/quartus/eda/sim_lib/altera_mf.vhd(27080): (vcom-1284) Cannot call side-effect function "upcore_loadcfg" from pure function "upcore_checkbank".
+** Warning: C:/FPGAtools/quartus/eda/sim_lib/altera_mf.vhd(27088): (vcom-1284) Cannot call side-effect function "upcore_loadbank" from pure function "upcore_checkbank".
+** Warning: C:/FPGAtools/quartus/eda/sim_lib/altera_mf.vhd(27097): (vcom-1284) Cannot call side-effect function "upcore_loadcfg" from pure function "initialise_memstart".
+** Warning: C:/FPGAtools/quartus/eda/sim_lib/altera_mf.vhd(27112): (vcom-1284) Cannot call side-effect function "upcore_loadcfg" from pure function "initialise_memend".
+** Warning: C:/FPGAtools/quartus/eda/sim_lib/altera_mf.vhd(27127): (vcom-1284) Cannot call side-effect function "upcore_loadcfg" from pure function "initialise_memwaitstart".
+** Warning: C:/FPGAtools/quartus/eda/sim_lib/altera_mf.vhd(27142): (vcom-1284) Cannot call side-effect function "upcore_loadcfg" from pure function "initialise_memwait".
+** Warning: C:/FPGAtools/quartus/eda/sim_lib/altera_mf.vhd(27217): (vcom-1283) Cannot reference file "mastercommands" inside pure function "upcore_loadtrans".
+** Warning: C:/FPGAtools/quartus/eda/sim_lib/altera_mf.vhd(27218): (vcom-1283) Cannot reference file "mastercommands" inside pure function "upcore_loadtrans".
+** Warning: C:/FPGAtools/quartus/eda/sim_lib/altera_mf.vhd(27221): (vcom-1283) Cannot reference file "mastercommands" inside pure function "upcore_loadtrans".
+** Warning: C:/FPGAtools/quartus/eda/sim_lib/altera_mf.vhd(27231): (vcom-1283) Cannot reference file "mastercommands" inside pure function "upcore_loadtrans".
+
+} {} {}} C:/FPGAtools/quartus/eda/sim_lib/altera_mf_components.vhd {1 {vcom -work altera_mf -2002 -explicit -cover s C:/FPGAtools/quartus/eda/sim_lib/altera_mf_components.vhd
+Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
+-- Loading package standard
+-- Loading package std_logic_1164
+-- Compiling package altera_mf_components
+
+} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_buffer.vhd {1 {vcom -work work -2002 -explicit -cover s C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_buffer.vhd
+Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
+-- Loading package standard
+-- Loading package std_logic_1164
+-- Loading package altera_mf_components
+-- Compiling entity dim_pole_buffer
+-- Compiling architecture syn of dim_pole_buffer
+
+} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_flag_tb.vhd {1 {vcom -work work -2002 -explicit -cover s C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_flag_tb.vhd
+Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
+-- Loading package standard
+-- Loading package std_logic_1164
+-- Loading package numeric_std
+-- Compiling entity dim_pole_flag_tb
+-- Compiling architecture dim_pole_flag_tb_arch of dim_pole_flag_tb
+
+} {} {}}

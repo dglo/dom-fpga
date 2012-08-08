@@ -1,0 +1,744 @@
+# Copyright (C) 1991-2004 Altera Corporation
+# Any  megafunction  design,  and related netlist (encrypted  or  decrypted),
+# support information,  device programming or simulation file,  and any other
+# associated  documentation or information  provided by  Altera  or a partner
+# under  Altera's   Megafunction   Partnership   Program  may  be  used  only
+# to program  PLD  devices (but not masked  PLD  devices) from  Altera.   Any
+# other  use  of such  megafunction  design,  netlist,  support  information,
+# device programming or simulation file,  or any other  related documentation
+# or information  is prohibited  for  any  other purpose,  including, but not
+# limited to  modification,  reverse engineering,  de-compiling, or use  with
+# any other  silicon devices,  unless such use is  explicitly  licensed under
+# a separate agreement with  Altera  or a megafunction partner.  Title to the
+# intellectual property,  including patents,  copyrights,  trademarks,  trade
+# secrets,  or maskworks,  embodied in any such megafunction design, netlist,
+# support  information,  device programming or simulation file,  or any other
+# related documentation or information provided by  Altera  or a megafunction
+# partner, remains with Altera, the megafunction partner, or their respective
+# licensors. No other licenses, including any licenses needed under any third
+# party's intellectual property, are provided herein.
+
+
+# The default values for assignments are stored in the file
+#		assignment_defaults.qdf
+
+# Altera recommends that you do not modify this file. This
+# file is updated automatically by the Quartus II software
+# and any changes you make may be lost or overwritten.
+
+
+# Project-Wide Assignments
+# ========================
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION "3.0 SP2"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "10:14:15  FEBRUARY 26, 2004"
+set_global_assignment -name LAST_QUARTUS_VERSION "4.0 SP1"
+set_parameter -name RESERVE_ALL_UNUSED_PINS_NO_OUTPUT_GND "AS OUTPUT DRIVING AN UNSPECIFIED SIGNAL"
+set_global_assignment -name VERILOG_FILE "dim-pole/dim_pole_buffer.v"
+set_global_assignment -name VHDL_FILE "dim-pole/dim_pole_flag.vhd"
+set_global_assignment -name VHDL_FILE minimum_bias/minimum_bias.vhd
+set_global_assignment -name VHDL_FILE disc_in_ATWD.vhd
+set_global_assignment -name VHDL_FILE icetop/icetop_get_atwd_chan.vhd
+set_global_assignment -name VHDL_FILE icetop/icetop_atwd_charge.vhd
+set_global_assignment -name BDF_FILE ../common/comDPM/dcom_ap.bdf
+set_global_assignment -name VHDL_FILE icecube_data_types.vhd
+set_global_assignment -name VHDL_FILE constants.vhd
+set_global_assignment -name VHDL_FILE ctrl_data_types.vhd
+set_global_assignment -name VHDL_FILE ahb_slave.vhd
+set_global_assignment -name VHDL_FILE monitor_data_type.vhd
+set_global_assignment -name VHDL_FILE "SPI/adis16209-spi.vhd"
+set_global_assignment -name VHDL_FILE ROC.vhd
+set_global_assignment -name VHDL_FILE FADC_input.vhd
+set_global_assignment -name VHDL_FILE calibration_sources.vhd
+set_global_assignment -name VHDL_FILE interrupts.vhd
+set_global_assignment -name VHDL_FILE rate_meters.vhd
+set_global_assignment -name VHDL_FILE ahb_master.vhd
+set_global_assignment -name VHDL_FILE ATWD_control.vhd
+set_global_assignment -name VHDL_FILE gray2bin.vhd
+set_global_assignment -name VHDL_FILE trigger.vhd
+set_global_assignment -name VHDL_FILE daq.vhd
+set_global_assignment -name VHDL_FILE ATWD_interface.vhd
+set_global_assignment -name VHDL_FILE mem_interface.vhd
+set_global_assignment -name VHDL_FILE FADC_interface.vhd
+set_global_assignment -name VHDL_FILE ADC_input.vhd
+set_global_assignment -name VHDL_FILE ADC_control.vhd
+set_global_assignment -name VHDL_FILE pingpong.vhd
+set_global_assignment -name VHDL_FILE pedestal_sub.vhd
+set_global_assignment -name VHDL_FILE domapp.vhd
+set_global_assignment -name VHDL_FILE functions.vhd
+set_global_assignment -name VHDL_FILE slaveregister.vhd
+set_global_assignment -name VHDL_FILE data_buffer.vhd
+set_global_assignment -name VHDL_FILE local_coincidence/LC_abort.vhd
+set_global_assignment -name VHDL_FILE local_coincidence/LC_RX_decode.vhd
+set_global_assignment -name VHDL_FILE local_coincidence/LC_RX_edge.vhd
+set_global_assignment -name VHDL_FILE local_coincidence/LC_TX.vhd
+set_global_assignment -name VHDL_FILE local_coincidence/LC_relais.vhd
+set_global_assignment -name VHDL_FILE local_coincidence/LC_slice.vhd
+set_global_assignment -name VHDL_FILE local_coincidence/local_coincidence.vhd
+set_global_assignment -name VHDL_FILE DOMstatus.vhd
+set_global_assignment -name VHDL_FILE xfer_time.vhd
+set_global_assignment -name VHDL_FILE chargestamp/charge_stamp_generator.vhd
+set_global_assignment -name VHDL_FILE chargestamp/chargestamp.vhd
+set_global_assignment -name SIGNALTAP_FILE LC_binary.stp
+set_global_assignment -name SIGNALTAP_FILE slavereg_log.stp
+set_global_assignment -name SIGNALTAP_FILE ping_compr_ram.stp
+set_global_assignment -name SIGNALTAP_FILE "fast-ahb-master.stp"
+set_global_assignment -name VHDL_FILE compression_delta_1_2_3_6_11/compression.vhd
+set_global_assignment -name SIGNALTAP_FILE delta_word_mapFSM.stp
+set_global_assignment -name SIGNALTAP_FILE "tcal-1.stp"
+set_global_assignment -name SIGNALTAP_FILE beacon_mode.stp
+set_global_assignment -name SIGNALTAP_FILE atwd_disc_flag.stp
+set_global_assignment -name SIGNALTAP_FILE SLC.stp
+set_global_assignment -name SIGNALTAP_FILE softboot_nosync.stp
+set_global_assignment -name SIGNALTAP_FILE "dim-pole/dom-pole.stp"
+
+# Pin & Location Assignments
+# ==========================
+set_location_assignment PIN_AC26 -to ATWD0VDD_SUP
+set_location_assignment PIN_Y15 -to ATWD0_D\[0\]
+set_location_assignment PIN_V15 -to ATWD0_D\[1\]
+set_location_assignment PIN_AC15 -to ATWD0_D\[2\]
+set_location_assignment PIN_AA15 -to ATWD0_D\[3\]
+set_location_assignment PIN_AE16 -to ATWD0_D\[4\]
+set_location_assignment PIN_AB16 -to ATWD0_D\[5\]
+set_location_assignment PIN_AA16 -to ATWD0_D\[6\]
+set_location_assignment PIN_W16 -to ATWD0_D\[7\]
+set_location_assignment PIN_AF17 -to ATWD0_D\[8\]
+set_location_assignment PIN_AD17 -to ATWD0_D\[9\]
+set_location_assignment PIN_AC25 -to ATWD1VDD_SUP
+set_location_assignment PIN_AA17 -to ATWD1_D\[0\]
+set_location_assignment PIN_AF18 -to ATWD1_D\[1\]
+set_location_assignment PIN_AB18 -to ATWD1_D\[2\]
+set_location_assignment PIN_AD18 -to ATWD1_D\[3\]
+set_location_assignment PIN_AC20 -to ATWD1_D\[4\]
+set_location_assignment PIN_AC19 -to ATWD1_D\[5\]
+set_location_assignment PIN_AE22 -to ATWD1_D\[6\]
+set_location_assignment PIN_AA18 -to ATWD1_D\[7\]
+set_location_assignment PIN_AD21 -to ATWD1_D\[8\]
+set_location_assignment PIN_AE20 -to ATWD1_D\[9\]
+set_location_assignment PIN_AB8 -to ATWDTrigger_0
+set_location_assignment PIN_AD7 -to ATWDTrigger_1
+set_location_assignment PIN_E4 -to A_nB
+set_location_assignment PIN_AC16 -to AnalogReset_0
+set_location_assignment PIN_AC18 -to AnalogReset_1
+set_location_assignment PIN_AB2 -to COINCIDENCE_OUT_DOWN
+set_location_assignment PIN_AB1 -to COINCIDENCE_OUT_UP
+set_location_assignment PIN_AA10 -to COINC_DOWN_A
+set_location_assignment PIN_AE9 -to COINC_DOWN_ABAR
+set_location_assignment PIN_AC9 -to COINC_DOWN_ALATCH
+set_location_assignment PIN_AC10 -to COINC_DOWN_B
+set_location_assignment PIN_AB9 -to COINC_DOWN_BBAR
+set_location_assignment PIN_AD9 -to COINC_DOWN_BLATCH
+set_location_assignment PIN_AB10 -to COINC_UP_A
+set_location_assignment PIN_AE10 -to COINC_UP_ABAR
+set_location_assignment PIN_AF9 -to COINC_UP_ALATCH
+set_location_assignment PIN_AD10 -to COINC_UP_B
+set_location_assignment PIN_AF10 -to COINC_UP_BBAR
+set_location_assignment PIN_AA11 -to COINC_UP_BLATCH
+set_location_assignment PIN_AA24 -to COMM_RESET
+set_location_assignment PIN_H4 -to COM_AD_OTR
+set_location_assignment PIN_U2 -to COM_TX_SLEEP
+set_location_assignment PIN_AF16 -to ChannelSelect_0\[0\]
+set_location_assignment PIN_AB15 -to ChannelSelect_0\[1\]
+set_location_assignment PIN_AD19 -to ChannelSelect_1\[0\]
+set_location_assignment PIN_Y18 -to ChannelSelect_1\[1\]
+set_location_assignment PIN_W15 -to CounterClock_0
+set_location_assignment PIN_AB17 -to CounterClock_1
+set_location_assignment PIN_V16 -to DigitalReset_0
+set_location_assignment PIN_W18 -to DigitalReset_1
+set_location_assignment PIN_Y16 -to DigitalSet_0
+set_location_assignment PIN_AE23 -to DigitalSet_1
+set_location_assignment PIN_W23 -to FE_PULSER_N\[0\]
+set_location_assignment PIN_V24 -to FE_PULSER_N\[1\]
+set_location_assignment PIN_U23 -to FE_PULSER_N\[2\]
+set_location_assignment PIN_T24 -to FE_PULSER_N\[3\]
+set_location_assignment PIN_W24 -to FE_PULSER_P\[0\]
+set_location_assignment PIN_V23 -to FE_PULSER_P\[1\]
+set_location_assignment PIN_U22 -to FE_PULSER_P\[2\]
+set_location_assignment PIN_T22 -to FE_PULSER_P\[3\]
+set_location_assignment PIN_AC22 -to FE_TEST_PULSE
+set_location_assignment PIN_AB13 -to FLASH_AD_STBY
+set_location_assignment PIN_AB14 -to FLASH_NCO
+set_location_assignment PIN_M24 -to FL_ATTN
+set_location_assignment PIN_M21 -to FL_TCK
+set_location_assignment PIN_M19 -to FL_TDI
+set_location_assignment PIN_L20 -to FL_TDO
+set_location_assignment PIN_L19 -to FL_TMS
+set_location_assignment PIN_M23 -to FL_Trigger
+set_location_assignment PIN_N23 -to FL_Trigger_bar
+set_location_assignment PIN_Y23 -to FPGA_LOADED
+set_location_assignment PIN_F4 -to HDV_IN
+set_location_assignment PIN_H3 -to HDV_Rx
+set_location_assignment PIN_G4 -to HDV_RxENA
+set_location_assignment PIN_G3 -to HDV_TxENA
+set_location_assignment PIN_AF12 -to MultiSPE
+set_location_assignment PIN_AD8 -to MultiSPE_nl
+set_location_assignment PIN_AF15 -to OneSPE
+set_location_assignment PIN_AB19 -to OneSPE_nl
+set_location_assignment PIN_W14 -to OutputEnable_0
+set_location_assignment PIN_W17 -to OutputEnable_1
+set_location_assignment PIN_B20 -to PGM\[0\]
+set_location_assignment PIN_AB4 -to PGM\[10\]
+set_location_assignment PIN_P21 -to PGM\[11\]
+set_location_assignment PIN_M5 -to PGM\[12\]
+set_location_assignment PIN_V7 -to PGM\[13\]
+set_location_assignment PIN_Y4 -to PGM\[14\]
+set_location_assignment PIN_Y3 -to PGM\[15\]
+set_location_assignment PIN_B18 -to PGM\[1\]
+set_location_assignment PIN_B22 -to PGM\[2\]
+set_location_assignment PIN_A20 -to PGM\[3\]
+set_location_assignment PIN_A18 -to PGM\[4\]
+set_location_assignment PIN_V3 -to PGM\[5\]
+set_location_assignment PIN_T7 -to PGM\[6\]
+set_location_assignment PIN_U24 -to PGM\[7\]
+set_location_assignment PIN_AB3 -to PGM\[8\]
+set_location_assignment PIN_R24 -to PGM\[9\]
+set_location_assignment PIN_AD22 -to R2BUS\[0\]
+set_location_assignment PIN_AB21 -to R2BUS\[1\]
+set_location_assignment PIN_AB20 -to R2BUS\[2\]
+set_location_assignment PIN_AA20 -to R2BUS\[3\]
+set_location_assignment PIN_AA21 -to R2BUS\[4\]
+set_location_assignment PIN_Y20 -to R2BUS\[5\]
+set_location_assignment PIN_Y21 -to R2BUS\[6\]
+set_location_assignment PIN_AD15 -to RampSet_0
+set_location_assignment PIN_AE18 -to RampSet_1
+set_location_assignment PIN_AD16 -to ReadWrite_0
+set_location_assignment PIN_AD20 -to ReadWrite_1
+set_location_assignment PIN_AC14 -to ShiftClock_0
+set_location_assignment PIN_Y17 -to ShiftClock_1
+set_location_assignment PIN_AA1 -to SingleLED_TRIGGER
+set_location_assignment PIN_AA14 -to TriggerComplete_0
+set_location_assignment PIN_AC17 -to TriggerComplete_1
+set_location_assignment PIN_K16 -to EBIACK
+set_location_assignment PIN_F20 -to EBIADDR\[0\]
+set_location_assignment PIN_H17 -to EBIADDR\[10\]
+set_location_assignment PIN_E19 -to EBIADDR\[11\]
+set_location_assignment PIN_C20 -to EBIADDR\[12\]
+set_location_assignment PIN_D19 -to EBIADDR\[13\]
+set_location_assignment PIN_F18 -to EBIADDR\[14\]
+set_location_assignment PIN_C19 -to EBIADDR\[15\]
+set_location_assignment PIN_G17 -to EBIADDR\[16\]
+set_location_assignment PIN_K15 -to EBIADDR\[17\]
+set_location_assignment PIN_D18 -to EBIADDR\[18\]
+set_location_assignment PIN_E18 -to EBIADDR\[19\]
+set_location_assignment PIN_C21 -to EBIADDR\[1\]
+set_location_assignment PIN_H16 -to EBIADDR\[20\]
+set_location_assignment PIN_F17 -to EBIADDR\[21\]
+set_location_assignment PIN_C18 -to EBIADDR\[22\]
+set_location_assignment PIN_J16 -to EBIADDR\[23\]
+set_location_assignment PIN_E17 -to EBIADDR\[24\]
+set_location_assignment PIN_E20 -to EBIADDR\[2\]
+set_location_assignment PIN_H18 -to EBIADDR\[3\]
+set_location_assignment PIN_G19 -to EBIADDR\[4\]
+set_location_assignment PIN_J18 -to EBIADDR\[5\]
+set_location_assignment PIN_J17 -to EBIADDR\[6\]
+set_location_assignment PIN_G18 -to EBIADDR\[7\]
+set_location_assignment PIN_D20 -to EBIADDR\[8\]
+set_location_assignment PIN_F19 -to EBIADDR\[9\]
+set_location_assignment PIN_D22 -to EBIBE\[0\]
+set_location_assignment PIN_K18 -to EBIBE\[1\]
+set_location_assignment PIN_D21 -to EBICLK
+set_location_assignment PIN_K17 -to EBICSN\[0\]
+set_location_assignment PIN_H20 -to EBICSN\[1\]
+set_location_assignment PIN_J19 -to EBICSN\[2\]
+set_location_assignment PIN_G20 -to EBICSN\[3\]
+set_location_assignment PIN_C17 -to EBIDQ\[0\]
+set_location_assignment PIN_J14 -to EBIDQ\[10\]
+set_location_assignment PIN_E14 -to EBIDQ\[11\]
+set_location_assignment PIN_K14 -to EBIDQ\[12\]
+set_location_assignment PIN_G14 -to EBIDQ\[13\]
+set_location_assignment PIN_F14 -to EBIDQ\[14\]
+set_location_assignment PIN_H14 -to EBIDQ\[15\]
+set_location_assignment PIN_G16 -to EBIDQ\[1\]
+set_location_assignment PIN_D17 -to EBIDQ\[2\]
+set_location_assignment PIN_E16 -to EBIDQ\[3\]
+set_location_assignment PIN_J15 -to EBIDQ\[4\]
+set_location_assignment PIN_F16 -to EBIDQ\[5\]
+set_location_assignment PIN_G15 -to EBIDQ\[6\]
+set_location_assignment PIN_F15 -to EBIDQ\[7\]
+set_location_assignment PIN_H15 -to EBIDQ\[8\]
+set_location_assignment PIN_E15 -to EBIDQ\[9\]
+set_location_assignment PIN_C22 -to EBIOEN
+set_location_assignment PIN_E21 -to EBIWEN
+set_location_assignment PIN_K9 -to SDRAMADDR\[0\]
+set_location_assignment PIN_K11 -to SDRAMADDR\[10\]
+set_location_assignment PIN_E5 -to SDRAMADDR\[11\]
+set_location_assignment PIN_H8 -to SDRAMADDR\[12\]
+set_location_assignment PIN_J8 -to SDRAMADDR\[13\]
+set_location_assignment PIN_F6 -to SDRAMADDR\[14\]
+set_location_assignment PIN_C5 -to SDRAMADDR\[1\]
+set_location_assignment PIN_E6 -to SDRAMADDR\[2\]
+set_location_assignment PIN_G6 -to SDRAMADDR\[3\]
+set_location_assignment PIN_K8 -to SDRAMADDR\[4\]
+set_location_assignment PIN_A4 -to SDRAMADDR\[5\]
+set_location_assignment PIN_B4 -to SDRAMADDR\[6\]
+set_location_assignment PIN_F5 -to SDRAMADDR\[7\]
+set_location_assignment PIN_D5 -to SDRAMADDR\[8\]
+set_location_assignment PIN_G5 -to SDRAMADDR\[9\]
+set_location_assignment PIN_F8 -to SDRAMCASN
+set_location_assignment PIN_B5 -to SDRAMCLK
+set_location_assignment PIN_F7 -to SDRAMCLKE
+set_location_assignment PIN_G7 -to SDRAMCLKN
+set_location_assignment PIN_E7 -to SDRAMCSN\[0\]
+set_location_assignment PIN_D6 -to SDRAMCSN\[1\]
+set_location_assignment PIN_H12 -to SDRAMDQM\[0\]
+set_location_assignment PIN_G11 -to SDRAMDQM\[1\]
+set_location_assignment PIN_F9 -to SDRAMDQM\[2\]
+set_location_assignment PIN_C6 -to SDRAMDQM\[3\]
+set_location_assignment PIN_F12 -to SDRAMDQS\[0\]
+set_location_assignment PIN_H11 -to SDRAMDQS\[1\]
+set_location_assignment PIN_J10 -to SDRAMDQS\[2\]
+set_location_assignment PIN_K10 -to SDRAMDQS\[3\]
+set_location_assignment PIN_J13 -to SDRAMDQ\[0\]
+set_location_assignment PIN_J12 -to SDRAMDQ\[10\]
+set_location_assignment PIN_A12 -to SDRAMDQ\[11\]
+set_location_assignment PIN_C12 -to SDRAMDQ\[12\]
+set_location_assignment PIN_B11 -to SDRAMDQ\[13\]
+set_location_assignment PIN_K13 -to SDRAMDQ\[14\]
+set_location_assignment PIN_A11 -to SDRAMDQ\[15\]
+set_location_assignment PIN_A9 -to SDRAMDQ\[16\]
+set_location_assignment PIN_H10 -to SDRAMDQ\[17\]
+set_location_assignment PIN_B9 -to SDRAMDQ\[18\]
+set_location_assignment PIN_C9 -to SDRAMDQ\[19\]
+set_location_assignment PIN_H13 -to SDRAMDQ\[1\]
+set_location_assignment PIN_E9 -to SDRAMDQ\[20\]
+set_location_assignment PIN_K12 -to SDRAMDQ\[21\]
+set_location_assignment PIN_D9 -to SDRAMDQ\[22\]
+set_location_assignment PIN_G9 -to SDRAMDQ\[23\]
+set_location_assignment PIN_D8 -to SDRAMDQ\[24\]
+set_location_assignment PIN_H9 -to SDRAMDQ\[25\]
+set_location_assignment PIN_A7 -to SDRAMDQ\[26\]
+set_location_assignment PIN_B7 -to SDRAMDQ\[27\]
+set_location_assignment PIN_E8 -to SDRAMDQ\[28\]
+set_location_assignment PIN_G8 -to SDRAMDQ\[29\]
+set_location_assignment PIN_F13 -to SDRAMDQ\[2\]
+set_location_assignment PIN_C7 -to SDRAMDQ\[30\]
+set_location_assignment PIN_D7 -to SDRAMDQ\[31\]
+set_location_assignment PIN_G13 -to SDRAMDQ\[3\]
+set_location_assignment PIN_E13 -to SDRAMDQ\[4\]
+set_location_assignment PIN_D13 -to SDRAMDQ\[5\]
+set_location_assignment PIN_C13 -to SDRAMDQ\[6\]
+set_location_assignment PIN_B12 -to SDRAMDQ\[7\]
+set_location_assignment PIN_E12 -to SDRAMDQ\[8\]
+set_location_assignment PIN_G12 -to SDRAMDQ\[9\]
+set_location_assignment PIN_J9 -to SDRAMRASN
+set_location_assignment PIN_A5 -to SDRAMWEN
+set_location_assignment PIN_G22 -to UARTCTSN
+set_location_assignment PIN_J22 -to UARTDCDN
+set_location_assignment PIN_H22 -to UARTDSRN
+set_location_assignment PIN_J20 -to UARTDTRN
+set_location_assignment PIN_J21 -to UARTRIN
+set_location_assignment PIN_H21 -to UARTRTSN
+set_location_assignment PIN_F21 -to UARTRXD
+set_location_assignment PIN_G21 -to UARTTXD
+set_location_assignment PIN_T2 -to COM_DB\[13\]
+set_location_assignment PIN_T1 -to COM_DB\[12\]
+set_location_assignment PIN_R2 -to COM_DB\[11\]
+set_location_assignment PIN_R1 -to COM_DB\[10\]
+set_location_assignment PIN_M2 -to COM_DB\[9\]
+set_location_assignment PIN_M1 -to COM_DB\[8\]
+set_location_assignment PIN_L2 -to COM_DB\[7\]
+set_location_assignment PIN_L1 -to COM_DB\[6\]
+set_location_assignment PIN_K2 -to COM_DB\[5\]
+set_location_assignment PIN_U1 -to COM_DB\[4\]
+set_location_assignment PIN_W20 -to COM_DB\[3\]
+set_location_assignment PIN_Y19 -to COM_DB\[2\]
+set_location_assignment PIN_AA19 -to COM_DB\[1\]
+set_location_assignment PIN_AB22 -to COM_DB\[0\]
+set_location_assignment PIN_R6 -to COM_AD_D\[0\]
+set_location_assignment PIN_R5 -to COM_AD_D\[1\]
+set_location_assignment PIN_L5 -to COM_AD_D\[2\]
+set_location_assignment PIN_L4 -to COM_AD_D\[3\]
+set_location_assignment PIN_L3 -to COM_AD_D\[4\]
+set_location_assignment PIN_K5 -to COM_AD_D\[5\]
+set_location_assignment PIN_K4 -to COM_AD_D\[6\]
+set_location_assignment PIN_K3 -to COM_AD_D\[7\]
+set_location_assignment PIN_J5 -to COM_AD_D\[8\]
+set_location_assignment PIN_J4 -to COM_AD_D\[9\]
+set_location_assignment PIN_J3 -to COM_AD_D\[10\]
+set_location_assignment PIN_H5 -to COM_AD_D\[11\]
+set_location_assignment PIN_Y22 -to R2BUS\[7\]
+set_location_assignment PIN_AC13 -to FLASH_AD_D\[11\]
+set_location_assignment PIN_AC12 -to FLASH_AD_D\[9\]
+set_location_assignment PIN_AD12 -to FLASH_AD_D\[10\]
+set_location_assignment PIN_AE11 -to FLASH_AD_D\[8\]
+set_location_assignment PIN_AB12 -to FLASH_AD_D\[7\]
+set_location_assignment PIN_AA12 -to FLASH_AD_D\[6\]
+set_location_assignment PIN_AF11 -to FLASH_AD_D\[5\]
+set_location_assignment PIN_AD11 -to FLASH_AD_D\[4\]
+set_location_assignment PIN_AC11 -to FLASH_AD_D\[3\]
+set_location_assignment PIN_AB11 -to FLASH_AD_D\[2\]
+set_location_assignment PIN_AA13 -to FLASH_AD_D\[1\]
+set_location_assignment PIN_AA22 -to FLASH_AD_D\[0\]
+set_location_assignment PIN_V20 -to PLD_FPGA\[7\]
+set_location_assignment PIN_V21 -to PLD_FPGA\[6\]
+set_location_assignment PIN_V22 -to PLD_FPGA\[5\]
+set_location_assignment PIN_U20 -to PLD_FPGA\[4\]
+set_location_assignment PIN_U21 -to PLD_FPGA\[3\]
+set_location_assignment PIN_T20 -to PLD_FPGA\[2\]
+set_location_assignment PIN_T21 -to PLD_FPGA\[1\]
+set_location_assignment PIN_R20 -to PLD_FPGA\[0\]
+set_location_assignment PIN_Y24 -to PLD_FPGA_nOE
+set_location_assignment PIN_W22 -to PLD_FPGA_nWE
+set_location_assignment PIN_V19 -to PLD_FPGA_BUSY
+set_location_assignment PIN_H19 -to INTEXTPIN
+set_location_assignment PIN_J24 -to nPOR
+set_location_assignment PIN_B16 -to nRESET
+set_location_assignment PIN_M4 -to CLKLK_OUT2p
+set_location_assignment PIN_H24 -to CLK_REF
+set_location_assignment PIN_W21 -to FPGA_RW
+set_location_assignment PIN_N25 -to FL_AUX_RESET
+set_location_assignment PIN_P20 -to CLK1p
+set_location_assignment PIN_W6 -to CLK2p
+set_location_assignment PIN_R23 -to CLK3p
+set_location_assignment PIN_Y5 -to CLK4p
+set_location_assignment LC10_8_Z1 -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_A_sig"
+set_location_assignment LC10_1_Z3 -to "daq:inst_daq\|trigger:inst_trigger\|discSPE"
+set_location_assignment LC10_3_Z1 -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_B_sig"
+set_location_assignment LC9_1_Z3 -to "daq:inst_daq\|trigger:inst_trigger\|discMPE"
+set_location_assignment LC8_2_Z3 -to "daq:inst_daq\|trigger:inst_trigger\|discSPE_latch"
+set_location_assignment LC7_2_Z3 -to "daq:inst_daq\|trigger:inst_trigger\|discMPE_latch"
+set_location_assignment LC6_2_Z3 -to "daq:inst_daq\|trigger:inst_trigger\|discSPE_pulse"
+set_location_assignment LC5_2_Z3 -to "daq:inst_daq\|trigger:inst_trigger\|discMPE_pulse"
+set_location_assignment LC10_2_Z3 -to "daq:inst_daq\|trigger:inst_trigger\|trigger_word\[0\]~reg0"
+set_location_assignment LC9_2_Z3 -to "daq:inst_daq\|trigger:inst_trigger\|trigger_word\[1\]~reg0"
+set_location_assignment PIN_AC2 -to adis16209_DOUT
+set_location_assignment PIN_AA2 -to adis16209_DIN
+set_location_assignment PIN_Y2 -to adis16209_nCS
+set_location_assignment PIN_Y1 -to FPGA_D3\[3\]
+set_location_assignment PIN_V2 -to FPGA_D3\[4\]
+set_location_assignment PIN_V1 -to adis16209_RST
+set_location_assignment PIN_W2 -to FPGA_D0\[1\]
+set_location_assignment PIN_W1 -to FPGA_D0\[0\]
+set_location_assignment PIN_F3 -to adis16209_SCLK
+set_location_assignment PIN_E3 -to adis16209_PWR
+
+# Timing Assignments
+# ==================
+set_global_assignment -name REPORT_IO_PATHS_SEPARATELY ON
+set_global_assignment -name CUT_OFF_PATHS_BETWEEN_CLOCK_DOMAINS OFF
+set_global_assignment -name INCLUDE_EXTERNAL_PIN_DELAYS_IN_FMAX_CALCULATIONS OFF
+
+# Analysis & Synthesis Assignments
+# ================================
+set_global_assignment -name APEX20K_OPTIMIZATION_TECHNIQUE SPEED
+set_global_assignment -name STRATIX_OPTIMIZATION_TECHNIQUE SPEED
+set_global_assignment -name CYCLONE_OPTIMIZATION_TECHNIQUE AREA
+set_global_assignment -name FAMILY EXCALIBUR_ARM
+set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 2
+set_global_assignment -name DEVICE_FILTER_PIN_COUNT 672
+set_global_assignment -name DEVICE_FILTER_PACKAGE FBGA
+set_global_assignment -name SAVE_DISK_SPACE OFF
+set_global_assignment -name TOP_LEVEL_ENTITY domapp
+set_global_assignment -name VHDL_SHOW_LMF_MAPPING_MESSAGES OFF
+set_global_assignment -name AUTO_ENABLE_SMART_COMPILE on
+set_global_assignment -name USER_LIBRARIES "c:\\work_lbnl\\icecubecvs\\dom-fpga\\domapp;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\tx_chan;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\tcal;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\uart;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\meanval;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan\\edges;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\rx_chan;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\parity;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm\\mono_flop;c:\\work_lbnl\\icecubecvs\\dom-fpga\\common\\comdpm;c:\\work_lbnl\\icecubecvs\\dom-fpga\\domapp\\compression_delta_1_2_3_6_11"
+
+# Fitter Assignments
+# ==================
+set_global_assignment -name RUN_DRC_DURING_COMPILATION ON
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED"
+set_global_assignment -name ENABLE_INIT_DONE_OUTPUT ON
+set_global_assignment -name AUTO_RESTART_CONFIGURATION OFF
+set_global_assignment -name CYCLONE_CONFIGURATION_SCHEME "PASSIVE SERIAL"
+set_global_assignment -name DEVICE EPXA4F672I2
+set_instance_assignment -name IO_STANDARD LVTTL -to CLK1p
+set_instance_assignment -name IO_STANDARD LVTTL -to ATWD0_D\[1\]
+set_instance_assignment -name IO_STANDARD LVTTL -to COM_DB\[13\]
+set_instance_assignment -name IO_STANDARD LVTTL -to COM_DB\[12\]
+set_instance_assignment -name IO_STANDARD LVTTL -to COM_DB\[11\]
+set_instance_assignment -name IO_STANDARD LVTTL -to COM_DB\[10\]
+set_instance_assignment -name IO_STANDARD LVTTL -to COM_DB\[9\]
+set_instance_assignment -name IO_STANDARD LVTTL -to COM_DB\[8\]
+set_instance_assignment -name IO_STANDARD LVTTL -to COM_DB\[7\]
+set_instance_assignment -name IO_STANDARD LVTTL -to COM_DB\[6\]
+set_instance_assignment -name IO_STANDARD LVTTL -to COM_DB\[5\]
+set_instance_assignment -name IO_STANDARD LVTTL -to COM_DB\[4\]
+set_instance_assignment -name IO_STANDARD LVTTL -to COM_DB\[3\]
+set_instance_assignment -name IO_STANDARD LVTTL -to COM_DB\[2\]
+set_instance_assignment -name IO_STANDARD LVTTL -to COM_DB\[1\]
+set_instance_assignment -name IO_STANDARD LVTTL -to COM_DB\[0\]
+set_instance_assignment -name IO_STANDARD LVTTL -to COM_AD_D\[0\]
+set_instance_assignment -name IO_STANDARD LVTTL -to COM_AD_D\[1\]
+set_instance_assignment -name IO_STANDARD LVTTL -to COM_AD_D\[2\]
+set_instance_assignment -name IO_STANDARD LVTTL -to COM_AD_D\[3\]
+set_instance_assignment -name IO_STANDARD LVTTL -to COM_AD_D\[4\]
+set_instance_assignment -name IO_STANDARD LVTTL -to COM_AD_D\[5\]
+set_instance_assignment -name IO_STANDARD LVTTL -to COM_AD_D\[6\]
+set_instance_assignment -name IO_STANDARD LVTTL -to COM_AD_D\[7\]
+set_instance_assignment -name IO_STANDARD LVTTL -to COM_AD_D\[8\]
+set_instance_assignment -name IO_STANDARD LVTTL -to COM_AD_D\[9\]
+set_instance_assignment -name IO_STANDARD LVTTL -to COM_AD_D\[10\]
+set_instance_assignment -name IO_STANDARD LVTTL -to COM_AD_D\[11\]
+set_instance_assignment -name IO_STANDARD LVTTL -to R2BUS\[7\]
+set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_D\[11\]
+set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_D\[9\]
+set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_D\[10\]
+set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_D\[8\]
+set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_D\[7\]
+set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_D\[6\]
+set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_D\[5\]
+set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_D\[4\]
+set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_D\[3\]
+set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_D\[2\]
+set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_D\[1\]
+set_instance_assignment -name IO_STANDARD LVTTL -to FLASH_AD_D\[0\]
+set_instance_assignment -name IO_STANDARD LVTTL -to PLD_FPGA\[7\]
+set_instance_assignment -name IO_STANDARD LVTTL -to PLD_FPGA\[6\]
+set_instance_assignment -name IO_STANDARD LVTTL -to PLD_FPGA\[5\]
+set_instance_assignment -name IO_STANDARD LVTTL -to PLD_FPGA\[4\]
+set_instance_assignment -name IO_STANDARD LVTTL -to PLD_FPGA\[3\]
+set_instance_assignment -name IO_STANDARD LVTTL -to PLD_FPGA\[2\]
+set_instance_assignment -name IO_STANDARD LVTTL -to PLD_FPGA\[1\]
+set_instance_assignment -name IO_STANDARD LVTTL -to PLD_FPGA\[0\]
+set_instance_assignment -name IO_STANDARD LVTTL -to PLD_FPGA_nOE
+set_instance_assignment -name IO_STANDARD LVTTL -to PLD_FPGA_nWE
+set_instance_assignment -name IO_STANDARD LVTTL -to PLD_FPGA_BUSY
+set_instance_assignment -name IO_STANDARD LVTTL -to INTEXTPIN
+set_instance_assignment -name IO_STANDARD LVTTL -to nPOR
+set_instance_assignment -name IO_STANDARD LVTTL -to nRESET
+set_instance_assignment -name IO_STANDARD LVTTL -to CLKLK_OUT2p
+set_instance_assignment -name IO_STANDARD LVTTL -to CLK_REF
+set_instance_assignment -name IO_STANDARD LVTTL -to PGM\[11\]
+set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_RW
+set_instance_assignment -name IO_STANDARD LVTTL -to FL_AUX_RESET
+set_instance_assignment -name IO_STANDARD LVTTL -to CLK2p
+set_instance_assignment -name IO_STANDARD LVTTL -to CLK3p
+set_instance_assignment -name IO_STANDARD LVTTL -to CLK4p
+set_instance_assignment -name IO_STANDARD LVTTL -to adis16209_DOUT
+set_instance_assignment -name IO_STANDARD LVTTL -to adis16209_DIN
+set_instance_assignment -name IO_STANDARD LVTTL -to adis16209_nCS
+set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_D3\[3\]
+set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_D3\[4\]
+set_instance_assignment -name IO_STANDARD LVTTL -to adis16209_RST
+set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_D0\[1\]
+set_instance_assignment -name IO_STANDARD LVTTL -to FPGA_D0\[0\]
+set_instance_assignment -name IO_STANDARD LVTTL -to adis16209_SCLK
+set_instance_assignment -name IO_STANDARD LVTTL -to adis16209_PWR
+
+# Timing Analysis Assignments
+# ===========================
+set_global_assignment -name MAX_SCC_SIZE 50
+
+# EDA Netlist Writer Assignments
+# ==============================
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim (Verilog HDL output from Quartus II)"
+
+# Assembler Assignments
+# =====================
+set_global_assignment -name STRATIX_CONFIGURATION_DEVICE EPC2
+set_global_assignment -name CYCLONE_CONFIGURATION_DEVICE EPC2
+set_global_assignment -name FLEX10K_CONFIGURATION_DEVICE EPC2
+set_global_assignment -name FLEX6K_CONFIGURATION_DEVICE EPC1
+set_global_assignment -name MERCURY_CONFIGURATION_DEVICE EPC2
+set_global_assignment -name EXCALIBUR_CONFIGURATION_DEVICE EPC2
+set_global_assignment -name APEX20K_CONFIGURATION_DEVICE EPC2
+
+# Simulator Assignments
+# =====================
+set_global_assignment -name GLITCH_INTERVAL 1NS
+set_global_assignment -name POWER_ESTIMATION_START_TIME "0 NS"
+set_global_assignment -name START_TIME 0NS
+
+# Design Assistant Assignments
+# ============================
+set_global_assignment -name HCPY_ALOAD_SIGNALS OFF
+set_global_assignment -name HCPY_VREF_PINS OFF
+set_global_assignment -name HCPY_CAT OFF
+set_global_assignment -name ACLK_RULE_IMSZER_ADOMAIN ON
+set_global_assignment -name ACLK_RULE_SZER_BTW_ACLK_DOMAIN ON
+set_global_assignment -name ACLK_RULE_NO_SZER_ACLK_DOMAIN ON
+set_global_assignment -name ACLK_CAT ON
+set_global_assignment -name SIGNALRACE_CAT ON
+set_global_assignment -name NONSYNCHSTRUCT_RULE_LATCH_UNIDENTIFIED ON
+set_global_assignment -name NONSYNCHSTRUCT_RULE_SRLATCH ON
+set_global_assignment -name NONSYNCHSTRUCT_RULE_MULTI_VIBRATOR ON
+set_global_assignment -name NONSYNCHSTRUCT_RULE_ILLEGAL_PULSE_GEN ON
+set_global_assignment -name NONSYNCHSTRUCT_RULE_RIPPLE_CLK ON
+set_global_assignment -name NONSYNCHSTRUCT_RULE_DELAY_CHAIN ON
+set_global_assignment -name NONSYNCHSTRUCT_RULE_REG_LOOP ON
+set_global_assignment -name NONSYNCHSTRUCT_RULE_COMBLOOP ON
+set_global_assignment -name NONSYNCHSTRUCT_CAT ON
+set_global_assignment -name NONSYNCHSTRUCT_RULE_COMB_DRIVES_RAM_WE ON
+set_global_assignment -name TIMING_RULE_COIN_CLKEDGE ON
+set_global_assignment -name TIMING_RULE_SHIFT_REG ON
+set_global_assignment -name TIMING_CAT ON
+set_global_assignment -name RESET_RULE_IMSYNCH_ASYNCH_DOMAIN ON
+set_global_assignment -name RESET_RULE_UNSYNCH_ASYNCH_DOMAIN ON
+set_global_assignment -name RESET_RULE_COMB_ASYNCH_RESET ON
+set_global_assignment -name RESET_RULE_IMSYNCH_EXRESET ON
+set_global_assignment -name RESET_RULE_UNSYNCH_EXRESET ON
+set_global_assignment -name RESET_RULE_INPINS_RESETNET ON
+set_global_assignment -name RESET_CAT ON
+set_global_assignment -name CLK_RULE_MIX_EDGES ON
+set_global_assignment -name CLK_RULE_CLKNET_CLKSPINES ON
+set_global_assignment -name CLK_RULE_INPINS_CLKNET ON
+set_global_assignment -name CLK_RULE_GATING_SCHEME ON
+set_global_assignment -name CLK_RULE_INV_CLOCK ON
+set_global_assignment -name CLK_RULE_COMB_CLOCK ON
+set_global_assignment -name CLK_CAT ON
+set_global_assignment -name HARDCOPY_EXTERNAL_CLOCK_JITTER "0.0 NS"
+set_global_assignment -name NONSYNCHSTRUCT_RULE_ASYN_RAM ON
+set_global_assignment -name HCPY_PLL_MULTIPLE_CLK_NETWORK_TYPES OFF
+set_global_assignment -name ASSG_RULE_MISSING_TIMING ON
+set_global_assignment -name ASSG_RULE_MISSING_FMAX ON
+set_global_assignment -name ASSG_CAT ON
+set_global_assignment -name DRC_REPORT_FANOUT_EXCEEDING ON
+set_global_assignment -name DRC_REPORT_TOP_FANOUT ON
+
+# SignalTap II Assignments
+# ========================
+set_global_assignment -name ENABLE_SIGNALTAP off
+set_global_assignment -name USE_SIGNALTAP_FILE "dim-pole/dom-pole.stp"
+
+# LogicLock Region Assignments
+# ============================
+set_global_assignment -name LOGICLOCK_INCREMENTAL_COMPILE_ASSIGNMENT off
+
+# ------------------
+# start CLOCK(CLK1p)
+
+	# Timing Assignments
+	# ==================
+	set_global_assignment -name FMAX_REQUIREMENT "20.0 MHz" -section_id CLK1p
+	set_global_assignment -name INCLUDE_EXTERNAL_PIN_DELAYS_IN_FMAX_CALCULATIONS OFF -section_id CLK1p
+	set_global_assignment -name DUTY_CYCLE 50 -section_id CLK1p
+	set_global_assignment -name DIVIDE_BASE_CLOCK_PERIOD_BY 1 -section_id CLK1p
+	set_global_assignment -name MULTIPLY_BASE_CLOCK_PERIOD_BY 1 -section_id CLK1p
+	set_global_assignment -name INVERT_BASE_CLOCK OFF -section_id CLK1p
+
+# end CLOCK(CLK1p)
+# ----------------
+
+# ------------------
+# start CLOCK(CLK2p)
+
+	# Timing Assignments
+	# ==================
+	set_global_assignment -name BASED_ON_CLOCK_SETTINGS CLK1p -section_id CLK2p
+	set_global_assignment -name DUTY_CYCLE 50 -section_id CLK2p
+	set_global_assignment -name DIVIDE_BASE_CLOCK_PERIOD_BY 1 -section_id CLK2p
+	set_global_assignment -name MULTIPLY_BASE_CLOCK_PERIOD_BY 1 -section_id CLK2p
+	set_global_assignment -name INVERT_BASE_CLOCK OFF -section_id CLK2p
+
+# end CLOCK(CLK2p)
+# ----------------
+
+# ------------------
+# start CLOCK(CLK3p)
+
+	# Timing Assignments
+	# ==================
+	set_global_assignment -name BASED_ON_CLOCK_SETTINGS CLK1p -section_id CLK3p
+	set_global_assignment -name DUTY_CYCLE 50 -section_id CLK3p
+	set_global_assignment -name DIVIDE_BASE_CLOCK_PERIOD_BY 1 -section_id CLK3p
+	set_global_assignment -name MULTIPLY_BASE_CLOCK_PERIOD_BY 1 -section_id CLK3p
+	set_global_assignment -name INVERT_BASE_CLOCK OFF -section_id CLK3p
+
+# end CLOCK(CLK3p)
+# ----------------
+
+# ------------------
+# start CLOCK(CLK4p)
+
+	# Timing Assignments
+	# ==================
+	set_global_assignment -name BASED_ON_CLOCK_SETTINGS CLK1p -section_id CLK4p
+	set_global_assignment -name DUTY_CYCLE 50 -section_id CLK4p
+	set_global_assignment -name DIVIDE_BASE_CLOCK_PERIOD_BY 1 -section_id CLK4p
+	set_global_assignment -name MULTIPLY_BASE_CLOCK_PERIOD_BY 1 -section_id CLK4p
+	set_global_assignment -name INVERT_BASE_CLOCK OFF -section_id CLK4p
+
+# end CLOCK(CLK4p)
+# ----------------
+
+# ---------------------------------------
+# start EDA_TOOL_SETTINGS(eda_simulation)
+
+	# EDA Netlist Writer Assignments
+	# ==============================
+	set_global_assignment -name EDA_INCLUDE_VHDL_CONFIGURATION_DECLARATION OFF -section_id eda_simulation
+	set_global_assignment -name EDA_MAINTAIN_DESIGN_HIERARCHY OFF -section_id eda_simulation
+	set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST ON -section_id eda_simulation
+	set_global_assignment -name EDA_MAP_ILLEGAL_CHARACTERS ON -section_id eda_simulation
+	set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VERILOG -section_id eda_simulation
+	set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
+
+# end EDA_TOOL_SETTINGS(eda_simulation)
+# -------------------------------------
+
+# --------------------
+# start ENTITY(domapp)
+
+	# Pin & Location Assignments
+	# ==========================
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to AnalogReset_0
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to AnalogReset_1
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ChannelSelect_0\[0\]
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ChannelSelect_0\[1\]
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ChannelSelect_1\[0\]
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ChannelSelect_1\[1\]
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to CounterClock_0
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to CounterClock_1
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to DigitalReset_0
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to DigitalReset_1
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to DigitalSet_0
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to DigitalSet_1
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to OutputEnable_0
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to OutputEnable_1
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to RampSet_0
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to RampSet_1
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ReadWrite_0
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ReadWrite_1
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ShiftClock_0
+	set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to ShiftClock_1
+
+	# Timing Assignments
+	# ==================
+	set_instance_assignment -name CLOCK_SETTINGS CLK1p -to CLK1p
+	set_instance_assignment -name CLOCK_SETTINGS CLK2p -to CLK2p
+	set_instance_assignment -name CLOCK_SETTINGS CLK3p -to CLK3p
+	set_instance_assignment -name CLOCK_SETTINGS CLK4p -to CLK4p
+	set_instance_assignment -name TCO_REQUIREMENT 2ns -to ATWDTrigger_0
+	set_instance_assignment -name TCO_REQUIREMENT 2ns -to ATWDTrigger_1
+	set_instance_assignment -name TSU_REQUIREMENT 2ns -from OneSPE -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_B_sig"
+	set_instance_assignment -name TSU_REQUIREMENT 2ns -from MultiSPE -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_B_sig"
+	set_instance_assignment -name NOT_A_CLOCK OFF -to OneSPE
+	set_instance_assignment -name NOT_A_CLOCK OFF -to MultiSPE
+	set_instance_assignment -name INPUT_MAX_DELAY 2ns -from OneSPE -to "daq:inst_daq\|trigger:inst_trigger\|discSPE"
+	set_instance_assignment -name INPUT_MAX_DELAY 2ns -from MultiSPE -to "daq:inst_daq\|trigger:inst_trigger\|discMPE"
+	set_instance_assignment -name TSU_REQUIREMENT 10ps -from OneSPE -to "daq:inst_daq\|trigger:inst_trigger\|discSPE"
+	set_instance_assignment -name TSU_REQUIREMENT 10ps -from MultiSPE -to "daq:inst_daq\|trigger:inst_trigger\|discMPE"
+	set_instance_assignment -name REPORT_DELAY ON -from OneSPE -to *
+	set_instance_assignment -name REPORT_DELAY ON -from OneSPE -to "daq:inst_daq\|trigger:inst_trigger\|discSPE"
+	set_instance_assignment -name TPD_REQUIREMENT 2ns -from OneSPE -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_A_sig"
+	set_instance_assignment -name REPORT_DELAY ON -from "daq:inst_daq\|trigger:inst_trigger\|discSPE" -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_A_sig"
+	set_instance_assignment -name REPORT_DELAY ON -from "daq:inst_daq\|trigger:inst_trigger\|discMPE" -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_A_sig"
+	set_instance_assignment -name TSU_REQUIREMENT 2ns -from "daq:inst_daq\|trigger:inst_trigger\|discMPE" -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_A_sig"
+	set_instance_assignment -name TSU_REQUIREMENT 2ns -from "daq:inst_daq\|trigger:inst_trigger\|discSPE" -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_A_sig"
+	set_instance_assignment -name REPORT_DELAY ON -from "daq:inst_daq\|trigger:inst_trigger\|discSPE" -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_B_sig"
+	set_instance_assignment -name REPORT_DELAY ON -from "daq:inst_daq\|trigger:inst_trigger\|discMPE" -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_B_sig"
+	set_instance_assignment -name TSU_REQUIREMENT 2ns -from "daq:inst_daq\|trigger:inst_trigger\|discSPE" -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_B_sig"
+	set_instance_assignment -name TSU_REQUIREMENT 2ns -from "daq:inst_daq\|trigger:inst_trigger\|discMPE" -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_B_sig"
+
+	# Fitter Assignments
+	# ==================
+	set_instance_assignment -name DECREASE_INPUT_DELAY_TO_OUTPUT_REGISTER ON -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_A_sig"
+	set_instance_assignment -name DECREASE_INPUT_DELAY_TO_OUTPUT_REGISTER ON -to "daq:inst_daq\|trigger:inst_trigger\|ATWDTrigger_B_sig"
+
+# end ENTITY(domapp)
+# ------------------
+
+# ----------------------------
+# start ENTITY(alt_exc_stripe)
+
+	# Analysis & Synthesis Assignments
+	# ================================
+	set_instance_assignment -name ADV_NETLIST_OPT_ALLOWED NEVER_ALLOW -to lcell_hgrant -entity alt_exc_stripe
+	set_instance_assignment -name ADV_NETLIST_OPT_ALLOWED NEVER_ALLOW -to lcell_hresp0 -entity alt_exc_stripe
+	set_instance_assignment -name ADV_NETLIST_OPT_ALLOWED NEVER_ALLOW -to lcell_hresp1 -entity alt_exc_stripe
+	set_instance_assignment -name IMPLEMENT_AS_OUTPUT_OF_LOGIC_CELL ON -to lcell_hgrant -entity alt_exc_stripe
+	set_instance_assignment -name IMPLEMENT_AS_OUTPUT_OF_LOGIC_CELL ON -to lcell_hresp0 -entity alt_exc_stripe
+	set_instance_assignment -name IMPLEMENT_AS_OUTPUT_OF_LOGIC_CELL ON -to lcell_hresp1 -entity alt_exc_stripe
+
+# end ENTITY(alt_exc_stripe)
+# --------------------------

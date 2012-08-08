@@ -1,0 +1,72 @@
+// Copyright (C) 1991-2003 Altera Corporation
+// Any  megafunction  design,  and related netlist (encrypted  or  decrypted),
+// support information,  device programming or simulation file,  and any other
+// associated  documentation or information  provided by  Altera  or a partner
+// under  Altera's   Megafunction   Partnership   Program  may  be  used  only
+// to program  PLD  devices (but not masked  PLD  devices) from  Altera.   Any
+// other  use  of such  megafunction  design,  netlist,  support  information,
+// device programming or simulation file,  or any other  related documentation
+// or information  is prohibited  for  any  other purpose,  including, but not
+// limited to  modification,  reverse engineering,  de-compiling, or use  with
+// any other  silicon devices,  unless such use is  explicitly  licensed under
+// a separate agreement with  Altera  or a megafunction partner.  Title to the
+// intellectual property,  including patents,  copyrights,  trademarks,  trade
+// secrets,  or maskworks,  embodied in any such megafunction design, netlist,
+// support  information,  device programming or simulation file,  or any other
+// related documentation or information provided by  Altera  or a megafunction
+// partner, remains with Altera, the megafunction partner, or their respective
+// licensors. No other licenses, including any licenses needed under any third
+// party's intellectual property, are provided herein.
+// 
+stripe <your_instance_name>
+(
+	.clk_ref(),
+	.npor(),
+	.nreset(),
+	.uartrxd(),
+	.uartdsrn(),
+	.uartctsn(),
+	.uartrin(),
+	.uartdcdn(),
+	.uarttxd(),
+	.uartrtsn(),
+	.uartdtrn(),
+	.intextpin(),
+	.ebiack(),
+	.ebidq(),
+	.ebiclk(),
+	.ebiwen(),
+	.ebioen(),
+	.ebiaddr(),
+	.ebibe(),
+	.ebicsn(),
+	.masterhclk(),
+	.masterhready(),
+	.masterhgrant(),
+	.masterhrdata(),
+	.masterhresp(),
+	.masterhwrite(),
+	.masterhlock(),
+	.masterhbusreq(),
+	.masterhaddr(),
+	.masterhburst(),
+	.masterhsize(),
+	.masterhtrans(),
+	.masterhwdata(),
+	.dp0_2_portaclk(),
+	.dp0_portawe(),
+	.dp0_portaaddr(),
+	.dp0_portadatain(),
+	.dp0_portadataout(),
+	.dp1_3_portaclk(),
+	.dp1_portawe(),
+	.dp1_portaaddr(),
+	.dp1_portadatain(),
+	.dp1_portadataout(),
+	.dp1_portbclk(),
+	.dp1_portbwe(),
+	.dp1_portbaddr(),
+	.dp1_portbdatain(),
+	.dp1_portbdataout()
+);
+

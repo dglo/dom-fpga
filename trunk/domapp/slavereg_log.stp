@@ -1,0 +1,338 @@
+<session jtag_chain="ByteBlasterII on dobie [LPT1]" jtag_device="@1: EPXA4 (0x084010DD)" sof_file="">
+  <display_tree gui_logging_enabled="0">
+    <display_branch instance="auto_signaltap_0" signal_set="USE_GLOBAL_TEMP" trigger="USE_GLOBAL_TEMP"/>
+  </display_tree>
+  <instance entity_name="sld_signaltap" is_auto_node="yes" is_expanded="true" name="auto_signaltap_0" source_file="sld_signaltap.vhd">
+    <node_ip_info instance_id="0" mfg_id="110" node_id="0" version="3"/>
+    <signal_set global_temp="1" is_expanded="true" name="signal_set: 2005/05/27 08:48:54  #0">
+      <clock name="slaveregister:inst_slaveregister|CLK" polarity="posedge"/>
+      <config ram_type="M4K" reserved_data_nodes="0" reserved_trigger_nodes="0" sample_depth="1024" trigger_in_enable="no" trigger_out_enable="no"/>
+      <top_entity/>
+      <signal_vec>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[10]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[11]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[12]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[13]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[2]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[3]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[4]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[5]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[6]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[7]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[8]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[9]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_enable" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[0]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[10]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[11]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[12]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[13]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[14]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[15]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[16]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[17]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[18]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[19]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[1]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[20]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[21]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[22]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[23]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[24]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[25]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[26]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[27]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[28]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[29]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[2]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[30]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[31]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[3]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[4]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[5]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[6]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[7]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[8]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[9]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[0]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[10]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[11]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[12]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[13]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[14]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[15]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[16]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[17]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[18]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[19]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[1]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[20]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[21]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[22]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[23]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[24]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[25]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[26]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[27]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[28]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[29]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[2]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[30]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[31]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[3]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[4]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[5]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[6]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[7]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[8]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="data" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[9]" tap_mode="classic" type="combinatorial"/>
+        <wire connection_mode="both" connection_status="true" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_write" tap_mode="classic" type="combinatorial"/>
+      </signal_vec>
+      <presentation>
+        <setup_view>
+          <bus link="all" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[13]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[12]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[11]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[10]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[9]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[8]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[7]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[6]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[5]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[4]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[3]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[2]"/>
+          </bus>
+          <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_enable"/>
+          <bus link="all" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[31]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[30]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[29]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[28]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[27]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[26]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[25]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[24]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[23]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[22]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[21]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[20]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[19]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[18]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[17]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[16]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[15]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[14]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[13]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[12]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[11]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[10]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[9]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[8]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[7]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[6]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[5]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[4]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[3]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[2]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[1]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[0]"/>
+          </bus>
+          <bus link="all" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[31]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[30]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[29]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[28]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[27]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[26]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[25]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[24]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[23]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[22]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[21]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[20]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[19]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[18]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[17]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[16]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[15]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[14]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[13]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[12]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[11]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[10]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[9]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[8]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[7]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[6]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[5]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[4]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[3]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[2]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[1]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[0]"/>
+          </bus>
+          <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_write"/>
+        </setup_view>
+        <data_view>
+          <bus link="all" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[13]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[12]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[11]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[10]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[9]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[8]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[7]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[6]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[5]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[4]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[3]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[2]"/>
+          </bus>
+          <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_enable"/>
+          <bus link="all" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[31]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[30]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[29]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[28]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[27]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[26]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[25]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[24]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[23]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[22]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[21]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[20]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[19]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[18]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[17]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[16]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[15]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[14]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[13]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[12]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[11]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[10]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[9]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[8]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[7]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[6]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[5]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[4]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[3]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[2]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[1]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_rdata[0]"/>
+          </bus>
+          <bus link="all" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[31]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[30]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[29]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[28]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[27]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[26]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[25]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[24]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[23]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[22]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[21]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[20]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[19]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[18]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[17]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[16]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[15]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[14]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[13]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[12]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[11]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[10]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[9]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[8]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[7]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[6]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[5]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[4]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[3]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[2]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[1]"/>
+            <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_wdata[0]"/>
+          </bus>
+          <net name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_write"/>
+        </data_view>
+      </presentation>
+      <trigger global_temp="1" is_expanded="true" name="trigger: 2005/05/27 08:48:54  #1" position="pre" segment_size="1" trigger_in="dont_care" trigger_out="active high" trigger_type="segmented">
+        <events>
+          <level enabled="no" type="basic">slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[10] == high &amp;&amp; slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[11] == low &amp;&amp; slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[12] == low &amp;&amp; slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[13] == low &amp;&amp; slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[2] == high &amp;&amp; slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[3] == high &amp;&amp; slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[4] == high &amp;&amp; slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[5] == high &amp;&amp; slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[6] == high &amp;&amp; slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[7] == high &amp;&amp; slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[8] == high &amp;&amp; slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[9] == high &amp;&amp; slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_enable == high
+            
+            
+            
+            
+            
+            <op_node>
+              <op_node expanded="1" left="850" top="148" type="Advanced Trigger Level Result">
+                <op_node expanded="1" first_port_empty="1" left="720" name="reduction_0" top="108" type="Reduction Operator">
+                  <op_node expanded="1" left="590" name="bitwise_0" top="108" type="Bitwise Operator">
+                    <op_node expanded="1" first_port_empty="1" left="460" name="bus_2" top="113" type="Bus">
+                      <op_node expanded="1" first_port_empty="1" left="330" name="detector_0" top="73" type="Edge &amp; Level Detector">
+                        <op_node bus_name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address" left="200" name="bus_1" top="113" type="Bus">
+                          <op_node left="60" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[13]" top="-160" type="Node"/>
+                          <op_node left="60" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[12]" top="-160" type="Node"/>
+                          <op_node left="60" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[11]" top="-160" type="Node"/>
+                          <op_node left="60" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[10]" top="-160" type="Node"/>
+                          <op_node left="60" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[9]" top="-160" type="Node"/>
+                          <op_node left="60" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[8]" top="-160" type="Node"/>
+                          <op_node left="60" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[7]" top="-160" type="Node"/>
+                          <op_node left="60" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[6]" top="-160" type="Node"/>
+                          <op_node left="60" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[5]" top="-160" type="Node"/>
+                          <op_node left="60" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[4]" top="-160" type="Node"/>
+                          <op_node left="60" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[3]" top="-160" type="Node"/>
+                          <op_node left="60" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[2]" top="-160" type="Node"/>
+                        </op_node>
+                      </op_node>
+                    </op_node>
+                    <op_node expanded="1" first_port_empty="1" left="460" name="bus_0" top="183" type="Bus">
+                      <op_node left="330" name="slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_enable" top="183" type="Node"/>
+                    </op_node>
+                  </op_node>
+                </op_node>
+              </op_node>
+            </op_node>
+          </level>
+          <level enabled="yes" type="basic">slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[10] == high &amp;&amp; slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[11] == low &amp;&amp; slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[12] == low &amp;&amp; slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[13] == low &amp;&amp; slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[2] == high &amp;&amp; slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[3] == low &amp;&amp; slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[4] == low &amp;&amp; slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[5] == high &amp;&amp; slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[6] == low &amp;&amp; slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[7] == low &amp;&amp; slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[8] == low &amp;&amp; slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_address[9] == low &amp;&amp; slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_enable == high &amp;&amp; slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_write == high
+            
+            
+            
+            
+            
+            <op_node/>
+          </level>
+          <level enabled="yes" type="basic">slaveregister:inst_slaveregister|ahb_slave:inst_ahb_slave|reg_enable == high
+            
+            
+            
+            
+            
+            <op_node/>
+          </level>
+        </events>
+      </trigger>
+    </signal_set>
+    <position_info>
+      <single attribute="active tab" value="1"/>
+      <single attribute="data horizontal scroll position" value="0"/>
+      <single attribute="data vertical scroll position" value="0"/>
+      <single attribute="setup horizontal scroll position" value="215"/>
+      <single attribute="setup vertical scroll position" value="0"/>
+      <single attribute="zoom level denominator" value="16"/>
+      <single attribute="zoom level numerator" value="1"/>
+      <single attribute="zoom offset denominator" value="1"/>
+      <single attribute="zoom offset numerator" value="2096128"/>
+    </position_info>
+  </instance>
+  <global_info>
+    <single attribute="active instance" value="0"/>
+    <multi attribute="window position" size="7" value="1002,491,318,125,347,50,125"/>
+  </global_info>
+</session>

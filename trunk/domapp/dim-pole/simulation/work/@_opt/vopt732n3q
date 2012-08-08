@@ -1,0 +1,111 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\work_lbnl\vhdl\syntax
+T_opt
+Z1 VmMJB8_W2fA?4hiBcRWoFN1
+Z2 04 16 21 work dim_pole_flag_tb dim_pole_flag_tb_arch 1
+Z3 =4-00a0c9ef3e69-4fee2700-8b-121c
+Z4 o-quiet -auto_acc_if_foreign -work work
+Z5 n@_opt
+Z6 OE;O;6.6a;45
+Z7 dC:\work_lbnl\vhdl\syntax
+Edim_pole_buffer
+Z8 w1339109470
+Z9 DPx9 altera_mf 20 altera_mf_components 0 22 CDB5>b:@R<[hU5>OK[`RL3
+Z10 DPx4 ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
+Z11 dC:\work_lbnl\IceCubeCVS\dom-fpga\domapp\dim-pole\simulation
+Z12 8C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_buffer.vhd
+Z13 FC:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_buffer.vhd
+l0
+L45
+Z14 VFge9^Y6o7=3K0g;M4eQZ_1
+Z15 OE;C;6.6a;45
+32
+Z16 !s102 -cover s
+Z17 o-work work -2002 -explicit -cover s
+Z18 tExplicit 1
+Z19 !s100 l`eUn8]Af95W8EmU2IQ`?0
+Asyn
+R9
+R10
+Z20 DEx4 work 15 dim_pole_buffer 0 22 Fge9^Y6o7=3K0g;M4eQZ_1
+l94
+L58
+Z21 V6Nei<CJonH6QRDR2m@S]A3
+R15
+32
+Z22 Mx2 4 ieee 14 std_logic_1164
+Z23 Mx1 9 altera_mf 20 altera_mf_components
+R16
+R17
+R18
+Z24 !s100 A4T_MZY3G4g^zRcla_9>a1
+Edim_pole_flag
+Z25 w1341007557
+Z26 DPx4 ieee 11 numeric_std 0 22 =NSdli^?T5OD8;4F<blj<3
+R10
+R11
+Z27 8C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_flag.vhd
+Z28 FC:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_flag.vhd
+l0
+L41
+Z29 VXYGNkWe4Hgc8A^?]O=54P1
+R15
+32
+R16
+R17
+R18
+Z30 !s100 8EC5E0A15I6@jb[R1eEid1
+Adim_pole_flag_arch
+Z31 DEx69 C:\work_lbnl\IceCubeCVS\dom-fpga\domapp\dim-pole\simulation\altera_mf 8 altdpram 0 22 GSHK;CHg6]=M]Lh_f4CcK1
+Z32 DPx69 C:\work_lbnl\IceCubeCVS\dom-fpga\domapp\dim-pole\simulation\altera_mf 20 altera_mf_components 0 22 CDB5>b:@R<[hU5>OK[`RL3
+Z33 DEx64 C:\work_lbnl\IceCubeCVS\dom-fpga\domapp\dim-pole\simulation\work 15 dim_pole_buffer 0 22 Fge9^Y6o7=3K0g;M4eQZ_1
+Z34 DPx32 C:\FPGAtools\modeltech_6.6a\ieee 11 numeric_std 0 22 =NSdli^?T5OD8;4F<blj<3
+Z35 DPx32 C:\FPGAtools\modeltech_6.6a\ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
+Z36 DEx64 C:\work_lbnl\IceCubeCVS\dom-fpga\domapp\dim-pole\simulation\work 13 dim_pole_flag 0 22 XYGNkWe4Hgc8A^?]O=54P1
+32
+Z37 Mx3 32 C:\FPGAtools\modeltech_6.6a\ieee 14 std_logic_1164
+Z38 Mx2 32 C:\FPGAtools\modeltech_6.6a\ieee 11 numeric_std
+Z39 Mx1 69 C:\work_lbnl\IceCubeCVS\dom-fpga\domapp\dim-pole\simulation\altera_mf 20 altera_mf_components
+l116
+L66
+Z40 V_XTo1PIailGU[lQHMcL;R0
+R15
+R16
+R17
+R18
+Z41 !s100 EQJbfR_?NKW2N12SmZB9I3
+Edim_pole_flag_tb
+Z42 w1341004578
+R26
+R10
+R11
+Z43 8C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_flag_tb.vhd
+Z44 FC:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_flag_tb.vhd
+l0
+L5
+Z45 VYDKgT]M0;9OCioz2BGc=b1
+R15
+32
+R16
+R17
+R18
+Z46 !s100 OS57ZchIX<i?2BGFY16]41
+Adim_pole_flag_tb_arch
+R36
+R34
+R35
+Z47 DEx64 C:\work_lbnl\IceCubeCVS\dom-fpga\domapp\dim-pole\simulation\work 16 dim_pole_flag_tb 0 22 YDKgT]M0;9OCioz2BGc=b1
+32
+Z48 Mx2 32 C:\FPGAtools\modeltech_6.6a\ieee 14 std_logic_1164
+Z49 Mx1 32 C:\FPGAtools\modeltech_6.6a\ieee 11 numeric_std
+l47
+L11
+Z50 VA2OSQIS00?]?hkzWz3GGH2
+R15
+R16
+R17
+R18
+Z51 !s100 O33W_49z_EOceo;=;Y[d@1
