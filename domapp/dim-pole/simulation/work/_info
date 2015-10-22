@@ -6,101 +6,132 @@ Z0 dC:\work_lbnl\vhdl\syntax
 T_opt
 VmMJB8_W2fA?4hiBcRWoFN1
 Z1 04 16 21 work dim_pole_flag_tb dim_pole_flag_tb_arch 1
-Z2 =4-00a0c9ef3e69-4fee2700-8b-121c
-Z3 o-quiet -auto_acc_if_foreign -work work
-Z4 n@_opt
-Z5 OE;O;6.6a;45
-Z6 dC:\work_lbnl\vhdl\syntax
+=4-00a0c9ef3e69-4fee2700-8b-121c
+Z2 o-quiet -auto_acc_if_foreign -work work
+n@_opt
+OE;O;6.6a;45
+Z3 dC:\work_lbnl\vhdl\syntax
+T_opt1
+VMOoYH[;lOFS?CVD<Vii>d3
+R1
+=1-b8ac6fa9226b-502ab0c0-188-211c
+R2
+n@_opt1
+OE;O;10.1c;51
 Edim_pole_buffer
-Z7 w1339109470
-Z8 DPx9 altera_mf 20 altera_mf_components 0 22 CDB5>b:@R<[hU5>OK[`RL3
-Z9 DPx4 ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
-Z10 dC:\work_lbnl\IceCubeCVS\dom-fpga\domapp\dim-pole\simulation
-Z11 8C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_buffer.vhd
-Z12 FC:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_buffer.vhd
+Z4 w1339109470
+Z5 DPx9 altera_mf 20 altera_mf_components 0 22 el1`dXL:BXSR@66>@NiBQ0
+Z6 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
+Z7 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z8 dC:\work_lbnl\IceCubeCVS\dom-fpga\domapp\dim-pole\simulation
+Z9 8C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_buffer.vhd
+Z10 FC:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_buffer.vhd
 l0
 L45
-Z13 VFge9^Y6o7=3K0g;M4eQZ_1
-Z14 OE;C;6.6a;45
+V5VkV86DS90W@>FCOn_77Q1
+Z11 OE;C;10.1c;51
 32
+Z12 !s108 1344975030.722000
+Z13 !s90 -reportprogress|300|-work|work|-2002|-explicit|-cover|s|C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_buffer.vhd|
+Z14 !s107 C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_buffer.vhd|
 Z15 !s102 -cover s
 Z16 o-work work -2002 -explicit -cover s
 Z17 tExplicit 1
-Z18 !s100 l`eUn8]Af95W8EmU2IQ`?0
+!s100 k:4R=@FQN^8_`B=;8=JEI0
+!i10b 1
 Asyn
-R8
-R9
-Z19 DEx4 work 15 dim_pole_buffer 0 22 Fge9^Y6o7=3K0g;M4eQZ_1
+R5
+R6
+R7
+DEx4 work 15 dim_pole_buffer 0 22 5VkV86DS90W@>FCOn_77Q1
 l94
 L58
-Z20 V6Nei<CJonH6QRDR2m@S]A3
-R14
+V6EIU>Xh<::gg=eB1?zPKN2
+R11
 32
-Z21 Mx2 4 ieee 14 std_logic_1164
-Z22 Mx1 9 altera_mf 20 altera_mf_components
+R12
+R13
+R14
 R15
 R16
 R17
-Z23 !s100 A4T_MZY3G4g^zRcla_9>a1
+!s100 gVh2f_JVBbPWO7ka<3D4h1
+!i10b 1
 Edim_pole_flag
-Z24 w1341007557
-Z25 DPx4 ieee 11 numeric_std 0 22 =NSdli^?T5OD8;4F<blj<3
-R9
-R10
-Z26 8C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_flag.vhd
-Z27 FC:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_flag.vhd
+Z18 w1343743887
+Z19 DPx4 ieee 11 numeric_std 0 22 O3PF8EB`?j9=z7KT`fn941
+R6
+R7
+R8
+Z20 8C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_flag.vhd
+Z21 FC:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_flag.vhd
 l0
 L41
-Z28 VXYGNkWe4Hgc8A^?]O=54P1
-R14
+VLh=mgh0DJPB>=zGAhUm4;3
+R11
 32
+Z22 !s108 1344975013.322000
+Z23 !s90 -reportprogress|300|-work|work|-2002|-explicit|-cover|s|C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_flag.vhd|
+Z24 !s107 C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_flag.vhd|
 R15
 R16
 R17
-Z29 !s100 8EC5E0A15I6@jb[R1eEid1
+!s100 ?6zS2HfJzn:^<TaZHUjod0
+!i10b 1
 Adim_pole_flag_arch
-R25
-R9
-Z30 DEx4 work 13 dim_pole_flag 0 22 XYGNkWe4Hgc8A^?]O=54P1
-l116
+R19
+R6
+R7
+DEx4 work 13 dim_pole_flag 0 22 Lh=mgh0DJPB>=zGAhUm4;3
+l118
 L66
-Z31 V_XTo1PIailGU[lQHMcL;R0
-R14
+V6MZB>ML[W?Ai4]c566RH[3
+R11
 32
-R21
-Z32 Mx1 4 ieee 11 numeric_std
+R22
+R23
+R24
 R15
 R16
 R17
-Z33 !s100 EQJbfR_?NKW2N12SmZB9I3
+!s100 9n6P0LkzPm`ia8?U5CRcc2
+!i10b 1
 Edim_pole_flag_tb
-Z34 w1341004578
-R25
-R9
-R10
-Z35 8C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_flag_tb.vhd
-Z36 FC:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_flag_tb.vhd
+Z25 w1341004580
+R19
+R6
+R7
+R8
+Z26 8C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_flag_tb.vhd
+Z27 FC:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_flag_tb.vhd
 l0
 L5
-Z37 VYDKgT]M0;9OCioz2BGc=b1
-R14
+VQ<[8]W8K3dcZ8k?e]VNRZ0
+R11
 32
+Z28 !s108 1344975013.982000
+Z29 !s90 -reportprogress|300|-work|work|-2002|-explicit|-cover|s|C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_flag_tb.vhd|
+Z30 !s107 C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_flag_tb.vhd|
 R15
 R16
 R17
-Z38 !s100 OS57ZchIX<i?2BGFY16]41
+!s100 iBo1W1C01ga3iGcmR@0VS2
+!i10b 1
 Adim_pole_flag_tb_arch
-R25
-R9
-Z39 DEx4 work 16 dim_pole_flag_tb 0 22 YDKgT]M0;9OCioz2BGc=b1
+R19
+R6
+R7
+DEx4 work 16 dim_pole_flag_tb 0 22 Q<[8]W8K3dcZ8k?e]VNRZ0
 l47
 L11
-Z40 VA2OSQIS00?]?hkzWz3GGH2
-R14
+V9L7FE`AB10>_H^HUJ4AfV1
+R11
 32
-R21
-R32
+R28
+R29
+R30
 R15
 R16
 R17
-Z41 !s100 O33W_49z_EOceo;=;Y[d@1
+!s100 d?mgm2CNo7``GE<@8Y_K80
+!i10b 1

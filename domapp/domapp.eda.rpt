@@ -1,5 +1,5 @@
 EDA Netlist Writer report for domapp
-Mon Jul 30 17:00:47 2012
+Thu Aug 09 15:45:45 2012
 Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
 
 
@@ -42,7 +42,7 @@ party's intellectual property, are provided herein.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Mon Jul 30 17:00:47 2012 ;
+; EDA Netlist Writer Status ; Successful - Thu Aug 09 15:45:45 2012 ;
 ; Revision Name             ; domapp                                ;
 ; Top-level Entity Name     ; domapp                                ;
 ; Family                    ; EXCALIBUR_ARM                         ;
@@ -82,11 +82,11 @@ party's intellectual property, are provided herein.
 Info: *******************************************************************
 Info: Running Quartus II EDA Netlist Writer
     Info: Version 4.0 Build 214 3/25/2004 Service Pack 1 SJ Full Version
-    Info: Processing started: Mon Jul 30 17:00:41 2012
+    Info: Processing started: Thu Aug 09 15:45:39 2012
 Info: Command: quartus_eda --import_settings_files=off --export_settings_files=off domapp -c domapp
 Info: Generated file domapp.vo in folder C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/simulation/modelsim/ for EDA simulation tool
 Info: Quartus II EDA Netlist Writer was successful. 0 errors, 0 warnings
-    Info: Processing ended: Mon Jul 30 17:00:47 2012
+    Info: Processing ended: Thu Aug 09 15:45:45 2012
     Info: Elapsed time: 00:00:05
 
 

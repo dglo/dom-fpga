@@ -1,154 +1,169 @@
 C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ATWD_control.vhd {1 {vcom -work work -93 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ATWD_control.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
+-- Loading package STD_LOGIC_UNSIGNED
 -- Loading package constants
 -- Loading package ctrl_data_types
--- Compiling entity atwd_control
--- Compiling architecture arch_atwd_control of atwd_control
+-- Compiling entity ATWD_control
+-- Compiling architecture arch_ATWD_control of ATWD_control
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/disc_in_ATWD.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/disc_in_ATWD.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
--- Compiling entity disc_in_atwd
--- Compiling architecture disc_in_atwd_arch of disc_in_atwd
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity disc_in_ATWD
+-- Compiling architecture disc_in_ATWD_arch of disc_in_ATWD
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/sim_models/FADC_model.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/sim_models/FADC_model.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
--- Compiling entity fadc_model
--- Compiling architecture fadc_arch of fadc_model
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity FADC_model
+-- Compiling architecture FADC_arch of FADC_model
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/domapp.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
+-- Loading package STD_LOGIC_UNSIGNED
 -- Loading package ctrl_data_types
 -- Loading package monitor_data_type
 -- Compiling entity domapp
 -- Compiling architecture arch_domapp of domapp
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/local_coincidence/LC_relais.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/local_coincidence/LC_relais.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
--- Compiling entity lc_relais
--- Compiling architecture lc_relais_arch of lc_relais
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity LC_relais
+-- Compiling architecture LC_relais_arch of LC_relais
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dead_time.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dead_time.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package monitor_data_type
 -- Compiling entity dead_time
 -- Compiling architecture dead_time_arch of dead_time
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ahb_slave.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ahb_slave.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
+-- Loading package STD_LOGIC_UNSIGNED
 -- Compiling entity ahb_slave
 -- Compiling architecture ahb_slave_arch of ahb_slave
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/SPI/adis16209-spi.vhd {1 {vcom -work work -2002 -explicit -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/SPI/adis16209-spi.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
+-- Loading package STD_LOGIC_UNSIGNED
 -- Loading package ctrl_data_types
 -- Compiling entity adis16209_spi
 -- Compiling architecture adis16209_spi_arch of adis16209_spi
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/local_coincidence/LC_TX.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/local_coincidence/LC_TX.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Compiling entity lc_tx
--- Compiling architecture lc_tx_arch of lc_tx
+-- Compiling entity LC_TX
+-- Compiling architecture LC_TX_arch of LC_TX
 
-} {} {}} C:/FPGAtools/quartus/eda/sim_lib/excalibur/lpm/ALT_EXC_STRIPE_BFM.V {1 {vlog -work work -nocovercells -cover s C:/FPGAtools/quartus/eda/sim_lib/excalibur/lpm/ALT_EXC_STRIPE_BFM.V
-Model Technology ModelSim SE vlog 6.6a Compiler 2010.03 Mar 19 2010
+} {} {}} C:/FPGAtools/quartus/eda/sim_lib/excalibur/lpm/ALT_EXC_STRIPE_BFM.V {1 {vlog -work work -cover s C:/FPGAtools/quartus/eda/sim_lib/excalibur/lpm/ALT_EXC_STRIPE_BFM.V
+Model Technology ModelSim SE vlog 10.1c Compiler 2012.07 Jul 27 2012
 -- Compiling module alt_exc_stripe
 
 Top level modules:
 	alt_exc_stripe
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/local_coincidence/LC_RX_decode.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/local_coincidence/LC_RX_decode.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
--- Compiling entity lc_rc_decode
--- Compiling architecture lc_rx_decode_arch of lc_rc_decode
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity LC_RC_decode
+-- Compiling architecture LC_RX_decode_arch of LC_RC_decode
 
-} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/R2Rram.v {1 {vlog -work work -nocovercells -cover s C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/R2Rram.v
-Model Technology ModelSim SE vlog 6.6a Compiler 2010.03 Mar 19 2010
+} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/R2Rram.v {1 {vlog -work work -cover s C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/R2Rram.v
+Model Technology ModelSim SE vlog 10.1c Compiler 2012.07 Jul 27 2012
 -- Compiling module R2Rram
 
 Top level modules:
 	R2Rram
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/trigger.vhd {1 {vcom -work work -93 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/trigger.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package ctrl_data_types
 -- Compiling entity trigger
 -- Compiling architecture trigger_arch of trigger
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ahb_master.vhd {1 {vcom -work work -93 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ahb_master.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
+-- Loading package STD_LOGIC_UNSIGNED
 -- Compiling entity ahb_master
 -- Compiling architecture ahb_ahb_master of ahb_master
 
-} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/pll4x.v {1 {vlog -work work -nocovercells -cover s C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/pll4x.v
-Model Technology ModelSim SE vlog 6.6a Compiler 2010.03 Mar 19 2010
+} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/pll4x.v {1 {vlog -work work -cover s C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/pll4x.v
+Model Technology ModelSim SE vlog 10.1c Compiler 2012.07 Jul 27 2012
 -- Compiling module pll4x
 
 Top level modules:
 	pll4x
 
-} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/slaveregister.vhd {2 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/slaveregister.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/slaveregister.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/slaveregister.vhd
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
--- Loading package numeric_std
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package NUMERIC_STD
 -- Loading package ctrl_data_types
 -- Compiling entity slaveregister
 -- Compiling architecture arch_slaveregister of slaveregister
 ** Warning: [3] C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/slaveregister.vhd(687): (vcom-1246) Range 15 downto 30 is null.
 
-} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/local_coincidence/LC_RX_edge.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/local_coincidence/LC_RX_edge.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
--- Loading package std_logic_1164
--- Compiling entity lc_rx_edge
--- Compiling architecture lc_rx_edge_arch of lc_rx_edge
 
-} {} {}} C:/FPGAtools/quartus/eda/sim_lib/altera_mf.v {1 {vlog -work work -nocovercells C:/FPGAtools/quartus/eda/sim_lib/altera_mf.v
-Model Technology ModelSim SE vlog 6.6a Compiler 2010.03 Mar 19 2010
+} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/local_coincidence/LC_RX_edge.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/local_coincidence/LC_RX_edge.vhd
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity LC_RX_edge
+-- Compiling architecture LC_RX_edge_arch of LC_RX_edge
+
+} {} {}} C:/FPGAtools/quartus/eda/sim_lib/altera_mf.v {1 {vlog -work work C:/FPGAtools/quartus/eda/sim_lib/altera_mf.v
+Model Technology ModelSim SE vlog 10.1c Compiler 2012.07 Jul 27 2012
 -- Compiling module lcell
 -- Compiling module global
 -- Compiling module carry
@@ -238,195 +253,213 @@ Top level modules:
 	alt_exc_upcore
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/local_coincidence/LC_abort_selfLC.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/local_coincidence/LC_abort_selfLC.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
+-- Loading package STD_LOGIC_UNSIGNED
 -- Loading package ctrl_data_types
 -- Loading package constants
--- Compiling entity lc_abort
--- Compiling architecture arch_lc_abort of lc_abort
+-- Compiling entity LC_abort
+-- Compiling architecture arch_LC_abort of LC_abort
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/sim_models/atwd_model.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/sim_models/atwd_model.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
+-- Loading package STD_LOGIC_UNSIGNED
 -- Compiling entity atwd_model
 -- Compiling architecture atwd_model_arch of atwd_model
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/data_buffer.vhd {1 {vcom -work work -93 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/data_buffer.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
+-- Loading package STD_LOGIC_UNSIGNED
 -- Loading package icecube_data_types
 -- Compiling entity data_buffer
 -- Compiling architecture arch_data_buffer of data_buffer
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/pedestal_sub.vhd {1 {vcom -work work -93 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/pedestal_sub.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
+-- Loading package STD_LOGIC_UNSIGNED
 -- Compiling entity pedestal_sub
 -- Compiling architecture arch_pedestal_sub of pedestal_sub
 
-} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/version_rom.v {1 {vlog -work work -nocovercells -cover s C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/version_rom.v
-Model Technology ModelSim SE vlog 6.6a Compiler 2010.03 Mar 19 2010
+} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/version_rom.v {1 {vlog -work work -cover s C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/version_rom.v
+Model Technology ModelSim SE vlog 10.1c Compiler 2012.07 Jul 27 2012
 -- Compiling module version_rom
 
 Top level modules:
 	version_rom
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/compression_delta_1_2_3_6_11/delta_calc.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/compression_delta_1_2_3_6_11/delta_calc.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
+-- Loading package STD_LOGIC_UNSIGNED
 -- Compiling entity delta_calc
 -- Compiling architecture delta_calc_arch of delta_calc
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/systimer.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/systimer.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
+-- Loading package STD_LOGIC_UNSIGNED
 -- Compiling entity systimer
 -- Compiling architecture systimer_arch of systimer
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/minimum_bias/minimum_bias.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/minimum_bias/minimum_bias.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
+-- Loading package STD_LOGIC_UNSIGNED
 -- Compiling entity minimum_bias
 -- Compiling architecture minimum_bias_arch of minimum_bias
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/local_coincidence/LC_abort.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/local_coincidence/LC_abort.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
+-- Loading package STD_LOGIC_UNSIGNED
 -- Loading package ctrl_data_types
 -- Loading package constants
--- Compiling entity lc_abort
--- Compiling architecture arch_lc_abort of lc_abort
+-- Compiling entity LC_abort
+-- Compiling architecture arch_LC_abort of LC_abort
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/local_coincidence/local_coincidence.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/local_coincidence/local_coincidence.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
+-- Loading package STD_LOGIC_UNSIGNED
 -- Loading package ctrl_data_types
 -- Compiling entity local_coincidence
--- Compiling architecture arch_local_coincidence of local_coincidence
+-- Compiling architecture ARCH_local_coincidence of local_coincidence
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/rate_meters.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/rate_meters.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
+-- Loading package STD_LOGIC_UNSIGNED
 -- Loading package ctrl_data_types
 -- Loading package monitor_data_type
 -- Compiling entity rate_meters
--- Compiling architecture arch_rate_meters of rate_meters
+-- Compiling architecture ARCH_rate_meters of rate_meters
 
-} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_buffer.v {1 {vlog -work work -vopt -nocovercells C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_buffer.v
-Model Technology ModelSim SE vlog 6.6a Compiler 2010.03 Mar 19 2010
+} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_buffer.v {1 {vlog -work work -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_buffer.v
+Model Technology ModelSim SE vlog 10.1c Compiler 2012.07 Jul 27 2012
 -- Compiling module dim_pole_buffer
 
 Top level modules:
 	dim_pole_buffer
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/icetop/icetop_get_atwd_chan.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/icetop/icetop_get_atwd_chan.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
+-- Loading package STD_LOGIC_UNSIGNED
 -- Compiling entity icetop_get_atwd_chan
 -- Compiling architecture icetop_get_atwd_chan_arch of icetop_get_atwd_chan
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/FADC_interface.vhd {1 {vcom -work work -93 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/FADC_interface.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
--- Compiling entity fadc_interface
--- Compiling architecture fadc_interface_arch of fadc_interface
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity FADC_interface
+-- Compiling architecture FADC_interface_arch of FADC_interface
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/gray2bin.vhd {1 {vcom -work work -93 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/gray2bin.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Compiling entity gray2bin
 -- Compiling architecture arch_gray2bin of gray2bin
 
-} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/pll2x.v {1 {vlog -work work -nocovercells C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/pll2x.v
-Model Technology ModelSim SE vlog 6.6a Compiler 2010.03 Mar 19 2010
+} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/pll2x.v {1 {vlog -work work C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/pll2x.v
+Model Technology ModelSim SE vlog 10.1c Compiler 2012.07 Jul 27 2012
 -- Compiling module pll2x
 
 Top level modules:
 	pll2x
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ADC_input.vhd {1 {vcom -work work -93 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ADC_input.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
+-- Loading package STD_LOGIC_UNSIGNED
 -- Loading package ctrl_data_types
 -- Loading package icecube_data_types
--- Compiling entity adc_input
--- Compiling architecture arch_adc_input of adc_input
+-- Compiling entity ADC_input
+-- Compiling architecture arch_ADC_input of ADC_input
 
-} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/compression_delta_1_2_3_6_11/compr_ram.v {1 {vlog -work work -vopt -nocovercells C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/compression_delta_1_2_3_6_11/compr_ram.v
-Model Technology ModelSim SE vlog 6.6a Compiler 2010.03 Mar 19 2010
+} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/compression_delta_1_2_3_6_11/compr_ram.v {1 {vlog -work work -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/compression_delta_1_2_3_6_11/compr_ram.v
+Model Technology ModelSim SE vlog 10.1c Compiler 2012.07 Jul 27 2012
 -- Compiling module compr_ram
 
 Top level modules:
 	compr_ram
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/compression_delta_1_2_3_6_11/delta2word.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/compression_delta_1_2_3_6_11/delta2word.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
+-- Loading package STD_LOGIC_UNSIGNED
 -- Compiling entity delta2word
 -- Compiling architecture delta2word_arch of delta2word
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ROC.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ROC.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
--- Compiling entity roc
--- Compiling architecture arch_roc of roc
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity ROC
+-- Compiling architecture arch_ROC of ROC
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/FADC_input.vhd {1 {vcom -work work -93 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/FADC_input.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Compiling entity fadc_input
--- Compiling architecture fadc_input_arch of fadc_input
+-- Compiling entity FADC_input
+-- Compiling architecture fADC_input_arch of fADC_input
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/daq.vhd {1 {vcom -work work -93 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/daq.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package icecube_data_types
 -- Loading package ctrl_data_types
@@ -435,65 +468,83 @@ Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
 -- Compiling architecture daq_arch of daq
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/icetop/icetop_atwd_charge.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/icetop/icetop_atwd_charge.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
+-- Loading package STD_LOGIC_UNSIGNED
 -- Compiling entity icetop_atwd_charge
 -- Compiling architecture icetop_atwd_charge_arch of icetop_atwd_charge
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/mem_interface.vhd {1 {vcom -work work -93 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/mem_interface.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
+-- Loading package STD_LOGIC_UNSIGNED
 -- Loading package constants
 -- Loading package icecube_data_types
 -- Compiling entity mem_interface
 -- Compiling architecture mem_interface_arch of mem_interface
 
-} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/functions.vhd {1 {vcom -work work -93 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/functions.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ADC_control.vhd {1 {vcom -work work -93 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ADC_control.vhd
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package constants
+-- Loading package icecube_data_types
+-- Compiling entity ADC_control
+-- Compiling architecture arch_ADC_control of ADC_control
+
+} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/functions.vhd {1 {vcom -work work -93 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/functions.vhd
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
 -- Compiling package functions
 -- Compiling package body functions
 -- Loading package functions
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/comm_wrapper_old.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/comm_wrapper_old.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package ctrl_data_types
 -- Compiling entity comm_wrapper
 -- Compiling architecture arch_comm_wrapper of comm_wrapper
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/monitor_data_type.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/monitor_data_type.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Compiling package monitor_data_type
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/local_coincidence/LC_slice.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/local_coincidence/LC_slice.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Compiling entity lc_slice
--- Compiling architecture lc_slice_arch of lc_slice
+-- Compiling entity LC_slice
+-- Compiling architecture LC_slice_arch of LC_slice
 
-} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/stripe.v {1 {vlog -work work -nocovercells C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/stripe.v
-Model Technology ModelSim SE vlog 6.6a Compiler 2010.03 Mar 19 2010
+} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/stripe.v {1 {vlog -work work C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/stripe.v
+Model Technology ModelSim SE vlog 10.1c Compiler 2012.07 Jul 27 2012
 -- Compiling module stripe
 
 Top level modules:
 	stripe
 
-} {} {}} C:/FPGAtools/quartus/eda/sim_lib/220model.v {1 {vlog -work work -nocovercells C:/FPGAtools/quartus/eda/sim_lib/220model.v
-Model Technology ModelSim SE vlog 6.6a Compiler 2010.03 Mar 19 2010
+} {} {}} C:/FPGAtools/quartus/eda/sim_lib/220model.v {1 {vlog -work work C:/FPGAtools/quartus/eda/sim_lib/220model.v
+Model Technology ModelSim SE vlog 10.1c Compiler 2012.07 Jul 27 2012
 -- Compiling module LPM_DEVICE_FAMILIES
 -- Compiling module LPM_HINT_EVALUATION
 -- Compiling module lpm_constant
@@ -557,34 +608,36 @@ Top level modules:
 	lpm_bipad
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/compression_delta_1_2_3_6_11/delta_encoder.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/compression_delta_1_2_3_6_11/delta_encoder.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_signed
+-- Loading package STD_LOGIC_SIGNED
 -- Compiling entity delta_encoder
 -- Compiling architecture delta_encoder_arch of delta_encoder
 
-} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ATWDped.v {1 {vlog -work work -nocovercells -cover s C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ATWDped.v
-Model Technology ModelSim SE vlog 6.6a Compiler 2010.03 Mar 19 2010
+} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ATWDped.v {1 {vlog -work work -cover s C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ATWDped.v
+Model Technology ModelSim SE vlog 10.1c Compiler 2012.07 Jul 27 2012
 -- Compiling module ATWDped
 
 Top level modules:
 	ATWDped
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ATWD_interface.vhd {1 {vcom -work work -93 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ATWD_interface.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
+-- Loading package STD_LOGIC_UNSIGNED
 -- Loading package ctrl_data_types
 -- Loading package constants
--- Compiling entity atwd_interface
--- Compiling architecture atwd_interface_arch of atwd_interface
+-- Compiling entity ATWD_interface
+-- Compiling architecture ATWD_interface_arch of ATWD_interface
 
-} {} {}} C:/FPGAtools/quartus/eda/sim_lib/apex20ke_atoms.v {1 {vlog -work work -nocovercells C:/FPGAtools/quartus/eda/sim_lib/apex20ke_atoms.v
-Model Technology ModelSim SE vlog 6.6a Compiler 2010.03 Mar 19 2010
+} {} {}} C:/FPGAtools/quartus/eda/sim_lib/apex20ke_atoms.v {1 {vlog -work work C:/FPGAtools/quartus/eda/sim_lib/apex20ke_atoms.v
+Model Technology ModelSim SE vlog 10.1c Compiler 2012.07 Jul 27 2012
 -- Compiling module apex20ke_asynch_lcell
 -- Compiling module apex20ke_lcell_register
 -- Compiling module apex20ke_lcell
@@ -629,133 +682,146 @@ Top level modules:
 	apex20ke_jtagb
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ctrl_data_types.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ctrl_data_types.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Compiling package ctrl_data_types
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/chargestamp/charge_stamp_generator.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/chargestamp/charge_stamp_generator.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
+-- Loading package STD_LOGIC_UNSIGNED
 -- Compiling entity charge_stamp_generator
 -- Compiling architecture rtl of charge_stamp_generator
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/xfer_time.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/xfer_time.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
 -- Compiling entity xfer_time
 -- Compiling architecture xfer_time_arch of xfer_time
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/calibration_sources.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/calibration_sources.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
+-- Loading package STD_LOGIC_UNSIGNED
 -- Loading package ctrl_data_types
 -- Compiling entity calibration_sources
--- Compiling architecture arch_calibration_sources of calibration_sources
+-- Compiling architecture ARCH_calibration_sources of calibration_sources
 
-} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/compression_delta_1_2_3_6_11/barrel_shift.v {1 {vlog -work work -vopt -nocovercells C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/compression_delta_1_2_3_6_11/barrel_shift.v
-Model Technology ModelSim SE vlog 6.6a Compiler 2010.03 Mar 19 2010
+} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/compression_delta_1_2_3_6_11/barrel_shift.v {1 {vlog -work work -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/compression_delta_1_2_3_6_11/barrel_shift.v
+Model Technology ModelSim SE vlog 10.1c Compiler 2012.07 Jul 27 2012
 -- Compiling module barrel_shift
 
 Top level modules:
 	barrel_shift
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/simulation/modelsim/testbench.vht {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/simulation/modelsim/testbench.vht
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Compiling entity dom_vhd_tst
 -- Compiling architecture dom_arch of dom_vhd_tst
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/compression_delta_1_2_3_6_11/compression.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/compression_delta_1_2_3_6_11/compression.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
+-- Loading package STD_LOGIC_UNSIGNED
 -- Loading package icecube_data_types
 -- Loading package ctrl_data_types
 -- Compiling entity compression
 -- Compiling architecture arch_compression of compression
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/interrupts.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/interrupts.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Compiling entity interrupts
 -- Compiling architecture interrupts_arch of interrupts
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_flag.vhd {1 {vcom -work work -2002 -explicit -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/dim-pole/dim_pole_flag.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Loading package numeric_std
+-- Loading package NUMERIC_STD
 -- Compiling entity dim_pole_flag
 -- Compiling architecture dim_pole_flag_arch of dim_pole_flag
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/pingpong.vhd {1 {vcom -work work -93 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/pingpong.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
+-- Loading package STD_LOGIC_UNSIGNED
 -- Loading package icecube_data_types
 -- Loading package ctrl_data_types
 -- Loading package monitor_data_type
 -- Compiling entity pingpong
 -- Compiling architecture arch_pingpong of pingpong
 
-} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/FADC_buffer.v {1 {vlog -work work -nocovercells C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/FADC_buffer.v
-Model Technology ModelSim SE vlog 6.6a Compiler 2010.03 Mar 19 2010
+} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/FADC_buffer.v {1 {vlog -work work C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/FADC_buffer.v
+Model Technology ModelSim SE vlog 10.1c Compiler 2012.07 Jul 27 2012
 -- Compiling module FADC_buffer
 
 Top level modules:
 	FADC_buffer
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/DOMstatus.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/DOMstatus.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
+-- Loading package STD_LOGIC_UNSIGNED
 -- Loading package monitor_data_type
--- Compiling entity domstatus
--- Compiling architecture domstatus_arch of domstatus
+-- Compiling entity DOMstatus
+-- Compiling architecture DOMstatus_arch of DOMstatus
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/constants.vhd {1 {vcom -work work -93 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/constants.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
 -- Compiling package constants
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/icecube_data_types.vhd {1 {vcom -work work -93 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/icecube_data_types.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Compiling package icecube_data_types
 
-} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ATWD_buffer.v {1 {vlog -work work -nocovercells C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ATWD_buffer.v
-Model Technology ModelSim SE vlog 6.6a Compiler 2010.03 Mar 19 2010
+} {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ATWD_buffer.v {1 {vlog -work work C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/ATWD_buffer.v
+Model Technology ModelSim SE vlog 10.1c Compiler 2012.07 Jul 27 2012
 -- Compiling module ATWD_buffer
 
 Top level modules:
 	ATWD_buffer
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/compression_delta_1_2_3_6_11/compression_control.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/compression_delta_1_2_3_6_11/compression_control.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
+-- Loading package STD_LOGIC_UNSIGNED
 -- Loading package icecube_data_types
 -- Loading package ctrl_data_types
 -- Loading package constants
@@ -763,11 +829,12 @@ Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
 -- Compiling architecture compression_control_arch of compression_control
 
 } {} {}} C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/chargestamp/chargestamp.vhd {1 {vcom -work work -2002 -explicit -cover s -vopt C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/chargestamp/chargestamp.vhd
-Model Technology ModelSim SE vcom 6.6a Compiler 2010.03 Mar 19 2010
--- Loading package standard
+Model Technology ModelSim SE vcom 10.1c Compiler 2012.07 Jul 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package std_logic_unsigned
+-- Loading package STD_LOGIC_UNSIGNED
 -- Compiling entity chargestamp
 -- Compiling architecture arch_chargestamp of chargestamp
 

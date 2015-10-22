@@ -398,31 +398,38 @@ libhm = $MODEL_TECH/libhm.sl
 ;  Logic Modeling's hardware modeler SFI software (Linux)
 ; libsfi = <sfi_dir>/lib/linux/libsfi.so
 [Project]
+; Warning -- Do not edit the project properties directly.
+;            Property names are dynamic in nature and property
+;            values have special syntax.  Changing property data directly
+;            can result in a corrupt MPF file.  All project properties
+;            can be modified through project window dialogs.
 Project_Version = 6
 Project_DefaultLib = work
 Project_SortMethod = unused
 Project_Files_Count = 6
 Project_File_0 = C:/FPGAtools/quartus/eda/sim_lib/apex20ke_atoms.vhd
-Project_File_P_0 = vhdl_novitalcheck 0 file_type vhdl group_id 0 vhdl_nodebug 0 vhdl_1164 1 vhdl_noload 0 vlog_1995compat 0 vhdl_synth 0 folder {Top Level} last_compile 1065742046 vhdl_disableopt 0 vhdl_vital 0 vhdl_warn1 1 vhdl_warn2 1 vhdl_explicit 1 vhdl_showsource 0 vhdl_warn3 1 vhdl_options {} vhdl_warn4 1 ood 1 vhdl_warn5 1 compile_to work compile_order 5 dont_compile 0 cover_stmt 1 vhdl_use93 2002
+Project_File_P_0 = vhdl_novitalcheck 0 file_type vhdl group_id 0 vhdl_nodebug 0 vhdl_1164 1 vhdl_noload 0 vlog_1995compat 0 vhdl_synth 0 folder {Top Level} last_compile 1065742046 vhdl_disableopt 0 vhdl_vital 0 vhdl_warn1 1 vhdl_showsource 0 vhdl_explicit 1 vhdl_warn2 1 vhdl_warn3 1 vhdl_warn4 1 vhdl_options {} vhdl_warn5 1 ood 1 compile_to work compile_order 5 dont_compile 0 vhdl_use93 2002 cover_stmt 1
 Project_File_1 = C:/work_lbnl/IceCubeCVS/dom-fpga/sim_models/atwd_model.vhd
-Project_File_P_1 = vhdl_novitalcheck 0 file_type vhdl group_id 0 vhdl_nodebug 0 vhdl_1164 1 vhdl_noload 0 vlog_1995compat 0 vhdl_synth 0 folder {Top Level} last_compile 1071245729 vhdl_disableopt 0 vhdl_vital 0 vhdl_warn1 1 vhdl_showsource 0 vhdl_explicit 1 vhdl_warn2 1 vhdl_warn3 1 vhdl_warn4 1 vhdl_options {} vhdl_warn5 1 ood 1 compile_to work compile_order 2 dont_compile 0 vhdl_use93 2002 cover_stmt 1
-Project_File_2 = C:/FPGAtools/quartus/eda/sim_lib/apex20ke_components.vhd
-Project_File_P_2 = vhdl_novitalcheck 0 file_type vhdl group_id 0 vhdl_nodebug 0 vhdl_1164 1 vhdl_noload 0 vlog_1995compat 0 vhdl_synth 0 folder {Top Level} last_compile 1065742046 vhdl_disableopt 0 vhdl_vital 0 vhdl_warn1 1 vhdl_warn2 1 vhdl_explicit 1 vhdl_showsource 0 vhdl_warn3 1 vhdl_options {} vhdl_warn4 1 ood 1 vhdl_warn5 1 compile_to work compile_order 4 dont_compile 0 cover_stmt 1 vhdl_use93 2002
-Project_File_3 = C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/simulation/modelsim/dom.vho
-Project_File_P_3 = vhdl_novitalcheck 0 file_type vhdl group_id 0 vhdl_nodebug 0 vhdl_1164 1 vhdl_noload 0 vlog_1995compat 0 vhdl_synth 0 folder {Top Level} last_compile 1077565629 vhdl_disableopt 0 vhdl_vital 0 vhdl_warn1 1 vhdl_showsource 0 vhdl_explicit 1 vhdl_warn2 1 vhdl_warn3 1 vhdl_warn4 1 vhdl_options {} vhdl_warn5 1 ood 1 compile_to work compile_order 1 dont_compile 0 vhdl_use93 2002 cover_stmt 1
-Project_File_4 = C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/simulation/modelsim/testbench.vht
-Project_File_P_4 = vhdl_novitalcheck 0 group_id 0 file_type vhdl vhdl_nodebug 0 vhdl_1164 1 vhdl_noload 0 vlog_1995compat 0 vhdl_synth 0 vhdl_disableopt 0 last_compile 1077045402 folder {Top Level} vhdl_vital 0 vhdl_warn1 1 vhdl_warn2 1 vhdl_explicit 1 vhdl_showsource 0 vhdl_warn3 1 vhdl_options {} vhdl_warn4 1 ood 1 vhdl_warn5 1 compile_to work compile_order 0 dont_compile 0 cover_stmt 1 vhdl_use93 2002
-Project_File_5 = C:/work_lbnl/IceCubeCVS/dom-fpga/sim_models/FADC_model.vhd
-Project_File_P_5 = vhdl_novitalcheck 0 file_type vhdl group_id 0 vhdl_nodebug 0 vhdl_1164 1 vhdl_noload 0 vlog_1995compat 0 vhdl_synth 0 folder {Top Level} last_compile 1070925127 vhdl_disableopt 0 vhdl_vital 0 vhdl_warn1 1 vhdl_showsource 0 vhdl_explicit 1 vhdl_warn2 1 vhdl_warn3 1 vhdl_warn4 1 vhdl_options {} vhdl_warn5 1 ood 1 compile_to work compile_order 3 dont_compile 0 vhdl_use93 2002 cover_stmt 1
+Project_File_P_1 = vhdl_novitalcheck 0 file_type vhdl group_id 0 vhdl_nodebug 0 vhdl_1164 1 vhdl_noload 0 vlog_1995compat 0 vhdl_synth 0 folder {Top Level} last_compile 1071245729 vhdl_disableopt 0 vhdl_vital 0 vhdl_warn1 1 vhdl_warn2 1 vhdl_explicit 1 vhdl_showsource 0 vhdl_warn3 1 vhdl_options {} vhdl_warn4 1 ood 1 vhdl_warn5 1 compile_to work compile_order 2 dont_compile 0 cover_stmt 1 vhdl_use93 2002
+Project_File_2 = C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/simulation/modelsim/dom.vho
+Project_File_P_2 = vhdl_novitalcheck 0 file_type vhdl group_id 0 vhdl_nodebug 0 vhdl_1164 1 vhdl_noload 0 vlog_1995compat 0 vhdl_synth 0 folder {Top Level} last_compile 1077565629 vhdl_disableopt 0 vhdl_vital 0 vhdl_warn1 1 vhdl_warn2 1 vhdl_explicit 1 vhdl_showsource 0 vhdl_warn3 1 vhdl_options {} vhdl_warn4 1 ood 1 vhdl_warn5 1 compile_to work compile_order 1 dont_compile 0 cover_stmt 1 vhdl_use93 2002
+Project_File_3 = C:/FPGAtools/quartus/eda/sim_lib/apex20ke_components.vhd
+Project_File_P_3 = vhdl_novitalcheck 0 file_type vhdl group_id 0 vhdl_nodebug 0 vhdl_1164 1 vhdl_noload 0 vlog_1995compat 0 vhdl_synth 0 folder {Top Level} last_compile 1065742046 vhdl_disableopt 0 vhdl_vital 0 vhdl_warn1 1 vhdl_showsource 0 vhdl_explicit 1 vhdl_warn2 1 vhdl_warn3 1 vhdl_warn4 1 vhdl_options {} vhdl_warn5 1 ood 1 compile_to work compile_order 4 dont_compile 0 vhdl_use93 2002 cover_stmt 1
+Project_File_4 = C:/work_lbnl/IceCubeCVS/dom-fpga/sim_models/FADC_model.vhd
+Project_File_P_4 = vhdl_novitalcheck 0 file_type vhdl group_id 0 vhdl_nodebug 0 vhdl_1164 1 vhdl_noload 0 vlog_1995compat 0 vhdl_synth 0 folder {Top Level} last_compile 1070925127 vhdl_disableopt 0 vhdl_vital 0 vhdl_warn1 1 vhdl_warn2 1 vhdl_explicit 1 vhdl_showsource 0 vhdl_warn3 1 vhdl_options {} vhdl_warn4 1 ood 1 vhdl_warn5 1 compile_to work compile_order 3 dont_compile 0 cover_stmt 1 vhdl_use93 2002
+Project_File_5 = C:/work_lbnl/IceCubeCVS/dom-fpga/domapp/simulation/modelsim/testbench.vht
+Project_File_P_5 = vhdl_novitalcheck 0 group_id 0 file_type vhdl vhdl_nodebug 0 vhdl_1164 1 vhdl_noload 0 vlog_1995compat 0 vhdl_synth 0 vhdl_disableopt 0 last_compile 1077045402 folder {Top Level} vhdl_vital 0 vhdl_warn1 1 vhdl_showsource 0 vhdl_explicit 1 vhdl_warn2 1 vhdl_warn3 1 vhdl_warn4 1 vhdl_options {} vhdl_warn5 1 ood 1 compile_to work compile_order 0 dont_compile 0 vhdl_use93 2002 cover_stmt 1
 Project_Sim_Count = 0
 Project_Folder_Count = 0
 Echo_Compile_Output = 0
 Save_Compile_Report = 1
 Project_Opt_Count = 0
 ForceSoftPaths = 0
-ReOpenSourceFiles = 1
+ProjectStatusDelay = 5000
 VERILOG_DoubleClick = Edit
 VERILOG_CustomDoubleClick = 
+SYSTEMVERILOG_DoubleClick = Edit
+SYSTEMVERILOG_CustomDoubleClick = 
 VHDL_DoubleClick = Edit
 VHDL_CustomDoubleClick = 
 PSL_DoubleClick = Edit
@@ -443,6 +450,19 @@ XML_DoubleClick = Edit
 XML_CustomDoubleClick = 
 LOGFILE_DoubleClick = Edit
 LOGFILE_CustomDoubleClick = 
-EditorState = 
-Project_Major_Version = 6
-Project_Minor_Version = 2
+UCDB_DoubleClick = Edit
+UCDB_CustomDoubleClick = 
+UPF_DoubleClick = Edit
+UPF_CustomDoubleClick = 
+PCF_DoubleClick = Edit
+PCF_CustomDoubleClick = 
+PROJECT_DoubleClick = Edit
+PROJECT_CustomDoubleClick = 
+VRM_DoubleClick = Edit
+VRM_CustomDoubleClick = 
+DEBUGDATABASE_DoubleClick = Edit
+DEBUGDATABASE_CustomDoubleClick = 
+DEBUGARCHIVE_DoubleClick = Edit
+DEBUGARCHIVE_CustomDoubleClick = 
+Project_Major_Version = 10
+Project_Minor_Version = 1
